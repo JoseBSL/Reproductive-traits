@@ -30,9 +30,11 @@ h$references <- as.character(h$references)
 
 library(stringr)
 
-h <- str_split(h$references, " ", simplify = T)
+h_refs <- str_split(h$references, " ", simplify = T)
 
-
+robertson_2010$author <- NA
+robertson_2010$year <- NA
+robertson_2010$journal <- NA
 
 
 
