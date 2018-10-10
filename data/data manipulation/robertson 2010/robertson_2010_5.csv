@@ -1,0 +1,41 @@
+Table S1: SI-SC and D-P Character State Table,,,,
+Taxon,SI-SC State,D-P State,SI-SC Source,D-P Source
+Solanum candidum,SC,D,[100],[14]
+Solanum canense,SC,D,"[100, 64, 7]","[13, 7]"
+Solanum capsicoides,SC,"D , P",[96],"[96, 4, 78]"
+Solanum caripense,SI,D,"[100, 64, 7, 6]","[6, 13, 7]"
+Solanum carolinense,SI,D,[80],[80]
+Solanum cheesmaniae,SC,D,[100],[75]
+Solanum chilense,"SI , SC",D,"[100, 44, 75]",[75]
+Solanum chmielewskii,SC,D,[75],[75]
+Solanum chomatophilum,SI,D,[53],[42]
+Solanum cinereum,SC,"D , P",[100],[78]
+Solanum circinatum,SI,D,[17],[34]
+Solanum citrulifolium,SC,D,[100],[54]
+Solanum clarkiae,SC,D,[8],[34]
+Solanum clarum,SI,D,[88],[42]
+Solanum cleistogamum,SC,D,[90],[78]
+Solanum cochoae,SI,D,[64],"[34, 13]"
+Solanum colombianum,SCy,P,"[53, 86]",[42]
+Solanum confusum,SI,D,[19],[3]
+Solanum corymbi orum,SI,D,[17],[34]
+Solanum crinitum,SC,D,[100],[49]
+Solanum crispum,SI,D,[10],[3]
+Solanum cyaneopurpureum,SC,D,[21],[34]
+Solanum dasyphyllum,SC,D,[69],[69]
+Solanum demissum,SC,P,[3],"[42, 97]"
+Solanum diploconos,SI,D,[17],[3]
+Solanum diversi orum,SI,D,[100],"[34, 78]"
+Solanum diversifolium,SI,D,[17],[34]
+Solanum dulcamara,SC,D,[22],[34]
+Solanum echinatum,SC,D,[22],"[34, 78]"
+Solanum elaegnifolium,SC,P,[21],[34]
+Solanum etuberosum,SC,D,[75],[27]
+Solanum felinum,SC,D,"[100, 14]",[14]
+Solanum fernandezianum,SC,D,[87],[27]
+Solanum liforme,SI,D,[64],[13]
+Solanum fraxinifolium,"SI , SC",D,"[100, 64]",[13]
+Solanum glaucophyllum,SI,D,[19],[34]
+Solanum guerreroense,SC,P,"[37, 99, 86]",[42]
+Solanum habrochaites,"SI , SC",D,[75],[3]
+Solanum heiseri,SI,D,"[100, 64]",[13]

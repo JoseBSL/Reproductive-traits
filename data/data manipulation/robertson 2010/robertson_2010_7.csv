@@ -1,0 +1,36 @@
+Table S1: SI-SC and D-P Character State Table,,,,
+Taxon,SI-SC State,D-P State,SI-SC Source,D-P Source
+Solanum pseudodulo,SC,D,"[100, 43]","[34, 14]"
+Solanum ptychanthum,SC,D,[40],[32]
+Solanum quitonse,SC,D,"[100, 20]","[34, 14]"
+Solanum repandum,SC,D,"[100, 14]",[14]
+Solanum robustum,SC,D,[100],[46]
+Solanum roseum,SC,D,[21],[34]
+Solanum rostratum,SC,D,[100],"[78, 54]"
+Solanum seaforthianum,SC,D,[2],[12]
+Solanum sessi orum,SC,D,[100],[14]
+Solanum sibundoyense,SI,D,[17],[3]
+Solanum sisymbrifolium,"SI , SC",D,[100],[34]
+Solanum sitiens,SI,D,[75],[3]
+Solanum stagnale,SC,D,[100],[14]
+Solanum stoloniferum,SCy,P,"[76, 98, 38]",[42]
+Solanum stramonifolium,SC,D,[100],"[34, 14]"
+Solanum stuckertii,SI,D,"[19, 66]",[34]
+Solanum tabanoense,SI,D,"[100, 64]",[13]
+Solanum tenuispinum,SC,D,[22],[4]
+Solanum torvum,SC,"D , P",[100],"[34, 78]"
+Solanum trachycarpum,SC,D,"[100, 64, 7]","[6, 13]"
+Solanum tridynamum,SC,D,[79],[54]
+Solanum tri orum,SC,D,[22],"[11, 78]"
+Solanum tripartitum,SC,D,[22],[4]
+Solanum tuberosum,"SI , SC","D , P","[52, 48]","[52, 48]"
+Solanum unilobum,SI,D,[17],[3]
+Solanum verrucosum,SC,"D , P",[100],[42]
+Solanum vestissimum,SC,D,[100],"[34, 14]"
+Solanum viarum,SC,D,[3],"[34, 25]"
+Solanum villosum,SC,P,[31],"[32, 78, 83]"
+Solanum virginianum,SC,D,"[100, 79]",[34]
+Vassobia brevi ora,SC,D,[84],[34]
+Withania somnifera,SC,P,[47],[34]
+Witheringia macrantha,SI,D,[85],[85]
+Witheringia solanacea,"SI , SC",D,[18],[85]

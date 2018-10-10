@@ -1,0 +1,41 @@
+Table S1: SI-SC and D-P Character State Table,,,,
+Taxon,SI-SC State,D-P State,SI-SC Source,D-P Source
+Solanum hibernum,SI,D,[19],[3]
+Solanum hirtum,SC,D,[100],"[34, 14]"
+Solanum hjertingii,SC,P,[3],"[34, 42]"
+Solanum hougasii,SC,P,"[86, 45]",[42]
+Solanum huaylasense,SI,D,[44],[75]
+Solanum hyporhodium,SC,D,[100],[14]
+Solanum incanum,SC,D,[79],[78]
+Solanum iopetalum,SCy,P,"[99, 86]",[42]
+Solanum jamesii,SI,D,[76],[42]
+Solanum juglandifolium,SI,D,[75],[3]
+Solanum laciniatum,SC,P,[100],[78]
+Solanum lasiocarpum,SC,D,[100],[14]
+Solanum luteoalbum,SC,D,[19],[3]
+Solanum lycocarpum,SI,D,[56],[25]
+Solanum lycopersicoides,SI,D,[75],[3]
+Solanum lycopersicum,SC,D,[100],[75]
+Solanum macrocarpon,SC,D,[100],[69]
+Solanum mammosum,SC,D,[100],[25]
+Solanum marginatum,SC,D,[100],"[78, 25]"
+Solanum mauritianum,SC,D,[82],"[34, 78]"
+Solanum melongena,SC,D,[100],[34]
+Solanum morelliforme,SC,D,[88],[42]
+Solanum myriacanthum,SC,D,[59],[34]
+Solanum neorickii,SC,D,[75],[75]
+Solanum obliquum,SI,D,[17],[34]
+Solanum ochranthum,SI,D,"[75, 43, 76]",[34]
+Solanum oxycarpum,SCy,P,"[53, 99, 86]",[42]
+Solanum palinacanthum,SI,D,[26],[3]
+Solanum palitans,SC,D,[22],[34]
+Solanum pectinatum,SC,D,[100],"[34, 14]"
+Solanum pennellii,"SI , SC",D,[75],[34]
+Solanum peruvianum,"SI , SC",D,"[100, 75]",[75]
+Solanum physalifolium,SC,D,[22],[78]
+Solanum pimpinellifolium,SC,D,[100],[3]
+Solanum pinnatisectum,SI,D,[100],[42]
+Solanum platense,SC,D,"[75, 43]",[25]
+Solanum polyadenium,SC,"D , P",[3],"[72, 86]"
+Solanum prinophyllum,SC,D,[22],[78]
+Solanum pseudocapsicum,SC,D,[100],[3]
