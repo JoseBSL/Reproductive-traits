@@ -40,8 +40,6 @@ write.csv(data_species,"data_species.csv")
 data_species=data_species[,-c(1,2,4,5,7,8)]
 write.csv(data_species,"taxsize_output.csv")
 
-
-
 #First I'm going to try to download info just from biolflor
 #load my species list
 data_species=data_species[complete.cases(data_species),]
@@ -50,14 +48,19 @@ data_list<- data_species$species
 available_tr8
 
 b <- c("h_max", "h_min","li_form","reprod_meth","propag","growth_form","life_span","woodiness")
-            #,"li_form_B","li_span",
-            #"reprod_B","strategy","self-st","Breeding_sys","apomixis","life_form_P","inflorescence_fr","poll_vect_fr",
-            #"fruit_type_fr","flower_colour_fr","li_form_fr","max_height_cal","Growth.Habit","Flower.Color",
-            #"Growth.Form","Growth.Rate","Height..Mature","Lifespan","Bloom.Period","Vegetative.Spread.Rate")
+            
+traits<-c("h_max", "h_min","li_form","reprod_meth","propag","growth_form","life_span","woodiness","li_form_B","li_span","reprod_B","strategy","self-st","Breeding_sys","apomixis","life_form_P","inflorescence_fr","poll_vect_fr",
+     "fruit_type_fr","flower_colour_fr","li_form_fr","max_height_cal","Growth.Habit","Flower.Color",
+     "Growth.Form","Growth.Rate","Height..Mature","Lifespan","Bloom.Period","Vegetative.Spread.Rate")
 
-
-for(i in data_list)
 available_tr8
-My_traits<-tr8(species_list=data_list,download_list=b)
+retreved_traits<-tr8(species_list=data_list,download_list=b)
+retreved_traits<-tr8(species_list=data_list,download_list=traits)
 
+life_form<-tr8(species_list=data_list,download_list="li_form")
+reprod_meth<-tr8(species_list=data_list,download_list="reprod_meth")
 
+save.image("evn.Rdata")
+#Way to proceed for a merge
+str(reprod_meth)
+df_reprod_meth <- as.data.frame(reprod_meth@results)
