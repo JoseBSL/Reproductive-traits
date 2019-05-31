@@ -44,23 +44,20 @@ write.csv(data_species,"taxsize_output.csv")
 
 #First I'm going to try to download info just from biolflor
 #load my species list
+data_species=data_species[complete.cases(data_species),]
+data_list<- data_species$species
+#Check what traits are available
+available_tr8
+
+b <- c("h_max", "h_min","li_form","reprod_meth","propag","growth_form","life_span","woodiness")
+            #,"li_form_B","li_span",
+            #"reprod_B","strategy","self-st","Breeding_sys","apomixis","life_form_P","inflorescence_fr","poll_vect_fr",
+            #"fruit_type_fr","flower_colour_fr","li_form_fr","max_height_cal","Growth.Habit","Flower.Color",
+            #"Growth.Form","Growth.Rate","Height..Mature","Lifespan","Bloom.Period","Vegetative.Spread.Rate")
 
 
-
-
-
-
-data<- read.csv("data/species_list.csv")
-head(data)
-str(data)
-data_list<- data$species_geonet
 for(i in data_list)
-My_traits<-tr8(species_list=i,gui_config=TRUE, synonyms = TRUE,download_list=c("list_of_traits_Biolflor"))
-tr8(species_list=c("Salix alba","Populus nigra"),download_list=c("list_of_traits_Biolflor"))
-{print(i)}
+available_tr8
+My_traits<-tr8(species_list=data_list,download_list=b)
 
-
-plant_order=tax_name(query=unique(head(plant_family$family)),
-                     get=c("order"),db="ncbi", 
-                     division_filter = "Plantae",rank_query="Family")
 
