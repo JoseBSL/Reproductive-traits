@@ -103,7 +103,7 @@ retreved_traits_5<-tr8(species_list=species,download_list=f)
 #life_form<-tr8(species_list=data_list,download_list="li_form")
 #reprod_meth<-tr8(species_list=data_list,download_list="reprod_meth")
 
-#save.image("evn.Rdata")
+save.image("evn.Rdata")
 #Way to proceed for a merge
 #str(reprod_meth)
 #df_reprod_meth <- as.data.frame(reprod_meth@results)
