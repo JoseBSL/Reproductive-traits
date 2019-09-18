@@ -43,6 +43,13 @@ nrow(data)
 
 b<- merge(all_dat_id_unique, data)
 nrow(b)
+c<- merge(all_dat_id_unique, data, by = "species_geonet", all = TRUE)
+nrow(c)
+species_list_unique<- all_dat_id_unique
+write.csv(species_list_unique, "data/species_list_unique.csv")
+write.csv(data_all_id_1, "data/data_all_id_1.csv")
+
+
 #Let's try other example
 #Going back to original Working Directory
 setwd("~/Reproductive Traits")
