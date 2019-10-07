@@ -1,3 +1,8 @@
+#Processing data
+
+
+#Step 1 Combine dataframe with traits and networks
+
 #Here I'm going to read all the networks, create a list of spp
 #and associate each spp to a network id
 
@@ -8,15 +13,19 @@ library(tidyverse)
 
 
 #To read all the csv's I setwd on the specific folder
-#Then
 
-#read data
-data <- read_excel("Data/bionet_last.xls")
+#load data
+setwd("~/Reproductive Traits/")
+data <- read_excel("data/Process_data/traits_2019.xlsx")
+
+#checking data structure
 #str(data)
+#I convert to data.frame
 data <- as.data.frame(data)
 #str(data)
 
-setwd("Data/Data_networks")
+#setwd to read the csv files
+setwd("~/Reproductive Traits/data/Data_networks")
 temp <- list.files(pattern="*.csv")
 my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
 
@@ -29,31 +38,37 @@ data_id_list <- lapply(seq_along(my_data),
 my_names = c("X", "unique.id")
 result = lapply(data_id_list, "[",  my_names)
 all_dat_id <- bind_rows(result, .id = "column_label")
+nrow(all_dat_id)
+#all species 4902
 all_dat_id_unique <- all_dat_id[!duplicated(all_dat_id[2]),]
 nrow(all_dat_id_unique)
-
+#3142
 head(all_dat_id_unique)
+
+#rename column to merge
 colnames(all_dat_id_unique)[2] <- "species_geonet"
 head(data)
 
-# Does not work quite well, I lost rows
-data_all_id <-  merge(all_dat_id_unique, data, by="species_geonet" )
+# merege species from the netwroks and my data with traits
+# still working on the data
+# but creating workflow now
+
+data_all_id <-  merge(all_dat_id_unique, data, by="species_geonet",all = TRUE)
 nrow(data_all_id)
+#3344
 nrow(data)
+#3822
+nrow(all_dat_id_unique)
+#3142
 
-b<- merge(all_dat_id_unique, data)
-nrow(b)
-c<- merge(all_dat_id_unique, data, by = "species_geonet", all = TRUE)
-nrow(c)
-species_list_unique<- all_dat_id_unique
-write.csv(species_list_unique, "data/species_list_unique.csv")
-write.csv(data_all_id_1, "data/data_all_id_1.csv")
+# setwd to write csv on data folder
+setwd("~/Reproductive Traits/")
+write.csv(data_all_id, "data/Output_processing_data/all_dat_id_unique.csv",na="")
 
 
-#Let's try other example
-#Going back to original Working Directory
-setwd("~/Reproductive Traits")
-data_all_id_1 <- full_join(all_dat_id_unique, data, by = "species_geonet") 
-nrow(data_all_id_1)
-write.csv(data_all_id_1, "data/data_all_id_1.csv")
+
+
+
+
+
 
