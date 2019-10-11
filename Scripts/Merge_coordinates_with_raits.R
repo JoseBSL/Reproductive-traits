@@ -9,3 +9,9 @@ coordinates_and_id <- read.csv("data/Process_data/coordinates_idref.csv")
 
 head(traits)
 head(coordinates_and_id)
+
+
+#To merge first I have to clean the data
+
+
+#decide what is best if modify mine or use the way of geonet
