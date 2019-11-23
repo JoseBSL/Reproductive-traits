@@ -16,7 +16,7 @@ library(tidyverse)
 
 #load data
 setwd("~/Reproductive Traits/")
-data <- read_excel("data/Process_data/traits_2019.xlsx")
+data <- read_excel("data/Process_data/traits_2019_2.xlsx")
 
 #checking data structure
 #str(data)
