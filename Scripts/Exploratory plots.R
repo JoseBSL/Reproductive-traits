@@ -16,12 +16,14 @@ library(ggplot2)
 
 #load data
 setwd("~/Reproductive Traits/")
-data <- read_excel("data/Traits_Data.xlsx",na="")
+data <- read_excel("data/data_traits.xlsx",na="")
 
 data$corolla_diameter_mean_mm <- as.numeric(data$corolla_diameter_mean_mm)
 str(data$corolla_diameter_mean_mm)
 data$plant_height_mean_m <- as.numeric(data$plant_height_mean_m)
+
 data$corolla_length_mean_mm <- as.numeric(data$corolla_length_mean_mm)
+
 
 herbs <- subset(data, life_form=="herb")
 data$`autonomous_selfing_level (none/low/medium/high)`
@@ -51,5 +53,20 @@ ggplot(life_form, aes(life_form, corolla_length_mean_mm)) +
   theme_minimal()
 
 ggplot(life_span, aes(lifespan, corolla_diameter_mean_mm)) + 
+  geom_boxplot() + geom_jitter(width = 0.05) +ylab("Corolla length") + xlab("Selfing level")+
+  theme_minimal()
+
+data$ClimateZ
+
+ggplot(data, aes(ClimateZ, corolla_diameter_mean_mm)) + 
+  geom_boxplot() + geom_jitter(width = 0.05) +ylab("Corolla length") + xlab("Selfing level")+
+  theme_minimal()
+
+ggplot(data, aes(ClimateZ, corolla_length_mean_mm)) + 
+  geom_boxplot() + geom_jitter(width = 0.05) +ylab("Corolla length") + xlab("Selfing level")+
+  theme_minimal()
+data$plant_height_mean_m
+
+ggplot(herbs, aes(ClimateZ, plant_height_mean_m)) + 
   geom_boxplot() + geom_jitter(width = 0.05) +ylab("Corolla length") + xlab("Selfing level")+
   theme_minimal()
