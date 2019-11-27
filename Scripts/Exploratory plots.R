@@ -24,6 +24,8 @@ data$plant_height_mean_m <- as.numeric(data$plant_height_mean_m)
 
 data$corolla_length_mean_mm <- as.numeric(data$corolla_length_mean_mm)
 
+data <- subset(data, info_level=="flower"|info_level=="capitulum")
+
 
 herbs <- subset(data, life_form=="herb")
 data$`autonomous_selfing_level (none/low/medium/high)`
