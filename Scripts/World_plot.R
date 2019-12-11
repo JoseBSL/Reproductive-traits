@@ -65,17 +65,22 @@ points.zones <- merge(raster.points,clim.zones, by="layer")
 #plot the map
 map <- ggplot()
 map <- map + geom_map(data=continents.regular,map=continents.regular, aes(map_id=id), 
-                      colour="black", fill="white", size=0.4) + 
+                      colour="white", fill="white", size=0.4) + 
   expand_limits(x=continents.regular$long, y=continents.regular$lat) + 
   coord_equal()
 map <- map + geom_raster(data=points.zones, 
                          aes(y=y, x=x, fill=zone2), 
                          alpha=0.4) 
 #Arreglar para anadir networks hechas
-spec.graph.agg$l
+longitude <- 3.296797
+latitude <- 42.315336
+locality <- "Spain"
+id <- "bartomeus_2008_bat1ca.csv"
 
-map <- map + geom_point(data=spec.graph.agg,aes(x=Longitude, y=Latitude),
-                        colour="black",pch=1,size=1+spec.graph.agg$.value)
+data <- data.frame(longitude, latitude, locality, id)
+
+map <- map + geom_point(data=data,aes(x=longitude, y=latitude),
+                        colour="brown1",pch=8,size=5)
 
 map <- map + theme(axis.line.x = element_line(size=0, colour = "black"),
                    axis.line.y = element_line(size=0, colour = "black"),
