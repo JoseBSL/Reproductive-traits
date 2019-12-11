@@ -65,22 +65,29 @@ points.zones <- merge(raster.points,clim.zones, by="layer")
 #plot the map
 map <- ggplot()
 map <- map + geom_map(data=continents.regular,map=continents.regular, aes(map_id=id), 
-                      colour="white", fill="white", size=0.4) + 
+                      colour="white", fill="white", size=0.4) + ylab("Latitude")+ xlab("Longitude")+
   expand_limits(x=continents.regular$long, y=continents.regular$lat) + 
   coord_equal()+   coord_sf( ylim = c(-60, 100), expand = FALSE)
 map <- map + geom_raster(data=points.zones, 
                          aes(y=y, x=x, fill=zone2), 
                          alpha=0.4) 
 #Arreglar para anadir networks hechas
-longitude <- c(3.296797, 10.216667)
-latitude <- c(42.315336, 56.066667)
-locality <- c("Spain, Denmark")
-id <- ("bartomeus_2008_bat1ca.csv, beck_2006.csv")
+longitude <- c(3.296797, 10.216667, 10.233333, 
+               -68.015892, 1.575532, 9.1, 18.5, -20.5, 135.866667)
+latitude <- c(42.315336, 56.066667, 56.066667, 
+              -32.008985, 52.762395, 56.1, 68.35, 74.5, 35.166667)
+locality <- c("Spain", "Denmark", "Denmark", 
+              "Argentina", "England", "Denmark", 
+              "Sweden", "Greenland", "Japan")
+id <- c("bartomeus_2008_bat1ca.csv", "beck_2006.csv", "bundgaard_2003.csv", "chacoff_2011.csv", 
+        "dicks_2002_1.csv", "dupont_2009_denmark.csv", 
+        "elberling_1999.csv", 
+        "elberling_unpublished_data.csv", "Inoue_1990.csv")
 
 data <- data.frame(longitude, latitude, locality, id)
 
 map <- map + geom_point(data=data,aes(x=longitude, y=latitude),
-                        colour="brown1",pch=8,size=2)
+                        colour="black",size=0.5)
 
 map <- map + theme(axis.line.x = element_line(size=0, colour = "black"),
                    axis.line.y = element_line(size=0, colour = "black"),
