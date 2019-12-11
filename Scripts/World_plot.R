@@ -67,20 +67,20 @@ map <- ggplot()
 map <- map + geom_map(data=continents.regular,map=continents.regular, aes(map_id=id), 
                       colour="white", fill="white", size=0.4) + 
   expand_limits(x=continents.regular$long, y=continents.regular$lat) + 
-  coord_equal()
+  coord_equal()+   coord_sf( ylim = c(-60, 100), expand = FALSE)
 map <- map + geom_raster(data=points.zones, 
                          aes(y=y, x=x, fill=zone2), 
                          alpha=0.4) 
 #Arreglar para anadir networks hechas
-longitude <- 3.296797
-latitude <- 42.315336
-locality <- "Spain"
-id <- "bartomeus_2008_bat1ca.csv"
+longitude <- c(3.296797, 10.216667)
+latitude <- c(42.315336, 56.066667)
+locality <- c("Spain, Denmark")
+id <- ("bartomeus_2008_bat1ca.csv, beck_2006.csv")
 
 data <- data.frame(longitude, latitude, locality, id)
 
 map <- map + geom_point(data=data,aes(x=longitude, y=latitude),
-                        colour="brown1",pch=8,size=5)
+                        colour="brown1",pch=8,size=2)
 
 map <- map + theme(axis.line.x = element_line(size=0, colour = "black"),
                    axis.line.y = element_line(size=0, colour = "black"),
