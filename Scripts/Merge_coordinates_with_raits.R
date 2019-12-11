@@ -11,6 +11,7 @@ head(traits)
 head(coordinates_and_id)
 
 
+
 #To merge first I have to clean the data
 
 
