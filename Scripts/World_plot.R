@@ -74,19 +74,28 @@ map <- map + geom_raster(data=points.zones,
 #Arreglar para anadir networks hechas
 longitude <- c(3.296797, 10.216667, 10.233333, 
                -68.015892, 1.575532, 9.1, 18.5,
-               -20.5, 99.63806 ,135.866667,148.266667, 57.443254)
+               -20.5, 99.63806 ,135.866667,148.266667, 
+               57.443254,129.493741, -71.3,
+               -52, 57.43, -90.600747)
 
 latitude <- c(42.315336, 56.066667, 56.066667, 
-              -32.008985, 52.762395, 56.1, 68.35, 74.5, 27.90139 ,35.166667,
-              -36.45, -20.452076)
+              -32.008985, 52.762395, 56.1, 68.35,
+              74.5, 27.90139,35.166667,-36.45,
+              -20.452076, 28.377248, 81.816667,
+              71, -20.25, -0.290164)
+
 locality <- c("Spain", "Denmark", "Denmark", 
               "Argentina", "England", "Denmark", 
-              "Sweden", "Greenland", "China", "Japan", "Australia", "Mauritius")
-id <- c("bartomeus_2008_bat1ca.csv", "beck_2006.csv", "bundgaard_2003.csv", "chacoff_2011.csv", 
-        "dicks_2002_1.csv", "dupont_2009_denmark.csv", 
-        "elberling_1999.csv", 
-        "elberling_unpublished_data.csv", "fang_huang_2008.csv", "Inoue_1990.csv", 
-        "inouye_1988.csv", "kaiser_bunbury_2010_1.csv")
+              "Sweden", "Greenland", "China", 
+              "Japan", "Australia", "Mauritius",
+              "Japan", "Canada", "Greenland", "Mauritius", "Galapagos")
+
+id <- c("bartomeus_2008_bat1ca.csv", "beck_2006.csv", "bundgaard_2003.csv", 
+        "chacoff_2011.csv", "dicks_2002_1.csv", "dupont_2009_denmark.csv",
+        "elberling_1999.csv", "elberling_unpublished_data.csv","fang_huang_2008.csv",
+        "Inoue_1990.csv", "inouye_1988.csv", "kaiser_bunbury_2010_1.csv",
+        "kato_2000.csv", "kevan_1970.csv", "lundgren_2005.csv", "Mauritius_valerie_unpublished_data.csv",
+        "mcmullen_1993.csv")
 
 data <- data.frame(longitude, latitude, locality, id)
 
