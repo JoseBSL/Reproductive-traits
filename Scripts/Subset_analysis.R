@@ -5,6 +5,8 @@
 
 library(tidyr)
 library(reshape2)
+library(dplyr)
+library(plyr)
 #Now I create a folder with the networks that I have used
 
 
@@ -16,8 +18,7 @@ library(reshape2)
         #"kato_2000.csv", "kevan_1970.csv", "lundgren_2005.csv", "Mauritius_valerie_unpublished_data.csv",
         #"mcmullen_1993.csv")
 
-
-setwd("~/Reproductive-Traits/Data/Data_networks_subset")
+setwd("~/Reproductive Traits/data/Data_networks_subset")
 temp <- list.files(pattern="*.csv")
 my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
 
@@ -32,6 +33,17 @@ result = lapply(data_id_list, "[",  my_names)
 all_dat_id <- bind_rows(result, .id = "column_label")
 nrow(all_dat_id)
 
-library(reshape2)
-melt(bartomeus_2008_bat1ca.csv)
+
+bartomeus_2008_bat1ca.csv <- melt(bartomeus_2008_bat1ca.csv)
+bartomeus_2008_bat1ca.csv$Id <- "bartomeus_2008_bat1ca.csv"
+
+species_list <- list(soly, some, caan)
+i <- NULL
+y <- NULL
+
+for (i in my_data){
+i <- melt(i)
+i$Id <- "i"
+  y <- rbind(y, i)
+}
 
