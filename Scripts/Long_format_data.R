@@ -32,3 +32,9 @@ for (i in data_id_list){
   y <- rbind(y, i)
 }
 
+#Renaming columns
+colnames(y) <- c("Plant_species", "Id", "Pollinator_species", "Interaction") 
+#Reordering columns in a way that makes more sense for me
+Long_data <- select(y, "Plant_species", "Pollinator_species", "Interaction", "Id") 
+
+
