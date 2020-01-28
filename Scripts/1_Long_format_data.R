@@ -19,11 +19,11 @@ temp <- list.files(pattern="*.csv")
 my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
 my_files <- list.files(pattern = "\\.csv$")
 my_data <- lapply(my_files, read.csv)
-#Add id to the list to the long format data
+#Add "id" to the list to the long format data
 data_id_list <- lapply(seq_along(my_data), 
                        function(x) cbind(my_data[[x]], unique.id=my_files[x]))
 
-#For loop 
+#For loop to melt each data frame and merge
 i <- NULL
 y <- NULL
 
@@ -31,6 +31,7 @@ for (i in data_id_list){
   i <- melt(i)
   y <- rbind(y, i)
 }
+#Output seems right
 
 #Renaming columns
 colnames(y) <- c("Plant_species", "Id", "Pollinator_species", "Interaction") 
