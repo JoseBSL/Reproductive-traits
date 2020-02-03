@@ -7,6 +7,8 @@ library(tidyr)
 library(reshape2)
 library(dplyr)
 library(plyr)
+library(stringr)
+library(taxize)
 
 
 #Set working directory to read files
@@ -37,5 +39,11 @@ for (i in data_id_list){
 colnames(y) <- c("Plant_species", "Id", "Pollinator_species", "Interaction") 
 #Reordering columns in a way that makes more sense for me
 Long_data <- select(y, "Plant_species", "Pollinator_species", "Interaction", "Id") 
+#Changing dot for white space
+Long_data$Pollinator_species=gsub("\\."," ",Long_data$Pollinator_species)
+
+Pollinator_species <- as.data.frame(unique(word(Long_data$Pollinator_species),1))
 
 
+poll_famord=tax_name(query=Pollinator_species[,1],get=c("family","order"),division_filter=c("Arthropoda"),
+db="itis",rank_query="genus")
