@@ -1,5 +1,17 @@
 #Metadata of the networks
 
+#load package to extract references from bib.file
+#install.packages("bib2df")
+#install.packages("bibtex")
+
+library(bib2df)
+
+df <- bib2df("scripts/references.bib")
+
+
+
+#Metadata of the networks
+
 longitude <- c(3.296797, 10.216667, 10.233333, -68.015892, 1.575532, 9.1, 18.5,
                -20.5, 99.63806 ,135.866667,148.266667, 57.443254,129.493741, 
                -71.3,-52, 57.43, -90.600747, 171.566667,171.78466,171.720224,
