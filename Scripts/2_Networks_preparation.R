@@ -54,3 +54,37 @@ opuntia_metaweb_Bartomeus_2008 <- acast(opuntia_metaweb_Bartomeus_2008, Plant_sp
 
 write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/opuntia_metaweb_Bartomeus_2008.csv")
 
+
+csv_file_name <- c("carpobrotus_metaweb_Bartomeus_2008", "opuntia_metaweb_Bartomeus_2008.csv")
+
+longitude <- c(3.296797,3.296797)
+
+latitude <- c(42.315336,42.315336)
+
+country <- c("Spain", "Spain")
+
+location <- c("Natural Park of Cap de Creus (Catalonia, northeastern Spain))",
+              "Natural Park of Cap de Creus (Catalonia, northeastern Spain))")
+
+duration <- c("1 season", "1 season")
+
+experiment_year <- c(2005, 2005)
+
+unique_networks <-c(3,3)
+
+plant_species <- c(18, 13)
+
+pollinator_species <- c(37, 37)  
+
+network_size <- c(666, 481)
+
+metadata <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                       experiment_year,unique_networks,plant_species, pollinator_species, 
+                       network_size)
+
+#SECOND I start with Bek PhD thesis 2006
+#Not much info about this network, collected in one season in Denmark
+#Seen this info in Trojelsgaard & Olesen 2012
+#I do not have to reestructure this paper
+
+ 
