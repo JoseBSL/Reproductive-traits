@@ -1,24 +1,1614 @@
-"","Adela rufimatrella","Andrena chrysosceles","Andrena haemorrhoa","Andrena pubescens","Andrena wilkella","Anosymia sp1 M_PL_006","Anthomyiidae sp1 M_PL_006","Anthophora plumipes","Apis mellifera","Autographa sp1 M_PL_006","Bombus hortorum","Bombus lapidarius","Bombus pascuorum","Bombus pratorum","Bombus terrestris lucorum","Calocoris bipunctatus","Cephus pygmaeus","Cheilosia albitarsis","Cheilosia bergenstammi","Chloromyia formosa","Chrysogaster sp1 M_PL_006","Empis livida","Episyrphus balteatus","Eriothrix rufomaculatus","Eristalinus sepulcharius","Eristalis intricarius","Eristalis nemorum","Eristalis pertinax","Eristalis tenax","Helophilus sp1 M_PL_006","Helophilus sp1 M_PL_007","Helophilus trivittatus","Lasioglossum calceatum","Lasioglossum leucozonium","Lasioglossum villosulum","Lasiommata megera","Lejogaster splendida","Lucillia sp1 M_PL_006","Lucillia sp1 M_PL_007","Lycaena phlaeas","Lycaena phlaeas ","Malachius viridus","Maniola jurtina","Megachile willughbiella","Melanostoma sp1 M_PL_006","Melanostoma sp1 M_PL_007","Meliscaeva sp1 M_PL_006","Meliscaeva sp1 M_PL_007","Micromoth sp1 M_PL_006","Nemotelus pantherinus","Neoascia tenur","Ochlodes venata","Odontomyia tigrina","Odontomyia viridula","Oligia sp1 M_PL_006","Panameria tenebrata","Parhelophilus sp1 M_PL_006","Phaonia incarna","Platycheirus sp1 M_PL_006","Platycheirus sp1 M_PL_007","Pollenia sp1 M_PL_006","Pollenia sp1 M_PL_007","Polyommatus icarus","Psithyrus vest","Pyronia tithonus","Rhagio tringarius","Rhagonycha fulva","Sarcophagus sp1 M_PL_006","Sarcophagus sp1 M_PL_007","Scathophaga stercoraria","Sphaerophoria sp1 M_PL_006","Sphaerophoria sp1 M_PL_007","Syritta pipiens","Syrphus sp1 M_PL_006","Syrphus sp1 M_PL_007","Tetanocera ferruginea","Thymelicus sp1 M_PL_006","Tropidia scitta","Volucella bombylans","Zygaena filipendulae"
-"Achillea millefolium",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Centaurea nigra",0,0,0,0,0,0,0,0,14,0,1,469,35,8,8,36,0,0,0,0,0,11,8,0,0,0,0,0,3,0,2,0,0,0,0,0,0,0,0,0,0,0,115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,12,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,1
-"Cirsium arvense",0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Hypochoeris radicata",0,0,1,0,0,0,3,0,0,0,0,4,2,0,15,0,0,0,0,0,0,0,2,0,6,1,1,0,0,4,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,1,3,0,0
-"Lathyrus pratensis",0,0,0,0,1,0,0,0,0,0,5,0,22,0,175,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0
-"Leucanthemum vulgare",1,2,2,1,5,1,17,0,0,0,2,36,3,7,38,0,0,5,0,0,30,35,0,2,192,26,38,2,28,225,10,5,0,0,0,5,26,68,4,8,0,1,50,0,3,2,0,1,6,1,0,0,7,4,1,0,1,426,5,1,55,2,2,13,0,5,1,2,1,19,4,2,29,6,2,1,1,253,1,0
-"Lotus corniculatus",0,0,0,1,7,0,0,0,0,2,13,4,49,1,965,0,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0,0,0,0,0,4,0,1,0,0,0,0,19,9,0,0,0,0,0,0,0,2,1,0,0,0,0,3,1,0,0,0,3,1,1,0,0,0,0,1,0,0,0,0,0,0,7,0,0,2
-"Lychnis flos-cuculi",0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Plantago lanceolata",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0
-"Prunella vulgaris",0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
-"Ranunculus acris",0,0,0,1,0,0,16,0,0,0,0,2,1,0,1,0,1,11,4,0,0,0,0,0,2,1,0,0,0,1,1,0,2,0,1,1,0,0,0,0,0,0,1,0,0,1,0,2,0,0,5,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,1,0,0
-"Taraxacum officinale",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0
-"Trifolium dubium",0,0,1,0,8,0,0,0,0,0,0,1,1,0,7,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Trifolium pratense",0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Trifolium repens",0,0,0,0,0,0,0,0,0,0,0,0,2,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Vicia cracca",0,0,0,0,4,0,0,0,0,0,4,0,4,0,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
-"Vicia sativa",0,0,0,0,0,0,0,0,0,0,1,0,2,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Cerastium fontanum",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Cirsium palustre",0,0,0,0,0,0,0,0,0,0,0,8,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Filipendula ulmaria",0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0
-"Galium verum",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0
-"Orchis morio",0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0
-"Primula veris",0,0,0,0,0,0,0,5,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"","Plant_species","Pollinator_species","Interaction","NA","NA"
+"1","Leucanthemum vulgare","Bombus terrestris lucorum","Interaction",NA,33
+"2","Lotus corniculatus","Bombus terrestris lucorum","Interaction",NA,965
+"3","Lathyrus pratensis","Bombus terrestris lucorum","Interaction",NA,175
+"4","Vicia cracca","Bombus terrestris lucorum","Interaction",NA,69
+"5","Hypochoeris radicata","Bombus terrestris lucorum","Interaction",NA,15
+"6","Ranunculus acris","Bombus terrestris lucorum","Interaction",NA,1
+"7","Trifolium dubium","Bombus terrestris lucorum","Interaction",NA,7
+"8","Prunella vulgaris","Bombus terrestris lucorum","Interaction",NA,1
+"9","Achillea millefolium","Bombus terrestris lucorum","Interaction",NA,0
+"10","Centaurea nigra","Bombus terrestris lucorum","Interaction",NA,0
+"11","Trifolium repens","Bombus terrestris lucorum","Interaction",NA,7
+"12","Vicia sativa","Bombus terrestris lucorum","Interaction",NA,3
+"13","Lychnis flos-cuculi","Bombus terrestris lucorum","Interaction",NA,0
+"14","Plantago lanceolata","Bombus terrestris lucorum","Interaction",NA,0
+"15","Trifolium pratense","Bombus terrestris lucorum","Interaction",NA,0
+"16","Cirsium arvense","Bombus terrestris lucorum","Interaction",NA,0
+"17","Taraxacum officinale","Bombus terrestris lucorum","Interaction",NA,0
+"18","Leucanthemum vulgare","Phaonia incarna","Interaction",NA,426
+"19","Lotus corniculatus","Phaonia incarna","Interaction",NA,3
+"20","Lathyrus pratensis","Phaonia incarna","Interaction",NA,1
+"21","Vicia cracca","Phaonia incarna","Interaction",NA,1
+"22","Hypochoeris radicata","Phaonia incarna","Interaction",NA,12
+"23","Ranunculus acris","Phaonia incarna","Interaction",NA,3
+"24","Trifolium dubium","Phaonia incarna","Interaction",NA,0
+"25","Prunella vulgaris","Phaonia incarna","Interaction",NA,0
+"26","Achillea millefolium","Phaonia incarna","Interaction",NA,1
+"27","Centaurea nigra","Phaonia incarna","Interaction",NA,1
+"28","Trifolium repens","Phaonia incarna","Interaction",NA,0
+"29","Vicia sativa","Phaonia incarna","Interaction",NA,0
+"30","Lychnis flos-cuculi","Phaonia incarna","Interaction",NA,0
+"31","Plantago lanceolata","Phaonia incarna","Interaction",NA,0
+"32","Trifolium pratense","Phaonia incarna","Interaction",NA,0
+"33","Cirsium arvense","Phaonia incarna","Interaction",NA,0
+"34","Taraxacum officinale","Phaonia incarna","Interaction",NA,0
+"35","Leucanthemum vulgare","Tropidia scitta","Interaction",NA,252
+"36","Lotus corniculatus","Tropidia scitta","Interaction",NA,0
+"37","Lathyrus pratensis","Tropidia scitta","Interaction",NA,0
+"38","Vicia cracca","Tropidia scitta","Interaction",NA,0
+"39","Hypochoeris radicata","Tropidia scitta","Interaction",NA,3
+"40","Ranunculus acris","Tropidia scitta","Interaction",NA,1
+"41","Trifolium dubium","Tropidia scitta","Interaction",NA,0
+"42","Prunella vulgaris","Tropidia scitta","Interaction",NA,0
+"43","Achillea millefolium","Tropidia scitta","Interaction",NA,0
+"44","Centaurea nigra","Tropidia scitta","Interaction",NA,0
+"45","Trifolium repens","Tropidia scitta","Interaction",NA,0
+"46","Vicia sativa","Tropidia scitta","Interaction",NA,0
+"47","Lychnis flos-cuculi","Tropidia scitta","Interaction",NA,0
+"48","Plantago lanceolata","Tropidia scitta","Interaction",NA,0
+"49","Trifolium pratense","Tropidia scitta","Interaction",NA,0
+"50","Cirsium arvense","Tropidia scitta","Interaction",NA,0
+"51","Taraxacum officinale","Tropidia scitta","Interaction",NA,0
+"52","Leucanthemum vulgare","Helophilus sp1 M_PL_006","Interaction",NA,225
+"53","Lotus corniculatus","Helophilus sp1 M_PL_006","Interaction",NA,8
+"54","Lathyrus pratensis","Helophilus sp1 M_PL_006","Interaction",NA,0
+"55","Vicia cracca","Helophilus sp1 M_PL_006","Interaction",NA,1
+"56","Hypochoeris radicata","Helophilus sp1 M_PL_006","Interaction",NA,4
+"57","Ranunculus acris","Helophilus sp1 M_PL_006","Interaction",NA,1
+"58","Trifolium dubium","Helophilus sp1 M_PL_006","Interaction",NA,1
+"59","Prunella vulgaris","Helophilus sp1 M_PL_006","Interaction",NA,0
+"60","Achillea millefolium","Helophilus sp1 M_PL_006","Interaction",NA,1
+"61","Centaurea nigra","Helophilus sp1 M_PL_006","Interaction",NA,0
+"62","Trifolium repens","Helophilus sp1 M_PL_006","Interaction",NA,0
+"63","Vicia sativa","Helophilus sp1 M_PL_006","Interaction",NA,0
+"64","Lychnis flos-cuculi","Helophilus sp1 M_PL_006","Interaction",NA,0
+"65","Plantago lanceolata","Helophilus sp1 M_PL_006","Interaction",NA,0
+"66","Trifolium pratense","Helophilus sp1 M_PL_006","Interaction",NA,0
+"67","Cirsium arvense","Helophilus sp1 M_PL_006","Interaction",NA,0
+"68","Taraxacum officinale","Helophilus sp1 M_PL_006","Interaction",NA,1
+"69","Leucanthemum vulgare","Eristalinus sepulcharius","Interaction",NA,192
+"70","Lotus corniculatus","Eristalinus sepulcharius","Interaction",NA,0
+"71","Lathyrus pratensis","Eristalinus sepulcharius","Interaction",NA,0
+"72","Vicia cracca","Eristalinus sepulcharius","Interaction",NA,0
+"73","Hypochoeris radicata","Eristalinus sepulcharius","Interaction",NA,6
+"74","Ranunculus acris","Eristalinus sepulcharius","Interaction",NA,2
+"75","Trifolium dubium","Eristalinus sepulcharius","Interaction",NA,0
+"76","Prunella vulgaris","Eristalinus sepulcharius","Interaction",NA,0
+"77","Achillea millefolium","Eristalinus sepulcharius","Interaction",NA,2
+"78","Centaurea nigra","Eristalinus sepulcharius","Interaction",NA,0
+"79","Trifolium repens","Eristalinus sepulcharius","Interaction",NA,0
+"80","Vicia sativa","Eristalinus sepulcharius","Interaction",NA,0
+"81","Lychnis flos-cuculi","Eristalinus sepulcharius","Interaction",NA,0
+"82","Plantago lanceolata","Eristalinus sepulcharius","Interaction",NA,0
+"83","Trifolium pratense","Eristalinus sepulcharius","Interaction",NA,0
+"84","Cirsium arvense","Eristalinus sepulcharius","Interaction",NA,0
+"85","Taraxacum officinale","Eristalinus sepulcharius","Interaction",NA,0
+"86","Leucanthemum vulgare","Bombus pascuorum","Interaction",NA,3
+"87","Lotus corniculatus","Bombus pascuorum","Interaction",NA,47
+"88","Lathyrus pratensis","Bombus pascuorum","Interaction",NA,18
+"89","Vicia cracca","Bombus pascuorum","Interaction",NA,4
+"90","Hypochoeris radicata","Bombus pascuorum","Interaction",NA,2
+"91","Ranunculus acris","Bombus pascuorum","Interaction",NA,0
+"92","Trifolium dubium","Bombus pascuorum","Interaction",NA,1
+"93","Prunella vulgaris","Bombus pascuorum","Interaction",NA,2
+"94","Achillea millefolium","Bombus pascuorum","Interaction",NA,0
+"95","Centaurea nigra","Bombus pascuorum","Interaction",NA,0
+"96","Trifolium repens","Bombus pascuorum","Interaction",NA,0
+"97","Vicia sativa","Bombus pascuorum","Interaction",NA,2
+"98","Lychnis flos-cuculi","Bombus pascuorum","Interaction",NA,3
+"99","Plantago lanceolata","Bombus pascuorum","Interaction",NA,0
+"100","Trifolium pratense","Bombus pascuorum","Interaction",NA,2
+"101","Cirsium arvense","Bombus pascuorum","Interaction",NA,0
+"102","Taraxacum officinale","Bombus pascuorum","Interaction",NA,0
+"103","Leucanthemum vulgare","Lucillia sp1 M_PL_006","Interaction",NA,68
+"104","Lotus corniculatus","Lucillia sp1 M_PL_006","Interaction",NA,1
+"105","Lathyrus pratensis","Lucillia sp1 M_PL_006","Interaction",NA,0
+"106","Vicia cracca","Lucillia sp1 M_PL_006","Interaction",NA,0
+"107","Hypochoeris radicata","Lucillia sp1 M_PL_006","Interaction",NA,0
+"108","Ranunculus acris","Lucillia sp1 M_PL_006","Interaction",NA,0
+"109","Trifolium dubium","Lucillia sp1 M_PL_006","Interaction",NA,0
+"110","Prunella vulgaris","Lucillia sp1 M_PL_006","Interaction",NA,0
+"111","Achillea millefolium","Lucillia sp1 M_PL_006","Interaction",NA,0
+"112","Centaurea nigra","Lucillia sp1 M_PL_006","Interaction",NA,0
+"113","Trifolium repens","Lucillia sp1 M_PL_006","Interaction",NA,0
+"114","Vicia sativa","Lucillia sp1 M_PL_006","Interaction",NA,0
+"115","Lychnis flos-cuculi","Lucillia sp1 M_PL_006","Interaction",NA,0
+"116","Plantago lanceolata","Lucillia sp1 M_PL_006","Interaction",NA,0
+"117","Trifolium pratense","Lucillia sp1 M_PL_006","Interaction",NA,0
+"118","Cirsium arvense","Lucillia sp1 M_PL_006","Interaction",NA,0
+"119","Taraxacum officinale","Lucillia sp1 M_PL_006","Interaction",NA,0
+"120","Leucanthemum vulgare","Maniola jurtina","Interaction",NA,19
+"121","Lotus corniculatus","Maniola jurtina","Interaction",NA,19
+"122","Lathyrus pratensis","Maniola jurtina","Interaction",NA,0
+"123","Vicia cracca","Maniola jurtina","Interaction",NA,7
+"124","Hypochoeris radicata","Maniola jurtina","Interaction",NA,0
+"125","Ranunculus acris","Maniola jurtina","Interaction",NA,0
+"126","Trifolium dubium","Maniola jurtina","Interaction",NA,0
+"127","Prunella vulgaris","Maniola jurtina","Interaction",NA,9
+"128","Achillea millefolium","Maniola jurtina","Interaction",NA,3
+"129","Centaurea nigra","Maniola jurtina","Interaction",NA,5
+"130","Trifolium repens","Maniola jurtina","Interaction",NA,0
+"131","Vicia sativa","Maniola jurtina","Interaction",NA,0
+"132","Lychnis flos-cuculi","Maniola jurtina","Interaction",NA,0
+"133","Plantago lanceolata","Maniola jurtina","Interaction",NA,0
+"134","Trifolium pratense","Maniola jurtina","Interaction",NA,0
+"135","Cirsium arvense","Maniola jurtina","Interaction",NA,1
+"136","Taraxacum officinale","Maniola jurtina","Interaction",NA,0
+"137","Leucanthemum vulgare","Pollenia sp1 M_PL_006","Interaction",NA,55
+"138","Lotus corniculatus","Pollenia sp1 M_PL_006","Interaction",NA,0
+"139","Lathyrus pratensis","Pollenia sp1 M_PL_006","Interaction",NA,0
+"140","Vicia cracca","Pollenia sp1 M_PL_006","Interaction",NA,0
+"141","Hypochoeris radicata","Pollenia sp1 M_PL_006","Interaction",NA,0
+"142","Ranunculus acris","Pollenia sp1 M_PL_006","Interaction",NA,0
+"143","Trifolium dubium","Pollenia sp1 M_PL_006","Interaction",NA,0
+"144","Prunella vulgaris","Pollenia sp1 M_PL_006","Interaction",NA,0
+"145","Achillea millefolium","Pollenia sp1 M_PL_006","Interaction",NA,0
+"146","Centaurea nigra","Pollenia sp1 M_PL_006","Interaction",NA,0
+"147","Trifolium repens","Pollenia sp1 M_PL_006","Interaction",NA,0
+"148","Vicia sativa","Pollenia sp1 M_PL_006","Interaction",NA,1
+"149","Lychnis flos-cuculi","Pollenia sp1 M_PL_006","Interaction",NA,0
+"150","Plantago lanceolata","Pollenia sp1 M_PL_006","Interaction",NA,0
+"151","Trifolium pratense","Pollenia sp1 M_PL_006","Interaction",NA,0
+"152","Cirsium arvense","Pollenia sp1 M_PL_006","Interaction",NA,0
+"153","Taraxacum officinale","Pollenia sp1 M_PL_006","Interaction",NA,0
+"154","Leucanthemum vulgare","Anthomyiidae sp1 M_PL_006","Interaction",NA,17
+"155","Lotus corniculatus","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"156","Lathyrus pratensis","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"157","Vicia cracca","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"158","Hypochoeris radicata","Anthomyiidae sp1 M_PL_006","Interaction",NA,3
+"159","Ranunculus acris","Anthomyiidae sp1 M_PL_006","Interaction",NA,16
+"160","Trifolium dubium","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"161","Prunella vulgaris","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"162","Achillea millefolium","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"163","Centaurea nigra","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"164","Trifolium repens","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"165","Vicia sativa","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"166","Lychnis flos-cuculi","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"167","Plantago lanceolata","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"168","Trifolium pratense","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"169","Cirsium arvense","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"170","Taraxacum officinale","Anthomyiidae sp1 M_PL_006","Interaction",NA,0
+"171","Leucanthemum vulgare","Eristalis nemorum","Interaction",NA,35
+"172","Lotus corniculatus","Eristalis nemorum","Interaction",NA,0
+"173","Lathyrus pratensis","Eristalis nemorum","Interaction",NA,0
+"174","Vicia cracca","Eristalis nemorum","Interaction",NA,0
+"175","Hypochoeris radicata","Eristalis nemorum","Interaction",NA,1
+"176","Ranunculus acris","Eristalis nemorum","Interaction",NA,0
+"177","Trifolium dubium","Eristalis nemorum","Interaction",NA,0
+"178","Prunella vulgaris","Eristalis nemorum","Interaction",NA,0
+"179","Achillea millefolium","Eristalis nemorum","Interaction",NA,0
+"180","Centaurea nigra","Eristalis nemorum","Interaction",NA,0
+"181","Trifolium repens","Eristalis nemorum","Interaction",NA,0
+"182","Vicia sativa","Eristalis nemorum","Interaction",NA,0
+"183","Lychnis flos-cuculi","Eristalis nemorum","Interaction",NA,0
+"184","Plantago lanceolata","Eristalis nemorum","Interaction",NA,0
+"185","Trifolium pratense","Eristalis nemorum","Interaction",NA,0
+"186","Cirsium arvense","Eristalis nemorum","Interaction",NA,0
+"187","Taraxacum officinale","Eristalis nemorum","Interaction",NA,0
+"188","Leucanthemum vulgare","Chrysogaster sp1 M_PL_006","Interaction",NA,30
+"189","Lotus corniculatus","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"190","Lathyrus pratensis","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"191","Vicia cracca","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"192","Hypochoeris radicata","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"193","Ranunculus acris","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"194","Trifolium dubium","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"195","Prunella vulgaris","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"196","Achillea millefolium","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"197","Centaurea nigra","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"198","Trifolium repens","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"199","Vicia sativa","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"200","Lychnis flos-cuculi","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"201","Plantago lanceolata","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"202","Trifolium pratense","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"203","Cirsium arvense","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"204","Taraxacum officinale","Chrysogaster sp1 M_PL_006","Interaction",NA,0
+"205","Leucanthemum vulgare","Syritta pipiens","Interaction",NA,29
+"206","Lotus corniculatus","Syritta pipiens","Interaction",NA,0
+"207","Lathyrus pratensis","Syritta pipiens","Interaction",NA,0
+"208","Vicia cracca","Syritta pipiens","Interaction",NA,0
+"209","Hypochoeris radicata","Syritta pipiens","Interaction",NA,1
+"210","Ranunculus acris","Syritta pipiens","Interaction",NA,0
+"211","Trifolium dubium","Syritta pipiens","Interaction",NA,0
+"212","Prunella vulgaris","Syritta pipiens","Interaction",NA,0
+"213","Achillea millefolium","Syritta pipiens","Interaction",NA,0
+"214","Centaurea nigra","Syritta pipiens","Interaction",NA,0
+"215","Trifolium repens","Syritta pipiens","Interaction",NA,0
+"216","Vicia sativa","Syritta pipiens","Interaction",NA,0
+"217","Lychnis flos-cuculi","Syritta pipiens","Interaction",NA,0
+"218","Plantago lanceolata","Syritta pipiens","Interaction",NA,0
+"219","Trifolium pratense","Syritta pipiens","Interaction",NA,0
+"220","Cirsium arvense","Syritta pipiens","Interaction",NA,0
+"221","Taraxacum officinale","Syritta pipiens","Interaction",NA,0
+"222","Leucanthemum vulgare","Eristalis intricarius","Interaction",NA,26
+"223","Lotus corniculatus","Eristalis intricarius","Interaction",NA,0
+"224","Lathyrus pratensis","Eristalis intricarius","Interaction",NA,0
+"225","Vicia cracca","Eristalis intricarius","Interaction",NA,0
+"226","Hypochoeris radicata","Eristalis intricarius","Interaction",NA,1
+"227","Ranunculus acris","Eristalis intricarius","Interaction",NA,1
+"228","Trifolium dubium","Eristalis intricarius","Interaction",NA,0
+"229","Prunella vulgaris","Eristalis intricarius","Interaction",NA,0
+"230","Achillea millefolium","Eristalis intricarius","Interaction",NA,1
+"231","Centaurea nigra","Eristalis intricarius","Interaction",NA,0
+"232","Trifolium repens","Eristalis intricarius","Interaction",NA,0
+"233","Vicia sativa","Eristalis intricarius","Interaction",NA,0
+"234","Lychnis flos-cuculi","Eristalis intricarius","Interaction",NA,0
+"235","Plantago lanceolata","Eristalis intricarius","Interaction",NA,0
+"236","Trifolium pratense","Eristalis intricarius","Interaction",NA,0
+"237","Cirsium arvense","Eristalis intricarius","Interaction",NA,0
+"238","Taraxacum officinale","Eristalis intricarius","Interaction",NA,0
+"239","Leucanthemum vulgare","Lejogaster splendida","Interaction",NA,26
+"240","Lotus corniculatus","Lejogaster splendida","Interaction",NA,0
+"241","Lathyrus pratensis","Lejogaster splendida","Interaction",NA,0
+"242","Vicia cracca","Lejogaster splendida","Interaction",NA,0
+"243","Hypochoeris radicata","Lejogaster splendida","Interaction",NA,0
+"244","Ranunculus acris","Lejogaster splendida","Interaction",NA,0
+"245","Trifolium dubium","Lejogaster splendida","Interaction",NA,0
+"246","Prunella vulgaris","Lejogaster splendida","Interaction",NA,0
+"247","Achillea millefolium","Lejogaster splendida","Interaction",NA,0
+"248","Centaurea nigra","Lejogaster splendida","Interaction",NA,0
+"249","Trifolium repens","Lejogaster splendida","Interaction",NA,0
+"250","Vicia sativa","Lejogaster splendida","Interaction",NA,0
+"251","Lychnis flos-cuculi","Lejogaster splendida","Interaction",NA,0
+"252","Plantago lanceolata","Lejogaster splendida","Interaction",NA,0
+"253","Trifolium pratense","Lejogaster splendida","Interaction",NA,0
+"254","Cirsium arvense","Lejogaster splendida","Interaction",NA,0
+"255","Taraxacum officinale","Lejogaster splendida","Interaction",NA,0
+"256","Leucanthemum vulgare","Andrena wilkella","Interaction",NA,5
+"257","Lotus corniculatus","Andrena wilkella","Interaction",NA,7
+"258","Lathyrus pratensis","Andrena wilkella","Interaction",NA,1
+"259","Vicia cracca","Andrena wilkella","Interaction",NA,4
+"260","Hypochoeris radicata","Andrena wilkella","Interaction",NA,0
+"261","Ranunculus acris","Andrena wilkella","Interaction",NA,0
+"262","Trifolium dubium","Andrena wilkella","Interaction",NA,8
+"263","Prunella vulgaris","Andrena wilkella","Interaction",NA,0
+"264","Achillea millefolium","Andrena wilkella","Interaction",NA,0
+"265","Centaurea nigra","Andrena wilkella","Interaction",NA,0
+"266","Trifolium repens","Andrena wilkella","Interaction",NA,0
+"267","Vicia sativa","Andrena wilkella","Interaction",NA,0
+"268","Lychnis flos-cuculi","Andrena wilkella","Interaction",NA,0
+"269","Plantago lanceolata","Andrena wilkella","Interaction",NA,0
+"270","Trifolium pratense","Andrena wilkella","Interaction",NA,0
+"271","Cirsium arvense","Andrena wilkella","Interaction",NA,0
+"272","Taraxacum officinale","Andrena wilkella","Interaction",NA,0
+"273","Leucanthemum vulgare","Bombus hortorum","Interaction",NA,2
+"274","Lotus corniculatus","Bombus hortorum","Interaction",NA,13
+"275","Lathyrus pratensis","Bombus hortorum","Interaction",NA,5
+"276","Vicia cracca","Bombus hortorum","Interaction",NA,4
+"277","Hypochoeris radicata","Bombus hortorum","Interaction",NA,0
+"278","Ranunculus acris","Bombus hortorum","Interaction",NA,0
+"279","Trifolium dubium","Bombus hortorum","Interaction",NA,0
+"280","Prunella vulgaris","Bombus hortorum","Interaction",NA,0
+"281","Achillea millefolium","Bombus hortorum","Interaction",NA,0
+"282","Centaurea nigra","Bombus hortorum","Interaction",NA,0
+"283","Trifolium repens","Bombus hortorum","Interaction",NA,0
+"284","Vicia sativa","Bombus hortorum","Interaction",NA,1
+"285","Lychnis flos-cuculi","Bombus hortorum","Interaction",NA,0
+"286","Plantago lanceolata","Bombus hortorum","Interaction",NA,0
+"287","Trifolium pratense","Bombus hortorum","Interaction",NA,0
+"288","Cirsium arvense","Bombus hortorum","Interaction",NA,0
+"289","Taraxacum officinale","Bombus hortorum","Interaction",NA,0
+"290","Leucanthemum vulgare","Eristalis tenax","Interaction",NA,19
+"291","Lotus corniculatus","Eristalis tenax","Interaction",NA,1
+"292","Lathyrus pratensis","Eristalis tenax","Interaction",NA,0
+"293","Vicia cracca","Eristalis tenax","Interaction",NA,0
+"294","Hypochoeris radicata","Eristalis tenax","Interaction",NA,0
+"295","Ranunculus acris","Eristalis tenax","Interaction",NA,0
+"296","Trifolium dubium","Eristalis tenax","Interaction",NA,0
+"297","Prunella vulgaris","Eristalis tenax","Interaction",NA,0
+"298","Achillea millefolium","Eristalis tenax","Interaction",NA,0
+"299","Centaurea nigra","Eristalis tenax","Interaction",NA,0
+"300","Trifolium repens","Eristalis tenax","Interaction",NA,0
+"301","Vicia sativa","Eristalis tenax","Interaction",NA,0
+"302","Lychnis flos-cuculi","Eristalis tenax","Interaction",NA,0
+"303","Plantago lanceolata","Eristalis tenax","Interaction",NA,0
+"304","Trifolium pratense","Eristalis tenax","Interaction",NA,0
+"305","Cirsium arvense","Eristalis tenax","Interaction",NA,0
+"306","Taraxacum officinale","Eristalis tenax","Interaction",NA,0
+"307","Leucanthemum vulgare","Cheilosia albitarsis","Interaction",NA,5
+"308","Lotus corniculatus","Cheilosia albitarsis","Interaction",NA,0
+"309","Lathyrus pratensis","Cheilosia albitarsis","Interaction",NA,0
+"310","Vicia cracca","Cheilosia albitarsis","Interaction",NA,0
+"311","Hypochoeris radicata","Cheilosia albitarsis","Interaction",NA,0
+"312","Ranunculus acris","Cheilosia albitarsis","Interaction",NA,11
+"313","Trifolium dubium","Cheilosia albitarsis","Interaction",NA,0
+"314","Prunella vulgaris","Cheilosia albitarsis","Interaction",NA,0
+"315","Achillea millefolium","Cheilosia albitarsis","Interaction",NA,0
+"316","Centaurea nigra","Cheilosia albitarsis","Interaction",NA,0
+"317","Trifolium repens","Cheilosia albitarsis","Interaction",NA,0
+"318","Vicia sativa","Cheilosia albitarsis","Interaction",NA,0
+"319","Lychnis flos-cuculi","Cheilosia albitarsis","Interaction",NA,0
+"320","Plantago lanceolata","Cheilosia albitarsis","Interaction",NA,0
+"321","Trifolium pratense","Cheilosia albitarsis","Interaction",NA,0
+"322","Cirsium arvense","Cheilosia albitarsis","Interaction",NA,0
+"323","Taraxacum officinale","Cheilosia albitarsis","Interaction",NA,0
+"324","Leucanthemum vulgare","Empis livida","Interaction",NA,15
+"325","Lotus corniculatus","Empis livida","Interaction",NA,0
+"326","Lathyrus pratensis","Empis livida","Interaction",NA,0
+"327","Vicia cracca","Empis livida","Interaction",NA,0
+"328","Hypochoeris radicata","Empis livida","Interaction",NA,0
+"329","Ranunculus acris","Empis livida","Interaction",NA,0
+"330","Trifolium dubium","Empis livida","Interaction",NA,0
+"331","Prunella vulgaris","Empis livida","Interaction",NA,0
+"332","Achillea millefolium","Empis livida","Interaction",NA,0
+"333","Centaurea nigra","Empis livida","Interaction",NA,0
+"334","Trifolium repens","Empis livida","Interaction",NA,0
+"335","Vicia sativa","Empis livida","Interaction",NA,0
+"336","Lychnis flos-cuculi","Empis livida","Interaction",NA,0
+"337","Plantago lanceolata","Empis livida","Interaction",NA,0
+"338","Trifolium pratense","Empis livida","Interaction",NA,0
+"339","Cirsium arvense","Empis livida","Interaction",NA,0
+"340","Taraxacum officinale","Empis livida","Interaction",NA,0
+"341","Leucanthemum vulgare","Scathophaga stercoraria","Interaction",NA,14
+"342","Lotus corniculatus","Scathophaga stercoraria","Interaction",NA,1
+"343","Lathyrus pratensis","Scathophaga stercoraria","Interaction",NA,0
+"344","Vicia cracca","Scathophaga stercoraria","Interaction",NA,0
+"345","Hypochoeris radicata","Scathophaga stercoraria","Interaction",NA,0
+"346","Ranunculus acris","Scathophaga stercoraria","Interaction",NA,0
+"347","Trifolium dubium","Scathophaga stercoraria","Interaction",NA,0
+"348","Prunella vulgaris","Scathophaga stercoraria","Interaction",NA,0
+"349","Achillea millefolium","Scathophaga stercoraria","Interaction",NA,0
+"350","Centaurea nigra","Scathophaga stercoraria","Interaction",NA,0
+"351","Trifolium repens","Scathophaga stercoraria","Interaction",NA,0
+"352","Vicia sativa","Scathophaga stercoraria","Interaction",NA,0
+"353","Lychnis flos-cuculi","Scathophaga stercoraria","Interaction",NA,0
+"354","Plantago lanceolata","Scathophaga stercoraria","Interaction",NA,0
+"355","Trifolium pratense","Scathophaga stercoraria","Interaction",NA,0
+"356","Cirsium arvense","Scathophaga stercoraria","Interaction",NA,0
+"357","Taraxacum officinale","Scathophaga stercoraria","Interaction",NA,0
+"358","Leucanthemum vulgare","Psithyrus vest","Interaction",NA,10
+"359","Lotus corniculatus","Psithyrus vest","Interaction",NA,1
+"360","Lathyrus pratensis","Psithyrus vest","Interaction",NA,0
+"361","Vicia cracca","Psithyrus vest","Interaction",NA,0
+"362","Hypochoeris radicata","Psithyrus vest","Interaction",NA,0
+"363","Ranunculus acris","Psithyrus vest","Interaction",NA,0
+"364","Trifolium dubium","Psithyrus vest","Interaction",NA,0
+"365","Prunella vulgaris","Psithyrus vest","Interaction",NA,0
+"366","Achillea millefolium","Psithyrus vest","Interaction",NA,0
+"367","Centaurea nigra","Psithyrus vest","Interaction",NA,0
+"368","Trifolium repens","Psithyrus vest","Interaction",NA,0
+"369","Vicia sativa","Psithyrus vest","Interaction",NA,0
+"370","Lychnis flos-cuculi","Psithyrus vest","Interaction",NA,0
+"371","Plantago lanceolata","Psithyrus vest","Interaction",NA,0
+"372","Trifolium pratense","Psithyrus vest","Interaction",NA,0
+"373","Cirsium arvense","Psithyrus vest","Interaction",NA,0
+"374","Taraxacum officinale","Psithyrus vest","Interaction",NA,0
+"375","Leucanthemum vulgare","Lasiommata megera","Interaction",NA,5
+"376","Lotus corniculatus","Lasiommata megera","Interaction",NA,4
+"377","Lathyrus pratensis","Lasiommata megera","Interaction",NA,0
+"378","Vicia cracca","Lasiommata megera","Interaction",NA,0
+"379","Hypochoeris radicata","Lasiommata megera","Interaction",NA,0
+"380","Ranunculus acris","Lasiommata megera","Interaction",NA,1
+"381","Trifolium dubium","Lasiommata megera","Interaction",NA,0
+"382","Prunella vulgaris","Lasiommata megera","Interaction",NA,0
+"383","Achillea millefolium","Lasiommata megera","Interaction",NA,0
+"384","Centaurea nigra","Lasiommata megera","Interaction",NA,0
+"385","Trifolium repens","Lasiommata megera","Interaction",NA,0
+"386","Vicia sativa","Lasiommata megera","Interaction",NA,0
+"387","Lychnis flos-cuculi","Lasiommata megera","Interaction",NA,0
+"388","Plantago lanceolata","Lasiommata megera","Interaction",NA,0
+"389","Trifolium pratense","Lasiommata megera","Interaction",NA,0
+"390","Cirsium arvense","Lasiommata megera","Interaction",NA,0
+"391","Taraxacum officinale","Lasiommata megera","Interaction",NA,0
+"392","Leucanthemum vulgare","Megachile willughbiella","Interaction",NA,0
+"393","Lotus corniculatus","Megachile willughbiella","Interaction",NA,9
+"394","Lathyrus pratensis","Megachile willughbiella","Interaction",NA,0
+"395","Vicia cracca","Megachile willughbiella","Interaction",NA,0
+"396","Hypochoeris radicata","Megachile willughbiella","Interaction",NA,0
+"397","Ranunculus acris","Megachile willughbiella","Interaction",NA,0
+"398","Trifolium dubium","Megachile willughbiella","Interaction",NA,0
+"399","Prunella vulgaris","Megachile willughbiella","Interaction",NA,0
+"400","Achillea millefolium","Megachile willughbiella","Interaction",NA,0
+"401","Centaurea nigra","Megachile willughbiella","Interaction",NA,0
+"402","Trifolium repens","Megachile willughbiella","Interaction",NA,0
+"403","Vicia sativa","Megachile willughbiella","Interaction",NA,0
+"404","Lychnis flos-cuculi","Megachile willughbiella","Interaction",NA,0
+"405","Plantago lanceolata","Megachile willughbiella","Interaction",NA,0
+"406","Trifolium pratense","Megachile willughbiella","Interaction",NA,0
+"407","Cirsium arvense","Megachile willughbiella","Interaction",NA,0
+"408","Taraxacum officinale","Megachile willughbiella","Interaction",NA,0
+"409","Leucanthemum vulgare","Syrphus sp1 M_PL_006","Interaction",NA,6
+"410","Lotus corniculatus","Syrphus sp1 M_PL_006","Interaction",NA,0
+"411","Lathyrus pratensis","Syrphus sp1 M_PL_006","Interaction",NA,0
+"412","Vicia cracca","Syrphus sp1 M_PL_006","Interaction",NA,0
+"413","Hypochoeris radicata","Syrphus sp1 M_PL_006","Interaction",NA,1
+"414","Ranunculus acris","Syrphus sp1 M_PL_006","Interaction",NA,0
+"415","Trifolium dubium","Syrphus sp1 M_PL_006","Interaction",NA,0
+"416","Prunella vulgaris","Syrphus sp1 M_PL_006","Interaction",NA,0
+"417","Achillea millefolium","Syrphus sp1 M_PL_006","Interaction",NA,0
+"418","Centaurea nigra","Syrphus sp1 M_PL_006","Interaction",NA,0
+"419","Trifolium repens","Syrphus sp1 M_PL_006","Interaction",NA,0
+"420","Vicia sativa","Syrphus sp1 M_PL_006","Interaction",NA,0
+"421","Lychnis flos-cuculi","Syrphus sp1 M_PL_006","Interaction",NA,0
+"422","Plantago lanceolata","Syrphus sp1 M_PL_006","Interaction",NA,2
+"423","Trifolium pratense","Syrphus sp1 M_PL_006","Interaction",NA,0
+"424","Cirsium arvense","Syrphus sp1 M_PL_006","Interaction",NA,0
+"425","Taraxacum officinale","Syrphus sp1 M_PL_006","Interaction",NA,0
+"426","Leucanthemum vulgare","Thymelicus sp1 M_PL_006","Interaction",NA,1
+"427","Lotus corniculatus","Thymelicus sp1 M_PL_006","Interaction",NA,7
+"428","Lathyrus pratensis","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"429","Vicia cracca","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"430","Hypochoeris radicata","Thymelicus sp1 M_PL_006","Interaction",NA,1
+"431","Ranunculus acris","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"432","Trifolium dubium","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"433","Prunella vulgaris","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"434","Achillea millefolium","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"435","Centaurea nigra","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"436","Trifolium repens","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"437","Vicia sativa","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"438","Lychnis flos-cuculi","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"439","Plantago lanceolata","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"440","Trifolium pratense","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"441","Cirsium arvense","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"442","Taraxacum officinale","Thymelicus sp1 M_PL_006","Interaction",NA,0
+"443","Leucanthemum vulgare","Lycaena phlaeas","Interaction",NA,8
+"444","Lotus corniculatus","Lycaena phlaeas","Interaction",NA,0
+"445","Lathyrus pratensis","Lycaena phlaeas","Interaction",NA,0
+"446","Vicia cracca","Lycaena phlaeas","Interaction",NA,0
+"447","Hypochoeris radicata","Lycaena phlaeas","Interaction",NA,0
+"448","Ranunculus acris","Lycaena phlaeas","Interaction",NA,0
+"449","Trifolium dubium","Lycaena phlaeas","Interaction",NA,0
+"450","Prunella vulgaris","Lycaena phlaeas","Interaction",NA,0
+"451","Achillea millefolium","Lycaena phlaeas","Interaction",NA,0
+"452","Centaurea nigra","Lycaena phlaeas","Interaction",NA,0
+"453","Trifolium repens","Lycaena phlaeas","Interaction",NA,0
+"454","Vicia sativa","Lycaena phlaeas","Interaction",NA,0
+"455","Lychnis flos-cuculi","Lycaena phlaeas","Interaction",NA,0
+"456","Plantago lanceolata","Lycaena phlaeas","Interaction",NA,0
+"457","Trifolium pratense","Lycaena phlaeas","Interaction",NA,0
+"458","Cirsium arvense","Lycaena phlaeas","Interaction",NA,0
+"459","Taraxacum officinale","Lycaena phlaeas","Interaction",NA,0
+"460","Leucanthemum vulgare","Odontomyia tigrina","Interaction",NA,7
+"461","Lotus corniculatus","Odontomyia tigrina","Interaction",NA,1
+"462","Lathyrus pratensis","Odontomyia tigrina","Interaction",NA,0
+"463","Vicia cracca","Odontomyia tigrina","Interaction",NA,0
+"464","Hypochoeris radicata","Odontomyia tigrina","Interaction",NA,0
+"465","Ranunculus acris","Odontomyia tigrina","Interaction",NA,0
+"466","Trifolium dubium","Odontomyia tigrina","Interaction",NA,0
+"467","Prunella vulgaris","Odontomyia tigrina","Interaction",NA,0
+"468","Achillea millefolium","Odontomyia tigrina","Interaction",NA,0
+"469","Centaurea nigra","Odontomyia tigrina","Interaction",NA,0
+"470","Trifolium repens","Odontomyia tigrina","Interaction",NA,0
+"471","Vicia sativa","Odontomyia tigrina","Interaction",NA,0
+"472","Lychnis flos-cuculi","Odontomyia tigrina","Interaction",NA,0
+"473","Plantago lanceolata","Odontomyia tigrina","Interaction",NA,0
+"474","Trifolium pratense","Odontomyia tigrina","Interaction",NA,0
+"475","Cirsium arvense","Odontomyia tigrina","Interaction",NA,0
+"476","Taraxacum officinale","Odontomyia tigrina","Interaction",NA,0
+"477","Leucanthemum vulgare","Micromoth sp1 M_PL_006","Interaction",NA,6
+"478","Lotus corniculatus","Micromoth sp1 M_PL_006","Interaction",NA,0
+"479","Lathyrus pratensis","Micromoth sp1 M_PL_006","Interaction",NA,0
+"480","Vicia cracca","Micromoth sp1 M_PL_006","Interaction",NA,0
+"481","Hypochoeris radicata","Micromoth sp1 M_PL_006","Interaction",NA,0
+"482","Ranunculus acris","Micromoth sp1 M_PL_006","Interaction",NA,0
+"483","Trifolium dubium","Micromoth sp1 M_PL_006","Interaction",NA,0
+"484","Prunella vulgaris","Micromoth sp1 M_PL_006","Interaction",NA,0
+"485","Achillea millefolium","Micromoth sp1 M_PL_006","Interaction",NA,0
+"486","Centaurea nigra","Micromoth sp1 M_PL_006","Interaction",NA,0
+"487","Trifolium repens","Micromoth sp1 M_PL_006","Interaction",NA,0
+"488","Vicia sativa","Micromoth sp1 M_PL_006","Interaction",NA,0
+"489","Lychnis flos-cuculi","Micromoth sp1 M_PL_006","Interaction",NA,0
+"490","Plantago lanceolata","Micromoth sp1 M_PL_006","Interaction",NA,0
+"491","Trifolium pratense","Micromoth sp1 M_PL_006","Interaction",NA,0
+"492","Cirsium arvense","Micromoth sp1 M_PL_006","Interaction",NA,0
+"493","Taraxacum officinale","Micromoth sp1 M_PL_006","Interaction",NA,0
+"494","Leucanthemum vulgare","Platycheirus sp1 M_PL_006","Interaction",NA,5
+"495","Lotus corniculatus","Platycheirus sp1 M_PL_006","Interaction",NA,1
+"496","Lathyrus pratensis","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"497","Vicia cracca","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"498","Hypochoeris radicata","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"499","Ranunculus acris","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"500","Trifolium dubium","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"501","Prunella vulgaris","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"502","Achillea millefolium","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"503","Centaurea nigra","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"504","Trifolium repens","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"505","Vicia sativa","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"506","Lychnis flos-cuculi","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"507","Plantago lanceolata","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"508","Trifolium pratense","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"509","Cirsium arvense","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"510","Taraxacum officinale","Platycheirus sp1 M_PL_006","Interaction",NA,0
+"511","Leucanthemum vulgare","Sphaerophoria sp1 M_PL_006","Interaction",NA,4
+"512","Lotus corniculatus","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"513","Lathyrus pratensis","Sphaerophoria sp1 M_PL_006","Interaction",NA,1
+"514","Vicia cracca","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"515","Hypochoeris radicata","Sphaerophoria sp1 M_PL_006","Interaction",NA,1
+"516","Ranunculus acris","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"517","Trifolium dubium","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"518","Prunella vulgaris","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"519","Achillea millefolium","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"520","Centaurea nigra","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"521","Trifolium repens","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"522","Vicia sativa","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"523","Lychnis flos-cuculi","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"524","Plantago lanceolata","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"525","Trifolium pratense","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"526","Cirsium arvense","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"527","Taraxacum officinale","Sphaerophoria sp1 M_PL_006","Interaction",NA,0
+"528","Leucanthemum vulgare","Helophilus trivittatus","Interaction",NA,5
+"529","Lotus corniculatus","Helophilus trivittatus","Interaction",NA,0
+"530","Lathyrus pratensis","Helophilus trivittatus","Interaction",NA,0
+"531","Vicia cracca","Helophilus trivittatus","Interaction",NA,0
+"532","Hypochoeris radicata","Helophilus trivittatus","Interaction",NA,0
+"533","Ranunculus acris","Helophilus trivittatus","Interaction",NA,0
+"534","Trifolium dubium","Helophilus trivittatus","Interaction",NA,0
+"535","Prunella vulgaris","Helophilus trivittatus","Interaction",NA,0
+"536","Achillea millefolium","Helophilus trivittatus","Interaction",NA,0
+"537","Centaurea nigra","Helophilus trivittatus","Interaction",NA,0
+"538","Trifolium repens","Helophilus trivittatus","Interaction",NA,0
+"539","Vicia sativa","Helophilus trivittatus","Interaction",NA,0
+"540","Lychnis flos-cuculi","Helophilus trivittatus","Interaction",NA,0
+"541","Plantago lanceolata","Helophilus trivittatus","Interaction",NA,0
+"542","Trifolium pratense","Helophilus trivittatus","Interaction",NA,0
+"543","Cirsium arvense","Helophilus trivittatus","Interaction",NA,0
+"544","Taraxacum officinale","Helophilus trivittatus","Interaction",NA,0
+"545","Leucanthemum vulgare","Neoascia tenur","Interaction",NA,0
+"546","Lotus corniculatus","Neoascia tenur","Interaction",NA,0
+"547","Lathyrus pratensis","Neoascia tenur","Interaction",NA,0
+"548","Vicia cracca","Neoascia tenur","Interaction",NA,0
+"549","Hypochoeris radicata","Neoascia tenur","Interaction",NA,0
+"550","Ranunculus acris","Neoascia tenur","Interaction",NA,5
+"551","Trifolium dubium","Neoascia tenur","Interaction",NA,0
+"552","Prunella vulgaris","Neoascia tenur","Interaction",NA,0
+"553","Achillea millefolium","Neoascia tenur","Interaction",NA,0
+"554","Centaurea nigra","Neoascia tenur","Interaction",NA,0
+"555","Trifolium repens","Neoascia tenur","Interaction",NA,0
+"556","Vicia sativa","Neoascia tenur","Interaction",NA,0
+"557","Lychnis flos-cuculi","Neoascia tenur","Interaction",NA,0
+"558","Plantago lanceolata","Neoascia tenur","Interaction",NA,0
+"559","Trifolium pratense","Neoascia tenur","Interaction",NA,0
+"560","Cirsium arvense","Neoascia tenur","Interaction",NA,0
+"561","Taraxacum officinale","Neoascia tenur","Interaction",NA,0
+"562","Leucanthemum vulgare","Odontomyia viridula","Interaction",NA,4
+"563","Lotus corniculatus","Odontomyia viridula","Interaction",NA,0
+"564","Lathyrus pratensis","Odontomyia viridula","Interaction",NA,0
+"565","Vicia cracca","Odontomyia viridula","Interaction",NA,0
+"566","Hypochoeris radicata","Odontomyia viridula","Interaction",NA,0
+"567","Ranunculus acris","Odontomyia viridula","Interaction",NA,0
+"568","Trifolium dubium","Odontomyia viridula","Interaction",NA,0
+"569","Prunella vulgaris","Odontomyia viridula","Interaction",NA,0
+"570","Achillea millefolium","Odontomyia viridula","Interaction",NA,1
+"571","Centaurea nigra","Odontomyia viridula","Interaction",NA,0
+"572","Trifolium repens","Odontomyia viridula","Interaction",NA,0
+"573","Vicia sativa","Odontomyia viridula","Interaction",NA,0
+"574","Lychnis flos-cuculi","Odontomyia viridula","Interaction",NA,0
+"575","Plantago lanceolata","Odontomyia viridula","Interaction",NA,0
+"576","Trifolium pratense","Odontomyia viridula","Interaction",NA,0
+"577","Cirsium arvense","Odontomyia viridula","Interaction",NA,0
+"578","Taraxacum officinale","Odontomyia viridula","Interaction",NA,0
+"579","Leucanthemum vulgare","Polyommatus icarus","Interaction",NA,2
+"580","Lotus corniculatus","Polyommatus icarus","Interaction",NA,3
+"581","Lathyrus pratensis","Polyommatus icarus","Interaction",NA,0
+"582","Vicia cracca","Polyommatus icarus","Interaction",NA,0
+"583","Hypochoeris radicata","Polyommatus icarus","Interaction",NA,0
+"584","Ranunculus acris","Polyommatus icarus","Interaction",NA,0
+"585","Trifolium dubium","Polyommatus icarus","Interaction",NA,0
+"586","Prunella vulgaris","Polyommatus icarus","Interaction",NA,0
+"587","Achillea millefolium","Polyommatus icarus","Interaction",NA,0
+"588","Centaurea nigra","Polyommatus icarus","Interaction",NA,0
+"589","Trifolium repens","Polyommatus icarus","Interaction",NA,0
+"590","Vicia sativa","Polyommatus icarus","Interaction",NA,0
+"591","Lychnis flos-cuculi","Polyommatus icarus","Interaction",NA,0
+"592","Plantago lanceolata","Polyommatus icarus","Interaction",NA,0
+"593","Trifolium pratense","Polyommatus icarus","Interaction",NA,0
+"594","Cirsium arvense","Polyommatus icarus","Interaction",NA,0
+"595","Taraxacum officinale","Polyommatus icarus","Interaction",NA,0
+"596","Leucanthemum vulgare","Rhagio tringarius","Interaction",NA,5
+"597","Lotus corniculatus","Rhagio tringarius","Interaction",NA,0
+"598","Lathyrus pratensis","Rhagio tringarius","Interaction",NA,0
+"599","Vicia cracca","Rhagio tringarius","Interaction",NA,0
+"600","Hypochoeris radicata","Rhagio tringarius","Interaction",NA,0
+"601","Ranunculus acris","Rhagio tringarius","Interaction",NA,0
+"602","Trifolium dubium","Rhagio tringarius","Interaction",NA,0
+"603","Prunella vulgaris","Rhagio tringarius","Interaction",NA,0
+"604","Achillea millefolium","Rhagio tringarius","Interaction",NA,0
+"605","Centaurea nigra","Rhagio tringarius","Interaction",NA,0
+"606","Trifolium repens","Rhagio tringarius","Interaction",NA,0
+"607","Vicia sativa","Rhagio tringarius","Interaction",NA,0
+"608","Lychnis flos-cuculi","Rhagio tringarius","Interaction",NA,0
+"609","Plantago lanceolata","Rhagio tringarius","Interaction",NA,0
+"610","Trifolium pratense","Rhagio tringarius","Interaction",NA,0
+"611","Cirsium arvense","Rhagio tringarius","Interaction",NA,0
+"612","Taraxacum officinale","Rhagio tringarius","Interaction",NA,0
+"613","Leucanthemum vulgare","Zygaena filipendulae","Interaction",NA,0
+"614","Lotus corniculatus","Zygaena filipendulae","Interaction",NA,2
+"615","Lathyrus pratensis","Zygaena filipendulae","Interaction",NA,0
+"616","Vicia cracca","Zygaena filipendulae","Interaction",NA,1
+"617","Hypochoeris radicata","Zygaena filipendulae","Interaction",NA,0
+"618","Ranunculus acris","Zygaena filipendulae","Interaction",NA,0
+"619","Trifolium dubium","Zygaena filipendulae","Interaction",NA,0
+"620","Prunella vulgaris","Zygaena filipendulae","Interaction",NA,1
+"621","Achillea millefolium","Zygaena filipendulae","Interaction",NA,0
+"622","Centaurea nigra","Zygaena filipendulae","Interaction",NA,1
+"623","Trifolium repens","Zygaena filipendulae","Interaction",NA,0
+"624","Vicia sativa","Zygaena filipendulae","Interaction",NA,0
+"625","Lychnis flos-cuculi","Zygaena filipendulae","Interaction",NA,0
+"626","Plantago lanceolata","Zygaena filipendulae","Interaction",NA,0
+"627","Trifolium pratense","Zygaena filipendulae","Interaction",NA,0
+"628","Cirsium arvense","Zygaena filipendulae","Interaction",NA,0
+"629","Taraxacum officinale","Zygaena filipendulae","Interaction",NA,0
+"630","Leucanthemum vulgare","Andrena haemorrhoa","Interaction",NA,2
+"631","Lotus corniculatus","Andrena haemorrhoa","Interaction",NA,0
+"632","Lathyrus pratensis","Andrena haemorrhoa","Interaction",NA,0
+"633","Vicia cracca","Andrena haemorrhoa","Interaction",NA,0
+"634","Hypochoeris radicata","Andrena haemorrhoa","Interaction",NA,1
+"635","Ranunculus acris","Andrena haemorrhoa","Interaction",NA,0
+"636","Trifolium dubium","Andrena haemorrhoa","Interaction",NA,1
+"637","Prunella vulgaris","Andrena haemorrhoa","Interaction",NA,0
+"638","Achillea millefolium","Andrena haemorrhoa","Interaction",NA,0
+"639","Centaurea nigra","Andrena haemorrhoa","Interaction",NA,0
+"640","Trifolium repens","Andrena haemorrhoa","Interaction",NA,0
+"641","Vicia sativa","Andrena haemorrhoa","Interaction",NA,0
+"642","Lychnis flos-cuculi","Andrena haemorrhoa","Interaction",NA,0
+"643","Plantago lanceolata","Andrena haemorrhoa","Interaction",NA,0
+"644","Trifolium pratense","Andrena haemorrhoa","Interaction",NA,0
+"645","Cirsium arvense","Andrena haemorrhoa","Interaction",NA,0
+"646","Taraxacum officinale","Andrena haemorrhoa","Interaction",NA,0
+"647","Leucanthemum vulgare","Bombus pratorum","Interaction",NA,2
+"648","Lotus corniculatus","Bombus pratorum","Interaction",NA,1
+"649","Lathyrus pratensis","Bombus pratorum","Interaction",NA,0
+"650","Vicia cracca","Bombus pratorum","Interaction",NA,0
+"651","Hypochoeris radicata","Bombus pratorum","Interaction",NA,0
+"652","Ranunculus acris","Bombus pratorum","Interaction",NA,0
+"653","Trifolium dubium","Bombus pratorum","Interaction",NA,0
+"654","Prunella vulgaris","Bombus pratorum","Interaction",NA,0
+"655","Achillea millefolium","Bombus pratorum","Interaction",NA,0
+"656","Centaurea nigra","Bombus pratorum","Interaction",NA,0
+"657","Trifolium repens","Bombus pratorum","Interaction",NA,0
+"658","Vicia sativa","Bombus pratorum","Interaction",NA,0
+"659","Lychnis flos-cuculi","Bombus pratorum","Interaction",NA,0
+"660","Plantago lanceolata","Bombus pratorum","Interaction",NA,0
+"661","Trifolium pratense","Bombus pratorum","Interaction",NA,1
+"662","Cirsium arvense","Bombus pratorum","Interaction",NA,0
+"663","Taraxacum officinale","Bombus pratorum","Interaction",NA,0
+"664","Leucanthemum vulgare","Melanostoma sp1 M_PL_006","Interaction",NA,3
+"665","Lotus corniculatus","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"666","Lathyrus pratensis","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"667","Vicia cracca","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"668","Hypochoeris radicata","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"669","Ranunculus acris","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"670","Trifolium dubium","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"671","Prunella vulgaris","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"672","Achillea millefolium","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"673","Centaurea nigra","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"674","Trifolium repens","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"675","Vicia sativa","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"676","Lychnis flos-cuculi","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"677","Plantago lanceolata","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"678","Trifolium pratense","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"679","Cirsium arvense","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"680","Taraxacum officinale","Melanostoma sp1 M_PL_006","Interaction",NA,0
+"681","Leucanthemum vulgare","Ochlodes venata","Interaction",NA,0
+"682","Lotus corniculatus","Ochlodes venata","Interaction",NA,2
+"683","Lathyrus pratensis","Ochlodes venata","Interaction",NA,0
+"684","Vicia cracca","Ochlodes venata","Interaction",NA,1
+"685","Hypochoeris radicata","Ochlodes venata","Interaction",NA,0
+"686","Ranunculus acris","Ochlodes venata","Interaction",NA,0
+"687","Trifolium dubium","Ochlodes venata","Interaction",NA,0
+"688","Prunella vulgaris","Ochlodes venata","Interaction",NA,0
+"689","Achillea millefolium","Ochlodes venata","Interaction",NA,0
+"690","Centaurea nigra","Ochlodes venata","Interaction",NA,0
+"691","Trifolium repens","Ochlodes venata","Interaction",NA,0
+"692","Vicia sativa","Ochlodes venata","Interaction",NA,0
+"693","Lychnis flos-cuculi","Ochlodes venata","Interaction",NA,0
+"694","Plantago lanceolata","Ochlodes venata","Interaction",NA,0
+"695","Trifolium pratense","Ochlodes venata","Interaction",NA,0
+"696","Cirsium arvense","Ochlodes venata","Interaction",NA,0
+"697","Taraxacum officinale","Ochlodes venata","Interaction",NA,0
+"698","Leucanthemum vulgare","Andrena pubescens","Interaction",NA,1
+"699","Lotus corniculatus","Andrena pubescens","Interaction",NA,1
+"700","Lathyrus pratensis","Andrena pubescens","Interaction",NA,0
+"701","Vicia cracca","Andrena pubescens","Interaction",NA,0
+"702","Hypochoeris radicata","Andrena pubescens","Interaction",NA,0
+"703","Ranunculus acris","Andrena pubescens","Interaction",NA,0
+"704","Trifolium dubium","Andrena pubescens","Interaction",NA,0
+"705","Prunella vulgaris","Andrena pubescens","Interaction",NA,0
+"706","Achillea millefolium","Andrena pubescens","Interaction",NA,0
+"707","Centaurea nigra","Andrena pubescens","Interaction",NA,0
+"708","Trifolium repens","Andrena pubescens","Interaction",NA,0
+"709","Vicia sativa","Andrena pubescens","Interaction",NA,0
+"710","Lychnis flos-cuculi","Andrena pubescens","Interaction",NA,0
+"711","Plantago lanceolata","Andrena pubescens","Interaction",NA,0
+"712","Trifolium pratense","Andrena pubescens","Interaction",NA,0
+"713","Cirsium arvense","Andrena pubescens","Interaction",NA,0
+"714","Taraxacum officinale","Andrena pubescens","Interaction",NA,0
+"715","Leucanthemum vulgare","Autographa sp1 M_PL_006","Interaction",NA,0
+"716","Lotus corniculatus","Autographa sp1 M_PL_006","Interaction",NA,2
+"717","Lathyrus pratensis","Autographa sp1 M_PL_006","Interaction",NA,0
+"718","Vicia cracca","Autographa sp1 M_PL_006","Interaction",NA,0
+"719","Hypochoeris radicata","Autographa sp1 M_PL_006","Interaction",NA,0
+"720","Ranunculus acris","Autographa sp1 M_PL_006","Interaction",NA,0
+"721","Trifolium dubium","Autographa sp1 M_PL_006","Interaction",NA,0
+"722","Prunella vulgaris","Autographa sp1 M_PL_006","Interaction",NA,0
+"723","Achillea millefolium","Autographa sp1 M_PL_006","Interaction",NA,0
+"724","Centaurea nigra","Autographa sp1 M_PL_006","Interaction",NA,0
+"725","Trifolium repens","Autographa sp1 M_PL_006","Interaction",NA,0
+"726","Vicia sativa","Autographa sp1 M_PL_006","Interaction",NA,0
+"727","Lychnis flos-cuculi","Autographa sp1 M_PL_006","Interaction",NA,0
+"728","Plantago lanceolata","Autographa sp1 M_PL_006","Interaction",NA,0
+"729","Trifolium pratense","Autographa sp1 M_PL_006","Interaction",NA,0
+"730","Cirsium arvense","Autographa sp1 M_PL_006","Interaction",NA,0
+"731","Taraxacum officinale","Autographa sp1 M_PL_006","Interaction",NA,0
+"732","Leucanthemum vulgare","Eriothrix rufomaculatus","Interaction",NA,2
+"733","Lotus corniculatus","Eriothrix rufomaculatus","Interaction",NA,0
+"734","Lathyrus pratensis","Eriothrix rufomaculatus","Interaction",NA,0
+"735","Vicia cracca","Eriothrix rufomaculatus","Interaction",NA,0
+"736","Hypochoeris radicata","Eriothrix rufomaculatus","Interaction",NA,0
+"737","Ranunculus acris","Eriothrix rufomaculatus","Interaction",NA,0
+"738","Trifolium dubium","Eriothrix rufomaculatus","Interaction",NA,0
+"739","Prunella vulgaris","Eriothrix rufomaculatus","Interaction",NA,0
+"740","Achillea millefolium","Eriothrix rufomaculatus","Interaction",NA,0
+"741","Centaurea nigra","Eriothrix rufomaculatus","Interaction",NA,0
+"742","Trifolium repens","Eriothrix rufomaculatus","Interaction",NA,0
+"743","Vicia sativa","Eriothrix rufomaculatus","Interaction",NA,0
+"744","Lychnis flos-cuculi","Eriothrix rufomaculatus","Interaction",NA,0
+"745","Plantago lanceolata","Eriothrix rufomaculatus","Interaction",NA,0
+"746","Trifolium pratense","Eriothrix rufomaculatus","Interaction",NA,0
+"747","Cirsium arvense","Eriothrix rufomaculatus","Interaction",NA,0
+"748","Taraxacum officinale","Eriothrix rufomaculatus","Interaction",NA,0
+"749","Leucanthemum vulgare","Eristalis pertinax","Interaction",NA,2
+"750","Lotus corniculatus","Eristalis pertinax","Interaction",NA,0
+"751","Lathyrus pratensis","Eristalis pertinax","Interaction",NA,0
+"752","Vicia cracca","Eristalis pertinax","Interaction",NA,0
+"753","Hypochoeris radicata","Eristalis pertinax","Interaction",NA,0
+"754","Ranunculus acris","Eristalis pertinax","Interaction",NA,0
+"755","Trifolium dubium","Eristalis pertinax","Interaction",NA,0
+"756","Prunella vulgaris","Eristalis pertinax","Interaction",NA,0
+"757","Achillea millefolium","Eristalis pertinax","Interaction",NA,0
+"758","Centaurea nigra","Eristalis pertinax","Interaction",NA,0
+"759","Trifolium repens","Eristalis pertinax","Interaction",NA,0
+"760","Vicia sativa","Eristalis pertinax","Interaction",NA,0
+"761","Lychnis flos-cuculi","Eristalis pertinax","Interaction",NA,0
+"762","Plantago lanceolata","Eristalis pertinax","Interaction",NA,0
+"763","Trifolium pratense","Eristalis pertinax","Interaction",NA,0
+"764","Cirsium arvense","Eristalis pertinax","Interaction",NA,0
+"765","Taraxacum officinale","Eristalis pertinax","Interaction",NA,0
+"766","Leucanthemum vulgare","Sarcophagus sp1 M_PL_006","Interaction",NA,2
+"767","Lotus corniculatus","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"768","Lathyrus pratensis","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"769","Vicia cracca","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"770","Hypochoeris radicata","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"771","Ranunculus acris","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"772","Trifolium dubium","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"773","Prunella vulgaris","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"774","Achillea millefolium","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"775","Centaurea nigra","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"776","Trifolium repens","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"777","Vicia sativa","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"778","Lychnis flos-cuculi","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"779","Plantago lanceolata","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"780","Trifolium pratense","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"781","Cirsium arvense","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"782","Taraxacum officinale","Sarcophagus sp1 M_PL_006","Interaction",NA,0
+"783","Leucanthemum vulgare","Adela rufimatrella","Interaction",NA,1
+"784","Lotus corniculatus","Adela rufimatrella","Interaction",NA,0
+"785","Lathyrus pratensis","Adela rufimatrella","Interaction",NA,0
+"786","Vicia cracca","Adela rufimatrella","Interaction",NA,0
+"787","Hypochoeris radicata","Adela rufimatrella","Interaction",NA,0
+"788","Ranunculus acris","Adela rufimatrella","Interaction",NA,0
+"789","Trifolium dubium","Adela rufimatrella","Interaction",NA,0
+"790","Prunella vulgaris","Adela rufimatrella","Interaction",NA,0
+"791","Achillea millefolium","Adela rufimatrella","Interaction",NA,0
+"792","Centaurea nigra","Adela rufimatrella","Interaction",NA,0
+"793","Trifolium repens","Adela rufimatrella","Interaction",NA,0
+"794","Vicia sativa","Adela rufimatrella","Interaction",NA,0
+"795","Lychnis flos-cuculi","Adela rufimatrella","Interaction",NA,0
+"796","Plantago lanceolata","Adela rufimatrella","Interaction",NA,0
+"797","Trifolium pratense","Adela rufimatrella","Interaction",NA,0
+"798","Cirsium arvense","Adela rufimatrella","Interaction",NA,0
+"799","Taraxacum officinale","Adela rufimatrella","Interaction",NA,0
+"800","Leucanthemum vulgare","Anosymia sp1 M_PL_006","Interaction",NA,1
+"801","Lotus corniculatus","Anosymia sp1 M_PL_006","Interaction",NA,0
+"802","Lathyrus pratensis","Anosymia sp1 M_PL_006","Interaction",NA,0
+"803","Vicia cracca","Anosymia sp1 M_PL_006","Interaction",NA,0
+"804","Hypochoeris radicata","Anosymia sp1 M_PL_006","Interaction",NA,0
+"805","Ranunculus acris","Anosymia sp1 M_PL_006","Interaction",NA,0
+"806","Trifolium dubium","Anosymia sp1 M_PL_006","Interaction",NA,0
+"807","Prunella vulgaris","Anosymia sp1 M_PL_006","Interaction",NA,0
+"808","Achillea millefolium","Anosymia sp1 M_PL_006","Interaction",NA,0
+"809","Centaurea nigra","Anosymia sp1 M_PL_006","Interaction",NA,0
+"810","Trifolium repens","Anosymia sp1 M_PL_006","Interaction",NA,0
+"811","Vicia sativa","Anosymia sp1 M_PL_006","Interaction",NA,0
+"812","Lychnis flos-cuculi","Anosymia sp1 M_PL_006","Interaction",NA,0
+"813","Plantago lanceolata","Anosymia sp1 M_PL_006","Interaction",NA,0
+"814","Trifolium pratense","Anosymia sp1 M_PL_006","Interaction",NA,0
+"815","Cirsium arvense","Anosymia sp1 M_PL_006","Interaction",NA,0
+"816","Taraxacum officinale","Anosymia sp1 M_PL_006","Interaction",NA,0
+"817","Leucanthemum vulgare","Bombus lapidarius","Interaction",NA,0
+"818","Lotus corniculatus","Bombus lapidarius","Interaction",NA,1
+"819","Lathyrus pratensis","Bombus lapidarius","Interaction",NA,0
+"820","Vicia cracca","Bombus lapidarius","Interaction",NA,0
+"821","Hypochoeris radicata","Bombus lapidarius","Interaction",NA,0
+"822","Ranunculus acris","Bombus lapidarius","Interaction",NA,0
+"823","Trifolium dubium","Bombus lapidarius","Interaction",NA,0
+"824","Prunella vulgaris","Bombus lapidarius","Interaction",NA,0
+"825","Achillea millefolium","Bombus lapidarius","Interaction",NA,0
+"826","Centaurea nigra","Bombus lapidarius","Interaction",NA,0
+"827","Trifolium repens","Bombus lapidarius","Interaction",NA,0
+"828","Vicia sativa","Bombus lapidarius","Interaction",NA,0
+"829","Lychnis flos-cuculi","Bombus lapidarius","Interaction",NA,0
+"830","Plantago lanceolata","Bombus lapidarius","Interaction",NA,0
+"831","Trifolium pratense","Bombus lapidarius","Interaction",NA,0
+"832","Cirsium arvense","Bombus lapidarius","Interaction",NA,0
+"833","Taraxacum officinale","Bombus lapidarius","Interaction",NA,0
+"834","Leucanthemum vulgare","Chloromyia formosa","Interaction",NA,0
+"835","Lotus corniculatus","Chloromyia formosa","Interaction",NA,0
+"836","Lathyrus pratensis","Chloromyia formosa","Interaction",NA,0
+"837","Vicia cracca","Chloromyia formosa","Interaction",NA,0
+"838","Hypochoeris radicata","Chloromyia formosa","Interaction",NA,0
+"839","Ranunculus acris","Chloromyia formosa","Interaction",NA,0
+"840","Trifolium dubium","Chloromyia formosa","Interaction",NA,1
+"841","Prunella vulgaris","Chloromyia formosa","Interaction",NA,0
+"842","Achillea millefolium","Chloromyia formosa","Interaction",NA,0
+"843","Centaurea nigra","Chloromyia formosa","Interaction",NA,0
+"844","Trifolium repens","Chloromyia formosa","Interaction",NA,0
+"845","Vicia sativa","Chloromyia formosa","Interaction",NA,0
+"846","Lychnis flos-cuculi","Chloromyia formosa","Interaction",NA,0
+"847","Plantago lanceolata","Chloromyia formosa","Interaction",NA,0
+"848","Trifolium pratense","Chloromyia formosa","Interaction",NA,0
+"849","Cirsium arvense","Chloromyia formosa","Interaction",NA,0
+"850","Taraxacum officinale","Chloromyia formosa","Interaction",NA,0
+"851","Leucanthemum vulgare","Lasioglossum calceatum","Interaction",NA,0
+"852","Lotus corniculatus","Lasioglossum calceatum","Interaction",NA,0
+"853","Lathyrus pratensis","Lasioglossum calceatum","Interaction",NA,0
+"854","Vicia cracca","Lasioglossum calceatum","Interaction",NA,0
+"855","Hypochoeris radicata","Lasioglossum calceatum","Interaction",NA,0
+"856","Ranunculus acris","Lasioglossum calceatum","Interaction",NA,1
+"857","Trifolium dubium","Lasioglossum calceatum","Interaction",NA,0
+"858","Prunella vulgaris","Lasioglossum calceatum","Interaction",NA,0
+"859","Achillea millefolium","Lasioglossum calceatum","Interaction",NA,0
+"860","Centaurea nigra","Lasioglossum calceatum","Interaction",NA,0
+"861","Trifolium repens","Lasioglossum calceatum","Interaction",NA,0
+"862","Vicia sativa","Lasioglossum calceatum","Interaction",NA,0
+"863","Lychnis flos-cuculi","Lasioglossum calceatum","Interaction",NA,0
+"864","Plantago lanceolata","Lasioglossum calceatum","Interaction",NA,0
+"865","Trifolium pratense","Lasioglossum calceatum","Interaction",NA,0
+"866","Cirsium arvense","Lasioglossum calceatum","Interaction",NA,0
+"867","Taraxacum officinale","Lasioglossum calceatum","Interaction",NA,0
+"868","Leucanthemum vulgare","Lasioglossum leucozonium","Interaction",NA,0
+"869","Lotus corniculatus","Lasioglossum leucozonium","Interaction",NA,0
+"870","Lathyrus pratensis","Lasioglossum leucozonium","Interaction",NA,0
+"871","Vicia cracca","Lasioglossum leucozonium","Interaction",NA,0
+"872","Hypochoeris radicata","Lasioglossum leucozonium","Interaction",NA,1
+"873","Ranunculus acris","Lasioglossum leucozonium","Interaction",NA,0
+"874","Trifolium dubium","Lasioglossum leucozonium","Interaction",NA,0
+"875","Prunella vulgaris","Lasioglossum leucozonium","Interaction",NA,0
+"876","Achillea millefolium","Lasioglossum leucozonium","Interaction",NA,0
+"877","Centaurea nigra","Lasioglossum leucozonium","Interaction",NA,0
+"878","Trifolium repens","Lasioglossum leucozonium","Interaction",NA,0
+"879","Vicia sativa","Lasioglossum leucozonium","Interaction",NA,0
+"880","Lychnis flos-cuculi","Lasioglossum leucozonium","Interaction",NA,0
+"881","Plantago lanceolata","Lasioglossum leucozonium","Interaction",NA,0
+"882","Trifolium pratense","Lasioglossum leucozonium","Interaction",NA,0
+"883","Cirsium arvense","Lasioglossum leucozonium","Interaction",NA,0
+"884","Taraxacum officinale","Lasioglossum leucozonium","Interaction",NA,0
+"885","Leucanthemum vulgare","Lasioglossum villosulum","Interaction",NA,0
+"886","Lotus corniculatus","Lasioglossum villosulum","Interaction",NA,0
+"887","Lathyrus pratensis","Lasioglossum villosulum","Interaction",NA,0
+"888","Vicia cracca","Lasioglossum villosulum","Interaction",NA,0
+"889","Hypochoeris radicata","Lasioglossum villosulum","Interaction",NA,0
+"890","Ranunculus acris","Lasioglossum villosulum","Interaction",NA,1
+"891","Trifolium dubium","Lasioglossum villosulum","Interaction",NA,0
+"892","Prunella vulgaris","Lasioglossum villosulum","Interaction",NA,0
+"893","Achillea millefolium","Lasioglossum villosulum","Interaction",NA,0
+"894","Centaurea nigra","Lasioglossum villosulum","Interaction",NA,0
+"895","Trifolium repens","Lasioglossum villosulum","Interaction",NA,0
+"896","Vicia sativa","Lasioglossum villosulum","Interaction",NA,0
+"897","Lychnis flos-cuculi","Lasioglossum villosulum","Interaction",NA,0
+"898","Plantago lanceolata","Lasioglossum villosulum","Interaction",NA,0
+"899","Trifolium pratense","Lasioglossum villosulum","Interaction",NA,0
+"900","Cirsium arvense","Lasioglossum villosulum","Interaction",NA,0
+"901","Taraxacum officinale","Lasioglossum villosulum","Interaction",NA,0
+"902","Leucanthemum vulgare","Malachius viridus","Interaction",NA,1
+"903","Lotus corniculatus","Malachius viridus","Interaction",NA,0
+"904","Lathyrus pratensis","Malachius viridus","Interaction",NA,0
+"905","Vicia cracca","Malachius viridus","Interaction",NA,0
+"906","Hypochoeris radicata","Malachius viridus","Interaction",NA,0
+"907","Ranunculus acris","Malachius viridus","Interaction",NA,0
+"908","Trifolium dubium","Malachius viridus","Interaction",NA,0
+"909","Prunella vulgaris","Malachius viridus","Interaction",NA,0
+"910","Achillea millefolium","Malachius viridus","Interaction",NA,0
+"911","Centaurea nigra","Malachius viridus","Interaction",NA,0
+"912","Trifolium repens","Malachius viridus","Interaction",NA,0
+"913","Vicia sativa","Malachius viridus","Interaction",NA,0
+"914","Lychnis flos-cuculi","Malachius viridus","Interaction",NA,0
+"915","Plantago lanceolata","Malachius viridus","Interaction",NA,0
+"916","Trifolium pratense","Malachius viridus","Interaction",NA,0
+"917","Cirsium arvense","Malachius viridus","Interaction",NA,0
+"918","Taraxacum officinale","Malachius viridus","Interaction",NA,0
+"919","Leucanthemum vulgare","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"920","Lotus corniculatus","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"921","Lathyrus pratensis","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"922","Vicia cracca","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"923","Hypochoeris radicata","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"924","Ranunculus acris","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"925","Trifolium dubium","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"926","Prunella vulgaris","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"927","Achillea millefolium","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"928","Centaurea nigra","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"929","Trifolium repens","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"930","Vicia sativa","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"931","Lychnis flos-cuculi","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"932","Plantago lanceolata","Meliscaeva sp1 M_PL_006","Interaction",NA,1
+"933","Trifolium pratense","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"934","Cirsium arvense","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"935","Taraxacum officinale","Meliscaeva sp1 M_PL_006","Interaction",NA,0
+"936","Leucanthemum vulgare","Nemotelus pantherinus","Interaction",NA,1
+"937","Lotus corniculatus","Nemotelus pantherinus","Interaction",NA,0
+"938","Lathyrus pratensis","Nemotelus pantherinus","Interaction",NA,0
+"939","Vicia cracca","Nemotelus pantherinus","Interaction",NA,0
+"940","Hypochoeris radicata","Nemotelus pantherinus","Interaction",NA,0
+"941","Ranunculus acris","Nemotelus pantherinus","Interaction",NA,0
+"942","Trifolium dubium","Nemotelus pantherinus","Interaction",NA,0
+"943","Prunella vulgaris","Nemotelus pantherinus","Interaction",NA,0
+"944","Achillea millefolium","Nemotelus pantherinus","Interaction",NA,0
+"945","Centaurea nigra","Nemotelus pantherinus","Interaction",NA,0
+"946","Trifolium repens","Nemotelus pantherinus","Interaction",NA,0
+"947","Vicia sativa","Nemotelus pantherinus","Interaction",NA,0
+"948","Lychnis flos-cuculi","Nemotelus pantherinus","Interaction",NA,0
+"949","Plantago lanceolata","Nemotelus pantherinus","Interaction",NA,0
+"950","Trifolium pratense","Nemotelus pantherinus","Interaction",NA,0
+"951","Cirsium arvense","Nemotelus pantherinus","Interaction",NA,0
+"952","Taraxacum officinale","Nemotelus pantherinus","Interaction",NA,0
+"953","Leucanthemum vulgare","Oligia sp1 M_PL_006","Interaction",NA,1
+"954","Lotus corniculatus","Oligia sp1 M_PL_006","Interaction",NA,0
+"955","Lathyrus pratensis","Oligia sp1 M_PL_006","Interaction",NA,0
+"956","Vicia cracca","Oligia sp1 M_PL_006","Interaction",NA,0
+"957","Hypochoeris radicata","Oligia sp1 M_PL_006","Interaction",NA,0
+"958","Ranunculus acris","Oligia sp1 M_PL_006","Interaction",NA,0
+"959","Trifolium dubium","Oligia sp1 M_PL_006","Interaction",NA,0
+"960","Prunella vulgaris","Oligia sp1 M_PL_006","Interaction",NA,0
+"961","Achillea millefolium","Oligia sp1 M_PL_006","Interaction",NA,0
+"962","Centaurea nigra","Oligia sp1 M_PL_006","Interaction",NA,0
+"963","Trifolium repens","Oligia sp1 M_PL_006","Interaction",NA,0
+"964","Vicia sativa","Oligia sp1 M_PL_006","Interaction",NA,0
+"965","Lychnis flos-cuculi","Oligia sp1 M_PL_006","Interaction",NA,0
+"966","Plantago lanceolata","Oligia sp1 M_PL_006","Interaction",NA,0
+"967","Trifolium pratense","Oligia sp1 M_PL_006","Interaction",NA,0
+"968","Cirsium arvense","Oligia sp1 M_PL_006","Interaction",NA,0
+"969","Taraxacum officinale","Oligia sp1 M_PL_006","Interaction",NA,0
+"970","Leucanthemum vulgare","Parhelophilus sp1 M_PL_006","Interaction",NA,1
+"971","Lotus corniculatus","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"972","Lathyrus pratensis","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"973","Vicia cracca","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"974","Hypochoeris radicata","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"975","Ranunculus acris","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"976","Trifolium dubium","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"977","Prunella vulgaris","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"978","Achillea millefolium","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"979","Centaurea nigra","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"980","Trifolium repens","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"981","Vicia sativa","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"982","Lychnis flos-cuculi","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"983","Plantago lanceolata","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"984","Trifolium pratense","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"985","Cirsium arvense","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"986","Taraxacum officinale","Parhelophilus sp1 M_PL_006","Interaction",NA,0
+"987","Leucanthemum vulgare","Pyronia tithonus","Interaction",NA,0
+"988","Lotus corniculatus","Pyronia tithonus","Interaction",NA,1
+"989","Lathyrus pratensis","Pyronia tithonus","Interaction",NA,0
+"990","Vicia cracca","Pyronia tithonus","Interaction",NA,0
+"991","Hypochoeris radicata","Pyronia tithonus","Interaction",NA,0
+"992","Ranunculus acris","Pyronia tithonus","Interaction",NA,0
+"993","Trifolium dubium","Pyronia tithonus","Interaction",NA,0
+"994","Prunella vulgaris","Pyronia tithonus","Interaction",NA,0
+"995","Achillea millefolium","Pyronia tithonus","Interaction",NA,0
+"996","Centaurea nigra","Pyronia tithonus","Interaction",NA,0
+"997","Trifolium repens","Pyronia tithonus","Interaction",NA,0
+"998","Vicia sativa","Pyronia tithonus","Interaction",NA,0
+"999","Lychnis flos-cuculi","Pyronia tithonus","Interaction",NA,0
+"1000","Plantago lanceolata","Pyronia tithonus","Interaction",NA,0
+"1001","Trifolium pratense","Pyronia tithonus","Interaction",NA,0
+"1002","Cirsium arvense","Pyronia tithonus","Interaction",NA,0
+"1003","Taraxacum officinale","Pyronia tithonus","Interaction",NA,0
+"1004","Leucanthemum vulgare","Rhagonycha fulva","Interaction",NA,1
+"1005","Lotus corniculatus","Rhagonycha fulva","Interaction",NA,0
+"1006","Lathyrus pratensis","Rhagonycha fulva","Interaction",NA,0
+"1007","Vicia cracca","Rhagonycha fulva","Interaction",NA,0
+"1008","Hypochoeris radicata","Rhagonycha fulva","Interaction",NA,0
+"1009","Ranunculus acris","Rhagonycha fulva","Interaction",NA,0
+"1010","Trifolium dubium","Rhagonycha fulva","Interaction",NA,0
+"1011","Prunella vulgaris","Rhagonycha fulva","Interaction",NA,0
+"1012","Achillea millefolium","Rhagonycha fulva","Interaction",NA,0
+"1013","Centaurea nigra","Rhagonycha fulva","Interaction",NA,0
+"1014","Trifolium repens","Rhagonycha fulva","Interaction",NA,0
+"1015","Vicia sativa","Rhagonycha fulva","Interaction",NA,0
+"1016","Lychnis flos-cuculi","Rhagonycha fulva","Interaction",NA,0
+"1017","Plantago lanceolata","Rhagonycha fulva","Interaction",NA,0
+"1018","Trifolium pratense","Rhagonycha fulva","Interaction",NA,0
+"1019","Cirsium arvense","Rhagonycha fulva","Interaction",NA,0
+"1020","Taraxacum officinale","Rhagonycha fulva","Interaction",NA,0
+"1021","Leucanthemum vulgare","Tetanocera ferruginea","Interaction",NA,1
+"1022","Lotus corniculatus","Tetanocera ferruginea","Interaction",NA,0
+"1023","Lathyrus pratensis","Tetanocera ferruginea","Interaction",NA,0
+"1024","Vicia cracca","Tetanocera ferruginea","Interaction",NA,0
+"1025","Hypochoeris radicata","Tetanocera ferruginea","Interaction",NA,0
+"1026","Ranunculus acris","Tetanocera ferruginea","Interaction",NA,0
+"1027","Trifolium dubium","Tetanocera ferruginea","Interaction",NA,0
+"1028","Prunella vulgaris","Tetanocera ferruginea","Interaction",NA,0
+"1029","Achillea millefolium","Tetanocera ferruginea","Interaction",NA,0
+"1030","Centaurea nigra","Tetanocera ferruginea","Interaction",NA,0
+"1031","Trifolium repens","Tetanocera ferruginea","Interaction",NA,0
+"1032","Vicia sativa","Tetanocera ferruginea","Interaction",NA,0
+"1033","Lychnis flos-cuculi","Tetanocera ferruginea","Interaction",NA,0
+"1034","Plantago lanceolata","Tetanocera ferruginea","Interaction",NA,0
+"1035","Trifolium pratense","Tetanocera ferruginea","Interaction",NA,0
+"1036","Cirsium arvense","Tetanocera ferruginea","Interaction",NA,0
+"1037","Taraxacum officinale","Tetanocera ferruginea","Interaction",NA,0
+"1038","Centaurea nigra","Bombus lapidarius","Interaction",NA,469
+"1039","Leucanthemum vulgare","Bombus lapidarius","Interaction",NA,36
+"1040","Cirsium palustre","Bombus lapidarius","Interaction",NA,8
+"1041","Ranunculus acris","Bombus lapidarius","Interaction",NA,2
+"1042","Cirsium arvense","Bombus lapidarius","Interaction",NA,2
+"1043","Filipendula ulmaria","Bombus lapidarius","Interaction",NA,2
+"1044","Galium verum","Bombus lapidarius","Interaction",NA,0
+"1045","Hypochoeris radicata","Bombus lapidarius","Interaction",NA,4
+"1046","Primula veris","Bombus lapidarius","Interaction",NA,1
+"1047","Lotus corniculatus","Bombus lapidarius","Interaction",NA,3
+"1048","Lathyrus pratensis","Bombus lapidarius","Interaction",NA,0
+"1049","Orchis morio","Bombus lapidarius","Interaction",NA,0
+"1050","Taraxacum officinale","Bombus lapidarius","Interaction",NA,0
+"1051","Trifolium repens","Bombus lapidarius","Interaction",NA,0
+"1052","Cerastium fontanum","Bombus lapidarius","Interaction",NA,0
+"1053","Trifolium dubium","Bombus lapidarius","Interaction",NA,1
+"1054","Centaurea nigra","Maniola jurtina","Interaction",NA,110
+"1055","Leucanthemum vulgare","Maniola jurtina","Interaction",NA,31
+"1056","Cirsium palustre","Maniola jurtina","Interaction",NA,0
+"1057","Ranunculus acris","Maniola jurtina","Interaction",NA,1
+"1058","Cirsium arvense","Maniola jurtina","Interaction",NA,6
+"1059","Filipendula ulmaria","Maniola jurtina","Interaction",NA,0
+"1060","Galium verum","Maniola jurtina","Interaction",NA,0
+"1061","Hypochoeris radicata","Maniola jurtina","Interaction",NA,0
+"1062","Primula veris","Maniola jurtina","Interaction",NA,0
+"1063","Lotus corniculatus","Maniola jurtina","Interaction",NA,0
+"1064","Lathyrus pratensis","Maniola jurtina","Interaction",NA,0
+"1065","Orchis morio","Maniola jurtina","Interaction",NA,0
+"1066","Taraxacum officinale","Maniola jurtina","Interaction",NA,0
+"1067","Trifolium repens","Maniola jurtina","Interaction",NA,0
+"1068","Cerastium fontanum","Maniola jurtina","Interaction",NA,0
+"1069","Trifolium dubium","Maniola jurtina","Interaction",NA,0
+"1070","Centaurea nigra","Bombus pascuorum","Interaction",NA,35
+"1071","Leucanthemum vulgare","Bombus pascuorum","Interaction",NA,0
+"1072","Cirsium palustre","Bombus pascuorum","Interaction",NA,3
+"1073","Ranunculus acris","Bombus pascuorum","Interaction",NA,1
+"1074","Cirsium arvense","Bombus pascuorum","Interaction",NA,0
+"1075","Filipendula ulmaria","Bombus pascuorum","Interaction",NA,0
+"1076","Galium verum","Bombus pascuorum","Interaction",NA,0
+"1077","Hypochoeris radicata","Bombus pascuorum","Interaction",NA,0
+"1078","Primula veris","Bombus pascuorum","Interaction",NA,0
+"1079","Lotus corniculatus","Bombus pascuorum","Interaction",NA,2
+"1080","Lathyrus pratensis","Bombus pascuorum","Interaction",NA,4
+"1081","Orchis morio","Bombus pascuorum","Interaction",NA,1
+"1082","Taraxacum officinale","Bombus pascuorum","Interaction",NA,0
+"1083","Trifolium repens","Bombus pascuorum","Interaction",NA,2
+"1084","Cerastium fontanum","Bombus pascuorum","Interaction",NA,0
+"1085","Trifolium dubium","Bombus pascuorum","Interaction",NA,0
+"1086","Centaurea nigra","Calocoris bipunctatus","Interaction",NA,36
+"1087","Leucanthemum vulgare","Calocoris bipunctatus","Interaction",NA,0
+"1088","Cirsium palustre","Calocoris bipunctatus","Interaction",NA,0
+"1089","Ranunculus acris","Calocoris bipunctatus","Interaction",NA,0
+"1090","Cirsium arvense","Calocoris bipunctatus","Interaction",NA,1
+"1091","Filipendula ulmaria","Calocoris bipunctatus","Interaction",NA,0
+"1092","Galium verum","Calocoris bipunctatus","Interaction",NA,0
+"1093","Hypochoeris radicata","Calocoris bipunctatus","Interaction",NA,0
+"1094","Primula veris","Calocoris bipunctatus","Interaction",NA,0
+"1095","Lotus corniculatus","Calocoris bipunctatus","Interaction",NA,0
+"1096","Lathyrus pratensis","Calocoris bipunctatus","Interaction",NA,0
+"1097","Orchis morio","Calocoris bipunctatus","Interaction",NA,0
+"1098","Taraxacum officinale","Calocoris bipunctatus","Interaction",NA,0
+"1099","Trifolium repens","Calocoris bipunctatus","Interaction",NA,0
+"1100","Cerastium fontanum","Calocoris bipunctatus","Interaction",NA,0
+"1101","Trifolium dubium","Calocoris bipunctatus","Interaction",NA,0
+"1102","Centaurea nigra","Empis livida","Interaction",NA,11
+"1103","Leucanthemum vulgare","Empis livida","Interaction",NA,20
+"1104","Cirsium palustre","Empis livida","Interaction",NA,0
+"1105","Ranunculus acris","Empis livida","Interaction",NA,0
+"1106","Cirsium arvense","Empis livida","Interaction",NA,1
+"1107","Filipendula ulmaria","Empis livida","Interaction",NA,0
+"1108","Galium verum","Empis livida","Interaction",NA,0
+"1109","Hypochoeris radicata","Empis livida","Interaction",NA,0
+"1110","Primula veris","Empis livida","Interaction",NA,0
+"1111","Lotus corniculatus","Empis livida","Interaction",NA,0
+"1112","Lathyrus pratensis","Empis livida","Interaction",NA,0
+"1113","Orchis morio","Empis livida","Interaction",NA,0
+"1114","Taraxacum officinale","Empis livida","Interaction",NA,0
+"1115","Trifolium repens","Empis livida","Interaction",NA,0
+"1116","Cerastium fontanum","Empis livida","Interaction",NA,0
+"1117","Trifolium dubium","Empis livida","Interaction",NA,0
+"1118","Centaurea nigra","Psithyrus vest","Interaction",NA,12
+"1119","Leucanthemum vulgare","Psithyrus vest","Interaction",NA,3
+"1120","Cirsium palustre","Psithyrus vest","Interaction",NA,8
+"1121","Ranunculus acris","Psithyrus vest","Interaction",NA,0
+"1122","Cirsium arvense","Psithyrus vest","Interaction",NA,0
+"1123","Filipendula ulmaria","Psithyrus vest","Interaction",NA,0
+"1124","Galium verum","Psithyrus vest","Interaction",NA,0
+"1125","Hypochoeris radicata","Psithyrus vest","Interaction",NA,0
+"1126","Primula veris","Psithyrus vest","Interaction",NA,0
+"1127","Lotus corniculatus","Psithyrus vest","Interaction",NA,0
+"1128","Lathyrus pratensis","Psithyrus vest","Interaction",NA,0
+"1129","Orchis morio","Psithyrus vest","Interaction",NA,0
+"1130","Taraxacum officinale","Psithyrus vest","Interaction",NA,0
+"1131","Trifolium repens","Psithyrus vest","Interaction",NA,0
+"1132","Cerastium fontanum","Psithyrus vest","Interaction",NA,0
+"1133","Trifolium dubium","Psithyrus vest","Interaction",NA,0
+"1134","Centaurea nigra","Episyrphus balteatus","Interaction",NA,8
+"1135","Leucanthemum vulgare","Episyrphus balteatus","Interaction",NA,0
+"1136","Cirsium palustre","Episyrphus balteatus","Interaction",NA,0
+"1137","Ranunculus acris","Episyrphus balteatus","Interaction",NA,0
+"1138","Cirsium arvense","Episyrphus balteatus","Interaction",NA,0
+"1139","Filipendula ulmaria","Episyrphus balteatus","Interaction",NA,4
+"1140","Galium verum","Episyrphus balteatus","Interaction",NA,6
+"1141","Hypochoeris radicata","Episyrphus balteatus","Interaction",NA,2
+"1142","Primula veris","Episyrphus balteatus","Interaction",NA,0
+"1143","Lotus corniculatus","Episyrphus balteatus","Interaction",NA,0
+"1144","Lathyrus pratensis","Episyrphus balteatus","Interaction",NA,0
+"1145","Orchis morio","Episyrphus balteatus","Interaction",NA,1
+"1146","Taraxacum officinale","Episyrphus balteatus","Interaction",NA,0
+"1147","Trifolium repens","Episyrphus balteatus","Interaction",NA,0
+"1148","Cerastium fontanum","Episyrphus balteatus","Interaction",NA,0
+"1149","Trifolium dubium","Episyrphus balteatus","Interaction",NA,0
+"1150","Centaurea nigra","Bombus pratorum","Interaction",NA,8
+"1151","Leucanthemum vulgare","Bombus pratorum","Interaction",NA,5
+"1152","Cirsium palustre","Bombus pratorum","Interaction",NA,4
+"1153","Ranunculus acris","Bombus pratorum","Interaction",NA,0
+"1154","Cirsium arvense","Bombus pratorum","Interaction",NA,0
+"1155","Filipendula ulmaria","Bombus pratorum","Interaction",NA,0
+"1156","Galium verum","Bombus pratorum","Interaction",NA,0
+"1157","Hypochoeris radicata","Bombus pratorum","Interaction",NA,0
+"1158","Primula veris","Bombus pratorum","Interaction",NA,0
+"1159","Lotus corniculatus","Bombus pratorum","Interaction",NA,0
+"1160","Lathyrus pratensis","Bombus pratorum","Interaction",NA,0
+"1161","Orchis morio","Bombus pratorum","Interaction",NA,0
+"1162","Taraxacum officinale","Bombus pratorum","Interaction",NA,0
+"1163","Trifolium repens","Bombus pratorum","Interaction",NA,0
+"1164","Cerastium fontanum","Bombus pratorum","Interaction",NA,0
+"1165","Trifolium dubium","Bombus pratorum","Interaction",NA,0
+"1166","Centaurea nigra","Apis mellifera","Interaction",NA,14
+"1167","Leucanthemum vulgare","Apis mellifera","Interaction",NA,0
+"1168","Cirsium palustre","Apis mellifera","Interaction",NA,0
+"1169","Ranunculus acris","Apis mellifera","Interaction",NA,0
+"1170","Cirsium arvense","Apis mellifera","Interaction",NA,0
+"1171","Filipendula ulmaria","Apis mellifera","Interaction",NA,0
+"1172","Galium verum","Apis mellifera","Interaction",NA,0
+"1173","Hypochoeris radicata","Apis mellifera","Interaction",NA,0
+"1174","Primula veris","Apis mellifera","Interaction",NA,0
+"1175","Lotus corniculatus","Apis mellifera","Interaction",NA,0
+"1176","Lathyrus pratensis","Apis mellifera","Interaction",NA,0
+"1177","Orchis morio","Apis mellifera","Interaction",NA,0
+"1178","Taraxacum officinale","Apis mellifera","Interaction",NA,0
+"1179","Trifolium repens","Apis mellifera","Interaction",NA,0
+"1180","Cerastium fontanum","Apis mellifera","Interaction",NA,0
+"1181","Trifolium dubium","Apis mellifera","Interaction",NA,0
+"1182","Centaurea nigra","Bombus terrestris lucorum","Interaction",NA,8
+"1183","Leucanthemum vulgare","Bombus terrestris lucorum","Interaction",NA,5
+"1184","Cirsium palustre","Bombus terrestris lucorum","Interaction",NA,0
+"1185","Ranunculus acris","Bombus terrestris lucorum","Interaction",NA,0
+"1186","Cirsium arvense","Bombus terrestris lucorum","Interaction",NA,0
+"1187","Filipendula ulmaria","Bombus terrestris lucorum","Interaction",NA,0
+"1188","Galium verum","Bombus terrestris lucorum","Interaction",NA,0
+"1189","Hypochoeris radicata","Bombus terrestris lucorum","Interaction",NA,0
+"1190","Primula veris","Bombus terrestris lucorum","Interaction",NA,1
+"1191","Lotus corniculatus","Bombus terrestris lucorum","Interaction",NA,0
+"1192","Lathyrus pratensis","Bombus terrestris lucorum","Interaction",NA,0
+"1193","Orchis morio","Bombus terrestris lucorum","Interaction",NA,0
+"1194","Taraxacum officinale","Bombus terrestris lucorum","Interaction",NA,0
+"1195","Trifolium repens","Bombus terrestris lucorum","Interaction",NA,0
+"1196","Cerastium fontanum","Bombus terrestris lucorum","Interaction",NA,0
+"1197","Trifolium dubium","Bombus terrestris lucorum","Interaction",NA,0
+"1198","Centaurea nigra","Eristalis tenax","Interaction",NA,3
+"1199","Leucanthemum vulgare","Eristalis tenax","Interaction",NA,9
+"1200","Cirsium palustre","Eristalis tenax","Interaction",NA,0
+"1201","Ranunculus acris","Eristalis tenax","Interaction",NA,0
+"1202","Cirsium arvense","Eristalis tenax","Interaction",NA,0
+"1203","Filipendula ulmaria","Eristalis tenax","Interaction",NA,1
+"1204","Galium verum","Eristalis tenax","Interaction",NA,0
+"1205","Hypochoeris radicata","Eristalis tenax","Interaction",NA,0
+"1206","Primula veris","Eristalis tenax","Interaction",NA,0
+"1207","Lotus corniculatus","Eristalis tenax","Interaction",NA,0
+"1208","Lathyrus pratensis","Eristalis tenax","Interaction",NA,0
+"1209","Orchis morio","Eristalis tenax","Interaction",NA,0
+"1210","Taraxacum officinale","Eristalis tenax","Interaction",NA,0
+"1211","Trifolium repens","Eristalis tenax","Interaction",NA,0
+"1212","Cerastium fontanum","Eristalis tenax","Interaction",NA,0
+"1213","Trifolium dubium","Eristalis tenax","Interaction",NA,0
+"1214","Centaurea nigra","Helophilus sp1 M_PL_007","Interaction",NA,2
+"1215","Leucanthemum vulgare","Helophilus sp1 M_PL_007","Interaction",NA,10
+"1216","Cirsium palustre","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1217","Ranunculus acris","Helophilus sp1 M_PL_007","Interaction",NA,1
+"1218","Cirsium arvense","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1219","Filipendula ulmaria","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1220","Galium verum","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1221","Hypochoeris radicata","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1222","Primula veris","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1223","Lotus corniculatus","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1224","Lathyrus pratensis","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1225","Orchis morio","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1226","Taraxacum officinale","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1227","Trifolium repens","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1228","Cerastium fontanum","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1229","Trifolium dubium","Helophilus sp1 M_PL_007","Interaction",NA,0
+"1230","Centaurea nigra","Syrphus sp1 M_PL_007","Interaction",NA,7
+"1231","Leucanthemum vulgare","Syrphus sp1 M_PL_007","Interaction",NA,2
+"1232","Cirsium palustre","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1233","Ranunculus acris","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1234","Cirsium arvense","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1235","Filipendula ulmaria","Syrphus sp1 M_PL_007","Interaction",NA,2
+"1236","Galium verum","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1237","Hypochoeris radicata","Syrphus sp1 M_PL_007","Interaction",NA,1
+"1238","Primula veris","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1239","Lotus corniculatus","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1240","Lathyrus pratensis","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1241","Orchis morio","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1242","Taraxacum officinale","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1243","Trifolium repens","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1244","Cerastium fontanum","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1245","Trifolium dubium","Syrphus sp1 M_PL_007","Interaction",NA,0
+"1246","Centaurea nigra","Scathophaga stercoraria","Interaction",NA,0
+"1247","Leucanthemum vulgare","Scathophaga stercoraria","Interaction",NA,5
+"1248","Cirsium palustre","Scathophaga stercoraria","Interaction",NA,0
+"1249","Ranunculus acris","Scathophaga stercoraria","Interaction",NA,2
+"1250","Cirsium arvense","Scathophaga stercoraria","Interaction",NA,0
+"1251","Filipendula ulmaria","Scathophaga stercoraria","Interaction",NA,0
+"1252","Galium verum","Scathophaga stercoraria","Interaction",NA,0
+"1253","Hypochoeris radicata","Scathophaga stercoraria","Interaction",NA,0
+"1254","Primula veris","Scathophaga stercoraria","Interaction",NA,0
+"1255","Lotus corniculatus","Scathophaga stercoraria","Interaction",NA,0
+"1256","Lathyrus pratensis","Scathophaga stercoraria","Interaction",NA,0
+"1257","Orchis morio","Scathophaga stercoraria","Interaction",NA,0
+"1258","Taraxacum officinale","Scathophaga stercoraria","Interaction",NA,1
+"1259","Trifolium repens","Scathophaga stercoraria","Interaction",NA,0
+"1260","Cerastium fontanum","Scathophaga stercoraria","Interaction",NA,0
+"1261","Trifolium dubium","Scathophaga stercoraria","Interaction",NA,0
+"1262","Centaurea nigra","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1263","Leucanthemum vulgare","Sphaerophoria sp1 M_PL_007","Interaction",NA,2
+"1264","Cirsium palustre","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1265","Ranunculus acris","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1266","Cirsium arvense","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1267","Filipendula ulmaria","Sphaerophoria sp1 M_PL_007","Interaction",NA,1
+"1268","Galium verum","Sphaerophoria sp1 M_PL_007","Interaction",NA,2
+"1269","Hypochoeris radicata","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1270","Primula veris","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1271","Lotus corniculatus","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1272","Lathyrus pratensis","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1273","Orchis morio","Sphaerophoria sp1 M_PL_007","Interaction",NA,1
+"1274","Taraxacum officinale","Sphaerophoria sp1 M_PL_007","Interaction",NA,1
+"1275","Trifolium repens","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1276","Cerastium fontanum","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1277","Trifolium dubium","Sphaerophoria sp1 M_PL_007","Interaction",NA,0
+"1278","Centaurea nigra","Anthophora plumipes","Interaction",NA,0
+"1279","Leucanthemum vulgare","Anthophora plumipes","Interaction",NA,0
+"1280","Cirsium palustre","Anthophora plumipes","Interaction",NA,0
+"1281","Ranunculus acris","Anthophora plumipes","Interaction",NA,0
+"1282","Cirsium arvense","Anthophora plumipes","Interaction",NA,0
+"1283","Filipendula ulmaria","Anthophora plumipes","Interaction",NA,0
+"1284","Galium verum","Anthophora plumipes","Interaction",NA,0
+"1285","Hypochoeris radicata","Anthophora plumipes","Interaction",NA,0
+"1286","Primula veris","Anthophora plumipes","Interaction",NA,5
+"1287","Lotus corniculatus","Anthophora plumipes","Interaction",NA,0
+"1288","Lathyrus pratensis","Anthophora plumipes","Interaction",NA,0
+"1289","Orchis morio","Anthophora plumipes","Interaction",NA,0
+"1290","Taraxacum officinale","Anthophora plumipes","Interaction",NA,0
+"1291","Trifolium repens","Anthophora plumipes","Interaction",NA,0
+"1292","Cerastium fontanum","Anthophora plumipes","Interaction",NA,0
+"1293","Trifolium dubium","Anthophora plumipes","Interaction",NA,0
+"1294","Centaurea nigra","Cheilosia bergenstammi","Interaction",NA,0
+"1295","Leucanthemum vulgare","Cheilosia bergenstammi","Interaction",NA,0
+"1296","Cirsium palustre","Cheilosia bergenstammi","Interaction",NA,0
+"1297","Ranunculus acris","Cheilosia bergenstammi","Interaction",NA,4
+"1298","Cirsium arvense","Cheilosia bergenstammi","Interaction",NA,0
+"1299","Filipendula ulmaria","Cheilosia bergenstammi","Interaction",NA,0
+"1300","Galium verum","Cheilosia bergenstammi","Interaction",NA,0
+"1301","Hypochoeris radicata","Cheilosia bergenstammi","Interaction",NA,0
+"1302","Primula veris","Cheilosia bergenstammi","Interaction",NA,0
+"1303","Lotus corniculatus","Cheilosia bergenstammi","Interaction",NA,0
+"1304","Lathyrus pratensis","Cheilosia bergenstammi","Interaction",NA,0
+"1305","Orchis morio","Cheilosia bergenstammi","Interaction",NA,0
+"1306","Taraxacum officinale","Cheilosia bergenstammi","Interaction",NA,0
+"1307","Trifolium repens","Cheilosia bergenstammi","Interaction",NA,0
+"1308","Cerastium fontanum","Cheilosia bergenstammi","Interaction",NA,0
+"1309","Trifolium dubium","Cheilosia bergenstammi","Interaction",NA,0
+"1310","Centaurea nigra","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1311","Leucanthemum vulgare","Lucillia sp1 M_PL_007","Interaction",NA,4
+"1312","Cirsium palustre","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1313","Ranunculus acris","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1314","Cirsium arvense","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1315","Filipendula ulmaria","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1316","Galium verum","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1317","Hypochoeris radicata","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1318","Primula veris","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1319","Lotus corniculatus","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1320","Lathyrus pratensis","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1321","Orchis morio","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1322","Taraxacum officinale","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1323","Trifolium repens","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1324","Cerastium fontanum","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1325","Trifolium dubium","Lucillia sp1 M_PL_007","Interaction",NA,0
+"1326","Centaurea nigra","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1327","Leucanthemum vulgare","Melanostoma sp1 M_PL_007","Interaction",NA,2
+"1328","Cirsium palustre","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1329","Ranunculus acris","Melanostoma sp1 M_PL_007","Interaction",NA,1
+"1330","Cirsium arvense","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1331","Filipendula ulmaria","Melanostoma sp1 M_PL_007","Interaction",NA,1
+"1332","Galium verum","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1333","Hypochoeris radicata","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1334","Primula veris","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1335","Lotus corniculatus","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1336","Lathyrus pratensis","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1337","Orchis morio","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1338","Taraxacum officinale","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1339","Trifolium repens","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1340","Cerastium fontanum","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1341","Trifolium dubium","Melanostoma sp1 M_PL_007","Interaction",NA,0
+"1342","Centaurea nigra","Platycheirus sp1 M_PL_007","Interaction",NA,2
+"1343","Leucanthemum vulgare","Platycheirus sp1 M_PL_007","Interaction",NA,1
+"1344","Cirsium palustre","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1345","Ranunculus acris","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1346","Cirsium arvense","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1347","Filipendula ulmaria","Platycheirus sp1 M_PL_007","Interaction",NA,1
+"1348","Galium verum","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1349","Hypochoeris radicata","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1350","Primula veris","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1351","Lotus corniculatus","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1352","Lathyrus pratensis","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1353","Orchis morio","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1354","Taraxacum officinale","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1355","Trifolium repens","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1356","Cerastium fontanum","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1357","Trifolium dubium","Platycheirus sp1 M_PL_007","Interaction",NA,0
+"1358","Centaurea nigra","Eriothrix rufomaculatus","Interaction",NA,0
+"1359","Leucanthemum vulgare","Eriothrix rufomaculatus","Interaction",NA,0
+"1360","Cirsium palustre","Eriothrix rufomaculatus","Interaction",NA,0
+"1361","Ranunculus acris","Eriothrix rufomaculatus","Interaction",NA,0
+"1362","Cirsium arvense","Eriothrix rufomaculatus","Interaction",NA,3
+"1363","Filipendula ulmaria","Eriothrix rufomaculatus","Interaction",NA,0
+"1364","Galium verum","Eriothrix rufomaculatus","Interaction",NA,0
+"1365","Hypochoeris radicata","Eriothrix rufomaculatus","Interaction",NA,0
+"1366","Primula veris","Eriothrix rufomaculatus","Interaction",NA,0
+"1367","Lotus corniculatus","Eriothrix rufomaculatus","Interaction",NA,0
+"1368","Lathyrus pratensis","Eriothrix rufomaculatus","Interaction",NA,0
+"1369","Orchis morio","Eriothrix rufomaculatus","Interaction",NA,0
+"1370","Taraxacum officinale","Eriothrix rufomaculatus","Interaction",NA,0
+"1371","Trifolium repens","Eriothrix rufomaculatus","Interaction",NA,0
+"1372","Cerastium fontanum","Eriothrix rufomaculatus","Interaction",NA,0
+"1373","Trifolium dubium","Eriothrix rufomaculatus","Interaction",NA,0
+"1374","Centaurea nigra","Eristalis nemorum","Interaction",NA,0
+"1375","Leucanthemum vulgare","Eristalis nemorum","Interaction",NA,3
+"1376","Cirsium palustre","Eristalis nemorum","Interaction",NA,0
+"1377","Ranunculus acris","Eristalis nemorum","Interaction",NA,0
+"1378","Cirsium arvense","Eristalis nemorum","Interaction",NA,0
+"1379","Filipendula ulmaria","Eristalis nemorum","Interaction",NA,0
+"1380","Galium verum","Eristalis nemorum","Interaction",NA,0
+"1381","Hypochoeris radicata","Eristalis nemorum","Interaction",NA,0
+"1382","Primula veris","Eristalis nemorum","Interaction",NA,0
+"1383","Lotus corniculatus","Eristalis nemorum","Interaction",NA,0
+"1384","Lathyrus pratensis","Eristalis nemorum","Interaction",NA,0
+"1385","Orchis morio","Eristalis nemorum","Interaction",NA,0
+"1386","Taraxacum officinale","Eristalis nemorum","Interaction",NA,0
+"1387","Trifolium repens","Eristalis nemorum","Interaction",NA,0
+"1388","Cerastium fontanum","Eristalis nemorum","Interaction",NA,0
+"1389","Trifolium dubium","Eristalis nemorum","Interaction",NA,0
+"1390","Centaurea nigra","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1391","Leucanthemum vulgare","Meliscaeva sp1 M_PL_007","Interaction",NA,1
+"1392","Cirsium palustre","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1393","Ranunculus acris","Meliscaeva sp1 M_PL_007","Interaction",NA,2
+"1394","Cirsium arvense","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1395","Filipendula ulmaria","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1396","Galium verum","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1397","Hypochoeris radicata","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1398","Primula veris","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1399","Lotus corniculatus","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1400","Lathyrus pratensis","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1401","Orchis morio","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1402","Taraxacum officinale","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1403","Trifolium repens","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1404","Cerastium fontanum","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1405","Trifolium dubium","Meliscaeva sp1 M_PL_007","Interaction",NA,0
+"1406","Centaurea nigra","Andrena chrysosceles","Interaction",NA,0
+"1407","Leucanthemum vulgare","Andrena chrysosceles","Interaction",NA,2
+"1408","Cirsium palustre","Andrena chrysosceles","Interaction",NA,0
+"1409","Ranunculus acris","Andrena chrysosceles","Interaction",NA,0
+"1410","Cirsium arvense","Andrena chrysosceles","Interaction",NA,0
+"1411","Filipendula ulmaria","Andrena chrysosceles","Interaction",NA,0
+"1412","Galium verum","Andrena chrysosceles","Interaction",NA,0
+"1413","Hypochoeris radicata","Andrena chrysosceles","Interaction",NA,0
+"1414","Primula veris","Andrena chrysosceles","Interaction",NA,0
+"1415","Lotus corniculatus","Andrena chrysosceles","Interaction",NA,0
+"1416","Lathyrus pratensis","Andrena chrysosceles","Interaction",NA,0
+"1417","Orchis morio","Andrena chrysosceles","Interaction",NA,0
+"1418","Taraxacum officinale","Andrena chrysosceles","Interaction",NA,0
+"1419","Trifolium repens","Andrena chrysosceles","Interaction",NA,0
+"1420","Cerastium fontanum","Andrena chrysosceles","Interaction",NA,0
+"1421","Trifolium dubium","Andrena chrysosceles","Interaction",NA,0
+"1422","Centaurea nigra","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1423","Leucanthemum vulgare","Pollenia sp1 M_PL_007","Interaction",NA,2
+"1424","Cirsium palustre","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1425","Ranunculus acris","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1426","Cirsium arvense","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1427","Filipendula ulmaria","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1428","Galium verum","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1429","Hypochoeris radicata","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1430","Primula veris","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1431","Lotus corniculatus","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1432","Lathyrus pratensis","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1433","Orchis morio","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1434","Taraxacum officinale","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1435","Trifolium repens","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1436","Cerastium fontanum","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1437","Trifolium dubium","Pollenia sp1 M_PL_007","Interaction",NA,0
+"1438","Centaurea nigra","Andrena pubescens","Interaction",NA,0
+"1439","Leucanthemum vulgare","Andrena pubescens","Interaction",NA,0
+"1440","Cirsium palustre","Andrena pubescens","Interaction",NA,0
+"1441","Ranunculus acris","Andrena pubescens","Interaction",NA,1
+"1442","Cirsium arvense","Andrena pubescens","Interaction",NA,0
+"1443","Filipendula ulmaria","Andrena pubescens","Interaction",NA,0
+"1444","Galium verum","Andrena pubescens","Interaction",NA,0
+"1445","Hypochoeris radicata","Andrena pubescens","Interaction",NA,0
+"1446","Primula veris","Andrena pubescens","Interaction",NA,0
+"1447","Lotus corniculatus","Andrena pubescens","Interaction",NA,0
+"1448","Lathyrus pratensis","Andrena pubescens","Interaction",NA,0
+"1449","Orchis morio","Andrena pubescens","Interaction",NA,0
+"1450","Taraxacum officinale","Andrena pubescens","Interaction",NA,0
+"1451","Trifolium repens","Andrena pubescens","Interaction",NA,0
+"1452","Cerastium fontanum","Andrena pubescens","Interaction",NA,0
+"1453","Trifolium dubium","Andrena pubescens","Interaction",NA,0
+"1454","Centaurea nigra","Bombus hortorum","Interaction",NA,1
+"1455","Leucanthemum vulgare","Bombus hortorum","Interaction",NA,0
+"1456","Cirsium palustre","Bombus hortorum","Interaction",NA,0
+"1457","Ranunculus acris","Bombus hortorum","Interaction",NA,0
+"1458","Cirsium arvense","Bombus hortorum","Interaction",NA,0
+"1459","Filipendula ulmaria","Bombus hortorum","Interaction",NA,0
+"1460","Galium verum","Bombus hortorum","Interaction",NA,0
+"1461","Hypochoeris radicata","Bombus hortorum","Interaction",NA,0
+"1462","Primula veris","Bombus hortorum","Interaction",NA,0
+"1463","Lotus corniculatus","Bombus hortorum","Interaction",NA,0
+"1464","Lathyrus pratensis","Bombus hortorum","Interaction",NA,0
+"1465","Orchis morio","Bombus hortorum","Interaction",NA,0
+"1466","Taraxacum officinale","Bombus hortorum","Interaction",NA,0
+"1467","Trifolium repens","Bombus hortorum","Interaction",NA,0
+"1468","Cerastium fontanum","Bombus hortorum","Interaction",NA,0
+"1469","Trifolium dubium","Bombus hortorum","Interaction",NA,0
+"1470","Centaurea nigra","Cephus pygmaeus","Interaction",NA,0
+"1471","Leucanthemum vulgare","Cephus pygmaeus","Interaction",NA,0
+"1472","Cirsium palustre","Cephus pygmaeus","Interaction",NA,0
+"1473","Ranunculus acris","Cephus pygmaeus","Interaction",NA,1
+"1474","Cirsium arvense","Cephus pygmaeus","Interaction",NA,0
+"1475","Filipendula ulmaria","Cephus pygmaeus","Interaction",NA,0
+"1476","Galium verum","Cephus pygmaeus","Interaction",NA,0
+"1477","Hypochoeris radicata","Cephus pygmaeus","Interaction",NA,0
+"1478","Primula veris","Cephus pygmaeus","Interaction",NA,0
+"1479","Lotus corniculatus","Cephus pygmaeus","Interaction",NA,0
+"1480","Lathyrus pratensis","Cephus pygmaeus","Interaction",NA,0
+"1481","Orchis morio","Cephus pygmaeus","Interaction",NA,0
+"1482","Taraxacum officinale","Cephus pygmaeus","Interaction",NA,0
+"1483","Trifolium repens","Cephus pygmaeus","Interaction",NA,0
+"1484","Cerastium fontanum","Cephus pygmaeus","Interaction",NA,0
+"1485","Trifolium dubium","Cephus pygmaeus","Interaction",NA,0
+"1486","Centaurea nigra","Eristalis intricarius","Interaction",NA,0
+"1487","Leucanthemum vulgare","Eristalis intricarius","Interaction",NA,0
+"1488","Cirsium palustre","Eristalis intricarius","Interaction",NA,0
+"1489","Ranunculus acris","Eristalis intricarius","Interaction",NA,0
+"1490","Cirsium arvense","Eristalis intricarius","Interaction",NA,0
+"1491","Filipendula ulmaria","Eristalis intricarius","Interaction",NA,0
+"1492","Galium verum","Eristalis intricarius","Interaction",NA,0
+"1493","Hypochoeris radicata","Eristalis intricarius","Interaction",NA,0
+"1494","Primula veris","Eristalis intricarius","Interaction",NA,1
+"1495","Lotus corniculatus","Eristalis intricarius","Interaction",NA,0
+"1496","Lathyrus pratensis","Eristalis intricarius","Interaction",NA,0
+"1497","Orchis morio","Eristalis intricarius","Interaction",NA,0
+"1498","Taraxacum officinale","Eristalis intricarius","Interaction",NA,0
+"1499","Trifolium repens","Eristalis intricarius","Interaction",NA,0
+"1500","Cerastium fontanum","Eristalis intricarius","Interaction",NA,0
+"1501","Trifolium dubium","Eristalis intricarius","Interaction",NA,0
+"1502","Centaurea nigra","Lasioglossum calceatum","Interaction",NA,0
+"1503","Leucanthemum vulgare","Lasioglossum calceatum","Interaction",NA,0
+"1504","Cirsium palustre","Lasioglossum calceatum","Interaction",NA,0
+"1505","Ranunculus acris","Lasioglossum calceatum","Interaction",NA,1
+"1506","Cirsium arvense","Lasioglossum calceatum","Interaction",NA,0
+"1507","Filipendula ulmaria","Lasioglossum calceatum","Interaction",NA,0
+"1508","Galium verum","Lasioglossum calceatum","Interaction",NA,0
+"1509","Hypochoeris radicata","Lasioglossum calceatum","Interaction",NA,0
+"1510","Primula veris","Lasioglossum calceatum","Interaction",NA,0
+"1511","Lotus corniculatus","Lasioglossum calceatum","Interaction",NA,0
+"1512","Lathyrus pratensis","Lasioglossum calceatum","Interaction",NA,0
+"1513","Orchis morio","Lasioglossum calceatum","Interaction",NA,0
+"1514","Taraxacum officinale","Lasioglossum calceatum","Interaction",NA,0
+"1515","Trifolium repens","Lasioglossum calceatum","Interaction",NA,0
+"1516","Cerastium fontanum","Lasioglossum calceatum","Interaction",NA,0
+"1517","Trifolium dubium","Lasioglossum calceatum","Interaction",NA,0
+"1518","Centaurea nigra","Lasioglossum villosulum","Interaction",NA,0
+"1519","Leucanthemum vulgare","Lasioglossum villosulum","Interaction",NA,0
+"1520","Cirsium palustre","Lasioglossum villosulum","Interaction",NA,0
+"1521","Ranunculus acris","Lasioglossum villosulum","Interaction",NA,0
+"1522","Cirsium arvense","Lasioglossum villosulum","Interaction",NA,0
+"1523","Filipendula ulmaria","Lasioglossum villosulum","Interaction",NA,0
+"1524","Galium verum","Lasioglossum villosulum","Interaction",NA,0
+"1525","Hypochoeris radicata","Lasioglossum villosulum","Interaction",NA,1
+"1526","Primula veris","Lasioglossum villosulum","Interaction",NA,0
+"1527","Lotus corniculatus","Lasioglossum villosulum","Interaction",NA,0
+"1528","Lathyrus pratensis","Lasioglossum villosulum","Interaction",NA,0
+"1529","Orchis morio","Lasioglossum villosulum","Interaction",NA,0
+"1530","Taraxacum officinale","Lasioglossum villosulum","Interaction",NA,0
+"1531","Trifolium repens","Lasioglossum villosulum","Interaction",NA,0
+"1532","Cerastium fontanum","Lasioglossum villosulum","Interaction",NA,0
+"1533","Trifolium dubium","Lasioglossum villosulum","Interaction",NA,0
+"1534","Centaurea nigra","Lycaena phlaeas ","Interaction",NA,0
+"1535","Leucanthemum vulgare","Lycaena phlaeas ","Interaction",NA,0
+"1536","Cirsium palustre","Lycaena phlaeas ","Interaction",NA,0
+"1537","Ranunculus acris","Lycaena phlaeas ","Interaction",NA,0
+"1538","Cirsium arvense","Lycaena phlaeas ","Interaction",NA,0
+"1539","Filipendula ulmaria","Lycaena phlaeas ","Interaction",NA,0
+"1540","Galium verum","Lycaena phlaeas ","Interaction",NA,0
+"1541","Hypochoeris radicata","Lycaena phlaeas ","Interaction",NA,0
+"1542","Primula veris","Lycaena phlaeas ","Interaction",NA,0
+"1543","Lotus corniculatus","Lycaena phlaeas ","Interaction",NA,0
+"1544","Lathyrus pratensis","Lycaena phlaeas ","Interaction",NA,0
+"1545","Orchis morio","Lycaena phlaeas ","Interaction",NA,0
+"1546","Taraxacum officinale","Lycaena phlaeas ","Interaction",NA,0
+"1547","Trifolium repens","Lycaena phlaeas ","Interaction",NA,0
+"1548","Cerastium fontanum","Lycaena phlaeas ","Interaction",NA,1
+"1549","Trifolium dubium","Lycaena phlaeas ","Interaction",NA,0
+"1550","Centaurea nigra","Panameria tenebrata","Interaction",NA,0
+"1551","Leucanthemum vulgare","Panameria tenebrata","Interaction",NA,0
+"1552","Cirsium palustre","Panameria tenebrata","Interaction",NA,0
+"1553","Ranunculus acris","Panameria tenebrata","Interaction",NA,0
+"1554","Cirsium arvense","Panameria tenebrata","Interaction",NA,0
+"1555","Filipendula ulmaria","Panameria tenebrata","Interaction",NA,0
+"1556","Galium verum","Panameria tenebrata","Interaction",NA,0
+"1557","Hypochoeris radicata","Panameria tenebrata","Interaction",NA,0
+"1558","Primula veris","Panameria tenebrata","Interaction",NA,0
+"1559","Lotus corniculatus","Panameria tenebrata","Interaction",NA,0
+"1560","Lathyrus pratensis","Panameria tenebrata","Interaction",NA,0
+"1561","Orchis morio","Panameria tenebrata","Interaction",NA,0
+"1562","Taraxacum officinale","Panameria tenebrata","Interaction",NA,1
+"1563","Trifolium repens","Panameria tenebrata","Interaction",NA,0
+"1564","Cerastium fontanum","Panameria tenebrata","Interaction",NA,0
+"1565","Trifolium dubium","Panameria tenebrata","Interaction",NA,0
+"1566","Centaurea nigra","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1567","Leucanthemum vulgare","Sarcophagus sp1 M_PL_007","Interaction",NA,1
+"1568","Cirsium palustre","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1569","Ranunculus acris","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1570","Cirsium arvense","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1571","Filipendula ulmaria","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1572","Galium verum","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1573","Hypochoeris radicata","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1574","Primula veris","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1575","Lotus corniculatus","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1576","Lathyrus pratensis","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1577","Orchis morio","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1578","Taraxacum officinale","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1579","Trifolium repens","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1580","Cerastium fontanum","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1581","Trifolium dubium","Sarcophagus sp1 M_PL_007","Interaction",NA,0
+"1582","Centaurea nigra","Tropidia scitta","Interaction",NA,0
+"1583","Leucanthemum vulgare","Tropidia scitta","Interaction",NA,1
+"1584","Cirsium palustre","Tropidia scitta","Interaction",NA,0
+"1585","Ranunculus acris","Tropidia scitta","Interaction",NA,0
+"1586","Cirsium arvense","Tropidia scitta","Interaction",NA,0
+"1587","Filipendula ulmaria","Tropidia scitta","Interaction",NA,0
+"1588","Galium verum","Tropidia scitta","Interaction",NA,0
+"1589","Hypochoeris radicata","Tropidia scitta","Interaction",NA,0
+"1590","Primula veris","Tropidia scitta","Interaction",NA,0
+"1591","Lotus corniculatus","Tropidia scitta","Interaction",NA,0
+"1592","Lathyrus pratensis","Tropidia scitta","Interaction",NA,0
+"1593","Orchis morio","Tropidia scitta","Interaction",NA,0
+"1594","Taraxacum officinale","Tropidia scitta","Interaction",NA,0
+"1595","Trifolium repens","Tropidia scitta","Interaction",NA,0
+"1596","Cerastium fontanum","Tropidia scitta","Interaction",NA,0
+"1597","Trifolium dubium","Tropidia scitta","Interaction",NA,0
+"1598","Centaurea nigra","Volucella bombylans","Interaction",NA,0
+"1599","Leucanthemum vulgare","Volucella bombylans","Interaction",NA,1
+"1600","Cirsium palustre","Volucella bombylans","Interaction",NA,0
+"1601","Ranunculus acris","Volucella bombylans","Interaction",NA,0
+"1602","Cirsium arvense","Volucella bombylans","Interaction",NA,0
+"1603","Filipendula ulmaria","Volucella bombylans","Interaction",NA,0
+"1604","Galium verum","Volucella bombylans","Interaction",NA,0
+"1605","Hypochoeris radicata","Volucella bombylans","Interaction",NA,0
+"1606","Primula veris","Volucella bombylans","Interaction",NA,0
+"1607","Lotus corniculatus","Volucella bombylans","Interaction",NA,0
+"1608","Lathyrus pratensis","Volucella bombylans","Interaction",NA,0
+"1609","Orchis morio","Volucella bombylans","Interaction",NA,0
+"1610","Taraxacum officinale","Volucella bombylans","Interaction",NA,0
+"1611","Trifolium repens","Volucella bombylans","Interaction",NA,0
+"1612","Cerastium fontanum","Volucella bombylans","Interaction",NA,0
+"1613","Trifolium dubium","Volucella bombylans","Interaction",NA,0
