@@ -2,13 +2,20 @@
 
 #load package to extract references from bib.file
 #install.packages("bib2df")
-#install.packages("bibtex")
 
 library(bib2df)
+library(reshape2)
 
+#Read bibtex file with references
 df <- bib2df("scripts/references.bib")
+#Select column of interest
+df <- df[,-c(3,4,6:12,14:16,20,22,24,28:30)] 
 
 
+
+longitude <- c(3.296797,3.296797)
+
+latitude <- c(42.315336,42.315336)
 
 #Metadata of the networks
 
