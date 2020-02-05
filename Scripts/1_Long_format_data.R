@@ -12,7 +12,7 @@ library(taxize)
 
 
 #Set working directory to read files
-setwd("~/Reproductive Traits/data/Data_networks_subset") 
+setwd("~/R_projects/Reproductive Traits/Data/Data_networks_subset") 
 #It is call subset because I do not use all the networks
 #In total between 20 and 30, still adding... Do not know exact number yet
 
