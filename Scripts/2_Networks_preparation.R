@@ -32,7 +32,7 @@ carpobrotus_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",carpobrotus
 carpobrotus_metaweb_Bartomeus_2008 <- acast(carpobrotus_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                             fun.aggregate=sum)
 
-write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/carpobrotus_metaweb_Bartomeus_2008.csv")
+write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/1_carpobrotus_metaweb_Bartomeus_2008.csv")
 
 #Opuntia metaweb
 sel <- read.csv("Data/Data_networks/bartomeus_2008_sel1op.csv")
@@ -53,7 +53,7 @@ opuntia_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",opuntia_metaweb
 opuntia_metaweb_Bartomeus_2008 <- acast(opuntia_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                         fun.aggregate=sum)
 
-write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/opuntia_metaweb_Bartomeus_2008.csv")
+write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_opuntia_metaweb_Bartomeus_2008.csv")
 
 
 csv_file_name <- c("1_carpobrotus_metaweb_Bartomeus_2008", "2_opuntia_metaweb_Bartomeus_2008.csv")
@@ -201,7 +201,7 @@ metaweb_dicks_2002 <- acast(metaweb_dicks_2002, Plant_species ~ Pollinator_speci
  
  
  
- csv_file_name <- c("5_dicks_2002.csv")
+ csv_file_name <- c("6_dicks_2002.csv")
  
  longitude <- c("1.575532; 1.097873")
  
@@ -229,4 +229,32 @@ National Nature Reserve")
                           network_size)
  
  metadata <- rbind(metadata, metadata_4)
+ 
+ 
+ #7th  Dupont & Olesen 2009
+ 
+ #Although locations are separated, the communities are similar and will be integrated in asingle web
+ #There is another network but I do not have access to it, so I will consider just 2 that are 
+ #openly available
+ 
+ 
+ dupont_1 <- read.csv("Data_networks/7_dupont_2009_denmark.csv")
+ dupont_2 <- read.csv("Data_networks/7_dupont_2009_isenbjerg.csv")
+ 
+ dupont_1 <- melt(dupont_1)
+ dupont_2 <- melt( dupont_2)
+ 
+ colnames(dupont_1) <- c("Plant_species", "Pollinator_species", "Interaction")
+ colnames(dupont_2) <- c("Plant_species", "Pollinator_species", "Interaction")
+ 
+ 
+ metaweb_dupont_2002 <- rbind(dupont_1,dupont_2)
+ metaweb_dupont_2002$Pollinator_species=gsub("\\."," ",metaweb_dupont_2002$Pollinator_species)
+ 
+ metaweb_dupont_2002 <- acast(metaweb_dupont_2002, Plant_species ~ Pollinator_species , value.var='Interaction', 
+                             fun.aggregate=sum)
+ 
+ write.csv(metaweb_dupont_2002, "Data_networks_metawebs/7_metaweb_dupont_2002.csv")
+ 
+ 
  
