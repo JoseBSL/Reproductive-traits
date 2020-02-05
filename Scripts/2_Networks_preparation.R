@@ -406,32 +406,35 @@ fang_huang_3 <- melt(fang_huang_3)
  metadata <- rbind(metadata, metadata_8)
  
  
- #11th  Inoue et al., 1990
+#11th  Inoue et al., 1990
  
 csv_file_name <- c("11_metaweb_inoue_1990.csv")
 
-longitude <- c(99.63806)
+longitude <- c(135.866667)
 
-latitude <- c(27.90139)
+latitude <- c(35.166667)
 
-country <- c("China")
+country <- c("Japan")
 
-location <- c("Shangri-La Alpine Botanical Garden, Yunnan")
+location <- c("Kibune, Kyoto")
 
-duration <- c("3 seasons")
+duration <- c("4 seasons")
 
-experiment_year <- c("2008-2010")
+experiment_year <- c("1984-1987")
 
-unique_networks <-c(3)
+unique_networks <-c(4)
 
-plant_species <- c(130)
+plant_species <- c(114)
 
-pollinator_species <- c(247)  
+pollinator_species <- c(883)  
 
-network_size <- c(32110)
+network_size <- c(100662)
 
-metadata_8 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_9 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
                          experiment_year,unique_networks,plant_species, pollinator_species, 
                          network_size)
 
-metadata <- rbind(metadata, metadata_8)
+metadata <- rbind(metadata, metadata_9)
+
+
+#12th  Inoue et al., 1990
