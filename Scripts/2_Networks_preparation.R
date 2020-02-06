@@ -623,3 +623,37 @@ metadata_13 <- data.frame(csv_file_name, longitude, latitude, country, location,
                           network_size)
 
 metadata <- rbind(metadata, metadata_13)
+
+
+#16th Kevan 1970 PhD thesis
+
+
+kevan_1970 <- read.csv("Data_networks_metawebs/16_kevan_1970.csv", row.names = 1)
+
+csv_file_name <- c("16_kevan_1970.csv")
+
+longitude <- c(-71.3)
+
+latitude <- c(81.816667)
+
+country <- c("Canada")
+
+location <- c("Hazen Camp, Ellesmere Island,")
+
+duration <- c(NA)
+
+experiment_year <- c(NA)
+
+unique_networks <-c(NA)
+
+plant_species <- c(as.numeric(nrow(kevan_1970)))
+
+pollinator_species <- c(as.numeric(ncol(kevan_1970)))  
+
+network_size <- c(as.numeric(nrow(kevan_1970))*as.numeric(ncol(kevan_1970)))
+
+metadata_14 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_14)
