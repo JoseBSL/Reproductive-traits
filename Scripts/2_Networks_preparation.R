@@ -724,3 +724,44 @@ metadata_16 <- data.frame(csv_file_name, longitude, latitude, country, location,
                           network_size)
 
 metadata <- rbind(metadata, metadata_16)
+
+#19th Mcullen 1990
+
+mcmullen_1993 <- read.csv("Data_networks_metawebs/19_mcmullen_1993.csv", row.names = 1)
+
+csv_file_name <- c("19_mcmullen_1993.csv")
+
+longitude <- c(-90.600747)
+
+latitude <- c(-0.290164)
+
+country <- c("Ecuador")
+
+location <- c("Galapagos")
+
+duration <- c(NA)
+
+experiment_year <- c(NA)
+
+unique_networks <-c(NA)
+
+plant_species <- c(as.numeric(nrow(mcmullen_1993)))
+
+pollinator_species <- c(as.numeric(ncol(mcmullen_1993)))  
+
+network_size <- c(as.numeric(nrow(mcmullen_1993))*as.numeric(ncol(mcmullen_1993)))
+
+metadata_17 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_17)
+
+
+#20th Primack 1983
+
+#I'm to maintain this 3 networks as separate
+#They do not share that many species. They are geographically close but the communities seem
+#to differ quite a bit
+
+
