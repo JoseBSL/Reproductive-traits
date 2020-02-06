@@ -9,7 +9,7 @@
 
 #BAT,MED,FAR is the Carprobrotus metaweb
 #SEL,FRA,MIQ is the Opuntia metaweb
-
+library(reshape2)
 setwd("~/R_projects/Reproductive Traits") 
 
 #Carpobrutus metaweb
@@ -32,7 +32,7 @@ carpobrotus_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",carpobrotus
 carpobrotus_metaweb_Bartomeus_2008 <- acast(carpobrotus_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                             fun.aggregate=sum)
 
-write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/1_carpobrotus_metaweb_Bartomeus_2008.csv")
+write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/1_metaweb_carpobrotus_Bartomeus_2008.csv")
 
 #Opuntia metaweb
 sel <- read.csv("Data/Data_networks/bartomeus_2008_sel1op.csv")
@@ -53,10 +53,10 @@ opuntia_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",opuntia_metaweb
 opuntia_metaweb_Bartomeus_2008 <- acast(opuntia_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                         fun.aggregate=sum)
 
-write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_opuntia_metaweb_Bartomeus_2008.csv")
+write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_metaweb_opuntia_Bartomeus_2008.csv")
 
 
-csv_file_name <- c("1_carpobrotus_metaweb_Bartomeus_2008", "2_opuntia_metaweb_Bartomeus_2008.csv")
+csv_file_name <- c("1_metaweb_carpobrotus_Bartomeus_2008", "2_metaweb_opuntia_Bartomeus_2008.csv")
 
 longitude <- c(3.296797,3.296797)
 
@@ -493,4 +493,69 @@ metaweb_kaiser_bunbury_2009 <- acast(metaweb_kaiser_bunbury_2009, Plant_species 
 write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv")
 
 
+kaiser_bunbury_2009 <- read.csv("Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv", row.names = 1)
 
+csv_file_name <- c("13_metaweb_kaiser_bunbury_2009.csv")
+
+longitude <- c(57.443254)
+
+latitude <- c(-20.452076)
+
+country <- c("Mauritius")
+
+location <- c("Black River Gorges National Park")
+
+duration <- c("1 season")
+
+experiment_year <- c("2003-2004")
+
+unique_networks <-c(2)
+
+plant_species <- c(as.numeric(nrow(kaiser_bunbury_2009)))
+
+pollinator_species <- c(as.numeric(ncol(kaiser_bunbury_2009)))  
+
+network_size <- c(as.numeric(nrow(kaiser_bunbury_2009))*as.numeric(ncol(kaiser_bunbury_2009)))
+
+metadata_11 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_11)
+
+
+
+#14th  Kaiser-Bunbury et al., 2014
+#https://doi.org/10.1890/14-0024.1
+
+#Not able to find the individual networks so I will consider directly the csv's
+#as a single metaweb, the criteria of division of this files
+#could per site but I'm not sure
+
+#I will have to read it with a loop, too many files
+setwd("~/R_projects/Reproductive Traits/Data/Data_networks_processing/kaiser_bunbury_2014")
+
+
+#Workflow found on stackoverflow to read all the files in a list
+temp <- list.files(pattern="*.csv")
+my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
+my_files <- list.files(pattern = "\\.csv$")
+my_data <- lapply(my_files, read.csv)
+
+#For loop to melt each data frame and merge
+i <- NULL
+kaiser_bunbury_2014 <- NULL
+
+for (i in data_id_list){
+  i <- melt(i)
+  kaiser_bunbury_2014 <- rbind(kaiser_bunbury_2014, i)
+}
+
+kaiser_bunbury_2014 <- kaiser_bunbury_2014[,-2]
+colnames(kaiser_bunbury_2014) <- c("Plant_Species", "Pollinator_Species", "Interaction")
+kaiser_bunbury_2014$Pollinator_Species <- gsub("\\.", " ", kaiser_bunbury_2014$Pollinator_Species)
+kaiser_bunbury_2014 <- acast(kaiser_bunbury_2014, Plant_Species ~ Pollinator_Species, value.var='Interaction', 
+      fun.aggregate=sum)
+setwd("~/R_projects/Reproductive Traits")
+
+write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
