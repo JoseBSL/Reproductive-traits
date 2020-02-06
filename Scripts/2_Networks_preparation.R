@@ -406,9 +406,9 @@ fang_huang_3 <- melt(fang_huang_3)
  metadata <- rbind(metadata, metadata_8)
  
  
-#11th  Inoue et al., 1990
+#11th  Inouye et al., 1990
  
-csv_file_name <- c("11_metaweb_inoue_1990.csv")
+csv_file_name <- c("11_metaweb_inouye_1990.csv")
 
 longitude <- c(135.866667)
 
@@ -437,4 +437,34 @@ metadata_9 <- data.frame(csv_file_name, longitude, latitude, country, location,d
 metadata <- rbind(metadata, metadata_9)
 
 
-#12th  Inoue et al., 1990
+#12th  Inouye et al., 1988
+
+inouye_1988 <- read.csv("Data_networks/12_inouye_1988.csv", row.names = 1)
+
+csv_file_name <- c("12_inoue_1988.csv")
+
+longitude <- c(148.266667)
+
+latitude <- c(-36.45)
+
+country <- c("Australia")
+
+location <- c("Snowy Mountains")
+
+duration <- c("1 season")
+
+experiment_year <- c("1983-1984")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(inouye_1988)))
+
+pollinator_species <- c(as.numeric(ncol(inouye_1988)))  
+
+network_size <- c(as.numeric(nrow(inouye_1988))*as.numeric(ncol(inouye_1988)))
+
+metadata_10 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                         experiment_year,unique_networks,plant_species, pollinator_species, 
+                         network_size)
+
+metadata <- rbind(metadata, metadata_10)
