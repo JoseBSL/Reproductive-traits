@@ -23,11 +23,13 @@ restored_kaiser_bunbury_2009$Plant_species=gsub("\\."," ",restored_kaiser_bunbur
 restored_kaiser_bunbury_2009$Interaction=ifelse(as.numeric(restored_kaiser_bunbury_2009$Interaction) > 0, 1, 0)
 #Reorganize to individual matrix
 restored_kaiser_bunbury_2009 <- acast(restored_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
-                fun.aggregate=sum, margins=TRUE)
+                fun.aggregate=sum)
 
 write.csv(restored_kaiser_bunbury_2009, "Data_networks/13_restored_kaiser_bunbury_2009.csv")
 
 #Second control Kaiser bunbury 
+control_kaiser_bunbury_2009 <- read.csv("Data/Data_networks_processing/control_kaiser_bunbury_2009.csv", row.names = 1)
+
 str(control_kaiser_bunbury_2009)
 #Convert to matrix
 control_kaiser_bunbury_2009 <- as.matrix(control_kaiser_bunbury_2009)
@@ -40,6 +42,6 @@ control_kaiser_bunbury_2009$Plant_species=gsub("\\."," ",control_kaiser_bunbury_
 control_kaiser_bunbury_2009$Interaction=ifelse(as.numeric(control_kaiser_bunbury_2009$Interaction) > 0, 1, 0)
 #Reorganize to individual matrix
 control_kaiser_bunbury_2009 <- acast(control_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
-                                      fun.aggregate=sum, margins=TRUE)
+                                      fun.aggregate=sum)
 
 write.csv(control_kaiser_bunbury_2009, "Data_networks/13_control_kaiser_bunbury_2009.csv")

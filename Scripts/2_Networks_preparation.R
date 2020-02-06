@@ -468,3 +468,29 @@ metadata_10 <- data.frame(csv_file_name, longitude, latitude, country, location,
                          network_size)
 
 metadata <- rbind(metadata, metadata_10)
+
+#13th  Kaiser-Bunbury, memmott & muller 2009
+#Two sites in Mauritius, homogeneus plant species
+#Convert into metaweb for analysis
+
+#Carpobrutus metaweb
+
+control_kaiser_bunbury_2009 <- read.csv("Data_networks/13_control_kaiser_bunbury_2009.csv")
+restored_kaiser_bunbury_2009 <- read.csv("Data_networks/13_restored_kaiser_bunbury_2009.csv")
+
+control_kaiser_bunbury_2009 <- melt(control_kaiser_bunbury_2009)
+restored_kaiser_bunbury_2009 <- melt(restored_kaiser_bunbury_2009)
+
+colnames(control_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
+colnames(restored_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
+metaweb_kaiser_bunbury_2009<- rbind(control_kaiser_bunbury_2009,med,restored_kaiser_bunbury_2009)
+
+metaweb_kaiser_bunbury_2009$Pollinator_species=gsub("\\."," ",metaweb_kaiser_bunbury_2009$Pollinator_species)
+
+metaweb_kaiser_bunbury_2009 <- acast(metaweb_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
+                                            fun.aggregate=sum)
+
+write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv")
+
+
+
