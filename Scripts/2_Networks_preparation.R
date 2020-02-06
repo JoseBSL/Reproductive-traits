@@ -638,7 +638,7 @@ latitude <- c(81.816667)
 
 country <- c("Canada")
 
-location <- c("Hazen Camp, Ellesmere Island,")
+location <- c("Hazen Camp, Ellesmere Island")
 
 duration <- c(NA)
 
@@ -657,3 +657,70 @@ metadata_14 <- data.frame(csv_file_name, longitude, latitude, country, location,
                           network_size)
 
 metadata <- rbind(metadata, metadata_14)
+
+
+#17th Lundgren & Olesen 2005
+
+
+lundgren_2005 <- read.csv("Data_networks_metawebs/17_lundgren_2005.csv", row.names = 1)
+
+csv_file_name <- c("17_lundgren_2005.csv")
+
+longitude <- c(-52)
+
+latitude <- c(71)
+
+country <- c("Greenland")
+
+location <- c("Uummannaq island")
+
+duration <- c("1 season")
+
+experiment_year <- c(2002)
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(lundgren_2005)))
+
+pollinator_species <- c(as.numeric(ncol(lundgren_2005)))  
+
+network_size <- c(as.numeric(nrow(lundgren_2005))*as.numeric(ncol(lundgren_2005)))
+
+metadata_15 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_15)
+
+
+#18th V. Trivellone, upublished data Mauritius 
+
+trivellone_unpublished_data <- read.csv("Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
+
+csv_file_name <- c("18_trivellone_unpublished_data.csv")
+
+longitude <- c(57.43)
+
+latitude <- c(-20.25)
+
+country <- c("Republic of Mauritius")
+
+location <- c(NA)
+
+duration <- c(NA)
+
+experiment_year <- c(NA)
+
+unique_networks <-c(NA)
+
+plant_species <- c(as.numeric(nrow(trivellone_unpublished_data)))
+
+pollinator_species <- c(as.numeric(ncol(trivellone_unpublished_data)))  
+
+network_size <- c(as.numeric(nrow(trivellone_unpublished_data))*as.numeric(ncol(trivellone_unpublished_data)))
+
+metadata_16 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_16)
