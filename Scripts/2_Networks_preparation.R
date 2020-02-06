@@ -148,7 +148,7 @@ metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,d
  
  #4th Chacoff 2011
 
- csv_file_name <- c("5_chacoff_2011.csv")
+ csv_file_name <- c("5_metaweb_chacoff_2011.csv")
  
  longitude <- c(-68.015892)
  
@@ -201,7 +201,7 @@ metaweb_dicks_2002 <- acast(metaweb_dicks_2002, Plant_species ~ Pollinator_speci
  
  
  
- csv_file_name <- c("6_dicks_2002.csv")
+ csv_file_name <- c("6_metaweb_dicks_2002.csv")
  
  longitude <- c("1.575532; 1.097873")
  
@@ -257,7 +257,7 @@ National Nature Reserve")
  write.csv(metaweb_dupont_2009, "Data_networks_metawebs/7_metaweb_dupont_2009.csv")
  
  
- csv_file_name <- c("7_dupont_2009.csv")
+ csv_file_name <- c("7_metaweb_dupont_2009.csv")
  
  longitude <- c("9.1; 9.266667")
  
@@ -501,7 +501,7 @@ longitude <- c(57.443254)
 
 latitude <- c(-20.452076)
 
-country <- c("Mauritius")
+country <- c("Republic of Mauritius")
 
 location <- c("Black River Gorges National Park")
 
@@ -559,3 +559,67 @@ kaiser_bunbury_2014 <- acast(kaiser_bunbury_2014, Plant_Species ~ Pollinator_Spe
 setwd("~/R_projects/Reproductive Traits")
 
 write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
+
+kaiser_bunbury_2014 <- read.csv("Data_networks_metawebs/14_metaweb_kaiser_bunbury_2014.csv", row.names = 1)
+
+csv_file_name <- c("14_metaweb_kaiser_bunbury_2014.csv")
+
+longitude <- c(55.43333)
+
+latitude <- c(-4.666667)
+
+country <- c("Republic of Seychelles")
+
+location <- c("Morne Seychellois National Park, Mahe")
+
+duration <- c("1 season")
+
+experiment_year <- c("2007-2008")
+
+unique_networks <-c(6)
+
+plant_species <- c(as.numeric(nrow(kaiser_bunbury_2014)))
+
+pollinator_species <- c(as.numeric(ncol(kaiser_bunbury_2014)))  
+
+network_size <- c(as.numeric(nrow(kaiser_bunbury_2014))*as.numeric(ncol(kaiser_bunbury_2014)))
+
+metadata_12 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_12)
+
+
+#15th Kato 2000 Japan
+
+
+kato_2000 <- read.csv("Data_networks_metawebs/15_metaweb_kato_2000.csv", row.names = 1)
+
+csv_file_name <- c("15_kato_2000.csv")
+
+longitude <- c(129.493741)
+
+latitude <- c(28.377248)
+
+country <- c("Japan")
+
+location <- c("Anami islands")
+
+duration <- c("4 seasons")
+
+experiment_year <- c("1996-1999")
+
+unique_networks <-c(16)
+
+plant_species <- c(as.numeric(nrow(kato_2000)))
+
+pollinator_species <- c(as.numeric(ncol(kato_2000)))  
+
+network_size <- c(as.numeric(nrow(kato_2000))*as.numeric(ncol(kato_2000)))
+
+metadata_13 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_13)
