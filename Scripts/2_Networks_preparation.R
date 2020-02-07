@@ -56,7 +56,7 @@ opuntia_metaweb_Bartomeus_2008 <- acast(opuntia_metaweb_Bartomeus_2008, Plant_sp
 write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_metaweb_opuntia_Bartomeus_2008.csv")
 
 
-csv_file_name <- c("1_metaweb_carpobrotus_Bartomeus_2008", "2_metaweb_opuntia_Bartomeus_2008.csv")
+BIBTEXKEY <- c("1_metaweb_carpobrotus_Bartomeus_2008", "2_metaweb_opuntia_Bartomeus_2008")
 
 longitude <- c(3.296797,3.296797)
 
@@ -79,14 +79,14 @@ pollinator_species <- c(37, 37)
 
 network_size <- c(666, 481)
 
-metadata <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                        experiment_year,unique_networks,plant_species, pollinator_species, 
                        network_size)
 
 #SECOND  Bek PhD thesis 2006
 #Not much info about this network, collected in one season in Denmark and coordinates
 
-csv_file_name <- c("3_bek_2006.csv")
+BIBTEXKEY <- c("3_bek_2006")
 
 longitude <- c(56.066667)
 
@@ -108,7 +108,7 @@ pollinator_species <- c(225)
 
 network_size <- c(8325)
 
-metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_1 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                        experiment_year,unique_networks,plant_species, pollinator_species, 
                        network_size)
 
@@ -117,7 +117,7 @@ metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,d
  #3RDI Bundgaard 2003
  #Not much info about this network, collected in one season in Denmark and coordinates
  
- csv_file_name <- c("4_bundgaard_2003.csv")
+BIBTEXKEY <- c("4_bundgaard_2003")
  
  longitude <- c(56.066667)
  
@@ -139,7 +139,7 @@ metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,d
  
  network_size <- c(704)
  
- metadata_2 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_2 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -148,7 +148,7 @@ metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,d
  
  #4th Chacoff 2011
 
- csv_file_name <- c("5_metaweb_chacoff_2011.csv")
+ BIBTEXKEY <- c("5_metaweb_chacoff_2011")
  
  longitude <- c(-68.015892)
  
@@ -170,7 +170,7 @@ metadata_1 <- data.frame(csv_file_name, longitude, latitude, country, location,d
  
  network_size <- c(11564)
  
- metadata_3 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_3 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -201,7 +201,7 @@ metaweb_dicks_2002 <- acast(metaweb_dicks_2002, Plant_species ~ Pollinator_speci
  
  
  
- csv_file_name <- c("6_metaweb_dicks_2002.csv")
+BIBTEXKEY <- c("6_metaweb_dicks_2002")
  
  longitude <- c("1.575532; 1.097873")
  
@@ -224,7 +224,7 @@ National Nature Reserve")
  
  network_size <- c(1840)
  
- metadata_4 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_4 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -257,7 +257,7 @@ National Nature Reserve")
  write.csv(metaweb_dupont_2009, "Data_networks_metawebs/7_metaweb_dupont_2009.csv")
  
  
- csv_file_name <- c("7_metaweb_dupont_2009.csv")
+BIBTEXKEY <- c("7_metaweb_dupont_2009")
  
  longitude <- c("9.1; 9.266667")
  
@@ -279,7 +279,7 @@ National Nature Reserve")
  
  network_size <- c(10199)
  
- metadata_5 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_5 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -291,7 +291,7 @@ National Nature Reserve")
 #Unique network
  
  
- csv_file_name <- c("8_elberling_1999.csv")
+ BIBTEXKEY <- c("8_elberling_1999")
  
  longitude <- c(18.5)
  
@@ -313,7 +313,7 @@ National Nature Reserve")
  
  network_size <- c(2832)
  
- metadata_6 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_6 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -323,7 +323,7 @@ National Nature Reserve")
  #9th  Elberling unpublished data
  
  
- csv_file_name <- c("9_elberling_unpublished_data.csv")
+ BIBTEXKEY <- c("9_elberling_unpublished_data")
  
  longitude <- c(-20.5)
  
@@ -345,7 +345,7 @@ National Nature Reserve")
  
  network_size <- c(2356)
  
- metadata_7 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_7 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -377,7 +377,7 @@ fang_huang_3 <- melt(fang_huang_3)
  write.csv(metaweb_fang_huang_2012, "Data_networks_metawebs/10_metaweb_fang_huang_2012.csv")
  
 
-  csv_file_name <- c("10_metaweb_fang_huang_2012.csv")
+  BIBTEXKEY <- c("10_metaweb_fang_huang_2012")
  
  longitude <- c(99.63806)
  
@@ -399,7 +399,7 @@ fang_huang_3 <- melt(fang_huang_3)
  
  network_size <- c(32110)
  
- metadata_8 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+ metadata_8 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
  
@@ -408,7 +408,7 @@ fang_huang_3 <- melt(fang_huang_3)
  
 #11th  Inouye et al., 1990
  
-csv_file_name <- c("11_metaweb_inouye_1990.csv")
+BIBTEXKEY <- c("11_metaweb_inouye_1990")
 
 longitude <- c(135.866667)
 
@@ -430,7 +430,7 @@ pollinator_species <- c(883)
 
 network_size <- c(100662)
 
-metadata_9 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_9 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                          experiment_year,unique_networks,plant_species, pollinator_species, 
                          network_size)
 
@@ -441,7 +441,7 @@ metadata <- rbind(metadata, metadata_9)
 
 inouye_1988 <- read.csv("Data_networks/12_inouye_1988.csv", row.names = 1)
 
-csv_file_name <- c("12_inoue_1988.csv")
+BIBTEXKEY <- c("12_inoue_1988")
 
 longitude <- c(148.266667)
 
@@ -463,7 +463,7 @@ pollinator_species <- c(as.numeric(ncol(inouye_1988)))
 
 network_size <- c(as.numeric(nrow(inouye_1988))*as.numeric(ncol(inouye_1988)))
 
-metadata_10 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_10 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                          experiment_year,unique_networks,plant_species, pollinator_species, 
                          network_size)
 
@@ -495,7 +495,7 @@ write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser
 
 kaiser_bunbury_2009 <- read.csv("Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv", row.names = 1)
 
-csv_file_name <- c("13_metaweb_kaiser_bunbury_2009.csv")
+BIBTEXKEY <- c("13_metaweb_kaiser_bunbury_2009")
 
 longitude <- c(57.443254)
 
@@ -517,7 +517,7 @@ pollinator_species <- c(as.numeric(ncol(kaiser_bunbury_2009)))
 
 network_size <- c(as.numeric(nrow(kaiser_bunbury_2009))*as.numeric(ncol(kaiser_bunbury_2009)))
 
-metadata_11 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_11 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -562,7 +562,7 @@ write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv
 
 kaiser_bunbury_2014 <- read.csv("Data_networks_metawebs/14_metaweb_kaiser_bunbury_2014.csv", row.names = 1)
 
-csv_file_name <- c("14_metaweb_kaiser_bunbury_2014.csv")
+BIBTEXKEY <- c("14_metaweb_kaiser_bunbury_2014")
 
 longitude <- c(55.43333)
 
@@ -584,7 +584,7 @@ pollinator_species <- c(as.numeric(ncol(kaiser_bunbury_2014)))
 
 network_size <- c(as.numeric(nrow(kaiser_bunbury_2014))*as.numeric(ncol(kaiser_bunbury_2014)))
 
-metadata_12 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_12 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -596,7 +596,7 @@ metadata <- rbind(metadata, metadata_12)
 
 kato_2000 <- read.csv("Data_networks_metawebs/15_metaweb_kato_2000.csv", row.names = 1)
 
-csv_file_name <- c("15_kato_2000.csv")
+BIBTEXKEY <- c("15_metaweb_kato_2000")
 
 longitude <- c(129.493741)
 
@@ -618,7 +618,7 @@ pollinator_species <- c(as.numeric(ncol(kato_2000)))
 
 network_size <- c(as.numeric(nrow(kato_2000))*as.numeric(ncol(kato_2000)))
 
-metadata_13 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_13 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -630,7 +630,7 @@ metadata <- rbind(metadata, metadata_13)
 
 kevan_1970 <- read.csv("Data_networks_metawebs/16_kevan_1970.csv", row.names = 1)
 
-csv_file_name <- c("16_kevan_1970.csv")
+BIBTEXKEY <- c("16_kevan_1970")
 
 longitude <- c(-71.3)
 
@@ -652,7 +652,7 @@ pollinator_species <- c(as.numeric(ncol(kevan_1970)))
 
 network_size <- c(as.numeric(nrow(kevan_1970))*as.numeric(ncol(kevan_1970)))
 
-metadata_14 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_14 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -664,7 +664,7 @@ metadata <- rbind(metadata, metadata_14)
 
 lundgren_2005 <- read.csv("Data_networks_metawebs/17_lundgren_2005.csv", row.names = 1)
 
-csv_file_name <- c("17_lundgren_2005.csv")
+BIBTEXKEY <- c("17_lundgren_2005")
 
 longitude <- c(-52)
 
@@ -686,7 +686,7 @@ pollinator_species <- c(as.numeric(ncol(lundgren_2005)))
 
 network_size <- c(as.numeric(nrow(lundgren_2005))*as.numeric(ncol(lundgren_2005)))
 
-metadata_15 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_15 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -697,7 +697,7 @@ metadata <- rbind(metadata, metadata_15)
 
 trivellone_unpublished_data <- read.csv("Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
 
-csv_file_name <- c("18_trivellone_unpublished_data.csv")
+BIBTEXKEY <- c("18_trivellone_unpublished_data")
 
 longitude <- c(57.43)
 
@@ -719,7 +719,7 @@ pollinator_species <- c(as.numeric(ncol(trivellone_unpublished_data)))
 
 network_size <- c(as.numeric(nrow(trivellone_unpublished_data))*as.numeric(ncol(trivellone_unpublished_data)))
 
-metadata_16 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_16 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -729,7 +729,7 @@ metadata <- rbind(metadata, metadata_16)
 
 mcmullen_1993 <- read.csv("Data_networks_metawebs/19_mcmullen_1993.csv", row.names = 1)
 
-csv_file_name <- c("19_mcmullen_1993.csv")
+BIBTEXKEY <- c("19_mcmullen_1993")
 
 longitude <- c(-90.600747)
 
@@ -751,7 +751,7 @@ pollinator_species <- c(as.numeric(ncol(mcmullen_1993)))
 
 network_size <- c(as.numeric(nrow(mcmullen_1993))*as.numeric(ncol(mcmullen_1993)))
 
-metadata_17 <- data.frame(csv_file_name, longitude, latitude, country, location,duration, 
+metadata_17 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
@@ -759,9 +759,141 @@ metadata <- rbind(metadata, metadata_17)
 
 
 #20th Primack 1983
-
-#I'm to maintain this 3 networks as separate
+#I'm going to maintain this 3 networks as separate
 #They do not share that many species. They are geographically close but the communities seem
 #to differ quite a bit
 
+
+primack_1983_1 <- read.csv("Data_networks_metawebs/20_metaweb_arthurs_pass_primack_1983.csv", row.names = 1)
+
+BIBTEXKEY <- c("20_metaweb_arthurs_pass_primack_1983")
+
+longitude <- c(171.566667)
+
+latitude <- c(-42.95)
+
+country <- c("New Zealand")
+
+location <- c("Arthurs Pass")
+
+duration <- c("2 seasons")
+
+experiment_year <- c("1976-1978")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(primack_1983_1)))
+
+pollinator_species <- c(as.numeric(ncol(primack_1983_1)))  
+
+network_size <- c(as.numeric(nrow(primack_1983_1))*as.numeric(ncol(primack_1983_1)))
+
+metadata_18 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_18)
+
+
+
+
+#21st Primack 1983
+
+primack_1983_2 <- read.csv("Data_networks_metawebs/21_metaweb_cass_primack_1983.csv", row.names = 1)
+
+BIBTEXKEY <- c("21_metaweb_cass_primack_1983")
+
+longitude <- c(171.78466)
+
+latitude <- c(-43.02823)
+
+country <- c("New Zealand")
+
+location <- c("Cass")
+
+duration <- c("2 seasons")
+
+experiment_year <- c("1976-1978")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(primack_1983_2)))
+
+pollinator_species <- c(as.numeric(ncol(primack_1983_2)))  
+
+network_size <- c(as.numeric(nrow(primack_1983_2))*as.numeric(ncol(primack_1983_2)))
+
+metadata_19 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_19)
+
+
+#22nd Primack 1983
+
+
+primack_1983_3 <- read.csv("Data_networks_metawebs/22_metaweb_craigieburn_primack_1983.csv", row.names = 1)
+
+BIBTEXKEY <- c("22_metaweb_craigieburn_primack_1983")
+
+longitude <- c(171.720224)
+
+latitude <- c(-43.099531)
+
+country <- c("New Zealand")
+
+location <- c("Craigieburn")
+
+duration <- c("2 seasons")
+
+experiment_year <- c("1976-1978")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(primack_1983_3)))
+
+pollinator_species <- c(as.numeric(ncol(primack_1983_3)))  
+
+network_size <- c(as.numeric(nrow(primack_1983_3))*as.numeric(ncol(primack_1983_3)))
+
+metadata_20 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_20)
+
+#23rd Ramirez 1989
+#Venezuela, 1 network, 1 season, not clear which year.
+
+
+ramirez_1989 <- read.csv("Data_networks_metawebs/22_metaweb_craigieburn_primack_1983.csv", row.names = 1)
+
+BIBTEXKEY <- c("22_metaweb_craigieburn_primack_1983")
+
+longitude <- c(171.720224)
+
+latitude <- c(-43.099531)
+
+country <- c("New Zealand")
+
+location <- c("Craigieburn")
+
+duration <- c("2 seasons")
+
+experiment_year <- c("1976-1978")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(ramirez_1989)))
+
+pollinator_species <- c(as.numeric(ncol(ramirez_1989)))  
+
+network_size <- c(as.numeric(nrow(ramirez_1989))*as.numeric(ncol(ramirez_1989)))
+
+metadata_20 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_20)
 
