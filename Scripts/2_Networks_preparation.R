@@ -441,7 +441,7 @@ metadata <- rbind(metadata, metadata_9)
 
 inouye_1988 <- read.csv("Data_networks/12_inouye_1988.csv", row.names = 1)
 
-BIBTEXKEY <- c("12_inoue_1988")
+BIBTEXKEY <- c("12_inouye_1988")
 
 longitude <- c(148.266667)
 
@@ -897,7 +897,7 @@ metadata_21 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 
 metadata <- rbind(metadata, metadata_21)
 
-#23rd Ramirez 1992
+#24th Ramirez 1992
 #Venezuela, 1 network, 3 seasons
 
 
@@ -931,3 +931,172 @@ metadata_22 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 
 metadata <- rbind(metadata, metadata_22)
 
+
+#25th Robertson 1929
+#United States network/s? sampled during multiple years
+
+robertson_1929 <- read.csv("Data_networks_metawebs/25_metaweb_robertson_1929.csv", row.names = 1)
+
+BIBTEXKEY <- c("25_metaweb_robertson_1929")
+
+longitude <- c(-75.5)
+
+latitude <- c(45.4)
+
+country <- c("United States")
+
+location <- c("Altos Llanos Centrales, Guarico State")
+
+duration <- c("12 seasons")
+
+experiment_year <- c("1997-1899")
+
+unique_networks <-c(NA)
+
+plant_species <- c(as.numeric(nrow(robertson_1929)))
+
+pollinator_species <- c(as.numeric(ncol(robertson_1929)))  
+
+network_size <- c(as.numeric(nrow(robertson_1929))*as.numeric(ncol(robertson_1929)))
+
+metadata_23 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_23)
+
+#26th Small 1973
+#
+
+small_1976 <- read.csv("Data_networks_metawebs/26_small_1976.csv", row.names = 1)
+
+BIBTEXKEY <- c("26_small_1976")
+
+longitude <- c(-75.5)
+
+latitude <- c(45.4)
+
+country <- c("Canada")
+
+location <- c("Mer Blue conservation area")
+
+duration <- c("1 season")
+
+experiment_year <- c("1973")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(small_1976)))
+
+pollinator_species <- c(as.numeric(ncol(small_1976)))  
+
+network_size <- c(as.numeric(nrow(small_1976))*as.numeric(ncol(small_1976)))
+
+metadata_24 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_24)
+
+#27th Souza et al., 2018
+#
+
+chaco_souza_2018 <- read.csv("Data_networks/27_chaco_souza_2018.csv", row.names = 1)
+
+BIBTEXKEY <- c("27_chaco_souza_2018")
+
+longitude <- c(-57.885)
+
+latitude <- c(-21.701111)
+
+country <- c("Brazil")
+
+location <- c("Chaco, Porto Murtinho")
+
+duration <- c("1 season")
+
+experiment_year <- c("2008-2009")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(chaco_souza_2018)))
+
+pollinator_species <- c(as.numeric(ncol(chaco_souza_2018)))  
+
+network_size <- c(as.numeric(nrow(chaco_souza_2018))*as.numeric(ncol(chaco_souza_2018)))
+
+metadata_25 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_25)
+
+#28th Souza et al., 2018
+#5 sites, one in each island
+
+metaweb_traveset_2013 <- read.csv("Data_networks/28_metaweb_traveset_2013.csv", row.names = 1)
+
+BIBTEXKEY <- c("28_metaweb_traveset_2013")
+
+longitude <- c(-91.012863)
+
+latitude <- c(-0.6907)
+
+country <- c("Ecuador")
+
+location <- c("Galapagos archipielago")
+
+duration <- c("1 season")
+
+experiment_year <- c("2010-2011")
+
+unique_networks <-c(1)
+
+plant_species <- c(as.numeric(nrow(metaweb_traveset_2013)))
+
+pollinator_species <- c(as.numeric(ncol(metaweb_traveset_2013)))  
+
+network_size <- c(as.numeric(nrow(metaweb_traveset_2013))*as.numeric(ncol(metaweb_traveset_2013)))
+
+metadata_26 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_26)
+
+
+#29th Bartomeus unpublished 2015
+sites_bartomeus <- read.csv("Data/Data_networks_processing/sites_bartomeus_unpublished_data_2015.csv", row.names = 1)
+
+metaweb_bartomeus_unpublished_data_2015 <- read.csv("Data_networks/29_metaweb_bartomeus_unpublished_data_2015.csv", row.names = 1)
+
+BIBTEXKEY <- c("29_metaweb_bartomeus_unpublished_data_2015")
+
+longitude <- c(toString(sites_bartomeus$longitude))
+
+latitude <- c(toString(sites_bartomeus$latitude))
+
+country <- c("Spain")
+
+location <- c(toString(sites_bartomeus$Siye_ID))
+
+duration <- c("1 season")
+
+experiment_year <- c("2015")
+
+unique_networks <-c(16)
+
+plant_species <- c(as.numeric(nrow(metaweb_bartomeus_unpublished_data_2015)))
+
+pollinator_species <- c(as.numeric(ncol(metaweb_bartomeus_unpublished_data_2015)))  
+
+network_size <- c(as.numeric(nrow(metaweb_bartomeus_unpublished_data_2015))*as.numeric(ncol(metaweb_bartomeus_unpublished_data_2015)))
+
+metadata_27 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size)
+
+metadata <- rbind(metadata, metadata_27)
+
+
+write.csv(metadata, "Data/Data_networks_processing/metadata.csv")
