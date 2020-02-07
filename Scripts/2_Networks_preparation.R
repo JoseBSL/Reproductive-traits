@@ -881,7 +881,7 @@ location <- c("Canaima National Park")
 
 duration <- c("1 season")
 
-experiment_year <- c(1989)
+experiment_year <- c(NA)
 
 unique_networks <-c(1)
 
@@ -897,25 +897,25 @@ metadata_21 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 
 metadata <- rbind(metadata, metadata_21)
 
-#23rd Ramirez 1989
-#Venezuela, 1 network, 1 season, not clear which year.
+#23rd Ramirez 1992
+#Venezuela, 1 network, 3 seasons
 
 
-ramirez_1992 <- read.csv("Data_networks_metawebs/24_ramirez_1992.csv", row.names = 1)
+ramirez_1992 <- read.csv("Data_networks_metawebs/24_metaweb_ramirez_1992.csv", row.names = 1)
 
-BIBTEXKEY <- c("23_ramirez_1989")
+BIBTEXKEY <- c("24_metaweb_ramirez_1992")
 
-longitude <- c(-61.716667)
+longitude <- c(-67.416667)
 
-latitude <- c(5.583333)
+latitude <- c(8.933333)
 
 country <- c("Venezuela")
 
-location <- c("Canaima National Park")
+location <- c("Altos Llanos Centrales, Guarico State")
 
-duration <- c("1 season")
+duration <- c("3 seasons")
 
-experiment_year <- c(1989)
+experiment_year <- c("1983,1984,1989")
 
 unique_networks <-c(1)
 
@@ -925,9 +925,9 @@ pollinator_species <- c(as.numeric(ncol(ramirez_1992)))
 
 network_size <- c(as.numeric(nrow(ramirez_1992))*as.numeric(ncol(ramirez_1992)))
 
-metadata_21 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+metadata_22 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
                           network_size)
 
-metadata <- rbind(metadata, metadata_21)
+metadata <- rbind(metadata, metadata_22)
 
