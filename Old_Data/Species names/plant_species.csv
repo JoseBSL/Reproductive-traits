@@ -1,0 +1,3300 @@
+"","db","query","species"
+"1","ncbi","812","Croton scouleri"
+"2","ncbi","703",NA
+"3","ncbi","703",NA
+"4","ncbi","428","Bursera graveolens"
+"5","ncbi","2928","Tournefortia psilostachya"
+"6","ncbi","518",NA
+"7","ncbi","1275","Gossypium darwinii"
+"8","ncbi","1275","Gossypium darwinii"
+"9","ncbi","2929",NA
+"10","ncbi","759","Cordia leucophlyctis"
+"11","ncbi","3035",NA
+"12","ncbi","883","Desmanthus virgatus"
+"13","ncbi","626","Chiococca alba"
+"14","ncbi","1559",NA
+"15","ncbi","11",NA
+"16","ncbi","1953","Opuntia echios"
+"17","ncbi","760","Cordia lutea"
+"18","ncbi","2278","Prosopis juliflora"
+"19","ncbi","1958","Opuntia galapageia"
+"20","ncbi","2942","Tribulus cistoides"
+"21","ncbi","1760",NA
+"22","ncbi","392",NA
+"23","ncbi","2519",NA
+"24","ncbi","3132",NA
+"25","ncbi","2551",NA
+"26","ncbi","740",NA
+"27","ncbi","2029","Parkinsonia aculeata"
+"28","ncbi","802","Crotalaria pumila"
+"29","ncbi","2190","Polygala galapageia"
+"30","ncbi","2855","Tamarindus indica"
+"31","ncbi","1479",NA
+"32","ncbi","385","Blainvillea rhomboidea"
+"33","ncbi","549","Castela galapageia"
+"34","ncbi","2410","Rhynchosia minima"
+"35","ncbi","1793","Mentzelia aspera"
+"36","ncbi","2586",NA
+"37","ncbi","2632",NA
+"38","ncbi","131",NA
+"39","ncbi","2930",NA
+"40","ncbi","2229","Portulaca oleracea"
+"41","ncbi","1736",NA
+"42","ncbi","2049","Pectis tenuifolia"
+"43","ncbi","1848","Momordica charantia"
+"44","ncbi","393","Boerhavia erecta"
+"45","ncbi","1339","Heliotropium angiospermum"
+"46","ncbi","2552",NA
+"47","ncbi","821",NA
+"48","ncbi","353",NA
+"49","ncbi","1180","Galactia striata"
+"50","ncbi","2180","Plumbago scandens"
+"51","ncbi","1845","Mollugo flavescens"
+"52","ncbi","701","Corynandra viscosa"
+"53","ncbi","1521","Jasminocereus thouarsii"
+"54","ncbi","6",NA
+"55","ncbi","2918","Tiquilia fusca"
+"56","ncbi","133","Alternanthera filifolia"
+"57","ncbi","762","Cordia revoluta"
+"58","ncbi","1482",NA
+"59","ncbi","2917","Tiquilia darwinii"
+"60","ncbi","1846","Mollugo snodgrassii"
+"61","ncbi","859","Darwiniothamnus lancifolius"
+"62","ncbi","399",NA
+"63","ncbi","199","Aphloia theiformis"
+"64","ncbi","2439","Roussea simplex"
+"65","ncbi","1843",NA
+"66","ncbi","2920","Toddalia asiatica"
+"67","ncbi","2812","Stillingia lineata"
+"68","ncbi","1073",NA
+"69","ncbi","808","Croton fothergillifolius"
+"70","ncbi","2302","Psiadia terebinthina"
+"71","ncbi","620","Chassalia coriacea"
+"72","ncbi","940","Dodonaea viscosa"
+"73","ncbi","368","Bertiera zaluzania"
+"74","ncbi","198","Antirhea borbonica"
+"75","ncbi","685",NA
+"76","ncbi","1786",NA
+"77","ncbi","2104","Petunia axillaris"
+"78","ncbi","245",NA
+"79","ncbi","2468","Ruta chalepensis"
+"80","ncbi","2757",NA
+"81","ncbi","1964","Opuntia sulphurea"
+"82","ncbi","930","Dipyrena glaberrima"
+"83","ncbi","2630","Senna aphylla"
+"84","ncbi","741","Condalia microphylla"
+"85","ncbi","2597",NA
+"86","ncbi","1566","Larrea nitida"
+"87","ncbi","424","Buddleja mendozensis"
+"88","ncbi","232","Argemone subfusiformis"
+"89","ncbi","1564","Larrea cuneifolia"
+"90","ncbi","15",NA
+"91","ncbi","1307",NA
+"92","ncbi","2903","Thymophylla pentachaeta"
+"93","ncbi","3162","Zuccagnia punctata"
+"94","ncbi","499","Atamisquea emarginata"
+"95","ncbi","2197",NA
+"96","ncbi","1565","Larrea divaricata"
+"97","ncbi","2748","Spartium junceum"
+"98","ncbi","693",NA
+"99","ncbi","1661","Lippia turbinata"
+"100","ncbi","577",NA
+"101","ncbi","2499",NA
+"102","ncbi","3039","Verbascum thapsus"
+"103","ncbi","1452",NA
+"104","ncbi","988","Elaeagnus angustifolia"
+"105","ncbi","123",NA
+"106","ncbi","598",NA
+"107","ncbi","2277","Prosopis flexuosa"
+"108","ncbi","338",NA
+"109","ncbi","1856","Monttea aphylla"
+"110","ncbi","882",NA
+"111","ncbi","1792","Mentzelia albescens"
+"112","ncbi","1584","Lecanophora heterophylla"
+"113","ncbi","2564",NA
+"114","ncbi","2282","Proustia cuneifolia"
+"115","ncbi","2002",NA
+"116","ncbi","1713","Lycium chilense"
+"117","ncbi","2943","Echinopsis candicans"
+"118","ncbi","1161","Fumaria capreolata"
+"119","ncbi","2117","Philibertia gilliesii"
+"120","ncbi","586","Cerastium arvense"
+"121","ncbi","1393","Hoffmannseggia eremophila"
+"122","ncbi","2945",NA
+"123","ncbi","1056",NA
+"124","ncbi","1527","Mulguraea aspera"
+"125","ncbi","3062","Veronica polita"
+"126","ncbi","1053",NA
+"127","ncbi","403","Bougainvillea spinosa"
+"128","ncbi","1717","Lycium tenuispinosum"
+"129","ncbi","1257","Junellia crithmifolia"
+"130","ncbi","1344",NA
+"131","ncbi","1715","Lycium gilliesianum"
+"132","ncbi","2333",NA
+"133","ncbi","417","Bredemeyera microphylla"
+"134","ncbi","820",NA
+"135","ncbi","3121","Vitex rotundifolia"
+"136","ncbi","1745","Mallotus japonicus"
+"137","ncbi","2572","Scleria terrestris"
+"138","ncbi","1263","Phyllanthus meghalayensis"
+"139","ncbi","2171","Pittosporum tobira"
+"140","ncbi","1771","Melastoma candidum"
+"141","ncbi","226","Ardisia sieboldii"
+"142","ncbi","1870",NA
+"143","ncbi","2563","Schima wallichii"
+"144","ncbi","547","Castanopsis sieboldii"
+"145","ncbi","225","Ardisia quinquegona"
+"146","ncbi","1128","Euscaphis japonica"
+"147","ncbi","991","Elaeocarpus japonicus"
+"148","ncbi","1665","Litsea japonica"
+"149","ncbi","880","Dendropanax trifidus"
+"150","ncbi","1538",NA
+"151","ncbi","465","Callicarpa japonica"
+"152","ncbi","1082","Tetradium glabrifolium"
+"153","ncbi","658",NA
+"154","ncbi","3154","Youngia japonica"
+"155","ncbi","3154","Youngia japonica"
+"156","ncbi","2358","Ranunculus sieboldii"
+"157","ncbi","1265","Glochidion zeylanicum"
+"158","ncbi","1554","Lagerstroemia subcostata"
+"159","ncbi","147",NA
+"160","ncbi","706","Clerodendrum trichotomum"
+"161","ncbi","290",NA
+"162","ncbi","290",NA
+"163","ncbi","1738","Maesa tenera"
+"164","ncbi","2939","Trema orientale"
+"165","ncbi","2939","Trema orientale"
+"166","ncbi","1776","Meliosma rigida"
+"167","ncbi","3140",NA
+"168","ncbi","900",NA
+"169","ncbi","1734",NA
+"170","ncbi","1358","Heritiera littoralis"
+"171","ncbi","652","Cinnamomum doederleinii"
+"172","ncbi","125","Alpinia intermedia"
+"173","ncbi","791","Crepidiastrum lanceolatum"
+"174","ncbi","791","Crepidiastrum lanceolatum"
+"175","ncbi","2315",NA
+"176","ncbi","2315",NA
+"177","ncbi","992","Elaeocarpus sylvestris"
+"178","ncbi","2105",NA
+"179","ncbi","2820","Styrax japonicus"
+"180","ncbi","2383","Rhamnella franguloides"
+"181","ncbi","2837",NA
+"182","ncbi","1264","Glochidion obovatum"
+"183","ncbi","1862","Mosla dianthera"
+"184","ncbi","412",NA
+"185","ncbi","2548","Scaevola taccada"
+"186","ncbi","69","Aeginetia indica"
+"187","ncbi","1638",NA
+"188","ncbi","2445","Rubus croceacanthus"
+"189","ncbi","2312","Psychotria homalosperma"
+"190","ncbi","2312","Psychotria homalosperma"
+"191","ncbi","196",NA
+"192","ncbi","196",NA
+"193","ncbi","1459","Ilex integra"
+"194","ncbi","1459","Ilex integra"
+"195","ncbi","18",NA
+"196","ncbi","2087","Persicaria chinensis"
+"197","ncbi","2387","Rhaphiolepis indica"
+"198","ncbi","2561","Schefflera heptaphylla"
+"199","ncbi","2561","Schefflera heptaphylla"
+"200","ncbi","418","Bredia hirsuta"
+"201","ncbi","799","Croomia japonica"
+"202","ncbi","2266","Premna microphylla"
+"203","ncbi","2457",NA
+"204","ncbi","692","Clematis grata"
+"205","ncbi","2018","Pandanus odoratissimus"
+"206","ncbi","2018","Pandanus odoratissimus"
+"207","ncbi","1368",NA
+"208","ncbi","2163","Pinus luchuensis"
+"209","ncbi","2265",NA
+"210","ncbi","1725",NA
+"211","ncbi","97",NA
+"212","ncbi","126",NA
+"213","ncbi","924",NA
+"214","ncbi","2592","Sedum formosanum"
+"215","ncbi","122","Alocasia odora"
+"216","ncbi","3092","Vigna marina"
+"217","ncbi","2188","Pollia japonica"
+"218","ncbi","1138",NA
+"219","ncbi","1138",NA
+"220","ncbi","2399","Rhododendron tashiroi"
+"221","ncbi","3111",NA
+"222","ncbi","1972",NA
+"223","ncbi","1893",NA
+"224","ncbi","593","Cerbera manghas"
+"225","ncbi","2785","Stauntonia hexaphylla"
+"226","ncbi","2589","Securinega suffruticosa"
+"227","ncbi","2589","Securinega suffruticosa"
+"228","ncbi","2164",NA
+"229","ncbi","2164",NA
+"230","ncbi","88","Ageratum houstonianum"
+"231","ncbi","124","Alpinia formosana"
+"232","ncbi","1804",NA
+"233","ncbi","1804",NA
+"234","ncbi","2448","Rubus grayanus"
+"235","ncbi","695","Clematis terniflora"
+"236","ncbi","355","Bauhinia japonica"
+"237","ncbi","1731","Maackia tashiroi"
+"238","ncbi","1366","Talipariti hamabo"
+"239","ncbi","493","Canavalia lineata"
+"240","ncbi","3126",NA
+"241","ncbi","1127","Eurya japonica"
+"242","ncbi","1373","Talipariti tiliaceum"
+"243","ncbi","1481","Ipomoea indica"
+"244","ncbi","2379","Reynoutria japonica"
+"245","ncbi","224","Ardisia pusilla"
+"246","ncbi","1568","Lasianthus japonicus"
+"247","ncbi","47","Actinidia rufa"
+"248","ncbi","1775","Meliosma oldhamii"
+"249","ncbi","1860","Gynochthodes umbellata"
+"250","ncbi","3023","Vaccinium wrightii"
+"251","ncbi","2495","Salsola komarovii"
+"252","ncbi","1869","Musa balbisiana"
+"253","ncbi","351","Barringtonia racemosa"
+"254","ncbi","357","Iris domestica"
+"255","ncbi","387","Blastus cochinchinensis"
+"256","ncbi","1664",NA
+"257","ncbi","379","Bidens pilosa"
+"258","ncbi","2414","Rhynchotechum discolor"
+"259","ncbi","906","Diapensia lapponica"
+"260","ncbi","3096","Viola biflora"
+"261","ncbi","2536","Saxifraga oppositifolia"
+"262","ncbi","962","Dryas octopetala"
+"263","ncbi","2529","Saxifraga aizoides"
+"264","ncbi","2973","Trollius europaeus"
+"265","ncbi","584","Cerastium alpinum"
+"266","ncbi","2162","Pinguicula alpina"
+"267","ncbi","2031","Parnassia palustris"
+"268","ncbi","2662","Silene acaulis"
+"269","ncbi","2236","Potentilla crantzii"
+"270","ncbi","2219","Bistorta vivipara"
+"271","ncbi","2489","Salix reticulata"
+"272","ncbi","2390","Rhodiola rosea"
+"273","ncbi","2394","Rhododendron lapponicum"
+"274","ncbi","186","Antennaria alpina"
+"275","ncbi","2484","Salix lanata"
+"276","ncbi","2865","Taraxacum officinale"
+"277","ncbi","543","Harrimanella hypnoides"
+"278","ncbi","544","Cassiope tetragona"
+"279","ncbi","317","Astragalus alpinus"
+"280","ncbi","209","Arabis alpina"
+"281","ncbi","2487","Salix polaris"
+"282","ncbi","352","Bartsia alpina"
+"283","ncbi","1735","Macleaya cordata"
+"284","ncbi","3117","Viola verecunda"
+"285","ncbi","1535",NA
+"286","ncbi","178","Angelica pubescens"
+"287","ncbi","899","Deutzia maximowicziana"
+"288","ncbi","1623","Leucosceptrum stellipilum"
+"289","ncbi","218","Aralia cordata"
+"290","ncbi","177","Angelica polymorpha"
+"291","ncbi","897","Deutzia crenata"
+"292","ncbi","665",NA
+"293","ncbi","2836","Symplocos chinensis"
+"294","ncbi","1539","Kerria japonica"
+"295","ncbi","2405","Brucea javanica"
+"296","ncbi","2779","Stachyurus praecox"
+"297","ncbi","2453","Rubus palmatus"
+"298","ncbi","1648","Lindera umbellata"
+"299","ncbi","295",NA
+"300","ncbi","524","Carex curvicollis"
+"301","ncbi","3074","Viburnum plicatum"
+"302","ncbi","780","Corydalis pallida"
+"303","ncbi","1410","Hydrangea paniculata"
+"304","ncbi","2804",NA
+"305","ncbi","2094","Persicaria thunbergii"
+"306","ncbi","286",NA
+"307","ncbi","516","Hydrangea alternifolia"
+"308","ncbi","2444","Rubus crataegifolius"
+"309","ncbi","220",NA
+"310","ncbi","513","Cardamine tanakae"
+"311","ncbi","1646","Lindera obtusiloba"
+"312","ncbi","1248","Geum japonicum"
+"313","ncbi","1971","Orixa japonica"
+"314","ncbi","1632",NA
+"315","ncbi","1632",NA
+"316","ncbi","2783","Staphylea bumalda"
+"317","ncbi","1407","Hydrangea hirta"
+"318","ncbi","315","Astilbe thunbergii"
+"319","ncbi","966","Potentilla hebiichigo"
+"320","ncbi","1258","Glechoma hederacea"
+"321","ncbi","2807","Neillia incisa"
+"322","ncbi","727","Codonopsis lanceolata"
+"323","ncbi","1409","Hydrangea macrophylla"
+"324","ncbi","92","Agrimonia pilosa"
+"325","ncbi","622","Chelidonium majus"
+"326","ncbi","895","Hylodesmum podocarpum"
+"327","ncbi","2956","Trifolium repens"
+"328","ncbi","149","Amphicarpaea bracteata"
+"329","ncbi","2359","Ranunculus silerifolius"
+"330","ncbi","3153","Youngia denticulata"
+"331","ncbi","3138","Weigela hortensis"
+"332","ncbi","17","Acer carpinifolium"
+"333","ncbi","823","Cryptotaenia japonica"
+"334","ncbi","1945","Nihon japonicum"
+"335","ncbi","2423","Rorippa indica"
+"336","ncbi","383","Bistorta tenuicaulis"
+"337","ncbi","512","Cardamine regeliana"
+"338","ncbi","1534",NA
+"339","ncbi","2442","Rubus buergeri"
+"340","ncbi","2959","Trigonotis brevipes"
+"341","ncbi","3073",NA
+"342","ncbi","2506","Sambucus racemosa"
+"343","ncbi","102","Albizia julibrissin"
+"344","ncbi","102","Albizia julibrissin"
+"345","ncbi","778","Corydalis incisa"
+"346","ncbi","2288",NA
+"347","ncbi","2801",NA
+"348","ncbi","1084","Euonymus alatus"
+"349","ncbi","146",NA
+"350","ncbi","1430","Hypericum pseudopetiolatum"
+"351","ncbi","2339",NA
+"352","ncbi","2927","Torilis japonica"
+"353","ncbi","3089","Vicia venosa"
+"354","ncbi","2091","Persicaria pubescens"
+"355","ncbi","285","Aster ageratoides"
+"356","ncbi","1126","Euptelea polyandra"
+"357","ncbi","1777","Meliosma tenuis"
+"358","ncbi","1090","Eupatorium chinense"
+"359","ncbi","1090","Eupatorium chinense"
+"360","ncbi","1679","Lonicera gracilipes"
+"361","ncbi","2392","Rhododendron kaempferi"
+"362","ncbi","1512","Ixeridium dentatum"
+"363","ncbi","3143","Wisteria floribunda"
+"364","ncbi","1976",NA
+"365","ncbi","1046","Eriobotrya japonica"
+"366","ncbi","2823","Swertia bimaculata"
+"367","ncbi","2011","Paederia scandens"
+"368","ncbi","1467","Impatiens textorii"
+"369","ncbi","30","Achyranthes bidentata"
+"370","ncbi","2172","Plantago asiatica"
+"371","ncbi","3026","Valeriana flaccidissima"
+"372","ncbi","2338",NA
+"373","ncbi","2089",NA
+"374","ncbi","910","Digitaria ciliaris"
+"375","ncbi","1235","Geranium nepalense"
+"376","ncbi","2255",NA
+"377","ncbi","1465","Impatiens noli-tangere"
+"378","ncbi","2827",NA
+"379","ncbi","2791","Stellaria alsine"
+"380","ncbi","1402","Houttuynia cordata"
+"381","ncbi","928","Dipsacus japonicus"
+"382","ncbi","707","Clethra barbinervis"
+"383","ncbi","1765","Meehania urticifolia"
+"384","ncbi","2012",NA
+"385","ncbi","2095",NA
+"386","ncbi","46","Actinidia arguta"
+"387","ncbi","101","Alangium platanifolium"
+"388","ncbi","287",NA
+"389","ncbi","305","Symphyotrichum subulatum"
+"390","ncbi","305","Symphyotrichum subulatum"
+"391","ncbi","445","Calamagrostis arundinacea"
+"392","ncbi","2086",NA
+"393","ncbi","100","Akebia quinata"
+"394","ncbi","100","Akebia quinata"
+"395","ncbi","2044","Patrinia villosa"
+"396","ncbi","2614",NA
+"397","ncbi","2614",NA
+"398","ncbi","691","Clematis apiifolia"
+"399","ncbi","1639","Ligustrum obtusifolium"
+"400","ncbi","1586","Rhododendron tomentosum"
+"401","ncbi","3021","Vaccinium uliginosum"
+"402","ncbi","2329","Pyrola grandiflora"
+"403","ncbi","2539","Saxifraga tricuspidata"
+"404","ncbi","961","Dryas integrifolia"
+"405","ncbi","483","Campanula gieseckeana"
+"406","ncbi","2492",NA
+"407","ncbi","2251","Potentilla rubricaulis"
+"408","ncbi","3118","Viscaria alpina"
+"409","ncbi","1011","Chamaenerion latifolium"
+"410","ncbi","2531",NA
+"411","ncbi","2056","Pedicularis flammea"
+"412","ncbi","952",NA
+"413","ncbi","2476","Salix arctica"
+"414","ncbi","2476","Salix arctica"
+"415","ncbi","1608","Physaria arctica"
+"416","ncbi","2249","Potentilla nivea"
+"417","ncbi","2022","Papaver radicatum"
+"418","ncbi","2051",NA
+"419","ncbi","2795","Stellaria longipes"
+"420","ncbi","1034","Erigeron compositus"
+"421","ncbi","1034","Erigeron compositus"
+"422","ncbi","2534","Saxifraga hirculus"
+"423","ncbi","250",NA
+"424","ncbi","2860","Taraxacum arctogenum"
+"425","ncbi","2860","Taraxacum arctogenum"
+"426","ncbi","1062","Erysimum pallasii"
+"427","ncbi","1035",NA
+"428","ncbi","1035",NA
+"429","ncbi","2342",NA
+"430","ncbi","2052","Pedicularis capitata"
+"431","ncbi","1523",NA
+"432","ncbi","2915","Tillandsia didisticha"
+"433","ncbi","1362","Heteropterys glabra"
+"434","ncbi","400","Borreria eryngioides"
+"435","ncbi","1100",NA
+"436","ncbi","1847","Mollugo verticillata"
+"437","ncbi","1597","Lepidaploa pseudomuricata"
+"438","ncbi","2279","Prosopis rubriflora"
+"439","ncbi","1831","Mimosa sensibilis"
+"440","ncbi","2819","Stylosanthes hamata"
+"441","ncbi","721","Cnidoscolus urens"
+"442","ncbi","721","Cnidoscolus urens"
+"443","ncbi","2966","Tripogandra glandulosa"
+"444","ncbi","2030","Parkinsonia praecox"
+"445","ncbi","1269","Gomphrena elegans"
+"446","ncbi","1816","Microtea scabrida"
+"447","ncbi","1996",NA
+"448","ncbi","548","Castela coccinea"
+"449","ncbi","2649",NA
+"450","ncbi","1356","Herissantia nemoralis"
+"451","ncbi","2048",NA
+"452","ncbi","3051",NA
+"453","ncbi","3161",NA
+"454","ncbi","2227","Portulaca fluvialis"
+"455","ncbi","3131","Waltheria indica"
+"456","ncbi","689",NA
+"457","ncbi","73","Aeschynomene mollicula"
+"458","ncbi","2047",NA
+"459","ncbi","1268","Gomphrena celosioides"
+"460","ncbi","2046","Pavonia sidifolia"
+"461","ncbi","2777",NA
+"462","ncbi","832","Cuphea thymoides"
+"463","ncbi","2854","Talinum fruticosum"
+"464","ncbi","1656","Lippia alba"
+"465","ncbi","738","Murdannia nudiflora"
+"466","ncbi","815",NA
+"467","ncbi","2628",NA
+"468","ncbi","216","Arachis microsperma"
+"469","ncbi","1954",NA
+"470","ncbi","596","Cereus bicolor"
+"471","ncbi","1895",NA
+"472","ncbi","977","Echinopsis rhodotricha"
+"473","ncbi","1294",NA
+"474","ncbi","2574","Scoparia montevidensis"
+"475","ncbi","1507",NA
+"476","ncbi","1507",NA
+"477","ncbi","814",NA
+"478","ncbi","2467","Ruellia tweediana"
+"479","ncbi","1829","Mimosa hexandra"
+"480","ncbi","1747",NA
+"481","ncbi","332",NA
+"482","ncbi","1780",NA
+"483","ncbi","2932",NA
+"484","ncbi","255",NA
+"485","ncbi","722",NA
+"486","ncbi","699",NA
+"487","ncbi","2648","Sida rhombifolia"
+"488","ncbi","1284",NA
+"489","ncbi","1919",NA
+"490","ncbi","134",NA
+"491","ncbi","2166",NA
+"492","ncbi","492","Camptosema paraguariense"
+"493","ncbi","2781","Staelia thymoides"
+"494","ncbi","2081","Pereskia sacharosa"
+"495","ncbi","729","Coffea macrocarpa"
+"496","ncbi","1941","Olea lancea"
+"497","ncbi","343",NA
+"498","ncbi","2137",NA
+"499","ncbi","2658","Sideroxylon puberulum"
+"500","ncbi","1081",NA
+"501","ncbi","1277","Grangeria borbonica"
+"502","ncbi","1330",NA
+"503","ncbi","3133",NA
+"504","ncbi","730","Coffea mauritiana"
+"505","ncbi","1164","Gaertnera rotundifolia"
+"506","ncbi","1836",NA
+"507","ncbi","1140","Faujasiopsis flexuosa"
+"508","ncbi","86","Agarista salicifolia"
+"509","ncbi","2220","Polyscias mauritiana"
+"510","ncbi","753","Hancea integrifolia"
+"511","ncbi","1934",NA
+"512","ncbi","1933","Ochna mauritiana"
+"513","ncbi","1143","Flagellaria indica"
+"514","ncbi","1851","Eugenia kanakana"
+"515","ncbi","1069","Erythrospermum monticola"
+"516","ncbi","1675","Lobelia spicata"
+"517","ncbi","267","Asclepias sullivantii"
+"518","ncbi","824",NA
+"519","ncbi","2585",NA
+"520","ncbi","1626","Liatris pycnostachya"
+"521","ncbi","2340",NA
+"522","ncbi","2355","Ranunculus recurvatus"
+"523","ncbi","2813","Strophostyles helvola"
+"524","ncbi","3014","Uvularia grandiflora"
+"525","ncbi","970","Echinocystis lobata"
+"526","ncbi","1267",NA
+"527","ncbi","1673",NA
+"528","ncbi","2443","Rubus canadensis"
+"529","ncbi","215",NA
+"530","ncbi","2215","Persicaria maculosa"
+"531","ncbi","2708","Solanum carolinense"
+"532","ncbi","1365",NA
+"533","ncbi","583","Cephalanthus occidentalis"
+"534","ncbi","887","Desmodium canadense"
+"535","ncbi","3065",NA
+"536","ncbi","2283","Prunella vulgaris"
+"537","ncbi","1596",NA
+"538","ncbi","2912","Tilia americana"
+"539","ncbi","892","Desmodium marilandicum"
+"540","ncbi","106","Alisma plantago-aquatica"
+"541","ncbi","1367","Hibiscus lasiocarpos"
+"542","ncbi","3076",NA
+"543","ncbi","1759",NA
+"544","ncbi","1323","Helianthus strumosus"
+"545","ncbi","1195","Galium trifidum"
+"546","ncbi","769","Coreopsis palmata"
+"547","ncbi","2794","Stellaria longifolia"
+"548","ncbi","1670","Lobelia cardinalis"
+"549","ncbi","2124","Phlox divaricata"
+"550","ncbi","2222","Pontederia cordata"
+"551","ncbi","2766",NA
+"552","ncbi","894","Desmodium paniculatum"
+"553","ncbi","415",NA
+"554","ncbi","296",NA
+"555","ncbi","2871",NA
+"556","ncbi","300",NA
+"557","ncbi","2324",NA
+"558","ncbi","2269","Nabalus crepidineus"
+"559","ncbi","1322",NA
+"560","ncbi","1150",NA
+"561","ncbi","1987","Oxalis corniculata"
+"562","ncbi","2175","Plantago major"
+"563","ncbi","594","Cercis canadensis"
+"564","ncbi","2472","Sagittaria latifolia"
+"565","ncbi","1682","Lonicera sempervirens"
+"566","ncbi","2466","Ruellia strepens"
+"567","ncbi","389","Blephilia ciliata"
+"568","ncbi","1099","Eupatorium sessilifolium"
+"569","ncbi","374","Bidens aristosa"
+"570","ncbi","274",NA
+"571","ncbi","293",NA
+"572","ncbi","1042",NA
+"573","ncbi","259","Aruncus dioicus"
+"574","ncbi","2221","Polytaenia nuttallii"
+"575","ncbi","2773","Stachys palustris"
+"576","ncbi","349","Baptisia leucantha"
+"577","ncbi","1663","Lithospermum canescens"
+"578","ncbi","2199",NA
+"579","ncbi","1466","Impatiens pallida"
+"580","ncbi","1285","Gymnocladus dioicus"
+"581","ncbi","2517","Saponaria officinalis"
+"582","ncbi","696","Clematis virginiana"
+"583","ncbi","138","Amelanchier canadensis"
+"584","ncbi","2695",NA
+"585","ncbi","2731",NA
+"586","ncbi","85","Agastache scrophulariifolia"
+"587","ncbi","771","Cornus amomum"
+"588","ncbi","3047","Verbesina helianthoides"
+"589","ncbi","2643","Sicyos angulatus"
+"590","ncbi","825","Cucurbita pepo"
+"591","ncbi","1401",NA
+"592","ncbi","2434","Rosa setigera"
+"593","ncbi","2814",NA
+"594","ncbi","2211","Persicaria lapathifolia"
+"595","ncbi","306",NA
+"596","ncbi","2784","Staphylea trifolia"
+"597","ncbi","298",NA
+"598","ncbi","3123","Vitis vulpina"
+"599","ncbi","2465","Ruellia ciliosa"
+"600","ncbi","203","Apocynum cannabinum"
+"601","ncbi","1672","Lobelia inflata"
+"602","ncbi","733","Collinsia verna"
+"603","ncbi","1420","Hydrophyllum virginianum"
+"604","ncbi","289",NA
+"605","ncbi","2421","Robinia pseudoacacia"
+"606","ncbi","1693",NA
+"607","ncbi","2074","Penstemon laevigatus"
+"608","ncbi","1234","Geranium maculatum"
+"609","ncbi","2640","Dasistoma macrophylla"
+"610","ncbi","2732","Solidago speciosa"
+"611","ncbi","786","Crataegus coccinea"
+"612","ncbi","268","Asclepias syriaca"
+"613","ncbi","2884","Thalictrum dasycarpum"
+"614","ncbi","2853","Taenidia integerrima"
+"615","ncbi","2479","Salix cordata"
+"616","ncbi","2182","Podophyllum peltatum"
+"617","ncbi","1369",NA
+"618","ncbi","735","Comandra umbellata"
+"619","ncbi","2460",NA
+"620","ncbi","2021","Panicum virgatum"
+"621","ncbi","2126","Phlox pilosa"
+"622","ncbi","1885","Myosurus minimus"
+"623","ncbi","441",NA
+"624","ncbi","441",NA
+"625","ncbi","3097","Viola cucullata"
+"626","ncbi","1096","Eupatorium perfoliatum"
+"627","ncbi","1096","Eupatorium perfoliatum"
+"628","ncbi","670","Cirsium pumilum"
+"629","ncbi","670","Cirsium pumilum"
+"630","ncbi","1092","Conoclinium coelestinum"
+"631","ncbi","1092","Conoclinium coelestinum"
+"632","ncbi","270","Asclepias verticillata"
+"633","ncbi","207","Aquilegia canadensis"
+"634","ncbi","1320","Helianthus mollis"
+"635","ncbi","1320","Helianthus mollis"
+"636","ncbi","2893",NA
+"637","ncbi","378","Bidens laevis"
+"638","ncbi","378","Bidens laevis"
+"639","ncbi","45",NA
+"640","ncbi","2588",NA
+"641","ncbi","2831",NA
+"642","ncbi","1643","Lilium superbum"
+"643","ncbi","171","Thalictrum thalictroides"
+"644","ncbi","2115",NA
+"645","ncbi","1306","Helenium autumnale"
+"646","ncbi","1306","Helenium autumnale"
+"647","ncbi","377","Bidens frondosa"
+"648","ncbi","377","Bidens frondosa"
+"649","ncbi","2598","Packera aurea"
+"650","ncbi","2598","Packera aurea"
+"651","ncbi","1088","Eupatorium altissimum"
+"652","ncbi","1088","Eupatorium altissimum"
+"653","ncbi","1431","Hypericum punctatum"
+"654","ncbi","770","Coreopsis tripteris"
+"655","ncbi","770","Coreopsis tripteris"
+"656","ncbi","437",NA
+"657","ncbi","437",NA
+"658","ncbi","3043","Verbena hastata"
+"659","ncbi","1211","Gentiana andrewsii"
+"660","ncbi","144","Amorpha fruticosa"
+"661","ncbi","1908","Nelumbo lutea"
+"662","ncbi","2676","Silphium laciniatum"
+"663","ncbi","2676","Silphium laciniatum"
+"664","ncbi","863",NA
+"665","ncbi","2789","Lysimachia lanceolata"
+"666","ncbi","1975",NA
+"667","ncbi","2483","Salix humilis"
+"668","ncbi","2483","Salix humilis"
+"669","ncbi","1116",NA
+"670","ncbi","1116",NA
+"671","ncbi","2788",NA
+"672","ncbi","2325","Pycnanthemum virginianum"
+"673","ncbi","2430",NA
+"674","ncbi","1974","Aphyllon uniflorum"
+"675","ncbi","3159","Zizia aurea"
+"676","ncbi","1316","Helianthus divaricatus"
+"677","ncbi","1316","Helianthus divaricatus"
+"678","ncbi","888","Desmodium canescens"
+"679","ncbi","891","Desmodium illinoense"
+"680","ncbi","1246",NA
+"681","ncbi","1484","Ipomoea pandurata"
+"682","ncbi","1231","Geranium carolinianum"
+"683","ncbi","213","Boechera laevigata"
+"684","ncbi","136","Amaranthus spinosus"
+"685","ncbi","508","Cardamine bulbosa"
+"686","ncbi","908","Dicentra cucullaria"
+"687","ncbi","2678","Silphium terebinthinaceum"
+"688","ncbi","2323",NA
+"689","ncbi","1423","Hypericum cistifolium"
+"690","ncbi","7","Abutilon theophrasti"
+"691","ncbi","1041","Erigeron pulchellus"
+"692","ncbi","1605","Lespedeza procumbens"
+"693","ncbi","2132","Phryma leptostachya"
+"694","ncbi","1325","Helianthus tuberosus"
+"695","ncbi","2142","Physalis virginiana"
+"696","ncbi","396","Boltonia asteroides"
+"697","ncbi","396","Boltonia asteroides"
+"698","ncbi","396","Boltonia asteroides"
+"699","ncbi","2872","Tephrosia virginiana"
+"700","ncbi","647","Cicuta maculata"
+"701","ncbi","1850","Monarda fistulosa"
+"702","ncbi","241","Arisaema triphyllum"
+"703","ncbi","1022",NA
+"704","ncbi","48",NA
+"705","ncbi","48",NA
+"706","ncbi","48",NA
+"707","ncbi","2996",NA
+"708","ncbi","2139","Physalis lanceolata"
+"709","ncbi","2144","Physostegia virginiana"
+"710","ncbi","773","Cornus florida"
+"711","ncbi","1506","Isopyrum biternatum"
+"712","ncbi","84","Agastache nepetoides"
+"713","ncbi","862","Datura stramonium"
+"714","ncbi","822","Cryptotaenia canadensis"
+"715","ncbi","1607","Lespedeza virginica"
+"716","ncbi","1317",NA
+"717","ncbi","1317",NA
+"718","ncbi","1317",NA
+"719","ncbi","2294","Prunus serotina"
+"720","ncbi","2299",NA
+"721","ncbi","1750",NA
+"722","ncbi","1645","Linaria vulgaris"
+"723","ncbi","1833","Mimulus alatus"
+"724","ncbi","2357","Ranunculus septentrionalis"
+"725","ncbi","3055","Veronica arvensis"
+"726","ncbi","1462",NA
+"727","ncbi","2141",NA
+"728","ncbi","1148",NA
+"729","ncbi","2224","Populus tremuloides"
+"730","ncbi","2224","Populus tremuloides"
+"731","ncbi","2098",NA
+"732","ncbi","2486","Salix nigra"
+"733","ncbi","2486","Salix nigra"
+"734","ncbi","2035","Parthenium integrifolium"
+"735","ncbi","2035","Parthenium integrifolium"
+"736","ncbi","2035","Parthenium integrifolium"
+"737","ncbi","1244","Aureolaria grandiflora"
+"738","ncbi","1674","Lobelia siphilitica"
+"739","ncbi","2935",NA
+"740","ncbi","1315","Helianthus annuus"
+"741","ncbi","1315","Helianthus annuus"
+"742","ncbi","1315","Helianthus annuus"
+"743","ncbi","1694",NA
+"744","ncbi","480","Campanula americana"
+"745","ncbi","1683",NA
+"746","ncbi","148",NA
+"747","ncbi","2582","Scutellaria lateriflora"
+"748","ncbi","1502","Iris versicolor"
+"749","ncbi","1106","Euphorbia corollata"
+"750","ncbi","1106","Euphorbia corollata"
+"751","ncbi","2505","Sambucus canadensis"
+"752","ncbi","2209","Persicaria hydropiper"
+"753","ncbi","2790",NA
+"754","ncbi","376","Bidens connata"
+"755","ncbi","187","Antennaria plantaginifolia"
+"756","ncbi","187","Antennaria plantaginifolia"
+"757","ncbi","302",NA
+"758","ncbi","302",NA
+"759","ncbi","876","Delphinium tricorne"
+"760","ncbi","545",NA
+"761","ncbi","551","Castilleja coccinea"
+"762","ncbi","1101",NA
+"763","ncbi","1253","Geum vernum"
+"764","ncbi","2210","Persicaria hydropiperoides"
+"765","ncbi","2933",NA
+"766","ncbi","297",NA
+"767","ncbi","297",NA
+"768","ncbi","297",NA
+"769","ncbi","2268","Nabalus asper"
+"770","ncbi","1033","Erigeron canadensis"
+"771","ncbi","1033","Erigeron canadensis"
+"772","ncbi","1033","Erigeron canadensis"
+"773","ncbi","265","Asclepias purpurascens"
+"774","ncbi","140","Ammannia coccinea"
+"775","ncbi","2964","Triosteum perfoliatum"
+"776","ncbi","1939","Oenothera fruticosa"
+"777","ncbi","1884",NA
+"778","ncbi","835","Cuscuta glomerata"
+"779","ncbi","561","Celastrus scandens"
+"780","ncbi","1595","Leonurus cardiaca"
+"781","ncbi","2733","Solidago ulmifolia"
+"782","ncbi","2733","Solidago ulmifolia"
+"783","ncbi","2733","Solidago ulmifolia"
+"784","ncbi","3156","Zea mays"
+"785","ncbi","318","Astragalus canadensis"
+"786","ncbi","2579","Scrophularia marilandica"
+"787","ncbi","2037","Passiflora lutea"
+"788","ncbi","1422","Hypericum ascyron"
+"789","ncbi","201",NA
+"790","ncbi","2507",NA
+"791","ncbi","28","Achillea millefolium"
+"792","ncbi","28","Achillea millefolium"
+"793","ncbi","28","Achillea millefolium"
+"794","ncbi","1834","Mimulus ringens"
+"795","ncbi","301",NA
+"796","ncbi","301",NA
+"797","ncbi","301",NA
+"798","ncbi","77","Aesculus hippocastanum"
+"799","ncbi","688","Claytonia virginica"
+"800","ncbi","1966",NA
+"801","ncbi","664",NA
+"802","ncbi","664",NA
+"803","ncbi","939","Primula meadia"
+"804","ncbi","1728","Lythrum alatum"
+"805","ncbi","1720","Lycopus americanus"
+"806","ncbi","2147","Phytolacca americana"
+"807","ncbi","2335",NA
+"808","ncbi","659","Cirsium discolor"
+"809","ncbi","2348","Ranunculus fascicularis"
+"810","ncbi","1406","Hydrangea arborescens"
+"811","ncbi","3115","Viola striata"
+"812","ncbi","1770","Veratrum virginicum"
+"813","ncbi","774",NA
+"814","ncbi","189","Anthemis cotula"
+"815","ncbi","189","Anthemis cotula"
+"816","ncbi","189","Anthemis cotula"
+"817","ncbi","1758","Marrubium vulgare"
+"818","ncbi","143","Amorpha canescens"
+"819","ncbi","2892",NA
+"820","ncbi","3045","Verbena stricta"
+"821","ncbi","2318","Ptelea trifoliata"
+"822","ncbi","557","Ceanothus americanus"
+"823","ncbi","694","Clematis pitcheri"
+"824","ncbi","2284","Prunus americana"
+"825","ncbi","1926","Nothoscordum bivalve"
+"826","ncbi","2214","Persicaria pensylvanica"
+"827","ncbi","2204","Persicaria amphibia"
+"828","ncbi","1802","Mertensia virginica"
+"829","ncbi","1544",NA
+"830","ncbi","1544",NA
+"831","ncbi","1544",NA
+"832","ncbi","1657",NA
+"833","ncbi","76","Aesculus glabra"
+"834","ncbi","1098","Eupatorium serotinum"
+"835","ncbi","1098","Eupatorium serotinum"
+"836","ncbi","1098","Eupatorium serotinum"
+"837","ncbi","747","Calystegia sepium"
+"838","ncbi","202","Apocynum androsaemifolium"
+"839","ncbi","1030","Erigenia bulbosa"
+"840","ncbi","1204","Oenothera gaura"
+"841","ncbi","210",NA
+"842","ncbi","1135",NA
+"843","ncbi","375","Bidens bipinnata"
+"844","ncbi","375","Bidens bipinnata"
+"845","ncbi","375","Bidens bipinnata"
+"846","ncbi","2750",NA
+"847","ncbi","137","Ambrosia trifida"
+"848","ncbi","3122","Vitis cordifolia"
+"849","ncbi","1272",NA
+"850","ncbi","2953","Trifolium hybridum"
+"851","ncbi","2041","Pastinaca sativa"
+"852","ncbi","3046","Verbena urticifolia"
+"853","ncbi","931","Dirca palustris"
+"854","ncbi","260",NA
+"855","ncbi","414",NA
+"856","ncbi","414",NA
+"857","ncbi","414",NA
+"858","ncbi","476",NA
+"859","ncbi","348","Baptisia bracteata"
+"860","ncbi","535",NA
+"861","ncbi","2955","Trifolium reflexum"
+"862","ncbi","929","Dipsacus fullonum"
+"863","ncbi","2691",NA
+"864","ncbi","2514","Sanicula marilandica"
+"865","ncbi","2675","Silphium integrifolium"
+"866","ncbi","2675","Silphium integrifolium"
+"867","ncbi","2675","Silphium integrifolium"
+"868","ncbi","2723","Euthamia graminifolia"
+"869","ncbi","2723","Euthamia graminifolia"
+"870","ncbi","2723","Euthamia graminifolia"
+"871","ncbi","2407","Toxicodendron pubescens"
+"872","ncbi","2475","Salix amygdaloides"
+"873","ncbi","2475","Salix amygdaloides"
+"874","ncbi","1789","Mentha arvensis"
+"875","ncbi","93","Agrimonia striata"
+"876","ncbi","2677","Silphium perfoliatum"
+"877","ncbi","2677","Silphium perfoliatum"
+"878","ncbi","2677","Silphium perfoliatum"
+"879","ncbi","3114","Viola sagittata"
+"880","ncbi","505","Capsella bursa-pastoris"
+"881","ncbi","1550","Lactuca floridana"
+"882","ncbi","1550","Lactuca floridana"
+"883","ncbi","1550","Lactuca floridana"
+"884","ncbi","1303","Hedeoma pulegioides"
+"885","ncbi","1287",NA
+"886","ncbi","2672","Silene stellata"
+"887","ncbi","1349","Anemone acutiloba"
+"888","ncbi","2385","Ventia lanceolata"
+"889","ncbi","655","Circaea lutetiana"
+"890","ncbi","2223","Populus deltoides"
+"891","ncbi","2223","Populus deltoides"
+"892","ncbi","2000","Oxalis stricta"
+"893","ncbi","1463","Impatiens capensis"
+"894","ncbi","847",NA
+"895","ncbi","1913","Nepeta cataria"
+"896","ncbi","2805",NA
+"897","ncbi","3112","Viola pubescens"
+"898","ncbi","2415",NA
+"899","ncbi","886",NA
+"900","ncbi","2217",NA
+"901","ncbi","2402",NA
+"902","ncbi","2402",NA
+"903","ncbi","1245",NA
+"904","ncbi","20","Acer negundo"
+"905","ncbi","20","Acer negundo"
+"906","ncbi","2728","Solidago rigida"
+"907","ncbi","2728","Solidago rigida"
+"908","ncbi","2728","Solidago rigida"
+"909","ncbi","2462","Rudbeckia laciniata"
+"910","ncbi","2462","Rudbeckia laciniata"
+"911","ncbi","2462","Rudbeckia laciniata"
+"912","ncbi","828",NA
+"913","ncbi","323",NA
+"914","ncbi","3042",NA
+"915","ncbi","1486","Ipomoea purpurea"
+"916","ncbi","1374","Hibiscus trionum"
+"917","ncbi","602","Chaerophyllum procumbens"
+"918","ncbi","2994","Ulmus americana"
+"919","ncbi","2994","Ulmus americana"
+"920","ncbi","1604","Lespedeza capitata"
+"921","ncbi","2099",NA
+"922","ncbi","1152",NA
+"923","ncbi","1152",NA
+"924","ncbi","2187","Polemonium reptans"
+"925","ncbi","1318","Helianthus x laetiflorus"
+"926","ncbi","1318","Helianthus x laetiflorus"
+"927","ncbi","1318","Helianthus x laetiflorus"
+"928","ncbi","881","Cardamine concatenata"
+"929","ncbi","1032","Erigeron annuus"
+"930","ncbi","1032","Erigeron annuus"
+"931","ncbi","1032","Erigeron annuus"
+"932","ncbi","2125","Phlox glaberrima"
+"933","ncbi","2202",NA
+"934","ncbi","889","Desmodium dillenii"
+"935","ncbi","1247","Geum canadense"
+"936","ncbi","222","Arctium minus"
+"937","ncbi","222","Arctium minus"
+"938","ncbi","222","Arctium minus"
+"939","ncbi","3050","Vernonia fasciculata"
+"940","ncbi","3050","Vernonia fasciculata"
+"941","ncbi","3050","Vernonia fasciculata"
+"942","ncbi","1549","Lactuca canadensis"
+"943","ncbi","1549","Lactuca canadensis"
+"944","ncbi","1549","Lactuca canadensis"
+"945","ncbi","1655","Liparis liliifolia"
+"946","ncbi","1561",NA
+"947","ncbi","1938","Oenothera biennis"
+"948","ncbi","2724","Solidago missouriensis"
+"949","ncbi","2724","Solidago missouriensis"
+"950","ncbi","2724","Solidago missouriensis"
+"951","ncbi","590","Cerastium nutans"
+"952","ncbi","269","Asclepias tuberosa"
+"953","ncbi","2464","Rudbeckia triloba"
+"954","ncbi","2464","Rudbeckia triloba"
+"955","ncbi","2464","Rudbeckia triloba"
+"956","ncbi","1600","Lepidium virginicum"
+"957","ncbi","1914",NA
+"958","ncbi","1259","Gleditsia triacanthos"
+"959","ncbi","1259","Gleditsia triacanthos"
+"960","ncbi","1773","Melilotus albus"
+"961","ncbi","2715","Solanum nigrum"
+"962","ncbi","656","Cirsium altissimum"
+"963","ncbi","656","Cirsium altissimum"
+"964","ncbi","656","Cirsium altissimum"
+"965","ncbi","2961","Trillium sessile"
+"966","ncbi","1480","Ipomoea hederacea"
+"967","ncbi","2879","Teucrium canadense"
+"968","ncbi","896","Desmodium sessilifolium"
+"969","ncbi","2461","Rudbeckia hirta"
+"970","ncbi","2461","Rudbeckia hirta"
+"971","ncbi","2461","Rudbeckia hirta"
+"972","ncbi","1438","Hypoxis hirsuta"
+"973","ncbi","264","Asclepias incarnata"
+"974","ncbi","3041",NA
+"975","ncbi","1080",NA
+"976","ncbi","923","Diospyros virginiana"
+"977","ncbi","923","Diospyros virginiana"
+"978","ncbi","3107","Viola pedata"
+"979","ncbi","1097","Eutrochium purpureum"
+"980","ncbi","1097","Eutrochium purpureum"
+"981","ncbi","1097","Eutrochium purpureum"
+"982","ncbi","2452","Rubus occidentalis"
+"983","ncbi","2722","Solidago canadensis"
+"984","ncbi","2722","Solidago canadensis"
+"985","ncbi","2722","Solidago canadensis"
+"986","ncbi","2703","Smilax hispida"
+"987","ncbi","2703","Smilax hispida"
+"988","ncbi","3155","Zanthoxylum americanum"
+"989","ncbi","3155","Zanthoxylum americanum"
+"990","ncbi","902",NA
+"991","ncbi","1556","Lantana camara"
+"992","ncbi","787","Crataegus crus-galli"
+"993","ncbi","2512","Sanicula canadensis"
+"994","ncbi","2512","Sanicula canadensis"
+"995","ncbi","1187",NA
+"996","ncbi","1065","Erythronium albidum"
+"997","ncbi","2696","Maianthemum racemosum"
+"998","ncbi","1405","Hybanthus concolor"
+"999","ncbi","803","Crotalaria sagittalis"
+"1000","ncbi","534",NA
+"1001","ncbi","2652","Sida spinosa"
+"1002","ncbi","2463","Rudbeckia subtomentosa"
+"1003","ncbi","2463","Rudbeckia subtomentosa"
+"1004","ncbi","2463","Rudbeckia subtomentosa"
+"1005","ncbi","2685",NA
+"1006","ncbi","1929",NA
+"1007","ncbi","2403","Rhus copallinum"
+"1008","ncbi","390","Blephilia hirsuta"
+"1009","ncbi","2001","Oxalis violacea"
+"1010","ncbi","2001","Oxalis violacea"
+"1011","ncbi","277","Asparagus officinalis"
+"1012","ncbi","277","Asparagus officinalis"
+"1013","ncbi","2717","Solanum rostratum"
+"1014","ncbi","890",NA
+"1015","ncbi","1492","Iris hexagona"
+"1016","ncbi","2343","Ranunculus abortivus"
+"1017","ncbi","3034","Valerianella radiata"
+"1018","ncbi","2697","Maianthemum stellatum"
+"1019","ncbi","640","Leucanthemum vulgare"
+"1020","ncbi","640","Leucanthemum vulgare"
+"1021","ncbi","640","Leucanthemum vulgare"
+"1022","ncbi","3075","Viburnum prunifolium"
+"1023","ncbi","3108","Viola pedatifida"
+"1024","ncbi","3060","Veronica peregrina"
+"1025","ncbi","2954","Trifolium pratense"
+"1026","ncbi","2309","Orbexilum onobrychis"
+"1027","ncbi","1060","Eryngium yuccifolium"
+"1028","ncbi","2818","Stylosanthes biflora"
+"1029","ncbi","1417","Hydrophyllum appendiculatum"
+"1030","ncbi","2248",NA
+"1031","ncbi","440",NA
+"1032","ncbi","440",NA
+"1033","ncbi","440",NA
+"1034","ncbi","1627","Liatris scariosa"
+"1035","ncbi","1627","Liatris scariosa"
+"1036","ncbi","1627","Liatris scariosa"
+"1037","ncbi","1222",NA
+"1038","ncbi","843","Cynoglossum officinale"
+"1039","ncbi","2073","Penstemon hirsutus"
+"1040","ncbi","2004","Oxypolis rigidior"
+"1041","ncbi","592",NA
+"1042","ncbi","996",NA
+"1043","ncbi","261",NA
+"1044","ncbi","1671",NA
+"1045","ncbi","2509","Sanguinaria canadensis"
+"1046","ncbi","1338","Heliopsis helianthoides"
+"1047","ncbi","1256",NA
+"1048","ncbi","2404","Rhus glabra"
+"1049","ncbi","1243",NA
+"1050","ncbi","2521",NA
+"1051","ncbi","2195","Polygala sanguinea"
+"1052","ncbi","2689","Sisyrinchium angustifolium"
+"1053","ncbi","833","Cuscuta cephalanthi"
+"1054","ncbi","1353","Heracleum maximum"
+"1055","ncbi","173","Anethum graveolens"
+"1056","ncbi","2580",NA
+"1057","ncbi","2702","Smilax herbacea"
+"1058","ncbi","2235","Potentilla canadensis"
+"1059","ncbi","555","Caulophyllum thalictroides"
+"1060","ncbi","2181","Poa pratensis"
+"1061","ncbi","1278","Gratiola virginiana"
+"1062","ncbi","2936","Tradescantia virginiana"
+"1063","ncbi","788","Crataegus mollis"
+"1064","ncbi","2796","Stellaria media"
+"1065","ncbi","2726","Solidago nemoralis"
+"1066","ncbi","1849","Monarda bradburiana"
+"1067","ncbi","22","Acer saccharinum"
+"1068","ncbi","2670","Silene nivea"
+"1069","ncbi","2341",NA
+"1070","ncbi","2485",NA
+"1071","ncbi","243","Aristolochia tomentosa"
+"1072","ncbi","1040","Erigeron philadelphicus"
+"1073","ncbi","2583","Scutellaria parvula"
+"1074","ncbi","1692","Lotus uliginosus"
+"1075","ncbi","2161","Pimpinella major"
+"1076","ncbi","1142","Filipendula ulmaria"
+"1077","ncbi","3064","Veronica serpyllifolia"
+"1078","ncbi","1709","Silene flos-cuculi"
+"1079","ncbi","179","Angelica sylvestris"
+"1080","ncbi","1883","Myosotis scorpioides"
+"1081","ncbi","2666","Silene dioica"
+"1082","ncbi","3087","Vicia sepium"
+"1083","ncbi","1788","Mentha aquatica"
+"1084","ncbi","3029","Valeriana officinalis"
+"1085","ncbi","2238","Potentilla erecta"
+"1086","ncbi","3056","Veronica beccabunga"
+"1087","ncbi","2344","Ranunculus acris"
+"1088","ncbi","1730","Lythrum salicaria"
+"1089","ncbi","673","Cirsium vulgare"
+"1090","ncbi","1249","Geum rivale"
+"1091","ncbi","667","Cirsium oleraceum"
+"1092","ncbi","573","Centaurea jacea"
+"1093","ncbi","3057","Veronica chamaedrys"
+"1094","ncbi","2792","Stellaria graminea"
+"1095","ncbi","2798","Stellaria palustris"
+"1096","ncbi","193","Anthriscus sylvestris"
+"1097","ncbi","2950","Trifolium campestre"
+"1098","ncbi","2349","Ranunculus flammula"
+"1099","ncbi","1572",NA
+"1100","ncbi","794","Crepis paludosa"
+"1101","ncbi","1727","Lysimachia vulgaris"
+"1102","ncbi","3081","Vicia cracca"
+"1103","ncbi","587","Cerastium fontanum"
+"1104","ncbi","1237","Geranium robertianum"
+"1105","ncbi","1574","Lathyrus pratensis"
+"1106","ncbi","1191","Galium palustre"
+"1107","ncbi","99","Ajuga reptans"
+"1108","ncbi","618",NA
+"1109","ncbi","2016","Pallenis spinosa"
+"1110","ncbi","1054","Erodium cicutarium"
+"1111","ncbi","681","Cistus parviflorus"
+"1112","ncbi","1176","Gagea granatellii"
+"1113","ncbi","2558","Scandix australis"
+"1114","ncbi","975","Echinops microcephalus"
+"1115","ncbi","2904","Thymbra capitata"
+"1116","ncbi","2570","Prospero autumnale"
+"1117","ncbi","1333","Helichrysum stoechas"
+"1118","ncbi","1343","Heliotropium hirsutissimum"
+"1119","ncbi","2377","Reseda alba"
+"1120","ncbi","1103","Euphorbia acanthothamnos"
+"1121","ncbi","819","Crupina crupinastrum"
+"1122","ncbi","1434",NA
+"1123","ncbi","2576","Scorzonera cana"
+"1124","ncbi","2363",NA
+"1125","ncbi","2641","Sherardia arvensis"
+"1126","ncbi","3040",NA
+"1127","ncbi","2023","Papaver rhoeas"
+"1128","ncbi","1340",NA
+"1129","ncbi","1239","Geranium rotundifolium"
+"1130","ncbi","867","Daucus guttatus"
+"1131","ncbi","463","Calendula arvensis"
+"1132","ncbi","1341","Heliotropium europaeum"
+"1133","ncbi","968","Ebenus sibthorpii"
+"1134","ncbi","242","Arisarum vulgare"
+"1135","ncbi","629","Chondrilla juncea"
+"1136","ncbi","2926","Tordylium apulum"
+"1137","ncbi","575",NA
+"1138","ncbi","2504","Salvia verbenaca"
+"1139","ncbi","798","Crocus laevigatus"
+"1140","ncbi","165","Anemone coronaria"
+"1141","ncbi","2109","Phagnalon graecum"
+"1142","ncbi","2557",NA
+"1143","ncbi","1160",NA
+"1144","ncbi","1496","Iris pumila"
+"1145","ncbi","3061","Veronica persica"
+"1146","ncbi","1028","Erica manipuliflora"
+"1147","ncbi","158","Anchusa undulata"
+"1148","ncbi","2627","Senecio vulgaris"
+"1149","ncbi","1432","Hypericum triquetrifolium"
+"1150","ncbi","2880","Teucrium polium"
+"1151","ncbi","839","Cyclamen graecum"
+"1152","ncbi","630",NA
+"1153","ncbi","168","Anemone pavonina"
+"1154","ncbi","2541","Scabiosa atropurpurea"
+"1155","ncbi","1055","Erodium malacoides"
+"1156","ncbi","874","Delphinium peregrinum"
+"1157","ncbi","937","Dittrichia graveolens"
+"1158","ncbi","797","Crocus cancellatus"
+"1159","ncbi","682","Cistus salviifolius"
+"1160","ncbi","639","Glebionis coronaria"
+"1161","ncbi","1872","Leopoldia comosa"
+"1162","ncbi","282","Asphodelus aestivus"
+"1163","ncbi","1392","Hirschfeldia incana"
+"1164","ncbi","1743",NA
+"1165","ncbi","2891","Thapsia garganica"
+"1166","ncbi","1973",NA
+"1167","ncbi","522","Carduus pycnocephalus"
+"1168","ncbi","979","Echium angustifolium"
+"1169","ncbi","2938","Tragopogon porrifolius"
+"1170","ncbi","744","Convolvulus arvensis"
+"1171","ncbi","2687","Sisymbrium orientale"
+"1172","ncbi","515","Lepidium draba"
+"1173","ncbi","2122",NA
+"1174","ncbi","2523","Satureja thymbra"
+"1175","ncbi","2900","Thymelaea hirsuta"
+"1176","ncbi","380","Biscutella didyma"
+"1177","ncbi","2469","Ruta graveolens"
+"1178","ncbi","1751","Malva sylvestris"
+"1179","ncbi","1421",NA
+"1180","ncbi","2902","Thymelaea tartonraira"
+"1181","ncbi","325","Astragalus monspessulanus"
+"1182","ncbi","745","Convolvulus cantabricus"
+"1183","ncbi","2577",NA
+"1184","ncbi","16","Acanthus spinosus"
+"1185","ncbi","1921","Nigella arvensis"
+"1186","ncbi","969","Ecballium elaterium"
+"1187","ncbi","2173","Plantago lagopus"
+"1188","ncbi","119","Allium subhirsutum"
+"1189","ncbi","1977","Osyris alba"
+"1190","ncbi","1763","Medicago lupulina"
+"1191","ncbi","1157","Fritillaria graeca"
+"1192","ncbi","1570","Lathyrus cicera"
+"1193","ncbi","2573","Scolymus hispanicus"
+"1194","ncbi","358","Bellardia trixago"
+"1195","ncbi","1947",NA
+"1196","ncbi","3012","Drimia maritima"
+"1197","ncbi","1058","Eryngium campestre"
+"1198","ncbi","743","Convolvulus althaeoides"
+"1199","ncbi","2958","Trifolium stellatum"
+"1200","ncbi","108","Alkanna tinctoria"
+"1201","ncbi","1949","Ophrys lutea"
+"1202","ncbi","1424","Hypericum empetrifolium"
+"1203","ncbi","1057","Eruca vesicaria"
+"1204","ncbi","2503",NA
+"1205","ncbi","1159","Fumana thymifolia"
+"1206","ncbi","159","Anchusella variegata"
+"1207","ncbi","2771","Stachys cretica"
+"1208","ncbi","1873","Muscari neglectum"
+"1209","ncbi","502","Capparis ovata"
+"1210","ncbi","347","Ballota acetabulosa"
+"1211","ncbi","2374","Reichardia picroides"
+"1212","ncbi","2940",NA
+"1213","ncbi","1950","Ophrys sphegodes"
+"1214","ncbi","103","Alcea pallida"
+"1215","ncbi","1871",NA
+"1216","ncbi","1158","Fumana arabica"
+"1217","ncbi","2321","Pterocephalus papposus"
+"1218","ncbi","2103","Petrorhagia dubia"
+"1219","ncbi","1654","Linum strictum"
+"1220","ncbi","114","Allium neapolitanum"
+"1221","ncbi","2259","Prasium majus"
+"1222","ncbi","482","Campanula drabifolia"
+"1223","ncbi","1261","Globularia alypum"
+"1224","ncbi","359","Bellis annua"
+"1225","ncbi","194","Anthyllis hermanniae"
+"1226","ncbi","1555","Lamium amplexicaule"
+"1227","ncbi","2665","Silene colorata"
+"1228","ncbi","2808","Sternbergia lutea"
+"1229","ncbi","2308","Bituminaria bituminosa"
+"1230","ncbi","1951","Ophrys tenthredinifera"
+"1231","ncbi","153","Anagallis arvensis"
+"1232","ncbi","576","Centaurea raphanina"
+"1233","ncbi","1994","Oxalis pes-caprae"
+"1234","ncbi","275","Asparagus acutifolius"
+"1235","ncbi","2518","Sarcopoterium spinosum"
+"1236","ncbi","856","Daphne gnidium"
+"1237","ncbi","1580","Lavandula stoechas"
+"1238","ncbi","466","Calluna vulgaris"
+"1239","ncbi","2459","Rubus ulmifolius"
+"1240","ncbi","679","Cistus libanotis"
+"1241","ncbi","1027","Erica ciliaris"
+"1242","ncbi","1291","Halimium halimifolium"
+"1243","ncbi","1897","Myrtus communis"
+"1244","ncbi","1978","Osyris quadripartita"
+"1245","ncbi","249","Armeria velutina"
+"1246","ncbi","2438","Salvia rosmarinus"
+"1247","ncbi","2700","Smilax aspera"
+"1248","ncbi","276","Asparagus aphyllus"
+"1249","ncbi","2906","Thymus mastichina"
+"1250","ncbi","1290",NA
+"1251","ncbi","616","Chamaerops humilis"
+"1252","ncbi","1329",NA
+"1253","ncbi","2992","Ulex minor"
+"1254","ncbi","1312",NA
+"1255","ncbi","2786","Stauracanthus genistoides"
+"1256","ncbi","1681","Lonicera periclymenum"
+"1257","ncbi","2118","Phillyrea angustifolia"
+"1258","ncbi","2993","Ulex parviflorus"
+"1259","ncbi","849","Cytisus grandiflorus"
+"1260","ncbi","1578","Laurus azorica"
+"1261","ncbi","151","Anacyclus radiatus"
+"1262","ncbi","1230","Geranium canariense"
+"1263","ncbi","560","Cedronella canariensis"
+"1264","ncbi","1181","Galactites tomentosus"
+"1265","ncbi","164","Andryala pinnatifida"
+"1266","ncbi","981","Echium plantagineum"
+"1267","ncbi","49",NA
+"1268","ncbi","2346",NA
+"1269","ncbi","1025","Erica arborea"
+"1270","ncbi","2623",NA
+"1271","ncbi","2370","Raphanus raphanistrum"
+"1272","ncbi","2738",NA
+"1273","ncbi","95","Aichryson laxum"
+"1274","ncbi","680","Cistus monspeliensis"
+"1275","ncbi","2741","Sonchus tenerrimus"
+"1276","ncbi","1426","Hypericum grandifolium"
+"1277","ncbi","1591","Leontodon taraxacoides"
+"1278","ncbi","2149","Picconia excelsa"
+"1279","ncbi","2310",NA
+"1280","ncbi","523","Carduus tenuiflorus"
+"1281","ncbi","204",NA
+"1282","ncbi","234",NA
+"1283","ncbi","1458",NA
+"1284","ncbi","3113","Viola riviniana"
+"1285","ncbi","2384","Rhamnus glandulosa"
+"1286","ncbi","2667","Silene gallica"
+"1287","ncbi","89",NA
+"1288","ncbi","1520","Jasione crispa"
+"1289","ncbi","1530","Jurinea humilis"
+"1290","ncbi","50","Adenocarpus hispanicus"
+"1291","ncbi","1216","Gentiana lutea"
+"1292","ncbi","1389",NA
+"1293","ncbi","247","Armeria caespitosa"
+"1294","ncbi","2591","Sedum brevifolium"
+"1295","ncbi","2617","Senecio pyrenaicus"
+"1296","ncbi","1613","Leucanthemopsis alpina"
+"1297","ncbi","2908","Thymus praecox"
+"1298","ncbi","2664","Silene ciliata"
+"1299","ncbi","1124","Euphrasia willkommii"
+"1300","ncbi","2735","Solidago virgaurea"
+"1301","ncbi","850","Cytisus oromediterraneus"
+"1302","ncbi","1375",NA
+"1303","ncbi","381",NA
+"1304","ncbi","1376",NA
+"1305","ncbi","2285",NA
+"1306","ncbi","2243","Potentilla gracilis"
+"1307","ncbi","2470",NA
+"1308","ncbi","1220","Gentiana parryi"
+"1309","ncbi","2886","Thalictrum fendleri"
+"1310","ncbi","2072",NA
+"1311","ncbi","1229","Geranium caespitosum"
+"1312","ncbi","2446","Rubus deliciosus"
+"1313","ncbi","2250","Potentilla pulcherrima"
+"1314","ncbi","2584","Scutellaria resinosa"
+"1315","ncbi","2078",NA
+"1316","ncbi","2096",NA
+"1317","ncbi","1396",NA
+"1318","ncbi","550",NA
+"1319","ncbi","615",NA
+"1320","ncbi","1453",NA
+"1321","ncbi","2424","Rosa acicularis"
+"1322","ncbi","2080",NA
+"1323","ncbi","521",NA
+"1324","ncbi","2075","Penstemon secundiflorus"
+"1325","ncbi","1952",NA
+"1326","ncbi","2079",NA
+"1327","ncbi","1039",NA
+"1328","ncbi","875",NA
+"1329","ncbi","2595","Sedum stenopetalum"
+"1330","ncbi","470","Caltha leptosepala"
+"1331","ncbi","263",NA
+"1332","ncbi","1151","Frasera speciosa"
+"1333","ncbi","1801","Mertensia sibirica"
+"1334","ncbi","2660",NA
+"1335","ncbi","1236",NA
+"1336","ncbi","2895","Thermopsis montana"
+"1337","ncbi","486","Campanula rotundifolia"
+"1338","ncbi","467",NA
+"1339","ncbi","321",NA
+"1340","ncbi","1061","Erysimum asperum"
+"1341","ncbi","2458",NA
+"1342","ncbi","2782",NA
+"1343","ncbi","498",NA
+"1344","ncbi","2297","Prunus virginiana"
+"1345","ncbi","1800","Mertensia pratensis"
+"1346","ncbi","2661",NA
+"1347","ncbi","38","Aconitum columbianum"
+"1348","ncbi","2107","Phacelia heterophylla"
+"1349","ncbi","2232","Drymocallis arguta"
+"1350","ncbi","208","Aquilegia coerulea"
+"1351","ncbi","1519","Jamesia americana"
+"1352","ncbi","2097","Dalea purpurea"
+"1353","ncbi","2061","Pedicularis parryi"
+"1354","ncbi","645","Heterotheca villosa"
+"1355","ncbi","294","Symphyotrichum foliaceum"
+"1356","ncbi","861",NA
+"1357","ncbi","2076",NA
+"1358","ncbi","2951","Trifolium dasyphyllum"
+"1359","ncbi","1560",NA
+"1360","ncbi","266","Asclepias speciosa"
+"1361","ncbi","2062","Pedicularis racemosa"
+"1362","ncbi","2143","Physaria didymocarpa"
+"1363","ncbi","115",NA
+"1364","ncbi","2206","Bistorta officinalis"
+"1365","ncbi","1752",NA
+"1366","ncbi","1794","Mentzelia multiflora"
+"1367","ncbi","1494","Iris missouriensis"
+"1368","ncbi","1573",NA
+"1369","ncbi","3024","Valeriana edulis"
+"1370","ncbi","964","Drymocallis fissa"
+"1371","ncbi","1255","Ipomopsis aggregata"
+"1372","ncbi","993","Pedicularis groenlandica"
+"1373","ncbi","1967","Oreochrysum parryi"
+"1374","ncbi","1946",NA
+"1375","ncbi","217",NA
+"1376","ncbi","700","Cleomella serrulata"
+"1377","ncbi","1146","Fragaria vesca"
+"1378","ncbi","698",NA
+"1379","ncbi","2010",NA
+"1380","ncbi","946","Draba aurea"
+"1381","ncbi","1045","Erigeron uniflorus"
+"1382","ncbi","205","Aquilegia brevistyla"
+"1383","ncbi","223",NA
+"1384","ncbi","2669",NA
+"1385","ncbi","1189","Galium boreale"
+"1386","ncbi","1321","Helianthus petiolaris"
+"1387","ncbi","2292",NA
+"1388","ncbi","2962","Trillium undulatum"
+"1389","ncbi","772","Cornus canadensis"
+"1390","ncbi","1742","Maianthemum canadense"
+"1391","ncbi","1993","Oxalis montana"
+"1392","ncbi","1650","Linnaea borealis"
+"1393","ncbi","718","Clintonia borealis"
+"1394","ncbi","219","Aralia nudicaulis"
+"1395","ncbi","2947","Trientalis borealis"
+"1396","ncbi","624","Chimaphila umbellata"
+"1397","ncbi","2331","Orthilia secunda"
+"1398","ncbi","845","Cypripedium acaule"
+"1399","ncbi","1761","Medeola virginiana"
+"1400","ncbi","197",NA
+"1401","ncbi","621","Chassalia petrinensis"
+"1402","ncbi","956","Dracaena reflexa"
+"1403","ncbi","942","Doratoxylon apetalum"
+"1404","ncbi","2170",NA
+"1405","ncbi","2020",NA
+"1406","ncbi","1207","Geniostoma borbonicum"
+"1407","ncbi","2656","Sideroxylon cinereum"
+"1408","ncbi","3151","Xysmalobium gerrardii"
+"1409","ncbi","2009","Pachycarpus natalensis"
+"1410","ncbi","262","Asclepias cucullata"
+"1411","ncbi","2688","Sisyranthus trichostomus"
+"1412","ncbi","3152","Xysmalobium involucratum"
+"1413","ncbi","283","Aspidonepsis diploglossa"
+"1414","ncbi","271","Asclepias woodii"
+"1415","ncbi","1840","Miraglossum verticillare"
+"1416","ncbi","1839","Miraglossum pilosum"
+"1417","ncbi","191","Anthriscus aemula"
+"1418","ncbi","438",NA
+"1419","ncbi","2293","Prunus salicina"
+"1420","ncbi","1403",NA
+"1421","ncbi","1603","Lespedeza bicolor"
+"1422","ncbi","2287","Prunus incisa"
+"1423","ncbi","2946","Tricyrtis hirta"
+"1424","ncbi","2826","Cornus controversa"
+"1425","ncbi","1723","Lysimachia clethroides"
+"1426","ncbi","737","Commelina communis"
+"1427","ncbi","2092","Persicaria senticosa"
+"1428","ncbi","2659","Sigesbeckia orientalis"
+"1429","ncbi","2408","Toxicodendron trichocarpum"
+"1430","ncbi","2482","Salix gracilistyla"
+"1431","ncbi","2454","Rubus parvifolius"
+"1432","ncbi","1739","Magnolia salicifolia"
+"1433","ncbi","2113","Phellodendron amurense"
+"1434","ncbi","779",NA
+"1435","ncbi","258","Aruncus dioicus"
+"1436","ncbi","546","Castanea crenata"
+"1437","ncbi","3116","Viola vaginata"
+"1438","ncbi","167","Anemone flaccida"
+"1439","ncbi","2286","Prunus grayana"
+"1440","ncbi","2451",NA
+"1441","ncbi","3102","Viola kusanoana"
+"1442","ncbi","2768","Spuriopimpinella nikoensis"
+"1443","ncbi","2450","Rubus illecebrosus"
+"1444","ncbi","1019","Epimedium grandiflorum"
+"1445","ncbi","663",NA
+"1446","ncbi","52","Adenocaulon himalaicum"
+"1447","ncbi","1087",NA
+"1448","ncbi","2201",NA
+"1449","ncbi","79","Aesculus turbinata"
+"1450","ncbi","1992","Oxalis griffithii"
+"1451","ncbi","531","Tripora divaricata"
+"1452","ncbi","330","Aucuba japonica"
+"1453","ncbi","361",NA
+"1454","ncbi","529","Carpesium divaricatum"
+"1455","ncbi","2101","Petasites japonicus"
+"1456","ncbi","2431","Rosa multiflora"
+"1457","ncbi","715","Clinopodium micranthum"
+"1458","ncbi","662","Cirsium japonicum"
+"1459","ncbi","2500","Salvia glabrescens"
+"1460","ncbi","2967","Tripterospermum japonicum"
+"1461","ncbi","936","Disporum sessile"
+"1462","ncbi","21","Acer rufinerve"
+"1463","ncbi","3100","Viola grypoceras"
+"1464","ncbi","188","Persicaria filiformis"
+"1465","ncbi","96","Ainsliaea acerifolia"
+"1466","ncbi","1896","Myrteola nummularia"
+"1467","ncbi","1077","Eucryphia cordifolia"
+"1468","ncbi","1702","Luma apiculata"
+"1469","ncbi","2388","Rhaphithamnus spinosus"
+"1470","ncbi","1886",NA
+"1471","ncbi","142","Amomyrtus meli"
+"1472","ncbi","141","Amomyrtus luma"
+"1473","ncbi","2873","Metrosideros stipularis"
+"1474","ncbi","1254","Gevuina avellana"
+"1475","ncbi","1841","Mitraria coccinea"
+"1476","ncbi","1887","Myrceugenia parvifolia"
+"1477","ncbi","2990","Ugni molinae"
+"1478","ncbi","1412","Hydrangea serratifolia"
+"1479","ncbi","1888","Myrceugenia planipes"
+"1480","ncbi","363","Berberis buxifolia"
+"1481","ncbi","1708","Luzuriaga radicans"
+"1482","ncbi","1982",NA
+"1483","ncbi","459","Caldcluvia paniculata"
+"1484","ncbi","152","Anagallis alternifolia"
+"1485","ncbi","313","Asteranthera ovata"
+"1486","ncbi","999","Embothrium coccineum"
+"1487","ncbi","364","Berberis darwinii"
+"1488","ncbi","1203","Gaultheria phillyreifolia"
+"1489","ncbi","1707","Luzuriaga polyphylla"
+"1490","ncbi","2989","Ugni candollei"
+"1491","ncbi","1202","Gaultheria mucronata"
+"1492","ncbi","3017","Vaccinium myrtilloides"
+"1493","ncbi","1585","Rhododendron groenlandicum"
+"1494","ncbi","1536","Kalmia angustifolia"
+"1495","ncbi","254","Aronia melanocarpa"
+"1496","ncbi","2698","Maianthemum trifolium"
+"1497","ncbi","1206","Gaylussacia baccata"
+"1498","ncbi","1909",NA
+"1499","ncbi","613","Chamaedaphne calyculata"
+"1500","ncbi","2759","Spiraea alba"
+"1501","ncbi","2480","Salix fragilis"
+"1502","ncbi","160",NA
+"1503","ncbi","1537","Kalmia polifolia"
+"1504","ncbi","469",NA
+"1505","ncbi","1388","Hieracium umbellatum"
+"1506","ncbi","2821","Succisa pratensis"
+"1507","ncbi","1029","Erica tetralix"
+"1508","ncbi","1436","Hypochaeris radicata"
+"1509","ncbi","2488","Salix repens"
+"1510","ncbi","1008","Chamaenerion angustifolium"
+"1511","ncbi","252","Arnica montana"
+"1512","ncbi","1380","Pilosella officinarum"
+"1513","ncbi","3018","Vaccinium myrtillus"
+"1514","ncbi","2478","Salix cinerea"
+"1515","ncbi","1209","Genista anglica"
+"1516","ncbi","1194","Galium saxatile"
+"1517","ncbi","2948","Trientalis europaea"
+"1518","ncbi","2870",NA
+"1519","ncbi","851","Cytisus scoparius"
+"1520","ncbi","3022","Vaccinium vitis-idaea"
+"1521","ncbi","2746",NA
+"1522","ncbi","1210","Genista pilosa"
+"1523","ncbi","1184",NA
+"1524","ncbi","1387",NA
+"1525","ncbi","1542","Knautia arvensis"
+"1526","ncbi","1001","Empetrum nigrum"
+"1527","ncbi","2291","Prunus padus"
+"1528","ncbi","2575",NA
+"1529","ncbi","1615","Leucanthemum vulgare"
+"1530","ncbi","3086","Vicia sativa"
+"1531","ncbi","2952","Trifolium dubium"
+"1532","ncbi","2174","Plantago lanceolata"
+"1533","ncbi","1685","Lotus corniculatus"
+"1534","ncbi","574","Centaurea nigra"
+"1535","ncbi","657","Cirsium arvense"
+"1536","ncbi","2477","Salix aurita"
+"1537","ncbi","135","Lobularia maritima"
+"1538","ncbi","2742",NA
+"1539","ncbi","2901",NA
+"1540","ncbi","80",NA
+"1541","ncbi","1569",NA
+"1542","ncbi","1102",NA
+"1543","ncbi","3013",NA
+"1544","ncbi","678","Cistus albidus"
+"1545","ncbi","1653",NA
+"1546","ncbi","3078",NA
+"1547","ncbi","943",NA
+"1548","ncbi","3002",NA
+"1549","ncbi","2999",NA
+"1550","ncbi","879",NA
+"1551","ncbi","3000",NA
+"1552","ncbi","3001",NA
+"1553","ncbi","878","Dendropanax arboreus"
+"1554","ncbi","1811",NA
+"1555","ncbi","2752","Spermacoce assurgens"
+"1556","ncbi","2102",NA
+"1557","ncbi","3005",NA
+"1558","ncbi","3008",NA
+"1559","ncbi","2998",NA
+"1560","ncbi","2225","Portlandia grandiflora"
+"1561","ncbi","3004",NA
+"1562","ncbi","2154",NA
+"1563","ncbi","432",NA
+"1564","ncbi","3009",NA
+"1565","ncbi","386","Blakea trinervia"
+"1566","ncbi","1468","Impatiens walleriana"
+"1567","ncbi","2153",NA
+"1568","ncbi","3006",NA
+"1569","ncbi","2305",NA
+"1570","ncbi","1280",NA
+"1571","ncbi","68",NA
+"1572","ncbi","2937","Tradescantia zebrina"
+"1573","ncbi","1907","Damburneya coriacea"
+"1574","ncbi","3129",NA
+"1575","ncbi","2039",NA
+"1576","ncbi","3003",NA
+"1577","ncbi","2736",NA
+"1578","ncbi","649","Actaea simplex"
+"1579","ncbi","1141",NA
+"1580","ncbi","3067",NA
+"1581","ncbi","1749","Malus sieboldii"
+"1582","ncbi","2613","Senecio nemorensis"
+"1583","ncbi","1086","Euonymus macropterus"
+"1584","ncbi","2887",NA
+"1585","ncbi","94","Agrostis clavata"
+"1586","ncbi","212","Arabis hirsuta"
+"1587","ncbi","1983","Oxalis acetosella"
+"1588","ncbi","2290","Prunus nipponica"
+"1589","ncbi","2636",NA
+"1590","ncbi","1120","Euphrasia maximowiczii"
+"1591","ncbi","1678","Lonicera alpigena"
+"1592","ncbi","206","Aquilegia buergeriana"
+"1593","ncbi","2974","Trollius hondoensis"
+"1594","ncbi","840","Cynanchum ascyrifolium"
+"1595","ncbi","2330","Pyrola incarnata"
+"1596","ncbi","2861",NA
+"1597","ncbi","2456","Rubus pungens"
+"1598","ncbi","3070","Viburnum furcatum"
+"1599","ncbi","2116","Philadelphus satsumi"
+"1600","ncbi","2350","Ranunculus japonicus"
+"1601","ncbi","1499","Iris sanguinea"
+"1602","ncbi","2063","Pedicularis resupinata"
+"1603","ncbi","3072","Viburnum opulus"
+"1604","ncbi","1091",NA
+"1605","ncbi","1233",NA
+"1606","ncbi","23","Acer shirasawanum"
+"1607","ncbi","2841",NA
+"1608","ncbi","1628","Libanotis coreana"
+"1609","ncbi","2602","Jacobaea cannabifolia"
+"1610","ncbi","3036",NA
+"1611","ncbi","989",NA
+"1612","ncbi","19","Acer japonicum"
+"1613","ncbi","3137","Weigela decora"
+"1614","ncbi","713",NA
+"1615","ncbi","1145","Fragaria nipponica"
+"1616","ncbi","2186",NA
+"1617","ncbi","214",NA
+"1618","ncbi","904",NA
+"1619","ncbi","660",NA
+"1620","ncbi","1003","Enkianthus campanulatus"
+"1621","ncbi","24","Acer ukurunduense"
+"1622","ncbi","154","Anaphalis margaritacea"
+"1623","ncbi","2745","Sorbus commixta"
+"1624","ncbi","614","Chamaenerion angustifolium"
+"1625","ncbi","1710",NA
+"1626","ncbi","1630","Ligularia dentata"
+"1627","ncbi","2422","Rodgersia podophylla"
+"1628","ncbi","439",NA
+"1629","ncbi","2544","Scabiosa japonica"
+"1630","ncbi","2449",NA
+"1631","ncbi","2200","Polygonatum lasianthum"
+"1632","ncbi","40",NA
+"1633","ncbi","25","Achillea alpina"
+"1634","ncbi","2590","Phedimus aizoon"
+"1635","ncbi","846","Cypripedium guttatum"
+"1636","ncbi","2289","Prunus maximowiczii"
+"1637","ncbi","2400","Rhododendron wadanum"
+"1638","ncbi","2240","Potentilla freyniana"
+"1639","ncbi","436",NA
+"1640","ncbi","484","Campanula punctata"
+"1641","ncbi","2417","Ribes maximowiczianum"
+"1642","ncbi","1400","Hosta sieboldiana"
+"1643","ncbi","1283","Gymnadenia conopsea"
+"1644","ncbi","2328","Pyrola alpina"
+"1645","ncbi","56","Adenophora triphylla"
+"1646","ncbi","2043",NA
+"1647","ncbi","2151",NA
+"1648","ncbi","3037","Veratrum maackii"
+"1649","ncbi","44","Aconitum senanense"
+"1650","ncbi","1795","Menziesia pentandra"
+"1651","ncbi","2301","Pseudostellaria heterantha"
+"1652","ncbi","2391","Rhododendron degronianum"
+"1653","ncbi","1399","Hosta sieboldii"
+"1654","ncbi","2093","Persicaria sieboldii"
+"1655","ncbi","2237","Potentilla egedei"
+"1656","ncbi","1721",NA
+"1657","ncbi","2616","Tephroseris pierotii"
+"1658","ncbi","1511",NA
+"1659","ncbi","1129",NA
+"1660","ncbi","1093","Eupatorium lindleyanum"
+"1661","ncbi","1413","Hydrocharis dubia"
+"1662","ncbi","1729","Lythrum salicaria"
+"1663","ncbi","2474","Sagittaria trifolia"
+"1664","ncbi","1863",NA
+"1665","ncbi","1500",NA
+"1666","ncbi","2131","Phragmites australis"
+"1667","ncbi","1853","Monochoria vaginalis"
+"1668","ncbi","1533","Justicia procumbens"
+"1669","ncbi","514",NA
+"1670","ncbi","2571","Schoenoplectus triqueter"
+"1671","ncbi","2987","Typha angustifolia"
+"1672","ncbi","2862","Taraxacum japonicum"
+"1673","ncbi","1936","Oenanthe javanica"
+"1674","ncbi","1644",NA
+"1675","ncbi","1587",NA
+"1676","ncbi","1724","Lysimachia fortunei"
+"1677","ncbi","2501","Salvia japonica"
+"1678","ncbi","2714","Solanum melongena"
+"1679","ncbi","2271",NA
+"1680","ncbi","1852","Monochoria korsakowii"
+"1681","ncbi","2090",NA
+"1682","ncbi","1930","Nymphaea x marliacea"
+"1683","ncbi","2088",NA
+"1684","ncbi","1504","Isachne globosa"
+"1685","ncbi","105","Alisma canaliculatum"
+"1686","ncbi","2317",NA
+"1687","ncbi","1868","Murdannia keisak"
+"1688","ncbi","1551","Lactuca indica"
+"1689","ncbi","107",NA
+"1690","ncbi","671",NA
+"1691","ncbi","1697",NA
+"1692","ncbi","72","Aeschynomene indica"
+"1693","ncbi","1649","Lindernia procumbens"
+"1694","ncbi","1425","Hypericum erectum"
+"1695","ncbi","2432",NA
+"1696","ncbi","1602","Leptospermum scoparium"
+"1697","ncbi","1302","Veronica subalpina"
+"1698","ncbi","2366","Raoulia grandiflora"
+"1699","ncbi","569",NA
+"1700","ncbi","1300","Veronica pinguifolia"
+"1701","ncbi","1382",NA
+"1702","ncbi","1193",NA
+"1703","ncbi","958","Dracophyllum pronum"
+"1704","ncbi","2261","Pratia angulata"
+"1705","ncbi","2262","Lobelia macrodon"
+"1706","ncbi","542",NA
+"1707","ncbi","1123","Euphrasia revoluta"
+"1708","ncbi","1298","Veronica epacridea"
+"1709","ncbi","941","Donatia novae-zelandiae"
+"1710","ncbi","564",NA
+"1711","ncbi","1016",NA
+"1712","ncbi","3127","Wahlenbergia albomarginata"
+"1713","ncbi","960",NA
+"1714","ncbi","3098","Viola cunninghamii"
+"1715","ncbi","2158","Pimelea traversii"
+"1716","ncbi","1332","Helichrysum selago"
+"1717","ncbi","2135","Phyllachne colensoi"
+"1718","ncbi","408",NA
+"1719","ncbi","2369","Raoulia subsericea"
+"1720","ncbi","783",NA
+"1721","ncbi","1865","Muehlenbeckia axillaris"
+"1722","ncbi","1433","Hypochaeris radicata"
+"1723","ncbi","35",NA
+"1724","ncbi","1192","Galium perpusillum"
+"1725","ncbi","785","Craspedia uniflora"
+"1726","ncbi","571",NA
+"1727","ncbi","1980","Ourisia caespitosa"
+"1728","ncbi","566",NA
+"1729","ncbi","1125",NA
+"1730","ncbi","1299","Veronica odora"
+"1731","ncbi","182","Anisotome aromatica"
+"1732","ncbi","1328","Anaphalioides bellidioides"
+"1733","ncbi","2026","Veronica decora"
+"1734","ncbi","2347","Ranunculus enysii"
+"1735","ncbi","1621","Leucogenes grandiceps"
+"1736","ncbi","1251",NA
+"1737","ncbi","570",NA
+"1738","ncbi","1217",NA
+"1739","ncbi","565","Celmisia gracilenta"
+"1740","ncbi","183",NA
+"1741","ncbi","568",NA
+"1742","ncbi","2618",NA
+"1743","ncbi","563",NA
+"1744","ncbi","1394","Hoheria glabrata"
+"1745","ncbi","2600",NA
+"1746","ncbi","541",NA
+"1747","ncbi","1214",NA
+"1748","ncbi","2599",NA
+"1749","ncbi","562","Celmisia armstrongii"
+"1750","ncbi","2027",NA
+"1751","ncbi","2351",NA
+"1752","ncbi","1981","Ourisia macrocarpa"
+"1753","ncbi","1301","Veronica salicifolia"
+"1754","ncbi","982","Echium vulgare"
+"1755","ncbi","959",NA
+"1756","ncbi","777","Corokia cotoneaster"
+"1757","ncbi","933","Discaria toumatou"
+"1758","ncbi","37",NA
+"1759","ncbi","1297",NA
+"1760","ncbi","1944","Olearia virgata"
+"1761","ncbi","540",NA
+"1762","ncbi","1866","Muehlenbeckia complexa"
+"1763","ncbi","528",NA
+"1764","ncbi","2157",NA
+"1765","ncbi","2433","Rosa eglanteria"
+"1766","ncbi","1508","Isotoma fluviatilis"
+"1767","ncbi","2231","Potentilla anserina"
+"1768","ncbi","2367",NA
+"1769","ncbi","2368",NA
+"1770","ncbi","1015",NA
+"1771","ncbi","3038",NA
+"1772","ncbi","411",NA
+"1773","ncbi","1705","Lupinus polyphyllus"
+"1774","ncbi","909","Digitalis purpurea"
+"1775","ncbi","1651","Linum catharticum"
+"1776","ncbi","2609",NA
+"1777","ncbi","1012","Epilobium montanum"
+"1778","ncbi","2965",NA
+"1779","ncbi","3082","Vicia hirsuta"
+"1780","ncbi","1774","Melilotus albus"
+"1781","ncbi","2774","Stachys sylvatica"
+"1782","ncbi","603","Chaerophyllum temulum"
+"1783","ncbi","641","Leucanthemum maximum"
+"1784","ncbi","2857","Tanacetum vulgare"
+"1785","ncbi","864","Daucus carota"
+"1786","ncbi","1562","Lapsana communis"
+"1787","ncbi","2356","Ranunculus repens"
+"1788","ncbi","70","Aegopodium podagraria"
+"1789","ncbi","588","Cerastium glomeratum"
+"1790","ncbi","1429","Hypericum perforatum"
+"1791","ncbi","2740","Sonchus palustris"
+"1792","ncbi","2737","Sonchus arvensis"
+"1793","ncbi","3054","Veronica agrestis"
+"1794","ncbi","1089","Eupatorium cannabinum"
+"1795","ncbi","116","Allium scorodoprasum"
+"1796","ncbi","1526","Juncus effusus"
+"1797","ncbi","474","Calystegia sepium"
+"1798","ncbi","112","Allium lusitanicum"
+"1799","ncbi","1121","Euphrasia officinalis"
+"1800","ncbi","520","Carduus defloratus"
+"1801","ncbi","2545","Scabiosa lucida"
+"1802","ncbi","1636","Ligusticum mutellina"
+"1803","ncbi","2352","Ranunculus montanus"
+"1804","ncbi","2596","Jacobaea abrotanifolia"
+"1805","ncbi","487","Campanula scheuchzeri"
+"1806","ncbi","1589","Leontodon hispidus"
+"1807","ncbi","195","Anthyllis vulneraria"
+"1808","ncbi","2145","Phyteuma orbiculare"
+"1809","ncbi","426","Buphthalmum salicifolium"
+"1810","ncbi","1314","Helianthemum nummularium"
+"1811","ncbi","373","Stachys alopecuros"
+"1812","ncbi","291","Aster bellidiastrum"
+"1813","ncbi","2273","Primula farinosa"
+"1814","ncbi","1351","Heracleum austriacum"
+"1815","ncbi","1225","Gentianella aspera"
+"1816","ncbi","26","Achillea clavennae"
+"1817","ncbi","601","Chaerophyllum hirsutum"
+"1818","ncbi","1378",NA
+"1819","ncbi","382","Biscutella laevigata"
+"1820","ncbi","1038",NA
+"1821","ncbi","1383",NA
+"1822","ncbi","2233","Potentilla aurea"
+"1823","ncbi","1242","Geranium sylvaticum"
+"1824","ncbi","1384",NA
+"1825","ncbi","1427","Hypericum maculatum"
+"1826","ncbi","2389","Rhinanthus glacialis"
+"1827","ncbi","1286","Gypsophila repens"
+"1828","ncbi","161","Androsace chamaejasme"
+"1829","ncbi","1186","Galium album"
+"1830","ncbi","2176","Plantago media"
+"1831","ncbi","2272","Primula auricula"
+"1832","ncbi","792","Crepis aurea"
+"1833","ncbi","33","Clinopodium alpinum"
+"1834","ncbi","1381","Hieracium pilosum"
+"1835","ncbi","526","Carlina acaulis"
+"1836","ncbi","1882","Myosotis alpestris"
+"1837","ncbi","1592","Leontopodium alpinum"
+"1838","ncbi","1385",NA
+"1839","ncbi","1768",NA
+"1840","ncbi","585","Cerastium arcticum"
+"1841","ncbi","944","Draba arctica"
+"1842","ncbi","725","Cochlearia groenlandica"
+"1843","ncbi","2246","Potentilla hyparctica"
+"1844","ncbi","248","Armeria scabra"
+"1845","ncbi","2535","Micranthes nivalis"
+"1846","ncbi","950","Draba lactea"
+"1847","ncbi","230","Arenaria pseudofrigida"
+"1848","ncbi","2866","Taraxacum phymatocarpum"
+"1849","ncbi","2532","Saxifraga cernua"
+"1850","ncbi","2057","Pedicularis hirsuta"
+"1851","ncbi","2364","Ranunculus sulphureus"
+"1852","ncbi","251","Arnica angustifolia"
+"1853","ncbi","963",NA
+"1854","ncbi","2024",NA
+"1855","ncbi","1014",NA
+"1856","ncbi","2491",NA
+"1857","ncbi","2253",NA
+"1858","ncbi","1712",NA
+"1859","ncbi","947","Draba bellii"
+"1860","ncbi","416",NA
+"1861","ncbi","2800",NA
+"1862","ncbi","1064",NA
+"1863","ncbi","2538",NA
+"1864","ncbi","2066",NA
+"1865","ncbi","2868",NA
+"1866","ncbi","2533","Saxifraga flagellaris"
+"1867","ncbi","253",NA
+"1868","ncbi","1043",NA
+"1869","ncbi","951","Draba oblongata"
+"1870","ncbi","2671",NA
+"1871","ncbi","948","Draba cinerea"
+"1872","ncbi","2481","Salix glauca"
+"1873","ncbi","2058","Pedicularis lapponica"
+"1874","ncbi","2793",NA
+"1875","ncbi","2540",NA
+"1876","ncbi","2922","Tofieldia pusilla"
+"1877","ncbi","316","Astragalus agrestis"
+"1878","ncbi","854","Dalea purpurea"
+"1879","ncbi","2834","Symphyotrichum laeve"
+"1880","ncbi","2830","Symphoricarpos occidentalis"
+"1881","ncbi","855","Dalea villosa"
+"1882","ncbi","145","Amorpha nana"
+"1883","ncbi","3080","Vicia americana"
+"1884","ncbi","2832",NA
+"1885","ncbi","2425","Rosa arkansana"
+"1886","ncbi","2068","Pediomelum argophyllum"
+"1887","ncbi","2833","Symphyotrichum ericoides"
+"1888","ncbi","2835","Symphyotrichum sericeum"
+"1889","ncbi","1037","Erigeron glabellus"
+"1890","ncbi","1363",NA
+"1891","ncbi","1625","Liatris ligulistylis"
+"1892","ncbi","2727","Solidago ptarmicoides"
+"1893","ncbi","3158","Zizia aptera"
+"1894","ncbi","1324",NA
+"1895","ncbi","1319","Helianthus maximiliani"
+"1896","ncbi","2014",NA
+"1897","ncbi","1756","Manihot tripartita"
+"1898","ncbi","1185",NA
+"1899","ncbi","1023","Erechtites hieraciifolius"
+"1900","ncbi","32","Achyrocline satureioides"
+"1901","ncbi","2755",NA
+"1902","ncbi","1052","Eriotheca gracilipes"
+"1903","ncbi","2562","Schefflera vinosa"
+"1904","ncbi","816",NA
+"1905","ncbi","1488",NA
+"1906","ncbi","1995",NA
+"1907","ncbi","1076","Erythroxylum suberosum"
+"1908","ncbi","2694","Sisyrinchium vaginatum"
+"1909","ncbi","1444","Hyptis ferruginosa"
+"1910","ncbi","2497","Salvia cerradicola"
+"1911","ncbi","811",NA
+"1912","ncbi","637","Chromolaena squalida"
+"1913","ncbi","109","Allagoptera campestris"
+"1914","ncbi","1610",NA
+"1915","ncbi","634",NA
+"1916","ncbi","1818","Mikania cordifolia"
+"1917","ncbi","749","Conyza bonariensis"
+"1918","ncbi","1179","Galactia martii"
+"1919","ncbi","1598","Lepidaploa salzmannii"
+"1920","ncbi","817",NA
+"1921","ncbi","1454",NA
+"1922","ncbi","1134",NA
+"1923","ncbi","1450","Hyptis villosa"
+"1924","ncbi","2635",NA
+"1925","ncbi","1115","Euphorbia potentilloides"
+"1926","ncbi","1271","Gomphrena macrocephala"
+"1927","ncbi","2281","Protium ovatum"
+"1928","ncbi","1609","Lessingianthus bardanoides"
+"1929","ncbi","3052",NA
+"1930","ncbi","635",NA
+"1931","ncbi","2263","Praxelis clematidea"
+"1932","ncbi","826","Cuphea linarioides"
+"1933","ncbi","2165","Piptocarpha rotundifolia"
+"1934","ncbi","1024","Eremanthus mattogrossensis"
+"1935","ncbi","813",NA
+"1936","ncbi","2420","Riencourtia oblongifolia"
+"1937","ncbi","920","Diospyros hispida"
+"1938","ncbi","1439","Hyptis alutacea"
+"1939","ncbi","636",NA
+"1940","ncbi","462",NA
+"1941","ncbi","1755","Mandevilla pohliana"
+"1942","ncbi","172","Anemopaegma acutifolium"
+"1943","ncbi","994","Elephantopus micropappus"
+"1944","ncbi","2264","Praxelis kleinioides"
+"1945","ncbi","1441","Cyanocephalus caprariifolius"
+"1946","ncbi","967","Duguetia furfuracea"
+"1947","ncbi","1828","Mimosa hebecarpa"
+"1948","ncbi","284",NA
+"1949","ncbi","2983",NA
+"1950","ncbi","2683","Siphanthera cordata"
+"1951","ncbi","3093",NA
+"1952","ncbi","533","Casearia decandra"
+"1953","ncbi","644",NA
+"1954","ncbi","421",NA
+"1955","ncbi","1361",NA
+"1956","ncbi","3130",NA
+"1957","ncbi","1094",NA
+"1958","ncbi","1487",NA
+"1959","ncbi","2373","Rauvolfia weddelliana"
+"1960","ncbi","853","Dalbergia cuiabensis"
+"1961","ncbi","631",NA
+"1962","ncbi","1071","Erythroxylum amazonicum"
+"1963","ncbi","1889","Myrcia bella"
+"1964","ncbi","632",NA
+"1965","ncbi","915",NA
+"1966","ncbi","914","Dimerostemma asperatum"
+"1967","ncbi","2815","Stryphnodendron obovatum"
+"1968","ncbi","2069","Peltodon pusillus"
+"1969","ncbi","1448",NA
+"1970","ncbi","460",NA
+"1971","ncbi","3125",NA
+"1972","ncbi","1455",NA
+"1973","ncbi","489","Campomanesia adamantium"
+"1974","ncbi","1611",NA
+"1975","ncbi","871","Deianira pallescens"
+"1976","ncbi","1826","Mimosa dolens"
+"1977","ncbi","490",NA
+"1978","ncbi","1449",NA
+"1979","ncbi","675","Cissus erosa"
+"1980","ncbi","1825","Mimosa claussenii"
+"1981","ncbi","805",NA
+"1982","ncbi","2257","Pouteria torta"
+"1983","ncbi","2194",NA
+"1984","ncbi","1133",NA
+"1985","ncbi","868","Davilla elliptica"
+"1986","ncbi","1890",NA
+"1987","ncbi","1832","Mimosa xanthocentra"
+"1988","ncbi","2681","Sipanea hispida"
+"1989","ncbi","185",NA
+"1990","ncbi","2382","Rhabdocaulon stenodontum"
+"1991","ncbi","1447",NA
+"1992","ncbi","1827","Mimosa gemmulata"
+"1993","ncbi","674","Cissampelos ovalifolia"
+"1994","ncbi","2925","Tontelea micrantha"
+"1995","ncbi","1891","Myrcia torta"
+"1996","ncbi","2306",NA
+"1997","ncbi","1979","Ouratea floribunda"
+"1998","ncbi","885","Desmodium barbatum"
+"1999","ncbi","1880","Ixora parviflora"
+"2000","ncbi","2303","Psidium cattleyanum"
+"2001","ncbi","1397","Homalanthus populifolius"
+"2002","ncbi","42","Aconitum napellus"
+"2003","ncbi","1398","Homogyne alpina"
+"2004","ncbi","1398","Homogyne alpina"
+"2005","ncbi","1398","Homogyne alpina"
+"2006","ncbi","57","Adenostyles alliariae"
+"2007","ncbi","2345","Ranunculus alpestris"
+"2008","ncbi","1543","Knautia dipsacifolia"
+"2009","ncbi","1310",NA
+"2010","ncbi","81","Aethusa cynapium"
+"2011","ncbi","793","Crepis capillaris"
+"2012","ncbi","697","Clematis vitalba"
+"2013","ncbi","91","Agrimonia eupatoria"
+"2014","ncbi","617","Chamaenerion angustifolium"
+"2015","ncbi","1588","Scorzoneroides autumnalis"
+"2016","ncbi","2447","Rubus plicatus"
+"2017","ncbi","1590","Leontodon saxatilis"
+"2018","ncbi","3031","Valeriana saxatilis"
+"2019","ncbi","481","Campanula cochleariifolia"
+"2020","ncbi","2530","Saxifraga caesia"
+"2021","ncbi","309",NA
+"2022","ncbi","1226","Gentianopsis ciliata"
+"2023","ncbi","1026","Erica carnea"
+"2024","ncbi","2923","Chlorocrepis staticifolia"
+"2025","ncbi","1262","Globularia cordifolia"
+"2026","ncbi","1377","Hieracium bifidum"
+"2027","ncbi","1223","Gentiana verna"
+"2028","ncbi","1379","Hieracium glaucum"
+"2029","ncbi","2189","Polygala chamaebuxus"
+"2030","ncbi","2921","Tofieldia calyculata"
+"2031","ncbi","192","Anthriscus nitida"
+"2032","ncbi","3028","Valeriana montana"
+"2033","ncbi","3053",NA
+"2034","ncbi","612",NA
+"2035","ncbi","1282","Guettarda scabra"
+"2036","ncbi","761","Cordia martinicensis"
+"2037","ncbi","807","Croton flavens"
+"2038","ncbi","3134",NA
+"2039","ncbi","765",NA
+"2040","ncbi","3136","Sphagneticola trilobata"
+"2041","ncbi","1490","Ipomoea tiliacea"
+"2042","ncbi","776","Cornutia pyramidata"
+"2043","ncbi","1823","Mimosa casta"
+"2044","ncbi","3007",NA
+"2045","ncbi","1813","Miconia striata"
+"2046","ncbi","724",NA
+"2047","ncbi","1935",NA
+"2048","ncbi","464","Calliandra tergemina"
+"2049","ncbi","1557","Lantana involucrata"
+"2050","ncbi","1990","Oxalis frutescens"
+"2051","ncbi","1700","Ludwigia octovalvis"
+"2052","ncbi","2015","Palicourea crocea"
+"2053","ncbi","1273",NA
+"2054","ncbi","433","Byrsonima spicata"
+"2055","ncbi","858","Daphnopsis americana"
+"2056","ncbi","581","Centrosema virginianum"
+"2057","ncbi","884","Desmodium adscendens"
+"2058","ncbi","1984","Oxalis barrelieri"
+"2059","ncbi","2878","Tetrazygia angustifolia"
+"2060","ncbi","2811","Stigmaphyllon diversifolium"
+"2061","ncbi","2120","Philoxerus vermicularis"
+"2062","ncbi","1859","Morinda royoc"
+"2063","ncbi","429","Bursera simaruba"
+"2064","ncbi","239","Argythamnia candicans"
+"2065","ncbi","742","Conocarpus erectus"
+"2066","ncbi","3049","Cyanthillium cinereum"
+"2067","ncbi","985","Ehretia tinifolia"
+"2068","ncbi","676",NA
+"2069","ncbi","1131","Evolvulus nummularius"
+"2070","ncbi","2758","Spilanthes urens"
+"2071","ncbi","2984","Turnera ulmifolia"
+"2072","ncbi","1477","Ipomoea indica"
+"2073","ncbi","539",NA
+"2074","ncbi","2168","Piscidia piscipula"
+"2075","ncbi","401",NA
+"2076","ncbi","1778","Melochia nodiflora"
+"2077","ncbi","1797","Camonea umbellata"
+"2078","ncbi","1819","Mikania micrantha"
+"2079","ncbi","756","Cordia gerascanthus"
+"2080","ncbi","1471","Indigofera tinctoria"
+"2081","ncbi","804","Crotalaria verrucosa"
+"2082","ncbi","388","Ruellia blechum"
+"2083","ncbi","2778","Stachytarpheta jamaicensis"
+"2084","ncbi","1095","Chromolaena odorata"
+"2085","ncbi","2899","Thunbergia fragrans"
+"2086","ncbi","2713","Solanum havanense"
+"2087","ncbi","425",NA
+"2088","ncbi","757",NA
+"2089","ncbi","763","Cordia sebestena"
+"2090","ncbi","536","Senna occidentalis"
+"2091","ncbi","132","Alternanthera ficoidea"
+"2092","ncbi","2520",NA
+"2093","ncbi","2138","Physalis angulata"
+"2094","ncbi","3011",NA
+"2095","ncbi","1110","Euphorbia heterophylla"
+"2096","ncbi","755",NA
+"2097","ncbi","2710","Solanum erianthum"
+"2098","ncbi","272",NA
+"2099","ncbi","404","Bourreria succulenta"
+"2100","ncbi","2719","Solanum torvum"
+"2101","ncbi","354","Bauhinia divaricata"
+"2102","ncbi","1517","Jacquinia arborea"
+"2103","ncbi","500",NA
+"2104","ncbi","420","Broughtonia sanguinea"
+"2105","ncbi","331","Avicennia germinans"
+"2106","ncbi","504","Capraria biflora"
+"2107","ncbi","1111","Euphorbia hyssopifolia"
+"2108","ncbi","430",NA
+"2109","ncbi","1281","Guazuma ulmifolia"
+"2110","ncbi","2638","Sesuvium portulacastrum"
+"2111","ncbi","1746","Malpighia glabra"
+"2112","ncbi","1830","Mimosa pudica"
+"2113","ncbi","2380","Rhabdadenia biflora"
+"2114","ncbi","1658","Phyla nodiflora"
+"2115","ncbi","2045","Paullinia pinnata"
+"2116","ncbi","434","Cabomba furcata"
+"2117","ncbi","1779",NA
+"2118","ncbi","971","Echinodorus grandiflorus"
+"2119","ncbi","14",NA
+"2120","ncbi","1445",NA
+"2121","ncbi","2850","Handroanthus aureus"
+"2122","ncbi","1478","Ipomoea carnea"
+"2123","ncbi","1698",NA
+"2124","ncbi","986","Eichhornia azurea"
+"2125","ncbi","1781",NA
+"2126","ncbi","1894",NA
+"2127","ncbi","1162","Funastrum clausum"
+"2128","ncbi","184",NA
+"2129","ncbi","677","Cissus spinosa"
+"2130","ncbi","987","Eichhornia crassipes"
+"2131","ncbi","2418","Richardia grandiflora"
+"2132","ncbi","2753","Borreria eryngioides"
+"2133","ncbi","431","Byrsonima cydoniifolia"
+"2134","ncbi","2516",NA
+"2135","ncbi","2810","Stigmaphyllon calcaratum"
+"2136","ncbi","1416",NA
+"2137","ncbi","801","Crotalaria micans"
+"2138","ncbi","1075",NA
+"2139","ncbi","1342","Heliotropium filiforme"
+"2140","ncbi","2756",NA
+"2141","ncbi","2311","Psychotria carthagenensis"
+"2142","ncbi","2136","Phyllanthus amarus"
+"2143","ncbi","1473","Inga vera"
+"2144","ncbi","2651",NA
+"2145","ncbi","2712","Solanum glaucophyllum"
+"2146","ncbi","181","Aniseia cernua"
+"2147","ncbi","723",NA
+"2148","ncbi","831",NA
+"2149","ncbi","2208",NA
+"2150","ncbi","830",NA
+"2151","ncbi","1132",NA
+"2152","ncbi","2198",NA
+"2153","ncbi","227",NA
+"2154","ncbi","818",NA
+"2155","ncbi","751","Corchorus hirtus"
+"2156","ncbi","71","Aeschynomene histrix"
+"2157","ncbi","2874","Teramnus volubilis"
+"2158","ncbi","739",NA
+"2159","ncbi","1696",NA
+"2160","ncbi","1532",NA
+"2161","ncbi","1288",NA
+"2162","ncbi","2038","Passiflora misera"
+"2163","ncbi","3090","Vigna lasiocarpa"
+"2164","ncbi","1815",NA
+"2165","ncbi","2192",NA
+"2166","ncbi","2372","Rauvolfia ligustrina"
+"2167","ncbi","580",NA
+"2168","ncbi","2629",NA
+"2169","ncbi","1059","Eryngium ebracteatum"
+"2170","ncbi","2203",NA
+"2171","ncbi","345","Baillonia amabilis"
+"2172","ncbi","1336","Helicteres guazumifolia"
+"2173","ncbi","1470",NA
+"2174","ncbi","1208","Genipa americana"
+"2175","ncbi","2631","Senna pendula"
+"2176","ncbi","1370",NA
+"2177","ncbi","1701","Ludwigia peploides"
+"2178","ncbi","2381","Rhabdadenia madida"
+"2179","ncbi","972",NA
+"2180","ncbi","180","Angelonia hirta"
+"2181","ncbi","2701","Smilax fluminensis"
+"2182","ncbi","572",NA
+"2183","ncbi","2706",NA
+"2184","ncbi","935","Discolobium pulchellum"
+"2185","ncbi","736",NA
+"2186","ncbi","1446",NA
+"2187","ncbi","2196",NA
+"2188","ncbi","1334","Heliconia marginata"
+"2189","ncbi","1553","Laetia americana"
+"2190","ncbi","3135",NA
+"2191","ncbi","1072","Erythroxylum anguifugum"
+"2192","ncbi","1824",NA
+"2193","ncbi","2897",NA
+"2194","ncbi","2650",NA
+"2195","ncbi","752","Corchorus orinocensis"
+"2196","ncbi","1051",NA
+"2197","ncbi","2569",NA
+"2198","ncbi","497","Caperonia palustris"
+"2199","ncbi","1920",NA
+"2200","ncbi","579","Centratherum punctatum"
+"2201","ncbi","2817","Stylosanthes acuminata"
+"2202","ncbi","1440","Hyptis brevipes"
+"2203","ncbi","2307","Psittacanthus cordatus"
+"2204","ncbi","654",NA
+"2205","ncbi","2754","Spermacoce glabra"
+"2206","ncbi","1803","Mesechites trifidus"
+"2207","ncbi","1200","Polyscias crassa"
+"2208","ncbi","912",NA
+"2209","ncbi","2313","Psychotria pervillei"
+"2210","ncbi","790","Craterispermum microdon"
+"2211","ncbi","2437","Roscheria melanochaetes"
+"2212","ncbi","1074",NA
+"2213","ncbi","1260","Glionnetia sericea"
+"2214","ncbi","1784",NA
+"2215","ncbi","2025",NA
+"2216","ncbi","1918","Nephrosperma vanhoutteanum"
+"2217","ncbi","537",NA
+"2218","ncbi","2555","Scalesia pedunculata"
+"2219","ncbi","538",NA
+"2220","ncbi","1518",NA
+"2221","ncbi","800","Crotalaria incana"
+"2222","ncbi","1753","Malvastrum coromandelianum"
+"2223","ncbi","341","Bacopa monnieri"
+"2224","ncbi","1276",NA
+"2225","ncbi","1178",NA
+"2226","ncbi","860","Darwiniothamnus tenuifolius"
+"2227","ncbi","2213","Persicaria opelousana"
+"2228","ncbi","10","Vachellia macracantha"
+"2229","ncbi","918",NA
+"2230","ncbi","2085",NA
+"2231","ncbi","1107","Euphorbia cyathophora"
+"2232","ncbi","1002","Encelia hispida"
+"2233","ncbi","1959","Opuntia helleri"
+"2234","ncbi","705",NA
+"2235","ncbi","728","Coffea arabica"
+"2236","ncbi","1956","Opuntia echios"
+"2237","ncbi","4","Abelmoschus manihot"
+"2238","ncbi","1199",NA
+"2239","ncbi","1372",NA
+"2240","ncbi","554","Catharanthus roseus"
+"2241","ncbi","2647","Sidastrum paniculatum"
+"2242","ncbi","1718","Solanum cheesmaniae"
+"2243","ncbi","2769",NA
+"2244","ncbi","2036","Passiflora foetida"
+"2245","ncbi","87","Ageratum conyzoides"
+"2246","ncbi","1531","Justicia galapagana"
+"2247","ncbi","506","Capsicum frutescens"
+"2248","ncbi","2553",NA
+"2249","ncbi","2304","Psidium guajava"
+"2250","ncbi","1960","Opuntia megasperma"
+"2251","ncbi","764",NA
+"2252","ncbi","2167",NA
+"2253","ncbi","2707","Solanum americanum"
+"2254","ncbi","1198","Galvezia leucantha"
+"2255","ncbi","442","Caesalpinia pulcherrima"
+"2256","ncbi","1274","Gossypium barbadense"
+"2257","ncbi","1810","Miconia robinsoniana"
+"2258","ncbi","2739","Sonchus oleraceus"
+"2259","ncbi","1962",NA
+"2260","ncbi","2644","Sida acuta"
+"2261","ncbi","2556",NA
+"2262","ncbi","829","Cuphea racemosa"
+"2263","ncbi","1861",NA
+"2264","ncbi","1923","Nolana galapagensis"
+"2265","ncbi","525","Carica papaya"
+"2266","ncbi","2639",NA
+"2267","ncbi","9",NA
+"2268","ncbi","1838","Mirabilis jalapa"
+"2269","ncbi","435",NA
+"2270","ncbi","2560",NA
+"2271","ncbi","623",NA
+"2272","ncbi","494",NA
+"2273","ncbi","1472","Inga edulis"
+"2274","ncbi","3091","Vigna luteola"
+"2275","ncbi","2314","Psychotria rufipes"
+"2276","ncbi","704",NA
+"2277","ncbi","402",NA
+"2278","ncbi","2134",NA
+"2279","ncbi","1485","Ipomoea pes-caprae"
+"2280","ncbi","1558",NA
+"2281","ncbi","1228","Geoffroea spinosa"
+"2282","ncbi","2877","Tetramerium nervosum"
+"2283","ncbi","1963",NA
+"2284","ncbi","2554","Scalesia helleri"
+"2285","ncbi","2140","Physalis pubescens"
+"2286","ncbi","1719",NA
+"2287","ncbi","1957",NA
+"2288","ncbi","1489",NA
+"2289","ncbi","488",NA
+"2290","ncbi","643","Chrysobalanus icaco"
+"2291","ncbi","1136",NA
+"2292","ncbi","1118","Euphorbia regis-jubae"
+"2293","ncbi","2179","Plocama pendula"
+"2294","ncbi","1577","Launaea arborescens"
+"2295","ncbi","1137",NA
+"2296","ncbi","1104","Euphorbia balsamifera"
+"2297","ncbi","1716","Lycium intricatum"
+"2298","ncbi","2440","Rubia fruticosa"
+"2299","ncbi","1691","Lotus spartioides"
+"2300","ncbi","1582",NA
+"2301","ncbi","927","Dipsacus chinensis"
+"2302","ncbi","2212","Bistorta macrophylla"
+"2303","ncbi","2150","Picris hieracioides"
+"2304","ncbi","2239",NA
+"2305","ncbi","121","Allium wallichii"
+"2306","ncbi","299","Aster oreophilus"
+"2307","ncbi","155","Anaphalis nepalensis"
+"2308","ncbi","2885","Thalictrum delavayi"
+"2309","ncbi","2274",NA
+"2310","ncbi","661",NA
+"2311","ncbi","308","Aster yunnanensis"
+"2312","ncbi","1464","Impatiens chungtienensis"
+"2313","ncbi","2244","Potentilla griffithii"
+"2314","ncbi","2668","Silene gracilicaulis"
+"2315","ncbi","54","Adenophora jasionifolia"
+"2316","ncbi","650","Actaea yunnanensis"
+"2317","ncbi","866",NA
+"2318","ncbi","1634","Ligularia lankongensis"
+"2319","ncbi","1525","Juncus allioides"
+"2320","ncbi","111","Allium cyathophorum"
+"2321","ncbi","2177","Pleurospermum davidii"
+"2322","ncbi","2216","Persicaria runcinata"
+"2323","ncbi","726","Codonopsis convolvulacea"
+"2324","ncbi","2525","Saussurea wardii"
+"2325","ncbi","2824",NA
+"2326","ncbi","231",NA
+"2327","ncbi","1510",NA
+"2328","ncbi","1916","Nepeta stewartiana"
+"2329","ncbi","1017",NA
+"2330","ncbi","2802",NA
+"2331","ncbi","1215","Gentiana crassicaulis"
+"2332","ncbi","2067","Pedicularis tricolor"
+"2333","ncbi","53","Adenophora capillaris"
+"2334","ncbi","1790","Mentha canadensis"
+"2335","ncbi","926","Dipsacus asperoides"
+"2336","ncbi","2247","Potentilla lancinata"
+"2337","ncbi","2064","Pedicularis rex"
+"2338","ncbi","842","Cynoglossum amabile"
+"2339","ncbi","965","Dubyaea bhotanica"
+"2340","ncbi","2123","Phlomis tatsienensis"
+"2341","ncbi","519","Carduus crispus"
+"2342","ncbi","2674","Silene yunnanensis"
+"2343","ncbi","292","Aster diplostephioides"
+"2344","ncbi","1629","Ligularia cymbulifera"
+"2345","ncbi","2275","Primula secundiflora"
+"2346","ncbi","2751","Spenceria ramalana"
+"2347","ncbi","327",NA
+"2348","ncbi","1213",NA
+"2349","ncbi","1969","Origanum vulgare"
+"2350","ncbi","1183","Galeopsis bifida"
+"2351","ncbi","169","Anemone rivularis"
+"2352","ncbi","2975","Trollius vaginatus"
+"2353","ncbi","837","Cyananthus delavayi"
+"2354","ncbi","2319","Pterocephalus hookeri"
+"2355","ncbi","2053","Pedicularis cephalantha"
+"2356","ncbi","2502","Salvia przewalskii"
+"2357","ncbi","1817","Microula sikkimensis"
+"2358","ncbi","2218","Bistorta sinomontana"
+"2359","ncbi","1232",NA
+"2360","ncbi","304","Aster souliei"
+"2361","ncbi","307","Aster vestitus"
+"2362","ncbi","1122","Euphrasia regelii"
+"2363","ncbi","1289","Halenia elliptica"
+"2364","ncbi","110","Allium atrosanguineum"
+"2365","ncbi","2957",NA
+"2366","ncbi","2889","Thalictrum rostellatum"
+"2367","ncbi","55","Adenophora khasiana"
+"2368","ncbi","2910","Tibetia himalaica"
+"2369","ncbi","29","Achillea wilsoniana"
+"2370","ncbi","221","Arctium lappa"
+"2371","ncbi","2054","Pedicularis densispica"
+"2372","ncbi","1359","Herpetospermum pedunculosum"
+"2373","ncbi","2055","Pedicularis dichotoma"
+"2374","ncbi","1640","Lilium duchartrei"
+"2375","ncbi","690","Clematis akebioides"
+"2376","ncbi","1266","Pseudognaphalium affine"
+"2377","ncbi","1631","Ligularia dictyoneura"
+"2378","ncbi","2065","Pedicularis siphonantha"
+"2379","ncbi","716","Clinopodium repens"
+"2380","ncbi","2121","Phlomis atropurpurea"
+"2381","ncbi","1948",NA
+"2382","ncbi","98",NA
+"2383","ncbi","1684",NA
+"2384","ncbi","2567","Schizogyne sericea"
+"2385","ncbi","1149","Frankenia laevis"
+"2386","ncbi","1112","Euphorbia lamarckii"
+"2387","ncbi","2084","Periploca laevigata"
+"2388","ncbi","1583",NA
+"2389","ncbi","236","Argyranthemum frutescens"
+"2390","ncbi","1311",NA
+"2391","ncbi","600","Ceropegia fusca"
+"2392","ncbi","2522",NA
+"2393","ncbi","1688","Lotus sessilifolius"
+"2394","ncbi","1905","Asteriscus aquaticus"
+"2395","ncbi","2033","Parolinia intermedia"
+"2396","ncbi","558","Ceballosia fruticosa"
+"2397","ncbi","1581",NA
+"2398","ncbi","281",NA
+"2399","ncbi","599","Ceropegia dichotoma"
+"2400","ncbi","1541","Kickxia scoparia"
+"2401","ncbi","337","Azorina vidalii"
+"2402","ncbi","619",NA
+"2403","ncbi","796","Crithmum maritimum"
+"2404","ncbi","1154","Freesia refracta"
+"2405","ncbi","2378","Reseda luteola"
+"2406","ncbi","2730",NA
+"2407","ncbi","2673","Silene vulgaris"
+"2408","ncbi","372","Beta vulgaris"
+"2409","ncbi","336",NA
+"2410","ncbi","2612",NA
+"2411","ncbi","2626",NA
+"2412","ncbi","2858","Tarasa humilis"
+"2413","ncbi","932","Ochetophila nana"
+"2414","ncbi","1787","Menonvillea hookeri"
+"2415","ncbi","2692","Olsynium junceum"
+"2416","ncbi","64",NA
+"2417","ncbi","2108","Phacelia secunda"
+"2418","ncbi","326","Astragalus nivicola"
+"2419","ncbi","1514","Jaborosa laciniata"
+"2420","ncbi","1616",NA
+"2421","ncbi","1989","Oxalis erythrorrhiza"
+"2422","ncbi","1854","Montiopsis gilliesii"
+"2423","ncbi","2083","Perezia pilifera"
+"2424","ncbi","1668",NA
+"2425","ncbi","1435",NA
+"2426","ncbi","1013",NA
+"2427","ncbi","319","Astragalus cruckshanksii"
+"2428","ncbi","447","Calandrinia caespitosa"
+"2429","ncbi","3120",NA
+"2430","ncbi","556","Causonis japonica"
+"2431","ncbi","2296","Prunus tomentosa"
+"2432","ncbi","2913","Tilia japonica"
+"2433","ncbi","1","Abelia x grandiflora"
+"2434","ncbi","367","Berberis thunbergii"
+"2435","ncbi","369",NA
+"2436","ncbi","1606","Lespedeza thunbergii"
+"2437","ncbi","3066","Veronicastrum sibiricum"
+"2438","ncbi","1748","Malus halliana"
+"2439","ncbi","2130","Photinia glabra"
+"2440","ncbi","1680",NA
+"2441","ncbi","2396",NA
+"2442","ncbi","2842","Syringa vulgaris"
+"2443","ncbi","340",NA
+"2444","ncbi","1898","Nandina domestica"
+"2445","ncbi","2152","Pieris japonica"
+"2446","ncbi","491","Campsis grandiflora"
+"2447","ncbi","3068","Viburnum dilatatum"
+"2448","ncbi","2397",NA
+"2449","ncbi","666",NA
+"2450","ncbi","1722","Lyonia ovalifolia"
+"2451","ncbi","2406","Toxicodendron sylvestre"
+"2452","ncbi","2914","Tilia miqueliana"
+"2453","ncbi","984","Edgeworthia chrysantha"
+"2454","ncbi","3019",NA
+"2455","ncbi","683","Citrus tachibana"
+"2456","ncbi","3069","Viburnum erosum"
+"2457","ncbi","1509","Itea parviflora"
+"2458","ncbi","1637","Ligustrum japonicum"
+"2459","ncbi","1153","Fraxinus griffithii"
+"2460","ncbi","2327","Pyracantha crenulata"
+"2461","ncbi","1371","Hibiscus syriacus"
+"2462","ncbi","893",NA
+"2463","ncbi","990","Elaeagnus multiflora"
+"2464","ncbi","2764","Spiraea thunbergii"
+"2465","ncbi","2326","Pyracantha angustifolia"
+"2466","ncbi","684","Cladrastis sikokiana"
+"2467","ncbi","2205",NA
+"2468","ncbi","2767","Spiranthes sinensis"
+"2469","ncbi","2295",NA
+"2470","ncbi","2760","Spiraea blumei"
+"2471","ncbi","1988","Oxalis corymbosa"
+"2472","ncbi","2809","Stewartia monadelpha"
+"2473","ncbi","2395","Rhododendron stenopetalum"
+"2474","ncbi","2828",NA
+"2475","ncbi","1662","Liriope muscari"
+"2476","ncbi","898","Deutzia gracilis"
+"2477","ncbi","75",NA
+"2478","ncbi","1456","Idesia polycarpa"
+"2479","ncbi","1495","Iris pseudacorus"
+"2480","ncbi","328","Astragalus sinicus"
+"2481","ncbi","3103","Viola mandshurica"
+"2482","ncbi","3",NA
+"2483","ncbi","901","Deutzia scabra"
+"2484","ncbi","2427",NA
+"2485","ncbi","2765",NA
+"2486","ncbi","651","Cinnamomum camphora"
+"2487","ncbi","1085",NA
+"2488","ncbi","1144","Forsythia suspensa"
+"2489","ncbi","2114","Philadelphus coronarius"
+"2490","ncbi","3077","Viburnum suspensum"
+"2491","ncbi","1740","Berberis japonica"
+"2492","ncbi","2634","Serissa japonica"
+"2493","ncbi","1004","Enkianthus perulatus"
+"2494","ncbi","479","Camellia sasanqua"
+"2495","ncbi","2934","Tradescantia ohiensis"
+"2496","ncbi","595","Cercis siliquastrum"
+"2497","ncbi","1428","Hypericum patulum"
+"2498","ncbi","1139","Fatsia japonica"
+"2499","ncbi","2761","Spiraea cantoniensis"
+"2500","ncbi","1461","Ilex serrata"
+"2501","ncbi","2127","Phlox subulata"
+"2502","ncbi","2995","Ulmus davidiana"
+"2503","ncbi","473","Calystegia pubescens"
+"2504","ncbi","478","Camellia japonica"
+"2505","ncbi","768","Coreopsis basalis"
+"2506","ncbi","1493","Iris japonica"
+"2507","ncbi","702","Clerodendrum trichotomum"
+"2508","ncbi","422","Buddleja davidii"
+"2509","ncbi","2146","Phytolacca americana"
+"2510","ncbi","2270","Prenanthes purpurea"
+"2511","ncbi","1108","Euphorbia cyparissias"
+"2512","ncbi","190","Anthericum ramosum"
+"2513","ncbi","3032","Valeriana tripteris"
+"2514","ncbi","511","Cardamine pratensis"
+"2515","ncbi","852","Dactylorhiza maculata"
+"2516","ncbi","3094","Vincetoxicum hirundinaria"
+"2517","ncbi","1614","Leucanthemum adustum"
+"2518","ncbi","1567","Laserpitium siler"
+"2519","ncbi","1726","Lysimachia nemorum"
+"2520","ncbi","834","Cuscuta epithymum"
+"2521","ncbi","1391","Hippocrepis comosa"
+"2522","ncbi","717","Clinopodium vulgare"
+"2523","ncbi","530","Carum carvi"
+"2524","ncbi","1173",NA
+"2525","ncbi","2844","Syzygium coriaceum"
+"2526","ncbi","1167",NA
+"2527","ncbi","1548","Labourdonnaisia calophylloides"
+"2528","ncbi","1785","Memecylon ovatifolium"
+"2529","ncbi","3144","Xylopia lamarckii"
+"2530","ncbi","532",NA
+"2531","ncbi","468",NA
+"2532","ncbi","921","Diospyros revaughanii"
+"2533","ncbi","998",NA
+"2534","ncbi","2985",NA
+"2535","ncbi","2852",NA
+"2536","ncbi","2699","Smilax anceps"
+"2537","ncbi","1174",NA
+"2538","ncbi","809",NA
+"2539","ncbi","1172",NA
+"2540","ncbi","2298","Psychotria terniflora"
+"2541","ncbi","1083",NA
+"2542","ncbi","2971",NA
+"2543","ncbi","2972","Trochetia blackburniana"
+"2544","ncbi","2017","Pandanus barkleyi"
+"2545","ncbi","1078","Eugenia orbiculata"
+"2546","ncbi","2332",NA
+"2547","ncbi","346",NA
+"2548","ncbi","1163","Gaertnera petrinensis"
+"2549","ncbi","1165",NA
+"2550","ncbi","2511","Sanguisorba officinalis"
+"2551","ncbi","2490",NA
+"2552","ncbi","672",NA
+"2553","ncbi","1633","Ligularia japonica"
+"2554","ncbi","2","Diabelia serrata"
+"2555","ncbi","1196","Galium verum"
+"2556","ncbi","627","Chionographis japonica"
+"2557","ncbi","3139","Weigela japonica"
+"2558","ncbi","3105","Viola orientalis"
+"2559","ncbi","240","Arisaema japonicum"
+"2560","ncbi","3063","Veronica rotunda"
+"2561","ncbi","2762","Spiraea japonica"
+"2562","ncbi","1647",NA
+"2563","ncbi","176",NA
+"2564","ncbi","903","Dianthus superbus"
+"2565","ncbi","1706","Luzula capitata"
+"2566","ncbi","2743","Sophora flavescens"
+"2567","ncbi","1505","Isodon inflexus"
+"2568","ncbi","120","Allium thunbergii"
+"2569","ncbi","1408","Hydrangea luteovenosa"
+"2570","ncbi","1018","Epimedium diphyllum"
+"2571","ncbi","1347","Hemerocallis vespertina"
+"2572","ncbi","2493",NA
+"2573","ncbi","1190","Galium japonicum"
+"2574","ncbi","648","Actaea japonica"
+"2575","ncbi","2207","Polygonum cuspidatum"
+"2576","ncbi","976","Echinops setifer"
+"2577","ncbi","1240","Geranium shikokianum"
+"2578","ncbi","3088","Vicia unijuga"
+"2579","ncbi","1360","Aster hispidus"
+"2580","ncbi","2825","Swertia japonica"
+"2581","ncbi","1475","Inula japonica"
+"2582","ncbi","2398","Rhododendron reticulatum"
+"2583","ncbi","1224","Gentiana zollingeri"
+"2584","ncbi","2840",NA
+"2585","ncbi","2734",NA
+"2586","ncbi","1415","Hydrocotyle ramiflora"
+"2587","ncbi","2455","Rubus phoenicolasius"
+"2588","ncbi","362","Cornus kousa"
+"2589","ncbi","2191","Polygala japonica"
+"2590","ncbi","2042","Patrinia scabiosifolia"
+"2591","ncbi","2393",NA
+"2592","ncbi","1411","Hydrangea serrata"
+"2593","ncbi","303","Aster scaber"
+"2594","ncbi","1497","Iris rossii"
+"2595","ncbi","708",NA
+"2596","ncbi","582",NA
+"2597","ncbi","3025","Valeriana fauriei"
+"2598","ncbi","104",NA
+"2599","ncbi","2524","Saussurea gracilis"
+"2600","ncbi","2526",NA
+"2601","ncbi","3101","Viola hondoensis"
+"2602","ncbi","2336","Quercus dentata"
+"2603","ncbi","175","Angelica cartilaginomarginata"
+"2604","ncbi","211","Turritis glabra"
+"2605","ncbi","39","Aconitum japonicum"
+"2606","ncbi","1476","Inula salicina"
+"2607","ncbi","279","Asparagus schoberioides"
+"2608","ncbi","1642","Lilium leichtlinii"
+"2609","ncbi","1842","Moehringia lateriflora"
+"2610","ncbi","919",NA
+"2611","ncbi","2568","Hydrangea hydrangeoides"
+"2612","ncbi","1279","Grindelia chiloensis"
+"2613","ncbi","1955",NA
+"2614","ncbi","934","Ochetophila trinervis"
+"2615","ncbi","339",NA
+"2616","ncbi","2624",NA
+"2617","ncbi","1575",NA
+"2618","ncbi","1451","Hysterionica jasionoides"
+"2619","ncbi","67","Adesmia retrofracta"
+"2620","ncbi","246","Arjona patagonica"
+"2621","ncbi","2334",NA
+"2622","ncbi","1999",NA
+"2623","ncbi","1528","Junellia toninii"
+"2624","ncbi","2371","Rapistrum rugosum"
+"2625","ncbi","2604","Senecio filaginoides"
+"2626","ncbi","1940","Oenothera mendocinensis"
+"2627","ncbi","2894","Thelesperma megapotamicum"
+"2628","ncbi","1877","Mutisia decurrens"
+"2629","ncbi","1835",NA
+"2630","ncbi","2986","Tussilago farfara"
+"2631","ncbi","3059","Veronica officinalis"
+"2632","ncbi","310",NA
+"2633","ncbi","2720","Soldanella alpina"
+"2634","ncbi","1767","Melampyrum sylvaticum"
+"2635","ncbi","311",NA
+"2636","ncbi","1808","Miconia chamissois"
+"2637","ncbi","1457","Ilex affinis"
+"2638","ncbi","1000","Emmeorhiza umbellata"
+"2639","ncbi","1699","Ludwigia nervosa"
+"2640","ncbi","1047",NA
+"2641","ncbi","2473","Sagittaria rhombifolia"
+"2642","ncbi","2411","Rhynchospora globosa"
+"2643","ncbi","2838",NA
+"2644","ncbi","273","Cyperus brasiliensis"
+"2645","ncbi","3145","Xyris jupicai"
+"2646","ncbi","2412","Rhynchospora nervosa"
+"2647","ncbi","2682","Sipanea pratensis"
+"2648","ncbi","973","Echinodorus longipetalus"
+"2649","ncbi","2413","Rhynchospora robusta"
+"2650","ncbi","709",NA
+"2651","ncbi","559","Cecropia pachystachya"
+"2652","ncbi","633","Chromolaena maximilianii"
+"2653","ncbi","916","Diodella radula"
+"2654","ncbi","2316",NA
+"2655","ncbi","5",NA
+"2656","ncbi","995",NA
+"2657","ncbi","1305","Hedyosmum brasiliense"
+"2658","ncbi","31","Achyrocline alata"
+"2659","ncbi","2848","Syzygium venosum"
+"2660","ncbi","128","Alstroemeria aurea"
+"2661","ncbi","2970","Tristerix corymbosus"
+"2662","ncbi","841","Diplolepis diemii"
+"2663","ncbi","2416","Ribes magellanicum"
+"2664","ncbi","3084","Vicia nigricans"
+"2665","ncbi","2565",NA
+"2666","ncbi","244","Aristotelia chilensis"
+"2667","ncbi","2843","Syzygium commersonii"
+"2668","ncbi","1168",NA
+"2669","ncbi","2847",NA
+"2670","ncbi","3149",NA
+"2671","ncbi","2429","Rosa eglanteria"
+"2672","ncbi","456","Calceolaria crenatiflora"
+"2673","ncbi","1241","Geranium sibiricum"
+"2674","ncbi","2241","Dasiphora fruticosa"
+"2675","ncbi","2863","Taraxacum mongolicum"
+"2676","ncbi","1352","Heracleum candicans"
+"2677","ncbi","1915","Nepeta laevigata"
+"2678","ncbi","472","Calystegia hederacea"
+"2679","ncbi","170","Anemone rupestris"
+"2680","ncbi","1593","Leontopodium andersonii"
+"2681","ncbi","2581",NA
+"2682","ncbi","954","Draba yunnanensis"
+"2683","ncbi","166","Anemone demissa"
+"2684","ncbi","2059","Pedicularis longiflora"
+"2685","ncbi","997","Elsholtzia densa"
+"2686","ncbi","2663","Silene chungtienensis"
+"2687","ncbi","1857","Morina nepalensis"
+"2688","ncbi","714","Clinopodium megalanthum"
+"2689","ncbi","2772","Stachys kouyangensis"
+"2690","ncbi","3099","Viola delavayi"
+"2691","ncbi","1469","Incarvillea zhongdianensis"
+"2692","ncbi","2498","Salvia flava"
+"2693","ncbi","2803","Stellera chamaejasme"
+"2694","ncbi","163","Androsace spinulifera"
+"2695","ncbi","2976","Trollius yunnanensis"
+"2696","ncbi","2365",NA
+"2697","ncbi","3085","Vicia nummularia"
+"2698","ncbi","1498","Iris ruthenica"
+"2699","ncbi","43","Aconitum piepunense"
+"2700","ncbi","2060",NA
+"2701","ncbi","1295","Harungana madagascariensis"
+"2702","ncbi","1170",NA
+"2703","ncbi","3142","Wikstroemia indica"
+"2704","ncbi","1348","Hemisteptia lyrata"
+"2705","ncbi","2435","Rosa soulieana"
+"2706","ncbi","2160",NA
+"2707","ncbi","957","Dracocephalum forrestii"
+"2708","ncbi","2898","Thlaspi arvense"
+"2709","ncbi","2763","Spiraea myrtilloides"
+"2710","ncbi","1212","Gentiana atuntsiensis"
+"2711","ncbi","872","Delphinium delavayi"
+"2712","ncbi","1635","Ligularia tsangchanensis"
+"2713","ncbi","113","Allium macranthum"
+"2714","ncbi","1175",NA
+"2715","ncbi","1844",NA
+"2716","ncbi","1166",NA
+"2717","ncbi","59",NA
+"2718","ncbi","2690","Sisyrinchium arenarium"
+"2719","ncbi","2401","Rhodophiala montana"
+"2720","ncbi","2770",NA
+"2721","ncbi","1737","Madia sativa"
+"2722","ncbi","1667","Loasa heterophylla"
+"2723","ncbi","350","Anemone chilensis"
+"2724","ncbi","2601",NA
+"2725","ncbi","365","Berberis empetrifolia"
+"2726","ncbi","2981","Tropaeolum tricolor"
+"2727","ncbi","2603",NA
+"2728","ncbi","2082","Perezia carthamoides"
+"2729","ncbi","66",NA
+"2730","ncbi","446","Calandrinia affinis"
+"2731","ncbi","2693",NA
+"2732","ncbi","1114","Euphorbia portulacoides"
+"2733","ncbi","61",NA
+"2734","ncbi","2337",NA
+"2735","ncbi","1620","Leucocoryne pauciflora"
+"2736","ncbi","3027",NA
+"2737","ncbi","62","Adesmia exilis"
+"2738","ncbi","1901","Nassauvia heterophylla"
+"2739","ncbi","510","Macropodium nivale"
+"2740","ncbi","1437",NA
+"2741","ncbi","320","Astragalus curvicaulis"
+"2742","ncbi","2605",NA
+"2743","ncbi","1669",NA
+"2744","ncbi","156","Anarthrophyllum cumingii"
+"2745","ncbi","2718",NA
+"2746","ncbi","605","Chaetanthera euphrasioides"
+"2747","ncbi","2587",NA
+"2748","ncbi","453",NA
+"2749","ncbi","2566","Schizanthus grahamii"
+"2750","ncbi","3044",NA
+"2751","ncbi","2513","Sanicula graveolens"
+"2752","ncbi","457",NA
+"2753","ncbi","1293",NA
+"2754","ncbi","1867","Azorella prolifera"
+"2755","ncbi","1744",NA
+"2756","ncbi","58",NA
+"2757","ncbi","1874",NA
+"2758","ncbi","2980","Tropaeolum sessilifolium"
+"2759","ncbi","366","Berberis montana"
+"2760","ncbi","608","Chaetanthera microphylla"
+"2761","ncbi","129","Alstroemeria pallida"
+"2762","ncbi","3124","Viviania marifolia"
+"2763","ncbi","458",NA
+"2764","ncbi","65",NA
+"2765","ncbi","646","Chuquiraga oppositifolia"
+"2766","ncbi","1875",NA
+"2767","ncbi","1985","Oxalis cinerea"
+"2768","ncbi","1617",NA
+"2769","ncbi","2978",NA
+"2770","ncbi","1899","Nardophyllum lanatum"
+"2771","ncbi","452",NA
+"2772","ncbi","1876",NA
+"2773","ncbi","1292",NA
+"2774","ncbi","329",NA
+"2775","ncbi","2876","Tetraglochin alata"
+"2776","ncbi","2494",NA
+"2777","ncbi","314",NA
+"2778","ncbi","1997",NA
+"2779","ncbi","2969","Tristagma sessile"
+"2780","ncbi","1991",NA
+"2781","ncbi","1619","Leucocoryne ixioides"
+"2782","ncbi","844",NA
+"2783","ncbi","1937","Oenothera acaulis"
+"2784","ncbi","1704","Lupinus microcarpus"
+"2785","ncbi","1390",NA
+"2786","ncbi","2944","Echinopsis chiloensis"
+"2787","ncbi","455","Calceolaria biflora"
+"2788","ncbi","686",NA
+"2789","ncbi","734","Collomia biflora"
+"2790","ncbi","1925",NA
+"2791","ncbi","405","Bowlesia tropaeolifolia"
+"2792","ncbi","12",NA
+"2793","ncbi","2721",NA
+"2794","ncbi","2611",NA
+"2795","ncbi","1599",NA
+"2796","ncbi","1576","Lathyrus subandinus"
+"2797","ncbi","2354","Ranunculus peduncularis"
+"2798","ncbi","448",NA
+"2799","ncbi","2622",NA
+"2800","ncbi","335","Azorella monantha"
+"2801","ncbi","157","Anarthrophyllum gayanum"
+"2802","ncbi","1900","Nassauvia axillaris"
+"2803","ncbi","13","Acaena pinnatifida"
+"2804","ncbi","1986","Oxalis compacta"
+"2805","ncbi","1563","Azorella ruizii"
+"2806","ncbi","3109",NA
+"2807","ncbi","609","Chaetanthera pusilla"
+"2808","ncbi","333",NA
+"2809","ncbi","1666",NA
+"2810","ncbi","451",NA
+"2811","ncbi","2968","Tristagma bivalve"
+"2812","ncbi","589",NA
+"2813","ncbi","1878","Mutisia sinuata"
+"2814","ncbi","3141",NA
+"2815","ncbi","1031",NA
+"2816","ncbi","2806",NA
+"2817","ncbi","1904",NA
+"2818","ncbi","604","Chaetanthera apiculata"
+"2819","ncbi","454",NA
+"2820","ncbi","2003","Oxylobium ellipticum"
+"2821","ncbi","1119","Euphrasia collina"
+"2822","ncbi","2260",NA
+"2823","ncbi","34","Aciphylla glacialis"
+"2824","ncbi","1009","Epilobium gunnianum"
+"2825","ncbi","1970","Orites lancifolius"
+"2826","ncbi","3128","Wahlenbergia ceracea"
+"2827","ncbi","410",NA
+"2828","ncbi","2610","Senecio lautus"
+"2829","ncbi","784",NA
+"2830","ncbi","1345",NA
+"2831","ncbi","2280","Prostanthera cuneata"
+"2832","ncbi","2419","Richea continentis"
+"2833","ncbi","36","Aciphylla simplicifolia"
+"2834","ncbi","2112",NA
+"2835","ncbi","344",NA
+"2836","ncbi","1006","Epacris petrophila"
+"2837","ncbi","2077","Pentachondra pumila"
+"2838","ncbi","567",NA
+"2839","ncbi","407",NA
+"2840","ncbi","2156","Pimelea ligustrina"
+"2841","ncbi","1814","Microseris lanceolata"
+"2842","ncbi","1327","Anaphalioides alpinum"
+"2843","ncbi","1622","Acrothamnus montanus"
+"2844","ncbi","2606","Senecio gunnii"
+"2845","ncbi","1227","Gentianella diemensis"
+"2846","ncbi","2615",NA
+"2847","ncbi","1546","Kunzea muelleri"
+"2848","ncbi","280","Asperula gunnii"
+"2849","ncbi","1911","Montia australasica"
+"2850","ncbi","1943","Olearia phlogopappa"
+"2851","ncbi","2816","Stylidium graminifolium"
+"2852","ncbi","409",NA
+"2853","ncbi","2780",NA
+"2854","ncbi","1331",NA
+"2855","ncbi","1601","Leptorhynchos squamatus"
+"2856","ncbi","406",NA
+"2857","ncbi","1005","Epacris microphylla"
+"2858","ncbi","2642",NA
+"2859","ncbi","827",NA
+"2860","ncbi","1335","Heliconia psittacorum"
+"2861","ncbi","2471",NA
+"2862","ncbi","1695","Ludwigia decurrens"
+"2863","ncbi","2322","Pterolepis glomerata"
+"2864","ncbi","1442","Hyptis conferta"
+"2865","ncbi","810","Croton hirtus"
+"2866","ncbi","370",NA
+"2867","ncbi","74","Aeschynomene pratensis"
+"2868","ncbi","2528","Sauvagesia rubiginosa"
+"2869","ncbi","2882","Thalia geniculata"
+"2870","ncbi","1443",NA
+"2871","ncbi","3147",NA
+"2872","ncbi","1783",NA
+"2873","ncbi","2409","Rhynchanthera serrulata"
+"2874","ncbi","2988",NA
+"2875","ncbi","2839",NA
+"2876","ncbi","1855",NA
+"2877","ncbi","1822","Mimosa camporum"
+"2878","ncbi","710","Clidemia capitellata"
+"2879","ncbi","917",NA
+"2880","ncbi","1812",NA
+"2881","ncbi","3146","Xyris laxifolia"
+"2882","ncbi","2679",NA
+"2883","ncbi","496",NA
+"2884","ncbi","2747",NA
+"2885","ncbi","653","Cinnamomum verum"
+"2886","ncbi","237",NA
+"2887","ncbi","278",NA
+"2888","ncbi","1540","Kickxia heterophylla"
+"2889","ncbi","3157","Zilla spinosa"
+"2890","ncbi","1906",NA
+"2891","ncbi","2032",NA
+"2892","ncbi","1113",NA
+"2893","ncbi","1579","Lavandula buchii"
+"2894","ncbi","748",NA
+"2895","ncbi","1105","Euphorbia canariensis"
+"2896","ncbi","978","Echium aculeatum"
+"2897","ncbi","235",NA
+"2898","ncbi","980","Echium bonnetii"
+"2899","ncbi","1922",NA
+"2900","ncbi","1690",NA
+"2901","ncbi","746","Convolvulus floridus"
+"2902","ncbi","1686","Lotus glaucus"
+"2903","ncbi","384","Bituminaria bituminosa"
+"2904","ncbi","2655","Sideritis nervosa"
+"2905","ncbi","2559","Scandix pecten-veneris"
+"2906","ncbi","2654",NA
+"2907","ncbi","1689",NA
+"2908","ncbi","2111","Phagnalon saxatile"
+"2909","ncbi","2496","Salvia aegyptiaca"
+"2910","ncbi","1910","Cneorum pulverulentum"
+"2911","ncbi","471","Caltha palustris"
+"2912","ncbi","2256","Potentilla vahliana"
+"2913","ncbi","2869",NA
+"2914","ncbi","1250","Geum rossii"
+"2915","ncbi","2005","Oxytropis arctica"
+"2916","ncbi","2100","Petasites frigidus"
+"2917","ncbi","1687","Lotus lancerottensis"
+"2918","ncbi","2110","Phagnalon purpurascens"
+"2919","ncbi","2578","Scrophularia glabrata"
+"2920","ncbi","1063","Erysimum scoparium"
+"2921","ncbi","2320","Pterocephalus lasiospermus"
+"2922","ncbi","2159",NA
+"2923","ncbi","983","Echium wildpretii"
+"2924","ncbi","2924","Tolpis webbii"
+"2925","ncbi","238",NA
+"2926","ncbi","1791","Mentha longifolia"
+"2927","ncbi","1917",NA
+"2928","ncbi","2749","Cytisus supranubius"
+"2929","ncbi","51","Adenocarpus viscosus"
+"2930","ncbi","1529","Junellia uniflora"
+"2931","ncbi","949","Draba gilliesii"
+"2932","ncbi","1968","Oreopolus glacialis"
+"2933","ncbi","2979","Tropaeolum polyphyllum"
+"2934","ncbi","606","Chaetanthera flabellata"
+"2935","ncbi","607","Chaetanthera lycopodioides"
+"2936","ncbi","1928",NA
+"2937","ncbi","1902","Nassauvia lagascae"
+"2938","ncbi","444","Caiophora coronata"
+"2939","ncbi","953",NA
+"2940","ncbi","3030","Valeriana radicalis"
+"2941","ncbi","60",NA
+"2942","ncbi","449",NA
+"2943","ncbi","334","Azorella madreporica"
+"2944","ncbi","3095",NA
+"2945","ncbi","63","Adesmia glomerula"
+"2946","ncbi","1903","Nassauvia pinnigera"
+"2947","ncbi","450",NA
+"2948","ncbi","1618",NA
+"2949","ncbi","3104",NA
+"2950","ncbi","1998",NA
+"2951","ncbi","2258","Pozoa coriacea"
+"2952","ncbi","2997",NA
+"2953","ncbi","2949","Trifolium arvense"
+"2954","ncbi","174","Angelica archangelica"
+"2955","ncbi","2941",NA
+"2956","ncbi","1010","Epilobium hirsutum"
+"2957","ncbi","669",NA
+"2958","ncbi","2361",NA
+"2959","ncbi","3010",NA
+"2960","ncbi","1364","Heterotheca villosa"
+"2961","ncbi","229","Eremogone congesta"
+"2962","ncbi","3079","Vicia americana"
+"2963","ncbi","1036","Erigeron flagellaris"
+"2964","ncbi","2864","Taraxacum officinale"
+"2965","ncbi","2725","Solidago multiradiata"
+"2966","ncbi","1044","Erigeron speciosus"
+"2967","ncbi","1309","Helianthella quinquenervis"
+"2968","ncbi","1799","Mertensia fusiformis"
+"2969","ncbi","1798","Mertensia ciliata"
+"2970","ncbi","2242","Potentilla gracilis"
+"2971","ncbi","2619","Senecio serra"
+"2972","ncbi","687","Claytonia lanceolata"
+"2973","ncbi","90",NA
+"2974","ncbi","1219","Gentiana parryi"
+"2975","ncbi","1188","Galium boreale"
+"2976","ncbi","3110","Viola praemorsa"
+"2977","ncbi","1337","Heliomeris multiflora"
+"2978","ncbi","162","Androsace septentrionalis"
+"2979","ncbi","2436","Rosa woodsii"
+"2980","ncbi","2106","Phacelia heterophylla"
+"2981","ncbi","2593","Sedum lanceolatum"
+"2982","ncbi","945","Draba aurea"
+"2983","ncbi","2607","Senecio integerrimus"
+"2984","ncbi","873","Delphinium nuttallianum"
+"2985","ncbi","2245","Potentilla hippiana"
+"2986","ncbi","1049","Eriogonum umbellatum"
+"2987","ncbi","2300","Pseudocymopterus montanus"
+"2988","ncbi","1418","Hydrophyllum capitatum"
+"2989","ncbi","27","Achillea millefolium"
+"2990","ncbi","1741","Berberis repens"
+"2991","ncbi","391","Boechera stricta"
+"2992","ncbi","2625",NA
+"2993","ncbi","485","Campanula rotundifolia"
+"2994","ncbi","1571",NA
+"2995","ncbi","1048",NA
+"2996","ncbi","552","Castilleja sulphurea"
+"2997","ncbi","1066","Erythronium grandiflorum"
+"2998","ncbi","1652","Linum lewisii"
+"2999","ncbi","1676","Lomatium dissectum"
+"3000","ncbi","1491","Ipomopsis aggregata"
+"3001","ncbi","139",NA
+"3002","ncbi","1147","Fragaria virginiana"
+"3003","ncbi","1419",NA
+"3004","ncbi","907","Dicentra canadensis"
+"3005","ncbi","2508",NA
+"3006","ncbi","507",NA
+"3007","ncbi","2799","Stellaria pubera"
+"3008","ncbi","1350","Anemone americana"
+"3009","ncbi","1068","Erythronium umbilicatum"
+"3010","ncbi","3015","Uvularia sessilifolia"
+"3011","ncbi","3106",NA
+"3012","ncbi","78","Aesculus sylvatica"
+"3013","ncbi","2909",NA
+"3014","ncbi","2890","Thalictrum thalictroides"
+"3015","ncbi","2960",NA
+"3016","ncbi","938","Primula hendersonii"
+"3017","ncbi","477","Camassia quamash"
+"3018","ncbi","2353","Ranunculus occidentalis"
+"3019","ncbi","1067","Erythronium oregonum"
+"3020","ncbi","1677","Lomatium utriculatum"
+"3021","ncbi","732","Collinsia parviflora"
+"3022","ncbi","3033","Valerianella locusta"
+"3023","ncbi","591",NA
+"3024","ncbi","1156","Fritillaria affinis"
+"3025","ncbi","1965","Anacamptis morio"
+"3026","ncbi","2276","Primula veris"
+"3027","ncbi","668","Cirsium palustre"
+"3028","ncbi","865",NA
+"3029","ncbi","2546",NA
+"3030","ncbi","413","Brassica fruticulosa"
+"3031","ncbi","1021",NA
+"3032","ncbi","2594","Sedum sediforme"
+"3033","ncbi","1326",NA
+"3034","ncbi","1313","Tuberaria guttata"
+"3035","ncbi","2129","Phormium tenax"
+"3036","ncbi","2008","Ozothamnus leptophyllus"
+"3037","ncbi","766","Cordyline australis"
+"3038","ncbi","2034","Parsonsia heterophylla"
+"3039","ncbi","2169","Pittosporum crassifolium"
+"3040","ncbi","2193","Polygala myrtifolia"
+"3041","ncbi","1703","Lupinus arboreus"
+"3042","ncbi","925","Dipogon lignosus"
+"3043","ncbi","1641",NA
+"3044","ncbi","1806","Metrosideros excelsa"
+"3045","ncbi","2620",NA
+"3046","ncbi","750",NA
+"3047","ncbi","83",NA
+"3048","ncbi","1864",NA
+"3049","ncbi","1545","Kunzea ericoides"
+"3050","ncbi","1714","Lycium ferocissimum"
+"3051","ncbi","1205","Gavilea odoratissima"
+"3052","ncbi","2846",NA
+"3053","ncbi","1169",NA
+"3054","ncbi","2543","Scabiosa comosa"
+"3055","ncbi","288","Aster alpinus"
+"3056","ncbi","2007",NA
+"3057","ncbi","2234","Sibbaldianthe bifurca"
+"3058","ncbi","2905",NA
+"3059","ncbi","642","Chrysanthemum zawadskii"
+"3060","ncbi","256","Artemisia commutata"
+"3061","ncbi","2252","Potentilla sericea"
+"3062","ncbi","257","Artemisia frigida"
+"3063","ncbi","1501","Iris tigridia"
+"3064","ncbi","427","Bupleurum bicaule"
+"3065","ncbi","1711","Silene linnaeana"
+"3066","ncbi","3058","Veronica incana"
+"3067","ncbi","2006","Oxytropis strobilacea"
+"3068","ncbi","324","Astragalus mongholicus"
+"3069","ncbi","228","Eremogone capillaris"
+"3070","ncbi","117",NA
+"3071","ncbi","1594","Leontopodium leontopodioides"
+"3072","ncbi","877",NA
+"3073","ncbi","3083","Vicia multicaulis"
+"3074","ncbi","2867","Taraxacum sp."
+"3075","ncbi","2230","Potentilla acaulis"
+"3076","ncbi","1221","Gentiana pseudoaquatica"
+"3077","ncbi","2888","Thalictrum minus"
+"3078","ncbi","2050","Pedicularis achilleifolia"
+"3079","ncbi","322","Astragalus inopinatus"
+"3080","ncbi","905","Dianthus versicolor"
+"3081","ncbi","1308","Heliamphora heterodoxa"
+"3082","ncbi","398","Spermacoce capitata"
+"3083","ncbi","2183","Poecilandra retusa"
+"3084","ncbi","461",NA
+"3085","ncbi","1757","Marcetia taxifolia"
+"3086","ncbi","1404","Humiria balsamifera"
+"3087","ncbi","870","Declieuxia fruticosa"
+"3088","ncbi","3016",NA
+"3089","ncbi","838","Cybianthus quelchii"
+"3090","ncbi","719","Clusia grandiflora"
+"3091","ncbi","720","Clusia pusilla"
+"3092","ncbi","1050","Eriopsis biloba"
+"3093","ncbi","3148",NA
+"3094","ncbi","2911","Tibouchina fraterna"
+"3095","ncbi","1182","Galactophora schomburgkiana"
+"3096","ncbi","2787",NA
+"3097","ncbi","2680","Sipanea galioides"
+"3098","ncbi","397","Bonnetia sessilis"
+"3099","ncbi","1754",NA
+"3100","ncbi","1460","Ilex retusa"
+"3101","ncbi","3119",NA
+"3102","ncbi","2133",NA
+"3103","ncbi","1007","Epidendrum ibaguense"
+"3104","ncbi","1820",NA
+"3105","ncbi","3048",NA
+"3106","ncbi","419","Brocchinia acuminata"
+"3107","ncbi","1732","Macairea pachyphylla"
+"3108","ncbi","1927","Notopora schomburgkii"
+"3109","ncbi","1809","Miconia ciliata"
+"3110","ncbi","638",NA
+"3111","ncbi","2119",NA
+"3112","ncbi","848","Cyrilla racemiflora"
+"3113","ncbi","553","Catasetum discolor"
+"3114","ncbi","356",NA
+"3115","ncbi","3020",NA
+"3116","ncbi","2705",NA
+"3117","ncbi","2527",NA
+"3118","ncbi","2875",NA
+"3119","ncbi","2919","Tococa nitens"
+"3120","ncbi","2684","Siphanthera cordifolia"
+"3121","ncbi","2375",NA
+"3122","ncbi","1796",NA
+"3123","ncbi","2185",NA
+"3124","ncbi","1733",NA
+"3125","ncbi","911","Digomphia laurifolia"
+"3126","ncbi","2013",NA
+"3127","ncbi","1020",NA
+"3128","ncbi","1503","Irlbachia nemorosa"
+"3129","ncbi","1805",NA
+"3130","ncbi","1912","Nepenthes pervillei"
+"3131","ncbi","495",NA
+"3132","ncbi","913","Dillenia suffruticosa"
+"3133","ncbi","1524",NA
+"3134","ncbi","1516",NA
+"3135","ncbi","2633","Senna spectabilis"
+"3136","ncbi","517","Cardiospermum corindum"
+"3137","ncbi","2184","Poeppigia procera"
+"3138","ncbi","1070",NA
+"3139","ncbi","130","Alternanthera brasiliana"
+"3140","ncbi","1821","Mimosa arenosa"
+"3141","ncbi","2829",NA
+"3142","ncbi","3160",NA
+"3143","ncbi","1130","Evolvulus glomeratus"
+"3144","ncbi","2716","Solanum paniculatum"
+"3145","ncbi","2228",NA
+"3146","ncbi","597",NA
+"3147","ncbi","501",NA
+"3148","ncbi","1961","Opuntia palmadora"
+"3149","ncbi","394",NA
+"3150","ncbi","1414",NA
+"3151","ncbi","443","Cenostigma pyramidale"
+"3152","ncbi","2070","Peltogyne pauciflora"
+"3153","ncbi","2851",NA
+"3154","ncbi","2646",NA
+"3155","ncbi","1079",NA
+"3156","ncbi","1270",NA
+"3157","ncbi","503",NA
+"3158","ncbi","2386","Rhaphiodon echinus"
+"3159","ncbi","754",NA
+"3160","ncbi","8","Senegalia bahiensis"
+"3161","ncbi","1355","Herissantia crispa"
+"3162","ncbi","758",NA
+"3163","ncbi","2653","Sidastrum paniculatum"
+"3164","ncbi","1782","Melochia tomentosa"
+"3165","ncbi","2226","Portulaca elatior"
+"3166","ncbi","2657","Sideroxylon obtusifolium"
+"3167","ncbi","150","Anacardium occidentale"
+"3168","ncbi","610","Chaetocalyx scandens"
+"3169","ncbi","628",NA
+"3170","ncbi","974",NA
+"3171","ncbi","1931","Nymphoides indica"
+"3172","ncbi","1659",NA
+"3173","ncbi","1357","Herissantia tiubae"
+"3174","ncbi","2711",NA
+"3175","ncbi","611","Chamaecrista belemii"
+"3176","ncbi","806","Croton echioides"
+"3177","ncbi","2849",NA
+"3178","ncbi","2128","Phoenicophorium borsigianum"
+"3179","ncbi","1837",NA
+"3180","ncbi","1924",NA
+"3181","ncbi","1764","Medusagyne oppositifolia"
+"3182","ncbi","731","Colea seychellarum"
+"3183","ncbi","2549","Scaevola taccada"
+"3184","ncbi","2071","Pemphis acidula"
+"3185","ncbi","1201","Polyscias maraisiana"
+"3186","ncbi","955","Dracaena concinna"
+"3187","ncbi","2775",NA
+"3188","ncbi","1612","Leucaena leucocephala"
+"3189","ncbi","2896","Thespesia populnea"
+"3190","ncbi","2822","Suriana maritima"
+"3191","ncbi","233",NA
+"3192","ncbi","2982","Turnera angustifolia"
+"3193","ncbi","1483","Ipomoea macrantha"
+"3194","ncbi","1858","Morinda citrifolia"
+"3195","ncbi","2040","Passiflora suberosa"
+"3196","ncbi","922",NA
+"3197","ncbi","869","Deckenia nobilis"
+"3198","ncbi","2916","Timonius sechellensis"
+"3199","ncbi","1942","Olearia furfuracea"
+"3200","ncbi","1807","Metrosideros perforata"
+"3201","ncbi","2148","Phytolacca octandra"
+"3202","ncbi","1892","Myrsine australis"
+"3203","ncbi","1547","Kunzea robusta"
+"3204","ncbi","1296",NA
+"3205","ncbi","1772","Melicytus ramiflorus"
+"3206","ncbi","475",NA
+"3207","ncbi","1395","Hoheria populnea"
+"3208","ncbi","1624","Leycesteria formosa"
+"3209","ncbi","2977","Tropaeolum majus"
+"3210","ncbi","1177","Gahnia rigida"
+"3211","ncbi","371",NA
+"3212","ncbi","1155",NA
+"3213","ncbi","2729","Solidago sempervirens"
+"3214","ncbi","2376",NA
+"3215","ncbi","1932",NA
+"3216","ncbi","1513",NA
+"3217","ncbi","2267","Premna serratifolia"
+"3218","ncbi","127","Alstonia macrophylla"
+"3219","ncbi","1171",NA
+"3220","ncbi","2776",NA
+"3221","ncbi","2931",NA
+"3222","ncbi","2028","Falcataria moluccana"
+"3223","ncbi","82","Agapanthus praecox"
+"3224","ncbi","2859",NA
+"3225","ncbi","767",NA
+"3226","ncbi","2845",NA
+"3227","ncbi","2019","Pandanus rigidifolius"
+"3228","ncbi","2178","Pleurostylia leucocarpa"
+"3229","ncbi","342","Badula insularis"
+"3230","ncbi","3150",NA
+"3231","ncbi","1117",NA
+"3232","ncbi","2441",NA
+"3233","ncbi","1515",NA
+"3234","ncbi","1346",NA
+"3235","ncbi","1769",NA
+"3236","ncbi","1109","Euphorbia degeneri"
+"3237","ncbi","2515","Santalum ellipticum"
+"3238","ncbi","2645","Sida fallax"
+"3239","ncbi","395","Boerhavia repens"
+"3240","ncbi","1881","Myoporum sandwicense"
+"3241","ncbi","2637","Sesbania tomentosa"
+"3242","ncbi","2547","Scaevola coriacea"
+"3243","ncbi","2550","Scaevola taccada"
+"3244","ncbi","836","Cuscuta sandwichiana"
+"3245","ncbi","509","Cardamine enneaphyllos"
+"3246","ncbi","1354","Heracleum sphondylium"
+"3247","ncbi","2797","Stellaria nemorum"
+"3248","ncbi","1218","Gentiana pannonica"
+"3249","ncbi","857","Daphne mezereum"
+"3250","ncbi","41","Aconitum lycoctonum"
+"3251","ncbi","2537","Saxifraga rotundifolia"
+"3252","ncbi","2883","Thalictrum aquilegiifolium"
+"3253","ncbi","625",NA
+"3254","ncbi","1660",NA
+"3255","ncbi","1522",NA
+"3256","ncbi","118","Allium sphaerocephalon"
+"3257","ncbi","200",NA
+"3258","ncbi","2963","Trinia glauca"
+"3259","ncbi","2704","Smyrnium olusatrum"
+"3260","ncbi","1304","Hedera helix"
+"3261","ncbi","1879","Cicerbita muralis"
+"3262","ncbi","2621",NA
+"3263","ncbi","2608","Jacobaea vulgaris"
+"3264","ncbi","312",NA
+"3265","ncbi","360",NA
+"3266","ncbi","2155","Pilosella officinarum"
+"3267","ncbi","1386",NA
+"3268","ncbi","795","Crepis sp."
+"3269","ncbi","1552","Lactuca serriola"
+"3270","ncbi","527","Carlina vulgaris"
+"3271","ncbi","1474","Inula conyza"
+"3272","ncbi","2686","Sisymbrium officinale"
+"3273","ncbi","3071","Viburnum lantana"
+"3274","ncbi","775","Cornus sanguinea"
+"3275","ncbi","2856","Dioscorea communis"
+"3276","ncbi","2542","Scabiosa columbaria"
+"3277","ncbi","2991","Ulex europaeus"
+"3278","ncbi","1762",NA
+"3279","ncbi","1238",NA
+"3280","ncbi","2907",NA
+"3281","ncbi","711","Clinopodium acinos"
+"3282","ncbi","712",NA
+"3283","ncbi","2881","Teucrium scorodonia"
+"3284","ncbi","2360",NA
+"3285","ncbi","2362",NA
+"3286","ncbi","2426","Rosa arvensis"
+"3287","ncbi","2254","Potentilla sterilis"
+"3288","ncbi","781",NA
+"3289","ncbi","2428","Rosa canina"
+"3290","ncbi","789","Crataegus monogyna"
+"3291","ncbi","2744","Aria nivea"
+"3292","ncbi","2510","Poterium sanguisorba"
+"3293","ncbi","782","Cotoneaster horizontalis"
+"3294","ncbi","1252","Geum urbanum"
+"3295","ncbi","1197",NA
+"3296","ncbi","1766","Melampyrum pratense"
+"3297","ncbi","423","Buddleja davidii"
+"3298","ncbi","2709","Solanum dulcamara"
+"3299","ncbi","578","Centranthus ruber"
