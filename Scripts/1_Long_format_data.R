@@ -1,4 +1,7 @@
 # DATA PREPARATION FOR LONG FORMAT
+#FOR THAT I HAVE A FOLDER WITH ALL THE NETWORKS THAT I´M GOING TO USE
+#THEN I CONVERT FROM MATRIX TO LONG FORMAT
+
 
 
 #load libraries
@@ -12,7 +15,7 @@ library(taxize)
 
 
 #Set working directory to read files
-setwd("~/R_projects/Reproductive Traits/Data/Data_networks_subset") 
+setwd("~/Reproductive-traits/Data_networks_metawebs") 
 #It is call subset because I do not use all the networks
 #In total between 20 and 30, still adding... Do not know exact number yet
 
