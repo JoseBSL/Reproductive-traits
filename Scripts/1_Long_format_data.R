@@ -15,7 +15,7 @@ library(taxize)
 
 
 #Set working directory to read files
-setwd("~/Reproductive-traits/Data_networks_metawebs") 
+setwd("~/Reproductive-traits/Data/Data_networks_metawebs") 
 #It is call subset because I do not use all the networks
 #In total between 20 and 30, still adding... Do not know exact number yet
 
@@ -44,9 +44,11 @@ colnames(y) <- c("Plant_species", "Id", "Pollinator_species", "Interaction")
 Long_data <- select(y, "Plant_species", "Pollinator_species", "Interaction", "Id") 
 #Changing dot for white space
 Long_data$Pollinator_species=gsub("\\."," ",Long_data$Pollinator_species)
+setwd("~/Reproductive-traits") 
 
-Pollinator_species <- as.data.frame(unique(word(Long_data$Pollinator_species),1))
+#Now save long format data
+saveRDS(Long_data, "Data/RData/Long_format_metawebs.RData")
 
-
-poll_famord=tax_name(query=Pollinator_species[,1],get=c("family","order"),division_filter=c("Arthropoda"),
-db="itis",rank_query="genus")
+#Pollinator_species <- as.data.frame(unique(word(Long_data$Pollinator_species),1))
+#poll_famord=tax_name(query=Pollinator_species[,1],get=c("family","order"),division_filter=c("Arthropoda"),
+#db="itis",rank_query="genus")
