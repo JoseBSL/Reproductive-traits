@@ -15,7 +15,8 @@ library(taxize)
 
 
 #Set working directory to read files
-setwd("~/Reproductive-traits/Data/Data_networks_metawebs") 
+setwd("~/R_Projects/Reproductive traits/Data/Data_networks_metawebs") 
+
 #It is call subset because I do not use all the networks
 #In total between 20 and 30, still adding... Do not know exact number yet
 
