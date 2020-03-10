@@ -10,7 +10,7 @@ species <- unique(Long_format_metawebs$Plant_species)
 species <- as.data.frame(species)
 colnames(species)[1] <- "species"
 species$species <- as.factor(species$species)
-
+write.csv(species, "Data/Data_species.csv")
 data <- read_excel("Data/Data_raw/Trait_data_final.xlsx")
 
 data <- as.data.frame(data)
@@ -25,5 +25,4 @@ data_filtered_species$species <- as.factor(data_filtered_species$species)
 
 str(species)
 str(data_filtered_species)
-c <- bind_cols(species,data_filtered_species)
-b <- merge(species, data_filtered_species, all=T, by="species")
+d <- merge(species, data_filtered_species, all=T, by="species")
