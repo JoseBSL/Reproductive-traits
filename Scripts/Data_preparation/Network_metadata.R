@@ -6,7 +6,6 @@
 library(bib2df)
 library(reshape2)
 
-metadata <- read.csv("Data/Data_processing/metadata.csv", row.names = 1)
 
 
 #Read bibtex file with references
@@ -19,7 +18,7 @@ df$Id_number <- seq.int(nrow(df))
 d <- merge(df, metadata, by="BIBTEXKEY")
 str(d)
 d <- apply(d,2,as.character)
-#write.csv(d, "Data/Data_networks_processing/networks_metadata.csv")
+write.csv(d, "Data/Data_processing/metadata.csv")
 
 
 

@@ -45,7 +45,7 @@ colnames(y) <- c("Plant_species", "Id", "Pollinator_species", "Interaction")
 Long_data <- select(y, "Plant_species", "Pollinator_species", "Interaction", "Id") 
 #Changing dot for white space
 Long_data$Pollinator_species=gsub("\\."," ",Long_data$Pollinator_species)
-setwd("~/Reproductive-traits") 
+setwd("~/R_projects/Reproductive Traits") 
 
 #Now save long format data
 saveRDS(Long_data, "Data/RData/Long_format_metawebs.RData")
