@@ -41,16 +41,22 @@ library(dplyr)
 
 #Group breeding system per metaweb or web
 all_summary_breeding_system <- dcast(all,Id~Breeding_system,value.var = "Breeding_system")
+#There is one NA network because Kaiser-Bunbury 2014 hasnt been done yet
+#I still have to work with that network or remove it
+#In the meanwhile I'll work with 28 networks
+
+all_summary_breeding_system <- all_summary_breeding_system[-c(6,30),]
+
+#Select what breeding system to show
 
 
 
 
-a <- all %>% 
-  filter(!is.na(Breeding_system)) %>% 
-  group_by(Id) %>% 
-  count()
 
 
+
+
+#REMEMBER I STILL HAVE TO SUBSET THE UNQUE CASES OF THE LONG FORMAT DATA PER SITE!
 
 
 

@@ -560,7 +560,7 @@ setwd("~/R_projects/Reproductive Traits")
 
 #write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
 
-kaiser_bunbury_2014 <- read.csv("Data_networks_metawebs/14_metaweb_kaiser_bunbury_2014.csv", row.names = 1)
+kaiser_bunbury_2014 <- read.csv("Data/Data_networks_metawebs/14_metaweb_kaiser_bunbury_2014.csv", row.names = 1)
 
 BIBTEXKEY <- c("14_metaweb_kaiser_bunbury_2014")
 
@@ -1068,7 +1068,7 @@ metadata <- rbind(metadata, metadata_26)
 #29th Bartomeus unpublished 2015
 sites_bartomeus <- read.csv("Data/Data_processing/Data_networks_processing/sites_bartomeus_unpublished_data_2015.csv", row.names = 1)
 
-metaweb_bartomeus_unpublished_data_2015 <- read.csv("Data_networks/29_metaweb_bartomeus_unpublished_data_2015.csv", row.names = 1)
+metaweb_bartomeus_unpublished_data_2015 <- read.csv("Data/Data_networks/29_metaweb_bartomeus_unpublished_data_2015.csv", row.names = 1)
 
 BIBTEXKEY <- c("29_metaweb_bartomeus_unpublished_data_2015")
 
@@ -1099,4 +1099,4 @@ metadata_27 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 metadata <- rbind(metadata, metadata_27)
 
 
-#write.csv(metadata, "Data/Data_processing/Data_networks_processing/metadata.csv")
+write.csv(metadata, "Data/Data_processing/Data_networks_processing/metadata_process.csv")
