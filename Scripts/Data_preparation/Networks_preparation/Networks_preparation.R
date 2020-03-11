@@ -13,9 +13,9 @@ library(reshape2)
 setwd("~/R_projects/Reproductive Traits") 
 
 #Carpobrutus metaweb
-bat <- read.csv("Data/Data_networks/bartomeus_2008_bat1ca.csv")
-med <- read.csv("Data/Data_networks/bartomeus_2008_med1ca.csv")
-far <- read.csv("Data/Data_networks/bartomeus_2008_far1ca.csv")
+bat <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_bat1ca.csv")
+med <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_med1ca.csv")
+far <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_far1ca.csv")
 
 bat <- melt(bat)
 med <- melt(med)
@@ -32,12 +32,12 @@ carpobrotus_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",carpobrotus
 carpobrotus_metaweb_Bartomeus_2008 <- acast(carpobrotus_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                             fun.aggregate=sum)
 
-write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/1_metaweb_carpobrotus_Bartomeus_2008.csv")
+#write.csv(carpobrotus_metaweb_Bartomeus_2008, "Data_networks_metawebs/1_metaweb_carpobrotus_Bartomeus_2008.csv")
 
 #Opuntia metaweb
-sel <- read.csv("Data/Data_networks/bartomeus_2008_sel1op.csv")
-fra <- read.csv("Data/Data_networks/bartomeus_2008_fra1op.csv")
-miq <- read.csv("Data/Data_networks/bartomeus_2008_miq1op.csv")
+sel <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_sel1op.csv")
+fra <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_fra1op.csv")
+miq <- read.csv("Data/Data_processing/Data_networks/bartomeus_2008_miq1op.csv")
 
 sel <- melt(sel)
 fra <- melt(fra)
@@ -53,7 +53,7 @@ opuntia_metaweb_Bartomeus_2008$Pollinator_species=gsub("\\."," ",opuntia_metaweb
 opuntia_metaweb_Bartomeus_2008 <- acast(opuntia_metaweb_Bartomeus_2008, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                         fun.aggregate=sum)
 
-write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_metaweb_opuntia_Bartomeus_2008.csv")
+#write.csv(opuntia_metaweb_Bartomeus_2008, "Data_networks_metawebs/2_metaweb_opuntia_Bartomeus_2008.csv")
 
 
 BIBTEXKEY <- c("1_metaweb_carpobrotus_Bartomeus_2008", "2_metaweb_opuntia_Bartomeus_2008")
@@ -181,8 +181,8 @@ BIBTEXKEY <- c("4_bundgaard_2003")
 
  
  #"Shelfanger, Norfolk", "Hickling Broad National Nature Reserve"
-dicks_1 <- read.csv("Data_networks/6_dicks_2002_1.csv")
-dicks_2 <- read.csv("Data_networks/6_dicks_2002_2.csv")
+dicks_1 <- read.csv("Data/Data_networks/6_dicks_2002_1.csv")
+dicks_2 <- read.csv("Data/Data_networks/6_dicks_2002_2.csv")
 
 dicks_1 <- melt(dicks_1)
 dicks_2 <- melt(dicks_2)
@@ -197,7 +197,7 @@ metaweb_dicks_2002$Pollinator_species=gsub("\\."," ",metaweb_dicks_2002$Pollinat
 metaweb_dicks_2002 <- acast(metaweb_dicks_2002, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                              fun.aggregate=sum)
  
- write.csv(metaweb_dicks_2002, "Data_networks_metawebs/6_metaweb_dicks_2002.csv")
+ #write.csv(metaweb_dicks_2002, "Data_networks_metawebs/6_metaweb_dicks_2002.csv")
  
  
  
@@ -238,8 +238,8 @@ National Nature Reserve")
  #openly available
  
  
- dupont_1 <- read.csv("Data_networks/7_dupont_2009_denmark.csv")
- dupont_2 <- read.csv("Data_networks/7_dupont_2009_isenbjerg.csv")
+ dupont_1 <- read.csv("Data/Data_networks/7_dupont_2009_denmark.csv")
+ dupont_2 <- read.csv("Data/Data_networks/7_dupont_2009_isenbjerg.csv")
  
  dupont_1 <- melt(dupont_1)
  dupont_2 <- melt( dupont_2)
@@ -254,7 +254,7 @@ National Nature Reserve")
  metaweb_dupont_2009 <- acast(metaweb_dupont_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
                              fun.aggregate=sum)
  
- write.csv(metaweb_dupont_2009, "Data_networks_metawebs/7_metaweb_dupont_2009.csv")
+ #write.csv(metaweb_dupont_2009, "Data_networks_metawebs/7_metaweb_dupont_2009.csv")
  
  
 BIBTEXKEY <- c("7_metaweb_dupont_2009")
@@ -355,9 +355,9 @@ BIBTEXKEY <- c("7_metaweb_dupont_2009")
  #10th  Fang & Huang 2012
  
  
-fang_huang_1 <- read.csv("Data_networks/10_fang_huang_2008.csv")
-fang_huang_2 <- read.csv("Data_networks/10_fang_huang_2009.csv")
-fang_huang_3 <- read.csv("Data_networks/10_fang_huang_2010.csv")
+fang_huang_1 <- read.csv("Data/Data_networks/10_fang_huang_2008.csv")
+fang_huang_2 <- read.csv("Data/Data_networks/10_fang_huang_2009.csv")
+fang_huang_3 <- read.csv("Data/Data_networks/10_fang_huang_2010.csv")
  
 fang_huang_1 <- melt(fang_huang_1)
 fang_huang_2 <- melt(fang_huang_2)
@@ -374,7 +374,7 @@ fang_huang_3 <- melt(fang_huang_3)
  metaweb_fang_huang_2012 <- acast(metaweb_fang_huang_2012, Plant_species ~ Pollinator_species , value.var='Interaction', 
                               fun.aggregate=sum)
  
- write.csv(metaweb_fang_huang_2012, "Data_networks_metawebs/10_metaweb_fang_huang_2012.csv")
+ #write.csv(metaweb_fang_huang_2012, "Data_networks_metawebs/10_metaweb_fang_huang_2012.csv")
  
 
   BIBTEXKEY <- c("10_metaweb_fang_huang_2012")
@@ -439,7 +439,7 @@ metadata <- rbind(metadata, metadata_9)
 
 #12th  Inouye et al., 1988
 
-inouye_1988 <- read.csv("Data_networks/12_inouye_1988.csv", row.names = 1)
+inouye_1988 <- read.csv("Data/Data_networks/12_inouye_1988.csv", row.names = 1)
 
 BIBTEXKEY <- c("12_inouye_1988")
 
@@ -475,8 +475,8 @@ metadata <- rbind(metadata, metadata_10)
 
 #Carpobrutus metaweb
 
-control_kaiser_bunbury_2009 <- read.csv("Data_networks/13_control_kaiser_bunbury_2009.csv")
-restored_kaiser_bunbury_2009 <- read.csv("Data_networks/13_restored_kaiser_bunbury_2009.csv")
+control_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_control_kaiser_bunbury_2009.csv")
+restored_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_restored_kaiser_bunbury_2009.csv")
 
 control_kaiser_bunbury_2009 <- melt(control_kaiser_bunbury_2009)
 restored_kaiser_bunbury_2009 <- melt(restored_kaiser_bunbury_2009)
@@ -490,7 +490,7 @@ metaweb_kaiser_bunbury_2009$Pollinator_species=gsub("\\."," ",metaweb_kaiser_bun
 metaweb_kaiser_bunbury_2009 <- acast(metaweb_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                             fun.aggregate=sum)
 
-write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv")
+#write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv")
 
 
 kaiser_bunbury_2009 <- read.csv("Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv", row.names = 1)
@@ -533,7 +533,7 @@ metadata <- rbind(metadata, metadata_11)
 #could per site but I'm not sure
 
 #I will have to read it with a loop, too many files
-setwd("~/R_projects/Reproductive Traits/Data/Data_networks_processing/kaiser_bunbury_2014")
+setwd("~/R_projects/Reproductive Traits/Data/Data_processing/Data_networks_processing/kaiser_bunbury_2014")
 
 
 #Workflow found on stackoverflow to read all the files in a list
@@ -558,7 +558,7 @@ kaiser_bunbury_2014 <- acast(kaiser_bunbury_2014, Plant_Species ~ Pollinator_Spe
       fun.aggregate=sum)
 setwd("~/R_projects/Reproductive Traits")
 
-write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
+#write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
 
 kaiser_bunbury_2014 <- read.csv("Data_networks_metawebs/14_metaweb_kaiser_bunbury_2014.csv", row.names = 1)
 
@@ -594,7 +594,7 @@ metadata <- rbind(metadata, metadata_12)
 #15th Kato 2000 Japan
 
 
-kato_2000 <- read.csv("Data_networks_metawebs/15_metaweb_kato_2000.csv", row.names = 1)
+kato_2000 <- read.csv("Data/Data_networks_metawebs/15_metaweb_kato_2000.csv", row.names = 1)
 
 BIBTEXKEY <- c("15_metaweb_kato_2000")
 
@@ -628,7 +628,7 @@ metadata <- rbind(metadata, metadata_13)
 #16th Kevan 1970 PhD thesis
 
 
-kevan_1970 <- read.csv("Data_networks_metawebs/16_kevan_1970.csv", row.names = 1)
+kevan_1970 <- read.csv("Data/Data_networks_metawebs/16_kevan_1970.csv", row.names = 1)
 
 BIBTEXKEY <- c("16_kevan_1970")
 
@@ -662,7 +662,7 @@ metadata <- rbind(metadata, metadata_14)
 #17th Lundgren & Olesen 2005
 
 
-lundgren_2005 <- read.csv("Data_networks_metawebs/17_lundgren_2005.csv", row.names = 1)
+lundgren_2005 <- read.csv("Data/Data_networks_metawebs/17_lundgren_2005.csv", row.names = 1)
 
 BIBTEXKEY <- c("17_lundgren_2005")
 
@@ -695,7 +695,7 @@ metadata <- rbind(metadata, metadata_15)
 
 #18th V. Trivellone, upublished data Mauritius 
 
-trivellone_unpublished_data <- read.csv("Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
+trivellone_unpublished_data <- read.csv("Data/Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
 
 BIBTEXKEY <- c("18_trivellone_unpublished_data")
 
@@ -727,7 +727,7 @@ metadata <- rbind(metadata, metadata_16)
 
 #19th Mcullen 1990
 
-mcmullen_1993 <- read.csv("Data_networks_metawebs/19_mcmullen_1993.csv", row.names = 1)
+mcmullen_1993 <- read.csv("Data/Data_networks_metawebs/19_mcmullen_1993.csv", row.names = 1)
 
 BIBTEXKEY <- c("19_mcmullen_1993")
 
@@ -764,7 +764,7 @@ metadata <- rbind(metadata, metadata_17)
 #to differ quite a bit
 
 
-primack_1983_1 <- read.csv("Data_networks_metawebs/20_metaweb_arthurs_pass_primack_1983.csv", row.names = 1)
+primack_1983_1 <- read.csv("Data/Data_networks_metawebs/20_metaweb_arthurs_pass_primack_1983.csv", row.names = 1)
 
 BIBTEXKEY <- c("20_metaweb_arthurs_pass_primack_1983")
 
@@ -799,7 +799,7 @@ metadata <- rbind(metadata, metadata_18)
 
 #21st Primack 1983
 
-primack_1983_2 <- read.csv("Data_networks_metawebs/21_metaweb_cass_primack_1983.csv", row.names = 1)
+primack_1983_2 <- read.csv("Data/Data_networks_metawebs/21_metaweb_cass_primack_1983.csv", row.names = 1)
 
 BIBTEXKEY <- c("21_metaweb_cass_primack_1983")
 
@@ -833,7 +833,7 @@ metadata <- rbind(metadata, metadata_19)
 #22nd Primack 1983
 
 
-primack_1983_3 <- read.csv("Data_networks_metawebs/22_metaweb_craigieburn_primack_1983.csv", row.names = 1)
+primack_1983_3 <- read.csv("Data/Data_networks_metawebs/22_metaweb_craigieburn_primack_1983.csv", row.names = 1)
 
 BIBTEXKEY <- c("22_metaweb_craigieburn_primack_1983")
 
@@ -867,7 +867,7 @@ metadata <- rbind(metadata, metadata_20)
 #Venezuela, 1 network, 1 season, not clear which year.
 
 
-ramirez_1989 <- read.csv("Data_networks_metawebs/23_ramirez_1989.csv", row.names = 1)
+ramirez_1989 <- read.csv("Data/Data_networks_metawebs/23_ramirez_1989.csv", row.names = 1)
 
 BIBTEXKEY <- c("23_ramirez_1989")
 
@@ -901,7 +901,7 @@ metadata <- rbind(metadata, metadata_21)
 #Venezuela, 1 network, 3 seasons
 
 
-ramirez_1992 <- read.csv("Data_networks_metawebs/24_metaweb_ramirez_1992.csv", row.names = 1)
+ramirez_1992 <- read.csv("Data/Data_networks_metawebs/24_metaweb_ramirez_1992.csv", row.names = 1)
 
 BIBTEXKEY <- c("24_metaweb_ramirez_1992")
 
@@ -935,7 +935,7 @@ metadata <- rbind(metadata, metadata_22)
 #25th Robertson 1929
 #United States network/s? sampled during multiple years
 
-robertson_1929 <- read.csv("Data_networks_metawebs/25_metaweb_robertson_1929.csv", row.names = 1)
+robertson_1929 <- read.csv("Data/Data_networks_metawebs/25_metaweb_robertson_1929.csv", row.names = 1)
 
 BIBTEXKEY <- c("25_metaweb_robertson_1929")
 
@@ -968,7 +968,7 @@ metadata <- rbind(metadata, metadata_23)
 #26th Small 1973
 #
 
-small_1976 <- read.csv("Data_networks_metawebs/26_small_1976.csv", row.names = 1)
+small_1976 <- read.csv("Data/Data_networks_metawebs/26_small_1976.csv", row.names = 1)
 
 BIBTEXKEY <- c("26_small_1976")
 
@@ -1001,7 +1001,7 @@ metadata <- rbind(metadata, metadata_24)
 #27th Souza et al., 2018
 #
 
-chaco_souza_2018 <- read.csv("Data_networks/27_chaco_souza_2018.csv", row.names = 1)
+chaco_souza_2018 <- read.csv("Data/Data_networks/27_chaco_souza_2018.csv", row.names = 1)
 
 BIBTEXKEY <- c("27_chaco_souza_2018")
 
@@ -1034,7 +1034,7 @@ metadata <- rbind(metadata, metadata_25)
 #28th Souza et al., 2018
 #5 sites, one in each island
 
-metaweb_traveset_2013 <- read.csv("Data_networks/28_metaweb_traveset_2013.csv", row.names = 1)
+metaweb_traveset_2013 <- read.csv("Data/Data_networks/28_metaweb_traveset_2013.csv", row.names = 1)
 
 BIBTEXKEY <- c("28_metaweb_traveset_2013")
 
@@ -1066,7 +1066,7 @@ metadata <- rbind(metadata, metadata_26)
 
 
 #29th Bartomeus unpublished 2015
-sites_bartomeus <- read.csv("Data/Data_networks_processing/sites_bartomeus_unpublished_data_2015.csv", row.names = 1)
+sites_bartomeus <- read.csv("Data/Data_processing/Data_networks_processing/sites_bartomeus_unpublished_data_2015.csv", row.names = 1)
 
 metaweb_bartomeus_unpublished_data_2015 <- read.csv("Data_networks/29_metaweb_bartomeus_unpublished_data_2015.csv", row.names = 1)
 
@@ -1099,4 +1099,4 @@ metadata_27 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 metadata <- rbind(metadata, metadata_27)
 
 
-write.csv(metadata, "Data/Data_networks_processing/metadata.csv")
+#write.csv(metadata, "Data/Data_processing/Data_networks_processing/metadata.csv")

@@ -13,20 +13,89 @@ library(spdep)      #Moran's I, Geary's C, poly2nb
 library(rnaturalearth)  #natural earth API
 library(ggmap)
 
+
+#read metadata with coordinates 
+metadata <- read.csv("Data/Data_processing/metadata.csv", stringsAsFactors = F)
+str(metadata)
+metadata_sub <- metadata[,c(1:6)]
+
+#Fix some coordinates manually, this locations have more than one
+#fore representation purposes I will use just one
+metadata_sub[6,3] <- "1.575532"
+metadata_sub[6,4] <- "52.762395"
+metadata_sub[7,3] <- "9.1"
+metadata_sub[7,4] <- "56.1"
+metadata_sub[29,3] <- "-6.16895"
+metadata_sub[29,4] <- "37.234966"
+
+
+#FIRST I TRY WITH A SUBSET (UNIQUE CASES)
+#Now read networks
 #read data (still working on it)
-setwd("~/Reproductive Traits/")
-data <- read_excel("data/data_traits.xlsx",na="")
+all <- read.csv("Data/Data_processing/all.csv", stringsAsFactors = F)
+
+all <- all[,c(1,4,6,7,8,15)]
+str(all)
+library(reshape2)
+library(dplyr)
+
+#Group breeding system per metaweb or web
+all_summary_breeding_system <- dcast(all,Id~Breeding_system,value.var = "Breeding_system")
 
 
 
-#Creat a base plot with gpplot2
-p <- ggplot() + coord_fixed() +
-  xlab("") + ylab("")
 
-#Add map to base plot
-base_world <- p + geom_polygon(data=world_map, aes(x=long, y=lat, group=group), 
-                                     colour="light blue", fill="light blue")
-base_world_messy
+a <- all %>% 
+  filter(!is.na(Breeding_system)) %>% 
+  group_by(Id) %>% 
+  count()
+
+
+
+
+
+library(ggplot2)
+library(scatterpie)
+
+set.seed(123)
+long <- rnorm(50, sd=100)
+lat <- rnorm(50, sd=50)
+d <- data.frame(long=long, lat=lat)
+d <- with(d, d[abs(long) < 150 & abs(lat) < 70,])
+n <- nrow(d)
+d$region <- factor(1:n)
+d$A <- abs(rnorm(n, sd=1))
+d$B <- abs(rnorm(n, sd=2))
+d$C <- abs(rnorm(n, sd=3))
+d$D <- abs(rnorm(n, sd=4))
+d$radius <- 6 * abs(rnorm(n))
+head(d)
+
+##          long        lat region          A        B        C        D
+## 1  -56.047565  12.665926      1 0.71040656 2.887786 1.309570 2.892264
+## 2  -23.017749  -1.427338      2 0.25688371 1.403569 1.375096 4.945092
+## 4    7.050839  68.430114      3 0.24669188 0.524395 3.189978 5.138863
+## 5   12.928774 -11.288549      4 0.34754260 3.144288 3.789556 2.295894
+## 8 -126.506123  29.230687      5 0.95161857 3.029335 1.048951 2.471943
+## 9  -68.685285   6.192712      6 0.04502772 3.203072 2.596539 4.439393
+##      radius
+## 1 6.4847970
+## 2 3.7845247
+## 4 0.6818394
+## 5 9.1974120
+## 8 3.1267039
+## 9 2.9392227
+
+world <- map_data('world')
+p <- ggplot(world, aes(long, lat)) +
+  geom_map(map=world, aes(map_id=region), fill=NA, color="black") +
+  coord_quickmap()
+p + geom_scatterpie(aes(x=long, y=lat, group=region, r=radius),
+                    data=d, cols=LETTERS[1:4], color=NA, alpha=.8) +
+  geom_scatterpie_legend(d$radius, x=-160, y=-55)
+
+
+
 
 longitude <- c(3.296797, 10.216667, 10.233333, 
                -68.015892, 1.575532, 9.1, 18.5,
@@ -102,4 +171,29 @@ map.test <- ggplot(kt_geom)+
 
 map.test
 
+
+
+
+library(ggplot2)
+library(scatterpie)
+set.seed(123)
+long <- rnorm(50, sd=100)
+lat <- rnorm(50, sd=50)
+d <- data.frame(long=long, lat=lat)
+d <- with(d, d[abs(long) < 150 & abs(lat) < 70,])
+n <- nrow(d)
+d$region <- factor(1:n)
+d$A <- abs(rnorm(n, sd=1))
+d$B <- abs(rnorm(n, sd=2))
+d$C <- abs(rnorm(n, sd=3))
+d$D <- abs(rnorm(n, sd=4))
+d$radius <- 6 * abs(rnorm(n))
+head(d)
+world <- map_data('world')
+p <- ggplot(world, aes(long, lat)) +
+  geom_map(map=world, aes(map_id=region), fill=NA, color="black") +
+  coord_quickmap()
+p + geom_scatterpie(aes(x=long, y=lat, group=region, r=radius),
+                    data=d, cols=LETTERS[1:4], color=NA, alpha=.8) +
+  geom_scatterpie_legend(d$radius, x=-160, y=-55)
 

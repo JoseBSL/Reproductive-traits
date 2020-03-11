@@ -37,7 +37,7 @@ str(Long_data)
 str(Long_data_unique)
 
 all <- merge(Long_data_unique, data_filtered,  by="Plant_species", all = T )
-write.csv(all, "data/all.csv", row.names = F)
+write.csv(all, "data/Data_processing/all.csv", row.names = F)
 #There are still some gaps, but is good for now (150 spp)
 #I'll add them after some preliminary analyses
 
