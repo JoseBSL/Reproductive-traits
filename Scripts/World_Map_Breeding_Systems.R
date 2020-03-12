@@ -76,12 +76,12 @@ world <- map_data('world')
 
 #network size fix
 
-data_merged_sub$network_size[data_merged_sub$network_size > 10000] <- 10000
+data_merged_sub$network_size[data_merged_sub$network_size > 47000] <- 47000
 
 p <- ggplot(world, aes(long, lat)) +
   geom_map(map=world, aes(map_id=region), fill="white", color="black") +
   coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
-p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id, r= scale(network_size)*4.5), 
+p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id, r= scale(network_size)*7), 
                      data = data_merged_sub, cols = colnames(data_merged_sub[,c(7:9)]),alpha=.8)+ 
   scale_fill_manual(breaks = colnames(data_merged_sub[,c(7:9)]),
                        labels = c("Hermaphroditism", "Dioecy", "Monoecy"),
@@ -89,12 +89,8 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id, r= scale(network_size
                                   "Monoecy" = "#984EA3",
                                   "Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
   caption = "",fill = NULL) +
-  theme(legend.position = c(0.18, 0.009),
+  theme(legend.position = c(0.19, 0.009),
         legend.justification = c(1, 0),
-        panel.grid = element_blank(),
-        panel.border = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
         axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm"))
 
 #At the moment I cannot see all the networks, think about correct for network size
