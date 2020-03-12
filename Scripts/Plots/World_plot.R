@@ -37,7 +37,7 @@ continents.regular <- fortify(world, region="CONTINENT")
 
 # Read raster files
 period='1986-2010'
-r <- raster(paste("Data/Map_KG-Global/KG_", period, '.grd', sep=''))
+r <- raster(paste("Old_Data/Map_KG-Global/KG_", period, '.grd', sep=''))
 raster.points <- rasterToPoints(r)
 raster.points <- data.frame(raster.points)
 colnames(raster.points) <-c('x','y','layer')
