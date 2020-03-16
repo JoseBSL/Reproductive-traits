@@ -80,15 +80,35 @@ data_merged_sub_ord <- data_merged_sub[order(data_merged_sub$Id_number),]
 #Manual jitter
 data_merged_sub_ord$Id_number <- seq(1, length(data_merged_sub_ord$Id_number))
 #Fixing New Zealand pies
-data_merged_sub_ord[19,4] <- -29
-data_merged_sub_ord[20,4] <- -40
-data_merged_sub_ord[21,4] <- -51
+data_merged_sub_ord[19,4] <- -28
+data_merged_sub_ord[19,3] <- 168
+data_merged_sub_ord[20,4] <- -52
+data_merged_sub_ord[20,3] <- 180
+data_merged_sub_ord[21,4] <- -48
+data_merged_sub_ord[21,3] <- 158
+
 #Fixing Galapagos pies
-data_merged_sub_ord[18,4] <- -6
-data_merged_sub_ord[27,4] <- 5
-#Fixing Galapagos pies
-data_merged_sub_ord[13,4] <- -14
-data_merged_sub_ord[17,4] <- -25
+data_merged_sub_ord[18,4] <- -7
+data_merged_sub_ord[18,3] <- -105
+
+data_merged_sub_ord[27,4] <- 6
+data_merged_sub_ord[27,3] <- -105
+
+#Fixing Mauritius pies
+data_merged_sub_ord[13,4] <- -12
+data_merged_sub_ord[13,3] <- 72
+data_merged_sub_ord[17,4] <- -28
+data_merged_sub_ord[17,3] <- 72
+
+#Fixing Denmark pies
+data_merged_sub_ord[3,4] <- 72
+data_merged_sub_ord[4,4] <- 60
+data_merged_sub_ord[7,4] <- 50
+
+#Fixing Venezuela pies
+
+data_merged_sub_ord[22,3] <- -45
+data_merged_sub_ord[22,4] <- 10
 
 
 
@@ -99,14 +119,17 @@ p <- ggplot(world, aes(long, lat)) +
   geom_map(map=world, aes(map_id=region), fill="white", color="black") +
   coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
 p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
-                     data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
+ data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
   scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
-                       labels = c("Hermaphroditism", "Dioecy", "Monoecy"),
-                       values = c("Hermaphroditism" = "#4DAF4A",
-                                  "Monoecy" = "#984EA3",
-                                  "Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
-  caption = "",fill = NULL) +
-  theme(legend.position = c(0.21, 0.009),
-        legend.justification = c(1, 0),
-        axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm"))
-
+ labels = c("Hermaphroditism", "Dioecy", "Monoecy"),values = c("Hermaphroditism" = "#4DAF4A",
+ "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
+  caption = "",fill = NULL) + theme(legend.position = c(0.21, 0.009),legend.justification = c(1, 0),
+  axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm")) +
+  geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 164, y = -48, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = 6, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.2) +  
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = -7, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -12), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -28), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.2)

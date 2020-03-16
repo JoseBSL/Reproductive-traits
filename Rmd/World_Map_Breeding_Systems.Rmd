@@ -14,7 +14,6 @@ library(dbplyr)
 library(scatterpie)
 library(reshape2)
 # READ LONG FORMAT DATA
-
 setwd("~/R_Projects/Reproductive Traits")
 Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
@@ -84,6 +83,31 @@ data_merged_sub <- data_merged[, c(1:6, 20:22)]
 #Plot data
 world <- map_data('world')
 
+data_merged_sub_ord <- data_merged_sub[order(data_merged_sub$Id_number),]
+#Move coordinates manually to see all points (Improving plot visualization)
+#Manual jitter
+data_merged_sub_ord$Id_number <- seq(1, length(data_merged_sub_ord$Id_number))
+#Fixing New Zealand pies
+data_merged_sub_ord[19,4] <- -29
+data_merged_sub_ord[19,3] <- 180
+data_merged_sub_ord[20,4] <- -40
+data_merged_sub_ord[20,3] <- 180
+data_merged_sub_ord[21,4] <- -51
+data_merged_sub_ord[21,3] <- 180
+
+#Fixing Galapagos pies
+data_merged_sub_ord[18,4] <- -6
+data_merged_sub_ord[27,4] <- 5
+#Fixing Galapagos pies
+data_merged_sub_ord[13,4] <- -14
+data_merged_sub_ord[17,4] <- -25
+#Fixing Denmark pies
+data_merged_sub_ord[3,4] <- 70
+data_merged_sub_ord[4,4] <- 60
+data_merged_sub_ord[7,4] <- 50
+
+
+
 
 #network size fix
 
@@ -91,8 +115,8 @@ p <- ggplot(world, aes(long, lat)) +
   geom_map(map=world, aes(map_id=region), fill="white", color="black") +
   coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
 p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
-                     data = data_merged_sub, cols = colnames(data_merged_sub[,c(7:9)]),alpha=.8)+ 
-  scale_fill_manual(breaks = colnames(data_merged_sub[,c(7:9)]),
+                     data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
+  scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
                        labels = c("Hermaphroditism", "Dioecy", "Monoecy"),
                        values = c("Hermaphroditism" = "#4DAF4A",
                                   "Monoecy" = "#984EA3",
@@ -100,7 +124,9 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   caption = "",fill = NULL) +
   theme(legend.position = c(0.21, 0.009),
         legend.justification = c(1, 0),
-        axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm"))
+        axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm"))+geom_segment(data = data_merged_sub_ord, 
+  aes(x = 174, y = -28, xend = 170, yend = -45), color = "lightblue", size = 0.3, alpha = 0.2,
+  arrow = arrow(length = unit(0.08, "inches")))
 
 
 ```
