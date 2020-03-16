@@ -88,9 +88,9 @@ metadata <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duratio
 
 BIBTEXKEY <- c("3_bek_2006")
 
-longitude <- c(56.066667)
+longitude <- c(10.216667)
 
-latitude <- c(10.216667)
+latitude <- c(56.066667)
 
 country <- c("Denmark")
 
@@ -119,9 +119,9 @@ metadata_1 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,durat
  
 BIBTEXKEY <- c("4_bundgaard_2003")
  
- longitude <- c(56.066667)
+ longitude <- c(10.233333)
  
- latitude <- c(10.233333)
+ latitude <- c(56.066667)
  
  country <- c("Denmark")
  

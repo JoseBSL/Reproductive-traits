@@ -2,8 +2,10 @@
 
 #Load Libraries
 library(readxl)
-
-
+library(ggplot2)
+library(dbplyr)
+library(scatterpie)
+library(reshape2)
 # READ LONG FORMAT DATA
 Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
@@ -15,7 +17,7 @@ Long_format_subset <-  unique(Long_format_metawebs[,c("Plant_species","Id")])
 
 #READ TRAIT DATA IN ORDER TO MERGE
 data <- read.csv("Data/Data_processing/all.csv", stringsAsFactors = F)
-data <- all[,c(1,4,6,7,8,15,27)]
+data <- data[,c(1,4,6,7,8,15,27)]
 levels(as.factor(data$Breeding_system))
 #Filter data for columns of interest
 data_filtered <- subset(data, Info_level=="flower"|Info_level=="capitulum"|Info_level=="inflorescence"|Info_level=="NA")
@@ -73,60 +75,38 @@ data_merged_sub <- data_merged[, c(1:6, 20:22)]
 #Plot data
 world <- map_data('world')
 
+data_merged_sub_ord <- data_merged_sub[order(data_merged_sub$Id_number),]
+#Move coordinates manually to see all points (Improving plot visualization)
+#Manual jitter
+data_merged_sub_ord$Id_number <- seq(1, length(data_merged_sub_ord$Id_number))
+#Fixing New Zealand pies
+data_merged_sub_ord[19,4] <- -29
+data_merged_sub_ord[20,4] <- -40
+data_merged_sub_ord[21,4] <- -51
+#Fixing Galapagos pies
+data_merged_sub_ord[18,4] <- -6
+data_merged_sub_ord[27,4] <- 5
+#Fixing Galapagos pies
+data_merged_sub_ord[13,4] <- -14
+data_merged_sub_ord[17,4] <- -25
+
+
+
 
 #network size fix
-
-data_merged_sub$network_size[data_merged_sub$network_size > 47000] <- 47000
 
 p <- ggplot(world, aes(long, lat)) +
   geom_map(map=world, aes(map_id=region), fill="white", color="black") +
   coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
-p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id, r= scale(network_size)*7), 
-                     data = data_merged_sub, cols = colnames(data_merged_sub[,c(7:9)]),alpha=.8)+ 
-  scale_fill_manual(breaks = colnames(data_merged_sub[,c(7:9)]),
+p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
+                     data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
+  scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
                        labels = c("Hermaphroditism", "Dioecy", "Monoecy"),
                        values = c("Hermaphroditism" = "#4DAF4A",
                                   "Monoecy" = "#984EA3",
                                   "Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
   caption = "",fill = NULL) +
-  theme(legend.position = c(0.19, 0.009),
+  theme(legend.position = c(0.21, 0.009),
         legend.justification = c(1, 0),
         axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm"))
-
-#At the moment I cannot see all the networks, think about correct for network size
-
-
-#EXAMPLE
-
-
-world <- map_data('world')
-ggplot(world, aes(long, lat)) +
-  geom_map(map=world, aes(map_id=region), fill="grey97", color="grey") +
-  geom_scatterpie(data = data_merged_sub, 
-                  aes(longitude, latitude),
-                  cols = colnames(data_merged_sub[,c(7:9)]),
-                  alpha = 0.5) +
-  scale_fill_manual(
-    breaks = colnames(data_merged_sub[,c(7:9)]),
-    labels = c("Hermaphroditism", "Dioecy", "Monoecy"),
-    values = c("Hermaphroditism" = "orange",
-               "Monoecy" = "cyan",
-               "Dioecy" = "black"),
-    shape= c()) +
-  labs(title = "Breeding systems",
-       subtitle = "",
-       caption = "28 networks",
-       fill = NULL) +
-  coord_fixed() +
-  theme_bw() +
-  theme(legend.position = c(1.20, 0.02),
-        legend.justification = c(1, 0),
-        panel.grid = element_blank(),
-        panel.border = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        legend.text=element_text(size=6))
-
-
 

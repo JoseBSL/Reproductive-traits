@@ -1,8 +1,8 @@
 "","BIBTEXKEY","longitude","latitude","country","location","duration","experiment_year","unique_networks","plant_species","pollinator_species","network_size"
 "1","1_metaweb_carpobrotus_Bartomeus_2008","3.296797","42.315336","Spain","Natural Park of Cap de Creus (Catalonia, northeastern Spain))","1 season","2005",3,18,37,666
 "2","2_metaweb_opuntia_Bartomeus_2008","3.296797","42.315336","Spain","Natural Park of Cap de Creus (Catalonia, northeastern Spain))","1 season","2005",3,13,37,481
-"3","3_bek_2006","56.066667","10.216667","Denmark",NA,NA,NA,NA,37,225,8325
-"4","4_bundgaard_2003","56.066667","10.233333","Denmark",NA,NA,NA,NA,16,44,704
+"3","3_bek_2006","10.216667","56.066667","Denmark",NA,NA,NA,NA,37,225,8325
+"4","4_bundgaard_2003","10.233333","56.066667","Denmark",NA,NA,NA,NA,16,44,704
 "5","5_metaweb_chacoff_2011","-68.015892","-32.008985","Argentina","Central Monte desert biome in Mendoza","4 seasons","2006-2009",4,59,196,11564
 "6","6_metaweb_dicks_2002","1.575532; 1.097873","52.762395; 52.413173","England","Shelfanger, Norfolk; Hickling Broad
 National Nature Reserve","1 season","2001?",2,23,80,1840
@@ -12,7 +12,7 @@ National Nature Reserve","1 season","2001?",2,23,80,1840
 "10","10_metaweb_fang_huang_2012","99.63806","27.90139","China","Shangri-La Alpine Botanical Garden, Yunnan","3 seasons","2008-2010",3,130,247,32110
 "11","11_metaweb_inouye_1990","135.866667","35.166667","Japan","Kibune, Kyoto","4 seasons","1984-1987",4,114,883,100662
 "12","12_inouye_1988","148.266667","-36.45","Australia","Snowy Mountains","1 season","1983-1984",1,40,85,3400
-"13","13_metaweb_kaiser_bunbury_2009","57.443254","-20.452076","Republic of Mauritius","Black River Gorges National Park","1 season","2003-2004",2,40,85,3400
+"13","13_metaweb_kaiser_bunbury_2009","57.443254","-20.452076","Republic of Mauritius","Black River Gorges National Park","1 season","2003-2004",2,96,184,17664
 "14","14_metaweb_kaiser_bunbury_2014","55.43333","-4.666667","Republic of Seychelles","Morne Seychellois National Park, Mahe","1 season","2007-2008",6,37,341,12617
 "15","15_metaweb_kato_2000","129.493741","28.377248","Japan","Anami islands","4 seasons","1996-1999",16,110,609,66990
 "16","16_kevan_1970","-71.3","81.816667","Canada","Hazen Camp, Ellesmere Island",NA,NA,NA,20,91,1820
