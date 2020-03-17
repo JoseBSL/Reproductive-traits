@@ -939,9 +939,9 @@ robertson_1929 <- read.csv("Data/Data_networks_metawebs/25_metaweb_robertson_192
 
 BIBTEXKEY <- c("25_metaweb_robertson_1929")
 
-longitude <- c(-75.5)
+longitude <- c(-89.8968771)
 
-latitude <- c(45.4)
+latitude <- c(39.278958)
 
 country <- c("United States")
 

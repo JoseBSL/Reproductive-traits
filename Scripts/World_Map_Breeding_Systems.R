@@ -110,7 +110,55 @@ data_merged_sub_ord[7,4] <- 50
 data_merged_sub_ord[22,3] <- -45
 data_merged_sub_ord[22,4] <- 10
 
+#Fixing Japan pies
 
+data_merged_sub_ord[11,3] <- 154
+data_merged_sub_ord[14,3] <- 145
+data_merged_sub_ord[14,4] <- 20
+
+#Fixing Spain pies
+
+data_merged_sub_ord[28,3] <- -20
+data_merged_sub_ord[28,4] <- 28
+
+data_merged_sub_ord[1,3] <- -20
+data_merged_sub_ord[1,4] <- 52
+data_merged_sub_ord[2,3] <- -30
+data_merged_sub_ord[2,4] <- 40
+
+#Fixing Argentina pies
+
+data_merged_sub_ord[5,3] <- -90
+
+#Fixing Brazil pies
+
+data_merged_sub_ord[26,3] <- -30
+
+#Fixing Sweden pies
+
+data_merged_sub_ord[8,3] <- 40
+data_merged_sub_ord[8,4] <- 78
+
+#Fixing Denmark pies
+
+data_merged_sub_ord[3,3] <- 0
+data_merged_sub_ord[3,4] <- 80
+data_merged_sub_ord[4,3] <- 15
+data_merged_sub_ord[4,4] <- 80
+data_merged_sub_ord[7,3] <- 45
+data_merged_sub_ord[7,4] <- 60
+
+
+#Fixing UK pies
+
+data_merged_sub_ord[6,3] <- -8
+data_merged_sub_ord[6,4] <- 67
+
+#Fixing Australia
+
+data_merged_sub_ord[12,3] <- 120
+
+#Fixing China pie
 
 
 #network size fix
@@ -123,7 +171,7 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
  labels = c("Hermaphroditism", "Dioecy", "Monoecy"),values = c("Hermaphroditism" = "#4DAF4A",
  "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
-  caption = "",fill = NULL) + theme(legend.position = c(0.21, 0.009),legend.justification = c(1, 0),
+  caption = "",fill = NULL) + theme(legend.position = c(0.215, 0.009),legend.justification = c(1, 0),
   axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm")) +
   geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.2) + 
   geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.2) + 
@@ -132,4 +180,17 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -99, y = -7, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.2) +
   geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -12), color = "black", size = 0.3, alpha = 0.2) +
   geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -28), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.2)
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 148, y = 35, xend = 135.8, yend = 35), color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 140, y = 22, xend = 129, yend = 28), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -15.5, y = 32, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -15, y = 50, xend = 3, yend = 43), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -24, y = 40, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -84, y = -32, xend = -68, yend = -32), color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -36, y = -21, xend = -58, yend = -21), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 34, y = 78, xend = 18.5, yend = 68), color = "black", size = 0.3, alpha = 0.2) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 0, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 15, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -8, y = 61, xend = 1.5, yend = 52), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 39, y = 60, xend = 9, yend = 56), color = "black", size = 0.3, alpha = 0.2) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 126, y = -36, xend = 148, yend = -36), color = "black", size = 0.3, alpha = 0.2)
