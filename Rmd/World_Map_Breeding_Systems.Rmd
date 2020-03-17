@@ -82,6 +82,7 @@ data_merged$Monoecy <- data_merged$andromonoecious + data_merged$gynomonoecious 
 data_merged_sub <- data_merged[, c(1:6, 20:22)]
 #Plot data
 world <- map_data('world')
+
 data_merged_sub_ord <- data_merged_sub[order(data_merged_sub$Id_number),]
 #Move coordinates manually to see all points (Improving plot visualization)
 #Manual jitter
@@ -116,6 +117,8 @@ data_merged_sub_ord[7,4] <- 50
 
 data_merged_sub_ord[22,3] <- -45
 data_merged_sub_ord[22,4] <- 10
+data_merged_sub_ord[23,3] <- -45
+data_merged_sub_ord[23,4] <- 25
 
 #Fixing Japan pies
 
@@ -133,32 +136,97 @@ data_merged_sub_ord[1,4] <- 52
 data_merged_sub_ord[2,3] <- -30
 data_merged_sub_ord[2,4] <- 40
 
+#Fixing Argentina pies
 
+data_merged_sub_ord[5,3] <- -90
+
+#Fixing Brazil pies
+
+data_merged_sub_ord[26,3] <- -30
+
+#Fixing Sweden pies
+
+data_merged_sub_ord[8,3] <- 40
+data_merged_sub_ord[8,4] <- 78
+
+#Fixing Denmark pies
+
+data_merged_sub_ord[3,3] <- 0
+data_merged_sub_ord[3,4] <- 80
+data_merged_sub_ord[4,3] <- 15
+data_merged_sub_ord[4,4] <- 80
+data_merged_sub_ord[7,3] <- 45
+data_merged_sub_ord[7,4] <- 60
+
+
+#Fixing UK pies
+
+data_merged_sub_ord[6,3] <- -8
+data_merged_sub_ord[6,4] <- 67
+
+#Fixing Australia
+
+data_merged_sub_ord[12,3] <- 120
+
+#Fixing China pie
+
+data_merged_sub_ord[10,3] <- 90
+data_merged_sub_ord[10,4] <- 0
+
+#Fixing USA pie
+
+data_merged_sub_ord[24,3] <- -60
+
+#Fixing Canada pie
+data_merged_sub_ord[25,3] <- -42
+data_merged_sub_ord[25,4] <- 52
+data_merged_sub_ord[15,3] <- -71
+data_merged_sub_ord[15,4] <- 92
+
+#Fixing Greenland pie
+
+data_merged_sub_ord[16,4] <- 92
+data_merged_sub_ord[9,4] <- 92
 
 #network size fix
 
 p <- ggplot(world, aes(long, lat)) +
-  geom_map(map=world, aes(map_id=region), fill="white", color="black") +
+  geom_map(map=world, aes(map_id=region), fill="white", color="grey", size=0.35) +
   coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
 p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
  data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
   scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
  labels = c("Hermaphroditism", "Dioecy", "Monoecy"),values = c("Hermaphroditism" = "#4DAF4A",
  "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
-  caption = "",fill = NULL) + theme(legend.position = c(0.215, 0.009),legend.justification = c(1, 0),
-  axis.ticks = element_blank(),legend.key.size = unit(0.15, "cm")) +
-  geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = 164, y = -48, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = 6, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.2) +  
-  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = -7, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -12), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -28), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = 148, y = 35, xend = 135.866667, yend = 35), color = "black", size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = 140, y = 22, xend = 129, yend = 28), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = -15, y = 32, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.2) + 
-  geom_segment(data = data_merged_sub_ord, aes(x = -15, y = 50, xend = 3, yend = 43), color = "black", size = 0.3, alpha = 0.2) +
-  geom_segment(data = data_merged_sub_ord, aes(x = -24, y = 40, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.2) 
+  caption = "",fill = NULL) + theme(legend.position = c(0.215, 0.010),legend.justification = c(1, 0),
+  axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm")) +
+  geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = 164, y = -48, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = 6, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.8) +  #GALAPAGOS
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = -7, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.8) + #GALAPAGOS
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -12), color = "black", size = 0.3, alpha = 0.8) + #MAURITIUS
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -28), color = "black", size = 0.3, alpha = 0.8) + #MAURITIUS
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.8) + #VENEZUELA
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y =25 , xend = -67, yend = 8.9), color = "black", size = 0.3, alpha = 0.8) + #VENEZUELA
+  geom_segment(data = data_merged_sub_ord, aes(x = 148, y = 35, xend = 135.8, yend = 35), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 140, y = 22, xend = 129, yend = 28), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -15.5, y = 32, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -15, y = 50, xend = 3, yend = 43), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -24, y = 40, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -84, y = -32, xend = -68, yend = -32), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -36, y = -21, xend = -58, yend = -21), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 34, y = 78, xend = 18.5, yend = 68), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 0, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 15, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -8, y = 61, xend = 1.5, yend = 52), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 39, y = 60, xend = 9, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 126, y = -36, xend = 148, yend = -36), color = "black", size = 0.3, alpha = 0.8) + #AUS
+  geom_segment(data = data_merged_sub_ord, aes(x = 90, y = 6, xend = 100, yend = 28), color = "black", size = 0.3, alpha = 0.8) + #CHINA
+  geom_segment(data = data_merged_sub_ord, aes(x = -66, y = 39, xend = -89, yend = 39), color = "black", size = 0.3, alpha = 0.8) + #USA
+  geom_segment(data = data_merged_sub_ord, aes(x = -48, y = 52, xend = -75, yend = 45), color = "black", size = 0.3, alpha = 0.8) + #CANADA
+  geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.8) + #CANADA
+  geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
+  geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
 ```
 
