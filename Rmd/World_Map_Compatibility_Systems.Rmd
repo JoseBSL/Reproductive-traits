@@ -1,11 +1,11 @@
 ---
-title: ""
+title: "Untitled"
 output:
   pdf_document: default
   html_document: default
 ---
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE}
-#WORLDPLOT WITH BREEDING SYSTEMS
+
 
 #Load Libraries
 library(readxl)
@@ -14,7 +14,9 @@ library(dbplyr)
 library(scatterpie)
 library(reshape2)
 # READ LONG FORMAT DATA
+
 setwd("~/R_Projects/Reproductive Traits")
+
 Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
 #SUBSET UNIQUE CASES PER NETWORK
@@ -25,7 +27,7 @@ Long_format_subset <-  unique(Long_format_metawebs[,c("Plant_species","Id")])
 
 #READ TRAIT DATA IN ORDER TO MERGE
 data <- read.csv("Data/Data_processing/all.csv", stringsAsFactors = F)
-data <- data[,c(1,4,6,7,8,15,27)]
+data <- data[,c(1,4,6,7,8,22,27)]
 levels(as.factor(data$Breeding_system))
 #Filter data for columns of interest
 data_filtered <- subset(data, Info_level=="flower"|Info_level=="capitulum"|Info_level=="inflorescence"|Info_level=="NA")
@@ -38,13 +40,15 @@ data_filtered <- as.data.frame(data_filtered, stringsAsFactors = TRUE)
 all_species_per_network <- merge(Long_format_subset, data_filtered,  by=c("Plant_species","Id"), all = T )
 
 #Group breeding system per metaweb or web
-all_summary_breeding_system <- dcast(all_species_per_network,Id~Breeding_system,value.var = "Breeding_system")
+all_summary_compatibility_system <- dcast(all_species_per_network,Id~Compatibility,value.var = "Compatibility")
 
 #Cleaning NA and one unfinished network
-all_summary_breeding_system <- all_summary_breeding_system[-c(6,30),]
+all_summary_compatibility_system <- all_summary_compatibility_system[,c(1,5:8)]
 
+all_summary_compatibility_system$partially_self_compatible <- as.numeric(all_summary_compatibility_system$partially_self_compatible) + as.numeric(all_summary_compatibility_system$self_compatible_self_incompatible) 
+all_summary_compatibility_system <- all_summary_compatibility_system[ , -4]
 #Removing ".csv" from the Id to megere with coordinates
-all_summary_breeding_system$Id <- gsub("\\..*","",all_summary_breeding_system$Id)
+all_summary_compatibility_system$Id <- gsub("\\..*","",all_summary_compatibility_system$Id)
 
 #Now merge with metadata to add coordinates to plot it
 metadata <- read.csv("Data/Data_processing/metadata.csv", stringsAsFactors = F)
@@ -64,22 +68,14 @@ metadata_sub <- metadata_sub[-14,]
 colnames(metadata_sub)[1] <- "Id"
 
 #Merge coordinates and data 
-data_merged <- merge(metadata_sub, all_summary_breeding_system)
+data_merged <- merge(metadata_sub, all_summary_compatibility_system)
 
-data_merged[,c(3,4,6:19)] <- sapply(data_merged[,c(3,4,6:19)],as.numeric)
-sapply(data_merged, class)
 data_merged$Id <- as.factor(data_merged$Id)
 str(data_merged)
-#Prepare data for plotting
-data_merged$Hermaphroditism <- data_merged$hermaphrodite
-data_merged$Dioecy <- data_merged$androdioecious + data_merged$androgynodioecious + data_merged$dioecious+
-  data_merged$gynodioecious + data_merged$monoecious_dioecious + data_merged$`polygamo-dioecious`+
-  data_merged$subdioecious
 
-data_merged$Monoecy <- data_merged$andromonoecious + data_merged$gynomonoecious + data_merged$monoecious
-+ data_merged$submonoecious
-
-data_merged_sub <- data_merged[, c(1:6, 20:22)]
+#I have done this in other code for other reasons
+#I'm going to maintain it
+data_merged_sub <- data_merged
 #Plot data
 world <- map_data('world')
 
@@ -188,7 +184,11 @@ data_merged_sub_ord[15,4] <- 92
 data_merged_sub_ord[16,4] <- 92
 data_merged_sub_ord[9,4] <- 92
 
+data_merged_sub_ord[,c(3,4,7:9)] <- sapply(data_merged_sub_ord[,c(3,4,7:9)],as.numeric)
+str(data_merged_sub_ord)
+
 #network size fix
+
 
 p <- ggplot(world, aes(long, lat)) +
   geom_map(map=world, aes(map_id=region), fill="white", color="grey", size=0.35) +
@@ -196,9 +196,7 @@ p <- ggplot(world, aes(long, lat)) +
 p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
  data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
   scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
- labels = c("Hermaphroditism", "Dioecy", "Monoecy"),values = c("Hermaphroditism" = "#4DAF4A",
- "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
-  caption = "",fill = NULL) + theme(legend.position = c(0.15, 0.010),legend.justification = c(1, 0),legend.text=element_text(size=5),
+ labels = c("Partially self compatible", "Self compatible", "Self incompatible"),values = c("partially_self_compatible" = "#4DAF4A","self_compatible" = "#984EA3","self_incompatible" = "orange")) +labs(title = "Compatibility systems",subtitle = "", caption = "",fill = NULL) + theme(legend.position = c(0.18, 0.010),legend.justification = c(1, 0),legend.text=element_text(size=5),
   axis.ticks = element_blank(),legend.key.size = unit(0.16, "cm")) +
   geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.8) + #NZ
   geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.8) + #NZ
@@ -228,5 +226,7 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.8) + #CANADA
   geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
+
+
 ```
 
