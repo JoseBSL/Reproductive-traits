@@ -197,7 +197,7 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
  data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:9)]),alpha=.8)+ 
   scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:9)]),
  labels = c("Hermaphroditism", "Dioecy", "Monoecy"),values = c("Hermaphroditism" = "#4DAF4A",
- "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding systems",subtitle = "",
+ "Monoecy" = "#984EA3","Dioecy" = "orange")) +labs(title = "Breeding system",subtitle = "",
   caption = "",fill = NULL) + theme(legend.position = c(0.15, 0.010),legend.justification = c(1, 0),legend.text=element_text(size=5),
   axis.ticks = element_blank(),legend.key.size = unit(0.16, "cm")) +
   geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.8) + #NZ
