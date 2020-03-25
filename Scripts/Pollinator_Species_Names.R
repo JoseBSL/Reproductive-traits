@@ -123,3 +123,7 @@ all_long_format <- all_long_format[,-c(1,6,7)]
 
 colnames(all_long_format) <- c("Plant_species", "Pollinator_species", "Interaction", "Id", "Pollinator_order", "Pollinator_family",
                               "Pollinator_genus")
+
+
+write.csv(all_long_format, "Data/Data_processing/Long_format_metawebs_poll_taxa_added.csv")
+
