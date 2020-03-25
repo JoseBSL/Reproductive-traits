@@ -14,7 +14,7 @@ Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
 # SUBSET UNIQUE CASES PER NETWORK
 Long_format_subset_poll <-  unique(Long_format_metawebs[,c("Pollinator_species","Id")])
-
+str(Long_format_subset_poll$Pollinator_species)
 # SELECT FIRST WORD OF THE SPECIES (GENUS), AND UNIQUE CASE
 poll <- as.data.frame(unique(word(Long_format_subset_poll$Pollinator_species),1))
 str(poll)
@@ -108,8 +108,18 @@ poll_spp <- poll_spp[,-1]
 write.csv(poll_spp, "Data/Data_processing/poll_spp.csv")
 
 
+#I have added manually the ORDERS, FAMILIES AND GENUSES
+#By using https://www.catalogueoflife.org/ 
+#or other addittional resources when required for specific cases
 
+#READ POLLINATOR ORDERS, FAMILIES AND GENUSES (UNIQUE CASES)
+poll_spp_names_corrected <- read.csv("Data/Data_processing/poll_spp_names_corrected.csv")
 
+Long_format_metawebs$genus_old <- word(Long_format_metawebs$Pollinator_species)
 
+all_long_format <- merge(Long_format_metawebs, poll_spp_names_corrected, by= "genus_old")
 
+all_long_format <- all_long_format[,-c(1,6,7)]
 
+colnames(all_long_format) <- c("Plant_species", "Pollinator_species", "Interaction", "Id", "Pollinator_order", "Pollinator_family",
+                              "Pollinator_genus")
