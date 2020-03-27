@@ -1,0 +1,40 @@
+---
+title: "Ideas"
+output: html_notebook
+---
+
+#How to proceed
+
+- Select main floral traits
+
+1) Flower size
+
+2) Fower shape
+
+3) Compatibility system
+
+4) Style length/Ovule number
+
+5) Selfing level
+
+- Plot taxa/traits Barplot?
+
+Y axis Spp richness? X Axis the grouping variables? 
+
+Consider Poll taxa here with more developped plots?
+
+- Hypothesis
+
+ 1) Do we have matching between specific taxa and grouping traits? Maybe show this with likelihood of visitation
+    1.1 Are selfers/self compatible species less relevant in the network? How can we interpretate that (generalist vs specialization/ connectance) We expect less dependency on pollinators...
+
+ 2) 
+
+ 3) Possibility of testing redundancy with phylogeny
+ 
+ - How to group Poll taxa. 
+ 
+ What to do with non-insects?
+ 
+ 
+ 
