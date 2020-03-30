@@ -696,15 +696,15 @@ country <- c("Canada")
 
 location <- c("Hazen Camp, Ellesmere Island")
 
-duration <- c(NA)
+duration <- c("1 season")
 
-experiment_year <- c(1970)
+experiment_year <- c(1967)
 
 unique_networks <-c(NA)
 
-Sampling_method <-""
+Sampling_method <-"random walks"
 
-Sampling_zoo_phytocentric <- ""
+Sampling_zoo_phytocentric <- "Phytocentric"
 
 plant_species <- c(as.numeric(nrow(kevan_1970)))
 
@@ -740,7 +740,7 @@ experiment_year <- c(2002)
 
 unique_networks <-c(1)
 
-Sampling_method <-"Regular walks within the plot (100*100m)"
+Sampling_method <-"20 mins per spp, regular walks within the plot (100*100m), max per spp 4h"
 
 Sampling_zoo_phytocentric <- "Phytocentric"
 
@@ -813,6 +813,10 @@ experiment_year <- c(NA)
 
 unique_networks <-c(NA)
 
+Sampling_method <-""
+
+Sampling_zoo_phytocentric <- ""
+
 plant_species <- c(as.numeric(nrow(mcmullen_1993)))
 
 pollinator_species <- c(as.numeric(ncol(mcmullen_1993)))  
@@ -821,7 +825,7 @@ network_size <- c(as.numeric(nrow(mcmullen_1993))*as.numeric(ncol(mcmullen_1993)
 
 metadata_17 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_17)
 
@@ -850,6 +854,10 @@ experiment_year <- c("1976-1978")
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(primack_1983_1)))
 
 pollinator_species <- c(as.numeric(ncol(primack_1983_1)))  
@@ -858,7 +866,7 @@ network_size <- c(as.numeric(nrow(primack_1983_1))*as.numeric(ncol(primack_1983_
 
 metadata_18 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_18)
 
@@ -885,6 +893,10 @@ experiment_year <- c("1976-1978")
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(primack_1983_2)))
 
 pollinator_species <- c(as.numeric(ncol(primack_1983_2)))  
@@ -893,7 +905,7 @@ network_size <- c(as.numeric(nrow(primack_1983_2))*as.numeric(ncol(primack_1983_
 
 metadata_19 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_19)
 
@@ -919,6 +931,10 @@ experiment_year <- c("1976-1978")
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(primack_1983_3)))
 
 pollinator_species <- c(as.numeric(ncol(primack_1983_3)))  
@@ -927,7 +943,7 @@ network_size <- c(as.numeric(nrow(primack_1983_3))*as.numeric(ncol(primack_1983_
 
 metadata_20 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_20)
 
@@ -953,6 +969,10 @@ experiment_year <- c(NA)
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(ramirez_1989)))
 
 pollinator_species <- c(as.numeric(ncol(ramirez_1989)))  
@@ -961,7 +981,7 @@ network_size <- c(as.numeric(nrow(ramirez_1989))*as.numeric(ncol(ramirez_1989)))
 
 metadata_21 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_21)
 
@@ -987,6 +1007,10 @@ experiment_year <- c("1983,1984,1989")
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks, 16 to 20h of sampling per spp"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(ramirez_1992)))
 
 pollinator_species <- c(as.numeric(ncol(ramirez_1992)))  
@@ -995,7 +1019,7 @@ network_size <- c(as.numeric(nrow(ramirez_1992))*as.numeric(ncol(ramirez_1992)))
 
 metadata_22 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_22)
 
@@ -1021,6 +1045,10 @@ experiment_year <- c("1997-1899")
 
 unique_networks <-c(NA)
 
+Sampling_method <-""
+
+Sampling_zoo_phytocentric <- ""
+
 plant_species <- c(as.numeric(nrow(robertson_1929)))
 
 pollinator_species <- c(as.numeric(ncol(robertson_1929)))  
@@ -1029,7 +1057,7 @@ network_size <- c(as.numeric(nrow(robertson_1929))*as.numeric(ncol(robertson_192
 
 metadata_23 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_23)
 
@@ -1054,6 +1082,10 @@ experiment_year <- c("1973")
 
 unique_networks <-c(1)
 
+Sampling_method <-"10 hours per spp"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(small_1976)))
 
 pollinator_species <- c(as.numeric(ncol(small_1976)))  
@@ -1062,7 +1094,7 @@ network_size <- c(as.numeric(nrow(small_1976))*as.numeric(ncol(small_1976)))
 
 metadata_24 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_24)
 
@@ -1087,6 +1119,10 @@ experiment_year <- c("2008-2009")
 
 unique_networks <-c(1)
 
+Sampling_method <-"37 plots, 15*25m (at least 50m away), spp within the plots depending sampling effort on abundance"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(chaco_souza_2018)))
 
 pollinator_species <- c(as.numeric(ncol(chaco_souza_2018)))  
@@ -1095,11 +1131,11 @@ network_size <- c(as.numeric(nrow(chaco_souza_2018))*as.numeric(ncol(chaco_souza
 
 metadata_25 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_25)
 
-#28th Souza et al., 2018
+#28th Traveset 2018
 #5 sites, one in each island
 
 metaweb_traveset_2013 <- read.csv("Data/Data_networks/28_metaweb_traveset_2013.csv", row.names = 1)
@@ -1120,6 +1156,10 @@ experiment_year <- c("2010-2011")
 
 unique_networks <-c(1)
 
+Sampling_method <-"Random census walks with a total of 518h"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(metaweb_traveset_2013)))
 
 pollinator_species <- c(as.numeric(ncol(metaweb_traveset_2013)))  
@@ -1128,7 +1168,7 @@ network_size <- c(as.numeric(nrow(metaweb_traveset_2013))*as.numeric(ncol(metawe
 
 metadata_26 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_26)
 
@@ -1154,6 +1194,10 @@ experiment_year <- c("2015")
 
 unique_networks <-c(16)
 
+Sampling_method <-"Transects"
+
+Sampling_zoo_phytocentric <- "Phytocentric"
+
 plant_species <- c(as.numeric(nrow(metaweb_bartomeus_unpublished_data_2015)))
 
 pollinator_species <- c(as.numeric(ncol(metaweb_bartomeus_unpublished_data_2015)))  
@@ -1162,7 +1206,7 @@ network_size <- c(as.numeric(nrow(metaweb_bartomeus_unpublished_data_2015))*as.n
 
 metadata_27 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
-                          network_size)
+                          network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_27)
 
