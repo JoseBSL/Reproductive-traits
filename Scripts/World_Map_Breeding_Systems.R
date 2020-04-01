@@ -6,6 +6,7 @@ library(ggplot2)
 library(dbplyr)
 library(scatterpie)
 library(reshape2)
+library(sf)
 # READ LONG FORMAT DATA
 Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
@@ -179,6 +180,9 @@ data_merged_sub_ord[15,4] <- 92
 
 data_merged_sub_ord[16,4] <- 92
 data_merged_sub_ord[9,4] <- 92
+
+Breeding_systems_plot <- data_merged_sub_ord
+#saveRDS(Breeding_systems_plot, "Data/RData/Breeding_systems_plot.RData")
 
 #network size fix
 

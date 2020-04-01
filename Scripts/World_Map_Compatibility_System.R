@@ -177,6 +177,9 @@ data_merged_sub_ord[9,4] <- 92
 data_merged_sub_ord[,c(3,4,7:9)] <- sapply(data_merged_sub_ord[,c(3,4,7:9)],as.numeric)
 str(data_merged_sub_ord)
 
+#saveRDS(data_merged_sub_ord, "Data/RData/Compatibility_system_plot.RData")
+
+
 #network size fix
 
 p <- ggplot(world, aes(long, lat)) +
