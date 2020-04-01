@@ -6,8 +6,7 @@ output:
 fontsize: 12pt
 header-includes:
     - \usepackage{setspace}\doublespacing
-bibliography: 
-  - references.bib
+bibliography: [references.bib]
 ---
 Here I'm going to try to understand our data a bit better and state our hypothesis.
 
@@ -19,11 +18,11 @@ Plant pollinator interactions are a keystone process for ecosystem functioning. 
 
 *What sort of data do we have?*
 
-Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool, where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
+Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool [@noreika2019pollinator], where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
 
-Noreika 2019
 
-@noreika2019
+
+
 This data is quantitative (visitation number) and qualitative (binary, 1's and 0's).
 CHECK NUMBER OF EACH
 
