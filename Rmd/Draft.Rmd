@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+fontsize: 12pt
+header-includes:
+    - \usepackage{setspace}\doublespacing
+---
+Here I'm going to try to understand our data a bit better and state our hypothesis.
+
+First I start with an abstract that could be our guide for hypothesis testing and analyses.
+
+#Abstract
+
+Plant pollinator intaractions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance of deepen in species traits in order to understand key processes that can be seen with network metrics and highlights the importance of elemental ecology for species conservation.
+
+*What sort of data do we have?*
+
+Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
+
+This data is quantitative (visitation number) and qualitative (binary, 1's and 0's).
+CHECK NUMBER OF EACH
+
+Now I'm going to show graphically where these networks are located and how few of these traits vary across them.
+
+\newpage
+
+Here I show the percentage or orders from the different species without consider visitation and just richness of species. Therfore, if we have a network with 4 species from from different orders, each will appear as 25% within the stack bar of the barplot. 
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center'}
+setwd("~/R_Projects/Reproductive Traits")
+
+data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
+clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
+          "orange")
+par(mar = c(11,6.1,4.1,8))
+barplot(data2, beside = FALSE, ylab = "% visits", cex.names = 0.5
+        ,las = 2, col = clrs)
+abline (h = 0)
+par(xpd=TRUE)
+leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
+legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
+par(mar = c(5,1.1,4.1,2.1))
+par(xpd=FALSE)
+
+```
+
+
+\newpage
+
+
