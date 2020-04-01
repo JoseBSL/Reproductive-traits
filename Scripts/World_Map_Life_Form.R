@@ -174,6 +174,7 @@ data_merged_sub_ord[9,4] <- 92
 
 data_merged_sub_ord[,c(3,4,7:10)] <- sapply(data_merged_sub_ord[,c(3,4,7:10)],as.numeric)
 str(data_merged_sub_ord)
+saveRDS(data_merged_sub_ord, "Data/RData/Life_form_plot.RData")
 
 
 p <- ggplot(world, aes(long, lat)) +

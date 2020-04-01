@@ -1,24 +1,29 @@
 ---
-title: "Untitled"
+title: "Draft"
 output:
   pdf_document: default
   html_document: default
 fontsize: 12pt
 header-includes:
     - \usepackage{setspace}\doublespacing
+bibliography: 
+  - references.bib
 ---
 Here I'm going to try to understand our data a bit better and state our hypothesis.
 
 First I start with an abstract that could be our guide for hypothesis testing and analyses.
 
-#Abstract
+#Abstract (draft)
 
-Plant pollinator intaractions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance of deepen in species traits in order to understand key processes that can be seen with network metrics and highlights the importance of elemental ecology for species conservation.
+Plant pollinator interactions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance of deepen in species traits in order to understand key processes that can be seen with network metrics and highlights the importance of elemental ecology for species conservation.
 
 *What sort of data do we have?*
 
-Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
+Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool, where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
 
+Noreika 2019
+
+@noreika2019
 This data is quantitative (visitation number) and qualitative (binary, 1's and 0's).
 CHECK NUMBER OF EACH
 
@@ -150,5 +155,59 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.8) + #CANADA
   geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
+```
+
+
+\newpage
+
+**PLOT 4**
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center'}
+library(ggplot2)
+library(scatterpie)
+library(sf)
+world <- map_data('world')
+setwd("~/R_Projects/Reproductive Traits")
+data_merged_sub_ord <- readRDS("Data/RData/Life_Form_plot.RData")
+
+p <- ggplot(world, aes(long, lat)) +
+  geom_map(map=world, aes(map_id=region), fill="white", color="black") +
+  coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + coord_sf( ylim = c(-60, 100), expand = FALSE)
+p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id), 
+                     data = data_merged_sub_ord, cols = colnames(data_merged_sub_ord[,c(7:10)]),alpha=.8)+ 
+  scale_fill_manual(breaks = colnames(data_merged_sub_ord[,c(7:10)]),
+                    labels = c("Herb", "Shrub", "Tree", "Vine"),values = c("herb" = "#4DAF4A",
+                                                                           "shrub" = "#984EA3","tree" = "orange", "vine" = "lightblue")) +labs(title = "Life form",subtitle = "",
+                                                                                                                                               caption = "",fill = NULL) + theme(legend.position = c(0.12, 0.009),legend.justification = c(1, 0),
+                                                                                                                                                                                 axis.ticks = element_blank(),legend.key.size = unit(0.2, "cm")) +
+  geom_segment(data = data_merged_sub_ord,aes(x = 168, y = -34, xend = 172, yend = -43),color = "black", size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = 179, y = -46, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = 164, y = -48, xend = 172, yend = -43), color = "black",size = 0.3, alpha = 0.8) + #NZ
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = 6, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.8) +  #GALAPAGOS
+  geom_segment(data = data_merged_sub_ord, aes(x = -99, y = -7, xend = -90, yend = 0), color = "black", size = 0.3, alpha = 0.8) + #GALAPAGOS
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -12), color = "black", size = 0.3, alpha = 0.8) + #MAURITIUS
+  geom_segment(data = data_merged_sub_ord, aes(x = 57, y = -20.5, xend = 66, yend = -28), color = "black", size = 0.3, alpha = 0.8) + #MAURITIUS
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y = 10, xend = -61, yend = 5.5), color = "black", size = 0.3, alpha = 0.8) + #VENEZUELA
+  geom_segment(data = data_merged_sub_ord, aes(x = -51, y =25 , xend = -67, yend = 8.9), color = "black", size = 0.3, alpha = 0.8) + #VENEZUELA
+  geom_segment(data = data_merged_sub_ord, aes(x = 148, y = 35, xend = 135.8, yend = 35), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 140, y = 22, xend = 129, yend = 28), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -15.5, y = 32, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -15, y = 50, xend = 3, yend = 43), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -24, y = 40, xend = -6, yend = 37), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -84, y = -32, xend = -68, yend = -32), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = -36, y = -21, xend = -58, yend = -21), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 34, y = 78, xend = 18.5, yend = 68), color = "black", size = 0.3, alpha = 0.8) + 
+  geom_segment(data = data_merged_sub_ord, aes(x = 0, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 15, y = 74.5, xend = 10, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = -8, y = 61, xend = 1.5, yend = 52), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 39, y = 60, xend = 9, yend = 56), color = "black", size = 0.3, alpha = 0.8) +
+  geom_segment(data = data_merged_sub_ord, aes(x = 126, y = -36, xend = 148, yend = -36), color = "black", size = 0.3, alpha = 0.8) + #AUS
+  geom_segment(data = data_merged_sub_ord, aes(x = 90, y = 6, xend = 100, yend = 28), color = "black", size = 0.3, alpha = 0.8) + #CHINA
+  geom_segment(data = data_merged_sub_ord, aes(x = -66, y = 39, xend = -89, yend = 39), color = "black", size = 0.3, alpha = 0.8) + #USA
+  geom_segment(data = data_merged_sub_ord, aes(x = -48, y = 52, xend = -75, yend = 45), color = "black", size = 0.3, alpha = 0.8) + #CANADA
+  geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.8) + #CANADA
+  geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
+  geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
+
 ```
 
