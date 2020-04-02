@@ -186,7 +186,7 @@ BIBTEXKEY <- c("4_bundgaard_2003")
  
  unique_networks <-c(4)
  
- Data_type <- "Qualitative"
+ Data_type <- "Quantitative"
  
  plant_species <- c(59)
  

@@ -1,5 +1,5 @@
 ---
-title: "Draft"
+title: "Chapter 2 Draft"
 output:
   pdf_document: default
   html_document: default
@@ -34,7 +34,10 @@ Now I'm going to show graphically where these networks are located and how few o
 
 Here I show the percentage or orders from the different species without consider visitation and just richness of species. Therfore, if we have a network with 4 species from from different orders, each will appear as 25% within the stack bar of the barplot. 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center'}
+\vspace{4cm}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center', fig.width=10,fig.height=7}
 setwd("~/R_Projects/Reproductive Traits")
 
 data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
