@@ -44,7 +44,7 @@ data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
 clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
           "orange")
 par(mar = c(11,6.1,4.1,8))
-barplot(data2, beside = FALSE, ylab = "% visits", cex.names = 0.5
+barplot(data2, beside = FALSE, ylab = "% Spp per order", cex.names = 0.5
         ,las = 2, col = clrs)
 abline (h = 0)
 par(xpd=TRUE)

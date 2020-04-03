@@ -48,7 +48,7 @@ colnames(data2) <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Cha
 
 saveRDS(data2, "Data/RData/Spp_richness_by_order.RData")
 
-par(mar = c(11,6.1,4.1,8))
+par(mar = c(16,6.1,4.1,8))
 barplot(data2, beside = FALSE, ylab = "% visits", cex.names = 0.5
         ,las = 2, col = clrs)
 abline (h = 0)
