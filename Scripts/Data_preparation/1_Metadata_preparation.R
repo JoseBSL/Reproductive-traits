@@ -132,7 +132,7 @@ metadata_2 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,durat
                        network_size,Sampling_method, Sampling_zoo_phytocentric, Data_type)
 
 
-metadata <- rbind(metadata, metadata_2)
+metadata <- rbind(metadata_1, metadata_2)
 
 
 
@@ -409,10 +409,10 @@ BIBTEXKEY <- c("7_metaweb_dupont_2009")
  metadata <- rbind(metadata, metadata_8)
  
  
- #9th  Elberling unpublished data
+ #9th  Dupont 2009
  
  
- BIBTEXKEY <- c("9_elberling_unpublished_data")
+ BIBTEXKEY <- c("9_dupont_2009_zackenberg")
  
  longitude <- c(-20.5)
  
@@ -472,7 +472,7 @@ fang_huang_3 <- melt(fang_huang_3)
  #write.csv(metaweb_fang_huang_2012, "Data_networks_metawebs/10_metaweb_fang_huang_2012.csv")
  
 
-  BIBTEXKEY <- c("10_metaweb_fang_huang_2012")
+ BIBTEXKEY <- c("10_metaweb_fang_huang_2012")
  
  longitude <- c(99.63806)
  
@@ -588,25 +588,25 @@ metadata <- rbind(metadata, metadata_12)
 
 #Carpobrutus metaweb
 
-control_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_control_kaiser_bunbury_2009.csv")
-restored_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_restored_kaiser_bunbury_2009.csv")
+#control_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_control_kaiser_bunbury_2009.csv")
+#restored_kaiser_bunbury_2009 <- read.csv("Data/Data_networks/13_restored_kaiser_bunbury_2009.csv")
 
-control_kaiser_bunbury_2009 <- melt(control_kaiser_bunbury_2009)
-restored_kaiser_bunbury_2009 <- melt(restored_kaiser_bunbury_2009)
+#control_kaiser_bunbury_2009 <- melt(control_kaiser_bunbury_2009)
+#restored_kaiser_bunbury_2009 <- melt(restored_kaiser_bunbury_2009)
 
-colnames(control_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
-colnames(restored_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
-metaweb_kaiser_bunbury_2009<- rbind(control_kaiser_bunbury_2009,med,restored_kaiser_bunbury_2009)
+#colnames(control_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
+#colnames(restored_kaiser_bunbury_2009) <- c("Plant_species", "Pollinator_species", "Interaction")
+#metaweb_kaiser_bunbury_2009<- rbind(control_kaiser_bunbury_2009,med,restored_kaiser_bunbury_2009)
 
-metaweb_kaiser_bunbury_2009$Pollinator_species=gsub("\\."," ",metaweb_kaiser_bunbury_2009$Pollinator_species)
+#metaweb_kaiser_bunbury_2009$Pollinator_species=gsub("\\."," ",metaweb_kaiser_bunbury_2009$Pollinator_species)
 
-metaweb_kaiser_bunbury_2009 <- acast(metaweb_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
-                                            fun.aggregate=sum)
+#metaweb_kaiser_bunbury_2009 <- acast(metaweb_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
+                                            #fun.aggregate=sum)
 
 #write.csv(metaweb_kaiser_bunbury_2009, "Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv")
 
 
-kaiser_bunbury_2009 <- read.csv("Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv", row.names = 1)
+kaiser_bunbury_2009 <- read.csv("Data/Data_networks_metawebs/13_metaweb_kaiser_bunbury_2009.csv", row.names = 1)
 
 BIBTEXKEY <- c("13_metaweb_kaiser_bunbury_2009")
 
@@ -652,30 +652,30 @@ metadata <- rbind(metadata, metadata_13)
 #could per site but I'm not sure
 
 #I will have to read it with a loop, too many files
-setwd("~/R_projects/Reproductive Traits/Data/Data_processing/Data_networks_processing/kaiser_bunbury_2014")
+#setwd("~/R_projects/Reproductive Traits/Data/Data_processing/Data_networks_processing/kaiser_bunbury_2014")
 
 
 #Workflow found on stackoverflow to read all the files in a list
-temp <- list.files(pattern="*.csv")
-my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
-my_files <- list.files(pattern = "\\.csv$")
-my_data <- lapply(my_files, read.csv)
+#temp <- list.files(pattern="*.csv")
+#my.list <- list(for (i in 1:length(temp)) assign(temp[i], read.csv(temp[i])))
+#my_files <- list.files(pattern = "\\.csv$")
+#my_data <- lapply(my_files, read.csv)
 
 #For loop to melt each data frame and merge
-i <- NULL
-kaiser_bunbury_2014 <- NULL
+#i <- NULL
+#kaiser_bunbury_2014 <- NULL
 
-for (i in data_id_list){
-  i <- melt(i)
-  kaiser_bunbury_2014 <- rbind(kaiser_bunbury_2014, i)
-}
+#for (i in data_id_list){
+  #i <- melt(i)
+  #kaiser_bunbury_2014 <- rbind(kaiser_bunbury_2014, i)
+#}
 
-kaiser_bunbury_2014 <- kaiser_bunbury_2014[,-2]
-colnames(kaiser_bunbury_2014) <- c("Plant_Species", "Pollinator_Species", "Interaction")
-kaiser_bunbury_2014$Pollinator_Species <- gsub("\\.", " ", kaiser_bunbury_2014$Pollinator_Species)
-kaiser_bunbury_2014 <- acast(kaiser_bunbury_2014, Plant_Species ~ Pollinator_Species, value.var='Interaction', 
-      fun.aggregate=sum)
-setwd("~/R_projects/Reproductive Traits")
+#kaiser_bunbury_2014 <- kaiser_bunbury_2014[,-2]
+#colnames(kaiser_bunbury_2014) <- c("Plant_Species", "Pollinator_Species", "Interaction")
+#kaiser_bunbury_2014$Pollinator_Species <- gsub("\\.", " ", kaiser_bunbury_2014$Pollinator_Species)
+#kaiser_bunbury_2014 <- acast(kaiser_bunbury_2014, Plant_Species ~ Pollinator_Species, value.var='Interaction', 
+      #fun.aggregate=sum)
+#setwd("~/R_projects/Reproductive Traits")
 
 #write.csv(kaiser_bunbury_2014, "Data_networks/14_metaweb_kaiser_bunbury_2014.csv")
 
@@ -699,7 +699,7 @@ unique_networks <-c(6)
 
 Data_type <- "Quantitative"
 
-Sampling_method <-"2 to 4 transects of 100m"
+Sampling_method <-"2 to 4 transects of 100m, 48 networks in 6 different sites"
 
 Sampling_zoo_phytocentric <- "Phytocentric"
 

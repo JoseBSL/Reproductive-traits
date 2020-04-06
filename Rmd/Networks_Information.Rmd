@@ -1,0 +1,135 @@
+---
+output: html_document
+fontsize: 12pt
+header-includes:
+    - \usepackage{setspace}\doublespacing
+---
+
+#Networks information
+
+Here I'm going to record the processing history and adittional information, complementary to the metadata of the networks. Also I will justify when we group the networks as metaweb.
+
+__1 carpobrotus_metaweb_Bartomeus_2008__
+
+We have build a metaweb with three different networks that share most of the plant species.
+
+
+__2_metaweb_opuntia_Bartomeus_2008__
+
+We have build a metaweb with three different networks that share most of the plant species.
+
+
+__3_bek_2006__
+
+Master student of Jens Olesen that built an entire network for his thesis. 
+
+__4_bundgaard_2003__
+
+Master student of Jens Olesen that built a network for his thesis, sampling on the sides of the road. Quite close to Bek's 2006 network (few hundred meters away).
+
+__5_metaweb_chacoff_2011__
+
+Metaweb from journal without modifications.
+
+__6_metaweb_dicks_2002__
+
+We have combined the two networks provided in this journal article in a unique metaweb. The meadows share a great number of species and in the article they are described as similar systems. From google maps, they seems to be 60-80 kms away from each other.
+
+__7_metaweb_dupont_2009__
+
+There are three networks available with three different sites (obtained from online databases). However, with quantitative data (visitation) just one from the article, seems to be an error with the supplementary material. I have no been able to get the three of them. 
+
+
+__8_elberling_1999__
+
+One unique network with quantitative data. I have passed it manually from the original paper due to the online databases have mistakes in the data and binary.  
+
+__9_dupont_2009_zackenberg__
+
+Unique network sampled during one season.
+
+__10_metaweb_fang_huang_2012__
+
+I have combined the data obtained from the journal article in a unique metaweb. There three networks from 3 different seasons.
+
+__11_metaweb_inouye_1990__
+
+Metaweb with multiple seasons. No modifications made.
+
+__12_inouye_1988__
+
+One unique network without modifications.
+
+__13_metaweb_kaiser_bunbury_2009__
+
+One unique network sampled during one season.
+
+__14_metaweb_kaiser_bunbury_2014__
+
+I have merged the 48 sites sampled in a heterogeneous landscape and created a metaweb. Just 6 different sites.
+
+__15_metaweb_kato_2000__
+
+Metaweb obtained from web of life. I have not done modifications to the dataset. Quantitative data.
+
+__16_kevan_1970__
+
+One unique network from one season. I have not modified the data. Obtained from web of life.
+
+__17_lundgren_2005__
+
+One unique network from one season. I have not modified the data.
+
+__18_olesen_2002_mauritius__
+
+One unique network, I have passed manually in order to have the visitation data.
+
+__19_mcmullen_1993__
+
+Metaweb from all the islands. From web of life.
+
+__20_metaweb_arthurs_pass_primack_1983__
+
+Netwrok from web of life, binary data. I have not modified it. 
+
+__21_metaweb_cass_primack_1983__
+
+Netwrok from web of life, binary data. I have not modified it. 
+
+__22_metaweb_craigieburn_primack_1983__
+
+Netwrok from web of life, binary data. I have not modified it. 
+
+__23_ramirez_1989__
+
+Data from web of life. I have not modified the data.
+
+__24_metaweb_ramirez_1992__
+
+Metaweb from web of life without modifications.
+
+__25_metaweb_robertson_1929__
+
+Metaweb from web of life without modifications.
+
+__26_small_1976__
+
+Unique network with quantitative data without modifications.
+
+__27_chaco_souza_2018__
+
+Unique network with quantitative data without modifications.
+
+__28_metaweb_traveset_2013__
+
+Metaweb with networks from different islands from journal. 
+
+__29_metaweb_bartomeus_unpublished_data_2015__
+
+Metaweb with networks from different sites. I made a subset of this data by transects. 
+
+__30_olesen_2002_azores__
+
+Unique network without modifications. I have passed the data manually from source.
+
+
