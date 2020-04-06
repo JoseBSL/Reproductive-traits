@@ -789,11 +789,11 @@ metadata_15 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
 metadata <- rbind(metadata, metadata_15)
 
 
-#18th V. Trivellone, upublished data Mauritius 
+#18th Olesen Mauritius
 
-trivellone_unpublished_data <- read.csv("Data/Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
+olesen_mauritius <- read.csv("Data/Data_networks_metawebs/18_olesen_mauritius_2002.csv", row.names = 1)
 
-BIBTEXKEY <- c("18_trivellone_unpublished_data")
+BIBTEXKEY <- c("18_olesen_mauritius")
 
 longitude <- c(57.43)
 
@@ -801,25 +801,25 @@ latitude <- c(-20.25)
 
 country <- c("Republic of Mauritius")
 
-location <- c(NA)
+location <- c("Ile aux Aigrettes")
 
-duration <- c(NA)
+duration <- c("1 season")
 
-experiment_year <- c(NA)
+experiment_year <- c(1998-1999)
 
-unique_networks <-c(NA)
+unique_networks <-c(1)
 
-Data_type <- "Qualitative"
+Data_type <- "Quantitative"
 
-Sampling_method <-""
+Sampling_method <-"37 quadrats 100*100m"
 
-Sampling_zoo_phytocentric <- ""
+Sampling_zoo_phytocentric <- "Phytocentric"
 
-plant_species <- c(as.numeric(nrow(trivellone_unpublished_data)))
+plant_species <- c(as.numeric(nrow(olesen_mauritius)))
 
-pollinator_species <- c(as.numeric(ncol(trivellone_unpublished_data)))  
+pollinator_species <- c(as.numeric(ncol(olesen_mauritius)))  
 
-network_size <- c(as.numeric(nrow(trivellone_unpublished_data))*as.numeric(ncol(trivellone_unpublished_data)))
+network_size <- c(as.numeric(nrow(olesen_mauritius))*as.numeric(ncol(olesen_mauritius)))
 
 metadata_16 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
                           experiment_year,unique_networks,plant_species, pollinator_species, 
@@ -829,7 +829,7 @@ metadata <- rbind(metadata, metadata_16)
 
 #19th Mcullen 1990
 
-mcmullen_1993 <- read.csv("Data/Data_networks_metawebs/19_mcmullen_1993.csv", row.names = 1)
+mcmullen_1993 <- read.csv("Data/Data_networks_metawebs/19_metaweb_mcmullen_1993.csv", row.names = 1)
 
 BIBTEXKEY <- c("19_mcmullen_1993")
 
@@ -845,13 +845,13 @@ duration <- c(NA)
 
 experiment_year <- c(NA)
 
-unique_networks <-c(NA)
+unique_networks <-c("All islands")
 
-Data_type <- "Quantitative"
+Data_type <- "Qualitative"
 
-Sampling_method <- ""
+Sampling_method <- "Metaweb from the literature"
 
-Sampling_zoo_phytocentric <- ""
+Sampling_zoo_phytocentric <- "Phytocentric"
 
 plant_species <- c(as.numeric(nrow(mcmullen_1993)))
 
@@ -1245,6 +1245,45 @@ metadata_27 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,dura
                           network_size, Sampling_method, Sampling_zoo_phytocentric)
 
 metadata <- rbind(metadata, metadata_27)
+
+
+#30th Olesen Azores
+
+trivellone_unpublished_data <- read.csv("Data/Data_networks_metawebs/18_trivellone_unpublished_data.csv", row.names = 1)
+
+BIBTEXKEY <- c("18_trivellone_unpublished_data")
+
+longitude <- c(57.43)
+
+latitude <- c(-20.25)
+
+country <- c("Azores")
+
+location <- c(NA)
+
+duration <- c(NA)
+
+experiment_year <- c(2000)
+
+unique_networks <-c(NA)
+
+Data_type <- "Quantitative"
+
+Sampling_method <-"33 quadrats 100*100m"
+
+Sampling_zoo_phytocentric <- ""
+
+plant_species <- c(as.numeric(nrow(trivellone_unpublished_data)))
+
+pollinator_species <- c(as.numeric(ncol(trivellone_unpublished_data)))  
+
+network_size <- c(as.numeric(nrow(trivellone_unpublished_data))*as.numeric(ncol(trivellone_unpublished_data)))
+
+metadata_16 <- data.frame(BIBTEXKEY, longitude, latitude, country, location,duration, 
+                          experiment_year,unique_networks,plant_species, pollinator_species, 
+                          network_size, Sampling_method, Sampling_zoo_phytocentric, Data_type)
+
+metadata <- rbind(metadata, metadata_16)
 
 
 write.csv(metadata, "Data/Data_processing/Data_networks_processing/metadata_process.csv")
