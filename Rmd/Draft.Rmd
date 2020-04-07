@@ -18,15 +18,10 @@ Plant pollinator interactions are a keystone process for ecosystem functioning. 
 
 *What sort of data do we have?*
 
-Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool [@noreika2019pollinator], where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses will be with subsets of species from these networks.
+Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool [@noreika2019pollinator], where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses are likely to be done with subsets of species of these networks.
 
+The type of the data of the networks is binary and qunatitative (visitation). We have 13 networks/metawebs with binary data and 17 with quantitative. All the networks where phytocentric (built from plants). These networks were obtained from journals/online databases or directly from the authors. We have selected networks from very different regions of the world to have in order to have a big picture of how these different floral traits shape the different pollinator taxa and network metrics. 
 
-
-
-This data is quantitative (visitation number) and qualitative (binary, 1's and 0's).
-CHECK NUMBER OF EACH
-
-Now I'm going to show graphically where these networks are located and how few of these traits vary across them.
 
 \newpage
 
@@ -58,6 +53,30 @@ par(xpd=FALSE)
 
 \newpage
 
+
+\vspace{4cm}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center', fig.width=10,fig.height=7}
+setwd("~/R_Projects/Reproductive Traits")
+
+data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
+clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
+          "orange")
+par(mar = c(11,6.1,4.1,8))
+barplot(data2, beside = FALSE, ylab = "% Spp per order", cex.names = 0.5
+        ,las = 2, col = clrs)
+abline (h = 0)
+par(xpd=TRUE)
+leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
+legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
+par(mar = c(5,1.1,4.1,2.1))
+par(xpd=FALSE)
+
+```
+
+
+\newpage
 **PLOT 2**
 
 
