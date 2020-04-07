@@ -852,7 +852,7 @@ location <- c("Ile aux Aigrettes")
 
 duration <- c("1 season")
 
-experiment_year <- c(1998-1999)
+experiment_year <- c("1998-1999")
 
 unique_networks <-c(1)
 

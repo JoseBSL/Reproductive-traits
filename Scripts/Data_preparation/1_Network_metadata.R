@@ -19,7 +19,7 @@ d <- merge(df, metadata, by="BIBTEXKEY")
 str(d)
 d <- apply(d,2,as.character)
 #select columns of interest
-d_new <- d[,c(1,14,16:18,21:25)]
+d_new <- d[,c(1,14,16:18,21:28)]
 write.csv(d_new, "Data/Data_processing/metadata.csv")
 
 
