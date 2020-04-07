@@ -59,3 +59,40 @@ par(mar = c(5,1.1,4.1,2.1))
 par(xpd=FALSE)
 
 
+#VISITATION BAR PLOT
+
+#Now I'm going to repeat the process but with visitation
+#For that I will subset the networks for the ones with visitation data (around 20 in total)
+
+m <- read.csv("Data/Data_processing/metadata.csv")
+data <- read.csv("Data/Data_processing/Long_format_metawebs_poll_taxa_added.csv")
+
+#Removing .csv for merging the two datasets
+data$Id <- gsub("\\..*","",data$Id)
+
+#select columns of interest before merging
+
+m <- m[,c(2,14)]
+colnames(m)[1] <- "Id"
+
+#merge two dataframes
+data_m <- merge(m, data, by="Id")
+
+#Now I have just the networks with visitation data
+quantitative_net <- subset(data_m, Data_type=="Quantitative")
+
+#In this case I do something different
+#I sum the visits per order, we are using numerical data, before we were using the species 
+
+net_sum <- dcast(quantitative_net,Id~Pollinator_order,value.var = "Interaction")
+
+#Subset orders of interest
+net_sum_subset <- select(net_sum, "Id", "Hymenoptera","Coleoptera","Lepidoptera", "Diptera", "Hemiptera") 
+
+#Adding the summatory per row
+net_sum_subset$total_col <- rowSums(net_sum_subset[,-1])
+
+#Calculate percentage of visits from main orders
+
+data_network_main_orders[,c(2:6)] <- sapply(data_network_main_orders[,c(2:6)], function(x) {x /data_network_main_orders$total_col*100})
+
