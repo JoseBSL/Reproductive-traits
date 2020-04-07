@@ -102,7 +102,7 @@ net_long <- gather(net_sum_subset, orders, measurement, Hymenoptera:Hemiptera, f
 #Convert again to wideformat for plotting with barplot/for ggplot the last format is enough
 net_long <- net_long[,c(-2)]
 net_wide <- spread(net_long, Id, measurement)
-net_wide <- net_wide[,c(2:18)]
+net_wide <- net_wide[,c(2:20)]
 net_wide <- net_wide[,order(net_wide[1,], decreasing=T)]
 net_wide2 <- as.matrix(net_wide)
 
@@ -110,10 +110,9 @@ net_wide2 <- as.matrix(net_wide)
 clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
           "orange")
 
-colnames(data2) <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976",
-                     "Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002",
-                     "Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006",
-                     "Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
+colnames(net_wide2) <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
+                     "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
+                     "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
 par(mar = c(16,6.1,4.1,8))
 barplot(net_wide2, beside = FALSE, ylab = "% visits", cex.names = 0.5
         ,las = 2, col = clrs)
@@ -123,3 +122,11 @@ leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
 legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
 par(mar = c(5,1.1,4.1,2.1))
 par(xpd=FALSE)
+
+
+saveRDS(net_wide2, "Data/RData/Spp_visitation_per_order.RData")
+
+#Try plot with ggplot to see wich one looks better
+
+
+

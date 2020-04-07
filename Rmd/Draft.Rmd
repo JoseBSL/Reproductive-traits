@@ -60,9 +60,15 @@ par(xpd=FALSE)
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center', fig.width=10,fig.height=7}
 setwd("~/R_Projects/Reproductive Traits")
 
-data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
+
+data2 <- readRDS("Data/RData/Spp_visitation_per_order.RData")
+
 clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
           "orange")
+
+colnames(data2) <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
+                     "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002", "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
+
 par(mar = c(11,6.1,4.1,8))
 barplot(data2, beside = FALSE, ylab = "% Spp per order", cex.names = 0.5
         ,las = 2, col = clrs)
