@@ -167,8 +167,8 @@ p1 <- ggplot(net_long_1) +
       y = measurement, 
       fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
   geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
-  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic(legend.margin=unit(-0.6,"cm"))+
-  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) #+ theme(legend.box.margin=margin(60,60,60,60))
 #ggsave("Images/plot_visitation.pdf", dpi = 800)
 
 
@@ -178,22 +178,51 @@ p1 <- ggplot(net_long_1) +
 get_png <- function(filename) {
   grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
 }
+get_jpeg <- function(filename) {
+  grid::rasterGrob(jpeg::readJPEG(filename), interpolate = TRUE)
+}
+library(jpeg)
 
 l <- get_png("Images/lepidoptera.png")
 
+h <- get_jpeg("Images/hemiptera.jpg")
 
-t <- grid::roundrectGrob()
+b <- get_png("Images/hymenoptera.png")
+
+t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
 
 p1 +
-  annotation_custom(l, xmin = 9.5, xmax = 10, ymin = 0.9985, ymax =1.06) +
-  coord_cartesian(clip = "off") +
+  annotation_custom(l, xmin = 9.5, xmax = 10, ymin = 0.9985, ymax =1.06) + annotation_custom(h, xmin = 8.5, xmax = 9.4, ymin = 0.9985, ymax =1.06)+
+  coord_cartesian(clip = "off") +  annotation_custom(b, xmin = 7.5, xmax = 8.4, ymin = 0.9985, ymax =1.06)+
   theme(plot.margin = unit(c(1, 0, 3, 1), "lines"), legend.margin=margin(t = 0, unit='cm'))+coord_flip()
 
 
-p1 +
-  annotation_custom(l, xmin = 6.5, xmax = 8.5, ymin = -5, ymax = -8.5) +
-  coord_cartesian(clip = "off") +
-  theme(plot.margin = unit(c(1, 1, 3, 1), "lines"),legend.margin=margin(t = 0, unit='cm'))+coord_flip()
-#ggsave("Images/plot_visitation.pdf", dpi = 800)
+t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
+ 
+
+p<- ggplot(net_long_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) + theme(legend.background = element_rect(fill=alpha('blue', 0.0)))+
+  annotation_custom(l, xmin = 8, xmax = 9, ymin = 0.96, ymax =1.16) +annotation_custom(h, xmin = 8, xmax = 9, ymin = 0.96, ymax =1.16)+
+  coord_cartesian(clip = "off") + coord_flip()
+
+library(grid)
+
+gg_table <- ggplot_gtable(ggplot_build(p))
+gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
+grid.draw(gg_table)
+grid.arrange(gg_table)
+
+
+
+
+img = readPNG("Images/hymenoptera.png")
+newimg = change_cols("#FF0000", "#00FF00", img)
+writePNG(newimg, "fileout.png")
+plot(raster::as.raster(img))
 
 
