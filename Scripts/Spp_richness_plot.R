@@ -5,7 +5,7 @@ library(tidyr)
 library(plyr)
 library(ggplot2)
 library(reshape2)
-
+library(scales)
 #Load data
 data <- read.csv("Data/Data_processing/Long_format_metawebs_poll_taxa_added.csv")
 
@@ -53,7 +53,7 @@ barplot(data2, beside = FALSE, ylab = "% visits", cex.names = 0.5
         ,las = 2, col = clrs)
 abline (h = 0)
 par(xpd=TRUE)
-leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
+leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Lepidoptera", "Hemiptera")
 legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
 par(mar = c(5,1.1,4.1,2.1))
 par(xpd=FALSE)
@@ -107,8 +107,7 @@ net_wide <- net_wide[,order(net_wide[1,], decreasing=T)]
 net_wide2 <- as.matrix(net_wide)
 
 #Select colours from a Palette that Nacho made for http://www.pnas.org/content/early/2015/11/24/1517092112.long
-clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
-          "orange")
+clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod")
 
 colnames(net_wide2) <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
                      "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
@@ -118,8 +117,9 @@ barplot(net_wide2, beside = FALSE, ylab = "% visits", cex.names = 0.5
         ,las = 2, col = clrs)
 abline (h = 0)
 par(xpd=TRUE)
-leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
+leg <- c("Hemiptera", "Coleoptera", "Diptera", "Lepidoptera", "Hymenoptera")
 legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
+
 par(mar = c(5,1.1,4.1,2.1))
 par(xpd=FALSE)
 
@@ -128,5 +128,72 @@ saveRDS(net_wide2, "Data/RData/Spp_visitation_per_order.RData")
 
 #Try plot with ggplot to see wich one looks better
 
+net_long_1 <- net_sum_subset[order(-net_sum_subset$Hymenoptera),]
+net_long_1$order <- seq(nrow(net_long_1))
+net_long_1 <- gather(net_long_1, orders, measurement, Hymenoptera:Hemiptera, factor_key=TRUE)
+net_long_1 <- net_long_1[,c(-2)]
+
+
+net_sum_subset
+net_long_1$orders <- relevel(net_long_1$orders, 'Hymenoptera')
+saveRDS(net_long_1, "Data/RData/Spp_visitation_per_order_long.RData")
+
+
+l <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
+       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
+       "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
+legend_title <- "Taxonomic groups"
+
+
+
+ggplot(net_long_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+theme(plot.margin=margin(5,5,30,5))
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent)
+
+
+
+library(png)
+library(grid)
+library(ggplot2)
+img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+g <- rasterGrob(img, interpolate=TRUE, height = 0.1, width = 0.1)
+
+p1 <- ggplot(net_long_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic(legend.margin=unit(-0.6,"cm"))+
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) 
+#ggsave("Images/plot_visitation.pdf", dpi = 800)
+
+
+#Add images once I have the final plots
+
+#Try to add images
+get_png <- function(filename) {
+  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
+}
+
+l <- get_png("Images/lepidoptera.png")
+
+
+t <- grid::roundrectGrob()
+
+p1 +
+  annotation_custom(l, xmin = 9.5, xmax = 10, ymin = 0.9985, ymax =1.06) +
+  coord_cartesian(clip = "off") +
+  theme(plot.margin = unit(c(1, 0, 3, 1), "lines"), legend.margin=margin(t = 0, unit='cm'))+coord_flip()
+
+
+p1 +
+  annotation_custom(l, xmin = 6.5, xmax = 8.5, ymin = -5, ymax = -8.5) +
+  coord_cartesian(clip = "off") +
+  theme(plot.margin = unit(c(1, 1, 3, 1), "lines"),legend.margin=margin(t = 0, unit='cm'))+coord_flip()
+#ggsave("Images/plot_visitation.pdf", dpi = 800)
 
 

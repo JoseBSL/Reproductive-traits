@@ -1,0 +1,45 @@
+---
+title: "Visitation_stacked_barplot"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(plyr)
+library(ggplot2)
+library(reshape2)
+library(scales)
+library(devtools)
+library(png)
+library(grid)
+dev_mode(on=T)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+g <- rasterGrob(img, interpolate=TRUE)
+
+
+net_long_1 <- readRDS("Data/RData/Spp_visitation_per_order_long.RData")
+
+l <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
+       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
+       "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
+legend_title <- "Taxonomic groups"
+
+
+
+ ggplot(net_long_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent)
+
+ 
+```
+
