@@ -1,8 +1,8 @@
 ---
 title: "Chapter 2 Draft"
 output:
-  pdf_document: default
-  html_document: default
+    pdf_document: default
+    html_document: default
 fontsize: 12pt
 header-includes:
     - \usepackage{setspace}\doublespacing
@@ -18,10 +18,20 @@ Plant pollinator interactions are a keystone process for ecosystem functioning. 
 
 *What sort of data do we have?*
 
-Approximately 1600 species from 30 different networks (including metawebs and unique networks, if I split the metawebs into unique networks this number will increase quite a bit but we will lose some data because not all of them can be reduced to that level). Metawebs inform about the regional species pool [@noreika2019pollinator], where for our case, different years or multiple locations when the plant species are shared are combined in aunique network. Importantly, we do not have information for all the traits and the analyses are likely to be done with subsets of species of these networks.
+There are approximately 1600 species from 30 different networks. All of these networks are phytocentric (built from plants). The different plant-pollinator communities have been studied with very different sampling effort and methodologies. Therefore, our aim is not to compare across studies but to create a general picture of how floral traits shape the different pollinator taxa and network metrics. Here, we combine the studies with multiple years of sampling and multiple sites within an area in metawebs. These networks give a broader perspective of the sampling area and inform about the regional species pool [@noreika2019pollinator]. The data of these networks is quantitative (visitation) or qualitative (binary), there are in total 19 and 11 networks/metawebs of each, respectively.
 
-The type of the data of the networks is binary and qunatitative (visitation). We have 13 networks/metawebs with binary data and 17 with quantitative. All the networks where phytocentric (built from plants). These networks were obtained from journals/online databases or directly from the authors. We have selected networks from very different regions of the world to have in order to have a big picture of how these different floral traits shape the different pollinator taxa and network metrics. 
 
+\blandscape
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,}
+setwd("~/R_Projects/Reproductive Traits")
+library(kableExtra)
+
+m <- read.csv("Data/Data_processing/metadata.csv")
+kable(m)
+```
+
+\elandscape
 
 \newpage
 
@@ -32,22 +42,66 @@ Here I show the percentage or orders from the different species without consider
 \vspace{4cm}
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.align='center', fig.width=10,fig.height=7}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=8}
+library(dplyr)
+library(tidyr)
+library(plyr)
+library(ggplot2)
+library(reshape2)
+library(scales)
+library(devtools)
+library(png)
+library(grid)
+library(gridExtra)
+library(jpeg)
+dev_mode(on=T)
+
 setwd("~/R_Projects/Reproductive Traits")
 
-data2 <- readRDS("Data/RData/Spp_richness_by_order.RData")
-clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
-          "orange")
-par(mar = c(11,6.1,4.1,8))
-barplot(data2, beside = FALSE, ylab = "% Spp per order", cex.names = 0.5
-        ,las = 2, col = clrs)
-abline (h = 0)
-par(xpd=TRUE)
-leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Diptera", "Hemiptera")
-legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
-par(mar = c(5,1.1,4.1,2.1))
-par(xpd=FALSE)
+img <- readPNG(system.file("img", "Rlogo.png", package="png"))
+g <- rasterGrob(img, interpolate=TRUE)
 
+
+net_long_1 <- readRDS("Data/RData/species_per_order_percentage.RData")
+
+legend_title <- "Taxonomic groups"
+
+la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976","Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002","Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006","Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
+
+
+ get_png <- function(filename) {
+  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
+}
+
+
+ 
+l <- get_png("Images/lepidoptera_2.png")
+bumb <- get_png("Images/bumblebee.png")
+dip <- get_png("Images/diptera.png")
+beet <- get_png("Images/beetle.png")
+hem<- get_png("Images/hemiptera.png")
+
+t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
+
+
+p<- ggplot(net_long_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= la) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+xlab("Networks")+ylab("Species per order") +scale_y_continuous(labels = scales::percent) + theme(legend.background = element_rect(fill=alpha('blue', 0.0)))+
+  annotation_custom(l, xmin = 14.6, xmax = 15.4, ymin = 1.03, ymax =1.09) + annotation_custom(bumb, xmin = 11.6, xmax = 13.9, ymin = 1.03, ymax =1.09)+ annotation_custom(dip, xmin = 13.4, xmax = 14.4, ymin = 1.035, ymax =1.085)+
+  coord_cartesian(clip = "off") + annotation_custom(beet, xmin = 15.5, xmax = 16.7, ymin = 0.86, ymax =1.255)+ annotation_custom(hem, xmin = 16.9, xmax = 17.65, ymin = 0.883, ymax =1.233)+
+  coord_cartesian(clip = "off")+ coord_flip()
+ 
+
+gg_table <- ggplot_gtable(ggplot_build(p))
+gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
+grid.draw(gg_table)
+
+
+
+#Bumblebee image credit to Melissa Broussard
 ```
 
 
@@ -80,7 +134,7 @@ g <- rasterGrob(img, interpolate=TRUE)
 net_long_1 <- readRDS("Data/RData/Spp_visitation_per_order_long.RData")
 
 la <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
-       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
+       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang 2012", "Olesen 2002 2", "Dicks 2002",
        "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
 legend_title <- "Taxonomic groups"
 
@@ -278,3 +332,5 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
 
 ```
 
+
+#REFERENCES
