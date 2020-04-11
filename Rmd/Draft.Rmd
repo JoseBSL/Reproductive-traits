@@ -21,17 +21,18 @@ Plant pollinator interactions are a keystone process for ecosystem functioning. 
 There are approximately 1600 species from 30 different networks. All of these networks are phytocentric (built from plants). The different plant-pollinator communities have been studied with very different sampling effort and methodologies. Therefore, our aim is not to compare across studies but to create a general picture of how floral traits shape the different pollinator taxa and network metrics. Here, we combine the studies with multiple years of sampling and multiple sites within an area in metawebs. These networks give a broader perspective of the sampling area and inform about the regional species pool [@noreika2019pollinator]. The data of these networks is quantitative (visitation) or qualitative (binary), there are in total 19 and 11 networks/metawebs of each, respectively.
 
 
-\blandscape
-
+\begin{landscape}
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,}
 setwd("~/R_Projects/Reproductive Traits")
 library(kableExtra)
 
 m <- read.csv("Data/Data_processing/metadata.csv")
-kable(m)
+kable(m) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 7)
 ```
 
-\elandscape
+\end{landscape}
+
 
 \newpage
 

@@ -29,34 +29,37 @@ str(data_network_main_orders)
 #Calculate percentage of main orders
 data_network_main_orders[,c(2:6)] <- sapply(data_network_main_orders[,c(2:6)], function(x) {x /data_network_main_orders$total_col*100})
 
+#Non-used/old I did for barplot
 #Convert to long format for plotting
-data_long <- gather(data_network_main_orders, orders, measurement, Hymenoptera:Hemiptera, factor_key=TRUE)
+#data_long <- gather(data_network_main_orders, orders, measurement, Hymenoptera:Hemiptera, factor_key=TRUE)
 
-#Convert again to wideformat for plotting with barplot/for ggplot the last format is enough
-data_long <- data_long[,c(-2)]
-data_wide <- spread(data_long, Id, measurement)
-#Select colours from a Palette that Nacho made for http://www.pnas.org/content/early/2015/11/24/1517092112.long
-clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod",
-          "orange")
-data2 <- data_wide[,c(2:31)]
-data2 <- data2[,order(data2[1,], decreasing=T)]
-data2 <- as.matrix(data2)
-colnames(data2) <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976",
+#Ggplot to make it look nicer
+
+net_1 <- data_network_main_orders[order(-data_network_main_orders$Hymenoptera),]
+net_1$order <- seq(nrow(net_1))
+net_1 <- gather(net_1, orders, measurement, Hymenoptera:Hemiptera, factor_key=TRUE)
+net_1 <- net_1[,c(-2)]
+
+saveRDS(net_1, "Data/RData/species_per_order_percentage.RData")
+
+
+
+legend_title <- "Taxonomic groups"
+
+la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976",
                      "Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002",
                      "Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006",
                      "Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
 
-saveRDS(data2, "Data/RData/Spp_richness_by_order.RData")
+ ggplot(net_1) +
+  aes(x = reorder(Id,-order), 
+      y = measurement, 
+      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
+  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= la) + 
+  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent)
 
-par(mar = c(16,6.1,4.1,8))
-barplot(data2, beside = FALSE, ylab = "% visits", cex.names = 0.5
-        ,las = 2, col = clrs)
-abline (h = 0)
-par(xpd=TRUE)
-leg <- c("Hymenoptera", "Coleoptera", "Lepidoptera", "Lepidoptera", "Hemiptera")
-legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
-par(mar = c(5,1.1,4.1,2.1))
-par(xpd=FALSE)
+
 
 
 #VISITATION BAR PLOT
@@ -106,26 +109,6 @@ net_wide <- net_wide[,c(2:20)]
 net_wide <- net_wide[,order(net_wide[1,], decreasing=T)]
 net_wide2 <- as.matrix(net_wide)
 
-#Select colours from a Palette that Nacho made for http://www.pnas.org/content/early/2015/11/24/1517092112.long
-clrs <- c("darkblue", "blue", "yellow", "cornsilk", "goldenrod")
-
-colnames(net_wide2) <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
-                     "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
-                     "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
-par(mar = c(16,6.1,4.1,8))
-barplot(net_wide2, beside = FALSE, ylab = "% visits", cex.names = 0.5
-        ,las = 2, col = clrs)
-abline (h = 0)
-par(xpd=TRUE)
-leg <- c("Hemiptera", "Coleoptera", "Diptera", "Lepidoptera", "Hymenoptera")
-legend(x = 35, y = 100, legend = rev(leg), cex = 0.4, fill = rev(clrs))
-
-par(mar = c(5,1.1,4.1,2.1))
-par(xpd=FALSE)
-
-
-saveRDS(net_wide2, "Data/RData/Spp_visitation_per_order.RData")
-
 #Try plot with ggplot to see wich one looks better
 
 net_long_1 <- net_sum_subset[order(-net_sum_subset$Hymenoptera),]
@@ -145,84 +128,16 @@ l <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008
 legend_title <- "Taxonomic groups"
 
 
-
-ggplot(net_long_1) +
-  aes(x = reorder(Id,-order), 
-      y = measurement, 
-      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
-  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
-  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+theme(plot.margin=margin(5,5,30,5))
-  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent)
-
-
-
-library(png)
-library(grid)
-library(ggplot2)
-img <- readPNG(system.file("img", "Rlogo.png", package="png"))
-g <- rasterGrob(img, interpolate=TRUE, height = 0.1, width = 0.1)
-
 p1 <- ggplot(net_long_1) +
   aes(x = reorder(Id,-order), 
       y = measurement, 
       fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
   geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
   scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+
-  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) #+ theme(legend.box.margin=margin(60,60,60,60))
+  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent)
+
+
 #ggsave("Images/plot_visitation.pdf", dpi = 800)
 
-
-#Add images once I have the final plots
-
-#Try to add images
-get_png <- function(filename) {
-  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
-}
-get_jpeg <- function(filename) {
-  grid::rasterGrob(jpeg::readJPEG(filename), interpolate = TRUE)
-}
-library(jpeg)
-
-l <- get_png("Images/lepidoptera.png")
-
-h <- get_jpeg("Images/hemiptera.jpg")
-
-b <- get_png("Images/hymenoptera.png")
-
-t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
-
-p1 +
-  annotation_custom(l, xmin = 9.5, xmax = 10, ymin = 0.9985, ymax =1.06) + annotation_custom(h, xmin = 8.5, xmax = 9.4, ymin = 0.9985, ymax =1.06)+
-  coord_cartesian(clip = "off") +  annotation_custom(b, xmin = 7.5, xmax = 8.4, ymin = 0.9985, ymax =1.06)+
-  theme(plot.margin = unit(c(1, 0, 3, 1), "lines"), legend.margin=margin(t = 0, unit='cm'))+coord_flip()
-
-
-t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
- 
-
-p<- ggplot(net_long_1) +
-  aes(x = reorder(Id,-order), 
-      y = measurement, 
-      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
-  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= l) + 
-  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+
-  xlab("Networks")+ylab("Percentage of visits") +  scale_y_continuous(labels = scales::percent) + theme(legend.background = element_rect(fill=alpha('blue', 0.0)))+
-  annotation_custom(l, xmin = 8, xmax = 9, ymin = 0.96, ymax =1.16) +annotation_custom(h, xmin = 8, xmax = 9, ymin = 0.96, ymax =1.16)+
-  coord_cartesian(clip = "off") + coord_flip()
-
-library(grid)
-
-gg_table <- ggplot_gtable(ggplot_build(p))
-gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
-grid.draw(gg_table)
-grid.arrange(gg_table)
-
-
-
-
-img = readPNG("Images/hymenoptera.png")
-newimg = change_cols("#FF0000", "#00FF00", img)
-writePNG(newimg, "fileout.png")
-plot(raster::as.raster(img))
 
 
