@@ -18,12 +18,26 @@ m <- read.csv("Data/Data_processing/metadata.csv")
 m<-m[,-c(1,3)]
 colnames(m) <- c("Id","Longitude", "Latitude", "Country", "Year", "Networks", "Plant spp", "Pollinator spp", "Network size", "Sampling method", "Sampling", "Data type")
 
-m[23,4] <- 
+
+#let's select a unique network per coordinate
+#Fix Bartomeus unp 2015
+m[22,2] <- as.factor(-6.16895)
+m[22,3] <- as.factor(37.234966)
+#Dicks
+m[22,2] <- as.factor(1.575532)
+m[22,3] <- as.factor(52.762395)
+#Dupont
+m[22,2] <- as.factor(9.1)
+m[22,3] <- as.factor(56.1)
 
 
 m[1] <- c("Bartomeus 2008", "Fang 2012", "Inouye 1990", "Inouye 1988", "Kaiser-Bunbury 2009", "Kaiser-Bunbury 2014", "Kato 2000", "Kevan 1970", "Lundgren 2005", "Olesen 2002 1", "Mcmullen 1993", "Bartomeus 2008", "Primack 1983 1", "Primack 1983 2", "Primack 1983 3", "Ramirez 1989", "Ramirez 1992", "Robertson 1929", "Small 1976", "Souza 2018", "Traveset 2013", "Bartomeus 2015 unp.", "Bek 2006", "Olesen 2002 2", "Bundgaard 2003", "Chacoff 2011", "Dicks 2002", "Dupont 2009", "Elberling 1999", "Dupont 2009 2")
 
-kable(m, "latex", longtable = T, booktabs = T) %>%
-  kable_styling(latex_options = c("repeat_header"), font_size = 7, full_width=T)
+m[10] <- c("Plots with transects", "Plots", "Transects", "Plots", "Plots", "Transects", "Transects", "Randow census walks", "Randow census walks", "Plots", "-", "Plots with transects", "Randow census walks", "Randow census walks", "Randow census walks", "Randow census walks", "Randow census walks", "-", "10h per spp", "Plots", "Randow census walks", "Transects", "Plots", "Plots", "Plots", "Plots", "Plots", "Plots", "Plots with transects", "Random census walks")
+
+
+
+kable(m, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 7, full_width=T)
 ```
 \end{landscape}
