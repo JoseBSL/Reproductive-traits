@@ -40,11 +40,12 @@ colnames(m) <- c("Id","Longitude", "Latitude", "Country", "Year", "Networks", "P
 m[22,2] <- as.factor(-6.16895)
 m[22,3] <- as.factor(37.234966)
 #Dicks
-m[22,2] <- as.factor(1.575532)
-m[22,3] <- as.factor(52.762395)
+m[27,2] <- as.factor(1.575532)
+m[27,3] <- as.factor(52.762395)
 #Dupont
-m[22,2] <- as.factor(9.1)
-m[22,3] <- as.factor(56.1)
+m[28,2] <- as.factor(9.1)
+m[28,3] <- as.factor(56.1)
+
 
 
 m[1] <- c("Bartomeus 2008", "Fang 2012", "Inouye 1990", "Inouye 1988", "Kaiser-Bunbury 2009", "Kaiser-Bunbury 2014", "Kato 2000", "Kevan 1970", "Lundgren 2005", "Olesen 2002 1", "Mcmullen 1993", "Bartomeus 2008", "Primack 1983 1", "Primack 1983 2", "Primack 1983 3", "Ramirez 1989", "Ramirez 1992", "Robertson 1929", "Small 1976", "Souza 2018", "Traveset 2013", "Bartomeus 2015 unp.", "Bek 2006", "Olesen 2002 2", "Bundgaard 2003", "Chacoff 2011", "Dicks 2002", "Dupont 2009", "Elberling 1999", "Dupont 2009 2")
