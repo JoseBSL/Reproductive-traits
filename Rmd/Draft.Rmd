@@ -16,9 +16,62 @@ First I start with an abstract that could be our guide for hypothesis testing an
 
 Plant pollinator interactions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance of deepen in species traits in order to understand key processes that can be seen with network metrics and highlights the importance of elemental ecology for species conservation.
 
+
+#INTRODUCTION
+
+*Paragraph 1*
+
+
+
+
+*Paragraph 2*
+
+There are multiple recent studies that have considered the link between network structure and functional traits. @novella2019 included floral display on the interaction strength of a plant-pollinator network, finding important changes in species and network metrics. Moreover, @lazaro2019 shows how different traits, including flower abundance, shape, size, flowering length and nectar can influence the position in the network with important implications for community assembly. A more similar look to this piece is the work conducted by @carvalheiro2014 that focus on 750 networks and looks how nectar production can modulate the effects between species and found that its effect is dependent on pollinator guilds. The continuum from visitation to species fitness is essential to understand the relative importance of each species on the network. Therefore, there is a need to to include species breeding systems, compatibility level and seed/fruit set in order to fully understand the dependance on pollinators and position in the network. However few works have attempted this due to high demanding nature of these types of experiment [@lazaro2019] [@gomez2012fitness]
+
+
+  LAZARO/GOMEZ/TUR 
+
+Stang papers correlations trait matching and flower size
+
+TUR --> INSECT POLLINATOR DEPENDANCE
+
+ARCEO GOMEZ NEW PAPER
+
+
+
+*Paragraph 3*
+
+
+*Paragraph 4*
+
+
+*Hypothesis*
+
+1) How the different pollinator taxonomic groups interact with the distinct plant floral traits. Are these floral traits characteristic of a pollinator syndrome?
+
+2) Are the different selected floral traits affecting the species level metrics such as generalization/specialization or centrality? What is its ecological meaning?
+
+3) Can we predict the diversity of pollinator interactions with the phylogenetic distance of a community? Communities with a higher number o close related species will likely have trait redundancy and less diversity of interactions.
+
+
+*Species/network metrics centrality/specialization
+
+#MATERIALS AND METHODS
+
+This research has collated networks from 25 different studies from very different geographical regions across the world. Our aim is to have a good representation of the diversity of plant-pollinator interanctions that can take place with multiple combinations of plan traits and pollinator guilds. The networks of these studies that were done in consecutive years or in areas close to each other with a similar species compositon were combined in metawebs. This makes a total of 30 different unique networks/metawebs. For all of these studies we have done an extensive literature and online search of different floral traits. These traits are breeding system, compatibility system, selfing rate (with fruit and seed set), flower shape, flower symmetry, flower size (width and length), style length and ovule number. Moreover, we also recorded plant height, life span and life form for these species. These networks have weighted and unweighted data.
+
+
+All plant and pollinator species names from these networks were searched through the Package taxsize from two different data sources ncbi and itis, respectively. Two of the main data sources for taxonomic names  
+
+
+#DESCRIPTION OF THE DATA
+
 *What sort of data do we have?*
 
-There are approximately 1600 species from 30 different networks. All of these networks are phytocentric (built from plants). The different plant-pollinator communities have been studied with very different sampling effort and methodologies. Therefore, our aim is not to compare across studies but to create a general picture of how floral traits shape the different pollinator taxa and network metrics. Here, we combine the studies with multiple years of sampling and multiple sites within an area in metawebs. These networks give a broader perspective of the sampling area and inform about the regional species pool [@noreika2019pollinator]. The data of these networks is quantitative (visitation) or qualitative (binary), there are in total 19 and 11 networks/metawebs of each, respectively.
+There are approximately 1600 species from 30 different networks. All of these networks are phytocentric (built from plants). The different plant-pollinator communities have been studied with very different sampling effort and methodologies. Therefore, our aim is not to compare across studies but to create a general picture of how floral traits shape the different pollinator taxa and network metrics. Here, we combine studies that have multiple years of sampling and multiple sites within an area in metawebs. These metawebs give a broader perspective of the sampling area and inform about the regional species pool [@noreika2019pollinator]. The data of these networks is quantitative (visitation) or qualitative (binary), there are in total 19 and 11 networks/metawebs of each, respectively.
+
+#Methods
+
 
 
 
@@ -28,7 +81,7 @@ There are approximately 1600 species from 30 different networks. All of these ne
 setwd("~/R_Projects/Reproductive Traits")
 library(kableExtra)
 
-m <- read.csv("Data/Data_processing/metadata.csv")
+m <- read.csv("Data/Data_processing/metadata.csv", stringsAsFactors = F)
 #I will have to do some editing before knitting
 #colnames(m) <- c("")
 m<-m[,-c(1,3)]
@@ -37,14 +90,14 @@ colnames(m) <- c("Id","Longitude", "Latitude", "Country", "Year", "Networks", "P
 
 #let's select a unique network per coordinate
 #Fix Bartomeus unp 2015
-m[22,2] <- as.factor(-6.16895)
-m[22,3] <- as.factor(37.234966)
+m[22,2] <- -6.16895
+m[22,3] <- 37.234966
 #Dicks
-m[27,2] <- as.factor(1.575532)
-m[27,3] <- as.factor(52.762395)
+m[27,2] <- 1.575532
+m[27,3] <- 52.762395
 #Dupont
-m[28,2] <- as.factor(9.1)
-m[28,3] <- as.factor(56.1)
+m[28,2] <- 9.1
+m[28,3] <- 56.1
 
 
 
@@ -358,6 +411,8 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
 
 ```
+
+
 
 
 #REFERENCES
