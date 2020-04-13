@@ -58,7 +58,11 @@ ARCEO GOMEZ NEW PAPER
 
 #MATERIALS AND METHODS
 
-This research has collated networks from 25 different studies from very different geographical regions across the world. Our aim is to have a good representation of the diversity of plant-pollinator interanctions that can take place with multiple combinations of plan traits and pollinator guilds. The networks of these studies that were done in consecutive years or in areas close to each other with a similar species compositon were combined in metawebs. This makes a total of 30 different unique networks/metawebs. For all of these studies we have done an extensive literature and online search of different floral traits. These traits are breeding system, compatibility system, selfing rate (with fruit and seed set), flower shape, flower symmetry, flower size (width and length), style length and ovule number. Moreover, we also recorded plant height, life span and life form for these species. These networks have weighted and unweighted data.
+This research has collated networks from 25 different studies from very different geographical regions across the world. All of these networks are from natural habitats or systems with a minor human intervention. The nature of these networks is both weighted (N) and unweighted (N) with the former just with visitation data which could serve as proxy of pollinations with limitations (REF). These studies have been counducted with different sampling methodologies and sampling effort and our aim is not to compare them but to get a general picture of how the traits shape these networks and the different taxonomic groups. The networks of these studies that were done in consecutive years or in areas close to each other with a similar species compositon were combined in metawebs. This makes a total of 30 different unique networks/metawebs when all are considered by their maximum level of organization (metaweb if possible). All the species names were searched with the help of the package taxsize (REF) from two different data sources ncbi and itis, that are ... (REF). We filled the not found searches manually with the help of [http://www.theplantlist.org/] and 
+
+
+
+ For all of these studies we have done an extensive literature and online search of different floral traits. These traits are breeding system, compatibility system, selfing rate (with fruit and seed set), flower shape, flower symmetry, flower size (width and length), style length and ovule number. Moreover, we also recorded plant height, life span and life form for these species. These networks have weighted and unweighted data.
 
 
 All plant and pollinator species names from these networks were searched through the Package taxsize from two different data sources ncbi and itis, respectively. Two of the main data sources for taxonomic names  
@@ -70,7 +74,6 @@ All plant and pollinator species names from these networks were searched through
 
 There are approximately 1600 species from 30 different networks. All of these networks are phytocentric (built from plants). The different plant-pollinator communities have been studied with very different sampling effort and methodologies. Therefore, our aim is not to compare across studies but to create a general picture of how floral traits shape the different pollinator taxa and network metrics. Here, we combine studies that have multiple years of sampling and multiple sites within an area in metawebs. These metawebs give a broader perspective of the sampling area and inform about the regional species pool [@noreika2019pollinator]. The data of these networks is quantitative (visitation) or qualitative (binary), there are in total 19 and 11 networks/metawebs of each, respectively.
 
-#Methods
 
 
 
