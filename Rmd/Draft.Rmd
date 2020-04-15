@@ -46,7 +46,7 @@ ARCEO GOMEZ NEW PAPER
 
 
 *Hypothesis*
-
+[overall, guay, pero le falta story telling]()
 
 **Research questions**
 
@@ -55,7 +55,7 @@ ARCEO GOMEZ NEW PAPER
 2) Are the different selected floral traits affecting the species level metrics such as generalization/specialization or centrality? What is its ecological meaning?
 
 3) Can we predict the diversity of pollinator interactions with the phylogenetic distance of a community? -Hypothesis- communities with a higher number o close related species will likely have trait redundancy and less diversity of interactions.
-
+[IB: Este ultimo punto es interesante, PERO quizas es otro paper? Mirate https://www.nature.com/articles/nature05956 Rezende tiene otros papers al respecto]()
 
 #MATERIALS AND METHODS
 
@@ -103,7 +103,6 @@ la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","B
   grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
 }
 
-
  
 l <- get_png("Images/lepidoptera_2.png")
 bumb <- get_png("Images/bumblebee.png")
@@ -129,6 +128,9 @@ gg_table <- ggplot_gtable(ggplot_build(p))
 gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
 grid.draw(gg_table)
 
+
+# IB: No me cuadra la cantidad de dipteros (y pocos hymenopteros) en mis redes, recheck colores. Ojo, quizas esta bien, pero me sorprende. 
+# IB; Para visitas hay oalgo mal seguro, no hay abejas en 2015 ¿?
 
 
 #Bumblebee image credit to Melissa Broussard
@@ -255,6 +257,8 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.2) + #CANADA
   geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.2) + #GREENLAND
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.2)
+  
+## Molaria compararlo con estimas a nivel mundial de que % de plantas son hermafroditas, (y igual para todos los traits). En otras palabras, salen estas porporciones por que reflejan las proporciones generales? O se desvian?)  
 ```
 
 \newpage
@@ -304,6 +308,8 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -71, y = 86, xend = -71, yend = 81), color = "black", size = 0.3, alpha = 0.8) + #CANADA
   geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
+  
+##Que flipe que al norte hay más self-compatible?! Esto debe estar decrito en la literatura, verdad? Hay una correlación entre la diversidad de abejas y el nivel de self incompatibility?  
 ```
 
 
@@ -402,6 +408,8 @@ m[10] <- c("Plots with transects", "Plots", "Transects", "Plots", "Plots", "Tran
 
 kable(m, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", caption = "Metadata for all the different networks/metawebs used at their maximum level of organization (metaweb if possible).") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 7, full_width=T)
+  
+### en 2008 por que hay 3 networks? Netiendo como puede haver 12, 6 o 2, pero 3? OK entendido, ya veo el 3+3! pon 2008a 2008b?
 ```
 \end{landscape}
 
