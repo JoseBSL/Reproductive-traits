@@ -96,7 +96,10 @@ net_long_1 <- readRDS("Data/RData/species_per_order_percentage.RData")
 
 legend_title <- "Taxonomic groups"
 
-la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976","Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002","Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006","Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
+
+la <- c("Lundgren 2005", "Dupont 2009 b", "Kaiser-Bunbunry 2014",  "Primack 1983 a", "Bek 2006", "Kevan 1970","Traveset 2013", "Kaiser-Bunbunry 2009",  "Kato 2000", "Primack 1983 b", "Primack 1983 c", "Elberling 1999", "Dicks 2002", "Olesen 2002 a", "Mcmullen 1993", "Fang 2012", "Olesen 2002 b", "Dupont 2009 a", "Inouye 1988", "Bundgaard 2003","Souza 2018", "Inouye 1990", "Small 1976", "Robertson 1929", "Bartomeus 2008 b", "Bartomeus 2008 a", "Chacoff 2011","Bartomeus unp. 2015","Ramirez 1992","Ramirez 1989")
+
+
 
 
  get_png <- function(filename) {
@@ -131,7 +134,7 @@ grid.draw(gg_table)
 
 # IB: No me cuadra la cantidad de dipteros (y pocos hymenopteros) en mis redes, recheck colores. Ojo, quizas esta bien, pero me sorprende. 
 # IB; Para visitas hay oalgo mal seguro, no hay abejas en 2015 ¿?
-
+#ARREGLADO, las nombres de las redes estaban mal ordenados
 
 #Bumblebee image credit to Melissa Broussard
 ```
@@ -165,9 +168,11 @@ g <- rasterGrob(img, interpolate=TRUE)
 
 net_long_1 <- readRDS("Data/RData/Spp_visitation_per_order_long.RData")
 
-la <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
-       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang 2012", "Olesen 2002 2", "Dicks 2002",
-       "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
+la <- c("Lundgren 2005", "Elberling 1999", "Kaiser-Bunbunry 2009", "Kato 2000", "Dupont 2009", "Olesen 2002 a", 
+       "Traveset 2013", "Bartomeus 2008 a",  "Inouye 1988", "Dicks 2002", "Inouye 1990", "Small 1976", "Bartomeus 2008 b","Chacoff 2011", "Fang 2012", "Kaiser-Bunbury 2014", "Olesen 2002 b", "Bartomeus unp. 2015", "Souza 2018")
+
+
+
 legend_title <- "Taxonomic groups"
 
 

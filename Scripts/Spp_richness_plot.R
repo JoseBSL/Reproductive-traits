@@ -46,10 +46,15 @@ saveRDS(net_1, "Data/RData/species_per_order_percentage.RData")
 
 legend_title <- "Taxonomic groups"
 
-la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976",
-                     "Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002",
-                     "Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006",
-                     "Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
+
+la <- c("Lundgren 2005", "Dupont 2009 b", "Kaiser-Bunbunry 2014",  "Primack 1983 a", "Bek 2006", "Kevan 1970","Traveset 2013", 
+       "Kaiser-Bunbunry 2009",  "Kato 2000", "Primack 1983 b", "Primack 1983 c", "Elberling 1999", "Dicks 2002",
+       "Olesen 2002 a", "Mcmullen 1993", "Fang 2012", "Olesen 2002 b", "Dupont 2009 a", "Inouye 1988", "Bundgaard 2003",
+       "Souza 2018", "Inouye 1990", "Small 1976", "Robertson 1929", "Bartomeus 2008 b", "Bartomeus 2008 a", "Chacoff 2011",
+       "Bartomeus unp. 2015","Ramirez 1992","Ramirez 1989")
+
+
+
 
  ggplot(net_1) +
   aes(x = reorder(Id,-order), 
@@ -69,7 +74,8 @@ la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","B
 
 m <- read.csv("Data/Data_processing/metadata.csv")
 data <- read.csv("Data/Data_processing/Long_format_metawebs_poll_taxa_added.csv")
-
+str(data$Interaction)
+data$Interaction[is.na(data$Interaction)] <- 0
 #Removing .csv for merging the two datasets
 data$Id <- gsub("\\..*","",data$Id)
 
@@ -87,7 +93,7 @@ quantitative_net <- subset(data_m, Data_type=="Quantitative")
 #In this case I do something different
 #I sum the visits per order, we are using numerical data, before we were using the species 
 
-net_sum <- dcast(quantitative_net,Id~Pollinator_order,value.var = "Interaction")
+net_sum <- dcast(Id~Pollinator_order, data=quantitative_net, value.var = "Interaction", sum)
 
 #Subset orders of interest
 net_sum_subset <- select(net_sum, "Id", "Hymenoptera","Coleoptera","Lepidoptera", "Diptera", "Hemiptera") 
@@ -101,6 +107,7 @@ net_sum_subset[,c(2:6)] <- sapply(net_sum_subset[,c(2:6)], function(x) {x /net_s
 
 #Convert to long format for plotting
 net_long <- gather(net_sum_subset, orders, measurement, Hymenoptera:Hemiptera, factor_key=TRUE)
+
 
 #Convert again to wideformat for plotting with barplot/for ggplot the last format is enough
 net_long <- net_long[,c(-2)]
@@ -122,9 +129,13 @@ net_long_1$orders <- relevel(net_long_1$orders, 'Hymenoptera')
 saveRDS(net_long_1, "Data/RData/Spp_visitation_per_order_long.RData")
 
 
-l <- c("Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2","Small 1976",
-       "Inouye 1990", "Souza 2018", "Inouye 1988", "Dupont 2009", "Olesen 2002 1", "Fang huang 2012", "Olesen 2002 2", "Dicks 2002",
-       "Elberling 1999","Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kaiser-Bunbury 2014","Lundgren 2005")
+
+l <- c("Lundgren 2005", "Elberling 1999", "Kaiser-Bunbunry 2009", "Kato 2000", "Dupont 2009", "Olesen 2002 a", 
+       "Traveset 2013", "Bartomeus 2008 a",  "Inouye 1988", "Dicks 2002", "Inouye 1990", "Small 1976", "Bartomeus 2008 b",
+       "Chacoff 2011", "Fang 2012", "Kaiser-Bunbury 2014", "Olesen 2002 b", "Bartomeus unp. 2015", "Souza 2018")
+
+
+
 legend_title <- "Taxonomic groups"
 
 
