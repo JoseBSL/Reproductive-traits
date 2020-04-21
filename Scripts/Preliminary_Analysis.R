@@ -48,7 +48,7 @@ t_data <- as.data.frame(t_data)
 colnames(t_data)[1] <- "Plant_species"
 
 #Merge data 
-all <- merge(data, t_data,  by="Plant_species", all = T )
+all <- merge(data, t_data,  by="Plant_species", all = T)
 
 
 #Making all NA'S the same NA type 
@@ -60,6 +60,28 @@ all[] <- lapply(all, make.true.NA)
 #Subset just for Bartomeus data
 bart <- subset(all, Unique_id=="bartomeus_2015.csv")
 
+#Let´s add the poll family and order. I do not have it in 
+
+poll <- read.csv("Data/Data_processing/poll_spp_names_corrected.csv", row.names = 1)
+
+#Check if it was read well
+head(poll)
+str(poll)
+poll$genus_old <- as.character(poll$genus_old)
+#All correct
+
+#Now merge with bart dataframe
+#But before I have to split the poll species names in two
+
+bart_1$genus <- word(bart_1$Pollinator_species)
+colnames(bart_1)[5] <- "genus_old"
+str(bart_1)
+head(bart_1)
+
+#Now merge by genus
+b <- merge(bart_1, poll, by="genus_old", all = F)
+#data ready
+
 ###############################
 ###############################
 #PLOT DATA#####################
@@ -67,12 +89,12 @@ bart <- subset(all, Unique_id=="bartomeus_2015.csv")
 ###############################
 
 #select columns of interest
-bart_1 <- bart[,c(2,3,4,22)]
+b <- b[,c(2,4,5,8)]
 #Remove NA's
-str(bart_1)
-bart_1 <- bart_1[complete.cases(bart_1), ]
+#select complete cases
+b_1 <- b[complete.cases(b), ]
 
-
+#Now find a way to convert to matrix and plot all
 
 #convert to matrix
 matrix <- acast(t_sub, Pollinator_order ~ Compatibility , value.var='Interaction', 
