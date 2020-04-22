@@ -108,8 +108,10 @@ for(i in names(list_bee_fun)){
 
 
 #convert to matrix
-i <- acast(list_bee_fun[[i]], order ~ Compatibility , value.var='Interaction', 
-                fun.aggregate=sum, margins=F)
+  
+  i <- lapply(list_bee_fun, function(x) acast(x, order ~ Compatibility , value.var='Interaction', 
+                                                   fun.aggregate=sum, margins=F))
+
 
 }
 
