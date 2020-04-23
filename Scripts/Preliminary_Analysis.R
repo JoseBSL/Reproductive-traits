@@ -190,11 +190,11 @@ setwd("~/R_Projects/Reproductive traits/Images/Sankey")
 a[[i]] <- sankeyNetwork(Links = data_long, Nodes = nodes,
                 Source = "IDsource", Target = "IDtarget",
                 Value = "value", NodeID = "name", 
-                sinksRight=FALSE, colourScale=ColourScal, nodeWidth=40, fontSize=13, nodePadding=20)
+                sinksRight=FALSE, colourScale=ColourScal, nodeWidth=10, fontSize=8, nodePadding=10)
 
-title<- tags$div(i,style = "font-size:14px")
+#title<- tags$div(i,style = "font-size:14px")
 
-b[[i]] <- combineWidgets(a[[i]], title = title)
+#b[[i]] <- combineWidgets(a[[i]], title = title)
 
 }
 
@@ -220,5 +220,8 @@ my_color <- 'd3.scaleOrdinal() .domain(["group_A", "group_B","group_C", "group_D
 require(shiny)
 
 title<- tags$div("Bartomeus 2015 unpublished", style = "font-size:36px")
-combineWidgets(list=b, title=title)
+combineWidgets(list=a, title=title)%>%saveNetwork("Bee_fun.html")
+chrome_print("Bee_fun.html", options = list(pageRanges="1", landscape=T,scale=1.1))
 
+c <- list(a[[1]],a[[2]],a[[3]],a[[4]],a[[5]],a[[6]],a[[7]],a[[8]])
+combineWidgets(list=c, ncol=2,nrow=4,title=title)%>%saveNetwork("Bee_fun.html")
