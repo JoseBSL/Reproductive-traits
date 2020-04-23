@@ -13,7 +13,8 @@ library(stringr)
 library(networkD3)
 library(magrittr)
 library(pagedown)
-
+library(manipulateWidget)
+library(shiny)
 #First read all networks
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_processing/Bartomeus_BeeFun") 
@@ -98,26 +99,29 @@ b_1$order <- as.character(b_1$order)
 b_2 <- subset(b_1, order=="Hymenoptera"| order=="Diptera"| order=="Lepidoptera"| order=="Coleoptera")
 #Remove .csv from id
 b_2$Net_ID <- gsub("\\..*","",b_2$Net_ID)
+#Removing first id for plotting
+b_2$Net_ID <-gsub("29_Bartomeus_", "", b_2$Net_ID)
+#Removing first last word for plotting
+b_2$Net_ID <-gsub("_unp", "", b_2$Net_ID)
+#Removing underscore
+b_2$Compatibility <- gsub("_", " ", b_2$Compatibility)
+
 
 list_bee_fun <- split(b_2, b_2$Net_ID)
 #saveRDS(list_bee_fun, "Data/RData/list_bee_fun.RData")
 #list_bee_fun <- readRDS("Data/RData/list_bee_fun.RData")
 #Now find a way to convert to matrix and plot all
 
-for(i in names(list_bee_fun)){
-
-
-#convert to matrix
-  
-  i <- lapply(list_bee_fun, function(x) acast(x, order ~ Compatibility , value.var='Interaction', 
-                                                   fun.aggregate=sum, margins=F))
-
-
-}
+list_bee_fun_1 <- lapply(list_bee_fun, function(x) acast(x, order ~ Compatibility , value.var='Interaction', 
+                                            fun.aggregate=sum, margins=F))
 
 #TRY WITH A SAPPLY PROBABLY I CAN AVOID THE FOOR LOOP AND KEEP THE LIST STRUCTURE
 
-matrix_d <- as.data.frame(matrix)
+
+i<-NULL
+for (i in names(list_bee_fun_1)){
+ 
+matrix_d <- as.data.frame(list_bee_fun_1[[i]])
 
 
 # I need a long format
@@ -146,9 +150,75 @@ sankeyNetwork(Links = data_long, Nodes = nodes,
               Source = "IDsource", Target = "IDtarget",
               Value = "value", NodeID = "name", 
               sinksRight=FALSE, colourScale=ColourScal, nodeWidth=40, fontSize=13, nodePadding=20)%>%
-saveNetwork(list_bee_fun[[i]], file = paste0(i, ".html")) #ADD SPECIFIC FOLDER
+saveNetwork( file = paste0(i, ".html")) #ADD SPECIFIC FOLDER
 
 }
 
-write.csv(my_list_matrices[[i]], paste0("Data/Data_processing/Bartomeus_BeeFun/29_Bartomeus_", i,"_unp.csv"))
-}#FINISH LOOP 
+######
+#Code to generate the list for plotting
+#####
+a <- list()
+b <- list()
+i<-NULL
+for (i in names(list_bee_fun_1)){
+  
+matrix_d <- as.data.frame(list_bee_fun_1[[i]])
+  
+  
+# I need a long format
+data_long <- matrix_d %>%
+rownames_to_column %>%
+gather(key = 'key', value = 'value', -rowname) %>%
+filter(value > 0)
+colnames(data_long) <- c("source", "target", "value")
+data_long$target <- paste(data_long$target, " ", sep="")
+  
+  
+# From these flows we need to create a node data frame: it lists every entities involved in the flow
+nodes <- data.frame(name=c(as.character(data_long$source), as.character(data_long$target)) %>% unique())
+  
+# With networkD3, connection must be provided using id, not using real name like in the links dataframe.. So we need to reformat it.
+data_long$IDsource=match(data_long$source, nodes$name)-1 
+data_long$IDtarget=match(data_long$target, nodes$name)-1
+  
+# prepare colour scale
+ColourScal ='d3.scaleOrdinal() .range(["#FDE725FF","#B4DE2CFF","#6DCD59FF","#35B779FF","#1F9E89FF","#26828EFF","#31688EFF","#3E4A89FF","#482878FF","#440154FF"])'
+  
+setwd("~/R_Projects/Reproductive traits/Images/Sankey") 
+  
+# Make the Network
+a[[i]] <- sankeyNetwork(Links = data_long, Nodes = nodes,
+                Source = "IDsource", Target = "IDtarget",
+                Value = "value", NodeID = "name", 
+                sinksRight=FALSE, colourScale=ColourScal, nodeWidth=40, fontSize=13, nodePadding=20)
+
+title<- tags$div(i,style = "font-size:14px")
+
+b[[i]] <- combineWidgets(a[[i]], title = title)
+
+}
+
+#COLOUR
+#THIS CAN DO THE JOB
+my_color <- 'd3.scaleOrdinal() .domain(["group_A", "group_B","group_C", "group_D", "group_E", "group_F", "group_G", "group_H"]) .range(["blue", "blue" , "blue", "red", "red", "yellow", "purple", "purple"])'
+
+
+#Select all files from the folder
+#filenames <- list.files( pattern="*.html", full.names=TRUE)
+#Try to loop it
+#str(filenames)
+#for(i in 1:16){
+#
+#chrome_print(filenames[i], options = list(pageRanges="1-1"))
+#
+#}
+
+
+#chrome_print("index.html", options = list(pageRanges="1-1"))
+
+#w <- combineWidgets(list=a) #%>%saveNetwork("Bee_fun.html")
+require(shiny)
+
+title<- tags$div("Bartomeus 2015 unpublished", style = "font-size:36px")
+combineWidgets(list=b, title=title)
+
