@@ -78,7 +78,11 @@ poll$genus_old <- as.character(poll$genus_old)
 #But before I have to split the poll species names in two
 
 bart$genus_old <- word(bart$Pollinator_species)
+head(bart)
 
+bart$Compatibility[bart$Compatibility=="self_compatible"] <- "Self compatible"
+bart$Compatibility[bart$Compatibility=="self_incompatible"] <- "Self incompatible"
+bart$Compatibility[bart$Compatibility=="partially_self_compatible"] <- "Partially self compatible"
 
 #Now merge by genus
 b <- merge(bart, poll, by="genus_old", all = F)
@@ -103,8 +107,8 @@ b_2$Net_ID <- gsub("\\..*","",b_2$Net_ID)
 b_2$Net_ID <-gsub("29_Bartomeus_", "", b_2$Net_ID)
 #Removing first last word for plotting
 b_2$Net_ID <-gsub("_unp", "", b_2$Net_ID)
-#Removing underscore
-b_2$Compatibility <- gsub("_", " ", b_2$Compatibility)
+#Removing underscore #OLD, CHANGES ABOVE
+#b_2$Compatibility <- gsub("_", " ", b_2$Compatibility)
 
 
 list_bee_fun <- split(b_2, b_2$Net_ID)
@@ -154,6 +158,13 @@ saveNetwork( file = paste0(i, ".html")) #ADD SPECIFIC FOLDER
 
 }
 
+library(colortools)
+
+sequential("#4682B4")
+sequential("orange")
+sequential("grey")
+
+
 ######
 #Code to generate the list for plotting
 #####
@@ -176,31 +187,47 @@ data_long$target <- paste(data_long$target, " ", sep="")
   
 # From these flows we need to create a node data frame: it lists every entities involved in the flow
 nodes <- data.frame(name=c(as.character(data_long$source), as.character(data_long$target)) %>% unique())
-  
+str(nodes)  
+nodes$group
+#colour nodes
+nodes$group[nodes$name=="Diptera"]<- "a"
+nodes$group[nodes$name=="Lepidoptera"]<- "b"
+nodes$group[nodes$name=="Hymenoptera"]<- "c"
+nodes$group[nodes$name=="Coleoptera"]<- "d"
+nodes$group[nodes$name=="Self compatible "]<- "e"
+nodes$group[nodes$name=="Partially self compatible "]<- "f"
+nodes$group[nodes$name=="Self incompatible "]<- "g"
+
+#Colour links by group
+data_long$group[data_long$source=="Diptera"]<- "a_1"
+data_long$group[data_long$source=="Lepidoptera"]<- "b_1"
+data_long$group[data_long$source=="Hymenoptera"]<- "c_1"
+data_long$group[data_long$source=="Coleoptera"]<- "d_1"
 # With networkD3, connection must be provided using id, not using real name like in the links dataframe.. So we need to reformat it.
 data_long$IDsource=match(data_long$source, nodes$name)-1 
 data_long$IDtarget=match(data_long$target, nodes$name)-1
-  
-# prepare colour scale
-ColourScal ='d3.scaleOrdinal() .range(["#FDE725FF","#B4DE2CFF","#6DCD59FF","#35B779FF","#1F9E89FF","#26828EFF","#31688EFF","#3E4A89FF","#482878FF","#440154FF"])'
-  
+
+#Great code to see how to customize colours 
+#https://www.r-graph-gallery.com/322-custom-colours-in-sankey-diagram.html
+my_color <- 'd3.scaleOrdinal() .domain(["a","a_1", "b", "b_1","c","c_1", "d","d_1", "e", "f", "g"]) .range([ "#0062B4FF", "#386CB0",  "orange","orange", "seagreen","darkseagreen","#B60A1C","indianred", "#8074a8", "#c5bfbe", "#c6c1f0"])'
+
+#Setwd for printing files#not doing it anymore here but I do below
 setwd("~/R_Projects/Reproductive traits/Images/Sankey") 
-  
+
+data_long <- data_long[order(data_long$source),]
+data_long$source<- as.factor(data_long$source)
+
 # Make the Network
 a[[i]] <- sankeyNetwork(Links = data_long, Nodes = nodes,
                 Source = "IDsource", Target = "IDtarget",
                 Value = "value", NodeID = "name", 
-                sinksRight=FALSE, colourScale=ColourScal, nodeWidth=10, fontSize=8, nodePadding=10)
+                sinksRight=FALSE, colourScale=my_color, LinkGroup="group",NodeGroup="group",nodeWidth=15, fontSize=9, nodePadding=30)
 
-#title<- tags$div(i,style = "font-size:14px")
+title<- tags$div(i,style = "font-size:14px")
 
-#b[[i]] <- combineWidgets(a[[i]], title = title)
+b[[i]] <- combineWidgets(a[[i]], title = title)
 
 }
-
-#COLOUR
-#THIS CAN DO THE JOB
-my_color <- 'd3.scaleOrdinal() .domain(["group_A", "group_B","group_C", "group_D", "group_E", "group_F", "group_G", "group_H"]) .range(["blue", "blue" , "blue", "red", "red", "yellow", "purple", "purple"])'
 
 
 #Select all files from the folder
@@ -212,16 +239,34 @@ my_color <- 'd3.scaleOrdinal() .domain(["group_A", "group_B","group_C", "group_D
 #chrome_print(filenames[i], options = list(pageRanges="1-1"))
 #
 #}
-
-
 #chrome_print("index.html", options = list(pageRanges="1-1"))
-
 #w <- combineWidgets(list=a) #%>%saveNetwork("Bee_fun.html")
 require(shiny)
 
-title<- tags$div("Bartomeus 2015 unpublished", style = "font-size:36px")
-combineWidgets(list=a, title=title)%>%saveNetwork("Bee_fun.html")
-chrome_print("Bee_fun.html", options = list(pageRanges="1", landscape=T,scale=1.1))
+#Add general title
+title<- tags$div("Bartomeus 2015 unpublished (1/4)", style = "font-size:20px")
+#with tilte/look loop to understand
+c_1 <- list(b[[1]],b[[2]],b[[3]],b[[4]])
+combineWidgets(list=c_1, ncol=2,nrow=2,title=title)%>%saveNetwork("Bee_fun_1.html")
+chrome_print("Bee_fun_1.html", options = list(pageRanges="1", landscape=T,scale=1.1))
 
-c <- list(a[[1]],a[[2]],a[[3]],a[[4]],a[[5]],a[[6]],a[[7]],a[[8]])
-combineWidgets(list=c, ncol=2,nrow=4,title=title)%>%saveNetwork("Bee_fun.html")
+#Add general title
+title<- tags$div("Bartomeus 2015 unpublished (2/4)", style = "font-size:20px")
+#with tilte/look loop to understand
+c_1 <- list(b[[5]],b[[6]],b[[7]],b[[8]])
+combineWidgets(list=c_1, ncol=2,nrow=2,title=title)%>%saveNetwork("Bee_fun_2.html")
+chrome_print("Bee_fun_2.html", options = list(pageRanges="1", landscape=T,scale=1.1))
+
+#Add general title
+title<- tags$div("Bartomeus 2015 unpublished (3/4)", style = "font-size:20px")
+#with tilte/look loop to understand
+c_1 <- list(b[[9]],b[[10]],b[[11]],b[[12]])
+combineWidgets(list=c_1, ncol=2,nrow=2,title=title)%>%saveNetwork("Bee_fun_3.html")
+chrome_print("Bee_fun_3.html", options = list(pageRanges="1", landscape=T,scale=1.1))
+
+#Add general title
+title<- tags$div("Bartomeus 2015 unpublished (4/4)", style = "font-size:20px")
+#with tilte/look loop to understand
+c_1 <- list(b[[13]],b[[14]],b[[15]],b[[16]])
+combineWidgets(list=c_1, ncol=2,nrow=2,title=title)%>%saveNetwork("Bee_fun_4.html")
+chrome_print("Bee_fun_4.html", options = list(pageRanges="1", landscape=T,scale=1.1))

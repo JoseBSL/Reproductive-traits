@@ -1,0 +1,16 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, fig.align="center", fig.cap=c("Caption"), echo=FALSE}
+library(knitr)
+setwd("~/R_Projects/Reproductive Traits/Images/Sankey/")
+
+include_graphics("Bee_fun.pdf")
+       
+```
+
+
