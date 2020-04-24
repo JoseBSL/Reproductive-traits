@@ -229,4 +229,3 @@ p +  geom_scatterpie(aes(x=longitude, y=latitude,group=Id),
   geom_segment(data = data_merged_sub_ord, aes(x = -52, y = 86, xend = -52, yend = 71), color = "black", size = 0.3, alpha = 0.8) + #GREENLAND
   geom_segment(data = data_merged_sub_ord, aes(x = -20, y = 86, xend = -20, yend = 74), color = "black", size = 0.3, alpha = 0.8)
 ```
-

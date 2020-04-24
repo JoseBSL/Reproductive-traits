@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  24 APR 2020 20:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  24 APR 2020 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -624,17 +624,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
-! LaTeX Error: File `Bee_fun' not found.
+! LaTeX Error: File `Bee_fun_4' not found.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.76 {\centering \includegraphics{Bee_fun}
-                                           
+l.74 \begin{center}\includegraphics{Bee_fun_4}
+                                               \end{center} 
 Here is how much of TeX's memory you used:
  11801 strings out of 492649
- 173080 string characters out of 6129621
+ 173082 string characters out of 6129621
  273797 words of memory out of 5000000
  15546 multiletter control sequences out of 15000+600000
  26351 words of font info for 42 fonts, out of 8000000 for 9000
