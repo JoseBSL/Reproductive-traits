@@ -162,7 +162,12 @@ library(colortools)
 
 sequential("#4682B4")
 sequential("orange")
-sequential("grey")
+sequential("blue")
+library("RColorBrewer")
+display.brewer.all()
+
+display.brewer.pal(n = 8, name = "RdBu")
+brewer.pal(n = 8, name = "RdBu")
 
 
 ######
@@ -209,7 +214,7 @@ data_long$IDtarget=match(data_long$target, nodes$name)-1
 
 #Great code to see how to customize colours 
 #https://www.r-graph-gallery.com/322-custom-colours-in-sankey-diagram.html
-my_color <- 'd3.scaleOrdinal() .domain(["a","a_1", "b", "b_1","c","c_1", "d","d_1", "e", "f", "g"]) .range([ "#0062B4FF", "#386CB0",  "orange","orange", "seagreen","darkseagreen","#B60A1C","indianred", "#8074a8", "#c5bfbe", "#c6c1f0"])'
+my_color <- 'd3.scaleOrdinal() .domain(["a","a_1", "b", "b_1","c","c_1", "d","d_1", "e", "f", "g"]) .range([ "#0062B4FF", "#92C5DE",  "orange","orange", "seagreen","darkseagreen","#B60A1C","indianred", "#8074a8", "#c5bfbe", "#c6c1f0"])'
 
 #Setwd for printing files#not doing it anymore here but I do below
 setwd("~/R_Projects/Reproductive traits/Images/Sankey") 
@@ -221,9 +226,9 @@ data_long$source<- as.factor(data_long$source)
 a[[i]] <- sankeyNetwork(Links = data_long, Nodes = nodes,
                 Source = "IDsource", Target = "IDtarget",
                 Value = "value", NodeID = "name", 
-                sinksRight=FALSE, colourScale=my_color, LinkGroup="group",NodeGroup="group",nodeWidth=15, fontSize=9, nodePadding=30)
+                sinksRight=FALSE, colourScale=my_color, LinkGroup="group",NodeGroup="group",nodeWidth=15, fontSize=12, nodePadding=45)
 
-title<- tags$div(i,style = "font-size:14px")
+title<- tags$div(i,style = "font-size:16px")
 
 b[[i]] <- combineWidgets(a[[i]], title = title)
 
@@ -242,6 +247,7 @@ b[[i]] <- combineWidgets(a[[i]], title = title)
 #chrome_print("index.html", options = list(pageRanges="1-1"))
 #w <- combineWidgets(list=a) #%>%saveNetwork("Bee_fun.html")
 require(shiny)
+#setwd("~/R_Projects/Reproductive traits/Rmd/Draft/Sank_images") 
 
 #Add general title
 title<- tags$div("Bartomeus 2015 unpublished (1/4)", style = "font-size:20px")
@@ -270,3 +276,80 @@ title<- tags$div("Bartomeus 2015 unpublished (4/4)", style = "font-size:20px")
 c_1 <- list(b[[13]],b[[14]],b[[15]],b[[16]])
 combineWidgets(list=c_1, ncol=2,nrow=2,title=title)%>%saveNetwork("Bee_fun_4.html")
 chrome_print("Bee_fun_4.html", options = list(pageRanges="1", landscape=T,scale=1.1))
+
+
+setwd("~/R_Projects/Reproductive traits/Rmd/Draft") 
+title<- tags$div("Bartomeus 2015 unpublished (1/2)", style = "font-size:22px")
+
+c_1 <- list(b[[1]],b[[2]],b[[3]],b[[4]],b[[5]],b[[6]],b[[7]],b[[8]])
+combineWidgets(list=c_1,title=title, ncol=2,nrow=4,height = 1600,width=1300)%>%saveNetwork("Bee_fun_x8_1.html")
+chrome_print("Bee_fun_x8_1.html", options = list(pageRanges="1", landscape=F,scale=0.9))
+
+title<- tags$div("Bartomeus 2015 unpublished (2/2)", style = "font-size:22px")
+
+c_1 <- list(b[[1]],b[[2]],b[[3]],b[[4]],b[[5]],b[[6]],b[[7]],b[[8]])
+combineWidgets(list=c_1,title=title, ncol=2,nrow=4,height = 1600,width=1300)%>%saveNetwork("Bee_fun_x8_2.html")
+chrome_print("Bee_fun_x8_2.html", options = list(pageRanges="1", landscape=F,scale=0.9))
+
+#ALL OF THIS CODE IS TO PLOT THE INDIVIDUAL NETWORKS
+#LETS PLOT THE METAWEB (THE 16 NETWORKS ALL TOGETHER AND WE ARE DONE IN THIS SCRIPT)
+#Intense coding for me so far... :O
+df <- acast(b_2, order ~ Compatibility , value.var='Interaction', fun.aggregate=sum, margins=F)
+str(df)
+matrix_d <- as.data.frame(df)
+str(matrix_d)
+
+# I need a long format
+data_long <- matrix_d %>%
+  rownames_to_column %>%
+  gather(key = 'key', value = 'value', -rowname) %>%
+  filter(value > 0)
+colnames(data_long) <- c("source", "target", "value")
+data_long$target <- paste(data_long$target, " ", sep="")
+
+
+# From these flows we need to create a node data frame: it lists every entities involved in the flow
+nodes <- data.frame(name=c(as.character(data_long$source), as.character(data_long$target)) %>% unique())
+str(nodes)  
+nodes$group
+#colour nodes
+nodes$group[nodes$name=="Diptera"]<- "a"
+nodes$group[nodes$name=="Lepidoptera"]<- "b"
+nodes$group[nodes$name=="Hymenoptera"]<- "c"
+nodes$group[nodes$name=="Coleoptera"]<- "d"
+nodes$group[nodes$name=="Self compatible "]<- "e"
+nodes$group[nodes$name=="Partially self compatible "]<- "f"
+nodes$group[nodes$name=="Self incompatible "]<- "g"
+
+#Colour links by group
+data_long$group[data_long$source=="Diptera"]<- "a_1"
+data_long$group[data_long$source=="Lepidoptera"]<- "b_1"
+data_long$group[data_long$source=="Hymenoptera"]<- "c_1"
+data_long$group[data_long$source=="Coleoptera"]<- "d_1"
+# With networkD3, connection must be provided using id, not using real name like in the links dataframe.. So we need to reformat it.
+data_long$IDsource=match(data_long$source, nodes$name)-1 
+data_long$IDtarget=match(data_long$target, nodes$name)-1
+
+#Great code to see how to customize colours 
+#https://www.r-graph-gallery.com/322-custom-colours-in-sankey-diagram.html
+my_color <- 'd3.scaleOrdinal() .domain(["a","a_1", "b", "b_1","c","c_1", "d","d_1", "e", "f", "g"]) .range([ "#0062B4FF", "#92C5DE",  "orange","orange", "seagreen","darkseagreen","#B60A1C","indianred", "#8074a8", "#c5bfbe", "#c6c1f0"])'
+
+#Setwd for printing files#not doing it anymore here but I do below
+setwd("~/R_Projects/Reproductive traits/Images/Sankey") 
+
+data_long <- data_long[order(data_long$source),]
+data_long$source<- as.factor(data_long$source)
+
+# Make the Network
+z <-sankeyNetwork(Links = data_long, Nodes = nodes,
+                        Source = "IDsource", Target = "IDtarget",
+                        Value = "value", NodeID = "name", 
+                        sinksRight=FALSE, colourScale=my_color, LinkGroup="group",NodeGroup="group",nodeWidth=15, fontSize=9, nodePadding=30)
+
+title_1<- tags$div("Bartomeus 2015 metaweb", style = "font-size:14px")
+
+z_w <- combineWidgets(z, title = title_1)
+combineWidgets(z,title=title)%>%saveNetwork("Bee_fun.html")
+
+#chrome_print("Bee_fun.html", options = list(pageRanges="1", landscape=F,scale=1.1))
+
