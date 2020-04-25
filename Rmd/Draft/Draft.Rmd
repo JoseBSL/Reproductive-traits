@@ -418,4 +418,27 @@ kable(m, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", captio
 ```
 \end{landscape}
 
+Now I'm going to explorea small subset of networks from Bartomeus 2015 to see how the analysis would be. Now I show graphically the networks with sankey diagrams. In first place the sankey diagram for the metaweb and then 4 panels in 4 different networks for the 16 different sites that were sampled in this project.
+
+*Add individual chunks to add captions, think about combining panels...*
+
+```{r, fig.align="center", echo=FALSE}
+
+library(knitr)
+
+include_graphics("Bee_fun.pdf", error = T)
+
+
+
+include_graphics("Bee_fun_x8_1.pdf", error = T)       
+
+include_graphics("Bee_fun_x8_2.pdf", error = T)       
+
+
+```
+
+
+
+
+
 #REFERENCES
