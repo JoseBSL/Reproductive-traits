@@ -86,6 +86,9 @@ bart$Compatibility[bart$Compatibility=="partially_self_compatible"] <- "Partiall
 
 #Now merge by genus
 b <- merge(bart, poll, by="genus_old", all = F)
+bartomeus_2015 <- b
+saveRDS(bartomeus_2015, "Data/RData/bartomeus_2015.RData")
+
 #data ready
 
 ###############################
