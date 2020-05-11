@@ -7,10 +7,9 @@ output: html_notebook
 Abstract
 
 
-Plant pollinator intaractions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. 
-We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance of deepen in species traits in order to understand key processes that can be seen with network metrics and highlights the importance of elemental ecology for species conservation.
-
-
+Plant pollinator intaractions are a keystone process for ecosystem functioning. However, we lack comprehensive information from both plants and pollinators that can inform from this mutualistic interaction worldwide. [frase que no significa nada, information on what? to inform what?]() In order to tackle this, we have selected 30 networks distributed across the world and looked for key floral traits of plant-pollinator interactions for a total of 1600 species. Here we look how these floral traits shape the different plant-pollinator networks and the main fuctional groups of insect pollinating species. Giving the different nature of the data collated we do not compare across networks and we focus on the main general patterns/results within network. We have conducted our analysis at 3 levels, 1) unique networks, 2) metawebs and by 3) grouping both. We find that specific traits are associated with different guilds of floral visitors within these networks. 
+We also highlight the lack of information about traits and the reproductive biology of the plant species of these networks. Our work shows the importance to deepen in species traits in order to understand key processes that structure network metrics and highlights the importance of basic ecology for species conservation.
+[buen abstract!]()
 
 Hypothesis
 
@@ -31,6 +30,8 @@ Hypothesis
 4) Style length/Ovule number
 
 5) Selfing level
+
+[ideal añadir nectar production]()
 
 - Plot taxa/traits Barplot?
 
