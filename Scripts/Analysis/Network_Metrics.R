@@ -4,6 +4,10 @@
 ###
 #####################################
 
+#Load libraries
+library(readxl)
+library(bipartite)
+
 
 #First read all networks
 #Set working directory to read files
