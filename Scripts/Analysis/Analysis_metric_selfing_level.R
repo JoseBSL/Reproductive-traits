@@ -305,7 +305,7 @@ ggplot(preds,aes(x= Autonomous_selfing_level,y= pred, color=Autonomous_selfing_l
 
 #####################################
 ###
-#### MODEL 4 Degree ~ SELFING
+#### MODEL 4 Normalised degree  ~ SELFING
 ###
 #####################################
 
@@ -329,7 +329,7 @@ detach("package:TH.data", unload=TRUE)
 detach("package:MASS", unload=TRUE)
 
 model_4 <- mixed_model(normalised.degree ~ Autonomous_selfing_level, random = ~ 1 | Id, data = all_df,
-                       family = poisson())
+                       family = beta.fam())
 
 resids_plot(model_4, all_df$normalised.degree)
 
@@ -400,7 +400,7 @@ ggplot(preds,aes(x= Autonomous_selfing_level,y= pred, color=Autonomous_selfing_l
 
 #####################################
 ###
-#### MODEL 5 Degree ~ SELFING
+#### MODEL 5 Closeness ~ SELFING
 ###
 #####################################
 

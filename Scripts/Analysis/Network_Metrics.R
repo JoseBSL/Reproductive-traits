@@ -7,8 +7,8 @@
 #Load libraries
 library(readxl)
 library(bipartite)
-
-
+library(tibble)
+library(data.table)
 #First read all networks
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_processing/Bartomeus_BeeFun") 
@@ -121,4 +121,61 @@ all_list <- lapply(seq_along(all_list),
 #Now merge all the data frames 
 all_df <- bind_rows(all_list, .id = "unique.id")
 
-saveRDS(all_df, "Data/RData/network_metrics.RData")
+#saveRDS(all_df, "Data/RData/network_metrics.RData")
+
+
+
+#Prepare now data  flower size
+
+#Now I have to merge the lsit of dataframe metrics with the traits
+#First subset by traits of interest (just compatibility at the moment)
+
+compat <- t_data[,c(1,14:19,29,31,34)]
+colnames(compat)[1] <- "Species"
+metrics_list[[1]]
+
+#Loop to create the list with all the metrics and traits--> MERGE
+i <- NULL
+all_list <- list()
+for (i in names(metrics_list)){
+  all_list[[i]] <- merge(metrics_list[[i]], compat, by="Species")
+  
+}
+
+#ADD Id to all trhe dataframes as column
+#this will help to convert everything to unique dataframe easily
+#Add "id" to the list to the long format data
+all_list <- lapply(seq_along(all_list), 
+                   function(x) cbind(all_list[[x]], unique.id=my_files[x]))
+#Now merge all the data frames 
+all_df <- bind_rows(all_list, .id = "unique.id")
+
+#saveRDS(all_df, "Data/RData/network_metrics_flower_size_and_shape.RData")
+
+
+#Prepare new data main traits
+
+#Now I have to merge the lsit of dataframe metrics with the traits
+#First subset by traits of interest (just compatibility at the moment)
+
+compat <- t_data[,c(1,12,14:19,29,30,31,34,38,43,48,49,52)]
+colnames(compat)[1] <- "Species"
+metrics_list[[1]]
+
+#Loop to create the list with all the metrics and traits--> MERGE
+i <- NULL
+all_list <- list()
+for (i in names(metrics_list)){
+  all_list[[i]] <- merge(metrics_list[[i]], compat, by="Species")
+  
+}
+
+#ADD Id to all trhe dataframes as column
+#this will help to convert everything to unique dataframe easily
+#Add "id" to the list to the long format data
+all_list <- lapply(seq_along(all_list), 
+                   function(x) cbind(all_list[[x]], unique.id=my_files[x]))
+#Now merge all the data frames 
+all_df <- bind_rows(all_list, .id = "unique.id")
+
+saveRDS(all_df, "Data/RData/network_metrics_main_traits.RData")
