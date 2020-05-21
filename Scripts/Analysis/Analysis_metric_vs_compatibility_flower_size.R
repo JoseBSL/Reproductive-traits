@@ -11,6 +11,8 @@ library(ggplot2)
 library(ds4psy)
 library(dplyr)
 library(ggeffects)
+library(performance)
+
 #load data
 all_df <- readRDS("Data/RData/network_metrics_flower_size_and_shape.RData")
 colnames(all_df)[20]<-"Id"
@@ -88,25 +90,15 @@ library(ggeffects)
 a <- ggpredict(model_1, terms = c("Corolla_diameter_mean", "Compatibility"))
 plot(a)
 
-
-mydf <- ggpredict(model_1, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) +
-  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+all_tf<- all_df
+all_tf <-predict(model_1, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
 
 
 
-
-
-
-model_1 <- mixed_model(Visits ~ Compatibility + Corolla_diameter_mean + Flower_morphology, random = ~ 1 | Id, data = all_df,
-                       family = negative.binomial())
-
-mydf <- ggpredict(model_1, terms = c("Corolla_diameter_mean","Flower_morphology"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) +
-  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
-
-
-
+mydf <- ggpredict(model_1, terms = c("Corolla_diameter_mean", "Compatibility")) 
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)+ xlab("Flower size") +
+  ylab("Predicted visits")
 
 
 
@@ -126,7 +118,11 @@ fit<- simulateResiduals(fittedModel = model_2, plot = T)
 
 
 mydf <- ggpredict(model_2, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) +
+all_tf<- all_df
+pred <-predict(model_2)
+all_tf
+
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 #####################################
@@ -150,8 +146,13 @@ model_3 <- mixed_model(degree ~ Compatibility + Corolla_diameter_mean, random = 
 
 resids_plot(model_3, all_df$degree)
 
+all_tf<- all_df
+all_tf <-predict(model_3, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+
 mydf <- ggpredict(model_3, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) +
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
@@ -171,8 +172,13 @@ resids_plot(model_4, all_df$normalised.degree)
 
 summary(model_1)
 
+all_tf<- all_df
+all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+
 mydf <- ggpredict(model_4, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter") +
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter") + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
@@ -193,8 +199,13 @@ model_5 <- lmer(closeness ~ Compatibility + Corolla_diameter_mean + (1|Id) , dat
 fit<- simulateResiduals(fittedModel = model_5, plot = T)
 #Not too bad, there is quantile deviation but all the rest looks ok
 
+all_tf<- all_df
+pred <-predict(model_5)
+all_tf$pred
+
+
 mydf <- ggpredict(model_5, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter") +
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter")  + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
@@ -211,8 +222,13 @@ model_6 <- mixed_model(betweenness ~ Compatibility + Corolla_diameter_mean, rand
 resids_plot(model_6, all_df$betweenness)
 #Looks good! Despite how ugly is these data... 
 
+all_tf<- all_df
+all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+
 mydf <- ggpredict(model_6, terms = c("Corolla_diameter_mean", "Compatibility"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter") +
+ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Corolla diameter") + geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred, colour = Compatibility))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 

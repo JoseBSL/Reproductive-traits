@@ -49,8 +49,12 @@ model_1 <- mixed_model(Visits ~ style_length_mm, random = ~ 1 | Id, data = all_d
 
 resids_plot(model_1, all_df$Visits)
 
+all_tf<- all_df
+all_tf <-predict(model_1, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
 mydf <- ggpredict(model_1, terms = c("style_length_mm"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Style length")+ ylab("Predicted visits")+
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Style length")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
   geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
