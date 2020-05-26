@@ -137,7 +137,6 @@ detach("package:lme4", unload=TRUE)
 detach("package:emmeans", unload=TRUE)
 detach("package:multcomp", unload=TRUE)
 detach("package:DHARMa", unload=TRUE)
-detach("package:ds4psy", unload=TRUE)
 detach("package:ciTools", unload=TRUE)
 detach("package:TH.data", unload=TRUE)
 detach("package:MASS", unload=TRUE)
@@ -184,8 +183,12 @@ all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdat
 
 
 mydf <- ggpredict(model_4, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_plant_height_4.rds")
+saveRDS(model_4, "Data/RData/model_4_visits_plant_height_4.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_plant_height_4.rds")
 
 
 #####################################

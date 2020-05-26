@@ -153,3 +153,28 @@ saveRDS(all_tf, "Data/RData/data_plot_visits_corolla_length_3.rds")
 saveRDS(model_3, "Data/RData/model_3_visits_corolla_length_3.rds")
 saveRDS(pred, "Data/RData/pred_plot_visits_corolla_length_3.rds")
 
+#####################################
+###
+#### MODEL 4 Normalised degree  ~ PLANT HEIGHT
+###
+#####################################
+
+
+model_4 <- mixed_model(normalised.degree ~ Corolla_length_mean, random = ~ 1 | Id, data = all_df,
+                       family = beta.fam(), max_phis_value=0)
+
+
+resids_plot(model_4, all_df$normalised.degree)
+#After trying with A Gaussian distribution and a Poisson, this is the family that best fit
+
+all_tf<- all_df
+all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+mydf <- ggpredict(model_4, terms = c("Corolla_length_mean"))
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Corolla length (mm)") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_corolla_length_4.rds")
+saveRDS(model_4, "Data/RData/model_4_visits_corolla_length_4.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_corolla_length_4.rds")

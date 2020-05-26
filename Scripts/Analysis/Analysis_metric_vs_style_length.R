@@ -172,12 +172,16 @@ model_4 <- mixed_model(normalised.degree ~ style_length_mm, random = ~ 1 | Id, d
 resids_plot(model_4, all_df$normalised.degree)
 #After trying with A Gaussian distribution and a Poisson, this is the family that best fit
 
-mydf <- ggpredict(model_4, terms = c("style_length_mm"))
 all_tf<- all_df
 all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
 
-ggplot(mydf, aes(x = x, y = predicted)) + xlab("Corolla diameter") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
-  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+mydf <- ggpredict(model_4, terms = c("style_length_mm"))
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Style length (mm)") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_style_length_4.rds")
+saveRDS(model_4, "Data/RData/model_4_visits_style_length_4.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_style_length_4.rds")
 
 
 

@@ -170,16 +170,20 @@ saveRDS(pred, "Data/RData/pred_plot_visits_ovule_number_3.rds")
 model_4 <- mixed_model(normalised.degree ~ ovules_mean, random = ~ 1 | Id, data = all_df,
                        family = beta.fam(), max_phis_value=0)
 
-
+hist(all_df$normalised.degree)
 resids_plot(model_4, all_df$normalised.degree)
 #After trying with A Gaussian distribution and a Poisson, this is the family that best fit
-
+all_tf <- all_df
 summary(model_1)
+all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
 
 mydf <- ggpredict(model_4, terms = c("ovules_mean"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Ovule number") + ylab("Predicted Visits") +
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Ovule number") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =ovules_mean , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
+saveRDS(all_tf, "Data/RData/data_plot_visits_ovule_number_4.rds")
+saveRDS(model_4, "Data/RData/model_4_visits_ovule_number_4.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_ovule_number_4.rds")
 
 #####################################
 ###
