@@ -178,3 +178,35 @@ ggplot(mydf, aes(x = x, y = predicted)) + xlab("Corolla length (mm)") + theme_ds
 saveRDS(all_tf, "Data/RData/data_plot_visits_corolla_length_4.rds")
 saveRDS(model_4, "Data/RData/model_4_visits_corolla_length_4.rds")
 saveRDS(pred, "Data/RData/pred_plot_visits_corolla_length_4.rds")
+
+#####################################
+###
+#### MODEL 5 Closeness ~ STYLE LENGTH
+###
+#####################################
+
+
+library(lme4)
+library(DHARMa)
+library(emmeans)
+library(multcomp)
+
+
+hist(all_df$closeness)
+model_5 <- lmer(closeness ~ Corolla_length_mean + (1|Id) , data = all_df)
+fit<- simulateResiduals(fittedModel = model_5, plot = T)
+
+all_tf <- all_df
+pred <-predict(model_5, type="response",newdata = all_tf,return_newdata = TRUE)
+all_tf$pred <- pred
+
+mydf <- ggpredict(model_5, terms = c("Corolla_length_mean"))
+ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla length (mm)")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_corolla_length_5.rds")
+saveRDS(model_5, "Data/RData/model_5_visits_corolla_length_5.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_corolla_length_5.rds")
+
+

@@ -207,17 +207,17 @@ hist(all_df$closeness)
 model_5 <- lmer(closeness ~ plant_height_mean_m + (1|Id) , data = all_df)
 fit<- simulateResiduals(fittedModel = model_5, plot = T)
 
-all_tf<- all_df
-pred <-predict(model_5)
-all_tf$pred
-
+all_tf <- all_df
+pred <-predict(model_5, type="response",newdata = all_tf,return_newdata = TRUE)
+all_tf$pred <- pred
 
 mydf <- ggpredict(model_5, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height (m)") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
-  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height (m)")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
 
 saveRDS(all_tf, "Data/RData/data_plot_visits_plant_height_5.rds")
-saveRDS(model_4, "Data/RData/model_5_visits_plant_height_5.rds")
+saveRDS(model_5, "Data/RData/model_5_visits_plant_height_5.rds")
 saveRDS(pred, "Data/RData/pred_plot_visits_plant_height_5.rds")
 
 

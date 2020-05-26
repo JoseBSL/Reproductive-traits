@@ -323,10 +323,34 @@ style_length_5 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("style_length (
   geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
+model_5 <- readRDS("Data/RData/model_5_visits_corolla_length_5.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_length_5.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_length_5.rds")
 
-p <- plot_grid(plant_height_5,style_length_5, NULL, ncol = 2)
+mydf <- ggpredict(model_5, terms = c("Corolla_length_mean"))
+corolla_length_5 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla length (mm)")+ ylab("Predicted closeness")+geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
-title <- ggdraw() + draw_label("Normalise degree ~ TRAITS", fontface='bold')
+model_5 <- readRDS("Data/RData/model_5_visits_corolla_diameter_5.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_diameter_5.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_diameter_5.rds")
+
+mydf <- ggpredict(model_5, terms = c("Corolla_diameter_mean"))
+corolla_diameter_5 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla diamter (mm)")+ ylab("Predicted closeness")+geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+model_5 <- readRDS("Data/RData/model_5_visits_ovule_number_5.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_ovule_number_5.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_ovule_number_5.rds")
+
+mydf <- ggpredict(model_5, terms = c("ovules_mean"))
+ovule_number_5 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Ovule number")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =ovules_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+p <- plot_grid(plant_height_5,style_length_5,corolla_length_5,corolla_diameter_5, ovule_number_5, NULL, ncol = 2)
+
+title <- ggdraw() + draw_label("Closeness ~ TRAITS", fontface='bold')
 
 plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
 
