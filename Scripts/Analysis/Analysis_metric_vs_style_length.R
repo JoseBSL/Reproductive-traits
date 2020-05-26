@@ -210,8 +210,14 @@ all_tf$pred
 
 
 mydf <- ggpredict(model_5, terms = c("style_length_mm"))
-ggplot(mydf, aes(x = x, y = predicted)) + xlab("style_length_mm diameter")  + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("style_length (mm)")  + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
   geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_style_length_5.rds")
+saveRDS(model_5, "Data/RData/model_5_visits_style_length_5.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_style_length_5.rds")
+
 
 
 #####################################

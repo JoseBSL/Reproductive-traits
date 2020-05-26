@@ -285,3 +285,50 @@ title <- ggdraw() + draw_label("Normalise degree ~ TRAITS", fontface='bold')
 plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
 
 ```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=9,fig.width=7}
+library(ds4psy)
+library(ggplot2)
+library(ggeffects)
+library(ggplot2)
+library(gridExtra)
+library(egg)
+library(magrittr)
+library(grid)
+library(Rmisc)
+library(cowplot)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+
+model_5 <- readRDS("Data/RData/model_5_visits_plant_height_5.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_plant_height_5.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_plant_height_5.rds")
+
+
+mydf <- ggpredict(model_5, terms = c("plant_height_mean_m"))
+plant_height_5 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height (m)") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_5 <- readRDS("Data/RData/model_5_visits_style_length_5.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_style_length_5.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_style_length_5.rds")
+
+
+mydf <- ggpredict(model_5, terms = c("style_length_mm"))
+style_length_5 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("style_length (mm)")  + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+
+p <- plot_grid(plant_height_5,style_length_5, NULL, ncol = 2)
+
+title <- ggdraw() + draw_label("Normalise degree ~ TRAITS", fontface='bold')
+
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+
+
+```
