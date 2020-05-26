@@ -1,0 +1,214 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=9,fig.width=7}
+library(ds4psy)
+library(ggplot2)
+library(ggeffects)
+library(ggplot2)
+library(gridExtra)
+library(egg)
+library(magrittr)
+library(grid)
+library(Rmisc)
+library(cowplot)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+model_1 <- readRDS("Data/RData/model_1_visits_plant_height.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_plant_height.rds")
+
+
+mydf <- ggpredict(model_1, terms = c("plant_height_mean_m"))
+
+plant_height <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height (m)")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+model_1 <- readRDS("Data/RData/model_1_visits_style_length.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_style_length.rds")
+
+mydf <- ggpredict(model_1, terms = c("style_length_mm"))
+
+style_length <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Style length (mm)")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_1 <- readRDS("Data/RData/model_1_visits_ovule_number.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_ovule_number.rds")
+
+mydf <- ggpredict(model_1, terms = c("ovules_mean"))
+
+ovule_number <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") +xlab("Ovule number")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =ovules_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_1 <- readRDS("Data/RData/model_1_visits_corolla_diameter.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_diameter.rds")
+
+mydf <- ggpredict(model_1, terms = c("Corolla_diameter_mean"))
+
+corolla_diameter <-ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla diameter (mm)")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+model_1 <- readRDS("Data/RData/model_1_visits_corolla_length.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_length.rds")
+
+mydf <- ggpredict(model_1, terms = c("Corolla_length_mean"))
+
+corolla_length <-ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla length (mm)")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+p <- plot_grid(plant_height, style_length, corolla_length, corolla_diameter,ovule_number,NULL, ncol = 2)
+
+title <- ggdraw() + draw_label("VISITS ~ TRAITS", fontface='bold')
+
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+
+
+```
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=9,fig.width=7}
+library(ds4psy)
+library(ggplot2)
+library(ggeffects)
+library(ggplot2)
+library(gridExtra)
+library(egg)
+library(magrittr)
+library(grid)
+library(Rmisc)
+library(cowplot)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+model_2 <- readRDS("Data/RData/model_2_visits_plant_height_2.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_plant_height_2.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_plant_height_2.rds")
+
+mydf <- ggpredict(model_2, terms = c("plant_height_mean_m"))
+plant_height_2 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height (m)")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_2 <- readRDS("Data/RData/model_2_visits_style_length_2.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_style_length_2.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_style_length_2.rds")
+
+
+mydf <- ggpredict(model_2, terms = c("style_length_mm"))
+style_length_2 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("Style length (mm)")+ theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted d")+geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+
+model_2 <- readRDS("Data/RData/model_2_visits_corolla_length_2.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_length_2.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_length_2.rds")
+
+
+mydf <- ggpredict(model_2, terms = c("Corolla_length_mean"))
+
+corolla_length_2 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla length")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_2 <- readRDS("Data/RData/model_2_visitscorolla_diameter_2.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_diameter_2.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_diameter_2.rds")
+
+mydf <- ggpredict(model_2, terms = c("Corolla_diameter_mean"))
+
+corolla_diameter_2 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla diameter (mm)")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+
+model_2 <- readRDS("Data/RData/model_2_visits_ovule_number_2.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_ovule_number_2.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_ovule_number_2.rds")
+
+
+mydf <- ggpredict(model_2, terms = c("ovules_mean"))
+ovule_number_2 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("Ovule number")+ theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted d")+geom_point(data= all_tf, aes(x =ovules_mean , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+p <- plot_grid(plant_height_2, style_length_2, corolla_length_2, corolla_diameter_2,ovule_number_2,NULL, ncol = 2)
+
+title <- ggdraw() + draw_label("SPECIALIZATION (d) ~ TRAITS", fontface='bold')
+
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=9,fig.width=7}
+library(ds4psy)
+library(ggplot2)
+library(ggeffects)
+library(ggplot2)
+library(gridExtra)
+library(egg)
+library(magrittr)
+library(grid)
+library(Rmisc)
+library(cowplot)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+model_3 <- readRDS("Data/RData/model_3_visits_plant_height_3.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_plant_height_3.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_plant_height_3.rds")
+
+mydf <- ggpredict(model_3, terms = c("plant_height_mean_m"))
+plant_height_3 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height (m)")+ ylab("Predicted degree")+ geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_3 <- readRDS("Data/RData/model_3_visits_style_length_3.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_style_length_3.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_style_length_3.rds")
+
+mydf <- ggpredict(model_3, terms = c("style_length_mm"))
+style_length_3 <- ggplot(mydf, aes(x = x, y = predicted)) + xlab("Style length (mm)") + theme_ds4psy() + theme(legend.position = "none") + ylab("Predicted degree") + geom_point(data= all_tf, aes(x =style_length_mm , y = pred))+
+  geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_3 <- readRDS("Data/RData/model_3_visits_corolla_length_3.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_length_3.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_length_3.rds")
+
+mydf <- ggpredict(model_3, terms = c("Corolla_length_mean"))
+corolla_length_3 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla length (mm)")+ ylab("Predicted degree")+ geom_point(data= all_tf, aes(x =Corolla_length_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+model_3 <- readRDS("Data/RData/model_3_visits_corolla_diameter_3.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_corolla_diameter_3.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_corolla_diameter_3.rds")
+
+mydf <- ggpredict(model_3, terms = c("Corolla_diameter_mean"))
+corolla_diameter_3 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Corolla diameter (mm)")+ ylab("Predicted degree")+ geom_point(data= all_tf, aes(x =Corolla_diameter_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+model_3 <- readRDS("Data/RData/model_3_visits_ovule_number_3.rds")
+pred <- readRDS("Data/RData/pred_plot_visits_ovule_number_3.rds")
+all_tf <- readRDS("Data/RData/data_plot_visits_ovule_number_3.rds")
+
+
+mydf <- ggpredict(model_3, terms = c("ovules_mean"))
+ovule_number_3 <- ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Ovule number")+ ylab("Predicted degree")+ geom_point(data= all_tf, aes(x =ovules_mean , y = pred))+
+  geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+p <- plot_grid(plant_height_3,style_length_3,corolla_length_3,corolla_diameter_3,ovule_number_3,NULL, ncol = 2)
+
+title <- ggdraw() + draw_label("DEGREE ~ TRAITS", fontface='bold')
+
+plot_grid(title, p, ncol=1, rel_heights=c(0.1, 1)) # rel_heights values control title margins
+
+
+```
+

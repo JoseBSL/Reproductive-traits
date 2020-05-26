@@ -24,9 +24,38 @@ all_df$plant_height_mean_m <- make.true.NA(all_df$plant_height_mean_m)
 all_df <- all_df[complete.cases(all_df$plant_height_mean_m),]
 colnames(all_df) <- make.unique(names(all_df))
 all_df$Id <- as.factor(all_df$Id)
-all_df$plant_height_mean_m <- as.integer(all_df$plant_height_mean_m)
-all_df$Visits <- as.integer(all_df$Visits)
+all_df$plant_height_mean_m <- as.numeric(all_df$plant_height_mean_m)
+all_df$Visits <- as.numeric(all_df$Visits)
 
+
+#Funtion to check goodness of fit from https://drizopoulos.github.io/GLMMadaptive/articles/Goodness_of_Fit.html
+resids_plot <- function (object, y, nsim = 1000,
+                         type = c("subject_specific", "mean_subject"),
+                         integerResponse = NULL) {
+  if (!inherits(object, "MixMod"))
+    stop("this function works for 'MixMod' objects.\n")
+  type <- match.arg(type)
+  if (is.null(integerResponse)) {
+    integer_families <- c("binomial", "poisson", "negative binomial",
+                          "zero-inflated poisson", "zero-inflated negative binomial", 
+                          "hurdle poisson", "hurdle negative binomial")
+    numeric_families <- c("hurdle log-normal", "beta", "hurdle beta")
+    if (object$family$family %in% integer_families) {
+      integerResponse <- TRUE
+    } else if (object$family$family %in% numeric_families) {
+      integerResponse <- FALSE
+    } else {
+      stop("non build-in family object; you need to specify the 'integerResponse',\n",
+           "\targument indicating whether the outcome variable is integer or not.\n")
+    }
+  }
+  sims <- simulate(object, nsim = nsim, type = type)
+  fits <- fitted(object, type = type)
+  dharmaRes <- DHARMa::createDHARMa(simulatedResponse = sims, observedResponse = y, 
+                                    fittedPredictedResponse = fits, 
+                                    integerResponse = integerResponse)
+  DHARMa:::plot.DHARMa(dharmaRes, quantreg = FALSE)
+}
 
 
 #####################################
@@ -51,9 +80,19 @@ model_1 <- mixed_model(Visits ~ plant_height_mean_m, random = ~ 1 | Id, data = a
 
 resids_plot(model_1, all_df$Visits)
 
+all_tf<- all_df
+all_tf <-predict(model_1, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+library(ds4psy)
 mydf <- ggpredict(model_1, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height")+ ylab("Predicted visits")+
+ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height (m)")+ ylab("Predicted visits")+geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1)+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+
+saveRDS(model_1, "Data/RData/model_1_visits_plant_height.rds")
+saveRDS(all_tf, "Data/RData/data_plot_visits_plant_height.rds")
 
 
 #####################################
@@ -71,9 +110,20 @@ model_2 <- lmer(d ~plant_height_mean_m + (1|Id) , data = all_df)
 summary(model_2)
 fit<- simulateResiduals(fittedModel = model_2, plot = T)
 
+pred <-predict(model_2)
+all_tf <- all_df
+all_tf$pred <- pred
+
+
 mydf <- ggpredict(model_2, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height")+ ylab("Predicted d")+
+ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height")+ ylab("Predicted d")+geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_plant_height_2.rds")
+saveRDS(model_2, "Data/RData/model_2_visits_plant_height_2.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_plant_height_2.rds")
+
 
 
 #####################################
@@ -98,9 +148,21 @@ model_3 <- mixed_model(degree ~ plant_height_mean_m, random = ~ 1 | Id, data = a
 
 resids_plot(model_3, all_df$degree)
 
+all_tf<- all_df
+all_tf <-predict(model_3, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
+
 mydf <- ggpredict(model_3, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height")+ ylab("Predicted degree")+
+ggplot(mydf, aes(x = x, y = predicted)) + theme_ds4psy() + theme(legend.position = "none") + xlab("Plant height")+ ylab("Predicted degree")+ geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
+
+
+saveRDS(all_tf, "Data/RData/data_plot_visits_plant_height_3.rds")
+saveRDS(model_3, "Data/RData/model_3_visits_plant_height_3.rds")
+saveRDS(pred, "Data/RData/pred_plot_visits_plant_height_3.rds")
+
+
 
 
 #####################################
@@ -117,8 +179,12 @@ model_4 <- mixed_model(normalised.degree ~ plant_height_mean_m, random = ~ 1 | I
 resids_plot(model_4, all_df$normalised.degree)
 #After trying with A Gaussian distribution and a Poisson, this is the family that best fit
 
+all_tf<- all_df
+all_tf <-predict(model_4, type="subject_specific",newdata = all_tf,return_newdata = TRUE)
+
+
 mydf <- ggpredict(model_4, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height") + ylab("Predicted normalise degree") +
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height") + ylab("Predicted normalise degree") +geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
@@ -138,9 +204,13 @@ hist(all_df$closeness)
 model_5 <- lmer(closeness ~ plant_height_mean_m + (1|Id) , data = all_df)
 fit<- simulateResiduals(fittedModel = model_5, plot = T)
 
+all_tf<- all_df
+pred <-predict(model_5)
+all_tf$pred
+
 
 mydf <- ggpredict(model_5, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height") + ylab("Predicted closeness") +
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height") + ylab("Predicted closeness") + geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 #####################################
@@ -153,11 +223,18 @@ model_6 <- mixed_model(betweenness ~ plant_height_mean_m, random = ~ 1 | Id, dat
                        family = hurdle.lognormal(), n_phis = 1,
                        zi_fixed = ~ 1)
 
+
 resids_plot(model_6, all_df$betweenness)
 #Looks good! Despite how ugly is these data... 
 
+
+all_tf<- all_df
+all_tf <-predict(model_6, type="zero_part",newdata = all_tf,return_newdata = TRUE)
+
+
+
 mydf <- ggpredict(model_6, terms = c("plant_height_mean_m"))
-ggplot(mydf, aes(x = x, y = predicted, colour = group)) + xlab("Plant height") +
+ggplot(mydf, aes(x = x, y = predicted)) + xlab("Plant height")  + geom_point(data= all_tf, aes(x =plant_height_mean_m , y = pred))+
   geom_line( alpha = 1, fill=c("blue", "red", "green"))+ geom_ribbon(aes(x = x,ymin = conf.low, ymax = conf.high, fill = group), alpha = 0.1, colour = NA)
 
 
