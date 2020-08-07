@@ -9,6 +9,7 @@ library(readxl)
 library(bipartite)
 library(tibble)
 library(data.table)
+library(dplyr)
 #First read all networks
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_processing/Bartomeus_BeeFun") 
@@ -101,7 +102,7 @@ for (i in names(my_data)){
 #Now I have to merge the lsit of dataframe metrics with the traits
 #First subset by traits of interest (just compatibility at the moment)
 
-compat <- t_data[,c(1,14:19)]
+compat <- t_data[,c(1,7,8,9,14:19)]
 colnames(compat)[1] <- "Species"
 metrics_list[[1]]
 
@@ -121,7 +122,7 @@ all_list <- lapply(seq_along(all_list),
 #Now merge all the data frames 
 all_df <- bind_rows(all_list, .id = "unique.id")
 
-#saveRDS(all_df, "Data/RData/network_metrics.RData")
+saveRDS(all_df, "Data/RData/network_metrics.RData")
 
 
 
@@ -158,7 +159,7 @@ all_df <- bind_rows(all_list, .id = "unique.id")
 #Now I have to merge the lsit of dataframe metrics with the traits
 #First subset by traits of interest (just compatibility at the moment)
 
-compat <- t_data[,c(1,12,14:19,29,30,31,34,38,43,48,49,52)]
+compat <- t_data[,c(1,7,8,9,12,14:19,29,30,31,34,38,43,48,49,52)]
 colnames(compat)[1] <- "Species"
 metrics_list[[1]]
 

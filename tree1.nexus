@@ -1,0 +1,45 @@
+#NEXUS
+[R-package PHYTOOLS, Thu Mar 19 21:16:41 2020]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 16;
+	TAXLABELS
+		Andrena_angustior
+		Andrena_flavipes
+		Andrena_hispania
+		Andrena_pilipes
+		Andrena_sp.
+		Apis_mellifera
+		Bombus_pascuorum
+		Bombus_pratorum
+		Bombus_terrestris
+		Bombus_vestalis
+		Flavipanurgus_venustus
+		Lasioglossum_immunitum
+		Lasioglossum_malachurum
+		Megachile_willughbiella
+		Osmia_latreillei
+		Rhodanthidium_sticticum
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Andrena_angustior,
+		2	Andrena_flavipes,
+		3	Andrena_hispania,
+		4	Andrena_pilipes,
+		5	Andrena_sp.,
+		6	Apis_mellifera,
+		7	Bombus_pascuorum,
+		8	Bombus_pratorum,
+		9	Bombus_terrestris,
+		10	Bombus_vestalis,
+		11	Flavipanurgus_venustus,
+		12	Lasioglossum_immunitum,
+		13	Lasioglossum_malachurum,
+		14	Megachile_willughbiella,
+		15	Osmia_latreillei,
+		16	Rhodanthidium_sticticum
+	;
+	TREE * UNTITLED = [&R] (((12:0.1560140898,13:0.1560140898):0.1560140898,((5:0.1245997829,4:0.1245997829,2:0.1245997829,3:0.1245997829,1:0.1245997829):0.1245997828,11:0.2491995657):0.06282861395):0.01250528971,((6:0.1080806379,(10:0.05404031897,7:0.05404031897,8:0.05404031897,9:0.05404031897):0.05404031895):0.1406441453,((14:0.08914785833,15:0.08914785833):0.007151570693,16:0.096299429):0.1524253542):0.07580868609);
+END;
