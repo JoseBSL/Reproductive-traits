@@ -58,6 +58,9 @@ all_df$phylo <- gsub(" ","_", all_df$phylo)
 hist(all_df$Visits)
 ggplot()+geom_point(data = all_df, aes(y = Visits, x = Autonomous_selfing_level))+geom_smooth()
 
+all_df <- all_df %>%mutate(Autonomous_selfing_level = fct_relevel(Autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df$Autonomous_selfing_level <- as.factor(all_df$Autonomous_selfing_level)
+
 
 
 #####################################
@@ -76,8 +79,8 @@ prior1 <- c(
 )
 
 bmod1 <- brm(
-  Visits ~ Autonomous_selfing_level + (1|phylo),
-  data = all_df, family = negbinomial(), cov = list("phylo" = A),
+  Visits ~ Autonomous_selfing_level + (1|gr(phylo, cov = A)),
+  data = all_df, family = negbinomial(), data2 = list(A = A),
   sample_prior = TRUE, warmup = 2000, iter = 5000,save_all_pars=T,
   control = list(adapt_delta = 0.99))
 
@@ -99,108 +102,23 @@ posterior_summary(bmod1, pars = c("^b_", "^sd_", "sigma"), probs = c(0.025, 0.97
 
 
 
-
-bmod2 <- brm(
+#We have compare this model with and without phylogeny and 
+bmod1_1 <- brm(
   Visits ~ Autonomous_selfing_level,
   data = all_df, family = negbinomial(),
   sample_prior = TRUE, warmup = 2000, iter = 5000,
   save_all_pars=T, control = list(adapt_delta = 0.99))
 
-bmod2 <- add_criterion(bmod2, "loo", moment_match = TRUE)
-
+bmod1_1 <- add_criterion(bmod1_1, "loo", moment_match = TRUE)
 
 
 #compare model fit
-loo_compare(bmod1, bmod2, criterion = "loo")
+loo_compare(bmod1, bmod1_1, criterion = "loo")
+#The phylogenetic relatedness as random factor improves the model
+
+hyp <- "sd_phylo__Intercept^2 / (sd_phylo__Intercept^2 + shape^2) = 0"
+(hyp <- hypothesis(bmod1, hyp, class = NULL))
+
 
 pp_check(bmod1, resp = "visits")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mean(all_df$Visits)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-library(tidyverse)
-bmod1 %>%
-  plot(
-    combo = c("hist", "trace"), widths = c(1, 1.5),
-    theme = theme_bw(base_size = 10)
-  )
-
-#The chain seems well mixed, consider many different values
-
-#Cheking number of cores
-#getOption("mc.cores", 1)
-
-
-# "cov_ranef =" es donde metemos el árbol
-ab <-brm(Visits ~ Autonomous_selfing_level + (1|Species), data = all_df,
-           cores=4,
-           family = "gaussian",sample_prior = TRUE)
-check_model(ab)
-
-file.edit("~/.Renviron")
-plot(ab)
-plot(conditional_effects(m7b3), points = TRUE)
-
-
-bayes_R2(m7b3)
-
-plot(fit_ir3)
-
-
-
-all_df %>%
-  add_residual_draws(m7b3) %>%
-  ggplot(aes(x = .row, y = .residual)) +
-  stat_pointinterval()
-
-
-
-
-
-
-#Y esto simplemente para la representación gráfica, que pienso te puede ayudar
-# marginal_effects() es una función increíblemente buena para trabajar con brms, te saca ya los
-# predict y puedes hacer lo que quieras como en este ejemplo
-plot(Success.test.as.numeric ~ Brain.weight, data = dat3b, 
-     main="Success related to \nbrain size (a)", xlab="Absolute brain size", 
-     cex.lab= 1.3 ,ylab = "Success learning test", las = 1, col = c("red","darkgreen", "blue", "black")[Family])
-legend(x=4, y=0.4, legend = levels(Success8trials.ITf$Family),
-       col = c("red","darkgreen", "blue", "black"), pch=19, cex=0.85,ncol = 1)
-box(which = "plot", lty = "solid")
-fit <- marginal_effects(m7b3)
-fits<-as.data.frame(fit$Brain.weight)
-fits$Brain.weight
-polygon(c((fits$Brain.weight), rev((fits$Brain.weight))), c(fits$upper__, rev(fits$lower__)),
-        col = "Gray95", border = NA)
-
-lines((fits$Brain.weight), fits$estimate__, lwd=2)
-lines((fits$Brain.weight), fits$lower__, col = "purple")
-lines((fits$Brain.weight), fits$upper__, col = "purple")
-points(Success.test.as.numeric ~ (Brain.weight), data = dat3b,col = c("red","darkgreen", "blue", "black")[Family])
-
 
