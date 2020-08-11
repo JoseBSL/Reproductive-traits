@@ -89,7 +89,7 @@ all_df$ovules_mean <- scale(all_df$ovules_mean)
 
 
 
-model_1 <- mixed_model(Visits ~ Compatibility  +Corolla_diameter_mean + ovules_mean, random = ~ 1 | Id, data = all_df,
+model_1 <- mixed_model(Visits ~ Compatibility  + Corolla_diameter_mean + ovules_mean, random = ~ 1 | Id, data = all_df,
                        family = negative.binomial())
 
 
