@@ -50,10 +50,25 @@ This folder has networks of year duration with quantitative data (visitation)
 
 9.1 Olesen 2002 Azores
 
-
-#CHECK IF METAWEBS CAN BE SEPARATED IN INDIVIDUAL NETWORKS
-
 # 10 Small 2002 (Network 18 and 30 in network all folder) 2 independent networks.
 
+10.1 Small 2002
 
+# 11 Kaiser-bunbury 2017 (Network 30 and 30 in network all folder) 8 independent networks but 1 is from atea plantation https://doi.org/10.1038/nature21071 but also the study of 2014 https://doi.org/10.1890/14-0024.1
+
+11.1  Kaiser-bunbury 2017 1 rosbelle
+ 
+11.2  Kaiser-bunbury 2017 2 bernica
+
+11.3  Kaiser-bunbury 2017 3 casse dent
+
+11.4  Kaiser-bunbury 2017 4 copolia
+
+11.5  Kaiser-bunbury 2017 5 reserve
+
+11.6  Kaiser-bunbury 2017 6 salazie 
+
+11.7  Kaiser-bunbury 2017 7 trois freres
+
+11.7  Kaiser-bunbury 2017 8 tea plantation
 
