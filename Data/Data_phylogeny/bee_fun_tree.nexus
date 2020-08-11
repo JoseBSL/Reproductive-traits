@@ -1,0 +1,101 @@
+#NEXUS
+[R-package APE, Thu Aug  6 14:44:22 2020]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 44;
+	TAXLABELS
+		Chamaemelum_fuscatum*
+		Calendula_arvensis
+		Taraxacum_campylodes
+		Leontodon_saxatilis
+		Leontodon_sp.*
+		Andryala_integrifolia
+		Arctotheca_calendula
+		Carduus_sp.*
+		Thapsia_villosa
+		Scabiosa_atropurpurea
+		Thymus_mastichina*
+		Rosmarinus_officinalis
+		Lavandula_stoechas
+		Lavandula_pedunculata*
+		Teucrium_fruticans
+		Phlomis_purpurea
+		Linaria_viscosa*
+		Echium_plantagineum
+		Anchusa_azurea
+		Convolvulus_arvensis
+		Erica_umbellata
+		Erica_scoparia
+		Erica_ciliaris
+		Armeria_velutina
+		Erophaca_baetica
+		Lupinus_angustifolius
+		Genista_hirsuta*
+		Ulex_parviflorus*
+		Spartium_junceum
+		Retama_sp.**
+		Linum_bienne
+		Diplotaxis_virgata*
+		Malva_multiflora
+		Cistus_ladanifer
+		Cistus_salviifolius
+		Halimium_commutatum*
+		Halimium_halimifolium*
+		Cistus_crispus*
+		Cistus_monspeliensis*
+		Cistus_albidus*
+		Cistus_libanotis*
+		Tuberaria_guttata
+		Ranunculus_sp.
+		Asphodelus_fistulosus*
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Chamaemelum_fuscatum*,
+		2	Calendula_arvensis,
+		3	Taraxacum_campylodes,
+		4	Leontodon_saxatilis,
+		5	Leontodon_sp.*,
+		6	Andryala_integrifolia,
+		7	Arctotheca_calendula,
+		8	Carduus_sp.*,
+		9	Thapsia_villosa,
+		10	Scabiosa_atropurpurea,
+		11	Thymus_mastichina*,
+		12	Rosmarinus_officinalis,
+		13	Lavandula_stoechas,
+		14	Lavandula_pedunculata*,
+		15	Teucrium_fruticans,
+		16	Phlomis_purpurea,
+		17	Linaria_viscosa*,
+		18	Echium_plantagineum,
+		19	Anchusa_azurea,
+		20	Convolvulus_arvensis,
+		21	Erica_umbellata,
+		22	Erica_scoparia,
+		23	Erica_ciliaris,
+		24	Armeria_velutina,
+		25	Erophaca_baetica,
+		26	Lupinus_angustifolius,
+		27	Genista_hirsuta*,
+		28	Ulex_parviflorus*,
+		29	Spartium_junceum,
+		30	Retama_sp.**,
+		31	Linum_bienne,
+		32	Diplotaxis_virgata*,
+		33	Malva_multiflora,
+		34	Cistus_ladanifer,
+		35	Cistus_salviifolius,
+		36	Halimium_commutatum*,
+		37	Halimium_halimifolium*,
+		38	Cistus_crispus*,
+		39	Cistus_monspeliensis*,
+		40	Cistus_albidus*,
+		41	Cistus_libanotis*,
+		42	Tuberaria_guttata,
+		43	Ranunculus_sp.,
+		44	Asphodelus_fistulosus*
+	;
+	TREE * UNTITLED = [&R] ((((((((((((13:9.750943,14:9.750942)N12289:15.606809,(12:19.600345,11:19.600344)N11387:5.757407)N11386:8.922666,(16:28.575714,15:28.575714)N12322:5.704704)N11385:18.652344,17:52.932761)N11378:35.315015,(19:24.223762,18:24.223762)N16515:64.024015)mrcaott248ott2108:1.503291,20:89.751068)mrcaott248ott1191:16.990343,(((((((4:3.522601,5:3.5226)N04987:7.073025,3:10.595626)N04761:5.978858,6:16.574484)N04757:11.256907,7:27.831391)N04752:2.842748,(2:19.174844,1:19.174844)N02471:11.499295)N00012:3.606085,8:34.280223)N00010:59.449988,(10:85.640655,9:85.640655)mrcaott1673ott2128:8.089557)mrcaott320ott1673:13.011199)mrcaott248ott320:5.599318,((23:7.596309,22:7.596309)N22083:1.147813,21:8.744122)N21572:103.596607)mrcaott248ott650:7.533505,24:119.874234)mrcaott248ott557:3.860003,(((((((35:1.406262,34:1.406262)N45597:4.197007,36:5.603269,37:5.603268)N45595:0.006307,41:5.609575,40:5.609575,39:5.609575,38:5.609575)N45594:25.181818,42:30.791394)N45593:36.001649,33:66.793043)N44990:26.160094,32:92.953136)mrcaott378ott1697:25.625467,((((((28:13.819199,27:13.819199)N31895:0.276207,29:14.095407)N31894:4.929805,26:19.025212)N31851:45.190714,25:64.215926)N29709:20.547412,30:84.763337)N29704:31.022227,31:115.785565)mrcaott2ott371:2.793039)mrcaott2ott96:5.155633)Pentapetalae:7.946463,43:131.6807)eudicotyledons:4.077365,44:135.758064)mrcaott2ott121;
+END;

@@ -44,4 +44,4 @@ control_kaiser_bunbury_2009$Interaction=ifelse(as.numeric(control_kaiser_bunbury
 control_kaiser_bunbury_2009 <- acast(control_kaiser_bunbury_2009, Plant_species ~ Pollinator_species , value.var='Interaction', 
                                       fun.aggregate=sum)
 
-write.csv(control_kaiser_bunbury_2009, "Data_networks/13_control_kaiser_bunbury_2009.csv")
+#write.csv(control_kaiser_bunbury_2009, "Data_networks/13_control_kaiser_bunbury_2009.csv")

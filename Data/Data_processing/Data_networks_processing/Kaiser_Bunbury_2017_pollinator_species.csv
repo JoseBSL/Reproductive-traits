@@ -1,0 +1,145 @@
+Class/order,Pollinator species ID,Pollinator species name,Family,Origin
+Aves,M,Hypsipetes crassirostris,Pycnonotidae,endemic
+Aves,SB,Cinnyris dussumieri,Nectariniidae,endemic
+Coleoptera,C11,Dermestidae sp1,Dermestidae,nd
+Coleoptera,C15,Rhiparida seychellensis,Chrysomelidae,endemic
+Coleoptera,C37,Ptinidae sp1,Ptinidae,nd
+Coleoptera,C44,Mordellistena coleae,Mordellidae,endemic
+Coleoptera,C46,Ptinidae sp2,Ptinidae,nd
+Coleoptera,C49,Nitidulidae sp1,Nitidulidae,nd
+Coleoptera,C50,Cardiophorus sp1,Elateridae,nd
+Coleoptera,C55,Coleoptera sp1,,nd
+Coleoptera,C56,near Eurycratus sp1 ,Cryptophagidae,endemic
+Coleoptera,C6,Cratopus aurostriatus,Curculionidae,endemic
+Coleoptera,C73,Cossonini sp1,Curculionidae,nd
+Coleoptera,C74,Coccinellidae sp1,Coccinellidae,nd
+Coleoptera,C76,Coccinellidae sp2,Coccinellidae,nd
+Coleoptera,P30,Stenomorda near disparilis,Mordellidae,endemic
+Coleoptera,P46,Cryptorhynchidius graniger,Curculionidae,native
+Coleoptera,P48,Coleoptera sp3,,nd
+Coleoptera,P55,Scolytidae sp1,Scolytidae,nd
+Coleoptera,P7,Scolytidae sp2,Scolytidae,nd
+Coleoptera,P77,Nitidulidae sp2,Nitidulidae,nd
+Coleoptera,R18,Eudaeus sp,Curculionidae,nd
+Coleoptera,R28,Hapalips sp1,Cryptophagidae,endemic
+Coleoptera,R34,Cossonini sp2,Curculionidae,nd
+Coleoptera,R41,Cryptophagidae sp1,Cryptophagidae,nd
+Coleoptera,R62,Elateridae sp2,Elateridae,nd
+Coleoptera,R64,Coleoptera sp4,,nd
+Coleoptera,R93,Mordellidae sp1,Mordellidae,endemic
+Coleoptera,S130,Coccinellidae sp3,Coccinellidae,nd
+Coleoptera,S132,Cerambycidae sp1,Cerambycidae,nd
+Coleoptera,S135A,Coleoptera sp2,,nd
+Coleoptera,S22,Ptinidae sp3,Ptinidae,nd
+Coleoptera,S32,Scolytidae sp3,Scolytidae,nd
+Coleoptera,S37,Cryptophagidae sp2,Cryptophagidae,nd
+Coleoptera,S72,Staphylinidae sp1,Staphylinidae,nd
+Coleoptera,S79,Dermestidae sp2,Dermestidae,nd
+Coleoptera,T23,Stenotrupis sp1,Curculionidae,nd
+Coleoptera,T26,Elateridae sp3,Elateridae,nd
+Coleoptera,T29,Staphylinidae sp2,Staphylinidae,nd
+Coleoptera,T32,Scolytidae sp4,Scolytidae,nd
+Diptera,C1,Musca domestica,Muscidae,introduced
+Diptera,C16,Parasarcophaga hirticeps,Sarcophagidae,introduced
+Diptera,C19,Lobosciara bilotata,Sciaridae,introduced
+Diptera,C21,Helina mediana,Muscidae,endemic
+Diptera,C24,Hemipyrellia germana,Calliphoridae,native
+Diptera,C29,Simosyrphus aegyptius,Syrphidae,native
+Diptera,C33,Forcipomyia (Euprojoannisia) sp1,Ceratopogonidae,nd
+Diptera,C36,Lygistorrhina sp,Lygistorrhinidae,endemic
+Diptera,C38,Smitta mahensis,Chironomidae,endemic
+Diptera,C40,Dasyhelea tamsi,Ceratopogonidae,endemic
+Diptera,C63,Chloropidae sp1,Chloropidae,nd
+Diptera,C67,Drosophila spinipes,Drosophilidae,endemic
+Diptera,C69,Forcipomyia (Thyridomyia) litoraurea,Ceratopogonidae,nd
+Diptera,C71,Ephydridae sp1,Ephydridae,nd
+Diptera,C72,Chrysomya megacephala,Calliphoridae,introduced
+Diptera,C80,Eristalinus sp,Syrphidae,nd
+Diptera,C81,Rhinia apicalis,Calliphoridae,introduced
+Diptera,P11,Physiphora azurea,Ulidiidae,introduced
+Diptera,P26,Amblypsilopus (?) nr. simplex,Dolichopodidae,nd
+Diptera,P31,Amblypsilopus (?) sp. indet.,Dolichopodidae,nd
+Diptera,P35,Forcipomyia sp3,Ceratopogonidae,nd
+Diptera,P47,Forcipomyia sp2,Ceratopogonidae,nd
+Diptera,P49,Dolichopodidae sp1,Dolichopodidae,nd
+Diptera,P57,Liosarcophaga spilargyra,Sarcophagidae,endemic
+Diptera,P64,Pseudolycoriella microcteniuni,Sciaridae,introduced
+Diptera,P66,Cryptophleps ? nigrihalteratus ?,Dolichopodidae,endemic
+Diptera,P73,Tricimba seychellensis,Chloropidae,endemic
+Diptera,P87,Sciaridae sp1,Sciaridae,nd
+Diptera,R102,Leucopis flavicornis,Chamaemyiidae,introduced
+Diptera,R103,Chaetonerius alluaudii,Neriidae,endemic
+Diptera,R19,Atrichopogon yamabukiensis,Ceratopogonidae,nd
+Diptera,R24,Dichaetomyia fasciculifera,Muscidae,endemic
+Diptera,R46,Scaptodrosophila undet sp1,Drosophilidae,nd
+Diptera,R51,Geron seychellarum,Bombyliidae,endemic
+Diptera,R55,Chloropidae sp2,Chloropidae,nd
+Diptera,R65,Thripomorpha rufithorax,Scatopsidae,endemic
+Diptera,R69,Odontomyia sp,Stratiomyiidae,endemic
+Diptera,R71,Homoneura crassicaput,Lauxaniidae,endemic
+Diptera,R78,Neophyllomyza approximatonervis,Milichiidae,endemic
+Diptera,R80,Melanostoma annulipes,Syrphidae,native
+Diptera,R82,Hyrdotaea nigrisquama,Muscidae,endemic
+Diptera,R83,Sargus seychellensis,Stratiomyiidae,endemic
+Diptera,R88,Fannia leucosticta,Fanniidae,native
+Diptera,R91,Pseudolycoriella setigera,Sciaridae,introduced
+Diptera,S06,Cecidomyiidae sp1,Cecidomyiidae,nd
+Diptera,S10,Chironomidae sp1,Chironomidae,nd
+Diptera,S112,Chloropidae sp3,Chloropidae,nd
+Diptera,S116,Scaptodrosophila caliginosa,Drosophilidae,endemic
+Diptera,S129,Chrysomya alpiceps,Calliphoridae,native
+Diptera,S34,Chironomus sp,Chironomidae,nd
+Diptera,S42,Scaptodrosophila undet sp2,Drosophilidae,nd
+Diptera,S51,Cecidomie sp,Cecidomyiidae,nd
+Diptera,S77,Ornidia obesa,Syrphidae,introduced
+Diptera,S90,Homoneura pulchrifrons,Lauxaniidae,endemic
+Diptera,S92,Homoneura striata,Lauxaniidae,endemic
+Diptera,T10,Bradysia ocellaris,Sciaridae,introduced
+Diptera,T18,Pachycerina seychellensis,Lauxaniidae,endemic
+Diptera,T50,Mycetophilidae sp1,Mycetophilidae,nd
+Diptera,T9,Forcipomyia (Microhelea) amieuensis,Ceratopogonidae,nd
+Hymenoptera,C14,Hasinamelissa sp,Apidae,nd
+Hymenoptera,C20,Lasioglossum mahense,Halictidae,native
+Hymenoptera,C32,Megachile seychellensis,Megachilidae,endemic
+Hymenoptera,C51,Chalicodoma disjuncta,Apoidae,introduced
+Hymenoptera,C68,Megachile laticeps,Megachilidae,native
+Hymenoptera,C79,Eupetersia scotti,Halictidae,endemic
+Hymenoptera,C82,Hymenoptera sp1,,nd
+Hymenoptera,CB,Xylocopa caffra,Apidae,native
+Hymenoptera,HB,Apis mellifera,Apidae,introduced
+Hymenoptera,R107,Polemistus sp1,Crabronidae,nd
+Hymenoptera,R72,Hymenoptera sp2,,nd
+Hymenoptera,R75,Delta alluaudi,Vespidae,endemic
+Hymenoptera,S09,Chalcidoidea sp1,Chalcidoidea,nd
+Hymenoptera,S122,Platygastridae sp1,Platygastridae,nd
+Hymenoptera,S125,Ceratina tabescens,Apidae,endemic
+Hymenoptera,S19,Figitidae sp1,Figitidae,nd
+Hymenoptera,S40,Chalybion madecassum,Sphecidae,native
+Hymenoptera,S59,Inostemma close to soederlundi,Platygastridae,nd
+Hymenoptera,S68,Figitidae sp2,Figitidae,nd
+Hymenoptera,S78,Platygastridae sp2,Platygastridae,nd
+Hymenoptera,S98,Hymenoptera sp4,,nd
+Hymenoptera,T1,Rhopalum seychellense,Crabronidae,endemic
+Hymenoptera,T15,Hymenoptera sp3,,nd
+Hymenoptera,T54A,Rhynchium brunneum,Vespidae,introduced
+Hymenoptera,YW,Polistes olivaceus,Vespidae,introduced
+Lepidoptera,C60,Stictopterinae sp1,Noctuidae,nd
+Lepidoptera,C64,Nola sp1,Noctuidae,nd
+Lepidoptera,C65,Chrysauginae sp1,Pyralidae,nd
+Lepidoptera,C66,Gracilodes sp1,Noctuidae,nd
+Lepidoptera,C84,Eilema contorta,Arctiidae,nd
+Lepidoptera,C86,Eilema sp1,Arctiidae,nd
+Lepidoptera,CEP,Cephonodes tamsi,Sphingidae,nd
+Lepidoptera,HM,Agrius convolvuli,Sphingidae,nd
+Lepidoptera,HYP,Hypolimnas misippus,Nymphalidae,nd
+Lepidoptera,P67,Pyralidae sp1,Pyralidae,nd
+Lepidoptera,R73,Celama sp1,Noctuidae,nd
+Lepidoptera,R79,Endotricha mesenterialis mahensis,Pyralidae,endemic
+Lepidoptera,R96,Herpetogramma sp1,Crambidae,nd
+Lepidoptera,R97,Hypenodinae sp1,Noctuidae,nd
+Lepidoptera,R98,Noctuidae sp1,Noctuidae,nd
+Lepidoptera,S102,Leptotes pirithous,Lycaenidae,nd
+Lepidoptera,S131,Noctuidae sp2,Noctuidae,nd
+Squamata,HD,Hemidactylus frenatus,Gekkonidae,introduced
+Squamata,PA,Phelsuma sp,Gekkonidae,endemic
+Squamata,SK,Mabuya seychellensis,Scincidae,endemic
