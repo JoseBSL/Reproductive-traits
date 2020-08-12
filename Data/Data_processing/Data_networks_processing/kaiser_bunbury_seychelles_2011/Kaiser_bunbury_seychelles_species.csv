@@ -1,0 +1,122 @@
+Order,Family,Reference code,Species name (if available),Kingdom,Origin
+Aves,Ploceidae,Fody,Foudia madagascariensis,Animal,
+Aves,Nectariniidae,Sunbird,Nectarinia dussumieri,Animal,
+Coleoptera,,T20,Beetle sp15,Animal,
+Coleoptera,,C28,Beetle sp8,Animal,
+Coleoptera,Curculionidae,T5,Cratopus aurostriatus,Animal,
+Coleoptera,Curculionidae,C62,Curculionidae sp12,Animal,
+Coleoptera,Curculionidae,D20,Curculionidae sp9,Animal,
+Coleoptera,Dermestidae,C12,Dermestidae sp1,Animal,
+Coleoptera,Dermestidae,C18,Dermestidae sp2,Animal,
+Coleoptera,Elateroidea,C46,Elateroidea sp2,Animal,
+Coleoptera,Elateroidea,C36,Elateroidea sp3,Animal,
+Coleoptera,Mordellidae,C35,Mordellidae sp11,Animal,
+Coleoptera,Cryptophagidae,C34,near Eurycratus sp1 ,Animal,
+Coleoptera,Nitidulidae,C44,Nitidulidae sp1,Animal,
+Coleoptera,Nitidulidae,J27,Nitidulidae sp1,Animal,
+Coleoptera,Scarabaeidae,T25,Perissoma aenescens,Animal,
+Coleoptera,Chrysomelidae,C14,Rhiparida seychellensis,Animal,
+Diptera,Dolichopodidae,C19,Amblypsilopus (?) nr. simplex,Animal,
+Diptera,Muscidae,T27,Dichaetomyia fasciculifera,Animal,
+Diptera,Syrphidae,T19,Eristalinus vicarians,Animal,
+Diptera,Syrphidae,C63,Eristalodes seychellarum,Animal,
+Diptera,,C10,Fly sp1,Animal,
+Diptera,,J29,Fly sp13,Animal,
+Diptera,,J37,Fly sp16,Animal,
+Diptera,,T8,Fly sp18,Animal,
+Diptera,,C16,Fly sp18,Animal,
+Diptera,,J9,Fly sp19,Animal,
+Diptera,,J10,Fly sp2,Animal,
+Diptera,,Unknown 4,Fly sp21,Animal,
+Diptera,,Unknown 5,Fly sp22,Animal,
+Diptera,,C48,Fly sp26,Animal,
+Diptera,,D12,Fly sp29,Animal,
+Diptera,,D24,Fly sp30,Animal,
+Diptera,,D25,Fly sp31,Animal,
+Diptera,,T28,Fly sp4,Animal,
+Diptera,Ceratopogonidae,C51,Forcipomyia (Euprojoannisia) sp1,Animal,
+Diptera,Ceratopogonidae,S15,Forcipomyia (Thyridomyia) litoraurea,Animal,
+Diptera,Bombyliidae,C52,Geron seychellarum,Animal,
+Diptera,Bombyliidae,C22,Geron seychellarum,Animal,
+Diptera,Bombyliidae,C29,Geron seychellarum,Animal,
+Diptera,Calliphoridae,J20,Hemipyrellia germana,Animal,
+Diptera,Calliphoridae,C6,Hemipyrellia germana,Animal,
+Diptera,Calliphoridae,C4,Hemipyrellia sp.,Animal,
+Diptera,Lygistorrhinidae,C3,Lygistorrhina sp,Animal,
+Diptera,Syrphidae,T46,Melanostoma annulipes,Animal,
+Diptera,Muscidae,C41,Musca domestica,Animal,
+Diptera,Tabanidae,T26,Neavella albipectus,Animal,
+Diptera,Milichiidae,C45,Neophyllomyza approximatonervis,Animal,
+Diptera,Syrphidae,T16,Ornidia obesa,Animal,
+Diptera,Lauxaniidae,T30,Pachycerina seychellensis,Animal,
+Diptera,Sarcophagidae,T18,Parasarcophaga hirticeps,Animal,
+Diptera,Ulidiidae,J21,Physiphoa azurea ,Animal,
+Diptera,Ulidiidae,C42,Physiphoa azurea ,Animal,
+Diptera,Platystomatidae,T29,Plagiostenopterina cyanosoma,Animal,
+Diptera,Sarcophagidae,T48,Sarcophagidae sp1,Animal,
+Diptera,Drosophilidae,T17,Scaptodrosophila undet sp1,Animal,
+Diptera,Drosophilidae,J26,Scaptodrosophila undet sp1,Animal,
+Diptera,Syrphidae,J11,Simosyrphus aegyptius,Animal,
+Diptera,Chloropidae,T44,Tricimba seychellensis,Animal,
+Hymenoptera,Apidae,C50,Apidae sp1,Animal,
+Hymenoptera,Apidae,HB,Apis mellifera adansonii,Animal,
+Hymenoptera,Apidae,C60,Ceratina tabescens,Animal,
+Hymenoptera,Megachilidae,C40,Chalcidoma disjunctum,Animal,
+Hymenoptera,Vespidae,T47,Euodynerus cylindricus,Animal,
+Hymenoptera,Halictidae,bee sp1,Halictidae sp1,Animal,
+Hymenoptera,,C25,Hymenoptera sp1,Animal,
+Hymenoptera,,C57,Hymenoptera sp2,Animal,
+Hymenoptera,,D8,Hymenoptera sp3,Animal,
+Hymenoptera,,J15,Hymenoptera sp4,Animal,
+Hymenoptera,Halictidae,C9,Lasioglossum mahense,Animal,
+Hymenoptera,Megachilidae,C39,Megachile seychellensis,Animal,
+Hymenoptera,Vespidae,Polistes,Polistes olivaceus,Animal,
+Hymenoptera,Vespidae,T42,Rhynchium brunneum,Animal,
+Hymenoptera,Crabronidae,T12,Trypoxylon errans,Animal,
+Hymenoptera,Apidae,Xylocopa,Xylocopa caffra,Animal,
+Lepidoptera,Sphingidae,Hawkmoth,Agrius convolvuli,Animal,
+Lepidoptera,Sphingidae,bee hawkmoth,Cenophodes tamsi,Animal,
+Lepidoptera,Hesperiidae,T43,Eagris sabadius maheta,Animal,
+Lepidoptera,Lycaenidae,T31,Lampides boeticus,Animal,
+Lepidoptera,Lycaenidae,D56,Leptotes pirithous,Animal,
+Lepidoptera,Nymphalidae,Phalanta,Phalanta phalantha aethiopica,Animal,
+Lizard,Scincidae,Skink,Mabuya sechellensis,Animal,
+Lizard,Gekkonidae,Phelsuma,Phelsuma sp,Animal,
+Gentianales,Apocynaceae,,Alstonia macrophylla,Plants,Exotic
+Hypericales,Flacourtiaceae,,Aphloia theiformis,Plants,Native
+Sapindales,Anacardiaceae,,Campnosperma seychellarum,Plants,Endemic
+Rosales,Chrysobalanaceae,,Chrysobalanus icaco,Plants,Exotic
+Laurales,Lauraceae,,Cinnamomum verum,Plants,Exotic
+Scrophulariales,Bignoniaceae,,Colea seychellarum,Plants,Endemic
+Gentianales,Rubiaceae,,Craterispermum microdon,Plants,Endemic
+Arecales,Palmae,,Deckenia nobilis,Plants,Endemic
+Caryophyllales,Dilleniaceae,,Dillenia ferruginea,Plants,Endemic
+Caryophyllales,Dilleniaceae,,Dillenia suffruticosa,Plants,Exotic
+Liliales,Dracenaceae,,Dracaena reflexa,Plants,Native
+Malpighiales,Erythroxylaceae,,Erythroxylum sechellarum,Plants,Endemic
+Malpighiales,Euphorbiaceae,,Euphorbia pyrifolia,Plants,Native
+Malpighiales,Euphorbiaceae,,Excoecaria benthiamiana,Plants,Endemic
+Gentianales,Rubiaceae,,Glionnetia sericea,Plants,Endemic
+Gentianales,Rubiaceae,,Ixora pudica,Plants,Endemic
+Ericales,Ebenaceae,,Maba seychellarum,Plants,Endemic
+Malpighiales,Medusagynaceae,,Medusagyne oppositifolia,Plants,Endemic
+Myrtales,Melastomataceae,,Melastoma malabathricum,Plants,Exotic
+Myrtales,Melastomataceae,,Memecylon eleagni,Plants,Native
+Ericales,Sapotaceae,,Mimusops sechellarum,Plants,Endemic
+Caryophyllales,Nephentaceae,,Nepenthes pervillei,Plants,Endemic
+Arecales,Palmae,,Nephrosperma vanhoutteanum,Plants,Endemic
+Ericales,Sapotaceae,,Northea hornei,Plants,Endemic
+Malpighiales,Ochnaceae,,Ochna kirkii,Plants,Exotic
+Gentianales,Rubiaceae,,Paragenipa wrightii,Plants,Endemic
+Fabales,Mimosaceae,,Paraserianthes falcataria,Plants,Exotic
+Arecales,Palmae,,Phoenicophorium borsigianum,Plants,Endemic
+Rosales,Pittosporaceae,,Pittosporum senacia,Plants,Native
+Apiales,Araliaceae,,Polyscias crassa,Plants,Endemic
+Lamiales,Lamiaceae,,Premna serratifolia,Plants,Native
+Myrtales,Myrtaceae,,Psidium cattleianum,Plants,Exotic
+Gentianales,Rubiaceae,,Psychotria pervillei,Plants,Endemic
+Gentianales,Rubiaceae,,Pyrostria bibracteatum,Plants,Native
+Arecales,Palmae,,Roscheria melanochaetes,Plants,Endemic
+Sapindales,Simaroubaceae,,Soulamea terminaloides,Plants,Endemic
+Myrtales,Myrtaceae,,Syzygium wrightii,Plants,Endemic
+Gentianales,Rubiaceae,,Timonius sechellensis,Plants,Endemic
