@@ -1,8 +1,8 @@
 # Processing data from kaiser bunbury 2011 
 # DOI: 10.1111/j.1365-2745.2010.01732.x
 # Seychelles
-#IMPORTANT NOTE: THE SITES WERE SAMPLED 1 SEASON BETWEEN 2007 AND 2008
-#I'm going to prepare here the unique networks and the metawebs
+# IMPORTANT NOTE: THE SITES WERE SAMPLED 1 SEASON BETWEEN 2007 AND 2008
+# I'm going to prepare here the unique networks per site and year and the metaweb
 
 #Load library
 library(reshape2)

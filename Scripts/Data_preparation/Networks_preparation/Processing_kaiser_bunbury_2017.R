@@ -1,20 +1,22 @@
-# data preparation of the networks of Kaiser_bunbury 2009 Mauritius
-#Key data from the paper to convert to visitation
-#We observed pollinators for a total of 858.5 hours (site 1 = 471 h, site 2 = 387.5 h)
+# Processing data from kaiser bunbury 2017 
+# DOI: 10.1111/j.1365-2745.2010.01732.x
+# Seychelles
+# IMPORTANT NOTE: THE SITES WERE SAMPLED 1 SEASON BETWEEN 2007 AND 2008
+# I'm going to prepare here the unique networks per site and year and the metaweb
 
 #Load library
 library(tidyr)
 library(reshape2)
 
-#site 1 control
-d <- read.csv("Data/Data_processing/Data_networks_processing/Kaiser_Bunbury_2017.csv", header=T, stringsAsFactors=F)
+#load data
+d <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017.csv", header=T, stringsAsFactors=F)
+plants <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_plant_species.csv", header=T,stringsAsFactors=F )
+pollinators <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_pollinator_species.csv", header=T)
 
-plants <- read.csv("Data/Data_processing/Data_networks_processing/Kaiser_Bunbury_2017_plant_species.csv", header=T,stringsAsFactors=F )
-
-pollinator <- read.csv("Data/Data_processing/Data_networks_processing/Kaiser_Bunbury_2017_pollinator_species.csv", header=T)
-
+#check data str
 str(d)
 str(plants)
+str(pollinators)
 
 #Merge both dataframes network data plant species 
 merge_d_plants <- merge(d, plants, by="Plant.species.ID", all = T)
@@ -26,13 +28,28 @@ all_long <- melt(merge_d_plants, id.vars=c("Plant.species.name", "Site","Treatme
 head(all_long)
 
 
-merge_all <- merge(all_long, pollinator, by="Pollinator.species.ID", all = T)
+merge_all <- merge(all_long, pollinators, by="Pollinator.species.ID", all = T)
 head(merge_all)
 abc<- merge_all[,c(1,5,7)]
 levels(as.factor(merge_all$Site))
 
 #Now subset by site (8 in total)
-#Site 1
+
+
+#
+##
+###
+####
+##### 8 sites in total
+####
+###
+##
+#
+
+
+###############################
+#Site 1 Rosebelle
+###############################
 Rosebelle <- subset(merge_all, Site=="Rosebelle")
 str(Rosebelle)
 Rosebelle <- as.data.frame(Rosebelle, stringsAsFactors=T)
@@ -50,8 +67,11 @@ colSums(as.matrix(Rosebelle))
 
 write.csv(Rosebelle, "Data/Data_networks_all/31_Kaiser_bunbury_seychelles_site_1_rosbelle_2017.csv")
 
-#Site 2
-str(Bernica)
+
+
+###############################
+#Site 2 Bernica
+###############################
 Bernica <- subset(merge_all, Site=="Bernica")
 Bernica <- as.data.frame(Bernica, stringsAsFactors=T)
 Bernica <- acast(Bernica, Bernica$Plant.species.name ~ Bernica$Pollinator.species.name , value.var='value', 
@@ -68,9 +88,12 @@ colSums(as.matrix(Bernica))
 
 write.csv(Bernica, "Data/Data_networks_all/32_Kaiser_bunbury_seychelles_site_2_bernica_2017.csv")
 
-#Site 3
-Casse_Dent <- subset(merge_all, Site=="Casse Dent")
 
+
+###############################
+#Site 3 Casse dent
+###############################
+Casse_Dent <- subset(merge_all, Site=="Casse Dent")
 str(Casse_Dent)
 Casse_Dent <- as.data.frame(Casse_Dent, stringsAsFactors=T)
 Casse_Dent <- acast(Casse_Dent, Casse_Dent$Plant.species.name ~ Casse_Dent$Pollinator.species.name , value.var='value', 
@@ -87,9 +110,12 @@ colSums(as.matrix(Casse_Dent))
 
 write.csv(Casse_Dent, "Data/Data_networks_all/33_Kaiser_bunbury_seychelles_site_3_casse_dent_2017.csv")
 
-#Site 4
-Copolia <- subset(merge_all, Site=="Copolia")
 
+
+###############################
+#Site 4 Copolia
+###############################
+Copolia <- subset(merge_all, Site=="Copolia")
 str(Copolia)
 Copolia <- as.data.frame(Copolia, stringsAsFactors=T)
 Copolia <- acast(Copolia, Copolia$Plant.species.name ~ Copolia$Pollinator.species.name , value.var='value', 
@@ -106,9 +132,12 @@ colSums(as.matrix(Copolia))
 
 write.csv(Copolia, "Data/Data_networks_all/34_Kaiser_bunbury_seychelles_site_4_copolia_2017.csv")
 
-#Site 5
-reserve <- subset(merge_all, Site=="Reserve, La")
 
+
+###############################
+#Site 5 La reserve
+###############################
+reserve <- subset(merge_all, Site=="Reserve, La")
 str(reserve)
 reserve <- as.data.frame(reserve, stringsAsFactors=T)
 reserve <- acast(reserve, reserve$Plant.species.name ~ reserve$Pollinator.species.name , value.var='value', 
@@ -126,9 +155,10 @@ colSums(as.matrix(reserve))
 write.csv(reserve, "Data/Data_networks_all/35_Kaiser_bunbury_seychelles_site_5_reserve_2017.csv")
 
 
-#Site 6
+###############################
+#Site 6 Salazie
+###############################
 Salazie <- subset(merge_all, Site=="Salazie")
-
 str(Salazie)
 Salazie <- as.data.frame(Salazie, stringsAsFactors=T)
 Salazie <- acast(Salazie, Salazie$Plant.species.name ~ Salazie$Pollinator.species.name , value.var='value', 
@@ -145,9 +175,12 @@ colSums(as.matrix(Salazie))
 
 write.csv(Salazie, "Data/Data_networks_all/36_Kaiser_bunbury_seychelles_site_6_salazie_2017.csv")
 
-#Site 7
-Trois_freres <- subset(merge_all, Site=="Trois Freres")
 
+
+###############################
+#Site 7 Trois ferres
+###############################
+Trois_freres <- subset(merge_all, Site=="Trois Freres")
 str(Salazie)
 Trois_freres <- as.data.frame(Trois_freres, stringsAsFactors=T)
 Trois_freres <- acast(Trois_freres, Trois_freres$Plant.species.name ~ Trois_freres$Pollinator.species.name , value.var='value', 
@@ -164,10 +197,13 @@ colSums(as.matrix(Trois_freres))
 
 write.csv(Trois_freres, "Data/Data_networks_all/37_Kaiser_bunbury_seychelles_site_7_trois_freres_2017.csv")
 
-#Site 8
-tea_plantation <- subset(merge_all, Site=="Tea Plantation")
 
-str(Salazie)
+
+###############################
+#Site 8 Tea plantation
+###############################
+tea_plantation <- subset(merge_all, Site=="Tea Plantation")
+str(tea_plantation)
 tea_plantation <- as.data.frame(tea_plantation, stringsAsFactors=T)
 tea_plantation <- acast(tea_plantation, tea_plantation$Plant.species.name ~ tea_plantation$Pollinator.species.name , value.var='value', 
                       fun.aggregate=sum, margins=F)
