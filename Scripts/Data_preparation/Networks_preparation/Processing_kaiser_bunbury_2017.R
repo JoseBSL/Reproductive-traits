@@ -65,7 +65,7 @@ colSums(as.matrix(Rosebelle))
 Rosebelle <- Rosebelle[, colSums(Rosebelle != 0) > 0]
 colSums(as.matrix(Rosebelle))
 
-write.csv(Rosebelle, "Data/Data_networks_all/31_Kaiser_bunbury_seychelles_site_1_rosbelle_2017.csv")
+write.csv(Rosebelle, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_rosebelle.csv")
 
 
 
@@ -86,7 +86,7 @@ colSums(as.matrix(Bernica))
 Bernica <- Bernica[, colSums(Bernica != 0) > 0]
 colSums(as.matrix(Bernica))
 
-write.csv(Bernica, "Data/Data_networks_all/32_Kaiser_bunbury_seychelles_site_2_bernica_2017.csv")
+write.csv(Bernica, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_bernica.csv")
 
 
 
@@ -108,7 +108,7 @@ colSums(as.matrix(Casse_Dent))
 Casse_Dent <- Casse_Dent[, colSums(Casse_Dent != 0) > 0]
 colSums(as.matrix(Casse_Dent))
 
-write.csv(Casse_Dent, "Data/Data_networks_all/33_Kaiser_bunbury_seychelles_site_3_casse_dent_2017.csv")
+write.csv(Casse_Dent, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_casse_dent.csv")
 
 
 
@@ -130,7 +130,7 @@ colSums(as.matrix(Copolia))
 Copolia <- Copolia[, colSums(Copolia != 0) > 0]
 colSums(as.matrix(Copolia))
 
-write.csv(Copolia, "Data/Data_networks_all/34_Kaiser_bunbury_seychelles_site_4_copolia_2017.csv")
+write.csv(Copolia, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_copolia.csv")
 
 
 
@@ -152,7 +152,7 @@ colSums(as.matrix(reserve))
 reserve <- reserve[, colSums(reserve != 0) > 0]
 colSums(as.matrix(reserve))
 
-write.csv(reserve, "Data/Data_networks_all/35_Kaiser_bunbury_seychelles_site_5_reserve_2017.csv")
+write.csv(reserve, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_reserve.csv")
 
 
 ###############################
@@ -173,7 +173,7 @@ colSums(as.matrix(Salazie))
 Salazie <- Salazie[, colSums(Salazie != 0) > 0]
 colSums(as.matrix(Salazie))
 
-write.csv(Salazie, "Data/Data_networks_all/36_Kaiser_bunbury_seychelles_site_6_salazie_2017.csv")
+write.csv(Salazie, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_salazie.csv")
 
 
 
@@ -195,7 +195,7 @@ colSums(as.matrix(Trois_freres))
 Trois_freres <- Trois_freres[, colSums(Trois_freres != 0) > 0]
 colSums(as.matrix(Trois_freres))
 
-write.csv(Trois_freres, "Data/Data_networks_all/37_Kaiser_bunbury_seychelles_site_7_trois_freres_2017.csv")
+write.csv(Trois_freres, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_trois_feres.csv")
 
 
 
@@ -217,4 +217,30 @@ colSums(as.matrix(tea_plantation))
 tea_plantation <- tea_plantation[, colSums(tea_plantation != 0) > 0]
 colSums(as.matrix(tea_plantation))
 
-write.csv(tea_plantation, "Data/Data_networks_all/38_Kaiser_bunbury_seychelles_site_8_tea_plantation_2017.csv")
+write.csv(tea_plantation, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_tea_plantation.csv")
+
+
+############################################
+#NOW PREPARE METAWEB WITH ALL SITES TOGETHER
+############################################
+#checking for NA'S
+merge_all$value[is.na(merge_all$value)]
+#no NA's
+#create othe data.frame to dont mess on the merge_all
+all_long_for_meta <- merge_all
+#create metawen
+metaweb <- acast(merge_all, merge_all$Plant.species.name ~ merge_all$Pollinator.species.name , value.var='value', 
+                        fun.aggregate=sum, margins=F)
+
+#same remove plant species with no visits
+rowSums(as.matrix(metaweb))
+metaweb_1 <- metaweb[rowSums(metaweb[, -1] > 0) != 0, ]
+rowSums(as.matrix(metaweb_1))
+
+#same remove poll species with no visits
+colSums(as.matrix(metaweb_1))
+metaweb_2 <- metaweb_1[, colSums(metaweb_1 != 0) > 0]
+colSums(as.matrix(metaweb_2))
+
+#save metaweb
+write.csv(metaweb_2, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_metaweb.csv")
