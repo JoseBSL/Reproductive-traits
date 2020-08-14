@@ -1,13 +1,21 @@
-"","Cenophodes tamsi","Ceratina tabescens","Chalcidoma disjunctum","Curculionidae sp12","Dermestidae sp1","Dermestidae sp2","Dichaetomyia fasciculifera","Eagris sabadius maheta","Fly sp13","Fly sp16","Fly sp18","Fly sp2","Fly sp21","Fly sp26","Fly sp29","Fly sp4","Forcipomyia (Euprojoannisia) sp1","Hymenoptera sp4","Leptotes pirithous","Melanostoma annulipes","Mordellidae sp11","Neavella albipectus","Nitidulidae sp1","Pachycerina seychellensis","Parasarcophaga hirticeps","Scaptodrosophila undet sp1","Tricimba seychellensis","Xylocopa caffra"
-"Canthium.bibracteatum",1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,3,0,0,0,0
-"Chrysobalanus.icaco",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Dillenia.suffruticosa",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44
-"Erythroxylum.sechellarum",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0
-"Excoecaria.benthiamiana",0,0,0,0,0,1,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Memecylon.eleagni",0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Nepenthes.pervillei",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0
-"Nephrosperma.vanhoutteanum",0,0,0,0,10,0,0,0,0,0,5,0,0,0,0,0,4,0,0,0,0,0,0,0,0,3,0,0
-"Paragenipa.wrightii",0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"Phoenicophorium.borsigianum",0,0,0,14,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0
-"Roscheria.melanochaetes",0,0,0,0,0,0,0,0,0,6,0,0,1,2,0,2,0,3,0,0,2,1,0,0,0,0,0,0
-"Soulamea.terminaloides",0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"","Apis mellifera adansonii","Cenophodes tamsi","Ceratina tabescens","Chalcidoma disjunctum","Cratopus aurostriatus","Curculionidae sp12","Dermestidae sp1","Dermestidae sp2","Dichaetomyia fasciculifera","Eagris sabadius maheta","Eristalinus vicarians","Fly sp1","Fly sp13","Fly sp16","Fly sp18","Fly sp2","Fly sp21","Fly sp26","Fly sp29","Fly sp4","Forcipomyia (Euprojoannisia) sp1","Hemipyrellia germana","Hemipyrellia sp.","Hymenoptera sp4","Lasioglossum mahense","Leptotes pirithous","Lygistorrhina sp","Mabuya sechellensis","Megachile seychellensis","Melanostoma annulipes","Mordellidae sp11","Neavella albipectus","Nectarinia dussumieri","Neophyllomyza approximatonervis","Nitidulidae sp1","Ornidia obesa","Pachycerina seychellensis","Parasarcophaga hirticeps","Phelsuma sp","Polistes olivaceus","Rhiparida seychellensis","Rhynchium brunneum","Scaptodrosophila undet sp1","Simosyrphus aegyptius","Tricimba seychellensis","Xylocopa caffra"
+"Alstonia macrophylla",13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,3,0,5,0,0,0,0,0,0,0,2,1,0,2,0,0,0,1,0,3,0,3,0,0
+"Canthium bibracteatum",16,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,3,0,0,1,0,0,0,0,0,0,3,0,0,0,0,0,0,1,0,0
+"Chrysobalanus icaco",86,0,0,0,0,0,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,4,0,0,2,0,0,0,2,0,4,0,0,0,0
+"Cinnamomum verum",7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Dillenia ferruginea",28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,5,0,0,0,0,0,0,0,1,0,0,7,0,0,0,0,3,0,0,0,0,1
+"Dillenia suffruticosa",9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,44
+"Erythroxylum sechellarum",47,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,60,0,7,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0
+"Excoecaria benthiamiana",18,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Gastonia crassa",36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,5,0,0,11,0,0,0,0,6,1,0,0,0,0,11,0,0,0,0,0,0,0
+"Memecylon eleagni",66,0,0,3,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0
+"Mimusops sechellarum",2,0,0,0,1,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,2,0,8,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Nepenthes pervillei",16,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,5,13,0,1,1,1,0,0,0,0,0,0,0,0,4,0,1,0,0,0,1,0,0,0,0
+"Nephrosperma vanhoutteanum",161,0,0,0,2,0,10,0,0,0,0,28,0,0,5,0,0,0,0,0,4,3,1,0,139,0,8,0,2,0,0,0,0,29,0,1,0,0,3,0,0,0,3,1,0,0
+"Paragenipa wrightii",24,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Phoenicophorium borsigianum",16,0,0,0,1,14,0,0,0,0,0,4,8,0,0,0,0,0,0,0,1,2,1,0,34,0,1,0,0,0,0,0,0,2,44,1,0,0,3,0,0,0,0,0,0,0
+"Pittosporum senacia",0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Psychotria pervillei",7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Roscheria melanochaetes",0,0,0,0,3,2,0,0,0,0,0,10,3,6,0,0,1,2,0,2,15,0,0,3,0,0,0,0,0,0,2,1,0,16,0,0,0,0,0,0,3,0,0,0,0,0
+"Soulamea terminaloides",0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,3,0,0,0,1,0
+"Syzygium wrightii",3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,6,0,0,0,0,15,0,0,0,0,0,1,0,0,0,0,0,0,0

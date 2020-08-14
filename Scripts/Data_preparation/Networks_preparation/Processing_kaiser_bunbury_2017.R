@@ -229,7 +229,7 @@ merge_all$value[is.na(merge_all$value)]
 #create othe data.frame to dont mess on the merge_all
 all_long_for_meta <- merge_all
 #create metawen
-metaweb <- acast(merge_all, merge_all$Plant.species.name ~ merge_all$Pollinator.species.name , value.var='value', 
+metaweb <- acast(all_long_for_meta, all_long_for_meta$Plant.species.name ~ all_long_for_meta$Pollinator.species.name , value.var='value', 
                         fun.aggregate=sum, margins=F)
 
 #same remove plant species with no visits

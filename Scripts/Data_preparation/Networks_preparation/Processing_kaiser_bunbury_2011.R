@@ -206,7 +206,7 @@ all_long_for_meta <- all_long
 all_long_for_meta$value[is.na(all_long_for_meta$value)] <- 0
 
 #Convert to matrix
-metaweb <- acast(all_long_for_meta, all_long$Plant.species.ID ~ all_long$Pollinator.species.ID , value.var='value', 
+metaweb <- acast(all_long_for_meta, all_long_for_meta$Plant.species.ID ~ all_long_for_meta$Pollinator.species.ID , value.var='value', 
                    fun.aggregate=sum, margins=F)
 
 #same remove plant species with no visits
