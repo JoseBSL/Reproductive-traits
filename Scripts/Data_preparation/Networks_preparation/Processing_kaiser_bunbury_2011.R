@@ -8,8 +8,8 @@
 library(reshape2)
 
 #Load data
-d <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/Kaiser_bunbury_seychelles.csv", header=T, stringsAsFactors=F)
-species <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/Kaiser_bunbury_seychelles_species.csv", header=T, stringsAsFactors=F)
+d <- read.csv("Data/Data_processing/kaiser_bunbury_seychelles_2011/Kaiser_bunbury_seychelles.csv", header=T, stringsAsFactors=F)
+species <- read.csv("Data/Data_processing/kaiser_bunbury_seychelles_2011/Kaiser_bunbury_seychelles_species.csv", header=T, stringsAsFactors=F)
 
 #Fix some species names for merging
 species[species=="bee hawkmoth"] <- "bee_hawkmoth"

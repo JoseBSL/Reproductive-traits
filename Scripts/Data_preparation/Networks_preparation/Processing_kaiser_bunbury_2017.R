@@ -9,9 +9,9 @@ library(tidyr)
 library(reshape2)
 
 #load data
-d <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017.csv", header=T, stringsAsFactors=F)
-plants <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_plant_species.csv", header=T,stringsAsFactors=F )
-pollinators <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_pollinator_species.csv", header=T)
+d <- read.csv("Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017.csv", header=T, stringsAsFactors=F)
+plants <- read.csv("Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_plant_species.csv", header=T,stringsAsFactors=F )
+pollinators <- read.csv("Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_Bunbury_2017_pollinator_species.csv", header=T)
 
 #check data str
 str(d)

@@ -29,7 +29,7 @@ my_list_matrices <- lapply(my_list, function(x) acast(x, Plant_gen_sp ~ Pollinat
 
 #Save each matrix individually
 for(i in names(my_list_matrices)){
-  write.csv(my_list_matrices[[i]], paste0("Data/Data_processing/Bartomeus_BeeFun/29_Bartomeus_", i,"_unp.csv"))
+  write.csv(my_list_matrices[[i]], paste0("Data/Data_processing/bartomeus_beefun/29_Bartomeus_", i,"_unp.csv"))
 }
 
 

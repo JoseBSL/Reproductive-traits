@@ -3,7 +3,7 @@
 #to quantitative data in a csv manually
 
 #now read file
-d <- read.csv("Data/Data_processing/Data_networks_processing/Dupont_&_Olesen_2009/Dupont_&_Olesen_2009_IB.csv")
+d <- read.csv("Data/Data_processing/Dupont_&_Olesen_2009/Dupont_&_Olesen_2009_IB.csv")
 
 #convert to matrix format
 

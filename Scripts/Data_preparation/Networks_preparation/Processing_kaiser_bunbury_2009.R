@@ -8,8 +8,8 @@
 library(reshape2)
 
 #Load data
-d <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_mauritius_2010/Kaiser_bunbury_mauritius_2010.csv", header=T, stringsAsFactors=F)
-species <- read.csv("Data/Data_processing/Data_networks_processing/kaiser_bunbury_mauritius_2010/Kaiser_bunbury_mauritius_2010_species.csv", header=T, stringsAsFactors=F)
+d <- read.csv("Data/Data_processing/kaiser_bunbury_mauritius_2010/Kaiser_bunbury_mauritius_2010.csv", header=T, stringsAsFactors=F)
+species <- read.csv("Data/Data_processing/kaiser_bunbury_mauritius_2010/Kaiser_bunbury_mauritius_2010_species.csv", header=T, stringsAsFactors=F)
 
 
 #subset species dataset to merge
