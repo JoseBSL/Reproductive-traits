@@ -1,0 +1,88 @@
+Plant,Order,Family,Species,Functional group,visits,role
+Salix repens,Coleoptera,Elateridae,Athous subfuscus (MŸll.),beetle,2,P
+Salix repens,Diptera,Anthomyiidae,Adia cinerella (Fall.),S non-syrphid fly,3,P
+Vaccinium myrtillus,,,Egle brevicornis (Zett.),S non-syrphid fly,2,P
+Vaccinium myrtillus,,,Lasiomma picipes (Mg.),S non-syrphid fly,3,P
+Vaccinium myrtillus,,Bibionidae,Bibio lanigerus Mg.,S non-syrphid fly,2,P
+Vaccinium myrtillus,,,Dilophus humeralis Zett.,S non-syrphid fly,3,P
+Vaccinium myrtillus,,Calliphoridae,Bellardia viarum (Rob.-Desv.),L non-syrphid fly,12,C
+Vaccinium myrtillus,,Scathophagidae,Scathophaga stercoraria (L.),L non-syrphid fly,15,C
+Vaccinium myrtillus,,Syrphidae,Dasysyrphus albostriatus (Fall.),S syrphid,3,P
+Vaccinium myrtillus,,,Orthonevra geniculata (Mg.),S syrphid,2,P
+Vaccinium myrtillus,,Tachinidae,Ernestia rudis (Fall.),L non-syrphid fly,2,P
+Vaccinium myrtillus,,,Gonia picea Rob.-Desv.,L non-syrphid fly,57,P
+Vaccinium myrtillus,,,Gymnosoma nudifrons Hert.,S non-syrphid fly,3,P
+Vaccinium myrtillus,Hymenoptera,Andrenidae,Andrena barbilabris (K.),solitary bee,3,P
+Vaccinium myrtillus,,,Andrena clarkella (K.),solitary bee,2,P
+Vaccinium myrtillus,,,Andrena fulva (MŸll.),solitary bee,16,P
+Vaccinium myrtillus,,,Andrena haemorrhoa (F.),solitary bee,31,P
+Vaccinium myrtillus,,,Andrena nigroaenaea (K.),solitary bee,2,P
+Vaccinium myrtillus,,Apidae,Nomada ruficornis (L.),solitary bee,2,P
+Vaccinium myrtillus,,Formicidae,Formica rufa L.,other,2,P
+Vaccinium myrtillus,,Halictidae,Lasioglossum sexmaculatum (Schenck),solitary bee,2,P
+Vaccinium myrtillus,,,Lasioglossum sp.,solitary bee,2,P
+Vaccinium myrtillus,,,Sphecodes geoffrellus K.,solitary bee,2,P
+Vaccinium myrtillus,,Vespidae,Vespula vulgaris (L),other,7,P
+Vaccinium uliginosum,Diptera,Syrphidae,Megasyrphus erraticus (L.),L syrphid,6,P
+V. vitis-idaea,,,Platycheirus albimanus (F.),S syrphid,23,C
+V. vitis-idaea,,,Sphaerophoria sp.,S syrphid,25,C
+Empetrum nigrum,,,Zophomyia temula (Scop.),L non-syrphid fly,2,P
+Genista anglica,Hymenoptera,Andrenidae,Andrena lapponica Zett.,solitary bee,3,P
+Trientalis europaea,,Apidae,Apis mellifera (L.),social bee,458,C
+Trientalis europaea,,,Bombus lucorum,social bee,140,C
+Trientalis europaea,,,Bombus pascuorum (Scop.),social bee,38,C
+Trientalis europaea,,,Bombus pratorum,social bee,93,C
+Trientalis europaea,,Halictidae,Lasioglossum punctatissimum (Schenck),solitary bee,9,C
+Trientalis europaea,Lepidoptera,Lycaenidae,Callophrys rubi (L.),moth/butterfly,10,P
+Potentilla erecta,Coleoptera,Nitidulidae,Meligethes aeneus (F.),beetle,9,C
+Potentilla erecta,,Oedemeridae,Oedemera lurida (Marsh.),beetle,2,P
+Potentilla erecta,Diptera,Dolichopodidae,Hercostomus Loew sp.,S non-syrphid fly,53,P
+Potentilla erecta,,Muscidae,Coenosia femoralis (Rob.-Desv.),S non-syrphid fly,2,P
+Potentilla erecta,,,Coenosia means Mg.,S non-syrphid fly,14,C
+Potentilla erecta,,Sepsidae,Sepsis cynipsea (L.),S non-syrphid fly,13,P
+Potentilla erecta,,Syrphidae,Chrysotoxum fasciatum (MŸll.),L syrphid,4,C
+Potentilla erecta,,,Helophilus pendulus (L.),L syrphid,6,P
+Potentilla erecta,,,Sphaerophoria fatarum Goeld. group,S syrphid,10,C
+Potentilla erecta,,,Syritta pipiens (L.),S syrphid,71,C
+Potentilla erecta,Hymenoptera,Cephidae,Calameuta pallipes (Klug.),S wasp,2,P
+Potentilla erecta,,Colletidae,Hylaeus brevicornis Nyl.,solitary bee,3,P
+Potentilla erecta,,Sphecidae,Mellinus arvensis (L.),other,9,P
+Potentilla erecta,Lepidoptera,Microterigidae,Micropterix aruncella (Scop.),moth/butterfly,2,P
+Hypochoeris radicata,Diptera,Conopidae,Sicus ferrugineus (L.),L non-syrphid fly,5,C
+Hieracium umbellatum,,Syrphidae,Dasysyrphus tricinctus (Fall.),S syrphid,2,P
+Galium saxatile,,,Episyrphus balteatus (DeG.),S syrphid,519,C
+Scorzonera humilis,,,Eupeodes corollae (F.),S syrphid,106,C
+Scorzonera humilis,,,Eupeodes nielseni (Du_ek & L‡ska),S syrphid,2,P
+Scorzonera humilis,,,Meliscaeva cinctella (Zett.),S syrphid,17,C
+Scorzonera humilis,,,Parasyrphus lineolus (Zett.),S syrphid,25,C
+Scorzonera humilis,,,Scaeva selenitica (Mg.),L syrphid,13,C
+Scorzonera humilis,,,Syrphus ribesii (L.),L syrphid,4,C
+Scorzonera humilis,,,Syrphus torvus (Ost.-Sack.),L syrphid,15,C
+Scorzonera humilis,Hymenoptera,Apidae,Nomada panzeri Lep.,solitary bee,2,P
+Scorzonera humilis,,Halictidae,Lasioglossum leucozonium (Sch.),solitary bee,6,P
+Scorzonera humilis,,,Lasioglossum villosulum (K.),solitary bee,4,P
+Solidago virgaurea,Coleoptera,Cerambycidae,Stenurella melanura L.,beetle,11,C
+Erica tetralix,Diptera,Syrphidae,Eristalis tenax (L.),L syrphid,9,C
+Erica tetralix,,,Volucella bombylans (L.),L syrphid,4,C
+Erica tetralix,Hymenoptera,Apidae,Bombus bohemicus Seidl,social bee,49,C
+Erica tetralix,,,Bombus rupestris (F.),social bee,2,P
+Erica tetralix,,,Bombus jonellus (K.),social bee,12,C
+Erica tetralix,,,Bombus pratorum (L.),social bee,3,P
+Erica tetralix,,Halictidae,Lasioglossum fratellum (PŽrez),solitary bee,18,C
+Erica tetralix,,Ichneumonidae,Tricholinum sp.,other,11,P
+Erica tetralix,,Sphecidae,Cerceris arenaria (L.),other,2,P
+Erica tetralix,Lepidoptera,Noctuidae,Lycophotia porphyrea (D & S),moth/butterfly,2,P
+Calluna vulgaris,Diptera,Bibionidae,Dilophus febrilis (L.),S non-syrphid fly,19,P
+Calluna vulgaris,,Muscidae,Hydrotaea similis Meade,L non-syrphid fly,2,P
+Calluna vulgaris,,,Pollenia rudis (F.),L non-syrphid fly,4,P
+Calluna vulgaris,,Syrphidae,Eristalis interrupta (Poda),L syrphid,2,P
+Calluna vulgaris,,,Eristalis lineata (Harr.),L syrphid,3,P
+Calluna vulgaris,,,Sphaerophoria scripta (L.),S syrphid,2,P
+Calluna vulgaris,Hymenoptera,Andrenidae,Andrena fuscipes (K.),solitary bee,9,P
+Calluna vulgaris,,Apidae,Nomada rufipes F.,solitary bee,2,P
+Calluna vulgaris,,Chrysididae,Hedychrum nobile (Scop.),other,5,P
+Calluna vulgaris,,Colletidae,Colletes succinctus (L.),solitary bee,4,P
+Calluna vulgaris,,Sphecidae,Ammophila pubescens Curt.,other,3,C
+Calluna vulgaris,,Vespidae,Dolichovespula saxonica (F.),other,2,P
+Calluna vulgaris,Lepidoptera,Noctuidae,Anarta myrtilli (L.),moth/butterfly,29,P
+Calluna vulgaris,,,Autographa bractea (D & S),moth/butterfly,2,P

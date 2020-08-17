@@ -1,0 +1,92 @@
+Plants,Order,Family,Insect species,Functional group,visits,role
+Salix repens,Coleoptera,Cantharidae,Cantharis obscura L.,beetle,2,P
+Salix repens,,,Rhagonycha lignosa (MŸll.),beetle,2,P
+Salix repens,Diptera,Bibionidae,Dilophus febrilis (L.),S non-syrphid fly,26,P
+Salix repens,,Calliphoridae,Bellardia viarum (Rob.-Desv.),L non-syrphid fly,25,C
+Salix repens,,,Onesia floralis Rob.-Desv.,L non-syrphid fly,2,P
+Salix repens,,Sarcophagidae,Sarcophaga sp.,L non-syrphid fly,3,C
+Salix repens,,Syrphidae,Cheilosia gigantea,S syrphid,2,P
+Salix repens,,,Eristalis anthophorina (Fall.),L syrphid,5,P
+Salix repens,,,Melanostoma mellinum (L.),S syrphid,78,C
+Salix repens,,,Melanostoma scalare (F.),S syrphid,3,P
+Salix repens,,,Parasyrphus lineolus (Zett.),S syrphid,4,C
+Salix repens,,,Sphaerophoria fatarum Goeld.,S syrphid,5,P
+Salix repens,,,Sphaerophoria sp.,S syrphid,8,C
+Salix repens,Hymenoptera,Apidae,Nomada sp.,solitary bee,3,C
+Salix repens,Lepidoptera,Adelidae,Adela reaumurella (L.),butterfly/moth,4,P
+Vaccinium myrtillus,Diptera,Conopidae,Myopa buccata (L.),L non-syrphid fly,2,P
+Vaccinium uliginosum,,Syrphidae,Dasysyrphus hilaris (Zett.),S syrphid,2,P
+Vaccinium vitis-idaea,,,Eristalis pertinax (Scop.),L syrphid,21,C
+Melampyrum pratense,,,Megasyrphus erraticus (L.),L syrphid,3,P
+Melampyrum pratense,,,Meliscaeva cinctella (Zett.),S syrphid,8,C
+Melampyrum pratense,,,Platycheirus albimanus (F.),S syrphid,8,C
+Melampyrum pratense,,,Rhingia campestris Mg.,S syrphid,6,P
+Melampyrum pratense,,,Sericomyia lappona (L.),L syrphid,3,P
+Melampyrum pratense,Hymenoptera,Andrenidae,Andrena carantonica PŽrez,solitary bee,4,P
+Melampyrum pratense,,,Andrena lapponica Zett.,solitary bee,5,P
+Melampyrum pratense,,,Andrena nigroaenaea (K.),solitary bee,4,P
+Melampyrum pratense,,,Andrena fulva (MŸll.),solitary bee,5,P
+Melampyrum pratense,,Apidae,Bombus bohemicus Seidl,social bee,8,P
+Melampyrum pratense,,,Bombus pratorum,social bee,19,P
+Melampyrum pratense,,,Bombus pascuorum (Scop.),social bee,18,P
+Melampyrum pratense,,,Bombus terrestris (L.),social bee,4,P
+Melampyrum pratense,,,Bombus lucorum,social bee,55,P
+Melampyrum pratense,,Halictidae,Lasioglossum sp.,solitary bee,2,P
+Melampyrum pratense,,Vespidae,Dolichovespula saxonica (F.),other,4,P
+Melampyrum pratense,,,Vespula rufa (L.),other,3,P
+Galium saxatile,Coleoptera,Cantharidae,Rhagonycha nigriventris Motschulsky,beetle,5,P
+Solidago virgaurea,,Cerambycidae,Stenurella melanura (L.),beetle,4,P
+Solidago virgaurea,,Elateridae,Aplotarsus incanus (Gyll.),beetle,2,P
+Solidago virgaurea,,Melyridae,Dasytes plumbeus (MŸll.),beetle,2,P
+Solidago virgaurea,,Mordellidae,Mordella holomelaena Apfelbeck,beetle,6,P
+Solidago virgaurea,,Scarabaeidae,Phyllopertha horticola (L.),beetle,4,P
+Solidago virgaurea,Diptera,Muscidae,Coenosia means Mg.,S non-syrphid fly,18,C
+Solidago virgaurea,,,Phaonia angelicae (Scop.),L non-syrphid fly,5,C
+Solidago virgaurea,,Syrphidae,Chrysotoxum bicinctum (L.),S syrphid,8,C
+Solidago virgaurea,,,Pipizella viduata (L.),S syrphid,2,P
+Solidago virgaurea,Hymenoptera,Formicidae,Formica fusca L.,other,14,C
+Solidago virgaurea,,,Lasius niger (L.),other,6,P
+Solidago virgaurea,,,Myrmica ruginodis Nyl.,other,2,P
+Solidago virgaurea,,Icheumonidae,Ichneumon sp.,other,3,P
+Solidago virgaurea,Lepidoptera,Geometridae,Itame brunneata Thbg.,butterfly/moth,2,P
+Solidago virgaurea,,Microterigidae,Micropterix aruncella (Scop.),butterfly/moth,6,P
+Hypochoeris radicata,Coleoptera,Chrysomelidae,Cryptocephalus aureolus Suffr.,beetle,2,P
+Vaccinium vitis-idaea,Diptera,Syrphidae,Episyrphus balteatus (DeG.),S syrphid,382,C
+Vaccinium vitis-idaea,,,Eristalis abusiva Collin,S syrphid,2,P
+Vaccinium vitis-idaea,,,Eristalis arbustorum (L.),L syrphid,8,P
+Vaccinium vitis-idaea,,,Eristalis intricaria (L.),L syrphid,9,C
+Vaccinium vitis-idaea,,,Eristalis lineata (Harr.),L syrphid,60,C
+Vaccinium vitis-idaea,,,Eristalis tenax (L.),L syrphid,2,P
+Vaccinium vitis-idaea,,,Eupeodes corollae (F.),S syrphid,77,P
+Vaccinium vitis-idaea,,,Sphaerophoria scripta (L.),S syrphid,5,P
+Vaccinium vitis-idaea,,,Syritta pipiens (L.),S syrphid,27,P
+Vaccinium vitis-idaea,,,Syrphus torvus Ost.-Sack.,L syrphid,2,P
+Vaccinium vitis-idaea,Hymenoptera,Andrenidae,Panurgus banksianus (K.),solitary bee,2,P
+Vaccinium vitis-idaea,,Halictidae,Lasioglossum leucozonium (Sch.),solitary bee,3,C
+Erica tetralix,Coleoptera,Oedemeridae,Oedemera lurida (Marsh.),beetle,2,P
+Trientalis europaea,Diptera,Sarcophagidae,Sarcophaga aratrix Pand.,L non-syrphid fly,4,P
+Trientalis europaea,,Syrphidae,Chrysogaster virescens Loew,S syrphid,2,P
+Trientalis europaea,,,Helophilus pendulus (L.),L syrphid,48,C
+Trientalis europaea,,,Sericomyia silentis (Harr.),L syrphid,17,C
+Trientalis europaea,,,Volucella bombylans (L.),L syrphid,3,C
+Trientalis europaea,Hymenoptera,Apidae,Apis mellifera L.,social bee,621,P
+Trientalis europaea,,,Bombus jonellus (K.),social bee,2,P
+Trientalis europaea,Hymenoptera,Eumenidae,Ancistrocerus oviventris (Wesm.),other,2,P
+Calluna vulgaris,Coleoptera,Cantharidae,Rhagonycha fulva (Scop.),beetle,19,P
+Calluna vulgaris,Diptera,Calliphoridae,Lucilia caesar (L.),L non-syrphid fly,4,P
+Calluna vulgaris,,,Pollenia amentaria (Scop.),L non-syrphid fly,4,P
+Calluna vulgaris,,Conopidae,Conops quadrifasciatus DeG,L non-syrphid fly,2,P
+Calluna vulgaris,,,Sicus ferrugineus (L.),L non-syrphid fly,3,P
+Calluna vulgaris,,Muscidae,Hydrotaea irritans (Fall.),S non-syrphid fly,8,P
+Calluna vulgaris,,Sepsidae,Sepsis cynipsea (L.),S non-syrphid fly,5,P
+Calluna vulgaris,,Syrphidae,Scaeva pyrastri (L.),L syrphid,19,P
+Calluna vulgaris,,,Syrphus vitripennis Mg.,S syrphid,22,P
+Calluna vulgaris,,Tachinidae,Eriothrix rufomaculatus (DeG),L non-syrphid fly,3,P
+Calluna vulgaris,,,Tachina grossa (L.),L non-syrphid fly,8,P
+Calluna vulgaris,Hymenoptera,Andrenidae,Andrena fuscipes (K.),solitary bee,11,P
+Calluna vulgaris,,Apidae,Bombus  sylvestris (Lep.),social bee,2,P
+Calluna vulgaris,,,Bombus pratorum (L.),social bee,2,C
+Calluna vulgaris,,Colletidae,Colletes succinctus (L.),solitary bee,2,P
+Calluna vulgaris,,Sphecidae,Mellinus arvensis (L.),other,9,P
+Calluna vulgaris,Lepidoptera,Geometridae,Ematurga atomaria (L.),butterfly/moth,2,P
+Calluna vulgaris,,Noctuidae,Autographa bractea (D & S),butterfly/moth,2,P

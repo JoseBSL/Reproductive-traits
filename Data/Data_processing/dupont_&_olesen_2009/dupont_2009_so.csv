@@ -1,0 +1,121 @@
+Plants,Order,Family,Species,Functional group,visits,role
+Salix repens,Coleoptera,Bruchidae,Bruchidius ater (Marsh.),beetle,4,P
+Salix repens,Diptera,Anthomyiidae,Alliopsis billbergi (Zett.),S non-syrphid fly,5,P
+Vaccinium myrtillus,,,Delia florilega (Zett.),S non-syrphid fly,2,P
+Genista anglica,,Bibionidae,Bibio lanigerus Mg.,S non-syrphid fly,27,P
+Genista anglica,,Empididae,Empis chioptera Mg.,S non-syrphid fly,3,P
+Genista anglica,,,Empis sp.,S non-syrphid fly,39,C
+Genista anglica,,,Rhamphomyia nigripennis (F.),S non-syrphid fly,6,P
+Genista anglica,,,Rhamphomyia sp. Mg.,S non-syrphid fly,2,P
+Genista anglica,,Scathophagidae,Scathophaga stercoraria (L.),L non-syrphid fly,30,C
+Genista anglica,,Syrphidae,Cheilosia albipila Mg.,S syrphid,2,P
+Genista anglica,,,Cheilosia bergenstammi (Beck.),S syrphid,18,C
+Genista anglica,,,Cheilosia pagana (Mg.),S syrphid,3,P
+Genista anglica,,,Cheilosia psilophthalma (Beck.),S syrphid,5,P
+Genista anglica,,,Parasyrphus lineolus (Zett.),S syrphid,6,C
+Genista anglica,,,Sphaerophoria fatarum Goeld. group,S syrphid,15,C
+Genista anglica,,,Sphaerophoria sp.,S syrphid,23,C
+Genista anglica,,,Syrphus torvus Ost.-Sack.,L syrphid,15,C
+Genista anglica,,Tachinidae,Gonia picea Rob.-Desv.,L non-syrphid fly,12,P
+Genista anglica,Hymenoptera,Andrenidae,Andrena clarkella (K.),solitary bee,3,P
+Genista anglica,,,Andrena fulva (MŸll.),solitary bee,6,P
+Genista anglica,,,Andrena haemorrhoa (F.),solitary bee,26,P
+Genista anglica,,,Andrena praecox (Scop.),solitary bee,4,P
+Genista anglica,,Apidae,Nomada leucophthalma (K.),solitary bee,2,P
+Genista anglica,,Colletidae,Colletes cunicularius (L.),solitary bee,2,P
+Genista anglica,,Formicidae,Formica rufa L.,other,9,P
+Genista anglica,,,Lasius niger (L.),other,3,P
+Genista anglica,,Halictidae,Lasioglossum punctatissimum (Schenck),solitary bee,2,P
+Genista anglica,,Tenthredinidae,Amauronematus Konow sp.,other,5,P
+Genista anglica,,Vespidae,Vespula vulgaris (L.),other,8,P
+Genista anglica,Lepidoptera,Adelidae,Adela cuprella (D & S),moth/butterfly,6,P
+Vaccinium uliginosum,Diptera,Empididae,Empis tessellata F.,L non-syrphid fly,3,P
+Vaccinium vitis-idaea,,Syrphidae,Eristalis pertinax (Scop.),L syrphid,2,P
+Vaccinium vitis-idaea,,,Leucozona lucorum (L.),L syrphid,2,P
+Erica tetralix,,,Rhingia campestris Mg.,S syrphid,2,P
+Empetrum nigrum,,,Volucella bombylans (L.),L syrphid,3,C
+Arnica montana,Hymenoptera,Apidae,Apis mellifera L.,social bee,154,C
+Arnica montana,,,Bombus sylvestris (Lep.),social bee,2,P
+Arnica montana,,,Bombus jonellus (K.),social bee,6,P
+Arnica montana,,,Bombus pratorum,social bee,99,C
+Arnica montana,,,Bombus lucorum,social bee,60,C
+Arnica montana,,,Bombus pascuorum,social bee,106,C
+Arnica montana,,Halictidae,Lasioglossum albipes (F.),solitary bee,5,P
+Arnica montana,,,Lasioglossum fratellum (PŽrez),solitary bee,22,C
+Arnica montana,,Vespidae,Vespula rufa (L.),other,5,C
+Arnica montana,Lepidoptera,Lycaenidae,Callophrys rubi (L.),moth/butterfly,3,P
+Arnica montana,,Noctuidae,Coranarta cordigera (Thbg.),moth/butterfly,2,P
+Arnica montana,,Satyridae,Aphantopus hyperanthus (L.),moth/butterfly,7,C
+Arnica montana,,,Coenonympha pamphilus (L.),moth/butterfly,6,C
+Arnica montana,,Zygaenidae,Adscita statices L.,moth/butterfly,2,C
+Potentilla erecta,Coleoptera,Cantharidae,Rhagonycha nigriventris Motschulsky,beetle,3,P
+Galium saxatile,,Curculionidae,Miarus campanulae L.,beetle,26,C
+Trientalis europaea,,Elateridae,Prosternon tessellatum (L.),beetle,3,C
+Trientalis europaea,,Oedemeridae,Oedemera lurida (Marsh.),beetle,2,C
+Trientalis europaea,,Scarabaeidae,Phyllopertha horticola (L.),beetle,6,C
+Trientalis europaea,Dictyoptera,Ectobiidae,Ectobius sylvestris (Poda),other,2,P
+Trientalis europaea,Diptera,Dolichopodidae,Hercostomus sp.,S non-syrphid fly,41,C
+Trientalis europaea,,Empididae,Empis aestiva Loew,S non-syrphid fly,3,C
+Trientalis europaea,,Muscidae,Coenosia means Mg.,S non-syrphid fly,3,P
+Trientalis europaea,,,Phaonia incana (Wied.),L non-syrphid fly,2,C
+Trientalis europaea,,Rhinophoridae,Rhinophora lepida (Mg.),L non-syrphid fly,6,P
+Trientalis europaea,,Sarcophagidae,Sarcophaga carnaria (L.),L non-syrphid fly,2,P
+Trientalis europaea,,Sepsidae,Sepsis cynipsea (L.),S non-syrphid fly,4,P
+Trientalis europaea,,Syrphidae,Pipiza lugubris (F.),S syrphid,2,P
+Trientalis europaea,,,Pipizella viduata (L.),S syrphid,2,P
+Trientalis europaea,,,Sphaerophoria scripta (L.),S syrphid,2,C
+Trientalis europaea,Hymenoptera,Andrenidae,Andrena lapponica Zett.,solitary bee,4,P
+Trientalis europaea,,,Andrena tarsata Nyl.,solitary bee,3,C
+Trientalis europaea,,Cephidae,Calameuta pallipes (Klug.),other,2,C
+Trientalis europaea,,Formicidae,Formica sanguinea Latr.,other,4,P
+Trientalis europaea,,Halictidae,Lasioglossum rufitarse (Zett.),solitary bee,2,P
+Trientalis europaea,,,Lasioglossum sp.,solitary bee,4,P
+Trientalis europaea,,Sphecidae,Mimesa equestris (F.),other,3,P
+Trientalis europaea,Lepidoptera,Hespenidae,Pyrgus malvae (L.),moth/butterfly,2,P
+Trientalis europaea,,Microterigidae,Micropterix aruncella (Scop.),moth/butterfly,2,P
+Hypochoeris radicata,Coleoptera,Cantharidae,Rhagonycha fulva (Scop.),beetle,11,C
+Hieracium umbellatum,,Nitidulidae,Meligethes aeneus (F.),beetle,24,C
+Hieracium pilosella,Diptera,Anthomyiidae,Heterostylodes nominabilis (Collin),S non-syrphid fly,4,P
+Campanula rotundifolia,,Syrphidae,Chrysotoxum bicinctum (L.),S syrphid,3,C
+Genista pilosa,,,Episyrphus balteatus (DeG.),S syrphid,341,C
+Genista anglica,,,Eristalinus sepulchralis (L.),S syrphid,2,P
+Genista anglica,,,Eristalis lineata (Harr.),L syrphid,25,P
+Genista anglica,,,Eristalis tenax (L.),L syrphid,23,C
+Genista anglica,,,Eupeodes corollae (F.),S syrphid,62,C
+Genista anglica,,,Platycheirus albimanus (F.),S syrphid,20,C
+Genista anglica,,,Scaeva selenitica (Mg.),L syrphid,2,C
+Genista anglica,,Tachinidae,Eriothrix rufomaculatus (DeG.),L non-syrphid fly,9,P
+Genista anglica,Hymenoptera,Andrenidae,Panurgus banksianus (K.),solitary bee,3,P
+Genista anglica,,Apidae,Bombus hypnorum (L.),social bee,2,P
+Genista anglica,,Colletidae,Hylaeus confusus Nyl.,solitary bee,2,P
+Genista anglica,,Formicidae,Formica fusca L.,other,67,C
+Genista anglica,,Halictidae,Lasioglossum leucopus (K.),solitary bee,2,P
+Genista anglica,,,Lasioglossum leucozonium (Schr.),solitary bee,4,C
+Genista anglica,,,Lasioglossum villosulum (K.),solitary bee,5,P
+Genista anglica,,Melittidae,Macropis europaea Warncke,solitary bee,5,P
+Genista anglica,,,Melitta haemorrhoidalis (F.),social bee,28,P
+Genista anglica,Lepidoptera,Hespenidae,Thymelicus lineola (Ochsenheimer),moth/butterfly,21,P
+Genista anglica,,Pieridae,Pieris napi (L.),moth/butterfly,2,P
+Calluna vulgaris,Coleoptera,Cerambycidae,Stenurella melanura (L.),beetle,3,C
+Solidago virgaurea,Diptera,Calliphoridae,Bellardia viarum (Rob.-Desv.),L non-syrphid fly,23,C
+Succisa pratensis,,,Lucilia bufonivora Mon.,L non-syrphid fly,4,P
+Epilobium angustifolium,,,Pollenia rudis (F.),L non-syrphid fly,11,P
+Epilobium angustifolium,,Conopidae,Sicus ferrugineus (L.),L non-syrphid fly,20,C
+Epilobium angustifolium,,Muscidae,Helina reversio (Harr.),S non-syrphid fly,4,P
+Epilobium angustifolium,,,Phaonia angelicae (Scop.),L non-syrphid fly,33,P
+Epilobium angustifolium,,Sarcophagidae,Sarcophaga sp.,L non-syrphid fly,7,P
+Epilobium angustifolium,,Sciaridae,Sciara hemerobioides (Scop.),S non-syrphid fly,5,P
+Epilobium angustifolium,,Sciaridae,Sciara sp.,S non-syrphid fly,8,P
+Epilobium angustifolium,,Syrphidae,Helophilus pendulus (L.),L syrphid,20,C
+Epilobium angustifolium,,,Melanostoma mellinum (L.),S syrphid,26,C
+Epilobium angustifolium,,,Platycheirus peltatus (Mg.),S syrphid,17,P
+Epilobium angustifolium,,,Sericomyia silentis (Harr.),L syrphid,11,P
+Epilobium angustifolium,,,Syritta pipiens (L.),S syrphid,119,C
+Epilobium angustifolium,,Tachinidae,Prosena siberita (F.),L non-syrphid fly,8,P
+Epilobium angustifolium,Hymenoptera,Andrenidae,Andrena fuscipes (K.),solitary bee,2,P
+Epilobium angustifolium,,Apidae,Bombus bohemicus Seidl.,social bee,48,C
+Epilobium angustifolium,,Halictidae,Lasioglossum calceatum (Scop.),solitary bee,7,P
+Epilobium angustifolium,,Sphecidae,Mellinus arvensis (L.),other,15,P
+Epilobium angustifolium,,Vespidae,Dolichovespula saxonica (F.),other,18,P
+Epilobium angustifolium,Lepidoptera,Lycaenidae,Lycaena virgaureae (L.),moth/butterfly,5,P
+Epilobium angustifolium,,Satyridae,Maniola jurtina (L.),moth/butterfly,4,P
