@@ -18,6 +18,7 @@ animal_species <- subset(species, Kingdom == "Animal")
 colnames(d)[4]  <- "Reference.code"
 #merge data
 all <- merge(d, animal_species, by = "Reference.code", all= T)
+all <- subset(all, Reference.code!="no visitors")
 
 
 #select columns of interest
@@ -27,6 +28,8 @@ colnames(all_1)[88] <- "Pollinator.species.ID"
 all_long <- melt(all_1, id.vars=c("Pollinator.species.ID", "Site"), variable.name="Plant.species.ID")
 #leave just pollinator species names on id
 all_long$Pollinator.species.ID <- sub("^(\\S*\\s+\\S+).*", "\\1", all_long$Pollinator.species.ID)
+
+
 #Nos subset for plant sepcies in order to merge
 plant_species <- subset(species, Kingdom == "Plants")
 #now merge  by reference code
@@ -36,9 +39,40 @@ all_long$Plant.species.ID <- gsub("\\.", " ", all_long$Plant.species.ID)
 colnames(all_long)[3] <- "Reference.code"
 #Remove varieties and just let species in order to merge with trait data
 colnames(plant_species)[4] <- "Plant.species.ID" 
+
 plant_species$Plant.species.ID <- sub("^(\\S*\\s+\\S+).*", "\\1", plant_species$Plant.species.ID)
 #Now merge
+
+
+#Some NAS appearing in plant species fix 
+unique(levels(as.factor(plant_species$Reference.code)))
+unique(levels(as.factor(all_long$Reference.code)))
+#there is one extra level in the plant species dataframe, likely a mistake
+#I have to call "Ta pe"  "Ta per" and solved
+plant_species$Reference.code[plant_species$Reference.code=="Ta pe"] <- "Ta per"
+plant_species$Reference.code[plant_species$Reference.code=="Psa te"] <- "Ps te"
+plant_species$Reference.code[plant_species$Reference.code=="Psa te"] <- "Ps te"
+plant_species$Reference.code[plant_species$Reference.code=="Psa ca"] <- "Psi ca"
+all_long$Reference.code[all_long$Reference.code=="Ps ca"] <- "Psi ca"
+
+
+#ALL THIS IS CODE WAS TO KNOW WHERE THE ISSUE OF THE MERGE WAS
+#still one more lets check the issue
+#merge unique cases to see issue
+a <- as.data.frame(unique(levels(as.factor(plant_species$Reference.code))))
+a_1 <- as.data.frame(unique(levels(as.factor(plant_species$Reference.code))))
+a_2 <- cbind(a,a_1)
+b <- as.data.frame(unique(levels(as.factor(all_long$Reference.code))))
+colnames(a_2)[1] <- "ab"
+colnames(b)[1] <- "ab"
+ab <- merge(a_2,b, by="ab", all = T)
+
+
+
 all_2 <- merge(all_long, plant_species, by = "Reference.code", all=T)
+sum(is.na(all_2$Plant.species.ID))
+unique(levels(as.factor(all_2$Reference.code)))
+
 
 #NOW SUBSET BY SITE
 
@@ -55,12 +89,15 @@ all_2 <- merge(all_long, plant_species, by = "Reference.code", all=T)
 ###############################
 #First site Control
 ###############################
-control <- subset(all_2, Site == "Control")
+control    <- subset(all_2, Site == "Control")
 control$value[is.na(control$value)] <- 0
-
 #convert to network
 control_1 <- acast(control, control$Plant.species.ID ~ control$Pollinator.species.ID , value.var='value', 
                       fun.aggregate=sum, margins=F)
+
+levels(as.factor(rownames(control_1)))
+levels(as.factor(control$Plant.species.ID))
+
 #remove non-existent interactions plant species
 rowSums(as.matrix(control_1))
 control_2 <- control_1[rowSums(control_1[, -1] > 0) != 0, ]
@@ -70,13 +107,17 @@ colSums(as.matrix(control_2))
 control_3 <- control_2[, colSums(control_2 != 0) > 0]
 colSums(as.matrix(control_3))
 #seems ok
+
+row.names(control_3)[row.names(control_3)=="NA"] <- "Sp."
+
+
 #save network
-write.csv(control_3,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_control.csv")
+write.csv(control_3,"Data/Data_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_control.csv")
 
 
 
 ###############################
-#Second site Control
+#Second site Restored
 ###############################
 cma <- subset(all_2, Site == "CMA")
 cma$value[is.na(cma$value)] <- 0
@@ -93,7 +134,7 @@ cma_3 <- cma_2[, colSums(cma_2 != 0) > 0]
 colSums(as.matrix(cma_3))
 #seems ok
 #save network
-write.csv(cma_3,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_restored.csv")
+write.csv(cma_3,"Data/Data_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_restored.csv")
 
 
 ############################################
@@ -117,7 +158,7 @@ colSums(as.matrix(metaweb_1))
 metaweb_2 <- metaweb_1[, colSums(metaweb_1 != 0) > 0]
 colSums(as.matrix(metaweb_2))
 #save metaweb
-write.csv(metaweb_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_metaweb.csv")
+write.csv(metaweb_2,"Data/Data_processing/kaiser_bunbury_mauritius_2010/kaiser_bunbury_2010_mauritius_metaweb.csv")
 
 
 
