@@ -121,7 +121,7 @@ colnames(Bernica)[colnames(Bernica)=="Stenomorda near disp.arilis"] <- "Stenomor
 colnames(Bernica)[colnames(Bernica)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp."
 colnames(Bernica)[colnames(Bernica)=="Liosarcophaga sp.ilargyra"] <- "Sarcophaga sp."
 
-write.csv(Bernica, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_bernica.csv")
+write.csv(Bernica, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_bernica.csv")
 
 
 
@@ -158,8 +158,9 @@ colnames(Casse_Dent)[colnames(Casse_Dent)=="Forcipomyia (Thyridomyia) litoraurea
 colnames(Casse_Dent)[colnames(Casse_Dent)=="Drosophila sp.inipes"] <- "Drosophila spinipes"
 colnames(Casse_Dent)[colnames(Casse_Dent)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
 colnames(Casse_Dent)[colnames(Casse_Dent)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="near Eurycratus sp.1 "] <- "Eurycratus sp.1"
 
-write.csv(Casse_Dent, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_casse_dent.csv")
+write.csv(Casse_Dent, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_casse_dent.csv")
 
 
 
@@ -181,7 +182,24 @@ colSums(as.matrix(Copolia))
 Copolia <- Copolia[, colSums(Copolia != 0) > 0]
 colSums(as.matrix(Copolia))
 
-write.csv(Copolia, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_copolia.csv")
+
+#Check levels
+#plants
+levels(as.factor(row.names(Copolia)))
+#seems ok
+#insect species
+colnames(Copolia) <- gsub("sp", "sp.", colnames(Copolia), fixed=TRUE)
+levels(as.factor(colnames(Copolia)))
+colnames(Copolia)[colnames(Copolia)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(Copolia)[colnames(Copolia)=="Cryptophleps ? nigrihalteratus ?"] <- "Cryptophleps nigrihalteratus"
+colnames(Copolia)[colnames(Copolia)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Copolia)[colnames(Copolia)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(Copolia)[colnames(Copolia)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(Copolia)[colnames(Copolia)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(Copolia)[colnames(Copolia)=="near Eurycratus sp.1 "] <- "Eurycratus sp.1"
+
+
+write.csv(Copolia, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_copolia.csv")
 
 
 
@@ -203,7 +221,24 @@ colSums(as.matrix(reserve))
 reserve <- reserve[, colSums(reserve != 0) > 0]
 colSums(as.matrix(reserve))
 
-write.csv(reserve, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_reserve.csv")
+
+#Check levels
+#plants
+levels(as.factor(row.names(reserve)))
+#seems ok
+#insect species
+colnames(reserve) <- gsub("sp", "sp.", colnames(reserve), fixed=TRUE)
+levels(as.factor(colnames(reserve)))
+colnames(reserve)[colnames(reserve)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(reserve)[colnames(reserve)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(reserve)[colnames(reserve)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(reserve)[colnames(reserve)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(reserve)[colnames(reserve)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(reserve)[colnames(reserve)=="Liosarcophaga sp.ilargyra"] <- "Liosarcophaga spilargyra"
+colnames(reserve)[colnames(reserve)=="near Eurycratus sp.1 "] <- "Eurycratus sp.1"
+
+
+write.csv(reserve, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_reserve.csv")
 
 
 ###############################
@@ -224,7 +259,24 @@ colSums(as.matrix(Salazie))
 Salazie <- Salazie[, colSums(Salazie != 0) > 0]
 colSums(as.matrix(Salazie))
 
-write.csv(Salazie, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_salazie.csv")
+
+#Check levels
+#plants
+levels(as.factor(row.names(Salazie)))
+#seems ok
+#insect species
+colnames(Salazie) <- gsub("sp", "sp.", colnames(Salazie), fixed=TRUE)
+levels(as.factor(colnames(Salazie)))
+colnames(Salazie)[colnames(Salazie)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(Salazie)[colnames(Salazie)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
+colnames(Salazie)[colnames(Salazie)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Salazie)[colnames(Salazie)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(Salazie)[colnames(Salazie)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(Salazie)[colnames(Salazie)=="Endotricha mesenterialis mahensis"] <- "Endotricha mesenterialis"
+
+
+
+write.csv(Salazie, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_salazie.csv")
 
 
 
@@ -246,7 +298,24 @@ colSums(as.matrix(Trois_freres))
 Trois_freres <- Trois_freres[, colSums(Trois_freres != 0) > 0]
 colSums(as.matrix(Trois_freres))
 
-write.csv(Trois_freres, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_trois_feres.csv")
+
+#Check levels
+#plants
+levels(as.factor(row.names(Trois_freres)))
+#seems ok
+#insect species
+colnames(Trois_freres) <- gsub("sp", "sp.", colnames(Trois_freres), fixed=TRUE)
+levels(as.factor(colnames(Trois_freres)))
+colnames(Trois_freres)[colnames(Trois_freres)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(Trois_freres)[colnames(Trois_freres)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(Trois_freres)[colnames(Trois_freres)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
+colnames(Trois_freres)[colnames(Trois_freres)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Trois_freres)[colnames(Trois_freres)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(Trois_freres)[colnames(Trois_freres)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(Trois_freres)[colnames(Trois_freres)=="Inostemma close to soederlundi"] <- "Inostemma sp."
+
+#save data
+write.csv(Trois_freres, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_trois_feres.csv")
 
 
 
@@ -268,7 +337,26 @@ colSums(as.matrix(tea_plantation))
 tea_plantation <- tea_plantation[, colSums(tea_plantation != 0) > 0]
 colSums(as.matrix(tea_plantation))
 
-write.csv(tea_plantation, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_tea_plantation.csv")
+
+
+#Check levels
+#plants
+levels(as.factor(row.names(tea_plantation)))
+#seems ok
+#insect species
+colnames(tea_plantation) <- gsub("sp", "sp.", colnames(tea_plantation), fixed=TRUE)
+levels(as.factor(colnames(tea_plantation)))
+colnames(tea_plantation)[colnames(tea_plantation)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(tea_plantation)[colnames(tea_plantation)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(tea_plantation)[colnames(tea_plantation)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(tea_plantation)[colnames(tea_plantation)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(tea_plantation)[colnames(tea_plantation)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(tea_plantation)[colnames(tea_plantation)=="near Eurycratus sp.1 "] <- "Eurycratus sp.1"
+
+
+
+
+write.csv(tea_plantation, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_tea_plantation.csv")
 
 
 ############################################
@@ -293,5 +381,28 @@ colSums(as.matrix(metaweb_1))
 metaweb_2 <- metaweb_1[, colSums(metaweb_1 != 0) > 0]
 colSums(as.matrix(metaweb_2))
 
+#Check levels
+#plants
+levels(as.factor(row.names(metaweb_2)))
+#seems ok
+#insect species
+colnames(metaweb_2) <- gsub("sp", "sp.", colnames(metaweb_2), fixed=TRUE)
+levels(as.factor(colnames(metaweb_2)))
+colnames(metaweb_2)[colnames(metaweb_2)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(metaweb_2)[colnames(metaweb_2)=="Amblypsilopus (?) sp.. indet."] <- "Amblypsilopus sp."
+colnames(metaweb_2)[colnames(metaweb_2)=="Endotricha mesenterialis mahensis"] <- "Endotricha mesenterialis"
+colnames(metaweb_2)[colnames(metaweb_2)=="Stenomorda near disp.arilis"] <- "Stenomorda disparilis"
+colnames(metaweb_2)[colnames(metaweb_2)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(metaweb_2)[colnames(metaweb_2)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(metaweb_2)[colnames(metaweb_2)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(metaweb_2)[colnames(metaweb_2)=="Drosophila sp.inipes"] <- "Drosophila spinipes"
+colnames(metaweb_2)[colnames(metaweb_2)=="Liosarcophaga sp.ilargyra"] <- "Liosarcophaga spilargyra"
+colnames(metaweb_2)[colnames(metaweb_2)=="Cryptophleps ? nigrihalteratus ?"] <- "Cryptophleps nigrihalteratus"
+colnames(metaweb_2)[colnames(metaweb_2)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(metaweb_2)[colnames(metaweb_2)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
+colnames(metaweb_2)[colnames(metaweb_2)=="Inostemma close to soederlundi"] <- "Inostemma sp."
+
+
+
 #save metaweb
-write.csv(metaweb_2, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_metaweb.csv")
+write.csv(metaweb_2, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_metaweb.csv")
