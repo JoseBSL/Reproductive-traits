@@ -65,7 +65,26 @@ colSums(as.matrix(Rosebelle))
 Rosebelle <- Rosebelle[, colSums(Rosebelle != 0) > 0]
 colSums(as.matrix(Rosebelle))
 
-write.csv(Rosebelle, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_rosebelle.csv")
+
+#Check levels
+#plants
+levels(as.factor(row.names(Rosebelle)))
+#seems ok
+#insect species
+levels(as.factor(colnames(Rosebelle)))
+colnames(Rosebelle) <- gsub("sp", "sp.", colnames(Rosebelle), fixed=TRUE)
+colnames(Rosebelle)[colnames(Rosebelle)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(Rosebelle)[colnames(Rosebelle)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia amieuensis sp.1"
+colnames(Rosebelle)[colnames(Rosebelle)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia litoraurea sp.1"
+colnames(Rosebelle)[colnames(Rosebelle)=="Endotricha mesenterialis mahensis"] <- "Endotricha mesenterialis"
+colnames(Rosebelle)[colnames(Rosebelle)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Rosebelle)[colnames(Rosebelle)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Rosebelle)[colnames(Rosebelle)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea sp.2"
+colnames(Rosebelle)[colnames(Rosebelle)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis sp.2"
+colnames(Rosebelle)[colnames(Rosebelle)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
+
+
+write.csv(Rosebelle, "Data/Data_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_rosebelle.csv")
 
 
 
@@ -85,6 +104,22 @@ rowSums(as.matrix(Bernica))
 colSums(as.matrix(Bernica))
 Bernica <- Bernica[, colSums(Bernica != 0) > 0]
 colSums(as.matrix(Bernica))
+
+
+#Check levels
+#plants
+levels(as.factor(row.names(Bernica)))
+#seems ok
+#insect species
+colnames(Bernica) <- gsub("sp", "sp.", colnames(Bernica), fixed=TRUE)
+levels(as.factor(colnames(Bernica)))
+colnames(Bernica)[colnames(Bernica)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(Bernica)[colnames(Bernica)=="Amblypsilopus (?) sp.. indet."] <- "Amblypsilopus sp."
+colnames(Bernica)[colnames(Bernica)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Euprojoannisia sp.1"
+colnames(Bernica)[colnames(Bernica)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(Bernica)[colnames(Bernica)=="Stenomorda near disp.arilis"] <- "Stenomorda sp."
+colnames(Bernica)[colnames(Bernica)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp."
+colnames(Bernica)[colnames(Bernica)=="Liosarcophaga sp.ilargyra"] <- "Sarcophaga sp."
 
 write.csv(Bernica, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_bernica.csv")
 
@@ -107,6 +142,22 @@ rowSums(as.matrix(Casse_Dent))
 colSums(as.matrix(Casse_Dent))
 Casse_Dent <- Casse_Dent[, colSums(Casse_Dent != 0) > 0]
 colSums(as.matrix(Casse_Dent))
+
+
+#Check levels
+#plants
+levels(as.factor(row.names(Casse_Dent)))
+#seems ok
+#insect species
+colnames(Casse_Dent) <- gsub("sp", "sp.", colnames(Casse_Dent), fixed=TRUE)
+levels(as.factor(colnames(Casse_Dent)))
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Forcipomyia (Microhelea) amieuensis"] <- "Forcipomyia amieuensis"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Drosophila sp.inipes"] <- "Drosophila spinipes"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(Casse_Dent)[colnames(Casse_Dent)=="Scaptodrosophila undet sp.2"] <- "Scaptodrosophila sp.2"
 
 write.csv(Casse_Dent, "Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2017/kaiser_bunbury_2017_seychelles_casse_dent.csv")
 
