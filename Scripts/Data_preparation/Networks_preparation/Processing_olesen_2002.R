@@ -1,7 +1,7 @@
 # Processing data from olesen 2002
 # DOI: https://doi.org/10.1046/j.1472-4642.2002.00148.x
 # Islands: azores (2000) and mauritius (1998-1999)
-# IMPORTANT NOTE: 1 season 
+# Note: 1 season sampled azores (2000) and mauritius (1998-1999)
 
 #LOAD DATA
 

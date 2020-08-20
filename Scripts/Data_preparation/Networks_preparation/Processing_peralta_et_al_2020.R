@@ -1,7 +1,7 @@
 # Processing data from peralta 2020
 # DOI: 10.1111/j.1365-2745.2010.01732.x
 # Mendoza, Argentina
-# IMPORTANT NOTE: THE SITES WERE SAMPLED BETWEEN 2006-2011
+# Note: sites sampled between 2006-2011
 # I'm going to prepare here the unique networks per site and year and the metaweb
 
 #load library

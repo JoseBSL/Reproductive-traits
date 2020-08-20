@@ -1,7 +1,7 @@
 # Processing data from SOUZA 2017
 # DOI: 10.1111/1365-2745.12978
 # Chaco, Brazil
-# IMPORTANT NOTE: THE SITES WERE SAMPLED BETWEEN 2009-2010
+# Note: Sites sampled between 2009-2010
 # I'm going to prepare here the unique networks per site and year and the metaweb
 # NOTE:
 # There are many networks available but they have many plant species

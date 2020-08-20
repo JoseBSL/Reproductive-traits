@@ -1,7 +1,7 @@
 # Processing data from lundgren 2004
 # DOI: https://doi.org/10.1657/1523-0430(2005)037[0514:TDAHCW]2.0.CO;2
 # Greenland
-# IMPORTANT NOTE: 1 season 2002
+# Noye: sampled 1 season 2002
 
 
 lundgren <- read.csv("Data/Data_processing/lundgren_greenland_2005/lundgren_2005.csv", row.names = 1)

@@ -1,7 +1,7 @@
 # Processing data from dicks 2002 england
 # DOI: https://doi.org/10.1046/j.0021-8790.2001.00572.x
 # ENGLAND
-# IMPORTANT NOTE: THE SITES WERE SAMPLED 1 SEASON YEAR?
+# Note: Sites sampled 1 SEASON YEAR? Doesn't say it and not replied to mail but between the 94 and 2002 100%.
 # I'm going to prepare here the unique networks per site and year and the metaweb
 
 #LOAD DATA 

@@ -1,7 +1,7 @@
 # Processing data from small 1976
 # DOI: no doi bu here 
 # small 1973
-# IMPORTANT NOTE: 1 season 
+# Note: 1 season 
 
 
 #LOAD DATA

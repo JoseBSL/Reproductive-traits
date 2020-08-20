@@ -1,7 +1,7 @@
 # Processing data from kaiser bunbury 2011 
 # DOI: 10.1111/j.1461-0248.2009.01437.x
 # Mauritius
-# IMPORTANT NOTE: THE SITES WERE SAMPLED 1 SEASON BETWEEN 2007 AND 2008
+# Note: TSites sampled between 2007 and 2008
 # I'm going to prepare here the unique networks per site and year and the metaweb
 
 #Load library

@@ -1,8 +1,7 @@
 # Processing data from fang 2012
 # DOI: :10.1371/journal.pone.0032663
 # CHINA
-# IMPORTANT NOTE: 2007,2008,2009,2010
-# I'm going to prepare here the unique networks per site and year and the metaweb
+# Note: 2007,2008,2009,2010
 
 
 #LOAD DATA
