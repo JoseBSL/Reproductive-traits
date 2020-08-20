@@ -37,9 +37,10 @@ colnames(all_2006_1_a)[4:5] <- c("Plant.species","Pollinator.species")
 #remove underscore
 all_2006_1_a$Plant.species <- gsub("_" , " ", fixed=TRUE, all_2006_1_a$Plant.species)
 all_2006_1_a$Pollinator.species <- gsub("_" , " ", fixed=TRUE, all_2006_1_a$Pollinator.species)
-
 #convert first element of the string to uppercase
 all_2006_1_a$Plant.species <- firstup(all_2006_1_a$Plant.species)
+
+
 #Convert to matrix
 all_2006_1_b <- acast(all_2006_1_a, all_2006_1_a$Plant.species ~ all_2006_1_a$Pollinator.species , value.var='value', 
                  fun.aggregate=sum, margins=F)
@@ -53,6 +54,11 @@ rowSums(as.matrix(all_2006_1_c))
 colSums(as.matrix(all_2006_1_c))
 all_2006_1_d <- all_2006_1_c[, colSums(all_2006_1_c != 0) > 0]
 colSums(as.matrix(all_2006_1_d))
+
+#check species levels
+levels(as.factor(row.names(all_2006_1_d)))
+levels(as.factor(colnames(all_2006_1_d)))
+colnames(all_2006_1_d) <- gsub(" sp", " sp.", colnames(all_2006_1_d))
 
 #save network
 write.csv(all_2006_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2006_mendoza_site_1.csv")
@@ -89,6 +95,12 @@ rowSums(as.matrix(all_2006_2_c))
 colSums(as.matrix(all_2006_2_c))
 all_2006_2_d <- all_2006_2_c[, colSums(all_2006_2_c != 0) > 0]
 colSums(as.matrix(all_2006_2_d))
+
+
+#check species levels
+levels(as.factor(row.names(all_2006_2_d)))
+levels(as.factor(colnames(all_2006_2_d)))
+colnames(all_2006_2_d) <- gsub(" sp", " sp.", colnames(all_2006_2_d))
 
 #save network
 write.csv(all_2006_2_d,"Data/Data_processing/peralta_argentina_2020/peralta_2006_mendoza_site_2.csv")
@@ -127,6 +139,14 @@ colSums(as.matrix(all_2006_3_c))
 all_2006_3_d <- all_2006_3_c[, colSums(all_2006_3_c != 0) > 0]
 colSums(as.matrix(all_2006_3_d))
 
+
+#check species levels
+levels(as.factor(row.names(all_2006_3_d)))
+levels(as.factor(colnames(all_2006_3_d)))
+colnames(all_2006_3_d) <- gsub(" sp", " sp.", colnames(all_2006_3_d))
+
+
+
 #save network
 write.csv(all_2006_3_d,"Data/Data_processing/peralta_argentina_2020/peralta_2006_mendoza_site_3.csv")
 
@@ -164,6 +184,13 @@ colSums(as.matrix(all_2006_4_c))
 all_2006_4_d <- all_2006_4_c[, colSums(all_2006_4_c != 0) > 0]
 colSums(as.matrix(all_2006_4_d))
 
+
+#check species levels
+levels(as.factor(row.names(all_2006_4_d)))
+levels(as.factor(colnames(all_2006_4_d)))
+colnames(all_2006_4_d) <- gsub(" sp", " sp.", colnames(all_2006_4_d))
+
+
 #save network
 write.csv(all_2006_4_d,"Data/Data_processing/peralta_argentina_2020/peralta_2006_mendoza_site_4.csv")
 
@@ -186,6 +213,15 @@ rowSums(as.matrix(metaweb_net_a))
 colSums(as.matrix(metaweb_net_a))
 metaweb_net_b <- metaweb_net_a[, colSums(metaweb_net_a != 0) > 0]
 colSums(as.matrix(metaweb_net_b))
+
+
+#check species levels
+levels(as.factor(row.names(metaweb_net_b)))
+levels(as.factor(colnames(metaweb_net_b)))
+colnames(metaweb_net_b) <- gsub(" sp", " sp.", colnames(metaweb_net_b))
+
+
+
 
 #save network
 write.csv(metaweb_net_b,"Data/Data_processing/peralta_argentina_2020/peralta_2006_mendoza_metaweb.csv")
@@ -227,6 +263,16 @@ colSums(as.matrix(all_2007_1_c))
 all_2007_1_d <- all_2007_1_c[, colSums(all_2007_1_c != 0) > 0]
 colSums(as.matrix(all_2007_1_d))
 
+
+#check species levels
+levels(as.factor(row.names(all_2007_1_d)))
+levels(as.factor(colnames(all_2007_1_d)))
+colnames(all_2007_1_d) <- gsub(" sp", " sp.", colnames(all_2007_1_d))
+colnames(all_2007_1_d) <- gsub("Xylocopa sp.lendidula" , "Xylocopa splendidula" , colnames(all_2007_1_d))
+
+
+
+
 #save network
 write.csv(all_2007_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2007_mendoza.csv")
 
@@ -266,6 +312,16 @@ rowSums(as.matrix(all_2008_1_c))
 colSums(as.matrix(all_2008_1_c))
 all_2008_1_d <- all_2008_1_c[, colSums(all_2008_1_c != 0) > 0]
 colSums(as.matrix(all_2008_1_d))
+
+#check species levels
+levels(as.factor(row.names(all_2008_1_d)))
+row.names(all_2008_1_d) <- gsub(" sp", " sp.", row.names(all_2008_1_d))
+#insects
+levels(as.factor(colnames(all_2008_1_d)))
+colnames(all_2008_1_d) <- gsub(" sp", " sp.", colnames(all_2008_1_d))
+colnames(all_2008_1_d) <- gsub("Xylocopa sp.lendidula" , "Xylocopa splendidula" , colnames(all_2008_1_d))
+
+
 
 #save network
 write.csv(all_2008_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2008_mendoza.csv")
@@ -308,6 +364,16 @@ colSums(as.matrix(all_2009_1_c))
 all_2009_1_d <- all_2009_1_c[, colSums(all_2009_1_c != 0) > 0]
 colSums(as.matrix(all_2009_1_d))
 
+
+
+#check species levels
+levels(as.factor(row.names(all_2009_1_d)))
+#insects
+levels(as.factor(colnames(all_2009_1_d)))
+colnames(all_2009_1_d) <- gsub(" sp", " sp.", colnames(all_2009_1_d))
+colnames(all_2009_1_d) <- gsub("Xylocopa sp.lendidula" , "Xylocopa splendidula" , colnames(all_2009_1_d))
+
+
 #save network
 write.csv(all_2009_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2009_mendoza.csv")
 
@@ -348,6 +414,17 @@ colSums(as.matrix(all_2010_1_c))
 all_2010_1_d <- all_2010_1_c[, colSums(all_2010_1_c != 0) > 0]
 colSums(as.matrix(all_2010_1_d))
 
+
+#check species levels
+levels(as.factor(row.names(all_2010_1_d)))
+#insects
+levels(as.factor(colnames(all_2010_1_d)))
+colnames(all_2010_1_d) <- gsub(" sp", " sp.", colnames(all_2010_1_d))
+colnames(all_2010_1_d) <- gsub("Xylocopa sp.lendidula" , "Xylocopa splendidula" , colnames(all_2010_1_d))
+
+
+
+
 #save network
 write.csv(all_2010_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2010_mendoza.csv")
 
@@ -386,6 +463,13 @@ rowSums(as.matrix(all_2011_1_c))
 colSums(as.matrix(all_2011_1_c))
 all_2011_1_d <- all_2011_1_c[, colSums(all_2011_1_c != 0) > 0]
 colSums(as.matrix(all_2011_1_d))
+
+
+#check species levels
+levels(as.factor(row.names(all_2011_1_d)))
+#insects
+levels(as.factor(colnames(all_2011_1_d)))
+colnames(all_2011_1_d) <- gsub(" sp", " sp.", colnames(all_2011_1_d))
 
 #save network
 write.csv(all_2011_1_d,"Data/Data_processing/peralta_argentina_2020/peralta_2011_mendoza.csv")

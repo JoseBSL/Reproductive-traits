@@ -68,8 +68,17 @@ colSums(as.matrix(trois_ferres_1))
 trois_ferres_2 <- trois_ferres_1[, colSums(trois_ferres_1 != 0) > 0]
 colSums(as.matrix(trois_ferres_2))
 #seems ok
+#plant species
+rownames(trois_ferres_2)
+#insect species
+colnames(trois_ferres_2)
+colnames(trois_ferres_2) <- gsub("Fly", "Diptera", colnames(trois_ferres_2))
+colnames(trois_ferres_2) <- gsub(" sp", " sp.", colnames(trois_ferres_2))
+colnames(trois_ferres_2)[colnames(trois_ferres_2)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp1"
+colnames(trois_ferres_2)[colnames(trois_ferres_2)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp1"
+
 #save network
-write.csv(trois_ferres_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_trois_ferres.csv")
+write.csv(trois_ferres_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_trois_ferres.csv")
 
 
 ################################
@@ -93,8 +102,20 @@ colSums(as.matrix(tea_plantation_1))
 tea_plantation_2 <- tea_plantation_1[, colSums(tea_plantation_1 != 0) > 0]
 colSums(as.matrix(tea_plantation_2))
 #seems ok
+#plant species
+rownames(tea_plantation_2)
+#insect species
+colnames(tea_plantation_2)
+colnames(tea_plantation_2) <- gsub("Fly", "Diptera", colnames(tea_plantation_2))
+colnames(tea_plantation_2) <- gsub(" sp", " sp.", colnames(tea_plantation_2))
+colnames(tea_plantation_2)[colnames(tea_plantation_2)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp1"
+colnames(tea_plantation_2)[colnames(tea_plantation_2)=="Forcipomyia (Thyridomyia) litoraurea"] <- "Forcipomyia litoraurea"
+colnames(tea_plantation_2)[colnames(tea_plantation_2)=="Hemipyrellia sp.."] <- "Hemipyrellia sp."
+colnames(tea_plantation_2)[colnames(tea_plantation_2)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+
+
 #save network
-write.csv(tea_plantation_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_tea_plantation.csv")
+write.csv(tea_plantation_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_tea_plantation.csv")
 
 
 ################################
@@ -118,8 +139,17 @@ colSums(as.matrix(la_reserve_1))
 la_reserve_2 <- la_reserve_1[, colSums(la_reserve_1 != 0) > 0]
 colSums(as.matrix(la_reserve_2))
 #seems ok
+#plant species
+rownames(la_reserve_2)
+#insect species
+colnames(la_reserve_2)
+colnames(la_reserve_2) <- gsub("Fly", "Diptera", colnames(la_reserve_2))
+colnames(la_reserve_2) <- gsub(" sp", " sp.", colnames(la_reserve_2))
+colnames(la_reserve_2)[colnames(la_reserve_2)=="Hemipyrellia sp.."] <- "Hemipyrellia sp."
+colnames(la_reserve_2)[colnames(la_reserve_2)=="Phalanta phalantha aethiopica"] <- "Phalanta phalantha"
+
 #save network
-write.csv(la_reserve_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_la_reserve.csv")
+write.csv(la_reserve_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_la_reserve.csv")
 
 
 ################################
@@ -143,8 +173,19 @@ colSums(as.matrix(copolia_1))
 copolia_2 <- copolia_1[, colSums(copolia_1 != 0) > 0]
 colSums(as.matrix(copolia_2))
 #seems ok
+
+#plant species
+rownames(copolia_2)
+#insect species
+colnames(copolia_2)
+colnames(copolia_2) <- gsub("Fly", "Diptera", colnames(copolia_2))
+colnames(copolia_2) <- gsub(" sp", " sp.", colnames(copolia_2))
+colnames(copolia_2)[colnames(copolia_2)=="Hemipyrellia sp.."] <- "Hemipyrellia sp."
+colnames(copolia_2)[colnames(copolia_2)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+
+#seems ok
 #save network
-write.csv(copolia_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_copolia.csv")
+write.csv(copolia_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_copolia.csv")
 
 
 ################################
@@ -168,8 +209,20 @@ colSums(as.matrix(casse_dent_1))
 casse_dent_2 <- casse_dent_1[, colSums(casse_dent_1 != 0) > 0]
 colSums(as.matrix(casse_dent_2))
 #seems ok
+
+#plant species
+rownames(casse_dent_2)
+#insect species
+colnames(casse_dent_2)
+colnames(casse_dent_2) <- gsub("Fly", "Diptera", colnames(casse_dent_2))
+colnames(casse_dent_2) <- gsub(" sp", " sp.", colnames(casse_dent_2))
+colnames(casse_dent_2)[colnames(casse_dent_2)=="Amblypsilopus (?) nr. simplex"] <- "Amblypsilopus simplex"
+colnames(casse_dent_2)[colnames(casse_dent_2)=="Forcipomyia (Euprojoannisia) sp.1"] <- "Forcipomyia sp.1"
+colnames(casse_dent_2)[colnames(casse_dent_2)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(casse_dent_2)[colnames(casse_dent_2)=="Hemipyrellia sp.."] <- "Hemipyrellia sp."
+
 #save network
-write.csv(casse_dent_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_casse_dent.csv")
+write.csv(casse_dent_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_casse_dent.csv")
 
 ################################
 #6th site Bernica ("Ber")
@@ -192,8 +245,19 @@ colSums(as.matrix(bernica_1))
 bernica_2 <- bernica_1[, colSums(bernica_1 != 0) > 0]
 colSums(as.matrix(bernica_2))
 #seems ok
+#plant species
+rownames(bernica_2)
+#insect species
+colnames(bernica_2)
+colnames(bernica_2) <- gsub("Fly", "Diptera", colnames(bernica_2))
+colnames(bernica_2) <- gsub(" sp", " sp.", colnames(bernica_2))
+colnames(bernica_2)[colnames(bernica_2)=="Apis mellifera adansonii"] <- "Apis mellifera"
+colnames(bernica_2)[colnames(bernica_2)=="Scaptodrosophila undet sp.1"] <- "Scaptodrosophila sp.1"
+colnames(bernica_2)[colnames(bernica_2)=="Hemipyrellia sp.."] <- "Hemipyrellia sp."
+colnames(bernica_2)[colnames(bernica_2)=="Eagris sabadius maheta"] <- "Eagris sabadius"
+
 #save network
-write.csv(bernica_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_bernica.csv")
+write.csv(bernica_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_bernica.csv")
 
 
 
@@ -219,5 +283,5 @@ colSums(as.matrix(metaweb_1))
 metaweb_2 <- metaweb_1[, colSums(metaweb_1 != 0) > 0]
 colSums(as.matrix(metaweb_2))
 #save metaweb
-write.csv(metaweb_2,"Data/Data_processing/Data_networks_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_metaweb.csv")
+write.csv(metaweb_2,"Data/Data_processing/kaiser_bunbury_seychelles_2011/kaiser_bunbury_2011_seychelles_metaweb.csv")
 
