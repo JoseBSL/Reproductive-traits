@@ -73,14 +73,14 @@ write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008
 fraop <- acast(fraop_1_2, fraop_1_2$plant ~ fraop_1_2$gen_sp , value.var='freq', 
                fun.aggregate=sum, margins=F)
 
-write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_fraop_1_2.csv")
+write.csv(fraop, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_fraop_1_2.csv")
 
 #SITE 3  site == "MED1CA" | site == "MED2CA"
 
 medca <- acast(medca_1_2, medca_1_2$plant ~ medca_1_2$gen_sp , value.var='freq', 
                fun.aggregate=sum, margins=F)
 
-write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_medca_1_2.csv")
+write.csv(medca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_medca_1_2.csv")
 
 
 #SITE 4  site == "MED3CA" | site == "MED4CA"
@@ -88,7 +88,7 @@ write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008
 medca_2 <- acast(medca_2_3, medca_2_3$plant ~ medca_2_3$gen_sp , value.var='freq', 
                fun.aggregate=sum, margins=F)
 
-write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_medca_2_3.csv")
+write.csv(medca_2, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_medca_2_3.csv")
 
 
 #SITE 5 site == "MIQ1OP" | site == "MIQ2OP"
@@ -96,7 +96,7 @@ write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008
 miqop <- acast(miqop_1_2, miqop_1_2$plant ~ miqop_1_2$gen_sp , value.var='freq', 
                  fun.aggregate=sum, margins=F)
 
-write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_miqop_1_2.csv")
+write.csv(miqop, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_miqop_1_2.csv")
 
 
 #SITE 6 site == "SEL1OP" | site == "SEL2OP"
@@ -104,5 +104,5 @@ write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008
 selop <- acast(selop_1_2, selop_1_2$plant ~ selop_1_2$gen_sp , value.var='freq', 
                fun.aggregate=sum, margins=F)
 
-write.csv(batca, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_selop_1_2.csv")
+write.csv(selop, "Data/Data_processing/bartomeus_spain_2008/bartomeus_spain_2008_selop_1_2.csv")
 
