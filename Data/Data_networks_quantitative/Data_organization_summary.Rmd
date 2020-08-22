@@ -1,0 +1,59 @@
+---
+title: "Untitled"
+output: html_document
+---
+This folder has networks of year duration with quantitative data (visitation)
+
+# 1. Bartomeus 2008 (Network 1 in network all folder) 3 independent networks
+
+1.1 Bartomeus 2008
+1.2 Bartomeus 2008
+1.3 Bartomeus 2008
+
+# 2. Bartomeus 2008 (Network 2 in network all folder) 3 independent networks
+
+2.1 Bartomeus 2008
+2.2 Bartomeus 2008
+2.3 Bartomeus 2008
+
+# 3. Dicks 2002 (Network 6 in network all folder) 2 independent networks
+
+3.1 Dicks 2002
+3.2 Dicks 2002
+
+# 4. Dupont 2009 (Network 7 in network all folder) 1 independent network, there are 3 but just have acces to 1 with quantitative data. I emailed Yoko Dupont but with no luck. In other published articles by their collaborator there are available two of these networks but just with qualitative data. Also it seems to be a metaweb joining these three networks with quantitative data but cannot split them.
+
+4.1 Dupont 2009
+
+# 5. Elberling 1999 (Network 8 in network all folder) 1 independent network.
+
+5.1 Elberling 1999
+
+# 6. Fang & Huang 2012 (Network 10 in network all folder) 4 independent networks but just 3 available with quantitative data.
+
+6.1 Fang_huang_2008
+6.2 Fang_huang_2009
+6.3 Fang_huang_2010
+
+
+# 7. Inouye 1988 (Network 12 in network all folder) 1 independent network that correspond to two sites close to each other that cannot be separated unfortunately.
+
+7.1 Inouye 1988
+
+# 8 Lundgren 2005 (Network 12 in network all folder) 1 independent network.
+
+8.1 Lundgren 2005 
+
+# 9 Olesen 2002 (Network 18 and 30 in network all folder) 2 independent networks.
+
+9.1 Olesen 2002 Mauritius
+
+9.1 Olesen 2002 Azores
+
+
+#CHECK IF METAWEBS CAN BE SEPARATED IN INDIVIDUAL NETWORKS
+
+# 10 Small 2002 (Network 18 and 30 in network all folder) 2 independent networks.
+
+
+
