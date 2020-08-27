@@ -16,6 +16,8 @@ arroyo_1 <- read.csv("Data/Data_processing/arroyo-correa_2019/arroyo-correa_2019
 #plants
 levels(as.factor(rownames(arroyo_1)))
 rownames(arroyo_1) <- gsub(" sp", " sp.", rownames(arroyo_1))
+rownames(arroyo_1)[rownames(arroyo_1)=="Wahlenbergia albomarginata\xca"] <- "Wahlenbergia albomarginata"
+
 #pollinators
 levels(as.factor(colnames(arroyo_1)))
 colnames(arroyo_1) <- gsub(" sp", " sp.", colnames(arroyo_1))
@@ -32,7 +34,7 @@ colnames(arroyo_1)[colnames(arroyo_1)=="Erythronychia sp.."] <- "Erythronychia s
 colnames(arroyo_1)[colnames(arroyo_1)=="Leioproctus ?waipounamu"] <- "Leioproctus sp."
 
 
-write.csv(arroyo_1, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_1")
+write.csv(arroyo_1, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_1.csv")
 
 #SITE 2
 arroyo_2 <- read.csv("Data/Data_processing/arroyo-correa_2019/arroyo-correa_2019_site_2.csv", row.names = 1, check.names = F)
@@ -40,6 +42,8 @@ arroyo_2 <- read.csv("Data/Data_processing/arroyo-correa_2019/arroyo-correa_2019
 #plants
 levels(as.factor(rownames(arroyo_2)))
 rownames(arroyo_2) <- gsub(" sp", " sp.", rownames(arroyo_2))
+rownames(arroyo_2)[rownames(arroyo_2)=="Wahlenbergia albomarginata\xca"] <- "Wahlenbergia albomarginata"
+
 #pollinators
 levels(as.factor(colnames(arroyo_2)))
 colnames(arroyo_2) <- gsub(" sp", " sp.", colnames(arroyo_2))
@@ -57,7 +61,7 @@ colnames(arroyo_2)[colnames(arroyo_2)=="Chironomidae"] <- "Chironomidae sp."
 colnames(arroyo_2)[colnames(arroyo_2)=="Muscidae"] <- "Muscidae sp."
 colnames(arroyo_2)[colnames(arroyo_2)=="Syrphidae"] <- "Syrphidae sp."
 
-write.csv(arroyo_2, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_2")
+write.csv(arroyo_2, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_2.csv")
 
 
 #SITE 2
@@ -66,6 +70,8 @@ arroyo_3 <- read.csv("Data/Data_processing/arroyo-correa_2019/arroyo-correa_2019
 #plants
 levels(as.factor(rownames(arroyo_3)))
 rownames(arroyo_3) <- gsub(" sp", " sp.", rownames(arroyo_3))
+rownames(arroyo_3)[rownames(arroyo_3)=="Wahlenbergia albomarginata\xca"] <- "Wahlenbergia albomarginata"
+
 #pollinators
 levels(as.factor(colnames(arroyo_3)))
 colnames(arroyo_3) <- gsub(" sp", " sp.", colnames(arroyo_3))
@@ -88,5 +94,5 @@ colnames(arroyo_3)[colnames(arroyo_3)=="Leioproctus ?imitatus"] <- "Leioproctus 
 colnames(arroyo_3)[colnames(arroyo_3)=="Leioproctus sp. aff boltoni"] <- "Leioproctus sp.1"
 
 
-write.csv(arroyo_3, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_3")
+write.csv(arroyo_3, "Data/Data_processing/arroyo-correa_2019/arroyo_correa_new_zealand_2019_3.csv")
 

@@ -20,6 +20,8 @@ library(data.table)
 library(dplyr)
 library(bipartite)
 library(readxl)
+library(rtrees)
+library(ape)
 
 ##########
 #LOAD DATA
@@ -43,7 +45,7 @@ data_id_list <- lapply(seq_along(my_data),
 
 
 ##########################
-#CALCULATE NETWORK METRICS
+# 1 CALCULATE NETWORK METRICS
 ##########################
 #FIRST PREPARE SOME FUNCTIONS
 #and prepare the data
@@ -108,10 +110,11 @@ for (i in names(my_data)){
 
 #Now create a unique dataframe with bind rows from dplyr
 metrics_all <- bind_rows(metrics_list, .id = "column_label")
+colnames(metrics_all)[2] <- "Plant_species"
 
 
 ##############################################
-#NOW MERGE TRAIT DATA WITH THE NETWORK SPECIES
+#2 NOW MERGE TRAIT DATA WITH THE NETWORK SPECIES
 ##############################################
 
 #LOAD TRAIT DATA
@@ -155,9 +158,39 @@ colnames(all_long) <- c("Plant_species", "Id", "Pollinator_species", "Interactio
 #select unique cases for merging data
 plants <- all_long[!duplicated(all_long$Plant_species),]
 
-df <- merge(plants, trait_data_filtered, by = "Plant_species", all=T)
-setwd("~/R_Projects/Reproductive traits")
-write.csv(df, "Data/Trait_data_raw/trial.csv")
+#Remove duplicates
+trait_data_filtered_1 <- trait_data_filtered[!duplicated(trait_data_filtered$Plant_species),]
+df <- merge(plants, trait_data_filtered_1, by = "Plant_species", all=T)
 
+#Here I will have to select the columnd of ID that has no NA's
+#In order to subset by the species of these specific networks
+net <- df[!is.na(df$Id),]
+net[] <- lapply(net, function(x) if(is.factor(x)) factor(x) else x)
+
+##########################################################
+#3 NOW MERGE WITH THE NETWORK METRICS CREATED IN SECTION 1
+##########################################################
+
+all_df <- merge(net, metrics_all, by = "Plant_species", all=T)
+colnames(all_df)[10:12] <- c("family", "genus", "species")
+
+
+##########################################################
+#4 CALCULATE PHYLOGENETIC DISTANCE
+##########################################################
+
+#FROM NOW ON REMEMBER TO USE THE CORRECTED SPECIES NAMES
+phylo <- all_df[,10:12]
+phylo_1 <- tibble(phylo)
+sp <- phylo$Species
+phylo_2 <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant",
+         show_grafted = T, tree_by_user = T)
+
+plot(ladderize(phylo_2), no.margin = T)
+
+
+##########################################################
+#4 I THINK HERE IS TIME TO IMPLEMENT THE MODELS
+##########################################################
 
 
