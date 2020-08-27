@@ -189,8 +189,8 @@ phylo_2 <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant",
 plot(ladderize(phylo_2), no.margin = T)
 
 
-##########################################################
+###############################################
 #4 I THINK HERE IS TIME TO IMPLEMENT THE MODELS
-##########################################################
+###############################################
 
 
