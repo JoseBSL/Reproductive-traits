@@ -173,24 +173,60 @@ net[] <- lapply(net, function(x) if(is.factor(x)) factor(x) else x)
 
 all_df <- merge(net, metrics_all, by = "Plant_species", all=T)
 colnames(all_df)[10:12] <- c("family", "genus", "species")
+#Fixing colnames
+colnames(all_df)[17] <- "Autonomous_selfing_level"
+colnames(all_df)[17] <- "Autonomous_selfing_level"
+colnames(all_df)[76] <- "Net_ID"
 
-
+#Clean dataframe
+all_df_1 <- all_df[,-c(2,3,6,7,8,13,16,63:75)]
+#set all columns names to lower case
+setnames(all_df_1, tolower(names(all_df_1)))
+#dding col named phylo for analysis
+all_df_1$phylo <- all_df_1$species
 ##########################################################
 #4 CALCULATE PHYLOGENETIC DISTANCE
 ##########################################################
 
 #FROM NOW ON REMEMBER TO USE THE CORRECTED SPECIES NAMES
-phylo <- all_df[,10:12]
-phylo_1 <- tibble(phylo)
-sp <- phylo$Species
-phylo_2 <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant",
-         show_grafted = T, tree_by_user = T)
+#Set these species as NA, the tree cannot find these species ad they are giving issues
+#if I leave them as NA
+all_df_1$species[all_df_1$species=="Diospyros seychellarum"] <- NA
+all_df_1$species[all_df_1$species=="Memecylon eleagni"] <- NA
+all_df_1$species[all_df_1$species=="Ocotea laevigata"] <- NA
+all_df_1$species[all_df_1$species=="Soulamea terminaloides"] <- NA
 
-plot(ladderize(phylo_2), no.margin = T)
+#Make these NA's as NA
+all_df_1$species[all_df_1$species=="NA"] <- NA
+all_df_1$species[all_df_1$genus=="NA"] <- NA
+all_df_1$species[all_df_1$fmily=="NA"] <- NA
 
+#REMOVE NA's for calculating distance
+all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
-###############################################
-#4 I THINK HERE IS TIME TO IMPLEMENT THE MODELS
-###############################################
+#Prepare species, genus and family for calculating tree
+phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
+colnames(phylo) <-  c("family", "genus", "species")
 
+#Select unique cases
+phylo_1 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo_1)
+phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
 
+#Convert phylogenetic tree into matrix
+A <- vcv.phylo(phylo_3)
+#Standardize to max value 1
+A <- A/max(A)
+#Unify column names; remove underscore and remove asterik
+rownames(A) <- gsub("\\*", "", rownames(A))
+colnames(A) <- gsub("\\*", "", colnames(A))
+colnames(A) <- gsub("_", " ", colnames(A))
+rownames(A) <- gsub("_", " ", rownames(A))
+
+#Run model
+m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+  data = all_df_2, family = negbinomial(),data2 = list(A = A),
+  sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+  control = list(adapt_delta = 0.99))
+
+conditional_effects
