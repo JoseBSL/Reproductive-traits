@@ -229,4 +229,6 @@ m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)
   sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
   control = list(adapt_delta = 0.99))
 
+
+save.image(file='myEnvironment.RData')
 conditional_effects
