@@ -22,6 +22,8 @@ library(bipartite)
 library(readxl)
 library(rtrees)
 library(ape)
+library(dplyr)
+library(tidyverse)
 
 ##########
 #LOAD DATA
@@ -223,12 +225,36 @@ colnames(A) <- gsub("\\*", "", colnames(A))
 colnames(A) <- gsub("_", " ", colnames(A))
 rownames(A) <- gsub("_", " ", rownames(A))
 
+
+#Convert all NA'S to same type of NA's
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+  is.na(x) <- x=="NA"; x} else {
+    x}
+all_df_2$autonomous_selfing_level <- make.true.NA(all_df_2$autonomous_selfing_level)
+all_df_2 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level),]
+colnames(all_df_2) <- make.unique(names(all_df_2))
+
+#Prepare example with selfing level
+all_df_2 <- all_df_2 %>%
+  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+
+levels(all_df_2$autonomous_selfing_level)
+
 #Run model
 m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-  data = all_df_2, family = negbinomial(),data2 = list(A = A),
+  data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
   sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
   control = list(adapt_delta = 0.99))
+summary(m1)
 
+#Environment for tomorrow´s meeting
+load(file='myEnvironment.RData')
 
-save.image(file='myEnvironment.RData')
-conditional_effects
+conditional_effects(m1)
+
+#Code to fix levels
+all_df_2 <- all_df_2 %>%
+mutate(Autonomous_selfing_level = fct_relevel(Autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_2$Autonomous_selfing_level <- as.factor(all_df_2$Autonomous_selfing_level)
+
