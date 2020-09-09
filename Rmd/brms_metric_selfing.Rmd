@@ -1,18 +1,71 @@
 ---
-title: "Untitled"
+header-includes:
+    - \usepackage{setspace}\doublespacing
 output:
   pdf_document: default
   html_document: default
 ---
 
+\setlength{\abovedisplayskip}{25pt}
+\setlength{\belowdisplayskip}{25pt}
+\setlength{\abovedisplayshortskip}{25pt}
+\setlength{\belowdisplayshortskip}{25pt}
+
+```{r, echo = F}
+library(knitr)
+if(is_latex_output()) {
+  plot_default <- knit_hooks$get("plot")
+  knit_hooks$set(plot = function(x, options) { 
+    x <- c(plot_default(x, options), "\\vspace{25pt}")
+  })
+}
+```
+
 # Model 1 
 
-# $$Visits / SelfingLevel + (1|net_id) + (1|gr(phylo, cov = A))$$
-
-This model contains all both quatitative and qualitative data of selfing levels. The response variable is the integer of visits.
+```brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A))```
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+This model contains both quantitative and qualitative data of selfing levels and the fixed effect is grouped in 4 categories of high, medium, low and none levels of selfing. The response variable is the integer of visits.
+
+Check now the fit of the model:
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=3.5, fig.height=2, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+
+#Model fit
+pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
+
+
+```
+
+The fit seems right, check now estimates, se and credible intervals:
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=3.5, fig.height=2, fig.align='center'}
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#Estimates, se and ci
+d <- p1[[1]][,c(1,7:10)]
+kable(d, "latex") %>%  kable_styling(position = "center")
+
+
+```
+
+Plot output: 
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=5, fig.height=2, fig.align='center'}
 library(brms)
 library(ggplot2)
 library(tidybayes)
@@ -26,18 +79,49 @@ load("Data/RData/brms_data_m1_visits_self_all.RData")
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
 
-
-#Model fit
-pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
-#Estimates, se and ci
-d <- p1[[1]][,c(1,7:10)]
-kable(d, "latex")
+#ylim500
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
 
 ```
 
+\newpage
 
+Set ylim max to 500 in order to improve visualization Some data points not shown.
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=5, fig.height=2, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#ylim500
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none") + ylim(0,500)
+
+```
+
+Try now to logit estimates, credible intervals and points, maybe improves visualization?
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=5, fig.height=2, fig.align='center'}
 library(brms)
 library(ggplot2)
 library(tidybayes)
@@ -68,28 +152,8 @@ ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = o
 
 ```
 
+So far we haven't found big differences between groups. Also note that we have a greater number of low and none self species. This could be discussed. Keep in mind.
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
-library(brms)
-library(ggplot2)
-library(tidybayes)
-library(tidyverse)
-library(kableExtra)
+Now I´m going to exclude the dioecious and monoecioues species that were considered as non-selfers.
 
-setwd("~/R_Projects/Reproductive traits") 
-load("Data/RData/brms_m1_visits_self_all.RData")
-load("Data/RData/brms_data_m1_visits_self_all.RData")
 
-c_e <- conditional_effects(m1)
-p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-
-#ylim500
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_2,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")+ylim(0,500)
-
-```
