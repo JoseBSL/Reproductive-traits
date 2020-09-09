@@ -206,8 +206,12 @@ all_df_1$species[all_df_1$fmily=="NA"] <- NA
 #REMOVE NA's for calculating distance
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
+hist(all_df_2$visits)
+all_df_3 <- all_df_2[all_df_2$sex_or_flower_type!="separated",]
+
+
 #Prepare species, genus and family for calculating tree
-phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
+phylo <- as.data.frame(cbind(all_df_3$family, all_df_3$genus, all_df_3$species))
 colnames(phylo) <-  c("family", "genus", "species")
 
 #Select unique cases
@@ -230,31 +234,47 @@ rownames(A) <- gsub("_", " ", rownames(A))
 make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
   is.na(x) <- x=="NA"; x} else {
     x}
-all_df_2$autonomous_selfing_level <- make.true.NA(all_df_2$autonomous_selfing_level)
-all_df_2 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level),]
-colnames(all_df_2) <- make.unique(names(all_df_2))
+all_df_3$autonomous_selfing_level <- make.true.NA(all_df_3$autonomous_selfing_level)
+all_df_3 <- all_df_3[complete.cases(all_df_3$autonomous_selfing_level),]
+colnames(all_df_3) <- make.unique(names(all_df_3))
 
 #Prepare example with selfing level
-all_df_2 <- all_df_2 %>%
+all_df_3 <- all_df_3 %>%
   mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
-all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+all_df_3$autonomous_selfing_level <- as.factor(all_df_3$autonomous_selfing_level)
 
-levels(all_df_2$autonomous_selfing_level)
+levels(all_df_3$autonomous_selfing_level)
 
 #Run model
-m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-  data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
-  sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-  control = list(adapt_delta = 0.99))
-summary(m1)
+m1_visits <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
+          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          control = list(adapt_delta = 0.99))
+summary(m1_visits)
+pp_check(m1_visits) + xlim(-100,2000)+ylim(0,0.02)
 
-#Environment for tomorrow´s meeting
-load(file='myEnvironment.RData')
 
-conditional_effects(m1)
+c_e <- conditional_effects(m1_visits)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+bayes_R2(m1_visits)
 
-#Code to fix levels
-all_df_2 <- all_df_2 %>%
-mutate(Autonomous_selfing_level = fct_relevel(Autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
-all_df_2$Autonomous_selfing_level <- as.factor(all_df_2$Autonomous_selfing_level)
 
+
+
+#Log
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+#ylim500
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,500)

@@ -85,29 +85,29 @@ clean <- function(x){
 }
 
 
-#Calculate z-score fo each matrix
-#Scale.default does it for the full matrix and not by column (or row) which is default for scale
-i <- NULL
-metrics_list_1 <- list()
-for (i in names(my_data)){
-  metrics_list_1[[i]] <- scale.default(my_data[[i]],center = TRUE, scale = TRUE)
-}
-
-
 #Loop to create a list of dataframes with the 16 networks
 #and the network metrics for each plant species
 i <- NULL
-metrics_list_2 <- list()
+metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list_2[[i]] <- rs_NA(metrics_list_1[[i]])
+  metrics_list[[i]] <- rs_NA(my_data[[i]])
+}
+
+
+
+#Calculate z-score fo each matrix
+#Scale.default does it for the full matrix and not by column (or row) which is default for scale
+i <- NULL
+metrics_list_1 <- metrics_list
+for (i in names(my_data)){
+  metrics_list_1[[i]]$Z_score_sum <- scale(metrics_list_1[[i]]$Visits,center = TRUE, scale = TRUE)
 }
 
 
 #Now create a unique dataframe with bind rows from dplyr
-metrics_all <- bind_rows(metrics_list_2, .id = "column_label")
+metrics_all <- bind_rows(metrics_list_1, .id = "column_label")
 colnames(metrics_all)[1] <- "Net_ID"
 colnames(metrics_all)[2] <- "Plant_species"
-colnames(metrics_all)[3] <- "Z_score_sum"
 
 
 ##############################################
@@ -236,9 +236,16 @@ colnames(A) <- gsub("\\*", "", colnames(A))
 colnames(A) <- gsub("_", " ", colnames(A))
 rownames(A) <- gsub("_", " ", rownames(A))
 
+##
+##Model 1 z_score_sum ~ selfing level
+##
+
+
+min(all_df_2$z_score_sum)
+
 #Run model
 m1 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family = gaussian(),data2 = list(A = A), cores = 4,
+          data = all_df_2, family = inverse.gaussian(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99))
 
@@ -249,11 +256,28 @@ conditional_effects(m1, spaghetti = TRUE) %>%
 
 summary(m1)
 
+pp_check(m1) +ylim(0,1)+xlim(-100,100)
+
+c_eff <- conditional_effects(m1)
+p1 <- plot(c_eff, points=T,plot = FALSE)[[1]]
+
+
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__),color="black") + ylab("Z-scores (visits)") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+
+##
+##Model 1.1 z_score_sum ~ selfing level BUT Now without dioecious and monoecious plants
+##
+
+
 all_df_3 <- all_df_2[all_df_2$sex_or_flower_type!="separated",]
-
-
-
-
 #Prepare species, genus and family for calculating tree
 phylo <- as.data.frame(cbind(all_df_3$family, all_df_3$genus, all_df_3$species))
 colnames(phylo) <-  c("family", "genus", "species")
@@ -274,29 +298,19 @@ colnames(A) <- gsub("_", " ", colnames(A))
 rownames(A) <- gsub("_", " ", rownames(A))
 
 #Run model
-m1 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family = gaussian(),data2 = list(A = A), cores = 4,
+m1.1 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99))
 
 #Tasks, check goodness of fit
 
-plot(m1, pars = "^b")
-c_eff <- conditional_effects(m1)
-pp_check(m1)
-
-
-#Prepare plot for publication
-
-plot(c_eff,plot=FALSE)+scale_fill_manual(values = c("high"= "green", 
-  "medium"= "blue","low"= "yellow","none" = "orange"))
-
-
-p1 <- plot(c_eff, points=T,plot = FALSE)[[1]]
-
-str(p1[[1]])
+plot(m1.1, pars = "^b")
+pp_check(m1.1) +ylim(0,1)
 
 #PLOT DATA
+c_eff <- conditional_effects(m1)
+p1 <- plot(c_eff, points=T,plot = FALSE)[[1]]
 
 ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_3,alpha = 1/4) + 
@@ -318,5 +332,4 @@ ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = o
   geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Z-scores") + xlab("Selfing level")
 
 
-save.image(file='myEnvironment.RData')
 
