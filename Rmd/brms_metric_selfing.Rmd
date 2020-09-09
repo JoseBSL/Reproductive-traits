@@ -6,7 +6,11 @@ output:
 ---
 
 # Model 1 
+
 # $$Visits / SelfingLevel + (1|net_id) + (1|gr(phylo, cov = A))$$
+
+This model contains all both quatitative and qualitative data of selfing levels. The response variable is the integer of visits.
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
 library(brms)
