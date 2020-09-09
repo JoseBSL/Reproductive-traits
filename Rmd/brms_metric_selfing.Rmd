@@ -1,0 +1,91 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Model 1 
+# $$Visits / SelfingLevel + (1|net_id) + (1|gr(phylo, cov = A))$$
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+
+#Model fit
+pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
+#Estimates, se and ci
+d <- p1[[1]][,c(1,7:10)]
+kable(d, "latex")
+
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#Prepare example with selfing level
+all_df_2 <- all_df_2 %>%
+  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+
+#Log
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1_visits_self_all.RData")
+load("Data/RData/brms_data_m1_visits_self_all.RData")
+
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#ylim500
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,500)
+
+```

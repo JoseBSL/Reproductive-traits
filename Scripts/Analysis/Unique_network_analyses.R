@@ -186,11 +186,9 @@ all_df_1 <- all_df[,-c(2,3,6,7,8,13,16,63:75)]
 setnames(all_df_1, tolower(names(all_df_1)))
 #dding col named phylo for analysis
 all_df_1$phylo <- all_df_1$species
-##########################################################
-#4 CALCULATE PHYLOGENETIC DISTANCE
-##########################################################
 
-#FROM NOW ON REMEMBER TO USE THE CORRECTED SPECIES NAMES
+
+#Prepare species to calcute phylogenetic distance
 #Set these species as NA, the tree cannot find these species ad they are giving issues
 #if I leave them as NA
 all_df_1$species[all_df_1$species=="Diospyros seychellarum"] <- NA
@@ -207,8 +205,90 @@ all_df_1$species[all_df_1$fmily=="NA"] <- NA
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
 hist(all_df_2$visits)
-all_df_3 <- all_df_2[all_df_2$sex_or_flower_type!="separated",]
 
+
+##########################################################
+#4 Model1 (m1) VISITS~AUTONOMOUS SELFING LEVEL
+##########################################################
+
+#Prepare species, genus and family for calculating tree
+phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
+colnames(phylo) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_1 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo_1)
+phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A <- vcv.phylo(phylo_3)
+#Standardize to max value 1
+A <- A/max(A)
+#Unify column names; remove underscore and remove asterik
+rownames(A) <- gsub("\\*", "", rownames(A))
+colnames(A) <- gsub("\\*", "", colnames(A))
+colnames(A) <- gsub("_", " ", colnames(A))
+rownames(A) <- gsub("_", " ", rownames(A))
+
+
+#Convert all NA'S to same type of NA's
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+  is.na(x) <- x=="NA"; x} else {
+    x}
+all_df_2$autonomous_selfing_level <- make.true.NA(all_df_2$autonomous_selfing_level)
+all_df_2 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level),]
+colnames(all_df_2) <- make.unique(names(all_df_2))
+
+#Prepare example with selfing level
+all_df_2 <- all_df_2 %>%
+  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+
+
+#Run model
+m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
+          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          control = list(adapt_delta = 0.99))
+summary(m1)
+pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
+
+
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+bayes_R2(m1_visits)
+
+setwd("~/R_Projects/Reproductive traits") 
+save(m1, file = "Data/RData/brms_m1_visits_self_all.RData")
+save(all_df_2, file = "Data/RData/brms_data_m1_visits_self_all.RData")
+
+
+#Log
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+#ylim500
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,500)
+
+
+
+####################################################################################
+#4 Model (m1.1) VISITS~AUTONOMOUS SELFING LEVEL WITHOUT MONOECIOUS AND DIOECIOUS SPP
+####################################################################################
+
+#Flower type separated exclude the fully dioecious or monoecious species
+all_df_3 <- all_df_2[all_df_2$sex_or_flower_type!="separated",]
 
 #Prepare species, genus and family for calculating tree
 phylo <- as.data.frame(cbind(all_df_3$family, all_df_3$genus, all_df_3$species))
@@ -246,23 +326,24 @@ all_df_3$autonomous_selfing_level <- as.factor(all_df_3$autonomous_selfing_level
 levels(all_df_3$autonomous_selfing_level)
 
 #Run model
-m1_visits <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99))
-summary(m1_visits)
-pp_check(m1_visits) + xlim(-100,2000)+ylim(0,0.02)
+m1.1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+                 data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
+                 sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+                 control = list(adapt_delta = 0.99))
 
 
-c_e <- conditional_effects(m1_visits)
-p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-bayes_R2(m1_visits)
+
+summary(m1.1)
+pp_check(m1.1) + xlim(-100,2000)+ylim(0,0.02)
 
 
+c_e.1 <- conditional_effects(m1.1)
+p1.1 <- plot(c_e.1, points=T,plot = FALSE)[[1]]
+bayes_R2(m1.1)
 
 
 #Log
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
@@ -271,10 +352,154 @@ ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = o
   theme(legend.position = "none")
 
 #ylim500
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
   geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
   geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")+ylim(0,500)
+  theme(legend.position = "none")+ylim(0,200)
+
+
+###########################################################################################################################
+#4 Model (m1.2) VISITS~AUTONOMOUS SELFING LEVEL WITHOUT MONOECIOUS AND DIOECIOUS SPP AND JUST QUANTITATIVE+QUALITATIVE DATA 
+###########################################################################################################################
+
+#This data has been put also in 4 categories, analyze it like this
+#But also analyze it in continuum 
+
+
+#Now subset just for quatitative data
+all_df_4 <- subset(all_df_3, all_df_3$autonomous_selfing_level_data_type=="quantitative")
+
+
+#Prepare species, genus and family for calculating tree
+phylo <- as.data.frame(cbind(all_df_4$family, all_df_4$genus, all_df_4$species))
+colnames(phylo) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_1 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo_1)
+phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A <- vcv.phylo(phylo_3)
+#Standardize to max value 1
+A <- A/max(A)
+#Unify column names; remove underscore and remove asterik
+rownames(A) <- gsub("\\*", "", rownames(A))
+colnames(A) <- gsub("\\*", "", colnames(A))
+colnames(A) <- gsub("_", " ", colnames(A))
+rownames(A) <- gsub("_", " ", rownames(A))
+
+
+#Convert all NA'S to same type of NA's
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+  is.na(x) <- x=="NA"; x} else {
+    x}
+all_df_4$autonomous_selfing_level <- make.true.NA(all_df_4$autonomous_selfing_level)
+all_df_4 <- all_df_4[complete.cases(all_df_4$autonomous_selfing_level),]
+colnames(all_df_4) <- make.unique(names(all_df_4))
+
+#Prepare example with selfing level
+all_df_4 <- all_df_4 %>%
+  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_4$autonomous_selfing_level <- as.factor(all_df_4$autonomous_selfing_level)
+
+
+#Run model
+m1.2 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_4, family = negbinomial(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
+
+
+summary(m1.2)
+pp_check(m1.2) + xlim(-100,2000)+ylim(0,0.02)
+
+
+c_e.2 <- conditional_effects(m1.2)
+p1.2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
+bayes_R2(m1.2)
+
+
+#Log
+ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_4,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+#ylim500
+ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_4,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,200)
+
+
+###############################################################################################################
+#4 Model (m1.3) VISITS~AUTONOMOUS SELFING LEVEL WITHOUT MONOECIOUS AND DIOECIOUS SPP AND JUST QUANTITATIVE DATA
+###############################################################################################################
+
+
+#CHECKING DATA SOME NA'S--> REMOVE THEM
+all_df_4$autonomous_selfing_level_fruit_set
+#CRETE NEW DATA.RAME
+all_df_5 <- all_df_4
+all_df_5$autonomous_selfing_level_fruit_set <- make.true.NA(all_df_5$autonomous_selfing_level_fruit_set)
+all_df_5 <- all_df_5[complete.cases(all_df_5$autonomous_selfing_level_fruit_set),]
+#158 DATA ENTRIES 
+all_df_5$autonomous_selfing_level_fruit_set
+
+
+#Prepare species, genus and family for calculating tree
+phylo <- as.data.frame(cbind(all_df_5$family, all_df_5$genus, all_df_5$species))
+colnames(phylo) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_1 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo_1)
+phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A <- vcv.phylo(phylo_3)
+#Standardize to max value 1
+A <- A/max(A)
+#Unify column names; remove underscore and remove asterik
+rownames(A) <- gsub("\\*", "", rownames(A))
+colnames(A) <- gsub("\\*", "", colnames(A))
+colnames(A) <- gsub("_", " ", colnames(A))
+rownames(A) <- gsub("_", " ", rownames(A))
+
+#Prepare example with selfing level
+all_df_5$autonomous_selfing_level_fruit_set <- as.numeric(all_df_5$autonomous_selfing_level_fruit_set)
+
+
+#Run model
+m1.3 <- brm(visits ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_5, family = negbinomial(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
+
+
+summary(m1.3)
+pp_check(m1.3) + xlim(-100,2000)+ylim(0,0.02)
+
+
+c_e.3 <- conditional_effects(m1.3)
+p1.3 <- plot(c_e.3, points=T,plot = FALSE)[[1]]
+bayes_R2(m1.3)
+
+ggplot(data=p1.3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
+  geom_point(data = all_df_5,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,200)
+
