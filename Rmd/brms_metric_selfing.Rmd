@@ -26,7 +26,7 @@ if(is_latex_output()) {
 ```brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A))```
 
 
-This model contains both quantitative and qualitative data of selfing levels and the fixed effect is grouped in 4 categories of high, medium, low and none levels of selfing. The response variable is the integer of visits.
+This model contains both quantitative and qualitative data of selfing levels and the fixed effect is grouped in 4 categories: "high", "medium", "low" and none levels of selfing. The response variable is the integer of visits. Note that the quantitative measurement that we use is autonomous fruit production. 
 
 Check now the fit of the model:
 
