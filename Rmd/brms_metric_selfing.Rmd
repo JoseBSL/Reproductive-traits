@@ -26,7 +26,7 @@ if(is_latex_output()) {
 ```brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A))```
 
 
-This model contains both quantitative and qualitative data of selfing levels and the fixed effect is grouped in 4 categories: "high", "medium", "low" and none levels of selfing. The response variable is the integer of visits. Note that the quantitative measurement that we use is autonomous fruit production. 
+This model uses both quantitative and qualitative data of selfing levels which is grouped in 4 categories: "high", "medium", "low" and "none". The response variable is the integer of visits. Note that the quantitative measurement that we use is autonomous fruit production and is grouped as follows: 0=none, >0-25=low, >25-75=medium; >75-100=high.
 
 Check now the fit of the model:
 
@@ -156,6 +156,9 @@ So far we haven't found big differences between groups. Also note that we have a
 
 Now I´m going to exclude the dioecious and monoecioues species that were considered as non-selfers.
 
+
+\newpage
+
 # Model 2 
 
 ```brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A))```
@@ -205,16 +208,46 @@ setwd("~/R_Projects/Reproductive traits")
 load("Data/RData/brms_m1.1_visits_self_all.RData")
 load("Data/RData/brms_data_m1.1_visits_self_all.RData")
 
-c_e <- conditional_effects(m1.1)
-p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+c_e.1 <- conditional_effects(m1.1)
+p1.1 <- plot(c_e.1, points=T,plot = FALSE)[[1]]
 
 #ylim500
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_2,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  geom_errorbar(data=p1.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
   theme(legend.position = "none")
+
+```
+
+
+\newpage
+
+Set ylim max to 500 in order to improve visualization Some data points not shown.
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=5, fig.height=2, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1.1_visits_self_all.RData")
+load("Data/RData/brms_data_m1.1_visits_self_all.RData")
+
+c_e.1 <- conditional_effects(m1.1)
+p1.1 <- plot(c_e.1, points=T,plot = FALSE)[[1]]
+
+#ylim500
+ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none") + ylim(0,500)
 
 ```

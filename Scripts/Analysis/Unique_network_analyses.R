@@ -342,6 +342,12 @@ p1.1 <- plot(c_e.1, points=T,plot = FALSE)[[1]]
 bayes_R2(m1.1)
 
 
+save(m1.1, file = "Data/RData/brms_m1.1_visits_self_all.RData")
+save(all_df_3, file = "Data/RData/brms_data_m1.1_visits_self_all.RData")
+
+
+
+
 #Log
 ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_3,alpha = 1/4) + 
@@ -480,26 +486,91 @@ rownames(A) <- gsub("_", " ", rownames(A))
 all_df_5$autonomous_selfing_level_fruit_set <- as.numeric(all_df_5$autonomous_selfing_level_fruit_set)
 
 
-#Run model
+#MODEL 1.3 NEGBINOMIAL (INTEGER OF VISITS AS RESPONSE)
 m1.3 <- brm(visits ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
-            data = all_df_5, family = negbinomial(),data2 = list(A = A), cores = 4,
-            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-            control = list(adapt_delta = 0.99))
-
-
-summary(m1.3)
-pp_check(m1.3) + xlim(-100,2000)+ylim(0,0.02)
+              data = all_df_5, family = negbinomial(),data2 = list(A = A), cores = 4,
+              sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+              control = list(adapt_delta = 0.99))
+pp_check(m1.3, nsamples=100) + xlim(-100,300) 
+bayes_R2(m1.3)
+#k1 <- kfold(m1.3)
+hist(all_df_5$visits)
+pp_check(m1.3, nsamples=100) + xlim(-500,500)+ylim(0,0.04)
 
 
 c_e.3 <- conditional_effects(m1.3)
 p1.3 <- plot(c_e.3, points=T,plot = FALSE)[[1]]
-bayes_R2(m1.3)
 
-ggplot(data=p1.3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
+ggplot(data=p1.3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = visits)) +
   geom_point(data = all_df_5,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")+ylim(0,200)
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1.3[[1]],
+  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
 
+#MODEL 1.3.1 GAUSSIAN (LOG OF VISITS AS RESPONSE)
+
+m1.3.1 <- brm(log(visits) ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_5, family = skew_normal(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
+bayes_R2(m1.3.1)
+#k2 <- kfold(m1.3.1)
+loo_compare(k1,k2)
+hist(log(all_df_5$visits))
+pp_check(m1.3.1, nsamples=100) 
+
+
+c_e.3.1 <- conditional_effects(m1.3.1)
+p1.3.1 <- plot(c_e.3.1, points=T,plot = FALSE)[[1]]
+
+ggplot(data=p1.3.1[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
+  geom_point(data = all_df_5,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1.3.1[[1]],
+  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+#MODEL 1.3.2
+
+#Prepare species, genus and family for calculating tree
+phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
+colnames(phylo) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_1 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo_1)
+phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A <- vcv.phylo(phylo_3)
+#Standardize to max value 1
+A <- A/max(A)
+#Unify column names; remove underscore and remove asterik
+rownames(A) <- gsub("\\*", "", rownames(A))
+colnames(A) <- gsub("\\*", "", colnames(A))
+colnames(A) <- gsub("_", " ", colnames(A))
+rownames(A) <- gsub("_", " ", rownames(A))
+
+
+#Convert all NA'S to same type of NA's
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+  is.na(x) <- x=="NA"; x} else {
+    x}
+
+all_df_2$autonomous_selfing_level_fruit_set <- as.numeric(all_df_2$autonomous_selfing_level_fruit_set)
+
+m1.3.2 <- brm(log(visits) ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_2, family = skew_normal(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
+bayes_R2(m1.3.2)
+pp_check(m1.3.2, nsamples=100) 
+
+c_e.3.2 <- conditional_effects(m1.3.2)
+p1.3.2 <- plot(c_e.3.2, points=T,plot = FALSE)[[1]]
+
+ggplot(data=p1.3.2[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1.3.2[[1]],
+   aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
