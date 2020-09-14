@@ -159,7 +159,7 @@ Now I´m going to exclude the dioecious and monoecioues species that were consid
 
 \newpage
 
-# Model 2 
+# Model 2 Excluding species with flowers with separated sexes
 
 ```brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A))```
 
@@ -180,7 +180,7 @@ load("Data/RData/brms_data_m1.1_visits_self_all.RData")
 pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
 ```
 
-The fit seems right, check now estimates, se and credible intervals:
+Again, the fit seems right, check now estimates, se and credible intervals:
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=3.5, fig.height=2, fig.align='center'}
 setwd("~/R_Projects/Reproductive traits") 
@@ -249,5 +249,108 @@ ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = visits,color = orde
   geom_errorbar(data=p1.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
   geom_point(data=p1.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
   theme(legend.position = "none") + ylim(0,500)
+
+```
+
+
+Logit estimates, credible intervals and points
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=5, fig.height=2, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1.1_visits_self_all.RData")
+load("Data/RData/brms_data_m1.1_visits_self_all.RData")
+
+c_e.1 <- conditional_effects(m1.1)
+p1.1 <- plot(c_e.1, points=T,plot = FALSE)[[1]]
+
+#Prepare example with selfing level
+all_df_2 <- all_df_2 %>%
+  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
+all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+
+#Log
+ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1.1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+```
+
+
+Including or excluding dioecious and monoecious species does not make a very big differences in the models. 
+
+BAYES R2 Model 1 including all species
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1.1_visits_self_all.RData")
+load("Data/RData/brms_m1_visits_self_all.RData")
+
+bayes_R2(m1)
+p1[[1]]
+```
+
+BAYES R2 Model 1 without monoecious and dioecious species
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1.1_visits_self_all.RData")
+load("Data/RData/brms_m1_visits_self_all.RData")
+bayes_R2(m1.1)
+p1.1[[1]]
+
+```
+
+Because the qualitative data can add some noise to the analysis now I'm going to exclude it and just consider species that have quantitative information of the auntonomous selfing level. 
+
+#MODEL 3 JUST QUANTITATIVE DATA BUT GROUPED IN 4 CATEGORIES NONE, LOW, MEDIUM, HIGH.
+
+Two distributions fit the data: **Negative binomial** and **skew gaussian** with logit transformation of visits and because for the negative binomial I have to to log transform the data in order to improve visualization. I'm going to keep from now on with a **skew gaussian** with the logit of visits (the output is quite similar).
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/RData/brms_m1.2.1_visits_self_all.RData")
+load("Data/RData/brms_data_m1.2.1_visits_self_all.RData")
+
+c_e.1.2.1 <- conditional_effects(m1.2.1)
+p1.2.1 <- plot(c_e.1.2.1, points=T,plot = FALSE)[[1]]
+
+ggplot(data=p1.2.1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_4,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1.2.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.2.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+bayes_R2(m1.2.1)
+
+p1.2.1[[1]]
 
 ```

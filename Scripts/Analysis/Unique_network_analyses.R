@@ -256,7 +256,7 @@ pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
 
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-bayes_R2(m1_visits)
+bayes_R2(m1)
 
 setwd("~/R_Projects/Reproductive traits") 
 save(m1, file = "Data/RData/brms_m1_visits_self_all.RData")
@@ -373,10 +373,10 @@ ggplot(data=p1.1[[1]], aes(x = autonomous_selfing_level, y = visits,color = orde
 
 #This data has been put also in 4 categories, analyze it like this
 #But also analyze it in continuum 
-
+#Because excluding dioecious/monoecious species does not alter output we keep using all species for the models
 
 #Now subset just for quatitative data
-all_df_4 <- subset(all_df_3, all_df_3$autonomous_selfing_level_data_type=="quantitative")
+all_df_4 <- subset(all_df_2, all_df_2$autonomous_selfing_level_data_type=="quantitative")
 
 
 #Prepare species, genus and family for calculating tree
@@ -428,24 +428,52 @@ c_e.2 <- conditional_effects(m1.2)
 p1.2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
 bayes_R2(m1.2)
 
+#save models
+save(m1.2, file = "Data/RData/brms_m1.2_visits_self_all.RData")
+save(all_df_4, file = "Data/RData/brms_data_m1.2_visits_self_all.RData")
 
 #Log
 ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_4,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  geom_errorbar(data=p1.2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1.2[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
   theme(legend.position = "none")
+
 
 #ylim500
 ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = visits,color = ordered(autonomous_selfing_level))) +
   geom_point(data = all_df_4,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")+ylim(0,200)
+  geom_errorbar(data=p1.2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.2[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")+ylim(0,300)
+
+
+
+m1.2.1 <- brm(log(visits) ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_4, family = skew_normal(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
+
+c_e.2.1 <- conditional_effects(m1.2.1)
+p1.2.1 <- plot(c_e.2.1, points=T,plot = FALSE)[[1]]
+bayes_R2(m1.2.1)
+pp_check(m1.2.1) 
+
+save(m1.2.1, file = "Data/RData/brms_m1.2.1_visits_self_all.RData")
+save(all_df_4, file = "Data/RData/brms_data_m1.2.1_visits_self_all.RData")
+
+
+ggplot(data=p1.2.1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_4,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1.2.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.2.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
 
 
 ###############################################################################################################
@@ -508,6 +536,7 @@ ggplot(data=p1.3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = visits)) 
   aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
 
 #MODEL 1.3.1 GAUSSIAN (LOG OF VISITS AS RESPONSE)
+#WITHOUT DIOECIOUS AND MONOECIOUS SPECIES
 
 m1.3.1 <- brm(log(visits) ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
             data = all_df_5, family = skew_normal(),data2 = list(A = A), cores = 4,
@@ -531,7 +560,7 @@ ggplot(data=p1.3.1[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(vis
 
 
 #MODEL 1.3.2
-
+#WITH DIOECIOUS AND MONOECIOUS SPECIES
 #Prepare species, genus and family for calculating tree
 phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
 colnames(phylo) <-  c("family", "genus", "species")
@@ -563,6 +592,7 @@ m1.3.2 <- brm(log(visits) ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1
             data = all_df_2, family = skew_normal(),data2 = list(A = A), cores = 4,
             sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
             control = list(adapt_delta = 0.99))
+
 bayes_R2(m1.3.2)
 pp_check(m1.3.2, nsamples=100) 
 
