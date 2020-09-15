@@ -10,26 +10,6 @@
 #####
 #################################################
 
-#LOAD LIBRARIES
-library(brms)
-library(ape)
-library(tidybayes)
-library(ggplot2)
-library(reshape2)
-library(data.table)
-library(dplyr)
-library(bipartite)
-library(readxl)
-library(rtrees)
-library(ape)
-library(dplyr)
-library(tidyverse)
-
-##########
-#LOAD DATA
-###########
-
-
 #LOAD NETWORK DATA
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_networks_quantitative") 
@@ -69,6 +49,8 @@ rs_NA <- function(x){
   return(z)
 }
 
+
+
 #Function to prepare data for bipartite analysis
 clean <- function(x){
   w <- x
@@ -80,38 +62,30 @@ clean <- function(x){
   
   return(w)
 }
-#Function to calculate all metrics and bind on dataframe
-met <- function(x){
-  visits <- rs_NA(x)
-  #degree
-  degree <- specieslevel(clean(x), index="degree", level="lower")
-  #normalise degree
-  n_degree <- specieslevel(clean(x), index="normalised degree", level="lower")
-  #specialization
-  d <- specieslevel(clean(x), index="d", level="lower")
-  #closeness
-  closeness <- specieslevel(clean(x), index="closeness", level="lower")
-  #betweenness
-  betweenness <- specieslevel(clean(x), index="betweenness", level="lower")
-  
-  #combine metrics in a unique data frame
-  metrics <- cbind(visits, degree, n_degree, d, closeness, betweenness)
-  return(metrics)
-}
 
 
 #Loop to create a list of dataframes with the 16 networks
 #and the network metrics for each plant species
 i <- NULL
-data <- NULL
 metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list[[i]] <- met(my_data[[i]])
+  metrics_list[[i]] <- rs_NA(my_data[[i]])
+}
+
+
+
+#Calculate z-score fo each matrix
+#Scale.default does it for the full matrix and not by column (or row) which is default for scale
+i <- NULL
+metrics_list_1 <- metrics_list
+for (i in names(my_data)){
+  metrics_list_1[[i]]$Z_score_sum <- scale(metrics_list_1[[i]]$Visits,center = TRUE, scale = TRUE)
 }
 
 
 #Now create a unique dataframe with bind rows from dplyr
-metrics_all <- bind_rows(metrics_list, .id = "column_label")
+metrics_all <- bind_rows(metrics_list_1, .id = "column_label")
+colnames(metrics_all)[1] <- "Net_ID"
 colnames(metrics_all)[2] <- "Plant_species"
 
 
@@ -204,9 +178,8 @@ all_df_1$species[all_df_1$fmily=="NA"] <- NA
 #REMOVE NA's for calculating distance
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
-
 ##########################################################
-#4 Model1 (m1) VISITS~AUTONOMOUS SELFING LEVEL
+#4 Model1 (m1) VISITS~COMPATIBILITY
 ##########################################################
 
 #TWO DISTRIBUTIONS FIT THE DATA:
@@ -237,21 +210,25 @@ rownames(A) <- gsub("_", " ", rownames(A))
 make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
   is.na(x) <- x=="NA"; x} else {
     x}
-all_df_2$autonomous_selfing_level <- make.true.NA(all_df_2$autonomous_selfing_level)
-all_df_2 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level),]
+all_df_2$compatibility <- make.true.NA(all_df_2$compatibility)
+all_df_2 <- all_df_2[complete.cases(all_df_2$compatibility),]
 colnames(all_df_2) <- make.unique(names(all_df_2))
 
+levels(as.factor(all_df_2$compatibility))
+
+
+all_df_3 <-  subset(all_df_2, compatibility=="self_compatible"|compatibility=="partially_self_compatible"|compatibility=="self_incompatible"|compatibility=="monoecious"|compatibility=="dioecious")
+
 #Prepare example with selfing level
-all_df_2 <- all_df_2 %>%
-  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
-all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
+all_df_3 <- all_df_3 %>%mutate(compatibility = fct_relevel(compatibility, levels=c("self_compatible", "partially_self_compatible", "self_incompatible","monoecious", "dioecious")))
+all_df_3$compatibility <- as.factor(all_df_3$compatibility)
 
 #TRY FIRST THE (1) NEGATIVE BINOMIAL DISTRIBUTION
 
-m1 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-            data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
-            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-            control = list(adapt_delta = 0.99))
+m1 <- brm(visits ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
+          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          control = list(adapt_delta = 0.99))
 
 summary(m1)
 pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
@@ -261,21 +238,21 @@ bayes_R2(m1)
 
 #PLOT OUTPUT
 
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_4,alpha = 1/4) + 
+ggplot(data=p1[[1]], aes(x = compatibility, y = log(visits),color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
   theme(legend.position = "none")
 
 
 #TRY NOW THE (2) SKEW NORMAL DISTRIBUTION
 
-m1.2 <- brm(log(visits) ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family = skew_normal(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99))
+m1.2 <- brm(log(visits) ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
 
 summary(m1.2)
 pp_check(m1.2) 
@@ -285,24 +262,27 @@ bayes_R2(m1.2)
 
 #PLOT OUTPUT
 
-ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-geom_point(data = all_df_2,alpha = 1/4) + 
-scale_fill_brewer(palette = "Greys") +
-scale_color_brewer(palette = "Set2") + theme_bw() +
-geom_errorbar(data=p1.2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-geom_point(data=p1.2[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-theme(legend.position = "none")
+ggplot(data=p1.2[[1]], aes(x = compatibility, y = log(visits),color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1.2[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1.2[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
+  theme(legend.position = "none")
 
-##############################################################################################
-#4 Model2 (m2) VISITS~AUTONOMOUS SELFING LEVEL JUST QUANTITATIVE DATA CONVERTED TO QUALITATIVE
-##############################################################################################
+##########################################################
+#4 Model2 (m2) Z-SCORE~COMPATIBILITY
+##########################################################
 
-#The reason why we try this is because combining the quantitative data with the qualitative 
-#can add some noise to a possible trend due to for these species no specific breeding experiment
-#has been conducted
-
-
-
+m2 <- brm(z_score_sum ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
+            data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
+            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+            control = list(adapt_delta = 0.99))
 
 
-
+summary(m2)
+pp_check(m2) +xlim(-10,10)
+c_e.2 <- conditional_effects(m2)
+p2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
+bayes_R2(m2)
+plot(c_e.2, points=T,plot = FALSE)[[1]]

@@ -3,12 +3,14 @@
 ######
 ####
 ##
-# NETWORK ANALYSIS
+# NETWORK ANALYSIS VISITS~SELFING LEVEL
 ##
 ###
 ####
 #####
 #################################################
+
+
 
 #LOAD LIBRARIES
 library(brms)
@@ -22,13 +24,9 @@ library(bipartite)
 library(readxl)
 library(rtrees)
 library(ape)
-library(tidyverse)
-library(ggdist)
 library(dplyr)
+library(tidyverse)
 
-##########
-#LOAD DATA
-###########
 
 
 #LOAD NETWORK DATA
@@ -127,6 +125,8 @@ colnames(trait_data_filtered)[1] <- "Plant_species"
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_networks_quantitative") 
 
+#It is call subset because I do not use all the networks
+#In total between 20 and 30, still adding... Do not know exact number yet
 
 #Workflow found on stackoverflow to read all the files in a list
 temp <- list.files(pattern="*.csv")
@@ -171,6 +171,11 @@ colnames(all_df)[10:12] <- c("family", "genus", "species")
 #Fixing colnames
 colnames(all_df)[17] <- "Autonomous_selfing_level"
 colnames(all_df)[17] <- "Autonomous_selfing_level"
+colnames(all_df)[76] <- "Net_ID"
+
+
+levels(as.factor(all_df$Flower_morphology))
+
 
 #Clean dataframe
 all_df_1 <- all_df[,-c(2,3,6,7,8,13,16,63:75)]
@@ -180,8 +185,9 @@ setnames(all_df_1, tolower(names(all_df_1)))
 all_df_1$phylo <- all_df_1$species
 
 
-#FROM NOW ON REMEMBER TO USE THE CORRECTED SPECIES NAMES
-#Set these species as NA, the get tree cannot find these species ad they are giving issues
+#Prepare species to calcute phylogenetic distance
+#Set these species as NA, the tree cannot find these species ad they are giving issues
+#if I leave them as NA
 all_df_1$species[all_df_1$species=="Diospyros seychellarum"] <- NA
 all_df_1$species[all_df_1$species=="Memecylon eleagni"] <- NA
 all_df_1$species[all_df_1$species=="Ocotea laevigata"] <- NA
@@ -195,27 +201,13 @@ all_df_1$species[all_df_1$fmily=="NA"] <- NA
 #REMOVE NA's for calculating distance
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
-
-#Convert all NA'S to same type of NA's
-make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
-  is.na(x) <- x=="NA"; x} else {
-    x}
-all_df_2$autonomous_selfing_level <- make.true.NA(all_df_2$autonomous_selfing_level)
-all_df_2 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level),]
-colnames(all_df_2) <- make.unique(names(all_df_2))
-
-#Prepare example with selfing level
-all_df_2 <- all_df_2 %>%
-  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
-all_df_2$autonomous_selfing_level <- as.factor(all_df_2$autonomous_selfing_level)
-
-levels(all_df_2$autonomous_selfing_level)
-
-
 ##########################################################
-#4 CALCULATE PHYLOGENETIC DISTANCE
+#4 Model1 (m1) VISITS~AUTONOMOUS SELFING LEVEL
 ##########################################################
 
+#TWO DISTRIBUTIONS FIT THE DATA:
+# 1 NEGATIVE BINOMIAL
+# 2 GAUSSIAN/SKEW NORMAL
 
 #Prepare species, genus and family for calculating tree
 phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
@@ -236,100 +228,71 @@ colnames(A) <- gsub("\\*", "", colnames(A))
 colnames(A) <- gsub("_", " ", colnames(A))
 rownames(A) <- gsub("_", " ", rownames(A))
 
-##
-##Model 1 z_score_sum ~ selfing level
-##
+
+#Convert all NA'S to same type of NA's
+make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
+  is.na(x) <- x=="NA"; x} else {
+    x}
+all_df_2$flower_morphology <- make.true.NA(all_df_2$flower_morphology)
+all_df_2 <- all_df_2[complete.cases(all_df_2$flower_morphology),]
+colnames(all_df_2) <- make.unique(names(all_df_2))
 
 
-min(all_df_2$z_score_sum)
+all_df_3 <- subset(all_df_2, flower_morphology=="bowl"| flower_morphology=="brush"| flower_morphology=="campanulate"| flower_morphology=="capitulum"|
+       flower_morphology=="dish"| flower_morphology=="papilionaceous"| flower_morphology=="tube")
 
-#Run model
-m1 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family = inverse.gaussian(),data2 = list(A = A), cores = 4,
+
+#Prepare example with selfing level
+all_df_3 <- all_df_3 %>%
+  mutate(flower_morphology = fct_relevel(flower_morphology, levels=c("bowl", "brush", "campanulate", "capitulum", "dish", "papilionaceous", "tube")))
+all_df_3$flower_morphology <- as.factor(all_df_3$flower_morphology)
+
+table(all_df_3$flower_morphology)
+
+
+#MODEL 1
+
+m1 <- brm(visits ~ flower_morphology + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99))
-
-plot(m1, pars = "^b")
-conditional_effects(m1)
-conditional_effects(m1, spaghetti = TRUE) %>%
-  plot(points = T, point_args = c(alpha = 1/3))
 
 summary(m1)
+pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+bayes_R2(m1)
 
-pp_check(m1) +ylim(0,1)+xlim(-100,100)
+#PLOT OUTPUT
 
-c_eff <- conditional_effects(m1)
-p1 <- plot(c_eff, points=T,plot = FALSE)[[1]]
-
-
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_2,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__),color="black") + ylab("Z-scores (visits)") + xlab("Selfing level")+
-  theme(legend.position = "none")
-
-
-
-##
-##Model 1.1 z_score_sum ~ selfing level BUT Now without dioecious and monoecious plants
-##
-
-
-all_df_3 <- all_df_2[all_df_2$sex_or_flower_type!="separated",]
-#Prepare species, genus and family for calculating tree
-phylo <- as.data.frame(cbind(all_df_3$family, all_df_3$genus, all_df_3$species))
-colnames(phylo) <-  c("family", "genus", "species")
-
-#Select unique cases
-phylo_1 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
-phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
-
-#Convert phylogenetic tree into matrix
-A <- vcv.phylo(phylo_3)
-#Standardize to max value 1
-A <- A/max(A)
-#Unify column names; remove underscore and remove asterik
-rownames(A) <- gsub("\\*", "", rownames(A))
-colnames(A) <- gsub("\\*", "", colnames(A))
-colnames(A) <- gsub("_", " ", colnames(A))
-rownames(A) <- gsub("_", " ", rownames(A))
-
-#Run model
-m1.1 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99))
-
-#Tasks, check goodness of fit
-
-plot(m1.1, pars = "^b")
-pp_check(m1.1) +ylim(0,1)
-
-#PLOT DATA
-c_eff <- conditional_effects(m1)
-p1 <- plot(c_eff, points=T,plot = FALSE)[[1]]
-
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
+ggplot(data=p1[[1]], aes(x = reorder(flower_morphology,visits), y = log(visits),color = ordered(flower_morphology))) +
   geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black")
+  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_morphology, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=flower_morphology, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Flower morphology")+
+  theme(legend.position = "none")
 
-all_df_3$z_score_sum
-#change outliers to max 100 for plotting purpuses
-str(all_df$Z_score_sum)
-all_df_4 <- all_df_3
-all_df_4$z_score_sum[all_df_4$z_score_sum>75] <- 100
-ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_4,alpha = 1/4) + 
+#MODEL 2
+m2 <- brm(z_score_sum ~ flower_morphology + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family  = student(),data2 = list(A = A), cores = 4,
+          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          control = list(adapt_delta = 0.99)) 
+
+
+summary(m2)
+pp_check(m2) 
+c_e.2 <- conditional_effects(m2)
+p2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
+
+
+bayes_R2(m2)
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = reorder(flower_morphology,z_score_sum), y = z_score_sum,color = ordered(flower_morphology))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Z-scores") + xlab("Selfing level")
-
-
-
+  geom_errorbar(data=p2[[1]],mapping=aes(x=flower_morphology, ymin=lower__, ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p2[[1]], mapping=aes(x=flower_morphology, y=estimate__), color="black") + ylab("log(Visits)") + xlab("Flower morphology")+
+  theme(legend.position = "none")
