@@ -516,7 +516,7 @@ all_df_5$autonomous_selfing_level_fruit_set <- as.numeric(all_df_5$autonomous_se
 
 #MODEL 1.3 NEGBINOMIAL (INTEGER OF VISITS AS RESPONSE)
 m1.3 <- brm(visits ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
-              data = all_df_5, family = negbinomial(),data2 = list(A = A), cores = 4,
+              data = all_df_5, family = geometric(),data2 = list(A = A), cores = 4,
               sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
               control = list(adapt_delta = 0.99))
 pp_check(m1.3, nsamples=100) + xlim(-100,300) 
@@ -533,7 +533,7 @@ ggplot(data=p1.3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = visits)) 
   geom_point(data = all_df_5,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1.3[[1]],
-  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2) +ylim(0,250)
 
 #MODEL 1.3.1 GAUSSIAN (LOG OF VISITS AS RESPONSE)
 #WITHOUT DIOECIOUS AND MONOECIOUS SPECIES
