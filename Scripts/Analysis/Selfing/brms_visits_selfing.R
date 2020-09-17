@@ -250,132 +250,20 @@ pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
 bayes_R2(m1)
-
+r2_bayes(m1)
 #PLOT OUTPUT
 
 ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_4,alpha = 1/4) + 
+  geom_point(data = all_df_2,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
   geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
   geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
   theme(legend.position = "none")
 
-
-#TRY NOW THE (2) SKEW NORMAL DISTRIBUTION
-
-m1.2 <- brm(log(visits) ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family = skew_normal(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99))
-
-summary(m1.2)
-pp_check(m1.2) 
-c_e.1.2 <- conditional_effects(m1.2)
-p1.2 <- plot(c_e.1.2, points=T,plot = FALSE)[[1]]
-bayes_R2(m1.2)
-
-#PLOT OUTPUT
-
-ggplot(data=p1.2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-geom_point(data = all_df_2,alpha = 1/4) + 
-scale_fill_brewer(palette = "Greys") +
-scale_color_brewer(palette = "Set2") + theme_bw() +
-geom_errorbar(data=p1.2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-geom_point(data=p1.2[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-theme(legend.position = "none")
-
-##############################################################################################
-#4 Model2 (m2) VISITS~AUTONOMOUS SELFING LEVEL JUST QUANTITATIVE DATA CONVERTED TO QUALITATIVE
-##############################################################################################
-
-#The reason why we try this is because combining the quantitative data with the qualitative 
-#can add some noise to a possible trend due to for these species no specific breeding experiment
-#has been conducted
-
-#subset just for quantitative data
-all_df_3 <- subset(all_df_2, all_df_2$autonomous_selfing_level_data_type=="quantitative")
-
-#Prepare species, genus and family for calculating tree
-phylo <- as.data.frame(cbind(all_df_3$family, all_df_3$genus, all_df_3$species))
-colnames(phylo) <-  c("family", "genus", "species")
-
-#Select unique cases
-phylo_1 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
-phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
-
-#Convert phylogenetic tree into matrix
-A <- vcv.phylo(phylo_3)
-#Standardize to max value 1
-A <- A/max(A)
-#Unify column names; remove underscore and remove asterik
-rownames(A) <- gsub("\\*", "", rownames(A))
-colnames(A) <- gsub("\\*", "", colnames(A))
-colnames(A) <- gsub("_", " ", colnames(A))
-rownames(A) <- gsub("_", " ", rownames(A))
-
-
-#Convert all NA'S to same type of NA's
-make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
-  is.na(x) <- x=="NA"; x} else {
-    x}
-all_df_3$autonomous_selfing_level <- make.true.NA(all_df_3$autonomous_selfing_level)
-all_df_3 <- all_df_3[complete.cases(all_df_3$autonomous_selfing_level),]
-colnames(all_df_3) <- make.unique(names(all_df_3))
-
-#Prepare example with selfing level
-all_df_3 <- all_df_3 %>%
-  mutate(autonomous_selfing_level = fct_relevel(autonomous_selfing_level, levels=c("high", "medium", "low", "none")))
-all_df_3$autonomous_selfing_level <- as.factor(all_df_3$autonomous_selfing_level)
-
-#TRY FIRST THE (1) NEGATIVE BINOMIAL DISTRIBUTION
-#Run model
-m2 <- brm(visits ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-            data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
-            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-            control = list(adapt_delta = 0.99))
-
-
-summary(m2)
-pp_check(m2) + xlim(-100,2000)+ylim(0,0.02)
-c_e.2 <- conditional_effects(m2)
-p2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
-bayes_R2(m2)
-
-#PLOT OUTPUT
-
-ggplot(data=p2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
-  geom_point(data=p2[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")
-
-#TRY NOW THE (2) SKEW NORMAL DISTRIBUTION
-
-
-m2.2 <- brm(log(visits) ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-              data = all_df_3, family = skew_normal(),data2 = list(A = A), cores = 4,
-              sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-              control = list(adapt_delta = 0.99))
-
-summary(m2.2)
-pp_check(m2.2) 
-c_e.2.2 <- conditional_effects(m1.2)
-p2.2 <- plot(c_e.2.2, points=T,plot = FALSE)[[1]]
-bayes_R2(m2.2)
-
-#PLOT OUTPUT
-
-ggplot(data=p2.2[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p2.2[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p2.2[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("log(visits)") + xlab("Selfing level")+
-  theme(legend.position = "none")
+######################################################################
+#MODEL 2
+######################################################################
 
 
 ######################################################################
@@ -400,14 +288,14 @@ pp_check(m3) + xlim(-100,2000)+ylim(0,0.02)
 c_e.3 <- conditional_effects(m3)
 p3 <- plot(c_e.3, points=T,plot = FALSE)[[1]]
 bayes_R2(m3)
-
+r2_bayes(m3)
 #PLOT OUTPUT
 
-ggplot(data=p3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = visits)) +
+ggplot(data=p3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
 geom_point(data = all_df_3,alpha = 1/4) + 
 scale_fill_brewer(palette = "Greys") +
 scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p3[[1]],
-aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)+ ylim(0,400)
+aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
 
 
 
@@ -431,33 +319,14 @@ ggplot(data=p3.1[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visit
   scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p3.1[[1]],
   aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
 
-
-####################################################
-########
-######
-####
-##
-# NETWORK ANALYSIS  Z-SCORES OF VISITS~SELFING LEVEL
-##
-###
-####
-#####
-####################################################
-
+######################################################################
+#MODEL 4 Z-SCORES-SELFING QUALITATIVE DATA
+######################################################################
 #Here we are going to perfom the same analysis but with the scaled data per network
 # Z-scores were calculated previously at the begining of the code
 
-min(all_df_3$z_score_sum)
-str(all_df_3$z_score_sum)
-hist(all_df_3$z_score_sum)
-
-all_df_3$z_score_sum_zero <- all_df_3$z_score_sum + abs(min(all_df_3$z_score_sum))
-str(all_df_3$z_score_sum_zero)
-hist(all_df_3$autonomous_selfing_level_fruit_set)
-min(all_df_3$autonomous_selfing_level)
-
 m4 <- brm(z_score_sum ~ autonomous_selfing_level + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family  = student(),data2 = list(A = A), cores = 4,
+          data = all_df_2, family  = student(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99)) 
 
@@ -469,6 +338,30 @@ p4 <- plot(c_e.4, points=T,plot = FALSE)[[1]]
 bayes_R2(m4)
 plot(c_e.4, points=T,plot = FALSE)[[1]]
 
+ggplot(data=p4[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p4[[1]],mapping=aes(x=autonomous_selfing_level, ymin=(lower__), ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p4[[1]], mapping=aes(x=autonomous_selfing_level, y=(estimate__)), color="black") + ylab("Z-score") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+
+min(all_df_3$z_score_sum)
+str(all_df_3$z_score_sum)
+hist(all_df_3$z_score_sum)
+
+all_df_3$z_score_sum_zero <- all_df_3$z_score_sum + abs(min(all_df_3$z_score_sum))
+str(all_df_3$z_score_sum_zero)
+hist(all_df_3$autonomous_selfing_level_fruit_set)
+min(all_df_3$autonomous_selfing_level)
+
+######################################################################
+#MODEL 5 Z-SCORES-SELFING QUANTITATIVE DATA
+######################################################################
+
+
 m5 <- brm(z_score_sum ~ autonomous_selfing_level_fruit_set + (1|net_id) + (1|gr(phylo, cov = A)),
           data = all_df_3, family  = student(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
@@ -479,5 +372,33 @@ summary(m5)
 pp_check(m5) +xlim(-10,10)
 c_e.5 <- conditional_effects(m5)
 p5 <- plot(c_e.5, points=T,plot = FALSE)[[1]]
-bayes_R2(m5)
+performance::r2_bayes(m5)
 plot(c_e.5, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p5[[1]], aes(x = autonomous_selfing_level_fruit_set, y = z_score_sum)) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p5[[1]],
+  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)+
+  ylab("Z-scores")+ xlab("Autonomous selfing-fruit set")
+
+
+#SAVE MODELS 2 QUALITATIVE (VISITS+Z-SCORES) +2 QUANTITATIVES (VISITS+Z-SCORES)
+#SAVE MODELS
+setwd("~/R_Projects/Reproductive traits") 
+#MODEL 1 VISITS-SELFING QUALITATIVE
+save(m1, file = "Data/Brms/Selfing/brms_m1_visits_selfing_negative_binomial.RData")
+save(all_df_2, file = "Data/Brms/Selfing/brms_data_m1_selfing.RData")
+#MODEL2 VISITS-SELFING QUANTITATIVE
+save(m3, file = "Data/Brms/Selfing/brms_m3_visits_selfing_negative_binomial.RData")
+save(all_df_3, file = "Data/Brms/Selfing/brms_data_m3_selfing.RData")
+#MODEL3(model 4 in the code) Z-SCORE-SELFING QUALITATIVE
+save(m4, file = "Data/Brms/Selfing/brms_m4_z-scores_selfing_student.RData")
+save(all_df_2, file = "Data/Brms/Selfing/brms_data_m4_selfing.RData")
+#MODEL4(model5 in the code) Z-SCORE-SELFING QUALITATIVE
+save(m5, file = "Data/Brms/Selfing/brms_m5_z-scores_selfing_student.RData")
+save(all_df_3, file = "Data/Brms/Selfing/brms_data_m5_selfing.RData")
+
+

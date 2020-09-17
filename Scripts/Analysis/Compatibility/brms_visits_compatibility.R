@@ -234,7 +234,7 @@ summary(m1)
 pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-bayes_R2(m1)
+r2_bayes(m1)
 
 #PLOT OUTPUT
 
@@ -243,32 +243,32 @@ ggplot(data=p1[[1]], aes(x = compatibility, y = log(visits),color = ordered(comp
   scale_fill_brewer(palette = "Greys") +
   scale_color_brewer(palette = "Set2") + theme_bw() +
   geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Selfing level")+
+  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=log(estimate__)), color="black") + ylab("Visits") + xlab("Compatibility")+
   theme(legend.position = "none")
 
 
 #TRY NOW THE (2) SKEW NORMAL DISTRIBUTION
 
-m1.2 <- brm(log(visits) ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
-            data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
-            sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-            control = list(adapt_delta = 0.99))
+#m1.2 <- brm(log(visits) ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
+           # data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
+          #  sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          #  control = list(adapt_delta = 0.99))
 
-summary(m1.2)
-pp_check(m1.2) 
-c_e.1.2 <- conditional_effects(m1.2)
-p1.2 <- plot(c_e.1.2, points=T,plot = FALSE)[[1]]
-bayes_R2(m1.2)
-
+#summary(m1.2)
+#pp_check(m1.2) 
+#c_e.1.2 <- conditional_effects(m1.2)
+#p1.2 <- plot(c_e.1.2, points=T,plot = FALSE)[[1]]
+#bayes_R2(m1.2)
+#r2_bayes(m1.2)
 #PLOT OUTPUT
 
-ggplot(data=p1.2[[1]], aes(x = compatibility, y = log(visits),color = ordered(compatibility))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1.2[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1.2[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")
+#ggplot(data=p1.2[[1]], aes(x = compatibility, y = log(visits),color = ordered(compatibility))) +
+ # geom_point(data = all_df_3,alpha = 1/4) + 
+  #scale_fill_brewer(palette = "Greys") +
+  #scale_color_brewer(palette = "Set2") + theme_bw() +
+  #geom_errorbar(data=p1.2[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  #geom_point(data=p1.2[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Visits") + xlab("Compatibility")+
+  #theme(legend.position = "none")
 
 ##########################################################
 #4 Model2 (m2) Z-SCORE~COMPATIBILITY
@@ -286,3 +286,22 @@ c_e.2 <- conditional_effects(m2)
 p2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
 bayes_R2(m2)
 plot(c_e.2, points=T,plot = FALSE)[[1]]
+r2_bayes(m2)
+
+ggplot(data=p2[[1]], aes(x = compatibility, y = z_score_sum,color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p2[[1]],mapping=aes(x=compatibility, ymin=(lower__), ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p2[[1]], mapping=aes(x=compatibility, y=(estimate__)), color="black") + ylab("Z-scores") + xlab("Compatibility")+
+  theme(legend.position = "none")
+
+
+#SAVE DATA 2 MODELS
+
+#SAVE MODELS
+setwd("~/R_Projects/Reproductive traits") 
+save(m1, file = "Data/Brms/Compatibility/brms_m1_visits_compatibility_negative_binomial.RData")
+save(m2, file = "Data/Brms/Compatibility/brms_m2_z-scores_compatibility_student.RData")
+save(all_df_3, file = "Data/Brms/Compatibility/brms_data_compatibility.RData")
+
