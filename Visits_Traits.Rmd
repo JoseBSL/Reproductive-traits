@@ -1,0 +1,212 @@
+---
+header-includes:
+    - \usepackage{setspace}\doublespacing
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+\setlength{\abovedisplayskip}{25pt}
+\setlength{\belowdisplayskip}{25pt}
+\setlength{\abovedisplayshortskip}{25pt}
+\setlength{\belowdisplayshortskip}{25pt}
+
+```{r, echo = F}
+library(knitr)
+if(is_latex_output()) {
+  plot_default <- knit_hooks$get("plot")
+  knit_hooks$set(plot = function(x, options) { 
+    x <- c(plot_default(x, options), "\\vspace{25pt}")
+  })
+}
+```
+
+#COMPATIBILITY
+
+##VISITS~COMPATIBILITY
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Compatibility/brms_m1_visits_compatibility_negative_binomial.RData")
+load("Data/Brms/Compatibility/brms_data_compatibility.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = compatibility, y = log(visits),color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Compatibility")+
+  theme(legend.position = "none")
+
+
+```
+
+
+##Z-SCORES~COMPATIBILITY
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Compatibility/brms_m2_z-scores_compatibility_student.RData")
+load("Data/Brms/Compatibility/brms_data_compatibility.RData")
+c_e <- conditional_effects(m2)
+p2 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = compatibility, y = z_score_sum,color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p2[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p2[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Z-score") + xlab("Compatibility")+
+  theme(legend.position = "none")
+
+
+```
+
+\newpage
+
+
+#AUTONOMOUS SELFING FRUIT SET 
+
+##VISITS~SELFING:QUALITATIVE DATA
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m1_visits_selfing_negative_binomial.RData")
+load("Data/Brms/Selfing/brms_data_m1_selfing.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = log(visits),color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Autonomous selfing level")+
+  theme(legend.position = "none")
+
+
+```
+
+##VISITS~SELFING:QUANTITATIVE DATA
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m3_visits_selfing_negative_binomial.RData")
+load("Data/Brms/Selfing/brms_data_m3_selfing.RData")
+c_e <- conditional_effects(m3)
+p3 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(visits))) +
+geom_point(data = all_df_3,alpha = 1/4) + 
+scale_fill_brewer(palette = "Greys") +
+scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p3[[1]],
+aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+```
+
+\newpage
+
+#AUTONOMOUS SELFING FRUIT SET 
+
+##Z-SCORES~SELFING:QUALITATIVE DATA
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m4_z-scores_selfing_student.RData")
+load("Data/Brms/Selfing/brms_data_m4_selfing.RData")
+c_e <- conditional_effects(m4)
+p4 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+ggplot(data=p4[[1]], aes(x = autonomous_selfing_level, y = z_score_sum,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p4[[1]],mapping=aes(x=autonomous_selfing_level, ymin=(lower__), ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p4[[1]], mapping=aes(x=autonomous_selfing_level, y=(estimate__)), color="black") + ylab("Z-score") + xlab("Selfing level")+theme(legend.position = "none")
+
+
+
+```
+
+##Z-SCORES-SELFING:QUALITATIVE DATA
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m5_z-scores_selfing_student.RData")
+load("Data/Brms/Selfing/brms_data_m5_selfing.RData")
+c_e <- conditional_effects(m5)
+p5 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p5[[1]], aes(x = autonomous_selfing_level_fruit_set, y = z_score_sum)) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p5[[1]],
+  aes(y = estimate__, ymin = lower__, ymax = upper__),stat = "identity", color = "black", alpha = 0.1, size = 1/2)+
+  ylab("Z-scores")+ xlab("Autonomous selfing-fruit set")
+
+```
+
+
+
+
