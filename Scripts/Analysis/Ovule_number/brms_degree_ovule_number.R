@@ -3,13 +3,12 @@
 ######
 ####
 ##
-# NETWORK ANALYSIS VISITS~FLOWER SIMMETRY
+# NETWORK ANALYSIS DEGREE ~ COROLLA LENGTH
 ##
 ###
 ####
 #####
 #################################################
-
 
 #LOAD LIBRARIES
 library(brms)
@@ -26,6 +25,9 @@ library(ape)
 library(dplyr)
 library(tidyverse)
 
+##########
+#LOAD DATA
+###########
 
 
 #LOAD NETWORK DATA
@@ -67,8 +69,6 @@ rs_NA <- function(x){
   return(z)
 }
 
-
-
 #Function to prepare data for bipartite analysis
 clean <- function(x){
   w <- x
@@ -80,20 +80,35 @@ clean <- function(x){
   
   return(w)
 }
+#Function to calculate all metrics and bind on dataframe
+met <- function(x){
+  visits <- rs_NA(x)
+  #degree
+  degree <- specieslevel(clean(x), index="degree", level="lower")
+  #normalise degree
+  n_degree <- specieslevel(clean(x), index="normalised degree", level="lower")
+  #specialization
+  d <- specieslevel(clean(x), index="d", level="lower")
+  #closeness
+  closeness <- specieslevel(clean(x), index="closeness", level="lower")
+  #betweenness
+  betweenness <- specieslevel(clean(x), index="betweenness", level="lower")
+  
+  #combine metrics in a unique data frame
+  metrics <- cbind(visits, degree, n_degree, d, closeness, betweenness)
+  return(metrics)
+}
 
 
 #Loop to create a list of dataframes with the 16 networks
 #and the network metrics for each plant species
 i <- NULL
+data <- NULL
 metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list[[i]] <- rs_NA(my_data[[i]])
+  metrics_list[[i]] <- met(my_data[[i]])
 }
 
-
-
-#Calculate z-score fo each matrix
-#Scale.default does it for the full matrix and not by column (or row) which is default for scale
 i <- NULL
 metrics_list_1 <- metrics_list
 for (i in names(my_data)){
@@ -105,6 +120,8 @@ for (i in names(my_data)){
 metrics_all <- bind_rows(metrics_list_1, .id = "column_label")
 colnames(metrics_all)[1] <- "Net_ID"
 colnames(metrics_all)[2] <- "Plant_species"
+
+
 
 
 ##############################################
@@ -228,23 +245,15 @@ rownames(A) <- gsub("_", " ", rownames(A))
 make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
   is.na(x) <- x=="NA"; x} else {
     x}
-all_df_2$plant_height_mean_m <- make.true.NA(all_df_2$flower_symmetry)
-all_df_2 <- all_df_2[complete.cases(all_df_2$flower_symmetry),]
+all_df_2$ovules_mean <- make.true.NA(all_df_2$ovules_mean)
+all_df_2 <- all_df_2[complete.cases(all_df_2$ovules_mean),]
 colnames(all_df_2) <- make.unique(names(all_df_2))
-levels(as.factor(all_df_2$flower_symmetry))
-
-
-all_df_3 <-  subset(all_df_2, flower_symmetry=="actinomorphic"|flower_symmetry=="zygomorphic")
-
-#Prepare example with selfing level
-all_df_3 <- all_df_3 %>%mutate(flower_symmetry = fct_relevel(flower_symmetry, levels=c("actinomorphic", "zygomorphic")))
-all_df_3$flower_symmetry <- as.factor(all_df_3$flower_symmetry)
-
+all_df_2$ovules_mean <- as.numeric(all_df_2$ovules_mean)
 
 #NEGATIVE BINOMIAL DISTRIBUTION
 
-m1 <- brm(visits ~ flower_symmetry + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
+m1 <- brm(degree ~ ovules_mean + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99))
 
@@ -252,46 +261,24 @@ summary(m1)
 pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
 bayes_R2(m1)
 
 #PLOT OUTPUT
 
-ggplot(data=p1[[1]], aes(x = flower_symmetry, y = log(visits),color = ordered(flower_symmetry))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
+ggplot(data=p1[[1]], aes(x = log(ovules_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_symmetry, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=flower_symmetry, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Flower symmetry")+
-  theme(legend.position = "none")
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+                                                                  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
 
 
-#T-STUDENT WITH Z-SCORES
-
-m2 <- brm(z_score_sum ~ flower_symmetry + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family  = student(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99)) 
-
-summary(m2)
-pp_check(m2) +xlim(-10,10)
-c_e2 <- conditional_effects(m2)
-p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
-bayes_R2(m2)
-
-#PLOT OUTPUT
-
-ggplot(data=p2[[1]], aes(x = flower_symmetry, y = z_score_sum,color = ordered(flower_symmetry))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p2[[1]],mapping=aes(x=flower_symmetry, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p2[[1]], mapping=aes(x=flower_symmetry, y=estimate__), color="black") + ylab("Z-score") + xlab("Flower symmetry")+
-  theme(legend.position = "none")
 
 #SAVE MODELS
 setwd("~/R_Projects/Reproductive traits") 
-save(m1, file = "Data/Brms/Flower_symmetry/brms_m1_visits_flower_symmetry_negative_binomial.RData")
-save(m2, file = "Data/Brms/Flower_symmetry/brms_m1_z-scores_flower_symmetry_student.RData")
-save(all_df_3, file = "Data/Brms/Flower_symmetry/brms_data_flower_symmetry.RData")
+save(m1, file = "Data/Brms/Ovule_number/brms_m1_degree_ovules_mean_negative_binomial.RData")
+save(all_df_2, file = "Data/Brms/Ovule_number/brms_data_degree_ovules_mean.RData")
+
+
 
 

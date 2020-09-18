@@ -284,8 +284,6 @@ summary(m2)
 pp_check(m2) 
 c_e.2 <- conditional_effects(m2)
 p2 <- plot(c_e.2, points=T,plot = FALSE)[[1]]
-
-
 bayes_R2(m2)
 #PLOT OUTPUT
 
@@ -296,3 +294,13 @@ ggplot(data=p2[[1]], aes(x = reorder(flower_morphology,z_score_sum), y = z_score
   geom_errorbar(data=p2[[1]],mapping=aes(x=flower_morphology, ymin=lower__, ymax=(upper__)), width=.1, color="black")+
   geom_point(data=p2[[1]], mapping=aes(x=flower_morphology, y=estimate__), color="black") + ylab("log(Visits)") + xlab("Flower morphology")+
   theme(legend.position = "none")
+
+
+
+#SAVE MODELS
+setwd("~/R_Projects/Reproductive traits") 
+save(m1, file = "Data/Brms/Flower_morphology/brms_m1_visits_flower_morphology_negative_binomial.RData")
+save(m2, file = "Data/Brms/Flower_morphology/brms_m1_z-scores_flower_morphology_student.RData")
+save(all_df_3, file = "Data/Brms/Flower_morphology/brms_data_flower_morphology.RData")
+
+

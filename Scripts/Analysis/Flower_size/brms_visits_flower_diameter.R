@@ -282,7 +282,7 @@ ggplot(data=p2[[1]], aes(x = corolla_diameter_mean, y = (z_score_sum))) +
 #SAVE MODELS
 setwd("~/R_Projects/Reproductive traits") 
 save(m1, file = "Data/Brms/Flower_size/brms_m1_visits_flower_diameter_negative_binomial.RData")
-save(m2, file = "Data/Brms/Flower_size/brms_m1_z-scores_flower_diameter_student.RData")
+save(m2, file = "Data/Brms/Flower_size/brms_m2_z-scores_flower_diameter_student.RData")
 save(all_df_2, file = "Data/Brms/Flower_size/brms_data_flower_diameter.RData")
 
 
