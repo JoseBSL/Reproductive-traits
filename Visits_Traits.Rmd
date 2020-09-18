@@ -208,5 +208,408 @@ ggplot(data=p5[[1]], aes(x = autonomous_selfing_level_fruit_set, y = z_score_sum
 ```
 
 
+#FLOWER DIAMETER
+
+##VISITS-FLOWER DIAMETER
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
 
 
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m1_visits_flower_diameter_negative_binomial.RData")
+load("Data/Brms/Flower_size/brms_data_flower_diameter.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(corolla_diameter_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+```
+
+##Z-SCORES-FLOWER DIAMETER
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m2_z-scores_flower_diameter_student.RData")
+load("Data/Brms/Flower_size/brms_data_flower_diameter.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = log(corolla_diameter_mean), y = (z_score_sum))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
+  aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+#FLOWER LENGTH
+
+##VISITS-FLOWER LENGTH
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m1_visits_flower_length_negative_binomial.RData")
+load("Data/Brms/Flower_size/brms_data_flower_length.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(corolla_length_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+```
+
+##Z-SCORES-FLOWER LENGTH
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m2_z-scores_flower_length_student.RData")
+load("Data/Brms/Flower_size/brms_data_flower_length.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = log(corolla_length_mean), y = (z_score_sum))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
+  aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+
+#STYLE LENGTH
+
+##VISITS-STYLE LENGTH
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Style_length/brms_m1_visits_style_length_negative_binomial.RData")
+load("Data/Brms/Style_length/brms_data_style_length.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(style_length_mm), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+```
+
+##Z-SCORES-STYLE LENGTH
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Style_length/brms_m1_z-scores_style_length_student.RData")
+load("Data/Brms/Style_length/brms_data_style_length.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = log(style_length_mm), y = z_score_sum)) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
+  aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+
+#OVULE NUMBER
+
+##VISITS-OVULE NUMBER
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Ovule_number/brms_m1_visits_ovules_mean_negative_binomial.RData")
+load("Data/Brms/Ovule_number/brms_data_ovules_mean.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(ovules_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+```
+
+
+##Z-SCORES-OVULE NUMBER
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Ovule_number/brms_m1_z-scores_ovules_mean_student.RData")
+load("Data/Brms/Ovule_number/brms_data_ovules_mean.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = log(ovules_mean), y = z_score_sum)) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
+  aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+\newpage
+
+#FLOWER MORPHOLOGY
+
+##VISITS-FLOWER MORPHOLOGY
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_morphology/brms_m1_visits_flower_morphology_negative_binomial.RData")
+load("Data/Brms/Flower_morphology/brms_data_flower_morphology.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = reorder(flower_morphology,visits), y = log(visits),color = ordered(flower_morphology))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_morphology, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=flower_morphology, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Flower morphology")+
+  theme(legend.position = "none")
+
+```
+
+##Z-SCORES-FLOWER MORPHOLOGY
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_morphology/brms_m1_z-scores_flower_morphology_student.RData")
+load("Data/Brms/Flower_morphology/brms_data_flower_morphology.RData")
+c_e <- conditional_effects(m2)
+p2 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = reorder(flower_morphology,z_score_sum), y = z_score_sum,color = ordered(flower_morphology))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p2[[1]],mapping=aes(x=flower_morphology, ymin=lower__, ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p2[[1]], mapping=aes(x=flower_morphology, y=estimate__), color="black") + ylab("Z-scores") + xlab("Flower morphology")+
+  theme(legend.position = "none")
+
+```
+
+
+\newpage
+
+#FLOWER SYMMETRY
+
+##VISITS-FLOWER SYMMETRY
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_symmetry/brms_m1_visits_flower_symmetry_negative_binomial.RData")
+load("Data/Brms/Flower_symmetry/brms_data_flower_symmetry.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = flower_symmetry, y = log(visits),color = ordered(flower_symmetry))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_symmetry, ymin=log(lower__), ymax=log(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=flower_symmetry, y=log(estimate__)), color="black") + ylab("log(Visits)") + xlab("Flower symmetry")+
+  theme(legend.position = "none")
+
+
+```
+
+
+##Z-SCORES-FLOWER SYMMETRY
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_symmetry/brms_m1_z-scores_flower_symmetry_student.RData")
+load("Data/Brms/Flower_symmetry/brms_data_flower_symmetry.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = flower_symmetry, y = z_score_sum,color = ordered(flower_symmetry))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p2[[1]],mapping=aes(x=flower_symmetry, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p2[[1]], mapping=aes(x=flower_symmetry, y=estimate__), color="black") + ylab("Z-scores") + xlab("Flower symmetry")+
+  theme(legend.position = "none")
+
+```
+
+
+#PLANT HEIGHT
+
+##VISITS-PLANT HEIGHT
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Plant_height/brms_m1_visits_plant_height_negative_binomial.RData")
+load("Data/Brms/Plant_height/brms_data_plant_height.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(plant_height_mean_m), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+ aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+
+##Z-SCORES-PLANT HEIGHT
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Plant_height/brms_m1_z-scores_plant_height_student.RData")
+load("Data/Brms/Plant_height/brms_data_plant_height.RData")
+c_e2 <- conditional_effects(m2)
+p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p2[[1]], aes(x = log(plant_height_mean_m), y = (z_score_sum))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
+ aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+```

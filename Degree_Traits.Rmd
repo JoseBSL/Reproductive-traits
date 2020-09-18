@@ -1,0 +1,350 @@
+---
+header-includes:
+    - \usepackage{setspace}\doublespacing
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+\setlength{\abovedisplayskip}{25pt}
+\setlength{\belowdisplayskip}{25pt}
+\setlength{\abovedisplayshortskip}{25pt}
+\setlength{\belowdisplayshortskip}{25pt}
+
+```{r, echo = F}
+library(knitr)
+if(is_latex_output()) {
+  plot_default <- knit_hooks$get("plot")
+  knit_hooks$set(plot = function(x, options) { 
+    x <- c(plot_default(x, options), "\\vspace{25pt}")
+  })
+}
+```
+
+#COMPATIBILITY
+
+##DEGREE~COMPATIBILITY
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Compatibility/brms_m1_degree_compatibility.RData")
+load("Data/Brms/Compatibility/brms_data_degree_m1_compatibility.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+ggplot(data=p1[[1]], aes(x = reorder(compatibility, -degree), y = degree,color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Degree") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+
+```
+
+\newpage
+
+#SELFING
+
+##DEGREE~SELFING QUALITATIVE
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m1_degree_selfing_quant_and_quali_negative_binomial.RData")
+load("Data/Brms/Selfing/brms_data_degree_m2_m3_selfing.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+ggplot(data=p1[[1]], aes(x = autonomous_selfing_level, y = degree,color = ordered(autonomous_selfing_level))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+theme(legend.position = "none")
+
+
+
+```
+
+
+##DEGREE~SELFING QUANTITATIVE
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Selfing/brms_m3_degree_selfing_quant_negative_binomial.RData")
+load("Data/Brms/Selfing/brms_data_degree_m1_selfing.RData")
+c_e3 <- conditional_effects(m3)
+p3 <- plot(c_e3, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+ggplot(data=p3[[1]], aes(x = autonomous_selfing_level_fruit_set, y = log(degree))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p3[[1]],
+ aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+
+```
+
+
+#FLOWER DIAMETER
+
+##DEGREE~FLOWER DIAMETER
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m1_visits_flower_diameter_negative_binomial.RData")
+load("Data/Brms/Flower_size/brms_data_flower_diameter.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(corolla_diameter_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+
+\newpage
+
+#FLOWER LENGTH
+
+##DEGREE~FLOWER LENGTH
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_size/brms_m1_degree_flower_length_negative_binomial.RData")
+load("Data/Brms/Flower_size/brms_data_degree_flower_length.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(corolla_length_mean), y = degree)) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+```
+
+\newpage
+
+
+#STYLE LENGTH
+
+##DEGREE~STYLE LENGTH
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Style_length/brms_m1_degree_style_length_negative_binomial.RData")
+load("Data/Brms/Style_length/brms_data_degree_style_length.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+
+ggplot(data=p1[[1]], aes(x = log(style_length_mm), y = degree)) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+ aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+```
+
+
+\newpage
+
+#OVULE NUMBER
+
+##DEGREE~OVULE NUMBER
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Ovule_number/brms_m1_degree_ovules_mean_negative_binomial.RData")
+load("Data/Brms/Ovule_number/brms_data_degree_ovules_mean.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(ovules_mean), y = log(visits))) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+ aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+```
+
+
+
+
+\newpage
+
+#FLOWER MORPHOLOGY
+
+##DEGREE~FLOWER MORPHOLOGY
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_morphology/brms_m1_degree_flower_morphology.RData")
+load("Data/Brms/Flower_morphology/brms_data_degree_m1_flower_morphology.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = reorder(flower_morphology, -degree), y = degree,color = ordered(flower_morphology))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_morphology, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=flower_morphology, y=estimate__), color="black") + ylab("Degree") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
+
+```
+
+
+\newpage
+
+#FLOWER SYMMETRY
+##DEGREE~FLOWER SYMMETRY
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Flower_symmetry/brms_m1_degree_flower_symmetry_negative_binomial.RData")
+load("Data/Brms/Flower_symmetry/brms_data_degree_flower_symmetry.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = flower_symmetry, y = degree,color = ordered(flower_symmetry))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=flower_symmetry, ymin=(lower__), ymax=(upper__)), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=flower_symmetry, y=(estimate__)), color="black") + ylab("log(Visits)") + xlab("Flower symmetry")+theme(legend.position = "none")
+
+```
+
+
+#PLANT HEIGHT
+##DEGREE~PLANT HEIGHT
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.width=7, fig.height=3, fig.align='center'}
+library(brms)
+library(ggplot2)
+library(tidybayes)
+library(tidyverse)
+library(kableExtra)
+
+
+setwd("~/R_Projects/Reproductive traits") 
+load("Data/Brms/Plant_height/brms_m1_degree_plant_height_negative_binomial.RData")
+load("Data/Brms/Plant_height/brms_data_degree_plant_height.RData")
+c_e <- conditional_effects(m1)
+p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
+
+#PLOT OUTPUT
+
+ggplot(data=p1[[1]], aes(x = log(plant_height_mean_m), y = degree)) +
+  geom_point(data = all_df_2,alpha = 1/4) + 
+  scale_fill_brewer(palette = "Greys") +
+  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
+ aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+
+
+
+```
+
+
