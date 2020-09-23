@@ -6,7 +6,7 @@
 library(reshape2)
 library(stringr)
 library(tibble)
-
+library(dplyr)
 ##################
 #LOAD NETWORK DATA
 ##################
@@ -269,7 +269,10 @@ all_l_1 <- all_l[,-c(1,2,4,5)]
 str(all_l_1)
 
 #merge
-library(data.table)
 merged_all <- merge(Long_data,unique(all_l_1),by ="Pollinator_species",sort=FALSE)
+
+levels(as.factor(merged_all$order))
+
+
 
 

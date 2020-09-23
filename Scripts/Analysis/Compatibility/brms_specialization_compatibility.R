@@ -3,13 +3,12 @@
 ######
 ####
 ##
-# NETWORK ANALYSIS VISITS~FLOWER DIAMETER
+# NETWORK ANALYSIS
 ##
 ###
 ####
 #####
 #################################################
-
 
 #LOAD LIBRARIES
 library(brms)
@@ -26,6 +25,9 @@ library(ape)
 library(dplyr)
 library(tidyverse)
 
+##########
+#LOAD DATA
+###########
 
 
 #LOAD NETWORK DATA
@@ -67,8 +69,6 @@ rs_NA <- function(x){
   return(z)
 }
 
-
-
 #Function to prepare data for bipartite analysis
 clean <- function(x){
   w <- x
@@ -80,20 +80,35 @@ clean <- function(x){
   
   return(w)
 }
+#Function to calculate all metrics and bind on dataframe
+met <- function(x){
+  visits <- rs_NA(x)
+  #degree
+  degree <- specieslevel(clean(x), index="degree", level="lower")
+  #normalise degree
+  n_degree <- specieslevel(clean(x), index="normalised degree", level="lower")
+  #specialization
+  d <- specieslevel(clean(x), index="d", level="lower")
+  #closeness
+  closeness <- specieslevel(clean(x), index="closeness", level="lower")
+  #betweenness
+  betweenness <- specieslevel(clean(x), index="betweenness", level="lower")
+  
+  #combine metrics in a unique data frame
+  metrics <- cbind(visits, degree, n_degree, d, closeness, betweenness)
+  return(metrics)
+}
 
 
 #Loop to create a list of dataframes with the 16 networks
 #and the network metrics for each plant species
 i <- NULL
+data <- NULL
 metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list[[i]] <- rs_NA(my_data[[i]])
+  metrics_list[[i]] <- met(my_data[[i]])
 }
 
-
-
-#Calculate z-score fo each matrix
-#Scale.default does it for the full matrix and not by column (or row) which is default for scale
 i <- NULL
 metrics_list_1 <- metrics_list
 for (i in names(my_data)){
@@ -105,6 +120,7 @@ for (i in names(my_data)){
 metrics_all <- bind_rows(metrics_list_1, .id = "column_label")
 colnames(metrics_all)[1] <- "Net_ID"
 colnames(metrics_all)[2] <- "Plant_species"
+
 
 
 ##############################################
@@ -197,8 +213,9 @@ all_df_1$species[all_df_1$fmily=="NA"] <- NA
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
 
+
 ##########################################################
-#4 Model1 (m1) VISITS~FLOWER DIAMETER
+#4 Model1 (m1) VISITS~AUTONOMOUS SELFING LEVEL
 ##########################################################
 
 #TWO DISTRIBUTIONS FIT THE DATA:
@@ -229,61 +246,54 @@ rownames(A) <- gsub("_", " ", rownames(A))
 make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
   is.na(x) <- x=="NA"; x} else {
     x}
-all_df_2$corolla_diameter_mean <- make.true.NA(all_df_2$corolla_diameter_mean)
-all_df_2 <- all_df_2[complete.cases(all_df_2$corolla_diameter_mean),]
+all_df_2$compatibility <- make.true.NA(all_df_2$compatibility)
+all_df_2 <- all_df_2[complete.cases(all_df_2$compatibility),]
 colnames(all_df_2) <- make.unique(names(all_df_2))
-all_df_2$corolla_diameter_mean <- as.numeric(all_df_2$corolla_diameter_mean)
 
-#NEGATIVE BINOMIAL DISTRIBUTION
+levels(as.factor(all_df_2$compatibility))
 
-m1 <- brm(visits ~ corolla_diameter_mean + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family = negbinomial(),data2 = list(A = A), cores = 4,
+
+all_df_3 <-  subset(all_df_2, compatibility=="self_compatible"|compatibility=="partially_self_compatible"|compatibility=="self_incompatible"|compatibility=="monoecious"|compatibility=="dioecious")
+
+#Prepare example with selfing level
+all_df_3 <- all_df_3 %>%mutate(compatibility = fct_relevel(compatibility, levels=c("self_compatible", "partially_self_compatible", "self_incompatible","monoecious", "dioecious")))
+
+all_df_3$compatibility <- as.factor(all_df_3$compatibility)
+
+levels(as.factor(all_df_3$compatibility))
+
+#MODEL1
+
+m1 <- brm(d ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
+          data = all_df_3, family = student(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99))
 
+hist(all_df_2$degree)
+
 summary(m1)
-pp_check(m1) + xlim(-100,2000)+ylim(0,0.02)
+pp_check(m1) + xlim(-200,200)+ylim(0,0.2)
 c_e <- conditional_effects(m1)
 p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
 bayes_R2(m1)
-
-9#PLOT OUTPUT
-
-ggplot(data=p1[[1]], aes(x = corolla_diameter_mean, y = log(visits))) +
-  geom_point(data = all_df_2,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p1[[1]],
-  aes(y = log(estimate__), ymin = log(lower__), ymax = log(upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
-
-
-
-#T-STUDENT WITH Z-SCORES
-
-m2 <- brm(z_score_sum ~ corolla_diameter_mean + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_2, family  = student(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99)) 
-
-summary(m2)
-pp_check(m2) +xlim(-10,10)
-c_e2 <- conditional_effects(m2)
-p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
-bayes_R2(m2)
-
+performance::r2_bayes(m1)
 #PLOT OUTPUT
 
-ggplot(data=p2[[1]], aes(x = corolla_diameter_mean, y = (z_score_sum))) +
-  geom_point(data = all_df_2,alpha = 1/4) + 
+ggplot(data=p1[[1]], aes(x = reorder(compatibility, -d), y = d,color = ordered(compatibility))) +
+  geom_point(data = all_df_3,alpha = 1/4) + 
   scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() + geom_smooth(data = p2[[1]],
-  aes(y = (estimate__), ymin = (lower__), ymax = (upper__)),stat = "identity", color = "black", alpha = 0.1, size = 1/2)
+  scale_color_brewer(palette = "Set2") + theme_bw() +
+  geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
+  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Degree") + xlab("Selfing level")+
+  theme(legend.position = "none")
+
+
 
 
 #SAVE MODELS
 setwd("~/R_Projects/Reproductive traits") 
-save(m1, file = "Data/Brms/Flower_size/brms_m1_visits_flower_diameter_negative_binomial.RData")
-save(m2, file = "Data/Brms/Flower_size/brms_m2_z-scores_flower_diameter_student.RData")
-save(all_df_2, file = "Data/Brms/Flower_size/brms_data_flower_diameter.RData")
+save(m1, file = "Data/Brms/Compatibility/brms_m1_d_compatibility.RData")
+save(all_df_3, file = "Data/Brms/Compatibility/brms_data_d_m1_compatibility.RData")
 
 
 
