@@ -3,12 +3,13 @@
 ######
 ####
 ##
-# NETWORK ANALYSIS
+# NETWORK ANALYSIS VISITS~FLOWER SIMMETRY
 ##
 ###
 ####
 #####
 #################################################
+
 
 #LOAD LIBRARIES
 library(brms)
@@ -25,9 +26,6 @@ library(ape)
 library(dplyr)
 library(tidyverse)
 
-##########
-#LOAD DATA
-###########
 
 
 #LOAD NETWORK DATA
@@ -69,6 +67,8 @@ rs_NA <- function(x){
   return(z)
 }
 
+
+
 #Function to prepare data for bipartite analysis
 clean <- function(x){
   w <- x
@@ -80,35 +80,20 @@ clean <- function(x){
   
   return(w)
 }
-#Function to calculate all metrics and bind on dataframe
-met <- function(x){
-  visits <- rs_NA(x)
-  #degree
-  degree <- specieslevel(clean(x), index="degree", level="lower")
-  #normalise degree
-  n_degree <- specieslevel(clean(x), index="normalised degree", level="lower")
-  #specialization
-  d <- specieslevel(clean(x), index="d", level="lower")
-  #closeness
-  closeness <- specieslevel(clean(x), index="closeness", level="lower")
-  #betweenness
-  betweenness <- specieslevel(clean(x), index="betweenness", level="lower")
-  
-  #combine metrics in a unique data frame
-  metrics <- cbind(visits, degree, n_degree, d, closeness, betweenness)
-  return(metrics)
-}
 
 
 #Loop to create a list of dataframes with the 16 networks
 #and the network metrics for each plant species
 i <- NULL
-data <- NULL
 metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list[[i]] <- met(my_data[[i]])
+  metrics_list[[i]] <- rs_NA(my_data[[i]])
 }
 
+
+
+#Calculate z-score fo each matrix
+#Scale.default does it for the full matrix and not by column (or row) which is default for scale
 i <- NULL
 metrics_list_1 <- metrics_list
 for (i in names(my_data)){
@@ -122,8 +107,6 @@ colnames(metrics_all)[1] <- "Net_ID"
 colnames(metrics_all)[2] <- "Plant_species"
 
 
-
-#####
 ##############################################
 #2 NOW MERGE TRAIT DATA WITH THE NETWORK SPECIES
 ##############################################
@@ -177,7 +160,8 @@ df <- merge(plants, trait_data_filtered_1, by = "Plant_species", all=T)
 #In order to subset by the species of these specific networks
 net <- df[!is.na(df$Id),]
 net[] <- lapply(net, function(x) if(is.factor(x)) factor(x) else x)
-#####################################################
+
+##########################################################
 #3 NOW MERGE WITH THE NETWORK METRICS CREATED IN SECTION 1
 ##########################################################
 
@@ -194,8 +178,6 @@ all_df_1 <- all_df[,-c(2,3,6,7,8,13,16,63:75)]
 setnames(all_df_1, tolower(names(all_df_1)))
 #dding col named phylo for analysis
 all_df_1$phylo <- all_df_1$species
-
-
 #Prepare species to calcute phylogenetic distance
 #Set these species as NA, the tree cannot find these species ad they are giving issues
 #if I leave them as NA
@@ -203,97 +185,114 @@ all_df_1$species[all_df_1$species=="Diospyros seychellarum"] <- NA
 all_df_1$species[all_df_1$species=="Memecylon eleagni"] <- NA
 all_df_1$species[all_df_1$species=="Ocotea laevigata"] <- NA
 all_df_1$species[all_df_1$species=="Soulamea terminaloides"] <- NA
-
 #Make these NA's as NA
 all_df_1$species[all_df_1$species=="NA"] <- NA
 all_df_1$species[all_df_1$genus=="NA"] <- NA
 all_df_1$species[all_df_1$fmily=="NA"] <- NA
-
 #REMOVE NA's for calculating distance
 all_df_2 <- all_df_1[!is.na(all_df_1$species),]
 
 
-
 ##########################################################
-#4 Model1 (m1) VISITS~AUTONOMOUS SELFING LEVEL
+#CALCULATE REGRESSION TREE
 ##########################################################
-
-#TWO DISTRIBUTIONS FIT THE DATA:
-# 1 NEGATIVE BINOMIAL
-# 2 GAUSSIAN/SKEW NORMAL
-
-#Prepare species, genus and family for calculating tree
-phylo <- as.data.frame(cbind(all_df_2$family, all_df_2$genus, all_df_2$species))
-colnames(phylo) <-  c("family", "genus", "species")
-
-#Select unique cases
-phylo_1 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
-phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
-
-#Convert phylogenetic tree into matrix
-A <- vcv.phylo(phylo_3)
-#Standardize to max value 1
-A <- A/max(A)
-#Unify column names; remove underscore and remove asterik
-rownames(A) <- gsub("\\*", "", rownames(A))
-colnames(A) <- gsub("\\*", "", colnames(A))
-colnames(A) <- gsub("_", " ", colnames(A))
-rownames(A) <- gsub("_", " ", rownames(A))
-
+library(rpart)
+library(rpart.plot)
 
 #Convert all NA'S to same type of NA's
 make.true.NA <- function(x) if(is.character(x)||is.factor(x)){
   is.na(x) <- x=="NA"; x} else {
     x}
+
+all_df_2$corolla_diameter_mean <- as.numeric(all_df_2$corolla_diameter_mean)
+all_df_2$corolla_diameter_mean <- make.true.NA(all_df_2$corolla_diameter_mean)
+all_df_3 <- all_df_2[complete.cases(all_df_2$corolla_diameter_mean),]
+
+#VISITS COROLLA DIAMETER
+all_df_4 <- all_df_3[, c(27,57)]
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#VISITS COROLLA LENGTH
+all_df_2$corolla_length_mean <- as.numeric(all_df_2$corolla_length_mean)
+all_df_2$corolla_length_mean <- make.true.NA(all_df_2$corolla_length_mean)
+all_df_3 <- all_df_2[complete.cases(all_df_2$corolla_length_mean),]
+all_df_4 <- all_df_3[, c(30,57)]
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+#VISITS AUTONOMOUS SELFING
+all_df_2$autonomous_selfing_level_fruit_set <- as.numeric(all_df_2$autonomous_selfing_level_fruit_set)
+all_df_2$autonomous_selfing_level_fruit_set <- make.true.NA(all_df_2$autonomous_selfing_level_fruit_set)
+all_df_3 <- all_df_2[complete.cases(all_df_2$autonomous_selfing_level_fruit_set),]
+all_df_4 <- all_df_3[, c(12,57)] 
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+#VISITS COMPATIBILITY
 all_df_2$compatibility <- make.true.NA(all_df_2$compatibility)
-all_df_2 <- all_df_2[complete.cases(all_df_2$compatibility),]
+all_df_3 <- all_df_2[complete.cases(all_df_2$compatibility),]
+colnames(all_df_3) <- make.unique(names(all_df_3))
+all_df_4 <-  subset(all_df_3, compatibility=="self_compatible"|compatibility=="partially_self_compatible"|compatibility=="self_incompatible"|compatibility=="monoecious"|compatibility=="dioecious")
+all_df_4 <- all_df_4[, c(15,57)] 
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#VISITS FLOWER MORPHOLOGY
+all_df_2$flower_morphology <- make.true.NA(all_df_2$flower_morphology)
+all_df_3 <- all_df_2[complete.cases(all_df_2$flower_morphology),]
+colnames(all_df_3) <- make.unique(names(all_df_3))
+all_df_4 <- all_df_3[, c(25,57)] 
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#VISITS FLOWER SYMMETRY
+all_df_2$flower_symmetry <- make.true.NA(all_df_2$flower_symmetry)
+all_df_3 <- all_df_2[complete.cases(all_df_2$flower_symmetry),]
+colnames(all_df_3) <- make.unique(names(all_df_3))
+all_df_4 <- all_df_3[, c(26,57)] 
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#VISITS STYLE LENGTH
+all_df_2$style_length_mm <- as.numeric(all_df_2$style_length_mm)
+all_df_2$style_length_mm <- make.true.NA(all_df_2$style_length_mm)
+all_df_3 <- all_df_2[complete.cases(all_df_2$style_length_mm),]
+all_df_3$style_length_mm
+  
+all_df_4 <- all_df_3[c("style_length_mm", "visits")]
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#VISITS STYLE LENGTH
+all_df_2$style_length_mm <- as.numeric(all_df_2$style_length_mm)
+all_df_2$style_length_mm <- make.true.NA(all_df_2$style_length_mm)
+all_df_3 <- all_df_2[complete.cases(all_df_2$style_length_mm),]
+all_df_3$ovules_mean
+
+all_df_4 <- all_df_3[c("ovules_mean", "visits")]
+m1 <- rpart(visits ~ ., data=all_df_4)
+rpart.plot(m1)
+
+#ALL
+all_df_2 <- all_df_1[!is.na(all_df_1$species),]
+
+all_df_2$corolla_diameter_mean <- as.numeric(all_df_2$corolla_diameter_mean)
+all_df_2$corolla_diameter_mean <- make.true.NA(all_df_2$corolla_diameter_mean)
+all_df_2$ovules_mean <- as.numeric(all_df_2$ovules_mean)
+all_df_2$ovules_mean <- make.true.NA(all_df_2$ovules_mean)
+all_df_2 <- all_df_2[complete.cases(all_df_2$ovules_mean),]
+all_df_2$compatibility[all_df_2$compatibility=="NA"] <- "unknown"
+str(all_df_2)
+all_df_2$plant_height_mean_m <- as.numeric(all_df_2$plant_height_mean_m)
+all_df_2$plant_height_mean_m <- make.true.NA(all_df_2$plant_height_mean_m)
+all_df_2 <- all_df_2[complete.cases(all_df_2$plant_height_mean_m),]
+all_df_2$plant_height_mean_m
 colnames(all_df_2) <- make.unique(names(all_df_2))
-
-levels(as.factor(all_df_2$compatibility))
-
-
-all_df_3 <-  subset(all_df_2, compatibility=="self_compatible"|compatibility=="partially_self_compatible"|compatibility=="self_incompatible"|compatibility=="monoecious"|compatibility=="dioecious")
-
-#Prepare example with selfing level
-all_df_3 <- all_df_3 %>%mutate(compatibility = fct_relevel(compatibility, levels=c("self_compatible", "partially_self_compatible", "self_incompatible","monoecious", "dioecious")))
-
-all_df_3$compatibility <- as.factor(all_df_3$compatibility)
-
-levels(as.factor(all_df_3$compatibility))
-
-#TRY FIRST THE (1) NEGATIVE BINOMIAL DISTRIBUTION
-m1 <- brm(degree ~ compatibility + (1|net_id) + (1|gr(phylo, cov = A)),
-          data = all_df_3, family = negbinomial(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99))
-
-hist(all_df_2$degree)
-
-summary(m1)
-pp_check(m1) + xlim(-200,200)+ylim(0,0.2)
-c_e <- conditional_effects(m1)
-p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-bayes_R2(m1)
-
-#PLOT OUTPUT
-
-ggplot(data=p1[[1]], aes(x = reorder(compatibility, -degree), y = degree,color = ordered(compatibility))) +
-  geom_point(data = all_df_3,alpha = 1/4) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1[[1]],mapping=aes(x=compatibility, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1[[1]], mapping=aes(x=compatibility, y=estimate__), color="black") + ylab("Degree") + xlab("Selfing level")+
-  theme(legend.position = "none")
-
-
-
-
-#SAVE MODELS
-setwd("~/R_Projects/Reproductive traits") 
-save(m1, file = "Data/Brms/Compatibility/brms_m1_degree_compatibility.RData")
-save(all_df_3, file = "Data/Brms/Compatibility/brms_data_degree_m1_compatibility.RData")
-
-
-
-
+all_df_2 <-  subset(all_df_2, compatibility=="self_compatible"|compatibility=="partially_self_compatible"|compatibility=="self_incompatible"|compatibility=="unknown")
+all_df_3 <- all_df_2[c("ovules_mean", "compatibility","corolla_diameter_mean", "visits", "plant_height_mean_m")]
+m1 <- rpart(visits ~ ., data=all_df_3)
+rpart.plot(m1)
+str(all_df_3)
+all_df_3 <- all_df_2[c("ovules_mean", "compatibility","corolla_diameter_mean", "visits", "plant_height_mean_m")]
+m1 <- rpart(visits ~ ., data=all_df_3)
+rpart.plot(m1)
+str(all_df_3)
