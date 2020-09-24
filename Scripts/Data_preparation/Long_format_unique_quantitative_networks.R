@@ -6,7 +6,7 @@
 library(reshape2)
 library(stringr)
 library(tibble)
-library(dplyr)
+
 ##################
 #LOAD NETWORK DATA
 ##################
@@ -269,10 +269,134 @@ all_l_1 <- all_l[,-c(1,2,4,5)]
 str(all_l_1)
 
 #merge
+library(data.table)
+library(reshape2)
 merged_all <- merge(Long_data,unique(all_l_1),by ="Pollinator_species",sort=FALSE)
-
-levels(as.factor(merged_all$order))
-
+head(merged_all)
 
 
+merged_all_1 <-  reshape2::dcast(Plant_species + Id+order ~ ., value.var = "Interaction", fun.aggregate = sum, data = merged_all, na.rm= TRUE)
+head(merged_all_1)
+colnames(merged_all_1)[4] <- "Visits"
 
+#calculate z-scores
+merged_all_2 <- transform(merged_all_1, z_score=ave(Visits, Id, FUN=scale))
+head(merged_all_2)
+str(merged_all_1)
+###################
+#MERGE WITH TRAITS
+###################
+
+#LOAD TRAIT DATA
+library(readxl)
+setwd("~/R_Projects/Reproductive traits") 
+trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
+trait_data <- as.data.frame(trait_data)
+levels(as.factor(trait_data$Info_level))
+trait_data_filtered <- subset(trait_data, Info_level=="flower"|Info_level=="capitulum"|Info_level=="inflorescence"|Info_level=="NA")
+#change plant species colnames for merging
+colnames(trait_data_filtered)[1] <- "Plant_species"
+merged_all_2 <- merge(merged_all_2,trait_data_filtered, by= "Plant_species", all=T)
+
+write.csv(merged_all_2, "Data/Csv/long_all.csv")
+
+
+head(merged_all_2)
+str(merged_all_2)
+floral_1<-merged_all_2[c("Visits", "z_score","Corolla_length_mean","Floral_unit_width","style_length_mm", "Autonomous_selfing_level_fruit_set","ovules_mean","plant_height_mean_m")]
+str(floral_1)
+#qad
+model <- pairwise.qad(floral_1, permutation = FALSE)
+heatmap.qad(model, select = "dependence", fontsize = 5, significance = TRUE, sign.level = 0.05)
+
+
+#Correlogram
+library(corrplot)
+col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+
+
+floral_1[] <- lapply(floral_1, function(x) {
+  if(is.factor(x)) as.numeric(as.character(x)) else x
+})
+sapply(floral_1, class)
+floral_1 <- mutate_all(floral_1, function(x) as.numeric(as.character(x)))
+str(floral_1)
+
+
+M<-cor(floral_1,use = "complete.obs")
+corrplot(M, method="color", col=col(200),  
+         type="upper", order="hclust", 
+         addCoef.col = "black") 
+
+
+
+
+floral_1<-merged_all_2[c("Id", "z_score","Floral_unit_width","style_length_mm", "ovules_mean","plant_height_mean_m")]
+
+library(stats)
+pc <- prcomp(na.omit(floral_1), scale = T,center=T)
+summary(pc)
+library(devtools)
+install_github("vqv/ggbiplot")
+library(ggbiplot)
+ggbiplot(pc, choices = c(1,2),circle = TRUE)
+
+library(pca3d)
+pca2d(pc, group=gr, biplot=TRUE, biplot.vars=3)
+
+str(mutate_all(floral_1[-1], function(x) as.numeric(as.character(x))))
+data(metabo)
+pca <- prcomp(na.omit(mutate_all(floral_1[-1], function(x) as.numeric(as.character(x)))), scale = T,center=T)
+gr <- factor(floral_1[,1])
+summary(gr)
+pca3d(pca,biplot=TRUE, biplot.vars=6)
+listShapes()
+pca2d(pca, group=16, biplot=TRUE, biplot.vars=6)
+
+
+
+library(PCAmixdata)
+data(gironde)
+head(gironde$housing)
+split <- splitmix(gironde$housing)
+floral_1<-merged_all_2[c( "z_score","Compatibility","Floral_unit_width","style_length_mm", "ovules_mean","plant_height_mean_m")]
+split <- splitmix(floral_1)
+
+floral_1[,c(3:6)] <- scale(mutate_all(floral_1[,c(1:6)], function(x) as.numeric(as.character(x))))
+
+str(floral_1)
+X1 <- split$X.quanti 
+X2 <- split$X.quali 
+res.pcamix <- PCAmix(X.quanti=X1, X.quali=X2,rename.level=TRUE,
+                     graph=FALSE)
+res.pcamix$eig
+plot(res.pcamix,choice="ind",coloring.ind=X2$houses,label=FALSE,
+     posleg="bottomright", main="Observations")
+plot(res.pcamix,choice="levels",xlim=c(-1.5,2.5), main="Levels")
+
+
+
+floral_1<-merged_all_2[c( "Id","z_score","Compatibility","Floral_unit_width","style_length_mm", "ovules_mean","plant_height_mean_m")]
+
+data(gironde)
+names(gironde)
+str(gironde)
+dat <- cbind(gironde$employment,gironde$housing,gironde$services,gironde$environment) 
+index <- c(rep(1,9),rep(2,5),rep(3,9),rep(4,4)) 
+names <- c("employment","housing","services","environment") 
+res.mfamix<-MFAmix(data=floral_1,groups=Compatibility,
+                   name.groups=Id,ndim=3,rename.level=TRUE,graph=FALSE)
+
+
+library("FactoMineR")
+library("factoextra")
+
+floral_1<-merged_all_2[c("z_score","Floral_unit_width","style_length_mm", "ovules_mean","plant_height_mean_m")]
+floral_1[,c(1:5)] <- scale(mutate_all(floral_1[,c(1:5)], function(x) as.numeric(as.character(x))))
+str(floral_1)
+res.pca <- PCA(floral_1, graph = FALSE)
+fviz_pca_var(res.pca, col.var = "cos2", ellipse.level=0.95, pointsize = 10,
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE) 
+
+fviz_pca_biplot(res.pca, label ="var", col.ind="cos2",repel = TRUE,col.var = "cos2",ellipse.level=0.95,gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")) +
+  theme_minimal()+ylim(-5,10)+xlim(-5,15)
