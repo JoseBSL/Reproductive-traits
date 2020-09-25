@@ -19,6 +19,7 @@ require(RANN)
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 e <- read.csv("traits.csv", header=TRUE, row.names=1)
+e <- read.csv("Data/Csv/long_all.csv", header=TRUE, row.names=1)
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #create trait weighting vector so that all trait grouping = 1 (hairiness; phenology; activity times; bodysize; tounge length; pollen collection structure)
@@ -36,20 +37,34 @@ w <- c(0.142857143,	0.142857143,	0.142857143,	0.142857143, 0.142857143,	0.142857
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 e.dist <- gowdis(e, w)
+e$Compatibility
 
+e_1 <- e[c("Corolla_length_mean","Floral_unit_width","style_length_mm", "Autonomous_selfing_level_fruit_set","ovules_mean","plant_height_mean_m")]
+library(dplyr)
+e_1[,c(1:6)] <- scale(mutate_all(e_1[,c(1:6)], function(x) as.numeric(as.character(x))))
+e_1 <- e_1[complete.cases(e_1), ]
+
+str(e_1)
+e.dist <- gowdis(e_1)
+plot(noclus)
+kgs[]
+?kgs
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #find optimal number of functional groups
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+noclus <- agnes(e_1, method="ward")
+noclus <- hclust(e_1, method="ward.D")
+noclus <- hclust(e.dist, method="ward.D2")
 
-noclus <- agnes(e.dist, method="ward")
-b <- kgs(noclus, noclus$diss, maxclust=21)#6 clusters has lowest penalty score
+noclus$diss
+b <- kgs(noclus,e.dist, maxclust=21)#6 clusters has lowest penalty score
 plot(names (b), b, xlab="Number of Clusters", ylab="Penalty score")
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #silhouette plot
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-pamx <- pam(e.dist, 6)
+pamx <- pam(e.dist, 7)
 summary(pamx)
 plot(pamx)
 
@@ -59,9 +74,9 @@ plot(pamx)
 
 e.clust <- hclust(e.dist, method="ward.D2")
 plot(e.clust, main = "Cluster dengrogram based on effect traits")
-cut.g <- readline("6")
+cut.g <- readline("7")
 cut.g <- as.integer(cut.g)
-e.gr <- cutree(e.clust, k = 6)
-e.gr2 <- rect.hclust(e.clust, k = 6, border = "red")
+e.gr <- cutree(e.clust, k = 7)
+e.gr2 <- rect.hclust(e.clust, k = 7, border = "red")
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
