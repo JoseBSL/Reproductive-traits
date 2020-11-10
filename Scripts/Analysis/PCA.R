@@ -92,3 +92,101 @@ fviz_famd_ind(res.afdm, col.ind = "cos2", gradient.cols = c("#00AFBB", "#E7B800"
 fviz_mfa_ind(res.afdm,  addEllipses = TRUE, ellipse.type = "confidence", repel = TRUE ) 
 
 
+#Lets try to select just one categorical variable
+str(t)
+t_trial <- t[,c(7,9,12:18,21)]
+str(t_trial)
+cols <- c( "Autonomous_selfing_level")
+t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+str(res.impute)
+#Conducting factor analysis on mixed data
+res.afdm <- FAMD(res.impute$completeObs) 
+
+plot(res.afdm$quanti.var)
+
+fviz_famd_var(res.afdm, "quanti.var", repel = TRUE,
+              col.var = "black")
+
+fviz_famd_ind(res.afdm,label = "var", geom=c("point"),arrows=T, habillage = "Autonomous_selfing_level", palette = c("#00AFBB", "#FC4E07", "#FFA500",	'#800080'),
+              repel = TRUE,alpha.ind = 0.7)+xlim(-5, 10) + ylim (-10, 10)
+
+fviz_famd_var(res.afdm, "quanti.var", geom=c("point"), col.var = "contrib", 
+              gradient.cols = c("#00AFBB", "#FC4E07", "#FFA500",	'#800080'),
+              repel = TRUE)
+
+fviz_screeplot(res.afdm)
+fviz_ellipses(res.afdm, 1:2, geom = "point")
+fviz_ellipses(res.afdm, c("Autonomous_selfing_level"), repel = TRUE)
+
+fviz_famd_biplot(res.afdm)
+fviz_pca_ind(res.afdm)
+fviz_pca_biplot(res.afdm)
+fviz_famd_var(res.afdm,choice=c("quanti.var"),geom=c("point"),repel = TRUE,palette = c("#00AFBB"))
+
+get_pca_ind()
+data(decathlon2)
+decathlon.active <- decathlon2[1:23, 1:10]
+res.pca <- prcomp(decathlon.active, scale = TRUE)
+fviz_pca_biplot(res.pca)
+PCA(completed_sleep$completeObs)
+
+fviz_pca_biplot(res.afdm$quanti.var$coord)
+
+#### CLEAN CODE!
+
+#CALCULATE EVERYTHING WITH NORMAL PCA WITHOUT QUALITATIVE VARIABLES AND THE COLOUR BY THEM
+library(missMDA)
+str(t)
+
+t_trial <- t[,c(7,9,12:18,21)]
+str(t_trial)
+cols <- c( "Autonomous_selfing_level")
+t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
+
+colnames(t_trial) <- c("Autonomous_selfing_level", "Quantitative selfing", "Flower/plant", "Flower/inflorescence", "Floral width", "Flower width",
+                       "Flower length", "Style length", "Ovule number", "Plant height")
+
+t_trial$Autonomous_selfing_level <- factor(t_trial$Autonomous_selfing_level, levels = c("none", "low", "medium", "high"))
+
+
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+fviz_pca_biplot(prcomp(res.impute$completeObs[,c(2:10)], scale=T), geom.ind = "point",label = "var",fill.ind = res.impute$completeObs$Autonomous_selfing_level, 
+                  palette = "jco",  addEllipses = TRUE, gradient.cols = "RdYlBu")
+
+
+#from http://www.zhuoyao.net/2019/11/08/principal-component-methods-in-r-practical-guide/
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:10)], scale=T), label="none",
+                # Individuals
+                geom.ind = "point",alpha.ind = 0.5,
+                fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),1], col.ind = "black",
+                pointshape = 21, pointsize = 2,
+                palette = c("#FC4E07","#00AFBB", '#800080',"#FFA500"	),
+                # Variables
+                 col.var = "black",title="",
+              
+                legend.title = list(fill = "Selfing", color = "Contrib",
+                                    alpha = "Contrib",repel = TRUE)
+)+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+
+  annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+
+  annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+annotate(geom="text", x=8, y=1, label="Flower length")+
+  annotate(geom="text", x=7.7, y=0.2, label="Flower width")+annotate(geom="text", x=7.2, y=-0.3, label="Style length")
+
+
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,482,634,705,1139),c(2:10)], scale=T))
+
+            
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:10)], scale=T), 
+                # Individuals
+                geom.ind = "point",alpha.ind = 0.9,
+                fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),1], col.ind = "black",
+                pointshape = 21, pointsize = 2,
+                palette = c('#800080',"#00AFBB", "#FC4E07", "#FFA500","#00AFBB"),
+                # Variables
+                col.var = "black",title="",
+                
+                legend.title = list(fill = "Selfing", color = "Contrib",
+                                    alpha = "Contrib",repel = TRUE)
+)+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-1, y=-6, label="Quantitative selfing")
