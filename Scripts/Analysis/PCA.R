@@ -1,18 +1,20 @@
 ###################################################################################
 ####
-# MULTIPLE CORRESPONDANCE ANALYSIS (MCA)
+# PRINCIPAL COMPONENT ANALYSIS (PCA)
 ####
 ###################################################################################
 
 #LOAD LIBRARIES
-library(readxl)
-library(dplyr)
-library(missMDA)
-
+library(readxl) #read excel file (trait data)
+library(dplyr) #data manipulation
+library(missMDA) #For missing values
+library(FactoMineR) #Produce pca biplot with individuals and variables
+library(factoextra)
+library(ggpubr)
 
 #LOAD DATA
 trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
-
+#check data
 head(trait_data)
 #select just filled rows
 trait_data_1 <- trait_data[1:1701,]
@@ -38,155 +40,191 @@ str(t)
 t <- t[!is.na(t$Species_all), ]
 
 
-#HOW TO HANDLE MISSING VALUES WITH MCA
+#HOW TO HANDLE MISSING VALUES WITH MCA/PCA
 #I'm going to follow the procedure explained in factominer webpage
 #http://factominer.free.fr/missMDA/index.html
 
 #ALSO http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/115-famd-factor-analysis-of-mixed-data-in-r-essentials/
 
-t_trial <- t[,c(5,6,7,9,10:21)]
-str(t_trial)
-cols <- c("Breeding_system", "IMPUTED_Compatibility", "Autonomous_selfing_level", "Flower_morphology", "Flower_symmetry","life_form", "lifespan")
-t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
-
-
-res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
-
-#checking  
-res.afdm <- FAMD(t_trial,tab.disj=res.impute$tab.disj) 
-
-#QUANTITATIVE VARIABLES
-
-fviz_screeplot(res.afdm)
-fviz_famd_var(res.afdm, repel = TRUE)
-fviz_contrib(res.afdm, "var", axes = 1)
-quanti.var <- get_famd_var(res.afdm, "quanti.var")
-quanti.var 
-fviz_famd_var(res.afdm, "quanti.var", repel = TRUE,
-              col.var = "black")
-
-
-
-fviz_famd_var(res.afdm, "quanti.var", col.var = "contrib", 
-              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-              repel = TRUE)
-
-
-# Color by cos2 values: quality on the factor map
-fviz_famd_var(res.afdm, "quanti.var", col.var = "cos2",
-              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-              repel = TRUE)
-
-
-#QUALITATIVE VARIABLES
-fviz_famd_var(res.afdm, "quali.var", col.var = "contrib", 
-              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")
-)
-
-#BY INDV
-ind <- get_famd_ind(res.afdm)
-ind
-fviz_famd_ind(res.afdm, col.ind = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
-
-
-fviz_mfa_ind(res.afdm,  addEllipses = TRUE, ellipse.type = "confidence", repel = TRUE ) 
-
-
-#Lets try to select just one categorical variable
 str(t)
 t_trial <- t[,c(7,9,12:18,21)]
 str(t_trial)
 cols <- c( "Autonomous_selfing_level")
-t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
-res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
-str(res.impute)
-#Conducting factor analysis on mixed data
-res.afdm <- FAMD(res.impute$completeObs) 
 
-plot(res.afdm$quanti.var)
-
-fviz_famd_var(res.afdm, "quanti.var", repel = TRUE,
-              col.var = "black")
-
-fviz_famd_ind(res.afdm,label = "var", geom=c("point"),arrows=T, habillage = "Autonomous_selfing_level", palette = c("#00AFBB", "#FC4E07", "#FFA500",	'#800080'),
-              repel = TRUE,alpha.ind = 0.7)+xlim(-5, 10) + ylim (-10, 10)
-
-fviz_famd_var(res.afdm, "quanti.var", geom=c("point"), col.var = "contrib", 
-              gradient.cols = c("#00AFBB", "#FC4E07", "#FFA500",	'#800080'),
-              repel = TRUE)
-
-fviz_screeplot(res.afdm)
-fviz_ellipses(res.afdm, 1:2, geom = "point")
-fviz_ellipses(res.afdm, c("Autonomous_selfing_level"), repel = TRUE)
-
-fviz_famd_biplot(res.afdm)
-fviz_pca_ind(res.afdm)
-fviz_pca_biplot(res.afdm)
-fviz_famd_var(res.afdm,choice=c("quanti.var"),geom=c("point"),repel = TRUE,palette = c("#00AFBB"))
-
-get_pca_ind()
-data(decathlon2)
-decathlon.active <- decathlon2[1:23, 1:10]
-res.pca <- prcomp(decathlon.active, scale = TRUE)
-fviz_pca_biplot(res.pca)
-PCA(completed_sleep$completeObs)
-
-fviz_pca_biplot(res.afdm$quanti.var$coord)
-
-#### CLEAN CODE!
-
-#CALCULATE EVERYTHING WITH NORMAL PCA WITHOUT QUALITATIVE VARIABLES AND THE COLOUR BY THEM
-library(missMDA)
-str(t)
-
-t_trial <- t[,c(7,9,12:18,21)]
-str(t_trial)
-cols <- c( "Autonomous_selfing_level")
 t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
 
 colnames(t_trial) <- c("Autonomous_selfing_level", "Quantitative selfing", "Flower/plant", "Flower/inflorescence", "Floral width", "Flower width",
                        "Flower length", "Style length", "Ovule number", "Plant height")
 
-t_trial$Autonomous_selfing_level <- factor(t_trial$Autonomous_selfing_level, levels = c("none", "low", "medium", "high"))
-
+str(t_trial$Autonomous_selfing_level)
 
 res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
-fviz_pca_biplot(prcomp(res.impute$completeObs[,c(2:10)], scale=T), geom.ind = "point",label = "var",fill.ind = res.impute$completeObs$Autonomous_selfing_level, 
-                  palette = "jco",  addEllipses = TRUE, gradient.cols = "RdYlBu")
-
+res.impute$completeObs$Autonomous_selfing_level <- factor(res.impute$completeObs$Autonomous_selfing_level, levels = c("high", "medium", "low", "none"))
 
 #from http://www.zhuoyao.net/2019/11/08/principal-component-methods-in-r-practical-guide/
 fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:10)], scale=T), label="none",
                 # Individuals
-                geom.ind = "point",alpha.ind = 0.5,
+                geom.ind = "point",alpha.ind = 0.9, 
                 fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),1], col.ind = "black",
-                pointshape = 21, pointsize = 2,
+                pointshape = 21, pointsize = 1.5,
                 palette = c("#FC4E07","#00AFBB", '#800080',"#FFA500"	),
                 # Variables
-                 col.var = "black",title="",
-              
-                legend.title = list(fill = "Selfing", color = "Contrib",
-                                    alpha = "Contrib",repel = TRUE)
-)+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
-  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+
-  annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+
-  annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+annotate(geom="text", x=8, y=1, label="Flower length")+
-  annotate(geom="text", x=7.7, y=0.2, label="Flower width")+annotate(geom="text", x=7.2, y=-0.3, label="Style length")
+                col.var = "black",title="",  arrowsize = 0.7,alpha.var=0.8,legend.title = list(fill = "Selfing", color = "Contrib",
+                alpha = "Contrib",repel = TRUE))+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ 
+  annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+ annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+ 
+  annotate(geom="text", x=8, y=1, label="Flower length")+ annotate(geom="text", x=7.7, y=0.2, label="Flower width")+ 
+  annotate(geom="text", x=7.2, y=-0.3, label="Style length")+border()+rremove("grid")
 
 
-fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,482,634,705,1139),c(2:10)], scale=T))
 
-            
-fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:10)], scale=T), 
+#Now I'm going to create two broad categories of selfers and non-selfers, it may help visualization
+#the selfers are going to be the ones that have hoigh and medium selfing and the non-selfers none and low
+
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+res.impute$completeObs$Autonomous_selfing_level <- as.character(res.impute$completeObs$Autonomous_selfing_level)
+res.impute$completeObs$Autonomous_selfing_level[res.impute$completeObs$Autonomous_selfing_level=="high"] <- "selfer"
+res.impute$completeObs$Autonomous_selfing_level[res.impute$completeObs$Autonomous_selfing_level=="medium"] <- "selfer"
+res.impute$completeObs$Autonomous_selfing_level[res.impute$completeObs$Autonomous_selfing_level=="low"] <- "non_selfer"
+res.impute$completeObs$Autonomous_selfing_level[res.impute$completeObs$Autonomous_selfing_level=="none"] <- "non_selfer"
+res.impute$completeObs$Autonomous_selfing_level <- factor(res.impute$completeObs$Autonomous_selfing_level, levels = c("selfer", "non_selfer", "low"))
+
+#from http://www.zhuoyao.net/2019/11/08/principal-component-methods-in-r-practical-guide/
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:10)], scale=T), label="none",habillage = res.impute$completeObs[-c(414,480,482,634,705,1139),1],
                 # Individuals
-                geom.ind = "point",alpha.ind = 0.9,
+                geom.ind = "point",alpha.ind = 0.8, 
                 fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),1], col.ind = "black",
-                pointshape = 21, pointsize = 2,
-                palette = c('#800080',"#00AFBB", "#FC4E07", "#FFA500","#00AFBB"),
+                pointshape = 21, pointsize = 1.5,
+                palette = c("#FFA500","#00AFBB"	),addEllipses = TRUE,
                 # Variables
-                col.var = "black",title="",
-                
-                legend.title = list(fill = "Selfing", color = "Contrib",
-                                    alpha = "Contrib",repel = TRUE)
-)+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
-  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-1, y=-6, label="Quantitative selfing")
+                col.var = "black",title="",  arrowsize = 0.7,alpha.var=0.8,legend.title = list(fill = "Selfing", repel = TRUE))+
+  xlim(-10, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ 
+  annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+ annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+ 
+  annotate(geom="text", x=8, y=1, label="Flower length")+ annotate(geom="text", x=7.7, y=0.2, label="Flower width")+ 
+  annotate(geom="text", x=7.2, y=-0.3, label="Style length")+border()+rremove("grid")
+
+
+
+#Now removing quantitative selfing
+
+str(t)
+t_trial <- t[,c(7,12:18,21)]
+str(t_trial)
+cols <- c( "Autonomous_selfing_level")
+
+t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
+
+colnames(t_trial) <- c("Autonomous_selfing_level",  "Flower/plant", "Flower/inflorescence", "Floral width", "Flower width",
+                       "Flower length", "Style length", "Ovule number", "Plant height")
+
+str(t_trial$Autonomous_selfing_level)
+
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+res.impute$completeObs$Autonomous_selfing_level <- factor(res.impute$completeObs$Autonomous_selfing_level, levels = c("high", "medium", "low", "none"))
+
+#from http://www.zhuoyao.net/2019/11/08/principal-component-methods-in-r-practical-guide/
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(2:9)], scale=T), label="none",
+                # Individuals
+                geom.ind = "point",alpha.ind = 0.9, 
+                fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),1], col.ind = "black",
+                pointshape = 21, pointsize = 1.5,
+                palette = c("#FC4E07","#00AFBB", '#800080',"#FFA500"	),
+                # Variables
+                col.var = "black",title="",  arrowsize = 0.7,alpha.var=0.8,legend.title = list(fill = "Selfing", color = "Contrib",
+                                                                                               alpha = "Contrib",repel = TRUE))+xlim(-3, 10) + ylim (-15, 10)+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ 
+  annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+ annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+ 
+  annotate(geom="text", x=8, y=1, label="Flower length")+ annotate(geom="text", x=7.7, y=0.2, label="Flower width")+ 
+  annotate(geom="text", x=7.2, y=-0.3, label="Style length")+border()+rremove("grid")
+
+
+#Now colour by flower shape
+
+
+str(t)
+t_trial <- t[,c(9,10,12:18,21)]
+str(t_trial)
+cols <- c( "Autonomous_selfing_level")
+
+t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
+
+colnames(t_trial) <- c("Quantitative selfing", "Flower morphology", "Flower/plant", "Flower/inflorescence", "Floral width", "Flower width",
+                       "Flower length", "Style length", "Ovule number", "Plant height")
+
+str(t_trial$`Flower morphology`)
+t_trial$`Flower morphology` <- as.factor(t_trial$`Flower morphology`)
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+#res.impute$completeObs$Autonomous_selfing_level <- factor(res.impute$completeObs$Autonomous_selfing_level, levels = c("high", "medium", "low", "none"))
+res.impute$completeObs$`Flower morphology` <- as.factor(res.impute$completeObs$`Flower morphology`)
+levels(res.impute$completeObs$`Flower morphology`)
+
+res.impute$completeObs$`Flower morphology`<- as.character(res.impute$completeObs$`Flower morphology`)
+res.impute$completeObs$`Flower morphology`[res.impute$completeObs$`Flower morphology`=="bowl"]<- "open"
+res.impute$completeObs$`Flower morphology`[res.impute$completeObs$`Flower morphology`=="dish"]<- "open"
+res.impute$completeObs$`Flower morphology`[res.impute$completeObs$`Flower morphology`=="exposed"]<- "open"
+res.impute$completeObs$`Flower morphology`[res.impute$completeObs$`Flower morphology`=="spadix"]<- "spike"
+
+res.impute$completeObs$`Flower morphology` <- as.factor(res.impute$completeObs$`Flower morphology`)
+library("viridis")        
+
+gsub("IMPUTED_Compatibility_", "", res.impute$completeObs$IMPUTED_Compatibility)
+
+#from http://www.zhuoyao.net/2019/11/08/principal-component-methods-in-r-practical-guide/
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(1,3:10)], scale=T), label="var",
+                # Individuals
+                geom.ind = "point",alpha.ind = 0.9, 
+                fill.ind = res.impute$completeObs[-c(414,480,482,634,705,1139),c(2)], col.ind = "black",
+                pointshape = 21, pointsize = 1.5,
+                palette = "viridis",
+                # Variables
+                col.var = "black",title="",  arrowsize = 0.7,alpha.var=0.8,legend.title = list(fill = "Selfing"))+xlim(-3, 10) + ylim (-15, 10)
+  
+  annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ 
+  annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+ annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+ 
+  annotate(geom="text", x=8, y=1, label="Flower length")+ annotate(geom="text", x=7.7, y=0.2, label="Flower width")+ 
+  annotate(geom="text", x=7.2, y=-0.3, label="Style length")+border()+rremove("grid")
+
+  
+  
+#Now colour by life form
+  
+str(t)
+t_trial <- t[,c(5,6,7,9:21)]
+str(t_trial)
+cols <- c( "Breeding_system","IMPUTED_Compatibility", "Autonomous_selfing_level","Flower_morphology","Flower_symmetry", "life_form", "lifespan")
+
+t_trial[cols] <- lapply(t_trial[cols], factor)  ## as.factor() could also be used
+
+#colnames(t_trial) <- c("Breeding_system","IMPUTED_Compatibility","Quantitative selfing",  "Flower/plant", "Flower/inflorescence", "Inflorescence width", "Flower width",
+ #                      "Flower length", "Style length", "Ovule number", "Life form", "Plant height")
+
+str(t_trial$`Life form`)
+t_trial$life_form<- as.factor(t_trial$life_form)
+res.impute <- imputeFAMD(t_trial, ncp=3,threshold = 1e-06) 
+
+res.impute$completeObs$life_form
+
+
+fviz_pca_biplot(prcomp(res.impute$completeObs[-c(414,480,482,634,705,1139),c(4,7,8,9,10,11,12,13,16)], scale=T), label="var",
+                # Individuals
+                geom.ind = "point",alpha.ind = 1, col.ind=res.impute$completeObs[-c(414,480,482,634,705,1139),c(14)], 
+                pointshape = 19, pointsize = 1,
+                palette = c("#440154FF", "#31688EFF", "#35B779FF", "#FDE725FF"),
+                # Variables
+                col.var = "black",title="",  arrowsize = 0.6,alpha.var=0.7,legend.title = list(fill = "Life form"))+xlim(-10, 10) + ylim (-15, 10)+border()
+
+annotate(geom="text", x=0.45, y=-6.4, label="Plant height")+
+  annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+annotate(geom="text", x=-2, y=5, label="Quantitative selfing")+
+  annotate(geom="text", x=-1.2, y=-6.4, label="Flowers/plant")+annotate(geom="text", x=4.4, y=-4.4, label="Inflorescence width")+ 
+  annotate(geom="text", x=-2, y=-3, label="Flowers/inflorescence")+ annotate(geom="text", x=2.5, y=1.5, label="Ovule number")+ 
+  annotate(geom="text", x=8, y=1, label="Flower length")+ annotate(geom="text", x=7.7, y=0.2, label="Flower width")+ 
+  annotate(geom="text", x=7.2, y=-0.3, label="Style length")+border()+rremove("grid")
+
+a <- viridis(3)
+rev(a)
