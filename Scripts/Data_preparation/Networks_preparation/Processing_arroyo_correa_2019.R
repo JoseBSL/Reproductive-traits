@@ -1,5 +1,5 @@
 # Processing data from arroyo-correa 2019
-# DOI: https://doi.org/10.1111/j.1442-9993.2005.01474.x
+# DOI:https://doi.org/10.1111/1365-2745.13332
 #Data: 10.5281/zenodo.3011651
 # CHINA
 # Note: Same place as robertson networks but sampled in 2009-2010
