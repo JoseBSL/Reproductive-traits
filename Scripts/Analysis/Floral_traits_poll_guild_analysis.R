@@ -856,12 +856,26 @@ all_long_poll_names$guild[all_long_poll_names$family=="Syrphidae"] <- "Syrphids"
 all_long_poll_names$guild[all_long_poll_names$order=="Hymenoptera"] <- "Hymenoptera"
 all_long_poll_names$guild[all_long_poll_names$family=="Apidae"] <- "Apidae"
 
-#Remove other orders/guilds that are not these ones
-all_poll <- all_long_poll_names[!is.na(all_long_poll_names$guild),]
-#almost all interactions recorded belong to these orders
+
+#Aggregate by poll guild
+all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
 
 #Select data with interaction greater than 0
 all_poll_1 <- all_poll[all_poll$Interaction>0,]
+
+
+all_poll_1 <- all_poll_1 %>%
+  filter(Interaction < 800)
+#Calculate Z-scores 
+require(data.table)
+all_poll_1 <- data.table(all_poll_1)
+all_poll_1[, Z_scores := scale(Interaction), by = Id]
+
+
+#Remove other orders/guilds that are not these ones
+all_poll_1 <- all_poll_1[!is.na(all_poll_1$guild),]
+#almost all interactions recorded belong to these orders
+
 
 ######################################################################################################################################################
 
@@ -929,60 +943,6 @@ rownames(A) <- gsub("_", " ", rownames(A))
 
 all_df$phylo <- all_df$Species_all
 
-######################################################################################################################################################
 
-#DATA ANALYSIS
-#First trial
-data_analysis <- all_df[!is.na(all_df$IMPUTED_plant_height_mean_m),]
-data_analysis$IMPUTED_plant_height_mean_m <- as.numeric(data_analysis$IMPUTED_plant_height_mean_m)
-data_analysis$Interaction <- as.numeric(data_analysis$Interaction)
-
-
-boxplot((data_analysis$Interaction))
-
-library(dplyr)
-data_analysis <- data_analysis %>%
-  filter(Interaction < 200)
-boxplot(data_analysis$Interaction)
-
-library(lme4)
-data_analysis$Interaction <- as.numeric(data_analysis$Interaction)
-data_analysis$IMPUTED_plant_height_mean_m <- as.numeric(data_analysis$IMPUTED_plant_height_mean_m)
-
-
-model1 <- lmer(log(Interaction)~log(IMPUTED_plant_height_mean_m) * guild + (1|Id), data=data_analysis)
-library(effects)
-library(lme4)
-library(ggplot2)
-ee <- Effect(c("IMPUTED_plant_height_mean_m","guild"),model1) 
-#The key is using as.data.frame() to turn the effects object into something useful ...
-
-theme_set(theme_bw())
-ggplot(as.data.frame(ee),
-       aes(log(IMPUTED_plant_height_mean_m),fit,colour=guild,fill=guild))+
-  geom_line()+geom_point(data=data_analysis, aes(x=log(IMPUTED_plant_height_mean_m) , y=log(Interaction)))+
-  ## colour=NA suppresses edges of the ribbon
-  geom_ribbon(colour=NA,alpha=0.1,
-              aes(ymin=lower,ymax=upper))+
-  ## add rug plot based on original data
-  geom_rug(data=ee$data,aes(y=NULL),sides="b")
-
-
-model3 <- brm(log(Interaction+1) ~ IMPUTED_plant_height_mean_m* guild + (1|Id),  
-              data = data_analysis, sample_prior = TRUE,
-              warmup = 100, iter = 300, 
-              cores = 4) #to run the model
-
-
-  model1 <- brm(log(Interaction+1) ~ IMPUTED_plant_height_mean_m * guild + (1|Id) + (1|gr(phylo, cov = A)),
-          data = data_analysis, family  = student(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 100, iter = 500,save_all_pars=T,
-          control = list(adapt_delta = 0.99)) 
-
-summary(model1)
-pp_check(model1) +xlim(-10,10)
-c_e2 <- conditional_effects(model1)
-p2 <- plot(c_e2, points=T,plot = FALSE)[[1]]
-bayes_R2(model1)
-
-
+#Write csv
+write.csv(all_df, "Data/Csv/quantitative_networks_trait_data.csv")
