@@ -933,13 +933,50 @@ all_df$phylo <- all_df$Species_all
 
 #DATA ANALYSIS
 #First trial
-data_analysis <- all_df[!is.na(all_df$OVULES_IMPUTED),]
-data_analysis$OVULES_IMPUTED <- as.numeric(data_analysis$OVULES_IMPUTED)
+data_analysis <- all_df[!is.na(all_df$IMPUTED_plant_height_mean_m),]
+data_analysis$IMPUTED_plant_height_mean_m <- as.numeric(data_analysis$IMPUTED_plant_height_mean_m)
 data_analysis$Interaction <- as.numeric(data_analysis$Interaction)
 
-model1 <- brm(OVULES_IMPUTED ~ Interaction * guild + (1|Id) + (1|gr(phylo, cov = A)),
+
+boxplot((data_analysis$Interaction))
+
+library(dplyr)
+data_analysis <- data_analysis %>%
+  filter(Interaction < 200)
+boxplot(data_analysis$Interaction)
+
+library(lme4)
+data_analysis$Interaction <- as.numeric(data_analysis$Interaction)
+data_analysis$IMPUTED_plant_height_mean_m <- as.numeric(data_analysis$IMPUTED_plant_height_mean_m)
+
+
+model1 <- lmer(log(Interaction)~log(IMPUTED_plant_height_mean_m) * guild + (1|Id), data=data_analysis)
+library(effects)
+library(lme4)
+library(ggplot2)
+ee <- Effect(c("IMPUTED_plant_height_mean_m","guild"),model1) 
+#The key is using as.data.frame() to turn the effects object into something useful ...
+
+theme_set(theme_bw())
+ggplot(as.data.frame(ee),
+       aes(log(IMPUTED_plant_height_mean_m),fit,colour=guild,fill=guild))+
+  geom_line()+geom_point(data=data_analysis, aes(x=log(IMPUTED_plant_height_mean_m) , y=log(Interaction)))+
+  ## colour=NA suppresses edges of the ribbon
+  geom_ribbon(colour=NA,alpha=0.1,
+              aes(ymin=lower,ymax=upper))+
+  ## add rug plot based on original data
+  geom_rug(data=ee$data,aes(y=NULL),sides="b")
+
+
+model3 <- brm(log(Interaction+1) ~ IMPUTED_plant_height_mean_m* guild + (1|Id),  
+              data = data_analysis, sample_prior = TRUE,
+              warmup = 100, iter = 300, 
+              cores = 4) #to run the model
+
+
+  model1 <- brm(log(Interaction+1) ~ IMPUTED_plant_height_mean_m * guild + (1|Id) + (1|gr(phylo, cov = A)),
           data = data_analysis, family  = student(),data2 = list(A = A), cores = 4,
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+          sample_prior = TRUE, warmup = 100, iter = 500,save_all_pars=T,
           control = list(adapt_delta = 0.99)) 
 
 summary(model1)
