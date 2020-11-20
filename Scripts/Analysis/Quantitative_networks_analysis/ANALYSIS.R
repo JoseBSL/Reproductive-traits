@@ -71,6 +71,25 @@ qn_1$clusters[qn_1$clusters=="5"] <- "E"
 qn_1$clusters <- as.factor(qn_1$clusters)
 
 
+
+qn_1$Interaction
+
+model_visits_1 <- brm(log(Interaction+1)~ clusters*guild + (1|Id) + (1|gr(phylo, cov = A)),
+                      data = qn_1, family  = lognormal(),data2 = list(A = A), cores = 4,
+                      sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
+                      control = list(adapt_delta = 0.99)) 
+
+
+pp_check(model_visits_1) 
+marginal_effects(model_visits_1, effects = "clusters:guild")
+
+
+
+
+
+
+
+
 model1 <- brm(postive_z_scores ~ clusters*guild + (1|Id) + (1|gr(phylo, cov = A)),
           data = qn_1, family  = lognormal(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
@@ -156,10 +175,10 @@ model6 <- brm(log(Interaction) ~ clusters*guild + (1|Id) + (1|gr(phylo, cov = A)
               sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
               control = list(adapt_delta = 0.99)) 
 
-save.image(file='myEnvironment.RData')
-
-
-
+hist(qn_1$Interaction)
+boxplot(qn_1$Interaction)
+qn_1$Interaction[qn_1$Interaction>100] <- 50
+qn_1$Interaction[qn_1$Interaction>200] <- 200
 
 
 str(qn_1)

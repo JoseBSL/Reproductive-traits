@@ -1,4 +1,12 @@
-# GROUP POLLINATOR TAXA AND CHECK NAMES
+########################################################################################################################################################
+#SCRIPT FOR DATA PREPARATION --> FLORAL VISITORS SPECIES NAMES
+
+#1) READ NETWORK DATA (ALREADY PREPARED -FROM ALL NETWORKS-)
+
+#2) STANDARDIZE SPECIES NAMES WITH TAXIZE AND ADD GENUS, FAMILY AND ORDER
+
+#3) ADD MANUALLY NON FOUND SEARCHES "poll_spp_names_corrected.csv"
+########################################################################################################################################################
 
 # Load Libraries
 library(readxl)
@@ -9,20 +17,33 @@ library(reshape2)
 library(taxize)
 library(stringr)
 
-# READ LONG FORMAT DATA
+
+
+########################################################################################################################################################
+#1) LOAD NETWORK DATA AND POLL GENUSES TO BE SEARCHED
+########################################################################################################################################################
+
+# read long format data of all networks
 Long_format_metawebs <- readRDS("Data/RData/Long_format_metawebs.RData")
 
-# SUBSET UNIQUE CASES PER NETWORK
+# subset unique cases per network
 Long_format_subset_poll <-  unique(Long_format_metawebs[,c("Pollinator_species","Id")])
 str(Long_format_subset_poll$Pollinator_species)
-# SELECT FIRST WORD OF THE SPECIES (GENUS), AND UNIQUE CASE
+# select first word (genus) and do not select specific epithet
 poll <- as.data.frame(unique(word(Long_format_subset_poll$Pollinator_species),1))
 str(poll)
-
+# change name of column to genus
 colnames(poll)[1] <- "Genus"
 
-#RUN TAXSIZE
-#I HAVE TO SPLIT THE DATAFRAME BECAUSE THE PACKAGE IS GIVING A LOT OF ERRORS WITH BIG DATASETS (FOR ME AT LEAST)
+
+
+########################################################################################################################################################
+#2) STANDARDIZE SPECIES NAMES WITH TAXIZE AND ADD GENUS, FAMILY AND ORDER
+########################################################################################################################################################
+
+# run taxsize
+# split dataframe, I'm having errors with the full dataset
+# other pc's seem to have less issues with it
 
 #I START WITH 50 SPP
 poll_50 <- poll[c(1:50),]
@@ -93,37 +114,29 @@ poll_2065 <- poll_species_2065
 write.csv(poll_species_2065, "Data/Data_processing/poll_2065.csv")
 
 
-#NOW I HAVE ALL THE SPECIES
-#BIND DATASETS
-
+# Now I can bind all the datasets again 
+# read them and rbind
 poll_200 <- read.csv("Data/Data_processing/poll_200.csv")
 poll_400 <- read.csv("Data/Data_processing/poll_400.csv")
 poll_800 <- read.csv("Data/Data_processing/poll_800.csv")
 poll_1400 <- read.csv("Data/Data_processing/poll_1400.csv")
 poll_2065 <- read.csv("Data/Data_processing/poll_2065.csv")
-
+#rbind
 poll_spp <- rbind(poll_200, poll_400, poll_800, poll_1400, poll_2065)
 poll_spp$genus_old <- poll$Genus
 poll_spp <- poll_spp[,-1]
+#save dataset with species names searched by taxsize
 write.csv(poll_spp, "Data/Data_processing/poll_spp.csv")
 
+########################################################################################################################################################
+#3) ADD MANUALLY NON FOUND SEARCHES
+########################################################################################################################################################
 
-#I have added manually the ORDERS, FAMILIES AND GENUSES
-#By using https://www.catalogueoflife.org/ 
-#or other addittional resources when required for specific cases
+# This has been done using https://www.itis.gov/
+# as a main source 
+# work conducted in google sheets
 
-#READ POLLINATOR ORDERS, FAMILIES AND GENUSES (UNIQUE CASES)
-poll_spp_names_corrected <- read.csv("Data/Data_processing/poll_spp_names_corrected.csv")
+#the final document has been saved to 
+#"poll_spp_names_corrected.csv"
 
-Long_format_metawebs$genus_old <- word(Long_format_metawebs$Pollinator_species)
-
-all_long_format <- merge(Long_format_metawebs, poll_spp_names_corrected, by= "genus_old")
-
-all_long_format <- all_long_format[,-c(1,6,7)]
-
-colnames(all_long_format) <- c("Plant_species", "Pollinator_species", "Interaction", "Id", "Pollinator_order", "Pollinator_family",
-                              "Pollinator_genus")
-
-
-write.csv(all_long_format, "Data/Data_processing/Long_format_metawebs_poll_taxa_added.csv")
 

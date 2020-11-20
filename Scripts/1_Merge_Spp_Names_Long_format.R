@@ -1,7 +1,12 @@
-##############################################################################
-#ADD POLLINATOR GUILD TO THE NETWORKS
-##############################################################################
+########################################################################################################################################################
+#SCRIPT FOR DATA PREPARATION->MERGE LONG FORMAT WITH SPP NAMES (JUST POLLINATORS) AND ADD GUILDS
 
+#1) READ NETWORK DATA
+
+#2) ADD POLLINATOR GUILD (Output of taxsize and manually -non found searches-)
+
+
+########################################################################################################################################################
 
 #LOAD LIBRARIES
 library(brms)
@@ -18,9 +23,9 @@ library(ape)
 library(dplyr)
 library(tidyverse)
 
-
-######################################################################################################################################################
-#LOAD NETWORK DATA
+########################################################################################################################################################
+#1) LOAD NETWORK DATA
+########################################################################################################################################################
 #Set working directory to read files
 setwd("~/R_Projects/Reproductive traits/Data/Data_networks_quantitative") 
 
@@ -45,19 +50,20 @@ for (i in data_id_list){
 #Renaming columns
 colnames(all_long) <- c("Plant_species", "Id", "Pollinator_species", "Interaction") 
 
-#PREPARE POLLINATOR GUILD VARIABLE
-#For that I have previously used taxsize and filled manually the orders and families of the diff. poll species
+########################################################################################################################################################
+#2) ADD POLLINATOR GUILD
+########################################################################################################################################################
 
-#Load poll guild data 
+#Load poll guild data (FILLED MANUALLY AND WITH TAXIZE PREVIOUSLY, I STILL HAVE TO ADD SOME FAM/GENUS/ORDER
+#BECAUSE OF SOME NETWORKS WERE ADDED LATE)
+#PLANT SPECIES NAMES HAS BEEN ALSO BEEN SEARCHED BUT PREVIOUSLY WITH TAXSIZE
+
 setwd("~/R_Projects/Reproductive traits") 
 poll_names <- read.csv("Data/Data_processing/pollinator_species_names/poll_spp_names_corrected.csv")
-#select unique word
+#select unique word in order to meger
 all_long$genus_old <- word(all_long$Pollinator_species)
-#merge data
+#merge data by genus with the long format dataframe of the networks
 all_long_poll_names <- merge(all_long, poll_names, by= "genus_old", all.x  = T)
-
-#check unserached species names
-all_long_poll_names_CHECK <- all_long_poll_names[!duplicated(all_long_poll_names$Pollinator_species),]
 
 #Now I add manually some species that are unfilled
 #convert columns to characters
@@ -847,7 +853,6 @@ all_long_poll_names$genus[all_long_poll_names$Pollinator_species=="Zizina sp."] 
 
 all_long_poll_names$guild <- NA
 
-
 #Add pollinator guilds for analysis
 all_long_poll_names$guild[all_long_poll_names$order=="Lepidoptera"] <- "Lepidoptera"
 all_long_poll_names$guild[all_long_poll_names$order=="Coleoptera"] <- "Coleoptera"
@@ -863,18 +868,27 @@ all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var
 #Select data with interaction greater than 0
 all_poll_1 <- all_poll[all_poll$Interaction>0,]
 
-
-all_poll_1 <- all_poll_1 %>%
-  filter(Interaction < 800)
 #Calculate Z-scores 
 require(data.table)
 all_poll_1 <- data.table(all_poll_1)
-all_poll_1[, Z_scores := scale(Interaction), by = Id]
-
+all_poll_1[, Z_scores := scale(Interaction,center = TRUE, scale = TRUE), by = Id]
 
 #Remove other orders/guilds that are not these ones
 all_poll_1 <- all_poll_1[!is.na(all_poll_1$guild),]
-#almost all interactions recorded belong to these orders
+#almost all interactions recorded belong to these 4 orders (6 guilds)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ######################################################################################################################################################
