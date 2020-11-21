@@ -48,6 +48,32 @@ rownames(A) <- gsub("_", " ", rownames(A))
 #analysis
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+library(phyr)
+#model
+library(ggplot2)
+ggplot(qn_1, aes(x=log(Corolla_diameter_mean), y=Z_scores,group=Order_all)) +
+  geom_point(aes( color=Order_all))
+
+str(qn_1)
+
+
+
+m1 <- pglmm(Z_scores ~ clusters+(1 | phylo) +(1 | Id),
+data = qn_1,cov_ranef = list(sp = A),bayes = FALSE,REML = TRUE)
+
+
+summary(m1)
+
+
+pglmm.plot.re(x = m1, show.image = FALSE, show.sim.image = TRUE, 
+              add.tree.sp = TRUE, colorkey = FALSE, useAbs = FALSE)
+
+
+
+
+
+
+
 
 #check data distribution
 hist(qn_1$Z_scores)
