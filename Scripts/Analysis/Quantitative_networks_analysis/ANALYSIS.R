@@ -58,7 +58,7 @@ str(qn_1)
 
 
 
-m1 <- pglmm(Z_scores ~ clusters+(1 | phylo) +(1 | Id),
+m1 <- pglmm(Z_scores ~ guild+(1 | phylo) +(1 | Id),
 data = qn_1,cov_ranef = list(sp = A),bayes = FALSE,REML = TRUE)
 
 
