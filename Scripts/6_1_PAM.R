@@ -20,7 +20,7 @@ library(brms)
 #1) READ DATA
 ########################################################################################################################################################
 
-d <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_clusters.csv", row.names = 1)
+d <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_14_clusters.csv", row.names = 1)
 
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
@@ -80,22 +80,31 @@ d_1$Clusters[d_1$Clusters=="2"] <- "B"
 d_1$Clusters[d_1$Clusters=="3"] <- "C"
 d_1$Clusters[d_1$Clusters=="4"] <- "D"
 d_1$Clusters[d_1$Clusters=="5"] <- "E"
+d_1$Clusters[d_1$Clusters=="6"] <- "F"
+d_1$Clusters[d_1$Clusters=="7"] <- "G"
+d_1$Clusters[d_1$Clusters=="8"] <- "H"
+d_1$Clusters[d_1$Clusters=="9"] <- "I"
+d_1$Clusters[d_1$Clusters=="10"] <- "J"
+d_1$Clusters[d_1$Clusters=="11"] <- "K"
+d_1$Clusters[d_1$Clusters=="12"] <- "L"
+d_1$Clusters[d_1$Clusters=="13"] <- "M"
+d_1$Clusters[d_1$Clusters=="14"] <- "N"
 
 d_1$Clusters <- as.factor(d_1$Clusters)
 levels(as.factor(d_1$Clusters))
-
+str(d_1)
 t_l <-d_1[d_1$Clusters=="D",]
 levels(t_l$Breeding_system.y)
 ########################################################################################################################################################
 #3) Analysis
 ########################################################################################################################################################
-m1 <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+m1_PAM <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
           data = d_1, family  = gaussian(),data2 = list(A = A), cores = 4,
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99)) 
 
 
-marginal_effects(m1, effects = "Clusters:guild")
+conditional_effects(m1_PAM, effects = "Clusters:guild")
 
 summary(m1)
 library(ggplot2)
@@ -110,9 +119,9 @@ d_2 <- d_1[!duplicated(d_1$Species_all),]
 str(d_2)
 #select columns of interest
 t <- d_2[c("Order_all","Family_all","Genus_all","Species_all","Breeding_system.y","IMPUTED_Compatibility.y","Autonomous_selfing_level.y",
-                        "Autonomous_selfing_level_fruit_set.x", "Flower_morphology.y", "Flower_symmetry.y", "Flowers_per_plant.x", "Flowers_per_inflorescence.x",
-                        "Floral_unit_width.x", "Corolla_diameter_mean.x", "Corolla_length_mean.x", "STYLE_IMPUTED.x", "OVULES_IMPUTED.x", "life_form.y", "lifespan.y",
-                        "Clusters")]
+           "Autonomous_selfing_level_fruit_set.x", "Flower_morphology.y", "Flower_symmetry.y", "Flowers_per_plant.x", "Flowers_per_inflorescence.x",
+           "Floral_unit_width.x", "Corolla_diameter_mean.x", "Corolla_length_mean.x", "STYLE_IMPUTED.x", "OVULES_IMPUTED.x", "life_form.y", "lifespan.y",
+           "Clusters")]
 
 
 unique_spp <- t  %>% group_by(Clusters) %>% do(the_summary = summary(.))

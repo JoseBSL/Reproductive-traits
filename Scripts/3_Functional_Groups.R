@@ -145,6 +145,15 @@ names(trait_data)[names(trait_data) == "e.gr"] <- "Clusters"
 #Write csv
 write.csv(trait_data, "Data/Csv/imputed_trait_data_hclust_5_clusters.csv") 
 
+
+#Save PAM output
+trait_data_pam <- cbind(trait_data, pam_fit$clustering)
+names(trait_data_pam)[names(trait_data_pam) == "pam_fit$clustering"] <- "Clusters"
+levels(as.factor(trait_data_pam$Clusters))
+#Write csv
+write.csv(trait_data_pam, "Data/Csv/imputed_trait_data_pam_14_clusters.csv") 
+
+
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
