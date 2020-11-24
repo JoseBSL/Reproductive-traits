@@ -5,7 +5,7 @@
 
 #2) ADD POLLINATOR GUILD (Output of taxsize and manually -non found searches-)
 
-
+#3) SAVE DATA
 ########################################################################################################################################################
 
 #LOAD LIBRARIES
@@ -864,99 +864,17 @@ all_long_poll_names$guild[all_long_poll_names$family=="Apidae"] <- "Apidae"
 
 #Aggregate by poll guild
 all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
+head(all_poll)
+########################################################################################################################################################
+#3)SAVE DATA
+########################################################################################################################################################
 
-#Select data with interaction greater than 0
-all_poll_1 <- all_poll[all_poll$Interaction>0,]
+write.csv(all_poll, "Data/Csv/long_format_quantitative_networks.csv")
 
-#Calculate Z-scores 
-require(data.table)
-all_poll_1 <- data.table(all_poll_1)
-all_poll_1[, Z_scores := scale(Interaction,center = TRUE, scale = TRUE), by = Id]
-
-#Remove other orders/guilds that are not these ones
-all_poll_1 <- all_poll_1[!is.na(all_poll_1$guild),]
-#almost all interactions recorded belong to these 4 orders (6 guilds)
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-######################################################################################################################################################
-
-
-#LOAD TRAIT DATA
-setwd("~/R_Projects/Reproductive traits") 
-
-t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
-t_data <- t_data[1:1701,]
-#filter data, select species with flower level info and capitulum
-t_data_filtered <- filter(t_data, Info_level == "flower" |  Info_level == "capitulum")
-t_data_filtered <- as.data.frame(t_data_filtered)
-colnames(t_data_filtered)[1] <- "Plant_species"
-#select columns of interest
-traits <- t_data_filtered %>% select(Species_geonet,Order_all,Family_all,Genus_all,Species_all,Breeding_system,IMPUTED_Compatibility,Autonomous_selfing_level,Autonomous_selfing_level_data_type,Autonomous_selfing_level_fruit_set,Flower_morphology,Flower_symmetry,Flowers_per_plant,Flowers_per_inflorescence,Floral_unit_width,Corolla_diameter_mean,Corolla_length_mean,STYLE_IMPUTED,OVULES_IMPUTED,life_form,lifespan,IMPUTED_plant_height_mean_m)
-#Remove duplicated species
-t <- traits[!duplicated(traits$Species_all), ]
-colnames(t)[1] <- "Plant_species"
-
-
-######################################################################################################################################################
-
-#MERGE NETWORK AND TRAIT DATA
-all_df <- merge(all_poll_1, t, by = "Plant_species", all.x =T)
-
-#CALCULATE PHYLOGENETIC DISTANCE OF THE SPECIES TO ADD THE AS A COVARIABLE
-#Prepare species to calcute phylogenetic distance
-#Set these species as NA, the tree cannot find these species ad they are giving issues
-#if I leave them as NA IT WORKS FINE
-
-
-
-#Make these NA's as NA
-all_df$species[all_df$Species_all=="NA"] <- NA
-all_df$species[all_df$Genus_all=="NA"] <- NA
-all_df$species[all_df$Family_all=="NA"] <- NA
-all_df$Species_all[all_df$Species_all=="Diospyros seychellarum"] <- NA
-all_df$Species_all[all_df$Species_all=="Memecylon eleagni"] <- NA
-all_df$Species_all[all_df$Species_all=="Ocotea laevigata"] <- NA
-all_df$Species_all[all_df$Species_all=="Soulamea terminaloides"] <- NA
-#REMOVE NA's for calculating distance
-all_df_1 <- all_df[!is.na(all_df$Species_all),]
-
-#Prepare species, genus and family for calculating tree
-phylo <- as.data.frame(cbind(all_df_1$Family_all, all_df_1$Genus_all, all_df_1$Species_all))
-colnames(phylo) <-  c("family", "genus", "species")
-
-#Select unique cases
-phylo_1 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
-
-
-phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
-
-
-#Convert phylogenetic tree into matrix
-A <- vcv.phylo(phylo_3)
-#Standardize to max value 1
-A <- A/max(A)
-#Unify column names; remove underscore and remove asterik
-rownames(A) <- gsub("\\*", "", rownames(A))
-colnames(A) <- gsub("\\*", "", colnames(A))
-colnames(A) <- gsub("_", " ", colnames(A))
-rownames(A) <- gsub("_", " ", rownames(A))
-
-all_df$phylo <- all_df$Species_all
-
-
-#Write csv
-write.csv(all_df, "Data/Csv/quantitative_networks_trait_data.csv")
