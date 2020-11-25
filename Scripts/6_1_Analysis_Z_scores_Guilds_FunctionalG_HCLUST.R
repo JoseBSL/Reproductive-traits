@@ -89,10 +89,28 @@ levels(t_l$Breeding_system.y)
 ########################################################################################################################################################
 #3) Analysis
 ########################################################################################################################################################
-m1 <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-          data = d_1, family  = gaussian(),data2 = list(A = A), cores = 4,
+
+fit_serial <- brm(
+  count ~ zAge + zBase * Trt + (1|patient),
+  data = epilepsy, family = poisson(),
+  chains = 4, cores = 4, backend = "cmdstanr"
+)
+Then running this model with threading requires cmdstanr as backend and you can simply add threading support to an existing model with the update mechanism as:
+  
+  fit_parallel <- update(
+    fit_serial, chains = 2, cores = 2,
+    backend = "cmdstanr", threads = threading(2)
+  )
+
+fit_serial <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+          data = d_1, family  = gaussian(),data2 = list(A = A), cores = 4,chains = 4,  backend = "cmdstanr",
           sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
           control = list(adapt_delta = 0.99)) 
+
+fit_parallel <- update(
+  fit_serial, chains = 2, cores = 2,
+  backend = "cmdstanr", threads = threading(2)
+)
 
 
 marginal_effects(m1, effects = "Clusters:guild")
@@ -126,3 +144,4 @@ unique_spp$the_summary
 
 devtools::install_github("daijiang/phyr", force=T)
 
+install.packages("brms")

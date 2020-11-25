@@ -858,8 +858,15 @@ all_long_poll_names$guild[all_long_poll_names$order=="Lepidoptera"] <- "Lepidopt
 all_long_poll_names$guild[all_long_poll_names$order=="Coleoptera"] <- "Coleoptera"
 all_long_poll_names$guild[all_long_poll_names$order=="Diptera"] <- "Non-syrphids-diptera"
 all_long_poll_names$guild[all_long_poll_names$family=="Syrphidae"] <- "Syrphids"
-all_long_poll_names$guild[all_long_poll_names$order=="Hymenoptera"] <- "Hymenoptera"
-all_long_poll_names$guild[all_long_poll_names$family=="Apidae"] <- "Apidae"
+all_long_poll_names$guild[all_long_poll_names$order=="Hymenoptera"] <- "Non-bee-Hymenoptera"
+all_long_poll_names$guild[all_long_poll_names$family=="Apidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Megachilidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Halictidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Andrenidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Colletidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Melittidae"] <- "Bee"
+all_long_poll_names$guild[all_long_poll_names$family=="Stenotritidae"] <- "Bee"
+
 
 
 #Aggregate by poll guild

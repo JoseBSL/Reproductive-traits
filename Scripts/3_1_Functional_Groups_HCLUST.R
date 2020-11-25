@@ -1,5 +1,5 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE FUNCTIONAL GROUPS
+#SCRIPT TO CALCULATE FUNCTIONAL GROUPS ##(METHOD:HCLUST)##
 
 #1)READ TAIT IMPUTED DATA FOR ALL SPECIES (created in 2_Trait_Data_Imputation)
 
@@ -7,7 +7,7 @@
 
 #3)CALCULATE GOWER DISTANCE
 
-#4)FIND OPTIMAL NUMBER OF FUNCTIONAL GROUPS (2 METHODS HCLUST AND PARTITIONING AROUND MEDIOIDS -PAM-)
+#4)FIND OPTIMAL NUMBER OF FUNCTIONAL GROUPS (2 METHODS HCLUST AND PARTITIONING AROUND MEDIOIDS -PAM-) BUT IN THIS SCRIPT JUST HCLUST
 
 #5)PLOT DENDROGRAMS WITH OPTIMAL NUMBER OF CLUSTERS 
 
@@ -24,6 +24,7 @@ library(spdep)
 library(RANN)
 library(missMDA)
 library(Rtsne)
+library(dplyr)
 
 ########################################################################################################################################################
 #1)READ TRAIT DATA
@@ -64,95 +65,78 @@ noclus <- hclust(g.dist, method="ward.D2")
 b <- kgs(noclus,g.dist, maxclust=21)#5 clusters has lowest penalty score
 plot(names (b), b, xlab="Number of Clusters", ylab="Penalty score")
 
-
-
-#Now check with PAM (partitioning around medioids)
-sil_width <- c(NA)
-for(i in 2:20){  
-  pam_fit <- pam(g.dist, diss = TRUE, k = i)  
-  sil_width[i] <- pam_fit$silinfo$avg.width  
-}
-plot(1:20, sil_width,
-     xlab = "Number of clusters",
-     ylab = "Silhouette Width")
-lines(1:20, sil_width)
-
-#Seems that with PAM 14 clusters is the optimal number (more specific clusters)
-
-e.clust <- hclust(g.dist, method="ward.D2")
-plot(e.clust, main = "Cluster dengrogram based on effect traits",cex = 0.08)
-cut.g <- readline("14")
-cut.g <- as.integer(cut.g)
-e.gr <- cutree(e.clust, k = 14)
-e.gr2 <- rect.hclust(e.clust, k = 14, border = "red")
-
-
 ########################################################################################################################################################
 #5)PLOT DENDROGRAMS WITH OPTIMAL NUMBER OF CLUSTERS 
 ########################################################################################################################################################
 
 #########
-#METHOD## 1) HCLUST 5 clusters optimal number
+# HCLUST 5 clusters 
 #########
-e.clust <- hclust(g.dist, method="ward.D2")
-plot(e.clust, main = "Cluster dengrogram based on effect traits",cex = 0.08)
-cut.g <- readline("5")
-cut.g <- as.integer(cut.g)
-e.gr <- cutree(e.clust, k = 5)
-e.gr2 <- rect.hclust(e.clust, k = 5, border = "red")
-
+e.clust_5 <- hclust(g.dist, method="ward.D2")
+plot(e.clust_5, main = "Cluster dengrogram based on effect traits",cex = 0.08)
+cut.g_5 <- readline("5")
+cut.g_5 <- as.integer(cut.g_5)
+e.gr_5 <- cutree(e.clust_5, k = 5)
+e.gr_5_1 <- rect.hclust(e.clust_5, k = 5, border = "red")
+#summary of clusters
 #Check clusters
-hclust_results <- trait_data  %>%mutate(cluster = as.factor(e.gr)) %>% group_by(cluster) %>% do(the_summary = summary(.))
-hclust_results$the_summary
-
-#Visualize clusters with t-sne
+hclust_5 <- trait_data  %>%mutate(cluster = as.factor(e.gr_5)) %>% group_by(cluster) %>% do(the_summary = summary(.))
+hclust_5$the_summary
+#visualize clusters
 tsne_obj <- Rtsne(g.dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%data.frame() %>%setNames(c("X", "Y")) %>%mutate(cluster = as.factor(e.gr))
+tsne_data <- tsne_obj$Y %>%data.frame() %>%setNames(c("X", "Y")) %>%mutate(cluster = as.factor(e.gr_5))
 ggplot(aes(x = X, y = Y), data = tsne_data) + geom_point(aes(color = cluster))
 
 
 
+
 #########
-#METHOD## 2) PAM 14 clusters optimal number
+# HCLUST 14 clusters 
 #########
 
-#PLOT T-sne 14 clusters
+e.clust_14 <- hclust(g.dist, method="ward.D2")
+plot(e.clust_14, main = "Cluster dengrogram based on effect traits",cex = 0.08)
+cut.g_14 <- readline("14")
+cut.g_14 <- as.integer(cut.g_14)
+e.gr_14 <- cutree(e.clust_14, k = 14)
+e.gr_14_1 <- rect.hclust(e.clust_14, k = 14, border = "red")
+#summary of clusters
+#Check clusters
+hclust_14 <- trait_data  %>%mutate(cluster = as.factor(e.gr_14)) %>% group_by(cluster) %>% do(the_summary = summary(.))
+hclust_14$the_summary
+#visualize clusters
 tsne_obj <- Rtsne(g.dist, is_distance = TRUE)
-tsne_data <- tsne_obj$Y %>%data.frame() %>%setNames(c("X", "Y")) %>%mutate(cluster = factor(pam_fit$clustering))
+tsne_data <- tsne_obj$Y %>%data.frame() %>%setNames(c("X", "Y")) %>%mutate(cluster = as.factor(e.gr_14))
 ggplot(aes(x = X, y = Y), data = tsne_data) + geom_point(aes(color = cluster))
 
-#check summary "Partitioning Around Medoids"
-pam_fit <- pam(g.dist, diss = TRUE, k = 14)
-pam_results <- trait_data  %>%mutate(cluster = pam_fit$clustering) %>% group_by(cluster) %>% do(the_summary = summary(.))
-pam_results$the_summary
+
 
 #########################################################################################
-##Although method 1 and 2 give different outputs, 5 and 14 clusters are visible with both
-##I'm going to stick with 5 clusters with hierarchical clustering
-##Theres is not a strong reason both seem fine
+#The optimal number of clusters is 5 but 14 clusters also divide the data evenly
+#I'm going to save both, for the moment I'll work just with 5
 #########################################################################################
 
 ########################################################################################################################################################
 #6)SAVE DATA
 ########################################################################################################################################################
+
+#SAVE 5 CLUSTERS
 #The order is still the same (I have check it previously) so I can cbind the output and trait data
-trait_data <- cbind(trait_data, e.gr)
-head(trait_data)
-
+trait_data_5 <- cbind(trait_data, e.gr_5)
+head(trait_data_5)
 #change colname
-names(trait_data)[names(trait_data) == "e.gr"] <- "Clusters"
-
+names(trait_data_5)[names(trait_data_5) == "e.gr_5"] <- "Clusters"
 #Write csv
-write.csv(trait_data, "Data/Csv/imputed_trait_data_hclust_5_clusters.csv") 
+write.csv(trait_data_5, "Data/Csv/imputed_trait_data_hclust_5_clusters.csv") 
 
-
-#Save PAM output
-trait_data_pam <- cbind(trait_data, pam_fit$clustering)
-names(trait_data_pam)[names(trait_data_pam) == "pam_fit$clustering"] <- "Clusters"
-levels(as.factor(trait_data_pam$Clusters))
+#SAVE 14 CLUSTERS
+#The order is still the same (I have check it previously) so I can cbind the output and trait data
+trait_data_14 <- cbind(trait_data, e.gr_14)
+head(trait_data_14)
+#change colname
+names(trait_data_14)[names(trait_data_14) == "e.gr_14"] <- "Clusters"
 #Write csv
-write.csv(trait_data_pam, "Data/Csv/imputed_trait_data_pam_14_clusters.csv") 
-
+write.csv(trait_data_14, "Data/Csv/imputed_trait_data_hclust_14_clusters.csv") 
 
 ########################################################################################################################################################
 ########################################################################################################################################################
