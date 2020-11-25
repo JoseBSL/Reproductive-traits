@@ -162,60 +162,30 @@ levels(t_l$Breeding_system.y)
 #3) Analysis
 ########################################################################################################################################################
 
-#5 clusters hclust
-m_5_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                    data = d_5_1, family  = exgaussian(),data2 = list(A = A_5), cores = 4,chains = 4,  backend = "cmdstanr",
-                    sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                    control = list(adapt_delta = 0.99)) 
-
-plot(m_5_clusters)
-#GOODNESS OF FIT
-pp_check(m_5_clusters) +xlim(-10,10)+ylim(0,3)
-
-#CHECK MODEL OUTPUT
-marginal_effects(m_5_clusters, effects = "Clusters:guild")
+#STUDENT
+m_PAM_5_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
+                                 data = d_5_1, family  = student(),data2 = list(A = A_5), cores = 4,chains = 4,  backend = "cmdstanr",
+                                 sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+                                 control = list(adapt_delta = 0.99)) 
 
 
-#14 clusters hclust
-m_14_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                     data = d_14_1, family  = gaussian(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
-                     sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                     control = list(adapt_delta = 0.99)) 
+marginal_effects(m_PAM_5_clusters_stu_NU_GUILD, effects = "Clusters:guild")
+pp_check(m_PAM_5_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
+pp_check(m_PAM_5_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
+pp_check(m_PAM_5_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_PAM_5_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
 
 
-#GOODNESS OF FIT
-pp_check(m_14_clusters) +xlim(-10,10)+ylim(0,3)
+#STUDENT
+m_PAM_14_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
+                                  data = d_14_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+                                  sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+                                  control = list(adapt_delta = 0.99)) 
 
-#CHECK MODEL OUTPUT
-marginal_effects(m_14_clusters, effects = "Clusters:guild")
-
-
-
-#NEXT PART EXPLORE CLUSTERS 
-
-
-
-
-#select unique species
-d_2 <- d_1[!duplicated(d_1$Species_all),]
-#select columns of interest
-str(d_2)
-#select columns of interest
-t <- d_2[c("Order_all","Family_all","Genus_all","Species_all","Breeding_system.y","IMPUTED_Compatibility.y","Autonomous_selfing_level.y",
-           "Autonomous_selfing_level_fruit_set.x", "Flower_morphology.y", "Flower_symmetry.y", "Flowers_per_plant.x", "Flowers_per_inflorescence.x",
-           "Floral_unit_width.x", "Corolla_diameter_mean.x", "Corolla_length_mean.x", "STYLE_IMPUTED.x", "OVULES_IMPUTED.x", "life_form.y", "lifespan.y",
-           "Clusters")]
+marginal_effects(m_PAM_14_clusters_stu_NU_GUILD, effects = "Clusters:guild")
+pp_check(m_PAM_14_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
+pp_check(m_PAM_14_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
+pp_check(m_PAM_14_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_PAM_14_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
 
 
-unique_spp <- t  %>% group_by(Clusters) %>% do(the_summary = summary(.))
-unique_spp$the_summary
-#Prepare summary in order to see the different modes/means between groups
-
-
-########################################################################################################################################################
-########################################################################################################################################################
-########################################################################################################################################################
-
-devtools::install_github("daijiang/phyr", force=T)
-
-install.packages("brms")

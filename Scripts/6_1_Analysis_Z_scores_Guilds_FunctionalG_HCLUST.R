@@ -16,7 +16,7 @@ library(rtrees) #for phylogenetic distance
 library(DHARMa)
 library(brms)
 library(cmdstanr)
-
+library(ggplot2)
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -161,42 +161,69 @@ levels(t_l$Breeding_system.y)
 ########################################################################################################################################################
 #3) Analysis
 ########################################################################################################################################################
-str(d_5_1)
+
+#STUDENT
 #5 clusters hclust
-m_5_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                     data = d_5_1, family  = gaussian(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
-                     sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                     control = list(adapt_delta = 0.99)) 
-
-
-plot(m_5_clusters)
-#GOODNESS OF FIT
-pp_check(m_5_clusters) +xlim(-10,10)+ylim(0,3)
+#m_5_clusters_stu <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+ #                   data = d_5_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+ #                  sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+ #                 control = list(adapt_delta = 0.99)) 
 
 #CHECK MODEL OUTPUT
-marginal_effects(m_5_clusters, effects = "Clusters:guild")
+#marginal_effects(m_5_clusters_stu, effects = "Clusters:guild")
+
+#5 clusters hclust
+m_5_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
+                        data = d_5_1, family  = student(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                        sample_prior = TRUE, warmup = 500, iter = 1500,
+                        control = list(adapt_delta = 0.99)) 
+
+
+marginal_effects(m_5_clusters_stu_NU_GUILD, effects = "Clusters:guild")
+pp_check(m_5_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
+pp_check(m_5_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
+pp_check(m_5_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
+
+#SAVE MODEL
+
+
+#5 clusters hclust
+#m_5_clusters_stu_NU_Clusters <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~Clusters),
+#                                data = d_5_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+#                               sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+#                              control = list(adapt_delta = 0.99)) 
+#Compare models with loo
+#m_5_clusters_stu <- add_criterion(m_5_clusters_stu, "waic")
+#m_5_clusters_stu_NU_GUILD <- add_criterion(m_5_clusters_stu_NU_GUILD, "waic")
+#m_5_clusters_stu_NU_Clusters <- add_criterion(m_5_clusters_stu_NU_Clusters, "waic")
+#loo_compare(m_5_clusters_stu,m_5_clusters_stu_NU_GUILD,m_5_clusters_stu_NU_Clusters)
+#Best model is including the fit of the distributions by guild
 
 
 #14 clusters hclust
-m_14_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                    data = d_14_1, family  = gaussian(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
-                    sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                    control = list(adapt_delta = 0.99)) 
+m_14_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
+                                 data = d_14_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+                                 sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+                                 control = list(adapt_delta = 0.99)) 
 
-
-#GOODNESS OF FIT
-pp_check(m_14_clusters) +xlim(-10,10)+ylim(0,3)
-
-#CHECK MODEL OUTPUT
-marginal_effects(m_14_clusters, effects = "Clusters:guild")
-
-
-
-#NEXT PART EXPLORE CLUSTERS 
+marginal_effects(m_14_clusters_stu_NU_GUILD, effects = "Clusters:guild")
+pp_check(m_14_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
+pp_check(m_14_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
+pp_check(m_14_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_14_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
 
 
 
 
+
+
+
+
+
+
+
+#NEXT PART EXPLORE CLUSTERS sTABLE SUMMARY
 #select unique species
 d_2 <- d_1[!duplicated(d_1$Species_all),]
 #select columns of interest
