@@ -1,5 +1,5 @@
 ########################################################################################################################################################
-#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD)
+#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD) ##HCLUST##
 
 #1) LOAD DATA 
 
@@ -15,112 +15,187 @@ library(dplyr) #data processing
 library(rtrees) #for phylogenetic distance
 library(DHARMa)
 library(brms)
+library(cmdstanr)
 
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
 
-d <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_clusters.csv", row.names = 1)
+d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust.csv", row.names = 1)
+d_14 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_14_clusters_hclust.csv", row.names = 1)
 
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
 ########################################################################################################################################################
 
-#Prepare species, genus and family for calculating phylogenetic distance
-d$Family_all <- as.character(d$Family_all)
-d$Genus_all <- as.character(d$Genus_all)
-d$Species_all <- as.character(d$Species_all)
+#5 CLUSTERS
+#Prepare species, genus anD_5 family for calculating phylogenetic distance
+d_5$Family_all <- as.character(d_5$Family_all)
+d_5$Genus_all <- as.character(d_5$Genus_all)
+d_5$Species_all <- as.character(d_5$Species_all)
 
 #These species are not present for analysis in the matrix, remove or model cannot have phylo as covariable
-d$Species_all[d$Species_all=="Diospyros seychellarum"] <- NA
-d$Species_all[d$Species_all=="Memecylon eleagni"] <- NA
-d$Species_all[d$Species_all=="Ocotea laevigata"] <- NA
-d$Species_all[d$Species_all=="Soulamea terminaloides"] <- NA
+d_5$Species_all[d_5$Species_all=="Diospyros seychellarum"] <- NA
+d_5$Species_all[d_5$Species_all=="Memecylon eleagni"] <- NA
+d_5$Species_all[d_5$Species_all=="Ocotea laevigata"] <- NA
+d_5$Species_all[d_5$Species_all=="Soulamea terminaloides"] <- NA
 
 #Make these NA's as NA
-d$Species_all[d$Species_all=="NA"] <- NA
-d$Family_all[d$Family_all=="NA"] <- NA
-d$Genus_all[d$Genus_all=="NA"] <- NA
+d_5$Species_all[d_5$Species_all=="NA"] <- NA
+d_5$Family_all[d_5$Family_all=="NA"] <- NA
+d_5$Genus_all[d_5$Genus_all=="NA"] <- NA
 #remove NA's
-d_1 <- d[!is.na(d$Family_all),]
-d_1 <- d[!is.na(d$Species_all),]
-d_1 <- d[!is.na(d$Genus_all),]
+d_5_1 <- d_5[!is.na(d_5$Family_all),]
+d_5_1 <- d_5[!is.na(d_5$Species_all),]
+d_5_1 <- d_5[!is.na(d_5$Genus_all),]
 
 #prepare dataframe to calculate tree
-phylo <- as.data.frame(cbind(d_1$Family_all, d_1$Genus_all, d_1$Species_all))
-colnames(phylo) <-  c("family", "genus", "species")
+phylo_5 <- as.data.frame(cbind(d_5_1$Family_all, d_5_1$Genus_all, d_5_1$Species_all))
+colnames(phylo_5) <-  c("family", "genus", "species")
 
 #Select unique cases
-phylo_1 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
-str(phylo_2)
+phylo_5_1 <- phylo_5[!duplicated(phylo_5$species),]
+phylo_5_2 <- tibble(phylo_5_1)
+str(phylo_5_2)
 
-phylo_3 <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
+phylo_5_3 <- get_tree(sp_list = phylo_5_2, tree = tree_plant_otl, taxon = "plant")
 
 #Convert phylogenetic tree into matrix
-A <- vcv.phylo(phylo_3)
-
+A_5 <- vcv.phylo(phylo_5_3)
 #Standardize to max value 1
-A <- A/max(A)
-
+A_5 <- A_5/max(A_5)
 #Unify column names; remove underscore and remove asterik
-rownames(A) <- gsub("\\*", "", rownames(A))
-colnames(A) <- gsub("\\*", "", colnames(A))
-colnames(A) <- gsub("_", " ", colnames(A))
-rownames(A) <- gsub("_", " ", rownames(A))
+rownames(A_5) <- gsub("\\*", "", rownames(A_5))
+colnames(A_5) <- gsub("\\*", "", colnames(A_5))
+colnames(A_5) <- gsub("_", " ", colnames(A_5))
+rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
 #Add phylo column to dataset
-d_1$phylo
-d_1$phylo <- d_1$Species_all
-str(d_1)
+d_5_1$phylo
+d_5_1$phylo <- d_5_1$Species_all
+str(d_5_1)
 
-d_1$Clusters <- as.character(d_1$Clusters)
-d_1$Clusters[d_1$Clusters=="1"] <- "A"
-d_1$Clusters[d_1$Clusters=="2"] <- "B"
-d_1$Clusters[d_1$Clusters=="3"] <- "C"
-d_1$Clusters[d_1$Clusters=="4"] <- "D"
-d_1$Clusters[d_1$Clusters=="5"] <- "E"
+d_5_1$Clusters <- as.character(d_5_1$Clusters)
+d_5_1$Clusters[d_5_1$Clusters=="1"] <- "A"
+d_5_1$Clusters[d_5_1$Clusters=="2"] <- "B"
+d_5_1$Clusters[d_5_1$Clusters=="3"] <- "C"
+d_5_1$Clusters[d_5_1$Clusters=="4"] <- "D"
+d_5_1$Clusters[d_5_1$Clusters=="5"] <- "E"
 
-d_1$Clusters <- as.factor(d_1$Clusters)
-levels(as.factor(d_1$Clusters))
+d_5_1$Clusters <- as.factor(d_5_1$Clusters)
+levels(as.factor(d_5_1$Clusters))
 
-t_l <-d_1[d_1$Clusters=="D",]
+t_l <-d_5_1[d_5_1$Clusters=="D",]
+levels(t_l$Breeding_system.y)
+
+
+#14 CLUSTERS
+#Prepare species, genus anD_5 family for calculating phylogenetic distance
+d_14$Family_all <- as.character(d_14$Family_all)
+d_14$Genus_all <- as.character(d_14$Genus_all)
+d_14$Species_all <- as.character(d_14$Species_all)
+
+#These species are not present for analysis in the matrix, remove or model cannot have phylo as covariable
+d_14$Species_all[d_14$Species_all=="Diospyros seychellarum"] <- NA
+d_14$Species_all[d_14$Species_all=="Memecylon eleagni"] <- NA
+d_14$Species_all[d_14$Species_all=="Ocotea laevigata"] <- NA
+d_14$Species_all[d_14$Species_all=="Soulamea terminaloides"] <- NA
+
+#Make these NA's as NA
+d_14$Species_all[d_14$Species_all=="NA"] <- NA
+d_14$Family_all[d_14$Family_all=="NA"] <- NA
+d_14$Genus_all[d_14$Genus_all=="NA"] <- NA
+#remove NA's
+d_14_1 <- d_14[!is.na(d_14$Family_all),]
+d_14_1 <- d_14[!is.na(d_14$Species_all),]
+d_14_1 <- d_14[!is.na(d_14$Genus_all),]
+
+#prepare dataframe to calculate tree
+phylo_14 <- as.data.frame(cbind(d_14_1$Family_all, d_14_1$Genus_all, d_14_1$Species_all))
+colnames(phylo_14) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_14_1 <- phylo_14[!duplicated(phylo_14$species),]
+phylo_14_2 <- tibble(phylo_14_1)
+str(phylo_14_2)
+
+phylo_14_3 <- get_tree(sp_list = phylo_14_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A_14 <- vcv.phylo(phylo_14_3)
+#Standardize to max value 1
+A_14 <- A_14/max(A_14)
+#Unify column names; remove underscore and remove asterik
+rownames(A_14) <- gsub("\\*", "", rownames(A_14))
+colnames(A_14) <- gsub("\\*", "", colnames(A_14))
+colnames(A_14) <- gsub("_", " ", colnames(A_14))
+rownames(A_14) <- gsub("_", " ", rownames(A_14))
+
+#Add phylo column to dataset
+d_14_1$phylo
+d_14_1$phylo <- d_14_1$Species_all
+str(d_14_1)
+
+d_14_1$Clusters <- as.character(d_14_1$Clusters)
+d_14_1$Clusters[d_14_1$Clusters=="1"] <- "A"
+d_14_1$Clusters[d_14_1$Clusters=="2"] <- "B"
+d_14_1$Clusters[d_14_1$Clusters=="3"] <- "C"
+d_14_1$Clusters[d_14_1$Clusters=="4"] <- "D"
+d_14_1$Clusters[d_14_1$Clusters=="5"] <- "E"
+d_14_1$Clusters[d_14_1$Clusters=="6"] <- "F"
+d_14_1$Clusters[d_14_1$Clusters=="7"] <- "G"
+d_14_1$Clusters[d_14_1$Clusters=="8"] <- "C"
+d_14_1$Clusters[d_14_1$Clusters=="9"] <- "H"
+d_14_1$Clusters[d_14_1$Clusters=="10"] <- "I"
+d_14_1$Clusters[d_14_1$Clusters=="11"] <- "J"
+d_14_1$Clusters[d_14_1$Clusters=="12"] <- "K"
+d_14_1$Clusters[d_14_1$Clusters=="13"] <- "L"
+d_14_1$Clusters[d_14_1$Clusters=="14"] <- "M"
+d_14_1$Clusters[d_14_1$Clusters=="15"] <- "N"
+
+d_14_1$Clusters <- as.factor(d_14_1$Clusters)
+levels(as.factor(d_14_1$Clusters))
+
+t_l <-d_14_1[d_14_1$Clusters=="D",]
 levels(t_l$Breeding_system.y)
 ########################################################################################################################################################
 #3) Analysis
 ########################################################################################################################################################
-
-fit_serial <- brm(
-  count ~ zAge + zBase * Trt + (1|patient),
-  data = epilepsy, family = poisson(),
-  chains = 4, cores = 4, backend = "cmdstanr"
-)
-Then running this model with threading requires cmdstanr as backend and you can simply add threading support to an existing model with the update mechanism as:
-  
-  fit_parallel <- update(
-    fit_serial, chains = 2, cores = 2,
-    backend = "cmdstanr", threads = threading(2)
-  )
-
-fit_serial <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-          data = d_1, family  = gaussian(),data2 = list(A = A), cores = 4,chains = 4,  backend = "cmdstanr",
-          sample_prior = TRUE, warmup = 500, iter = 1500,save_all_pars=T,
-          control = list(adapt_delta = 0.99)) 
-
-fit_parallel <- update(
-  fit_serial, chains = 2, cores = 2,
-  backend = "cmdstanr", threads = threading(2)
-)
+str(d_5_1)
+#5 clusters hclust
+m_5_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                     data = d_5_1, family  = gaussian(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+                     sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+                     control = list(adapt_delta = 0.99)) 
 
 
-marginal_effects(m1, effects = "Clusters:guild")
+plot(m_5_clusters)
+#GOODNESS OF FIT
+pp_check(m_5_clusters) +xlim(-10,10)+ylim(0,3)
 
-summary(m1)
-library(ggplot2)
-pp_check(m1) +xlim(-10,10)+ylim(0,3)
-c_e <- conditional_effects(m1) 
-p1 <- plot(c_e, points=T,plot = FALSE)[[1]]
-bayes_R2(m1)
+#CHECK MODEL OUTPUT
+marginal_effects(m_5_clusters, effects = "Clusters:guild")
+
+
+#14 clusters hclust
+m_14_clusters <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                    data = d_14_1, family  = gaussian(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
+                    sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
+                    control = list(adapt_delta = 0.99)) 
+
+
+#GOODNESS OF FIT
+pp_check(m_14_clusters) +xlim(-10,10)+ylim(0,3)
+
+#CHECK MODEL OUTPUT
+marginal_effects(m_14_clusters, effects = "Clusters:guild")
+
+
+
+#NEXT PART EXPLORE CLUSTERS 
+
+
+
 
 #select unique species
 d_2 <- d_1[!duplicated(d_1$Species_all),]

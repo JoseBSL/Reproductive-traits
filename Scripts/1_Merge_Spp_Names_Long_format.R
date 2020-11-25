@@ -867,9 +867,11 @@ all_long_poll_names$guild[all_long_poll_names$family=="Colletidae"] <- "Bee"
 all_long_poll_names$guild[all_long_poll_names$family=="Melittidae"] <- "Bee"
 all_long_poll_names$guild[all_long_poll_names$family=="Stenotritidae"] <- "Bee"
 
-
-
-#Aggregate by poll guild
+#check levels
+h <- all_long_poll_names[all_long_poll_names$order=="Hymenoptera",]
+levels(as.factor(h$family))
+table(h$family)
+      #Aggregate by poll guild
 all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
 head(all_poll)
 ########################################################################################################################################################

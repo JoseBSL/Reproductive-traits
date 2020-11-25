@@ -12,14 +12,15 @@
 
 #LOAD LIBRARIES
 library(data.table)
-library(readxl)
+library(readxl) #read trait data
 
 ########################################################################################################################################################
 #1) LOAD LONG FORMAT DATA WITH Z-SCORES, TRAIT DATA AND FUNCTIONAL GROUP DATA
 ########################################################################################################################################################
 long_d_2 <- read.csv("Data/Csv/long_format_quantitative_networks_Z_scores.csv")
 t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
-hclust_d <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters.csv") 
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters.csv") #5 clusters
+hclust_d_14 <- read.csv("Data/Csv/imputed_trait_data_hclust_14_clusters.csv") #14 clusters
 
 ########################################################################################################################################################
 #3) MERGE WITH TRAIT DATA
@@ -44,31 +45,59 @@ long_format_trait_data <- merge(long_d_2, t, by = "Plant_species", all.x =T)
 #4) MERGE WITH FUNCTIONAL GROUPS
 ########################################################################################################################################################
 
+#5 CLUSTERS
 #Some data processing before merging
 #colnames to merge by same id
-colnames(hclust_d)[1] <-"Species_all"
+colnames(hclust_d_5)[1] <-"Species_all"
 #convert to chracters
-hclust_d$Species_all <- as.character(hclust_d$Species_all)
+hclust_d_5$Species_all <- as.character(hclust_d_5$Species_all)
 long_format_trait_data$Species_all <- as.character(long_format_trait_data$Species_all)
 
 #convert character NA's to NA's
 long_format_trait_data$Species_all[long_format_trait_data$Species_all=="NA"]<- NA
-hclust_d$Species_all[hclust_d$Species_all=="NA"]<- NA
+hclust_d_5$Species_all[hclust_d_5$Species_all=="NA"]<- NA
 
 #remove NA'S
 long_format_trait_data <- long_format_trait_data[!is.na(long_format_trait_data$Species_all),]
-hclust_d <- hclust_d[!is.na(hclust_d$Species_all),]
+hclust_d_5 <- hclust_d_5[!is.na(hclust_d_5$Species_all),]
 
 #merge
-quantitative_networks_Z_scores_with_traits_and_clusters <- merge(long_format_trait_data,hclust_d, by="Species_all", all.x  = T) #now data is ready for analysis
-head(quantitative_networks_Z_scores_with_traits_and_clusters)
+quantitative_networks_Z_scores_with_traits_and_5_clusters <- merge(long_format_trait_data,hclust_d_5, by="Species_all", all.x  = T) #now data is ready for analysis
+head(quantitative_networks_Z_scores_with_traits_and_5_clusters)
 #remov 2 X'2 cloumn
-quantitative_networks_Z_scores_with_traits_and_clusters <- quantitative_networks_Z_scores_with_traits_and_clusters[,-c(3,4)]
+quantitative_networks_Z_scores_with_traits_and_5_clusters <- quantitative_networks_Z_scores_with_traits_and_5_clusters[,-c(3,4)]
+
+#14 CLUSTERS
+#Some data processing before merging
+#colnames to merge by same id
+colnames(hclust_d_14)[1] <-"Species_all"
+#convert to chracters
+hclust_d_14$Species_all <- as.character(hclust_d_14$Species_all)
+long_format_trait_data$Species_all <- as.character(long_format_trait_data$Species_all)
+
+#convert character NA's to NA's
+long_format_trait_data$Species_all[long_format_trait_data$Species_all=="NA"]<- NA
+hclust_d_14$Species_all[hclust_d_14$Species_all=="NA"]<- NA
+
+#remove NA'S
+long_format_trait_data <- long_format_trait_data[!is.na(long_format_trait_data$Species_all),]
+hclust_d_14 <- hclust_d_14[!is.na(hclust_d_14$Species_all),]
+
+#merge
+quantitative_networks_Z_scores_with_traits_and_14_clusters <- merge(long_format_trait_data,hclust_d_14, by="Species_all", all.x  = T) #now data is ready for analysis
+head(quantitative_networks_Z_scores_with_traits_and_14_clusters)
+#remov 2 X'2 cloumn
+quantitative_networks_Z_scores_with_traits_and_14_clusters <- quantitative_networks_Z_scores_with_traits_and_14_clusters[,-c(3,4)]
+
 ########################################################################################################################################################
 #5) SAVE DATA
 ########################################################################################################################################################
 
-write.csv(quantitative_networks_Z_scores_with_traits_and_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_clusters.csv")
+#SAVE 5 CLUSTERS
+write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust.csv")
+
+#SAVE 14 CLUSTERS
+write.csv(quantitative_networks_Z_scores_with_traits_and_14_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_14_clusters_hclust.csv")
 
 ########################################################################################################################################################
 ########################################################################################################################################################
