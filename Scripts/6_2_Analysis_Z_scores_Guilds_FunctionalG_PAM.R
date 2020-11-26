@@ -1,5 +1,5 @@
 ########################################################################################################################################################
-#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD) ##PAM##
+#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD) ##HCLUST##
 
 #1) LOAD DATA 
 
@@ -16,7 +16,7 @@ library(rtrees) #for phylogenetic distance
 library(DHARMa)
 library(brms)
 library(cmdstanr)
-
+library(ggplot2)
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -136,6 +136,7 @@ d_14_1$phylo
 d_14_1$phylo <- d_14_1$Species_all
 str(d_14_1)
 
+#rename levels
 d_14_1$Clusters <- as.character(d_14_1$Clusters)
 d_14_1$Clusters[d_14_1$Clusters=="1"] <- "A"
 d_14_1$Clusters[d_14_1$Clusters=="2"] <- "B"
@@ -144,48 +145,88 @@ d_14_1$Clusters[d_14_1$Clusters=="4"] <- "D"
 d_14_1$Clusters[d_14_1$Clusters=="5"] <- "E"
 d_14_1$Clusters[d_14_1$Clusters=="6"] <- "F"
 d_14_1$Clusters[d_14_1$Clusters=="7"] <- "G"
-d_14_1$Clusters[d_14_1$Clusters=="8"] <- "C"
-d_14_1$Clusters[d_14_1$Clusters=="9"] <- "H"
-d_14_1$Clusters[d_14_1$Clusters=="10"] <- "I"
-d_14_1$Clusters[d_14_1$Clusters=="11"] <- "J"
-d_14_1$Clusters[d_14_1$Clusters=="12"] <- "K"
-d_14_1$Clusters[d_14_1$Clusters=="13"] <- "L"
-d_14_1$Clusters[d_14_1$Clusters=="14"] <- "M"
-d_14_1$Clusters[d_14_1$Clusters=="15"] <- "N"
+d_14_1$Clusters[d_14_1$Clusters=="8"] <- "H"
+d_14_1$Clusters[d_14_1$Clusters=="9"] <- "I"
+d_14_1$Clusters[d_14_1$Clusters=="10"] <- "J"
+d_14_1$Clusters[d_14_1$Clusters=="11"] <- "K"
+d_14_1$Clusters[d_14_1$Clusters=="12"] <- "L"
+d_14_1$Clusters[d_14_1$Clusters=="13"] <- "M"
+d_14_1$Clusters[d_14_1$Clusters=="14"] <- "N"
 
+#CONVERT BACK TO FACTOR
 d_14_1$Clusters <- as.factor(d_14_1$Clusters)
+#CHECK LEVELS
 levels(as.factor(d_14_1$Clusters))
 
-t_l <-d_14_1[d_14_1$Clusters=="D",]
-levels(t_l$Breeding_system.y)
 ########################################################################################################################################################
 #3) Analysis
 ########################################################################################################################################################
 
 #STUDENT
-m_PAM_5_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
-                                 data = d_5_1, family  = student(),data2 = list(A = A_5), cores = 4,chains = 4,  backend = "cmdstanr",
-                                 sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                                 control = list(adapt_delta = 0.99)) 
+#5 clusters hclust
+m_5_clust_stu_pam <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                            data = d_5_1, family  = student(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                            sample_prior = TRUE, warmup = 500, iter = 1500,
+                            control = list(adapt_delta = 0.99)) 
 
 
-marginal_effects(m_PAM_5_clusters_stu_NU_GUILD, effects = "Clusters:guild")
-pp_check(m_PAM_5_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
-pp_check(m_PAM_5_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
-pp_check(m_PAM_5_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_PAM_5_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
+marginal_effects(m_5_clust_stu_pam, effects = "Clusters:guild")
+pp_check(m_5_clust_stu_pam) +xlim(-10,10)+ylim(0,3)
+pp_check(m_5_clust_stu_pam, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clust_stu_pam, type='violin_grouped',group="guild")+ylim(-4,4)
+
+#SAVE MODEL
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+saveRDS(m_5_clust_stu_pam, "m_5_clust_stu_pam.RDS")
 
 
-#STUDENT
-m_PAM_14_clusters_stu_NU_GUILD <- brm(bf(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),nu~guild),
-                                  data = d_14_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  backend = "cmdstanr",
-                                  sample_prior = TRUE, warmup = 500, iter = 1500,threads = threading(2),
-                                  control = list(adapt_delta = 0.99)) 
+#14 clusters hclust
+m_14_clust_stu_pam <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                             data = d_14_1, family  = student(),data2 = list(A = A_14), cores = 4,chains = 4,  
+                             backend = "cmdstanr",
+                             sample_prior = TRUE, warmup = 500, iter = 1500,
+                             control = list(adapt_delta = 0.99)) 
 
-marginal_effects(m_PAM_14_clusters_stu_NU_GUILD, effects = "Clusters:guild")
-pp_check(m_PAM_14_clusters_stu_NU_GUILD) +xlim(-10,10)+ylim(0,3)
-pp_check(m_PAM_14_clusters_stu_NU_GUILD,type="violin_grouped",group=Clusters)
-pp_check(m_PAM_14_clusters_stu_NU_GUILD, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_PAM_14_clusters_stu_NU_GUILD, type='violin_grouped',group="guild")+ylim(-4,4)
+marginal_effects(m_14_clust_stu_pam, effects = "Clusters:guild")
+pp_check(m_14_clust_stu_pam) +xlim(-10,10)+ylim(0,3)
+pp_check(m_14_clust_stu_pam, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_14_clust_stu_pam, type='violin_grouped',group="guild")+ylim(-4,4)
+
+#SAVE MODEL
+saveRDS(m_14_clust_stu_pam, "m_14_clust_stu_pam.RDS")
 
 
+
+
+
+
+
+
+
+
+
+
+#NEXT PART EXPLORE CLUSTERS sTABLE SUMMARY
+#select unique species
+d_2 <- d_1[!duplicated(d_1$Species_all),]
+#select columns of interest
+str(d_2)
+#select columns of interest
+t <- d_2[c("Order_all","Family_all","Genus_all","Species_all","Breeding_system.y","IMPUTED_Compatibility.y","Autonomous_selfing_level.y",
+           "Autonomous_selfing_level_fruit_set.x", "Flower_morphology.y", "Flower_symmetry.y", "Flowers_per_plant.x", "Flowers_per_inflorescence.x",
+           "Floral_unit_width.x", "Corolla_diameter_mean.x", "Corolla_length_mean.x", "STYLE_IMPUTED.x", "OVULES_IMPUTED.x", "life_form.y", "lifespan.y",
+           "Clusters")]
+
+
+unique_spp <- t  %>% group_by(Clusters) %>% do(the_summary = summary(.))
+unique_spp$the_summary
+#Prepare summary in order to see the different modes/means between groups
+
+
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+
+devtools::install_github("daijiang/phyr", force=T)
+
+install.packages("brms")
