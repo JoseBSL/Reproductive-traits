@@ -113,6 +113,11 @@ m_5_clust_neg_hclust <- brm(Interaction ~ guild*Clusters + (1|Id) + (1|gr(phylo,
                             sample_prior = TRUE, warmup = 500, iter = 1500,
                             control = list(adapt_delta = 0.99)) 
 
+marginal_effects(m_5_clust_neg_hclust, effects = "Clusters:guild")
+pp_check(m_5_clust_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
+pp_check(m_5_clust_neg_hclust, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clust_neg_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
+saveRDS(m_5_clust_neg_hclust, "m_5_clust_neg_hclust")
 
 
 
