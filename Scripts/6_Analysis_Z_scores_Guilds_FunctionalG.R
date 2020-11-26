@@ -105,6 +105,20 @@ pp_check(m_5_clust_stu_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
 
+
+#TRYING OTHER MODEL
+#5 clusters hclust
+m_5_clust_neg_hclust <- brm(Interaction ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                            data = d_5_1, family  = negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                            sample_prior = TRUE, warmup = 500, iter = 1500,
+                            control = list(adapt_delta = 0.99)) 
+
+
+
+
+
+
+
 ########################################################################################################################################################
 #)4)SAVE MODEL
 ########################################################################################################################################################
@@ -132,7 +146,7 @@ ggplot(d_5_1, aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group =
   theme_bw()+ ylab("Standardize visits (Z-scores)") + xlab("Plant reproductive groups")+
   geom_point(data=ce[[1]],group=as.factor(ce[[1]]$guild))
 
-
+ce[]
 
 
 ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group = 
@@ -141,20 +155,30 @@ ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group
   theme_bw()+ ylab("Standardize visits (Z-scores)") + xlab("Plant reproductive groups")+
   geom_point(data = d_5_1,aes(x = Clusters, y = Z_scores),size = 1, position = position_dodge(width = 0.4), alpha=0.15)+
   geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.4, position = position_dodge(width = 0.4))+ylim(-0.8,2.5)+
-  geom_violin(data = d_5_1,aes(x = Clusters, y = Z_scores,group = 
-                                 as.factor(guild)),size = 0.5, alpha=0.15, position = position_dodge(width = 0.1))
+  as.factor(guild)), width=.4, position = position_dodge(width = 0.4))+ylim(-0.8,1)
   
-  
-  
+conditions <- data.frame(zAge = c(-1, 0, 1))
+
+
+conditional_effects(
+  m_5_clust_stu_hclust, "Clusters:guild",
+  select_points = 0.1,points = TRUE)
+plot(ce, points = TRUE)
+# }
 
 
 
+more_than_500 <- d_5_1[d_5_1$Interaction>500, ]
+
+levels(more_than_500$Id)
+
+
+hist(d_5_1$Interaction)
 
 
 
-
-
+mean(d_5_1$Z_scores[d_5_1$Id=="11_8_kaiser-bunbury_2017_seychelles_trois_feres.csv"])
+mean(d_5_1$Z_scores[d_5_1$Id=="16_1_burkle_usa_2013.csv"])
 
 $››‹colnames(ce[[1]])
 
