@@ -104,106 +104,88 @@ pp_check(m_5_clust_stu_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
 #SAVE MODEL
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
+m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
 
 
 #TRYING OTHER MODEL
 #5 clusters hclust
-m_5_clust_neg_hclust <- brm(Interaction ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                            data = d_5_1, family  = negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+m_5_clust_zero_neg_hclust <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                            data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                             sample_prior = TRUE, warmup = 500, iter = 1500,
                             control = list(adapt_delta = 0.99)) 
 
-marginal_effects(m_5_clust_neg_hclust, effects = "Clusters:guild")
-pp_check(m_5_clust_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
-pp_check(m_5_clust_neg_hclust, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_5_clust_neg_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
-saveRDS(m_5_clust_neg_hclust, "m_5_clust_neg_hclust")
+marginal_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild")
+pp_check(m_5_clust_zero_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
+pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
+saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust")
 
 
 
+m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
 
 
 
 ########################################################################################################################################################
 #)4)SAVE MODEL
 ########################################################################################################################################################
-#SAVE MODEL
+#SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
+#SAVE MODEL 2
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust.RDS")
+########################################################################################################################################################
+#5)PLOT OUTPUT 
+########################################################################################################################################################
+#read model 1
+m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
+#read model 2
+m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
 
-########################################################################################################################################################
-#5)PLOT OUTPUT NICELY
-########################################################################################################################################################
-summary(m1)
-pp_check(m1) + xlim(-200,200)+ylim(0,0.2)
+#############
+#PLOT MODEL 1
+#############
+#Z-SCORES
 ce <- conditional_effects(m_5_clust_stu_hclust, effects = "Clusters:guild",points=T) 
-levels(ce[[1]]$guild)
-#PLOT OUTPUT
-cat_plot(m1, pred = cyl, modx = fwd)
-
+#change colnames in model output to use same aesthetics
+#if not gg seems to don't like it
 colnames(ce[[1]])[3] <- "a"
 colnames(ce[[1]])[9] <- "Z_scores"
 
-
-ggplot(d_5_1, aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group = 
-                  as.factor(guild))) +
-  geom_point(size = 1, position = position_dodge(width = 0.4), alpha=0.2) +
-  theme_bw()+ ylab("Standardize visits (Z-scores)") + xlab("Plant reproductive groups")+
-  geom_point(data=ce[[1]],group=as.factor(ce[[1]]$guild))
-
-ce[]
-
-
 ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group = 
-                    as.factor(guild))) +
+  as.factor(guild))) +
   geom_point(size = 1, position = position_dodge(width = 0.4), alpha=1) +
-  theme_bw()+ ylab("Standardize visits (Z-scores)") + xlab("Plant reproductive groups")+
+  theme_bw()+ ylab("Standardize Nº of visits (Z-scores)") + xlab("Plant reproductive groups")+
   geom_point(data = d_5_1,aes(x = Clusters, y = Z_scores),size = 1, position = position_dodge(width = 0.4), alpha=0.15)+
   geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.4, position = position_dodge(width = 0.4))+ylim(-0.8,1)
+  as.factor(guild)), width=.4, position = position_dodge(width = 0.4)) +ylim(-0.8,2.5)
   
-conditions <- data.frame(zAge = c(-1, 0, 1))
+#############
+#PLOT MODEL 2
+#############
+#Z-SCORES
+ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
+#change colnames in model output to use same aesthetics
+#if not gg seems to don't like it
+colnames(ce_1[[1]])[4] <- "a"
+colnames(ce_1[[1]])[10] <- "Interaction"
+ce_1[[1]][10]<- ce_1[[1]][10]+1
+#Order levels
+ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 
 
-conditional_effects(
-  m_5_clust_stu_hclust, "Clusters:guild",
-  select_points = 0.1,points = TRUE)
-plot(ce, points = TRUE)
-# }
-
-
-
-more_than_500 <- d_5_1[d_5_1$Interaction>500, ]
-
-levels(more_than_500$Id)
-
-
-hist(d_5_1$Interaction)
-
-
-
-mean(d_5_1$Z_scores[d_5_1$Id=="11_8_kaiser-bunbury_2017_seychelles_trois_feres.csv"])
-mean(d_5_1$Z_scores[d_5_1$Id=="16_1_burkle_usa_2013.csv"])
-
-$››‹colnames(ce[[1]])
-
-+
-  geom_errorbar(aes(ymax = val + SD, ymin = val - SD), position = 
-                  position_dodge(width = 0.2), width = 0.2) +
-  labs(y = "Mean # of explorations (+/- SD", colour = "pp")
-             
-
-
-ggplot(data=ce[[1]], aes(x = Clusters, y = Z_scores,color = ordered(guild))) +
-  geom_point(data = d_5_1,aes(x = Clusters, y = Z_scores,color = ordered(guild))) + 
-  scale_fill_brewer(palette = "Greys") +
-  scale_color_brewer(palette = "Set2") + theme_bw() +
-  geom_errorbar(data=p1.2.1[[1]],mapping=aes(x=autonomous_selfing_level, ymin=lower__, ymax=upper__), width=.1, color="black")+
-  geom_point(data=p1.2.1[[1]], mapping=aes(x=autonomous_selfing_level, y=estimate__), color="black") + ylab("Visits") + xlab("Selfing level")+
-  theme(legend.position = "none")
-
-
-
+ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
+  as.factor(guild))) +
+  geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
+  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
+  geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
+  as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
+  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))
+  
+position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2)
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
