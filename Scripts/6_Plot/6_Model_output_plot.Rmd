@@ -6,60 +6,67 @@ output:
 ---
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=8}
-library(dplyr)
-library(tidyr)
-library(plyr)
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=9, fig.width=10}
 library(ggplot2)
-library(reshape2)
-library(scales)
-library(devtools)
+library(brms)
 library(png)
 library(grid)
+library(grid)
 library(gridExtra)
-library(jpeg)
-dev_mode(on=T)
 
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
 setwd("~/R_Projects/Reproductive Traits")
+d_5_1 <- read.csv("Data/Csv/d_5_1_brms_all_5_clusters.csv")
+#Visits
+ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
+#change colnames in model output to use same aesthetics
+#if not gg seems to don't like it
+colnames(ce_1[[1]])[4] <- "a"
+colnames(ce_1[[1]])[10] <- "Interaction"
+ce_1[[1]][10]<- ce_1[[1]][10]+1
+#Order levels
+#fixing label
+d_5_1$guild <- as.character(d_5_1$guild)
+d_5_1$guild[d_5_1$guild=="Bee"] <- "Bees"
+ce_1[[1]]$guild <- as.character(ce_1[[1]]$guild)
+ce_1[[1]]$guild[ce_1[[1]]$guild=="Bee"] <- "Bees"
 
-img <- readPNG(system.file("img", "Rlogo.png", package="png"))
-g <- rasterGrob(img, interpolate=TRUE)
+ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+d_5_1$guild <- factor(d_5_1$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 
-
-net_long_1 <- readRDS("Data/RData/species_per_order_percentage.RData")
-
-legend_title <- "Taxonomic groups"
-
-la <- c("Ramirez 1989", "Ramirez 1992", "Bartomeus unp. 2015", "Chacoff 2011","Bartomeus 2008 1", "Bartomeus 2008 2", "Robertson 1929", "Small 1976","Inouye 1990", "Souza 2018", "Bundgaard 2003", "Inouye 1988", "Dupont 2009 1", "Olesen 2002 1", "Fang huang 2012", "mcmullen 1993", "Olesen 2002 2", "Dicks 2002","Elberling 1999", "Primack 1983 1", "Primack 1983 2", "Kato 2000", "Kaiser-Bunbunry 2009", "Traveset 2013", "Kevan 1970", "Bek 2006","Primack 1983 3", "Kaiser-Bunbury 2014", "Dupont 2009 2", "Lundgren 2005")
-
-
+#read images
  get_png <- function(filename) {
   grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
-}
-
-
+ }
  
-l <- get_png("Images/lepidoptera_2.png")
-bumb <- get_png("Images/bumblebee.png")
-dip <- get_png("Images/diptera.png")
-beet <- get_png("Images/beetle.png")
-hem<- get_png("Images/hemiptera.png")
+# 
+d_1 <- get_png("Images/dip_green_2.png")
+l <- get_png("Images/lepi_brown.png")
+b <- get_png("Images/bumble_orange.png")
+f <- get_png("Images/form_orange.png")
+s <- get_png("Images/syr_blue.png")
 
 t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
 
 
-p<- ggplot(net_long_1) +
-  aes(x = reorder(Id,-order), 
-      y = measurement, 
-      fill =factor(orders, levels=c("Hemiptera","Coleoptera","Lepidoptera","Diptera", "Hymenoptera"))) +
-  geom_bar(position = "fill", stat = "identity", alpha=0.6) +coord_flip() +scale_x_discrete(labels= la) + 
-  scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+xlab("Networks")+ylab("Species per order") +scale_y_continuous(labels = scales::percent) + theme(legend.background = element_rect(fill=alpha('blue', 0.0)))+
-  annotation_custom(l, xmin = 14.6, xmax = 15.4, ymin = 1.03, ymax =1.09) + annotation_custom(bumb, xmin = 11.6, xmax = 13.9, ymin = 1.03, ymax =1.09)+ annotation_custom(dip, xmin = 13.4, xmax = 14.4, ymin = 1.035, ymax =1.085)+
-  coord_cartesian(clip = "off") + annotation_custom(beet, xmin = 15.5, xmax = 16.7, ymin = 0.86, ymax =1.255)+ annotation_custom(hem, xmin = 16.9, xmax = 17.65, ymin = 0.883, ymax =1.233)+
-  coord_cartesian(clip = "off")+ coord_flip()
- 
+t <- ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
+  as.factor(guild))) +
+  geom_point(size = 1.2, position = position_dodge(width = 0.9), alpha=1) +
+  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.9,   jitter.width = 0.2), alpha=0.2)+
+  geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
+  as.factor(guild)), width=.6,alpha=0.85, size = 0.9,position = position_dodge(width = 0.9)) +ylim(0,200)+
+  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))+
+  annotation_custom(d_1, xmin = 1.02, xmax =1.15 , ymin = -5.1, ymax =-0.2) + #diptera
+  annotation_custom(l, xmin = 1.16, xmax =1.30 , ymin = -28, ymax =22) +  #lepidoptera
+  geom_vline(xintercept = c(1.5,2.5,3.5,4.5), linetype="dashed", color = "grey", size=0.5)+ #vertical lines
+  theme(panel.grid.major.x = element_blank(),panel.grid.minor.y  = element_blank())+ # remove some grids
+  annotation_custom(b, xmin = 0.46, xmax =0.79 , ymin = -4.35, ymax =-0.25) + #bees
+ annotation_custom(f, xmin = 0.67, xmax =0.87 , ymin = -4.35, ymax =-0.25) + #hymenoptera non bees
+ annotation_custom(s, xmin = 0.817, xmax =1.05 , ymin = -5.3, ymax =-0.25)
 
-gg_table <- ggplot_gtable(ggplot_build(p))
+gg_table <- ggplot_gtable(ggplot_build(t))
 gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
 grid.draw(gg_table)
 
