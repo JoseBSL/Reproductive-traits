@@ -867,23 +867,25 @@ all_long_poll_names$guild[all_long_poll_names$family=="Colletidae"] <- "Bee"
 all_long_poll_names$guild[all_long_poll_names$family=="Melittidae"] <- "Bee"
 all_long_poll_names$guild[all_long_poll_names$family=="Stenotritidae"] <- "Bee"
 
-#check levels
-h <- all_long_poll_names[all_long_poll_names$order=="Hymenoptera",]
-levels(as.factor(h$family))
-table(h$family)
-      #Aggregate by poll guild
+#Aggregate by poll guild
 all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
 head(all_poll)
+b <- subset(all_long_poll_names, guild=="Bee")
+table(b$genus)
+#Save for repeating analysis without apis mellifera
+all_long_poll_names_non_apis <- subset(all_long_poll_names, genus!="apis")
+all_poll_non_apis <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names_non_apis, na.rm= TRUE)
+
 ########################################################################################################################################################
 #3)SAVE DATA
 ########################################################################################################################################################
-
+#save poll guild data
 write.csv(all_poll, "Data/Csv/long_format_quantitative_networks.csv")
-
+#save poll guild data without apis
+write.csv(all_poll_non_apis, "Data/Csv/long_format_quantitative_networks_non_apis.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
-
 
 
 
