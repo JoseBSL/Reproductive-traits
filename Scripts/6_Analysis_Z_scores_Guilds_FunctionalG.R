@@ -162,13 +162,6 @@ ggplot(ce[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), gr
   geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
  as.factor(guild)), width=.4, position = position_dodge(width = 0.4)) + ylim(0,200)
 
-<<<<<<< HEAD
-d_5_1[d_5_1$Interaction>200,]
-=======
-m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
->>>>>>> f592f941e6a1eb11386521a6f095acd0a2567f39
-
-
 
 ########################################################################################################################################################
 #)4)SAVE MODEL

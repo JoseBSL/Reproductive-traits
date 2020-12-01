@@ -57,7 +57,7 @@ p<- ggplot(net_long_1) +
   scale_fill_manual(legend_title,values=c("indianred", "gray49", "seagreen", "darkgoldenrod2", "#386cb0")) + theme_classic()+xlab("Networks")+ylab("Percentage of visits") +scale_y_continuous(labels = scales::percent) + theme(legend.background = element_rect(fill=alpha('blue', 0.0)))+
   annotation_custom(l, xmin = 9.365, xmax = 10.0, ymin = 1.03, ymax =1.09) + annotation_custom(bumb, xmin = 7.1, xmax = 9.3, ymin = 1.03, ymax =1.09)+ annotation_custom(dip, xmin = 8.65, xmax = 9.25, ymin = 1.035, ymax =1.085)+
   coord_cartesian(clip = "off") + annotation_custom(beet, xmin = 9.96, xmax = 10.76, ymin = 0.86, ymax =1.255)+ annotation_custom(hem, xmin = 10.86, xmax = 11.36, ymin = 0.883, ymax =1.233)+
-  coord_cartesian(clip = "off")+ coord_flip()
+  coord_cartesian(clip = "off")+ coord_flip()+coord_cartesian(clip = "off")
  
 
 gg_table <- ggplot_gtable(ggplot_build(p))
