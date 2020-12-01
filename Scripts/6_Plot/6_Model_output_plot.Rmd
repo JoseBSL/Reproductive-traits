@@ -43,11 +43,11 @@ d_5_1$guild <- factor(d_5_1$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrp
 # 
 d_1 <- get_png("Images/dip_green_2.png")
 l <- get_png("Images/lepi_brown.png")
-b <- get_png("Images/bumble_orange.png")
-f <- get_png("Images/form_orange.png")
+b <- get_png("Images/bee_orange.png")
+f <- get_png("Images/form_2.png")
 s <- get_png("Images/syr_blue.png")
 
-t <- grid::roundrectGrob(x=0.5, y=0.5, width=1, height=1)
+t <- grid::roundrectGrob(x=10, y=10, width=10, height=10)
 
 
 t <- ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
@@ -57,16 +57,16 @@ t <- ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(gui
   geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.9,   jitter.width = 0.2), alpha=0.2)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
   as.factor(guild)), width=.6,alpha=0.85, size = 0.9,position = position_dodge(width = 0.9)) +ylim(0,200)+
-  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))+
-  annotation_custom(d_1, xmin = 1.02, xmax =1.15 , ymin = -5.1, ymax =-0.2) + #diptera
-  annotation_custom(l, xmin = 1.16, xmax =1.30 , ymin = -28, ymax =22) +  #lepidoptera
-  geom_vline(xintercept = c(1.5,2.5,3.5,4.5), linetype="dashed", color = "grey", size=0.5)+ #vertical lines
-  theme(panel.grid.major.x = element_blank(),panel.grid.minor.y  = element_blank())+ # remove some grids
-  annotation_custom(b, xmin = 0.46, xmax =0.79 , ymin = -4.35, ymax =-0.25) + #bees
- annotation_custom(f, xmin = 0.67, xmax =0.87 , ymin = -4.35, ymax =-0.25) + #hymenoptera non bees
- annotation_custom(s, xmin = 0.817, xmax =1.05 , ymin = -5.3, ymax =-0.25)
+  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))+  theme(panel.grid.major.x = element_blank(),panel.grid.minor.y  = element_blank())+   geom_vline(xintercept = c(1.5,2.5,3.5,4.5), linetype="dashed", color = "black", size=0.5)
+  
+t_1 <-  t + annotation_custom(l, xmin = 1.17, xmax =1.28 , ymin = -5.5, ymax =-0.5)+
+  annotation_custom(l, xmin = 1.17, xmax =1.28 , ymin = -5.75, ymax =-0.5) +  
+  annotation_custom(b, xmin = 0.55, xmax =0.70 , ymin = -5, ymax =0) + 
+ annotation_custom(f, xmin = 0.67, xmax =0.87 , ymin = -4.5, ymax =-0.65) + 
+ annotation_custom(s, xmin = 0.85, xmax =0.99 , ymin = -5.5, ymax =-0.25)+
+  annotation_custom(d_1, xmin = 1.0, xmax =1.14 , ymin = -5, ymax =0) 
 
-gg_table <- ggplot_gtable(ggplot_build(t))
+gg_table <- ggplot_gtable(ggplot_build(t_1))
 gg_table$layout$clip[gg_table$layout$name=="panel"] <- "off"
 grid.draw(gg_table)
 
