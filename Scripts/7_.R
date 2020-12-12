@@ -12,6 +12,8 @@
 library(dplyr)
 library(ggplot2)
 library(viridis)
+library(tidyr)
+library(ggpubr)
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -46,7 +48,6 @@ df <- t  %>%
 df$Breeding_system <- factor(df$Breeding_system, levels=c("Dioecious","Hermaphrodite", "Monoecious"))
 
 #This is an option to add the missing levels 
-library(tidyr)
 df <- complete(df, Breeding_system, Clusters, fill = list(counts=0))
 
 #option1
@@ -59,9 +60,16 @@ ggplot(df, aes(x = Clusters, y = counts)) +
 ggplot(df, aes(x = Clusters, y = counts)) +
   geom_bar(
     aes( fill = Breeding_system),
-    stat = "identity", position = position_dodge(0.8),
+    stat = "identity", position = position_dodge(0.7),
     width = 0.7
-  )+scale_fill_viridis(discrete = T,drop=FALSE)+theme_classic()
+  )+scale_fill_viridis(discrete = T,drop=FALSE)+theme_pubr(legend = "right")+
+  scale_y_continuous(expand = c(0,0.5))
+
+
+colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
+                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+pie(rep(1, 8), col = colorBlindBlack8)
+
 ########################################################################################################################################################
 #Compatibility
 df <- t  %>%
