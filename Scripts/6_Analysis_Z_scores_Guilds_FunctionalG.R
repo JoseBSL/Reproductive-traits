@@ -5,9 +5,10 @@
 
 #2)PHYLOGENETIC DISTANCE OF THE SPECIES -Add them as covariable-
 
-#3)SAVE MODEL
+#3)RUN models 3.1 (Z-SCORES) and 3.2 (VISITATION DATA) AND SAVE MODELS
 
-#4)PLOT OUTPUT NICELY
+#4)PLOT MODELS 4.1 AND 4.2
+
 ########################################################################################################################################################
 
 #LOAD LIBRARIES
@@ -90,7 +91,7 @@ levels(as.factor(d_5_1$Clusters))
 #write.csv(d_5_1, "Data/Csv/d_5_1_brms_all_5_clusters.csv")
 
 ########################################################################################################################################################
-#3)ANALYSIS
+#3.1)ANALYSIS
 ########################################################################################################################################################
 #STUDENT
 #5 clusters hclust
@@ -110,6 +111,9 @@ setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
 m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
 
+########################################################################################################################################################
+#3.2)ANALYSIS
+########################################################################################################################################################
 
 #TRYING OTHER MODEL
 #5 clusters hclust
@@ -128,7 +132,6 @@ pp_check(m_5_clust_zero_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
 marginal_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild")
 ce <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
 
-
 ########################################################################################################################################################
 #)4)SAVE MODEL
 ########################################################################################################################################################
@@ -139,23 +142,19 @@ saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust.RDS")
 ########################################################################################################################################################
-#5)PLOT OUTPUT 
+#4.1)PLOT OUTPUT Z-SCORES
 ########################################################################################################################################################
 #read model 1
 m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
 #read model 2
 m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
-
-#############
-#PLOT MODEL 1
-#############
-#Z-SCORES
+#Conditional effects Z-scores
 ce <- conditional_effects(m_5_clust_stu_hclust, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
 colnames(ce[[1]])[3] <- "a"
 colnames(ce[[1]])[9] <- "Z_scores"
-
+#plot model
 ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group = 
   as.factor(guild))) +
   geom_point(size = 1, position = position_dodge(width = 0.4), alpha=1) +
@@ -164,10 +163,12 @@ ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group
   geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
   as.factor(guild)), width=.4, position = position_dodge(width = 0.4)) +ylim(-0.8,2.5)
   
-#############
-#PLOT MODEL 2
-#############
-#Z-SCORES
+########################################################################################################################################################
+#4.2)PLOT OUTPUT VISITATION DATA
+########################################################################################################################################################
+#read model 2
+m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
+#cond effect model visitation data
 ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
@@ -177,8 +178,7 @@ ce_1[[1]][10]<- ce_1[[1]][10]+1
 #Order levels
 ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-
-
+#plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
   as.factor(guild))) +
   geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
