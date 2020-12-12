@@ -124,43 +124,9 @@ pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="Clusters")+ylim
 pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
 saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust")
 
-pp_check(m_5_clust_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
-marginal_effects(m_5_clust_neg_hclust, effects = "Clusters:guild")
-ce <- conditional_effects(m_5_clust_neg_hclust, effects = "Clusters:guild",points=T) 
-
-ggplot(ce[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-                      as.factor(guild))) +
-  geom_point(size = 1, position = position_dodge(width = 0.4), alpha=1) +
-  theme_bw()+ ylab("Standardize visits (Z-scores)") + xlab("Plant reproductive groups")+
-  geom_point(data = d_5_1,aes(x = Clusters, y = Interaction),size = 1, position = position_dodge(width = 0.4), alpha=0.15)+
-  geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-   as.factor(guild)), width=.4, position = position_dodge(width = 0.4))
-
-
-m_5_clust_zero_neg_hclust_1 <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                            data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                            sample_prior = TRUE, warmup = 500, iter = 1500,
-                            control = list(adapt_delta = 0.99)) 
-
-pp_check(m_5_clust_zero_neg_hclust_1, nsamples=100) +xlim(-50,200)+ylim(0,0.1)
-marginal_effects(m_5_clust_zero_neg_hclust_1, effects = "Clusters:guild")
-
-ce <- conditional_effects(m_5_clust_zero_neg_hclust_1, effects = "Clusters:guild",points=T) 
-
-colnames(ce[[1]])[4] <- "a"
-colnames(ce[[1]])[10] <- "Interaction"
-#SAVE MODEL
-setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_zero_neg_hclust_1, "m_5_clust_zero_neg_hclust_1.RDS")
-
-
-ggplot(ce[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-                      as.factor(guild))) +
-  geom_point(size = 1, position = position_dodge(width = 0.4), alpha=1) +
-  theme_bw()+ ylab("Nº of visits") + xlab("Plant reproductive groups")+
-  geom_point(data = d_5_1,aes(x = Clusters, y = Interaction),size = 1, position = position_dodge(width = 0.4), alpha=0.1)+
-  geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
- as.factor(guild)), width=.4, position = position_dodge(width = 0.4)) + ylim(0,200)
+pp_check(m_5_clust_zero_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
+marginal_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild")
+ce <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
 
 
 ########################################################################################################################################################
