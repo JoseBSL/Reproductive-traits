@@ -45,12 +45,9 @@ df <- t  %>%
 
 df$Breeding_system <- factor(df$Breeding_system, levels=c("Dioecious","Hermaphrodite", "Monoecious"))
 
-
+#This is an option to add the missing levels 
 library(tidyr)
 df <- complete(df, Breeding_system, Clusters, fill = list(counts=0))
-
-
-
 
 #option1
 ggplot(df, aes(x = Clusters, y = counts)) +
@@ -187,3 +184,6 @@ ggplot(df, aes(x = Clusters, y = counts)) +
     stat = "identity", position = position_dodge(0.8),
     width = 0.7
   )+scale_fill_viridis(discrete = T)+theme_classic()
+########################################################################################################################################################
+#Now plot the quantitative data
+########################################################################################################################################################
