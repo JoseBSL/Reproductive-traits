@@ -12,9 +12,14 @@
 library(dplyr)
 library(ggplot2)
 library(viridis)
+<<<<<<< HEAD
 library(grid)
 library(cowplot)
 library("gridExtra")
+=======
+library(tidyr)
+library(ggpubr)
+>>>>>>> afbdf8ef850e818754516a1d17cb40ccfd186aa0
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -49,7 +54,6 @@ df <- t  %>%
 df$Breeding_system <- factor(df$Breeding_system, levels=c("Dioecious","Hermaphrodite", "Monoecious"))
 
 #This is an option to add the missing levels 
-library(tidyr)
 df <- complete(df, Breeding_system, Clusters, fill = list(counts=0))
 
 #option1
@@ -62,8 +66,9 @@ ggplot(df, aes(x = Clusters, y = counts)) +
 ggplot(df, aes(x = Clusters, y = counts)) +
   geom_bar(
     aes( fill = Breeding_system),
-    stat = "identity", position = position_dodge(0.8),
+    stat = "identity", position = position_dodge(0.7),
     width = 0.7
+<<<<<<< HEAD
   )+scale_fill_viridis(discrete = T,drop=FALSE)+theme_classic()
 
 #option3
@@ -73,6 +78,15 @@ ggplot(t, aes(Clusters, Breeding_system)) +
   ggpubr::color_palette("jco")+
   ggpubr::theme_pubclean()
 
+=======
+  )+scale_fill_viridis(discrete = T,drop=FALSE)+theme_pubr(legend = "right")+
+  scale_y_continuous(expand = c(0,0.5))
+
+
+colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
+                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+pie(rep(1, 8), col = colorBlindBlack8)
+>>>>>>> afbdf8ef850e818754516a1d17cb40ccfd186aa0
 
 ########################################################################################################################################################
 #Compatibility
