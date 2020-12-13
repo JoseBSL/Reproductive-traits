@@ -12,6 +12,9 @@
 library(dplyr)
 library(ggplot2)
 library(viridis)
+library(grid)
+library(cowplot)
+library("gridExtra")
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -62,6 +65,15 @@ ggplot(df, aes(x = Clusters, y = counts)) +
     stat = "identity", position = position_dodge(0.8),
     width = 0.7
   )+scale_fill_viridis(discrete = T,drop=FALSE)+theme_classic()
+
+#option3
+diamonds.frac <- dplyr::sample_frac(diamonds, 1/5)
+ggplot(t, aes(Clusters, Breeding_system)) +
+  geom_jitter(aes(color = Breeding_system), size = 0.4)+
+  ggpubr::color_palette("jco")+
+  ggpubr::theme_pubclean()
+
+
 ########################################################################################################################################################
 #Compatibility
 df <- t  %>%
@@ -187,3 +199,227 @@ ggplot(df, aes(x = Clusters, y = counts)) +
 ########################################################################################################################################################
 #Now plot the quantitative data
 ########################################################################################################################################################
+
+
+#Autonomous_selfing_level_fruit_set
+Selfing <- ggplot(t, aes(Clusters, Autonomous_selfing_level_fruit_set)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+
+  ylab("Autonomous fruit production")+theme(legend.position = "none")
+
+#Floral_unit_width
+ggplot(t, aes(Clusters, Floral_unit_width)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+ylim(0,400)+
+  ylab("Floral unit width")+theme(legend.position = "none")
+
+
+#Corolla_diameter_mean
+Corolla_diameter <- ggplot(t, aes(Clusters, Corolla_diameter_mean)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+ylim(0,200)+
+  ylab("Corolla diameter")+theme(legend.position = "none")
+
+#STYLE_IMPUTED
+Style_length <- ggplot(t, aes(Clusters, STYLE_IMPUTED)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+ylim(0,50)+
+  ylab("Style length")+theme(legend.position = "none")
+
+#OVULES_IMPUTED
+Ovules <- ggplot(t, aes(Clusters, OVULES_IMPUTED)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+ylim(0,1000)+
+  ylab("Ovule number")+theme(legend.position = "none")
+
+#IMPUTED_plant_height_mean_m
+Plant_height <- ggplot(t, aes(Clusters, IMPUTED_plant_height_mean_m)) +
+  geom_sina(aes(color = Clusters), size = 0.7)+
+  scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+theme_classic()+
+  ylab("Plant height")+theme(legend.position = "none")
+
+
+p_a <- plot_grid(Corolla_diameter,Style_length,Ovules,Plant_height, nrow = 4,align = 'v')
+
+p_b<- plot_grid(breeding,Compatibility,Selfing,Flower_morphology,Flower_symmetry,life_form,lifespan, nrow = 7,align = 'v')
+
+#Breeding system
+breeding <- ggplot(t, aes(Clusters, Breeding_system)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Breeding system")+
+  geom_hline(yintercept=c(1.5,2.5),color="black",linetype="longdash")
+  
+#Compatibility
+t$IMPUTED_Compatibility <- as.character(t$IMPUTED_Compatibility)
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="monoecious"] <- "Unisexual flowers"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="dioecious"] <- "Unisexual flowers"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="self_incompatible"] <- "Self incompatible"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="self_compatible"] <- "Self compatible"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="partially_self_compatible"] <- "Partially self compatible"
+
+
+Compatibility <- ggplot(t, aes(Clusters, IMPUTED_Compatibility)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Compatibility system")+
+  geom_hline(yintercept=c(1.5,2.5,3.5),color="black",linetype="longdash")
+#Autonomous_selfing_level
+t$Autonomous_selfing_level <- as.character(t$Autonomous_selfing_level)
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="none"] <- "None"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="medium"] <- "Medium"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="low"] <- "Low"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="high"] <- "High"
+t$Autonomous_selfing_level <- factor(t$Autonomous_selfing_level, levels = c("None", "Low", "Medium", "High"))
+
+
+Selfing <- ggplot(t, aes(Clusters, Autonomous_selfing_level)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Selfing level")+
+  geom_hline(yintercept=c(1.5,2.5,3.5),color="black",linetype="longdash")
+#Flower_morphology
+t$Flower_morphology <- as.character(t$Flower_morphology)
+t$Flower_morphology[t$Flower_morphology=="Funnelform"] <- "Tube"
+t$Flower_morphology[t$Flower_morphology=="Spike"] <- "Brush"
+
+
+Flower_morphology <-  ggplot(t, aes(Clusters, Flower_morphology)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Flower shape")+
+  geom_hline(yintercept=c(1.5,2.5,3.5,4.5,5.5),color="black",linetype="longdash")
+#Flower_symmetry
+t$Flower_symmetry <- as.character(t$Flower_symmetry)
+t$Flower_symmetry[t$Flower_symmetry=="zygomorphic"] <- "Zygomorphic"
+t$Flower_symmetry[t$Flower_symmetry=="actinomorphic"] <- "Actinomorphic"
+
+Flower_symmetry <-  ggplot(t, aes(Clusters, Flower_symmetry)) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Flower symmetry")+
+  geom_hline(yintercept=c(1.5),color="black",linetype="longdash")
+ #life_form
+t$life_form <- as.character(t$life_form)
+t$life_form[t$life_form=="vine"] <- "Herb"
+t$life_form[t$life_form=="herb"] <- "Herb"
+t$life_form[t$life_form=="shrub"] <- "Shrub"
+t$life_form[t$life_form=="tree"] <- "Tree"
+
+life_form <-  ggplot(t, aes(Clusters,life_form )) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Life form")+
+  geom_hline(yintercept=c(1.5,2.5),color="black",linetype="longdash")
+ #lifespan
+lifespan<- ggplot(t, aes(Clusters,lifespan )) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x="Plant Functional groups",y=NULL,subtitle = "Life span")+
+  geom_hline(yintercept=c(1.5),color="black",linetype="longdash")
+
+
+
+ggplot(t, aes(Clusters,lifespan )) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x="Plant Functional groups",y=NULL,subtitle = "Life form")+
+  geom_hline(yintercept=c(1.5),color="black")+    scale_y_discrete(expand=c(0.05, 0.05))
+
+
+
+
+
+
+
+
+
+
+
+
+data("ToothGrowth")
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+head(ToothGrowth)
+
+
+
+e <- ggplot(ToothGrowth, aes(x = dose, y = len))
+
+e + geom_jitter(
+  aes(shape = supp, color = supp), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 1.2
+) +
+  stat_summary(
+    aes(color = supp),
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.4,
+    position = position_dodge(0.8)
+  )+
+  scale_color_manual(values =  c("#00AFBB", "#E7B800"))
+
+
+
+
+
+e <- ggplot(t, aes(x = Clusters, y = IMPUTED_plant_height_mean_m))
+
+e + geom_jitter(
+  aes( color = Clusters), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 0.4,alpha=0.5
+) +
+  stat_summary(
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.6,
+    position = position_dodge(0.8)
+  )+ theme_classic() + ylab("log(plant height in m)")
+
+
+
+e <- ggplot(t, aes(x = Clusters, y = log(OVULES_IMPUTED)))
+
+e + geom_jitter(
+  aes( color = Clusters), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 0.4,alpha=0.5
+) +
+  stat_summary(
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.6,
+    position = position_dodge(0.8)
+  )+ theme_classic() + ylab("log(Ovule number)")
+
+
+e <- ggplot(t, aes(x = Clusters, y = log(STYLE_IMPUTED)))
+
+e + geom_jitter(
+  aes( color = Clusters), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 0.4,alpha=0.5
+) +
+  stat_summary(
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.6,
+    position = position_dodge(0.8)
+  )+ theme_classic() + ylab("log(Ovule number)")
+
+
+e <- ggplot(t, aes(x = Clusters, y = log(Corolla_diameter_mean)))
+
+e + geom_jitter(
+  aes( color = Clusters), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 0.4,alpha=0.5
+) +
+  stat_summary(
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.6,
+    position = position_dodge(0.8)
+  )+ theme_classic() + ylab("log(Corolla diameter)")
+
+
+e <- ggplot(t, aes(x = Clusters, y = Autonomous_selfing_level_fruit_set))
+
+e + geom_jitter(
+  aes( color = Clusters), 
+  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
+  size = 0.4,alpha=0.5
+) +
+  stat_summary(
+    fun.data="mean_sdl",  fun.args = list(mult=1), 
+    geom = "pointrange",  size = 0.6,
+    position = position_dodge(0.8)
+  )+ theme_classic() + ylab("Autonomus selfing")
