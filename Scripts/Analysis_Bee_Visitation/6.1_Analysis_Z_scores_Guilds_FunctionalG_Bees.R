@@ -59,7 +59,7 @@ phylo_5_2 <- tibble(phylo_5_1)
 str(phylo_5_2)
 
 phylo_5_3 <- get_tree(sp_list = phylo_5_2, tree = tree_plant_otl, taxon = "plant")
-
+str(phylo_5_3)
 #Convert phylogenetic tree into matrix
 A_5 <- vcv.phylo(phylo_5_3)
 #Standardize to max value 1
@@ -105,25 +105,17 @@ pp_check(m_5_clust_zero_neg_hclust_bees, type='violin_grouped',group="guild")+yl
 saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
 
 
-
-m_5_clust_zero_neg_hclust_bees <- readRDS("m_5_clust_zero_neg_hclust_bees.RDS")
-
-
-
 ########################################################################################################################################################
 #)4)SAVE MODEL
 ########################################################################################################################################################
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
+saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
 
 ########################################################################################################################################################
 #5)PLOT OUTPUT 
 ########################################################################################################################################################
-#read model 1
-m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
-#read model 2
-m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
+m_5_clust_zero_neg_hclust_bees <- readRDS("m_5_clust_zero_neg_hclust_bees.RDS")
 
 #############
 #PLOT MODEL 1 NON APIS
@@ -134,10 +126,6 @@ ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust_bees, effects = "Clusters:
 colnames(ce_1[[1]])[4] <- "a"
 colnames(ce_1[[1]])[10] <- "Interaction"
 ce_1[[1]][10]<- ce_1[[1]][10]+1
-#Order levels
-ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-
 
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(bee_family), group = 
                         as.factor(bee_family))) +

@@ -1,0 +1,117 @@
+---
+title: "Untitled"
+output: pdf_document
+---
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=6}
+setwd("~/R_Projects/Reproductive Traits")
+library(dplyr)
+library(ggplot2)
+library(viridis)
+library(grid)
+library(cowplot)
+library(gridExtra)
+
+#PREPARE DATA
+#read unscaled trait data in order to visualize better the clusters
+d <- read.csv("Data/Csv/all_species_imputed_trait_data.csv")
+#read trait data with clusters
+#I'll select the column of clusters and include it on the non standardize trait data
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters.csv") #5 clusters
+#No add the cluster columns (it has the same order)
+d$Clusters <- as.factor(hclust_d_5$Clusters)
+
+#select columns of interest
+t <- d[c("Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
+                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
+                        "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
+                        "IMPUTED_plant_height_mean_m", "Clusters")]
+
+
+
+#GENERATE PLOTS
+########################################################################################################################################
+#Breeding system
+########################################################################################################################################
+breeding <- ggplot(t, aes(Clusters, Breeding_system)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Breeding system")+
+  geom_hline(yintercept=c(1.5,2.5),color="black",linetype="longdash")
+########################################################################################################################################
+#Compatibility
+########################################################################################################################################
+t$IMPUTED_Compatibility <- as.character(t$IMPUTED_Compatibility)
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="monoecious"] <- "Unisexual flowers"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="dioecious"] <- "Unisexual flowers"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="self_incompatible"] <- "Self incompatible"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="self_compatible"] <- "Self compatible"
+t$IMPUTED_Compatibility[t$IMPUTED_Compatibility=="partially_self_compatible"] <- "Partially self compatible"
+
+Compatibility <- ggplot(t, aes(Clusters, IMPUTED_Compatibility)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Compatibility system")+
+  geom_hline(yintercept=c(1.5,2.5,3.5),color="black",linetype="longdash")
+########################################################################################################################################
+#Autonomous_selfing_level
+########################################################################################################################################
+t$Autonomous_selfing_level <- as.character(t$Autonomous_selfing_level)
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="none"] <- "None"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="medium"] <- "Medium"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="low"] <- "Low"
+t$Autonomous_selfing_level[t$Autonomous_selfing_level=="high"] <- "High"
+t$Autonomous_selfing_level <- factor(t$Autonomous_selfing_level, levels = c("None", "Low", "Medium", "High"))
+
+Selfing <- ggplot(t, aes(Clusters, Autonomous_selfing_level)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Selfing level")+
+  geom_hline(yintercept=c(1.5,2.5,3.5),color="black",linetype="longdash")
+#######################################################################################################################################
+#Flower_morphology
+#######################################################################################################################################
+
+t$Flower_morphology <- as.character(t$Flower_morphology)
+t$Flower_morphology[t$Flower_morphology=="Funnelform"] <- "Tube"
+t$Flower_morphology[t$Flower_morphology=="Spike"] <- "Brush"
+
+Flower_morphology <-  ggplot(t, aes(Clusters, Flower_morphology)) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Flower shape")+
+  geom_hline(yintercept=c(1.5,2.5,3.5,4.5,5.5),color="black",linetype="longdash")
+#######################################################################################################################################
+#Flower_symmetry
+#######################################################################################################################################
+t$Flower_symmetry <- as.character(t$Flower_symmetry)
+t$Flower_symmetry[t$Flower_symmetry=="zygomorphic"] <- "Zygomorphic"
+t$Flower_symmetry[t$Flower_symmetry=="actinomorphic"] <- "Actinomorphic"
+
+Flower_symmetry <-  ggplot(t, aes(Clusters, Flower_symmetry)) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Flower symmetry")+
+  geom_hline(yintercept=c(1.5),color="black",linetype="longdash")
+#######################################################################################################################################
+ #life_form
+#######################################################################################################################################
+t$life_form <- as.character(t$life_form)
+t$life_form[t$life_form=="vine"] <- "Herb"
+t$life_form[t$life_form=="herb"] <- "Herb"
+t$life_form[t$life_form=="shrub"] <- "Shrub"
+t$life_form[t$life_form=="tree"] <- "Tree"
+
+life_form <-  ggplot(t, aes(Clusters,life_form )) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x=NULL,y=NULL,subtitle = "Life form")+
+  geom_hline(yintercept=c(1.5,2.5),color="black",linetype="longdash")
+#######################################################################################################################################
+ #lifespan
+#######################################################################################################################################
+lifespan<- ggplot(t, aes(Clusters,lifespan )) +
+   geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+   theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x="Plant Functional groups",y=NULL,subtitle = "Life span")+
+  geom_hline(yintercept=c(1.5),color="black",linetype="longdash")
+
+#######################################################################################################################################
+ plot_grid(breeding,Compatibility,Selfing,Flower_morphology,Flower_symmetry,life_form,lifespan, nrow = 7,align = 'v')
+
+```
+
