@@ -32,9 +32,6 @@ dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
 dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
 dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 
-
-
-
 #prepare dataframe to calculate tree
 phylo <- as.data.frame(cbind(dat$Family_all, dat$Genus_all, dat$Species_all))
 colnames(phylo) <-  c("family", "genus", "species")
@@ -68,57 +65,6 @@ dat$Species_all <- gsub(" ", "_", dat$Species_all)
 
 rownames(dat_scaled) <- dat$Species_all
 
-pca_output <- phyl.pca(phylo_output, dat_scaled)
-
-
-biplot(pca_output,xlim=c(-5, 15), ylim=c(-2, 6), xlabs = rep(".", nrow(dat_scaled)))
-
-
-pca1$
-#percent variance explained by each eigenvector
-  pca_output <- NULL
-percVar = diag(pca_output$Eval)/sum(pca_output$Eval)*100
-names(percVar)=paste("PCA",1:length(percVar))
-
-# Store the results
-
-PCAscree[[1]] <- percVar
-PCAscore[[1]] <- pca_output$S
-PCAloadings[[1]] <- pca_output$L
-PCAEigen[[1]] <- pca_output$Eval
-lambda[[1]] <- pca_output$lambda
-
-
-
-
-# Scree values
-library(plotrix)
-PCAscreeM <- apply(simplify2array(PCAscree), 1, mean)
-PCAscreesd <- apply(simplify2array(PCAscore), 2, plotrix::std.error)
-PCAscreMean<- cbind(PCAscreeM, PCAscreesd)
-
-
-# Scree plot
-
-mp=barplot(PCAscreMean[,1],ylab = "% explained variation",
-           col=c("black","red","green","orange","yellow","light blue","purple","pink","maroon","blue2","blue"),
-           ylim=c(0,100),axisnames=FALSE)
-text(mp,par("usr")[3],
-     labels = names(PCAscreMean[,1]), 
-     srt = 45, adj = c(1.1,1.1), xpd = TRUE, cex=.9)
-dev.off()
-
-biplot(pca_output)
-
-pca_output$S
-
-PCbiplot(pca_output)
-
-
-str(dat)
-plot(pca_output)
-biplot(anole.pca)
-
 #This works fine no try the oither method. However, not any clue how to plot it well at the moment
 
 library(ape)
@@ -134,7 +80,6 @@ text(p,par("usr")[3],
      srt = 45, adj = c(1.1,1.1), xpd = TRUE, cex=.9)
 
 
-output.4d$eig
 
 #Contribution to principal components
 dotchart(output.4d$c1[,1],lab=rownames(output.4d$c1),main="Global principal 1")
@@ -142,7 +87,6 @@ dotchart(output.4d$c1[,2],lab=rownames(output.4d$c1),main="Global principal 2")
 
 #check phylo structure
 abouheif.moran(d.4d)
-abouheif.moran?
 #following this paper https://doi.org/10.1007/978-1-4939-8850-1_13
 
 #Calculate %  
@@ -150,12 +94,46 @@ percentage <- round(output.4d$eig / sum(output.4d$eig) * 100, 2)
 percentage <- diag(as.matrix(percentage))
 percentage <- paste0(names(percentage), " (", percentage, "%)")
 
+
+#####
+#CODE ADAPTED FROM https://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2
+######
+
+
+library(ggpubr)
+
+colnames(PC$c1) <- c("PC1", "PC2")
+
+PCbiplot <- function(PC, x="PC1", y="PC6") {
+  # PC being a prcomp object
+  data <- data.frame(PC$li)
+  plot <- ggplot(data, aes_string(x=x, y=y)) 
+  colnames(PC$c1) <- c("PC1", "PC6")
+  datapc <- data.frame(PC$c1)
+  percentage <- round(PC$eig / sum(PC$eig) * 100, 2)
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  plot <- plot + geom_point(data=data, aes(x=PC1, y=PC6), size = 1.6, alpha=1,pch=21, colour="black",fill="orange") + theme_bw()
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=0.9, color="brown4")
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = ""))
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = ""))
+  plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
+                  panel.border = element_rect(linetype = "solid", colour = "black", size=1))
   
-#Trying to build a gg manually
-#with dots and arrows
+  PCAloadings <- data.frame(Variables = rownames(PC$c1), PC$c1)
+  
+  
+  plot <- plot + annotate("text", x = (PCAloadings$PC1*7), y = (PCAloadings$PC6*7),
+                          label = PCAloadings$Variables)
+  
+  plot
 
+}
 
-
-
-
-
+PCbiplot(PC)
