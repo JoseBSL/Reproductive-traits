@@ -119,7 +119,7 @@ PCbiplot <- function(PC, x="PC1", y="PC6") {
                       v1 = .7 * mult * (get(x)),
                       v2 = .7 * mult * (get(y))
   )
-  plot <- plot + geom_point(data=data, aes(x=PC1, y=PC6), size = 1.6, alpha=1,pch=21, colour="black",fill="orange") + theme_bw()
+  plot <- plot + geom_point(data=data, aes(x=PC1, y=PC6), size = 1.8, alpha=1,pch=21, colour="black",fill="orange") + theme_bw()
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=0.9, color="brown4")
   plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = ""))
   plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = ""))
