@@ -60,6 +60,10 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
 #dat_scaled <- scale(dat[,c(11,13,14,16,17,20)], center = T, scale = T)
 dat_scaled <- scale(dat[,c(8,11,14,16,17,20)], center = T, scale = T)
+head(dat_scaled)
+colnames(dat_scaled) <- c("Selfing", "Flower N.", "Flower width", "Style length", "Ovule N.", "Plant height")
+
+
 
 dat$Species_all <- gsub(" ", "_", dat$Species_all)
 
@@ -86,7 +90,7 @@ dotchart(output.4d$c1[,1],lab=rownames(output.4d$c1),main="Global principal 1")
 dotchart(output.4d$c1[,2],lab=rownames(output.4d$c1),main="Global principal 2")
 
 #check phylo structure
-abouheif.moran(d.4d)
+#abouheif.moran(d.4d)
 #following this paper https://doi.org/10.1007/978-1-4939-8850-1_13
 
 #Calculate %  
@@ -101,7 +105,7 @@ percentage <- paste0(names(percentage), " (", percentage, "%)")
 
 
 library(ggpubr)
-
+PC <- output.4d
 colnames(PC$c1) <- c("PC1", "PC2")
 
 PCbiplot <- function(PC, x="PC1", y="PC6") {
@@ -116,11 +120,11 @@ PCbiplot <- function(PC, x="PC1", y="PC6") {
     (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
   )
   datapc <- transform(datapc,
-                      v1 = .7 * mult * (get(x)),
-                      v2 = .7 * mult * (get(y))
+                      v1 = .5 * mult * (get(x)),
+                      v2 = .5 * mult * (get(y))
   )
-  plot <- plot + geom_point(data=data, aes(x=PC1, y=PC6), size = 1.8, alpha=1,pch=21, colour="black",fill="orange") + theme_bw()
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=0.9, color="brown4")
+  plot <- plot + geom_point(data=data, aes(x=-PC1, y=-PC6), size = 1.4, alpha=1,pch=21, colour="black",fill="black") + theme_bw()
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.5, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
   plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = ""))
   plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = ""))
   plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
@@ -129,11 +133,59 @@ PCbiplot <- function(PC, x="PC1", y="PC6") {
   PCAloadings <- data.frame(Variables = rownames(PC$c1), PC$c1)
   
   
-  plot <- plot + annotate("text", x = (PCAloadings$PC1*7), y = (PCAloadings$PC6*7),
-                          label = PCAloadings$Variables)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(5,7,6,5,12,5)), y = -(PCAloadings$PC6*c(5,7,5,5,5,5)),
+                          label = PCAloadings$Variables, color="brown4",size=5)
+  
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="brown4")
   
   plot
+ 
+  #CALCULATE KERNELS
+  mv.kde <- kde2d(data[,1], data[,2], n = 1544)
+  dx <- diff(mv.kde$x[1:2])  # lifted from emdbook::HPDregionplot()
+  dy <- diff(mv.kde$y[1:2])
+  sz <- sort(mv.kde$z)
+  c1 <- cumsum(sz) * dx * dy
+  
+  # specify desired contour levels:
+  prob <- c(0.90,0.5)
+  
+  # plot:
+  dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
+  dc <- melt(mv.kde$z)
 
+  dc$prob <- approx(sz,1-c1,dc$value)$y
+  
+  plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob),colour="brown4",breaks=prob)
+  
+  plot
+  
+  
 }
 
 PCbiplot(PC)
+
+
+#####
+##tHIS MAYBE LEAD TO ADD SOME DENSITY COLOURS OF THE POINTS R
+####
+
+
+set.seed(123)
+plot_data <-
+  data.frame(
+    X = c(rnorm(300, 3, 2.5), rnorm(150, 7, 2)),
+    Y = c(rnorm(300, 6, 2.5), rnorm(150, 2, 2)),
+    Label = c(rep('A', 300), rep('B', 150))
+  )
+
+
+ggplot(data_1, aes(PC1, PC6)) +
+  stat_density_2d(geom = "polygon",
+                  aes(alpha = ..level..,fill = after_stat(..level..)),
+                  bins = 50)
+
++  geom_point( size = 1.4, alpha=1,pch=21, colour="black",fill="black")
+
+
+
