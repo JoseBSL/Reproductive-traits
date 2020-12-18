@@ -49,7 +49,20 @@ dat_cleaning_4 <- dat_cleaning_3 %>%
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
   filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+
+#dat_cleaning_6 <- dat_cleaning_5 %>%
+ # filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
+
+
+#LOG all columns, seems neccesary to standardize skewed data
+
+
+dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
+
+
+final_d <- dat_cleaning_5[,c(4:9)]
+
 
 ########################################################################################################################################################
 #4) GET PHYLO
@@ -58,8 +71,8 @@ dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
 phylo <- as.data.frame(cbind(dat_cleaning_5$Family_all, dat_cleaning_5$Genus_all, dat_cleaning_5$Species_all))
 colnames(phylo) <-  c("family", "genus", "species")
 #Select unique cases
-phylo_2 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo_1)
+#phylo_2 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo)
 #get phylo
 phylo_output <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
 str(phylo_output)
@@ -73,19 +86,26 @@ colnames(A_5) <- gsub("\\*", "", colnames(A_5))
 colnames(A_5) <- gsub("_", " ", colnames(A_5))
 rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
-#save final data on final_d (just quantitative traits)
-final_d <-  dat_cleaning_5[,c(4:9)]
+
 ########################################################################################################################################################
 #4) CALCULATE PPCA
 ########################################################################################################################################################
 #set same rownames
+final_d <-  dat_cleaning_5[,c(4:9)]
+
 rownames(final_d) <- dat_cleaning_5$Species_all
-phyl_pca <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+#fix species names
+rownames(final_d) <- gsub(" ", "_", rownames(final_d))
+
+#phyl_pca_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+phyl_pca_2 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
-saveRDS(phyl_pca, "Data/RData/phyl_pca.rds")
+#saveRDS(phyl_pca, "Data/RData/phyl_pca_all_scaled_no_selfing.rds")
+#saveRDS(phyl_pca_1, "Data/RData/phyl_pca_1_all_scaled.rds")
+#saveRDS(phyl_pca_2, "Data/RData/phyl_pca_log_z_2.rds")
 
 ####
 #READ DATA
@@ -103,7 +123,7 @@ text(mp,par("usr")[3],
 
 
 #CALL the output PC for simplicity
-PC <- phyl_pca
+PC <- phyl_pca_2
 #CHECK CONTENT
 #EIGENVALUES
 PC$Eval
@@ -143,7 +163,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-  plot <- plot + geom_point(data=dat, aes(-x, -y, color = density)) + scale_color_viridis() #colour dots
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour = density),size=0.5, colour="darkgreen") #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+    #geom_point(data=dat, aes(-x, -y, colour = density),size=0.5,shape = 1,colour = "black",alpha=0.5)
   
   ########
   #ADD ARROWS 
@@ -154,29 +175,34 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
     (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
   )
   datapc <- transform(datapc,
-                      v1 = .5 * mult * (get(x)),
-                      v2 = .5 * mult * (get(y))
+                      v1 = .35 * mult * (get(x)),
+                      v2 = .35 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=0.8, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
   plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
+                       panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.4, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.5, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="brown4")
   
   #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style L.", "Ovule N.", "Plant H." )
+  
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
   plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4,4,4,4,4,4)), y = -(PCAloadings$PC2*c(4,4,4,4,4,4)),
-                          label = PCAloadings$Variables, color="black",size=3)
+                          label = PCAloadings$Variables, color="brown4",size=5)
   
   #CHANGE THEME
   
-  plot <- plot + theme_classic()
+  plot <- plot + theme_bw()
   
   #CALCULATE KERNELS
   #mv.kde <- kde2d(data[,1], data[,2], n = 400)
@@ -202,9 +228,13 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
   #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
   
+
   plot
   
 }
 
 PCbiplot(PC)
 
+scale_fill_continuous(type = "viridis", 
+                      breaks = c(0, 0.16), 
+                      labels = c("Lowest value", "Highest value"))
