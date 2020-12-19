@@ -111,9 +111,24 @@ t$lifespan <- as.factor(t$lifespan )
 #Explore patterns of missing data
 missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)
 sort(missing_data[missing_data >= 0], decreasing=T)
-#just one cololumn with 65% missing data, then one with 35% and then 20% and 10%. The rest under 5%.
+#just one cololumn with 68% missing data, then one with 35% and then 20% and 10%. The rest under 5%.
 #it is recommended to remove columns over 50% but we are particulary interested in having numeric levels of quantitative selfing 
 #we are going to keep it due to the little missing data of the other columns
+
+
+is.na(t$Autonomous_selfing_level)
+str(t_1$Autonomous_selfing_level)
+is.na(t_1$Autonomous_selfing_level)
+
+t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("high") & is.na(t$Autonomous_selfing_level_fruit_set), 88, t$Autonomous_selfing_level_fruit_set)
+t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("medium") & is.na(t$Autonomous_selfing_level_fruit_set), 50.5, t$Autonomous_selfing_level_fruit_set)
+t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("low") & is.na(t$Autonomous_selfing_level_fruit_set), 13, t$Autonomous_selfing_level_fruit_set)
+t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
+
+missing_data <- unlist(lapply(t_1, function(x) sum(is.na(x))))/nrow(t_1)
+sort(missing_data[missing_data >= 0], decreasing=T)
+
+
 ########################################################################################################################################################
 #4)IMPUTE DATA
 ########################################################################################################################################################
