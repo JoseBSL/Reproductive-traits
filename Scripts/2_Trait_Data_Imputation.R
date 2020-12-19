@@ -19,7 +19,10 @@ library(missMDA) #For missing values
 library(FactoMineR) #Produce pca biplot with individuals and variables
 library(factoextra)
 library(ggpubr)
-
+library(missForest)
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(ape)
+library(PVR)
 ########################################################################################################################################################
 #1) READ TRAIT DATA
 ########################################################################################################################################################
@@ -120,17 +123,19 @@ is.na(t$Autonomous_selfing_level)
 str(t_1$Autonomous_selfing_level)
 is.na(t_1$Autonomous_selfing_level)
 
-t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("high") & is.na(t$Autonomous_selfing_level_fruit_set), 88, t$Autonomous_selfing_level_fruit_set)
-t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("medium") & is.na(t$Autonomous_selfing_level_fruit_set), 50.5, t$Autonomous_selfing_level_fruit_set)
-t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("low") & is.na(t$Autonomous_selfing_level_fruit_set), 13, t$Autonomous_selfing_level_fruit_set)
-t_1$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
+#use ifelse base r does not work with these NA'S Even with work around. base r does not like the na option of read excel
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("high") & is.na(t$Autonomous_selfing_level_fruit_set), 88, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("medium") & is.na(t$Autonomous_selfing_level_fruit_set), 50.5, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("low") & is.na(t$Autonomous_selfing_level_fruit_set), 13, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
 
-missing_data <- unlist(lapply(t_1, function(x) sum(is.na(x))))/nrow(t_1)
+#check missing data now
+missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)
 sort(missing_data[missing_data >= 0], decreasing=T)
-
+#seems ok to impute, just 36% percent of missing data. 
 
 ########################################################################################################################################################
-#4)IMPUTE DATA
+#4) PREPARE DATA FOR IMPUTATION--> INCLUDE PHYLOGENY AS A SINGLE COLUMN OF EIGENS FROM PVR
 ########################################################################################################################################################
 
 #Convert to factor 
@@ -139,7 +144,75 @@ cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "IMPUTED_Compat
 t[cols] <- lapply(t[cols], factor)  ## as.factor() could also be used
 str(t)
 
-#Just one variable is above 50%
+
+#Impute data considering phylogenetic distance of species
+#it improves quality of imputation
+#https://doi.org/10.1111/2041-210X.12232 see ref for method comparisons with and without imputation
+
+#Multiple imputation process with phylogeny --> Missforest
+#https://doi.org/10.1111/2041-210X.12232
+#althought it does not have an option we are going to add it as a column
+
+#Before data imputation I need to calculate the phylo of the species
+#remove not found species that do not run with get tree
+cols.num <- c("Family_all","Genus_all","Species_all")
+t[cols.num] <- sapply(t[cols.num],as.character)
+t$Species_all <- gsub("Species_all_", "", t$Species_all)
+t <- t[!t$Species_all == "Diospyros seychellarum", ]
+t <- t[!t$Species_all == "Memecylon eleagni", ]
+t <- t[!t$Species_all == "Ocotea laevigata", ]
+t <- t[!t$Species_all == "Soulamea terminaloides", ]
+#Make these NA's as NA
+t$Species_all[t$Species_all=="NA"] <- NA
+t$Family_all[t$Family_all=="NA"] <- NA
+t$Genus_all[t$Genus_all=="NA"] <- NA
+#remove NA's
+t <- t[!is.na(t$Family_all),]
+t <- t[!is.na(t$Species_all),]
+t <- t[!is.na(t$Genus_all),]
+
+#calculate phylo 
+phylo <- as.data.frame(cbind(t$Family_all, t$Genus_all, t$Species_all))
+colnames(phylo) <-  c("family", "genus", "species")
+#Select unique cases
+#phylo_2 <- phylo[!duplicated(phylo$species),]
+phylo_2 <- tibble(phylo)
+#get phylo
+phylo_output <- get_tree(sp_list = phylo, tree = tree_plant_otl, taxon = "plant")
+str(phylo_output)
+#Convert phylogenetic tree into matrix
+A_5 <- vcv.phylo(phylo_output)
+#Standardize to max value 1
+A_5 <- A_5/max(A_5)
+#Unify column names; remove underscore and remove asterik
+rownames(A_5) <- gsub("\\*", "", rownames(A_5))
+colnames(A_5) <- gsub("\\*", "", colnames(A_5))
+colnames(A_5) <- gsub("_", " ", colnames(A_5))
+rownames(A_5) <- gsub("_", " ", rownames(A_5))
+
+#Decomposing phylogenetic distance matrix derived from tree into a set of orthogonal vectors
+x <- PVRdecomp(phylo_output)
+#create dataframe to merge with data and impute
+phylo_impute <- data.frame(x@Eigen[1],x@phylo[2])
+#Standardize to max value 1
+phylo_impute$values <- phylo_impute$values/max(phylo_impute$values)
+#fix colnames to merge
+phylo_impute$tip.label <- gsub("_", " ", phylo_impute$tip.label)
+#change colnames to merge
+colnames(phylo_impute) <- c("Eigenval", "Species_all")
+#merge
+dat_phylo <- merge(t, phylo_impute, by="Species_all")
+
+str(dat_phylo[5:21,])
+
+
+#IMPUTE DATA
+missForest(dat_phylo[(5:21),c(5:21)])
+
+
+
+
+
 #Conduct data imputation
 t_imputed <- imputeFAMD(t, ncp=3,threshold = 1e-06) 
 head(t_imputed$completeObs)
