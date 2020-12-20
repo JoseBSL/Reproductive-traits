@@ -23,6 +23,7 @@ library(missForest)
 library(rtrees) #for phylogenetic distancelibrary(MASS)
 library(ape)
 library(PVR)
+library(visdat)
 ########################################################################################################################################################
 #1) READ TRAIT DATA
 ########################################################################################################################################################
@@ -215,55 +216,33 @@ dat_phylo <- dat_phylo[- grep("sp", dat_phylo$Species_all),]
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 
-rownames(dat_phylo) <- (dat_phylo$Species_all)
 
-str(dat_phylo)
+########################################################################################################################################################
+#4) IMPUTE DATA
+########################################################################################################################################################
 
-
-
-
-#kfold (k=200 for repeatable results)
-res.ncp<-estim_ncpFAMD(dat_phylo[,c(5:21)],ncp.max=5,nbsim=200)
-res.ncp
-#Compare imputation methods
-t_imputed <- imputeFAMD(dat_phylo[,c(5:21)], ncp=3,threshold = 1e-06) 
-
-#fraxinus america...
-#error for FAMD
-library(missMDA)
-library(missForest)
-library(tcltk)
-library(mvtnorm)
-#source useful functions
-
-source("estim_ncpFAMD.R")
-source("criteria.r")
-source("createdata.r")
-source("MAR.r")
-Error(ximp=t_imputed,xmis=Tips.na,xtrue=Tips)
-
-imp_forest <- missForest(dat_phylo[,c(5:21)], maxiter = 10, ntree = 100,variablewise = TRUE,verbose = TRUE)
+#Visualize missing data 
+vis_miss(dat_phylo[,c(5,6,8:20)])
+#try to find clusters of missing data
+vis_miss(dat_phylo[,c(5,6,8:20)], cluster = TRUE)
 
 
+# better output than random forest when there is colinearity of variables
+#Impute
+t_imputed <- imputeFAMD(dat_phylo[,c(5:21)], ncp=4,threshold = 1e-06,method="Regularized") 
 
-
-
-
-
-#Conduct data imputation
-res.imp.famd<-imputeFAMD(Tips.na,ncp=ncp)
-
-t_imputed <- imputeFAMD(t, ncp=3,threshold = 1e-06) 
 head(t_imputed$completeObs)
 #looks that it has been done well
 #I'm going to fix the other two columns
 
-t_imputed$completeObs$Family_all <- gsub("Family_all_", "", t_imputed$completeObs$Family_all)
-t_imputed$completeObs$Genus_all <- gsub("Genus_all_", "", t_imputed$completeObs$Genus_all)
-head(t_imputed$completeObs)
+dat_imputed <- cbind(dat_phylo[,c(1:4)], t_imputed$completeObs)
 
-write.csv(t_imputed$completeObs, "Data/Csv/all_species_imputed_trait_data.csv")
+#t_imputed$completeObs$Family_all <- gsub("Family_all_", "", t_imputed$completeObs$Family_all)
+#t_imputed$completeObs$Genus_all <- gsub("Genus_all_", "", t_imputed$completeObs$Genus_all)
+#head(t_imputed$completeObs)
 
+#write.csv(t_imputed$completeObs, "Data/Csv/all_species_imputed_trait_data.csv")
+write.csv(dat_imputed, "Data/Csv/all_species_imputed_trait_data_1.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
