@@ -130,8 +130,12 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
 
 #check missing data now
-missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)
+missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
+
+
+
+
 #seems ok to impute, just 36% percent of missing data. 
 
 ########################################################################################################################################################
@@ -205,15 +209,50 @@ dat_phylo <- merge(t, phylo_impute, by="Species_all")
 
 str(dat_phylo[5:21,])
 
+dat_phylo <- dat_phylo[- grep("sp", dat_phylo$Species_all),]
 
 #IMPUTE DATA
-missForest(dat_phylo[(5:21),c(5:21)])
+cols.num <- c("Family_all","Genus_all","Species_all")
+dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
+
+rownames(dat_phylo) <- (dat_phylo$Species_all)
+
+str(dat_phylo)
+
+
+
+
+#kfold (k=200 for repeatable results)
+res.ncp<-estim_ncpFAMD(dat_phylo[,c(5:21)],ncp.max=5,nbsim=200)
+res.ncp
+#Compare imputation methods
+t_imputed <- imputeFAMD(dat_phylo[,c(5:21)], ncp=3,threshold = 1e-06) 
+
+#fraxinus america...
+#error for FAMD
+library(missMDA)
+library(missForest)
+library(tcltk)
+library(mvtnorm)
+#source useful functions
+
+source("estim_ncpFAMD.R")
+source("criteria.r")
+source("createdata.r")
+source("MAR.r")
+Error(ximp=t_imputed,xmis=Tips.na,xtrue=Tips)
+
+imp_forest <- missForest(dat_phylo[,c(5:21)], maxiter = 10, ntree = 100,variablewise = TRUE,verbose = TRUE)
+
+
 
 
 
 
 
 #Conduct data imputation
+res.imp.famd<-imputeFAMD(Tips.na,ncp=ncp)
+
 t_imputed <- imputeFAMD(t, ncp=3,threshold = 1e-06) 
 head(t_imputed$completeObs)
 #looks that it has been done well
