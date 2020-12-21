@@ -18,6 +18,8 @@ library(ggplot2)
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data.csv", row.names = "X")
+dat <- read.csv("Data/Csv/all_species_imputed_trait_data_1.csv", row.names = "X")
+
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -33,7 +35,8 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20)]
+#dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20)]
+dat_cleaning <- dat[,]
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -57,8 +60,14 @@ dat_cleaning_5 <- dat_cleaning_4 %>%
 #LOG all columns, seems neccesary to standardize skewed data
 
 
+#
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
+
+
+str(dat_cleaning_5)
+dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(8,11:17,20)]+1)
+
 
 
 final_d <- dat_cleaning_5[,c(4:9)]

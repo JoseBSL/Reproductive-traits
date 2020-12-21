@@ -140,7 +140,7 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 #seems ok to impute, just 36% percent of missing data. 
 
 ########################################################################################################################################################
-#4) PREPARE DATA FOR IMPUTATION--> INCLUDE PHYLOGENY AS A SINGLE COLUMN OF EIGENS FROM PVR
+#4) PREPARE DATA- CALCULATE PHYLOGENETIC DISTANCE
 ########################################################################################################################################################
 
 #Convert to factor 
@@ -167,6 +167,7 @@ t <- t[!t$Species_all == "Diospyros seychellarum", ]
 t <- t[!t$Species_all == "Memecylon eleagni", ]
 t <- t[!t$Species_all == "Ocotea laevigata", ]
 t <- t[!t$Species_all == "Soulamea terminaloides", ]
+
 #Make these NA's as NA
 t$Species_all[t$Species_all=="NA"] <- NA
 t$Family_all[t$Family_all=="NA"] <- NA
@@ -189,12 +190,21 @@ str(phylo_output)
 A_5 <- vcv.phylo(phylo_output)
 #Standardize to max value 1
 A_5 <- A_5/max(A_5)
+
 #Unify column names; remove underscore and remove asterik
 rownames(A_5) <- gsub("\\*", "", rownames(A_5))
 colnames(A_5) <- gsub("\\*", "", colnames(A_5))
 colnames(A_5) <- gsub("_", " ", colnames(A_5))
 rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
+
+########################################################################################################################################################
+#4) PREPARE DATA FOR IMPUTATION
+########################################################################################################################################################
+
+
+
+#####FIX THIS#####
 #Decomposing phylogenetic distance matrix derived from tree into a set of orthogonal vectors
 x <- PVRdecomp(phylo_output)
 #create dataframe to merge with data and impute
@@ -207,10 +217,10 @@ phylo_impute$tip.label <- gsub("_", " ", phylo_impute$tip.label)
 colnames(phylo_impute) <- c("Eigenval", "Species_all")
 #merge
 dat_phylo <- merge(t, phylo_impute, by="Species_all")
-
 str(dat_phylo[5:21,])
+#dat_phylo <- dat_phylo[- grep("sp", dat_phylo$Species_all),]
 
-dat_phylo <- dat_phylo[- grep("sp", dat_phylo$Species_all),]
+
 
 #IMPUTE DATA
 cols.num <- c("Family_all","Genus_all","Species_all")
@@ -222,7 +232,7 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 ########################################################################################################################################################
 
 #Visualize missing data 
-vis_miss(dat_phylo[,c(5,6,8:20)])
+vis_miss(t[,c(5,6,8:20)])
 #try to find clusters of missing data
 vis_miss(dat_phylo[,c(5,6,8:20)], cluster = TRUE)
 
@@ -231,7 +241,23 @@ vis_miss(dat_phylo[,c(5,6,8:20)], cluster = TRUE)
 #Impute
 t_imputed <- imputeFAMD(dat_phylo[,c(5:21)], ncp=4,threshold = 1e-06,method="Regularized") 
 
-head(t_imputed$completeObs)
+#other method
+forest_imputed <- missForest(dat_phylo[,c(5:21)], maxiter = 10,mtry = 4, ntree = 200)
+
+library(phytools)
+str(dat_phylo)
+
+rownames(dat_phylo) <- dat_phylo$Species_all
+phylo_output$tip.label <- gsub("_", " ", phylo_output$tip.label)
+
+
+library(phytools)
+packageVersion("phytools")
+rtr<-reroot(phylo_output, node.number=1249)
+
+X.imputed<-phylo.impute(rtr,dat_phylo[,c(20,21)])
+X <- reroot(phylo_output,1549)
+
 #looks that it has been done well
 #I'm going to fix the other two columns
 
