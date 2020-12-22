@@ -389,3 +389,94 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 
 PCbiplot(PC)
 
+
+
+
+##### to do other stuff
+#other method
+forest_imputed <- missForest(dat_phylo[,c(5:21)], maxiter = 10,mtry = 4, ntree = 200)
+
+f_imp_data <- forest_imputed$ximp
+#remove last column of eigens
+f_imp_data <- f_imp_data[,-17]
+#add species names
+spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
+forest_data <- cbind(spp, f_imp_data)
+
+library(dplyr)
+
+str(forest_data)
+
+hist(forest_imputed$ximp$Autonomous_selfing_level_fruit_set)
+hist(dat_phylo$Autonomous_selfing_level_fruit_set)
+
+#Rphylopars
+dat <- dat_phylo[,c(1,5:21)]
+colnames(dat)[1] <- "species"
+phylo_output$tip.label <- gsub("_", " ", phylo_output$tip.label)
+
+
+library(Rphylopars)
+library(PhylogeneticEM)
+
+phylo_output
+
+
+impute.data.Rphylopars(phylo_output,dat_phylo[,c(20,21)])
+
+
+head(dat[,])
+phylo_output
+
+X.imputed <- phylopars(trait_data=dat[,c(1,5,8,9,10)], tree=phylo_output,pheno_error = TRUE,phylo_correlated = TRUE)
+
+hist((X.imputed$anc_recon[,1]))
+
+
+rownames(dat_phylo) <- dat_phylo$Species_all
+phylo_output$tip.label <- gsub("_", " ", phylo_output$tip.label)
+
+
+X.imputed<-phylo.impute(phylo_output,dat_phylo[,c(20,21)])
+
+
+packageVersion("phytools")
+rtr<-reroot(phylo_output, node.number=1249)
+
+X.imputed<-phylo.impute(rtr,dat_phylo[,c(20,21)])
+X <- reroot(phylo_output,1549)
+
+#looks that it has been done well
+#I'm going to fix the other two columns
+
+dat_imputed <- cbind(dat_phylo[,c(1:4)], t_imputed$completeObs)
+
+#t_imputed$completeObs$Family_all <- gsub("Family_all_", "", t_imputed$completeObs$Family_all)
+#t_imputed$completeObs$Genus_all <- gsub("Genus_all_", "", t_imputed$completeObs$Genus_all)
+#head(t_imputed$completeObs)
+
+#write.csv(t_imputed$completeObs, "Data/Csv/all_species_imputed_trait_data.csv")
+write.csv(forest_data, "Data/Csv/all_species_imputed_trait_data_1.csv")
+
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+
+# simulate data
+sim_data <- simtraits(ntaxa = 15,ntraits = 4,nreps = 3,nmissing = 10)
+# estimate parameters under Brownian motion
+# pheno_error = TRUE assumes intraspecific variation
+# pheno_correlated = FALSE assumes intraspecific variation is not correlated
+# phylo_correlated = TRUE assumed traits are correlated
+PPE <- phylopars(trait_data = sim_data$trait_data,tree = sim_data$tree,
+                 pheno_error = TRUE,phylo_correlated = TRUE,pheno_correlated = TRUE)
+PPE
+PPE$anc_recon # Ancestral state reconstruction and species mean prediction
+PPE$anc_var # Prediction variance
+###NOT RUN
+# estimate parameters under multivariate OU
+# PPE_OU <- phylopars(trait_data = sim_data$trait_data,tree = sim_data$tree,
+# model="mvOU",pheno_error = TRUE,phylo_correlated = TRUE,
+# pheno_correlated = TRUE)
+#
+# PPE

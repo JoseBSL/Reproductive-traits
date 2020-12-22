@@ -17,8 +17,8 @@ library(ggplot2)
 #1) LOAD DATA
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data.csv", row.names = "X")
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data_1.csv", row.names = "X")
+dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
+dat <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "X")
 
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
@@ -35,8 +35,7 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-#dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20)]
-dat_cleaning <- dat[,]
+dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20)]
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -54,20 +53,14 @@ dat_cleaning_5 <- dat_cleaning_4 %>%
   filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
 
 #dat_cleaning_6 <- dat_cleaning_5 %>%
- # filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
+# filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
 
 
 #LOG all columns, seems neccesary to standardize skewed data
 
 
-#
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
-
-
-str(dat_cleaning_5)
-dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(8,11:17,20)]+1)
-
 
 
 final_d <- dat_cleaning_5[,c(4:9)]
@@ -106,20 +99,23 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 #fix species names
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
-#phyl_pca_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-phyl_pca_2 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+
+#Output saved not RUN
+#phyl_pca_famd <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+#phyl_pca_forest <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
-#saveRDS(phyl_pca, "Data/RData/phyl_pca_all_scaled_no_selfing.rds")
-#saveRDS(phyl_pca_1, "Data/RData/phyl_pca_1_all_scaled.rds")
-#saveRDS(phyl_pca_2, "Data/RData/phyl_pca_log_z_2.rds")
+#saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
+#saveRDS(phyl_pca_forest, "Data/RData/phyl_pca_forest.rds")
 
 ####
 #READ DATA
 ####
-phyl_pca <- readRDS("Data/RData/phyl_pca.rds")
+phyl_pca_famd <- readRDS("Data/RData/phyl_pca_famd.rds")
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
 
 #CHECK PCA EXPLAINED VARIATION PER COMPONENT
 #Check Principal components
@@ -132,7 +128,7 @@ text(mp,par("usr")[3],
 
 
 #CALL the output PC for simplicity
-PC <- phyl_pca_2
+PC <- phyl_pca_forest
 #CHECK CONTENT
 #EIGENVALUES
 PC$Eval
@@ -173,7 +169,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
   plot <- plot + geom_point(data=dat, aes(-x, -y, colour = density),size=0.5, colour="darkgreen") #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
-    #geom_point(data=dat, aes(-x, -y, colour = density),size=0.5,shape = 1,colour = "black",alpha=0.5)
+  #geom_point(data=dat, aes(-x, -y, colour = density),size=0.5,shape = 1,colour = "black",alpha=0.5)
   
   ########
   #ADD ARROWS 
@@ -237,7 +233,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
   #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
   
-
+  
   plot
   
 }
