@@ -17,7 +17,7 @@
 #LOAD LIBRARIES
 library(cluster)
 library(NbClust)
-library(maptree)
+library(maptree) #calculate clusters
 library(FD)
 library(bbmle)
 library(spdep)
@@ -25,13 +25,15 @@ library(RANN)
 library(missMDA)
 library(Rtsne)
 library(dplyr)
-
+library(ggplot2)
 ########################################################################################################################################################
 #1)READ TRAIT DATA
 ########################################################################################################################################################
 
 #load data
-trait_data <- read.csv("Data/Csv/all_species_imputed_trait_data.csv", row.names = "Species_all") #set spp names as rownames 
+trait_data <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "Species_all") #set spp names as rownames 
+#trait_data <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "Species_all") #set spp names as rownames 
+
 #select columns to calculate Gower distance (remove genus, order and family)
 trait_data <- trait_data[,-c(1:4)]
 rownames(trait_data) <- gsub("Species_all_", "", rownames(trait_data))
@@ -98,7 +100,8 @@ head(trait_data_5)
 #change colname
 names(trait_data_5)[names(trait_data_5) == "e.gr_5"] <- "Clusters"
 #Write csv
-write.csv(trait_data_5, "Data/Csv/imputed_trait_data_hclust_5_clusters.csv") 
+#write.csv(trait_data_5, "Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") 
+write.csv(trait_data_5, "Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") 
 
 ########################################################################################################################################################
 ########################################################################################################################################################

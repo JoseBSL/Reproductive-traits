@@ -24,7 +24,8 @@ library(ggplot2)
 #1) READ DATA
 ########################################################################################################################################################
 
-d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust.csv", row.names = 1)
+d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_famd.csv", row.names = 1)
+d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv", row.names = 1)
 
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
@@ -93,29 +94,7 @@ levels(as.factor(d_5_1$Clusters))
 ########################################################################################################################################################
 #3.1)ANALYSIS
 ########################################################################################################################################################
-#STUDENT
-#5 clusters hclust
-m_5_clust_stu_hclust <- brm(Z_scores ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                            data = d_5_1, family  = student(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                            sample_prior = TRUE, warmup = 500, iter = 1500,
-                            control = list(adapt_delta = 0.99)) 
 
-
-marginal_effects(m_5_clust_stu_hclust, effects = "Clusters:guild")
-pp_check(m_5_clust_stu_hclust) +xlim(-10,10)+ylim(0,3)
-pp_check(m_5_clust_stu_hclust, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_5_clust_stu_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
-
-#SAVE MODEL
-setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
-m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
-
-########################################################################################################################################################
-#3.2)ANALYSIS
-########################################################################################################################################################
-
-#TRYING OTHER MODEL
 #5 clusters hclust
 m_5_clust_zero_neg_hclust <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
                             data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
