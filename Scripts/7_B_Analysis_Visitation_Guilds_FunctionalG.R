@@ -1,16 +1,15 @@
 ########################################################################################################################################################
-#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD) ##HCLUST##
+#SCRIPT FOR ANALYSIS (Z-SCORES~FUNCTIONAL GROUP*GUILD) ##HCLUST## RANDOM FOREST IMPUTATION METHOD
 
 #1)LOAD DATA 
 
 #2)PHYLOGENETIC DISTANCE OF THE SPECIES -Add them as covariable-
 
-#3)RUN models 3.1 (Z-SCORES) and 3.2 (VISITATION DATA) AND SAVE MODELS
+#3)SAVE MODEL
 
-#4)PLOT MODELS 4.1 AND 4.2
+#4)PLOT MODEL 
 
 ########################################################################################################################################################
-
 #LOAD LIBRARIES
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
@@ -19,18 +18,14 @@ library(DHARMa)
 library(brms)
 library(cmdstanr)
 library(ggplot2)
-
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
-
-d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_famd.csv", row.names = 1)
+setwd("~/R_Projects/Reproductive Traits")
 d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv", row.names = 1)
-
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
 ########################################################################################################################################################
-
 #5 CLUSTERS
 #Prepare species, genus anD_5 family for calculating phylogenetic distance
 d_5$Family_all <- as.character(d_5$Family_all)
@@ -96,59 +91,34 @@ levels(as.factor(d_5_1$Clusters))
 ########################################################################################################################################################
 
 #5 clusters hclust
-m_5_clust_zero_neg_hclust <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
-                            data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                            sample_prior = TRUE, warmup = 500, iter = 1500,
-                            control = list(adapt_delta = 0.99)) 
+m_5_clust_zero_neg_hclust_forest <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+                                      data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                                      sample_prior = TRUE, warmup = 500, iter = 1500,
+                                      control = list(adapt_delta = 0.99)) 
 
-marginal_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild")
-pp_check(m_5_clust_zero_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
-pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_5_clust_zero_neg_hclust, type='violin_grouped',group="guild")+ylim(-4,4)
-saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust")
+marginal_effects(m_5_clust_zero_neg_hclust_forest, effects = "Clusters:guild")
+pp_check(m_5_clust_zero_neg_hclust_forest) +xlim(-50,200)+ylim(0,0.1)
+pp_check(m_5_clust_zero_neg_hclust_forest, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clust_zero_neg_hclust_forest, type='violin_grouped',group="guild")+ylim(-4,4)
 
-pp_check(m_5_clust_zero_neg_hclust) +xlim(-50,200)+ylim(0,0.1)
-marginal_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild")
-ce <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
+pp_check(m_5_clust_zero_neg_hclust_forest) +xlim(-50,200)+ylim(0,0.1)
+marginal_effects(m_5_clust_zero_neg_hclust_forest, effects = "Clusters:guild")
+ce <- conditional_effects(m_5_clust_zero_neg_hclust_forest, effects = "Clusters:guild",points=T) 
 
 ########################################################################################################################################################
 #)4)SAVE MODEL
 ########################################################################################################################################################
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_stu_hclust, "m_5_clust_stu_hclust.RDS")
-#SAVE MODEL 2
-setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_zero_neg_hclust, "m_5_clust_zero_neg_hclust.RDS")
+saveRDS(m_5_clust_zero_neg_hclust_forest, "m_5_clust_zero_neg_hclust_forest.RDS")
+
 ########################################################################################################################################################
-#4.1)PLOT OUTPUT Z-SCORES
-########################################################################################################################################################
-#read model 1
-m_5_clust_stu_hclust <- readRDS("m_5_clust_stu_hclust.RDS")
-#read model 2
-m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
-#Conditional effects Z-scores
-ce <- conditional_effects(m_5_clust_stu_hclust, effects = "Clusters:guild",points=T) 
-#change colnames in model output to use same aesthetics
-#if not gg seems to don't like it
-colnames(ce[[1]])[3] <- "a"
-colnames(ce[[1]])[9] <- "Z_scores"
-#plot model
-ggplot(ce[[1]], aes(x = Clusters, y = Z_scores, colour = as.factor(guild), group = 
-  as.factor(guild))) +
-  geom_point(size = 1, position = position_dodge(width = 0.4), alpha=1) +
-  theme_bw()+ ylab("Standardize Nº of visits (Z-scores)") + xlab("Plant reproductive groups")+
-  geom_point(data = d_5_1,aes(x = Clusters, y = Z_scores),size = 1, position = position_dodge(width = 0.4), alpha=0.15)+
-  geom_errorbar(data=ce[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.4, position = position_dodge(width = 0.4)) +ylim(-0.8,2.5)
-  
-########################################################################################################################################################
-#4.2)PLOT OUTPUT VISITATION DATA
+#5)PLOT OUTPUT VISITATION DATA
 ########################################################################################################################################################
 #read model 2
-m_5_clust_zero_neg_hclust <- readRDS("m_5_clust_zero_neg_hclust_1.RDS")
+m_5_clust_zero_neg_hclust_forest <- readRDS("m_5_clust_zero_neg_hclust_forestRDS")
 #cond effect model visitation data
-ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust, effects = "Clusters:guild",points=T) 
+ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust_forest, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
 colnames(ce_1[[1]])[4] <- "a"
@@ -159,14 +129,14 @@ ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera
 d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 #plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-  as.factor(guild))) +
+                        as.factor(guild))) +
   geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
   theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
   geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
+                                             as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))
-  
+
 position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2)
 ########################################################################################################################################################
 ########################################################################################################################################################
