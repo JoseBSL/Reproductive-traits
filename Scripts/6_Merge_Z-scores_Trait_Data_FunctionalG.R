@@ -19,8 +19,10 @@ library(readxl) #read trait data
 ########################################################################################################################################################
 long_d_2 <- read.csv("Data/Csv/long_format_quantitative_networks_Z_scores.csv")
 t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
+
+#Read one each time and run
 #hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") #5 clusters
-hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
+#hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
 
 ########################################################################################################################################################
 #3) MERGE WITH TRAIT DATA
@@ -69,7 +71,7 @@ quantitative_networks_Z_scores_with_traits_and_5_clusters <- quantitative_networ
 ########################################################################################################################################################
 #SAVE 5 CLUSTERS
 #write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_famd.csv")
-write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv")
+#write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
