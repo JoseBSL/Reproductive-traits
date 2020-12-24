@@ -50,10 +50,13 @@ trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
 
 
 #select columns of interest
-t <- trait_filtered_2[c("Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
+t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
                   "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
                   "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
                   "IMPUTED_plant_height_mean_m")]
+
+
+
 ########################################################################################################################################################
 #####
 #B) RENAME LEVELS FOR IMPUTATION
@@ -219,7 +222,7 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 # better output than random forest when there is colinearity of variables
 #Impute
-t_imputed <- imputeFAMD(dat_phylo[,c(5:21)], ncp=4,threshold = 1e-06,method="Regularized") 
+t_imputed <- imputeFAMD(dat_phylo[,c(6:22)], ncp=4,threshold = 1e-06,method="Regularized") 
 
 t_imputed_1 <- t_imputed$completeObs[,-17]
 str(t_imputed_1)
@@ -227,6 +230,9 @@ str(t_imputed_1)
 sp<- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 #merge
 famd_data <- as.data.frame(cbind(sp, t_imputed_1))
+#add species geonet column 
+rownames(famd_data) <- dat_phylo$Species_geonet
+
 
 #The imputation with famd gives some values under the lower limit with ecological sense
 #fix and set new lower bound
@@ -244,13 +250,15 @@ famd_data$IMPUTED_plant_height_mean_m <-replace(famd_data$IMPUTED_plant_height_m
 #####
 #METHOD 2: RANDOM FOREST
 #####
-forest_imputed <- missForest(dat_phylo[,c(5:21)], maxiter = 10,mtry = 4, ntree = 200)
+forest_imputed <- missForest(dat_phylo[,c(6:22)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
 f_imp_data <- f_imp_data[,-17]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)
+#this is a bda fix but I'm trying to avoid using 
+rownames(forest_data) <- dat_phylo$Species_geonet
 
 ########################################################################################################################################################
 #7) SAVE THE TWO IMPUTATION METHODS
