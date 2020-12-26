@@ -21,7 +21,7 @@ long_d_2 <- read.csv("Data/Csv/long_format_quantitative_networks_Z_scores.csv")
 t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
 
 #Read one each time and run
-#hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") #5 clusters
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") #5 clusters
 #hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
 
 ########################################################################################################################################################

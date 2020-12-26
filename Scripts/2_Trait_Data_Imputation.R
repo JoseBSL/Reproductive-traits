@@ -39,7 +39,9 @@ trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 #A) CLEAN DATA
 #####
 #select just filled rows
-trait_data_1 <- trait_data[1:1701,]
+trait_data_1 <- trait_data[1:1710,]
+
+
 #filter data, select species with flower level info and capitulum
 trait_filtered <- filter(trait_data_1, Info_level == "flower" |  Info_level == "capitulum")
 levels(as.factor(trait_filtered$Info_level)) #checking levels
@@ -157,9 +159,7 @@ cols.num <- c("Family_all","Genus_all","Species_all")
 t[cols.num] <- sapply(t[cols.num],as.character)
 t$Species_all <- gsub("Species_all_", "", t$Species_all)
 t <- t[!t$Species_all == "Diospyros seychellarum", ]
-t <- t[!t$Species_all == "Memecylon eleagni", ]
 t <- t[!t$Species_all == "Ocotea laevigata", ]
-t <- t[!t$Species_all == "Soulamea terminaloides", ]
 #t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
 t <- t[- grep("sp", t$Species_all),]   #remove species that are not until species level
 
@@ -184,6 +184,8 @@ phylo_1 <- tibble(phylo)
 #get phylo
 phylo_output <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant")
 
+a <- data.frame(phylo_output$tip.label)
+a$phylo_output.tip.label <- gsub("_", " ", a$phylo_output.tip.label)
 ########################################################################################################################################################
 #5) ICLUDE EIGENVALUES IN RAWDATA TO IMPROVE IMPUTATION OURPUT
 ########################################################################################################################################################
