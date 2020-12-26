@@ -100,8 +100,8 @@ colnames(trait_data)[1] <- "Original_spp_names"
 setnames(all_df, old = c("Species"), new = c("Original_spp_names"))
 
 #MERGE
-merg1 <- network_trait_data <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="Original_spp_names")
-merg2 <- network_trait_data <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="Original_spp_names", all.x = T)
+merg1  <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="Original_spp_names")
+merg2  <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="Original_spp_names", all.x = T)
 #[1] -36
 nrow(merg1) - nrow(merg2)
 #There are 36 species that are not matching
@@ -110,13 +110,36 @@ merg2 <- data.frame(merg2)
 merg2[is.na(merg2$Order_all),1]
 #This is the list of species that is not merging
 
-#Campanula rotundifolia not found
-all_df <- data.frame(all_df)
-#campanula rotundifolia not found
+#NOTE: CHANING NAMES TO FIX MERGE
+#CAMPANULA ROTUNDIFOLIA NOT FOUND
 all_df[all_df$Original_spp_names=="Chamaenerion angustifolium",1] <- "Chamaenerium angustifolium"
+#DAUCUS CAROTA
 all_df[all_df$Original_spp_names=="Daucus carota",1] <- "Daucus carota carota"
 all_df[all_df$Original_spp_names=="Daucus catota",1]  <- "Daucus carota carota"
-#Now Epilobium angustifolium
-  
+#EPILOBIUM ANGUSTIFOLIUM
+all_df[all_df$Original_spp_names=="Epilobium angustifolium",1]  <- "Chamaenerium angustifolium"
+#EXCOECARIA BENTHIAMIANA
+all_df[all_df$Original_spp_names=="Excoecaria benthiamiana",1]  <- "Excoecaria benthamiana"
+#GALIUM VERUM NOT FOUND
+#GASTONIA MAUURITANA NOT FOUND
+#HYPOCHAERIS RADICATA
+all_df[all_df$Original_spp_names=="hypochoeris radicata",1]  <- "Hypochoeris radicata"
+all_df[all_df$Original_spp_names=="Hypochaeris radicata",1]  <- "Hypochoeris radicata"
+#LEDUM GROENLANDICUM NOT FOUND
+#LOTUS CORNICULATUS
+all_df[all_df$Original_spp_names=="Lotus cornculatus",1]  <- "Lotus cornculatus"
+all_df[all_df$Original_spp_names=="Lotus corniculatus",1]  <- "Lotus cornculatus"
+#LOTUS PEDUNCULATUS
+all_df[all_df$Original_spp_names=="Lotus pedunculatus",1]  <- "Lotus uliginosus"
+#MAIANTHEMUM RACEMOSUM NOT FOUND
+#MELAMPYRUM PRATENSE NOT FOUND
+#MEMECYLON ELEAGNI, FOUND BUT GIVES TROUBLE WITH THE PHYLO... CHECK LATER
+#MYOSOTIS ALPESTRIS NOT FOUND
+#NORTHEA SEYCHELLANA
+all_df[all_df$Original_spp_names=="Northea seychellana",1]  <- "Northea hornei"
+#ORCHIS MORIO NOT FOUND
+
+
+
 
 
