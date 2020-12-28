@@ -9,6 +9,9 @@
 
 #3) MERGE WITH TRAIT DATA
 
+#4) SAVE DATA
+
+
 ########################################################################################################################################################
 #LOAD LIBRARIES
 library(data.table) # operate with df
@@ -105,6 +108,21 @@ merg2  <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="
 #This was done because some species were not merging, now is fixed
 nrow(merg1) - nrow(merg2)
 #Fix manually
-merg2 <- data.frame(merg2)
-merg2[is.na(merg2$Order_all),1]
+#merg2 <- data.frame(merg2)
+#merg2[is.na(merg2$Order_all),1]
 
+
+#Save final merge after confirming that everything works fine
+df_final  <- merge(all_df, trait_data, by="Original_spp_names")
+
+########################################################################################################################################################
+#4) SAVE DATA
+########################################################################################################################################################
+#Change col names
+colnames(df_final) <- c("Original_names", "Visits", "d", "Id", "Order", "Family", "Genus", "Species", "Breeding_system", "Compatibility", "Selfing", "Selfing_quantitative",
+                        "Flower_shape", "Flower_symmetry", "Flower_number", "Flower_inflorescence", "Floral_unit_width", "Flower_width", "Flower_length", "Style_length",
+                        "Ovule_number", "Life_form", "Life_span", "Plant_height")
+
+#save data
+write.csv(df_final, "Data/Csv/metric_analysis_data_3rd_question.csv")
+########################################################################################################################################################
