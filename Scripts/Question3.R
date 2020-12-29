@@ -15,12 +15,14 @@ library(corrplot)
 library(brms)
 library(cmdstanr)
 library(ggplot2)
+library(rstanarm)
 ########################################################################################################################################################
 #1) LOAD NETWORK DATA
 ########################################################################################################################################################
 data <- read.csv("Data/Csv/metric_analysis_data_3rd_question.csv", row.names = 1)
 head(data)
 str(data)
+data$Life_form[data$Life_form=="vine"] <- "shrub"
 ########################################################################################################################################################
 #2) TEST PHYLO SIGNAL OF METRICS
 ########################################################################################################################################################
@@ -93,33 +95,25 @@ data_1 <- mutate_if(data_1, is.character, as.factor)
 
 #Flower width, ovule number, style length
 
-
+unloadNamespace(model1)
+unloadNamespace(projpred)
 
 #MODEL 1
-# Plant_height + Flower_width + Flower_symmetry + Breeding_system + Compatibility + Flower_shape
-model1 <- brm((Visits-1) ~ Plant_height + Flower_width + Flower_symmetry + Breeding_system + Compatibility + Flower_shape + (1|Id),
-                                      data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4,save_all_pars=T,
+# Flower_width * Life_form + Compatibility + Flower_symmetry
+model1 <- brm((Visits-1) ~ Flower_width * Life_form + Compatibility + Flower_symmetry + (1|Id),
+                                      data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4,
                                       sample_prior = TRUE, warmup = 500, iter = 1500,
                                       control = list(adapt_delta = 0.99)) 
 pp_check(model1) +xlim(-50,200)+ylim(0,0.1)
 #nice fit
 conditional_effects(model1,points=T) 
 performance::r2_bayes(model1)
-#r2 of almost 0
-
-
-pplot <- plot(model1, "areas", prob = 0.95, prob_outer = 1)
-pplot + geom_vline(xintercept = 0)
-
-
-varsel2 <- varsel(model1)
-
 
 
 
 #MODEL 2
-# Plant_height + Flower_width + Flower_symmetry + Breeding_system + Compatibility 
-model2 <- brm((Visits-1) ~ Plant_height + Flower_width + Flower_symmetry + Breeding_system + Compatibility  + (1|Id),
+# Flower_width * Life_form + Compatibility + Compatibility + Breeding_system
+model2 <- brm((Visits-1) ~ Flower_width * Life_form  + Compatibility + Breeding_system + (1|Id),
               data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, save_all_pars=T,
               sample_prior = TRUE, warmup = 500, iter = 1500,
               control = list(adapt_delta = 0.99)) 
@@ -128,37 +122,44 @@ pp_check(model2) +xlim(-50,200)+ylim(0,0.1)
 conditional_effects(model2,points=T) 
 performance::r2_bayes(model2)
 
+
+
+
 #MODEL 3
-# Plant_height + Flower_width + Flower_symmetry + Breeding_system  
-model3 <- brm((Visits-1) ~ Plant_height * Flower_width  + (1|Id),
+# Flower_width*Selfing + Flower_symmetry + Breeding_system 
+model3 <- brm((Visits-1) ~ Flower_width*Selfing + Flower_symmetry + Breeding_system   + (1|Id),
               data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
               sample_prior = TRUE, warmup = 500, iter = 1500,
               control = list(adapt_delta = 0.99)) 
 pp_check(model3) +xlim(-50,200)+ylim(0,0.1)
 conditional_effects(model3,points=T) 
 
+
+
 performance::r2_bayes(model3)
 
 #MODEL 4
-# Plant_height + Flower_width + Flower_symmetry + Breeding_system +C ompatibility
-model4 <- brm((Visits-1) ~ Plant_height + Flower_width  + (1|Id),
+# Plant_height + Compatibility + Flower_symmetry + Breeding_system 
+model4 <- brm((Visits-1) ~   Flower_symmetry + Plant_height + Breeding_system + Compatibility*Flower_width   + (1|Id),
               data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
               sample_prior = TRUE, warmup = 500, iter = 1500,
               control = list(adapt_delta = 0.99)) 
 pp_average()
+performance::r2_bayes(model4)
+
+conditional_effects(model4,points=T) 
 
 
-
-#MODEL 4
-#Model 4: Breeding_system + Plant_height* + Compatibility
-model4 <- brm((Visits-1) ~  Breeding_system*Ovule_number + Plant_height + Compatibility + (1|Id),
+#MODEL 5
+#Model 5: Selfing * Plant_height 
+model5 <- brm((Visits-1) ~  Selfing + Plant_height + Flower_width + Breeding_system +(1|Id),
               data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
               sample_prior = TRUE, warmup = 500, iter = 1500,
               control = list(adapt_delta = 0.99)) 
 pp_check(model34) +xlim(-50,200)+ylim(0,0.1)
-conditional_effects(model4,points=T) 
+conditional_effects(model5,points=T) 
 
-performance::r2_bayes(model4)
+performance::r2_bayes(model5)
 
 #MODEL 5
 #Model 5: Breeding_system + Selfing_quantitative + Plant_height
