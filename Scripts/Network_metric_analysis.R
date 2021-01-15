@@ -46,6 +46,7 @@ rs_NA <- function(x){
  return(z)
 }
 
+
 #Calculate all metrics at once with bipartite
 met <- function(x){
   Visits_Sum <- rs_NA(x) #previous function to sum rows 
@@ -64,16 +65,24 @@ met <- function(x){
  return(metrics)
 }
 
-#calculate network metrics with for loop
+#workaround to remove singletones
 i <- NULL
 data <- NULL
 metrics_list <- list()
 for (i in names(my_data)){
-  metrics_list[[i]] <- met(my_data[[i]])
+  metrics_list[[i]] <- my_data[[i]][apply(my_data[[i]][,-1], 1, function(x) !all(x<2)),]
+}
+
+#calculate network metrics with for loop
+i <- NULL
+data <- NULL
+metrics_list_1 <- list()
+for (i in names(metrics_list)){
+  metrics_list_1[[i]] <- met(metrics_list[[i]])
 }
 
 #add id as a row name
-all_list <- lapply(seq_along(metrics_list),function(x) cbind(metrics_list[[x]], 
+all_list <- lapply(seq_along(metrics_list_1),function(x) cbind(metrics_list_1[[x]], 
             unique.id=str_replace(my_files[x], pattern = ".csv", replacement = "")))
 
 #Now merge all the data frames 
@@ -86,8 +95,22 @@ all_df <- bind_rows(all_list)
 all_df <- all_df[!all_df$Species == "Ocotea laevigata", ]
 #all_df <- all_df[!all_df$Species == "Soulamea terminaloides", ]
 #t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
-all_df <- all_df[- grep("sp", all_df$Species),]   #remove species that are not until species level
-#we  keept them in order to calculate the metrics
+
+
+#check
+#all_df_unique_sp <- all_df[!duplicated(all_df$Species),]
+
+#remove species that are not until species level
+#ALL THE SPECIES WITH SP. ARE DELETD
+all_df$Species <-  sub('sp.1$', 'sp.', all_df$Species)
+all_df$Species <- sub('sp.2$', 'sp.', all_df$Species)
+all_df$Species <- sub('sp$', 'sp.', all_df$Species)
+all_df$Species <- sub("sp.$", "DELETE", all_df$Species)
+
+all_df <- all_df[- grep("DELETE",  all_df$Species),] #remove species with "DELETE"
+
+
+
 ########################################################################################################################################################
 #3) MERGE WITH TRAIT DATA
 ########################################################################################################################################################
@@ -108,8 +131,8 @@ merg2  <- merge(all_df[!duplicated(all_df$Original_spp_names)], trait_data, by="
 #This was done because some species were not merging, now is fixed
 nrow(merg1) - nrow(merg2)
 #Fix manually
-#merg2 <- data.frame(merg2)
-#merg2[is.na(merg2$Order_all),1]
+merg2 <- data.frame(merg2)
+merg2[is.na(merg2$Order_all),1]
 
 
 #Save final merge after confirming that everything works fine

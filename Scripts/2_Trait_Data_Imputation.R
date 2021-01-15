@@ -39,7 +39,7 @@ trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 #A) CLEAN DATA
 #####
 #select just filled rows
-trait_data_1 <- trait_data[1:1710,]
+trait_data_1 <- trait_data[1:1711,]
 
 
 #filter data, select species with flower level info and capitulum
@@ -158,12 +158,19 @@ str(t)
 cols.num <- c("Family_all","Genus_all","Species_all")
 t[cols.num] <- sapply(t[cols.num],as.character)
 t$Species_all <- gsub("Species_all_", "", t$Species_all)
-t <- t[!t$Species_all == "Diospyros seychellarum", ]
-t <- t[!t$Species_all == "Ocotea laevigata", ]
-#t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
-t <- t[- grep("sp", t$Species_all),]   #remove species that are not until species level
 
+t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
 
+#remove species that are not until species level
+#ALL THE SPECIES WITH SP. ARE DELETD
+t$Species_geonet <- gsub("M_PL_.*","",t$Species_geonet) #subsitute partial string for nothing
+t$Species_geonet <- gsub(" $","", t$Species_geonet, perl=T) #remove trailing spaces
+t$Species_geonet <-  sub('sp.1$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp.2$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp$', 'sp.', t$Species_geonet) #PREPARE ALL SP TO SP.
+t$Species_geonet <- sub("sp.$", "DELETE", t$Species_geonet) #change all sp. for DELETE
+t <- t[- grep("DELETE",  t$Species_geonet),] #remove species with "DELETE"
+#CHECK LEVELS
 levels(factor(t$Species_all))
 
 #Make these NA's as NA

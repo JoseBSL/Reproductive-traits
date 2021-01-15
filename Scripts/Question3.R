@@ -89,7 +89,34 @@ data_1$d <- data$d
 str(data_1)
 #Convert characters to factors
 data_1 <- mutate_if(data_1, is.character, as.factor)
+head(data_1)
+data_1 <- mutate_if(data_1, is.numeric, as.numeric)
 
+
+
+
+#### test for possible important missing interactions to add
+
+require(MuMIn)
+library(sjPlot)
+library(sjmisc)
+library(ggplot2)
+
+globalmodel <- lm(Visits ~ (Flower_width + Life_form + Compatibility + Flower_symmetry+ Breeding_system + Selfing)^2, data = data_1, na.action = "na.fail")
+combinations <- dredge(globalmodel)
+print(combinations)
+
+globalmodel2 <- lm(d ~ (Flower_width + Life_form + Compatibility + Flower_symmetry+ Breeding_system + Selfing)^2, data = data_1, na.action = "na.fail")
+combinations2 <- dredge(globalmodel2)
+print(combinations2)
+
+plot_model(m1, type = "pred", terms = c("Life_form", "Selfing_quantitative"))
+str(data_1)
+
+# fit model with interaction
+fit <- lm(neg_c_7 ~ c12hour + barthtot * c161sex, data = efc)
+
+plot_model(m1, type = "pred", terms = c("Flower_width"))
 
 #Plant height represents life form and life span, due to their correlation
 
@@ -100,10 +127,12 @@ unloadNamespace(projpred)
 
 #MODEL 1
 # Flower_width * Life_form + Compatibility + Flower_symmetry
-model1 <- brm((Visits-1) ~ Flower_width * Life_form + Compatibility + Flower_symmetry + (1|Id),
+model1 <- brm((Visits-1) ~ Flower_width + Life_form + Compatibility + Flower_symmetry + Breeding_system + Selfing + (1|Id)+ (1|Species),
                                       data = data_1, family  = zero_inflated_negbinomial(), cores = 4,chains = 4,
                                       sample_prior = TRUE, warmup = 500, iter = 1500,
                                       control = list(adapt_delta = 0.99)) 
+
+
 pp_check(model1) +xlim(-50,200)+ylim(0,0.1)
 #nice fit
 conditional_effects(model1,points=T) 
@@ -168,3 +197,14 @@ waic2 <- loo(model2,moment_match = TRUE)
 
 loo_compare(waic1, waic2)
 
+
+
+trait_data <- read_excel("temp5.xlsx",na = "NA")
+
+
+ggplot(trait_data,aes(x=REGIONS,y=value,group=class)) +
+  geom_boxplot(fill=c("red","green"),fill = dodge,position=position_dodge(0))
+
+ggplot(trait_data) + 
+  geom_boxplot(aes(x=REGIONS, y=value, fill = class),
+               position = position_dodge(0))
