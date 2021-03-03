@@ -21,14 +21,14 @@ long_d_2 <- read.csv("Data/Csv/long_format_quantitative_networks_Z_scores.csv")
 t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
 
 #Read one each time and run
-hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") #5 clusters
-#hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
+#hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_famd.csv") #5 clusters
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
 
 ########################################################################################################################################################
 #3) MERGE WITH TRAIT DATA
 ########################################################################################################################################################
 #process trait data all species
-t_data <- t_data[1:1701,]
+t_data <- t_data[1:1712,]
 #filter data, select species with flower level info and capitulum
 t_data_filtered <- filter(t_data, Info_level == "flower" |  Info_level == "capitulum")
 t_data_filtered <- as.data.frame(t_data_filtered)
@@ -41,6 +41,11 @@ colnames(t)[1] <- "Plant_species"
 
 #MERGE NETWORK AND TRAIT DATA
 long_format_trait_data <- merge(long_d_2, t, by = "Plant_species", all.x =T)
+
+levels(factor(long_d_2$Plant_species))
+levels(factor(t$Plant_species))
+
+
 ########################################################################################################################################################
 #4) MERGE WITH FUNCTIONAL GROUPS
 ########################################################################################################################################################
@@ -64,7 +69,32 @@ hclust_d_5 <- hclust_d_5[!is.na(hclust_d_5$Species_all),]
 quantitative_networks_Z_scores_with_traits_and_5_clusters <- merge(long_format_trait_data,hclust_d_5, by="Species_all", all.x  = T) #now data is ready for analysis
 head(quantitative_networks_Z_scores_with_traits_and_5_clusters)
 #remov 2 X'2 cloumn
-quantitative_networks_Z_scores_with_traits_and_5_clusters <- quantitative_networks_Z_scores_with_traits_and_5_clusters[,-c(3,4)]
+final_quant_clusters <- quantitative_networks_Z_scores_with_traits_and_5_clusters[,-c(3,4)]
+
+#Exclude rows without info to species level
+final_quant_clusters <- final_quant_clusters[ grep("Arrabidaea sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Carduus sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Eupatorium sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Gymnocalycium sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Jatropa sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Leontodon sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Linum sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Malpighiaceae sp.1", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Myrtaceae sp.1", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Oxalis sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Pectis sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Ranunculus sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Retama sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Senegalia sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Sida sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Tradescanta sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Trifolium sp.1", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Vernonia sp.", final_quant_clusters$Plant_species, invert = TRUE) , ]
+final_quant_clusters <- final_quant_clusters[ grep("Xyris sp", final_quant_clusters$Plant_species, invert = TRUE) , ]
+
+#check for Na's
+na <- final_quant_clusters[is.na(final_quant_clusters$Clusters),]
+
 
 ########################################################################################################################################################
 #5) SAVE DATA

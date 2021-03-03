@@ -13,6 +13,7 @@ library(reshape2)
 library(viridis) #COLOUR GGPLOT
 library(MASS)
 library(ggplot2)
+library(broman) #crayon colours
 ########################################################################################################################################################
 #1) LOAD DATA
 ########################################################################################################################################################
@@ -35,7 +36,7 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20)]
+dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,21)]
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -99,10 +100,9 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 #fix species names
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
-
 #Output saved not RUN
-#phyl_pca_famd <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-#phyl_pca_forest <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 
 ####
@@ -128,7 +128,7 @@ text(mp,par("usr")[3],
 
 
 #CALL the output PC for simplicity
-PC <- phyl_pca_forest
+PC <- phyl_pca_famd_1
 #CHECK CONTENT
 #EIGENVALUES
 PC$Eval
@@ -138,7 +138,12 @@ PC$S
 PC$L
 
 
+Nectar <- as.data.frame(dat_cleaning_5$Nectar_presence_absence)
+row.names(Nectar) <- rownames(PC$S)
 
+nrow(dat_cleaning_5)
+nrow(PC$S)
+  
 ########################################################################################################################################################
 #4) PLOT PPCA
 ########################################################################################################################################################
@@ -168,8 +173,11 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour = density),size=0.5, colour="darkgreen") #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
-  #geom_point(data=dat, aes(-x, -y, colour = density),size=0.5,shape = 1,colour = "black",alpha=0.5)
+  dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
+  dat$Nectar[dat$Nectar=="yes"] <- "Presence"
+  dat$Nectar[dat$Nectar=="no"] <- "Absence"
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Nectar),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+ # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
   
   ########
   #ADD ARROWS 
@@ -180,8 +188,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
     (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
   )
   datapc <- transform(datapc,
-                      v1 = .35 * mult * (get(x)),
-                      v2 = .35 * mult * (get(y))
+                      v1 = .5 * mult * (get(x)),
+                      v2 = .5 * mult * (get(y))
   )
   # add arrows
   plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
@@ -240,6 +248,6 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 
 PCbiplot(PC)
 
-scale_fill_continuous(type = "viridis", 
-                      breaks = c(0, 0.16), 
-                      labels = c("Lowest value", "Highest value"))
+
+pink <- brocolors("crayons")["Green"]
+plot_crayons(Sunglow)

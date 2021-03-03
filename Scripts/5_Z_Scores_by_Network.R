@@ -44,7 +44,7 @@ long_d_non_apis_1[, Z_scores := scale(Interaction,center = TRUE, scale = TRUE), 
 #Remove other orders/guilds that are not these ones
 long_d_non_apis_2 <- long_d_non_apis_1[!is.na(long_d_non_apis_1$guild),] #I do it by guild because just these 6 guilds are named in this column
 #check levels
-levels(long_d_non_apis_2$guild) #6 DIFFERENT GUILDS
+levels(factor(long_d_non_apis_2$guild)) #6 DIFFERENT GUILDS
 
 ########################################################################################################################################################
 #3) SAVE DATA

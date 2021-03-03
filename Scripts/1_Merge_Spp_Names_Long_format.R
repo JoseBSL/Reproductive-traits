@@ -1006,8 +1006,7 @@ all_long_poll_names$guild[all_long_poll_names$order=="Squamata"] <- "Lizards"
 
 
 na <- all_long_poll_names[is.na(all_long_poll_names$guild),]
-
-levels(factor(na$Pollinator_species))
+#check for na
 
 #Aggregate by poll guild
 all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
