@@ -199,14 +199,14 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.5, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="brown4")
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style L.", "Ovule N.", "Plant H." )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
   plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4,4,4,4,4,4)), y = -(PCAloadings$PC2*c(4,4,4,4,4,4)),
-                          label = PCAloadings$Variables, color="brown4",size=5)
+                          label = PCAloadings$Variables, color="black",size=5)
   
   #CHANGE THEME
   
