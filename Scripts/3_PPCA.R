@@ -19,7 +19,7 @@ library(broman) #crayon colours
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "X")
+#dat <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "X")
 
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
@@ -101,7 +101,7 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
-phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+#phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 
@@ -109,7 +109,7 @@ phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 #SAVE PHYLO PCA OUTPUT
 ####
 #saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
-#saveRDS(phyl_pca_forest, "Data/RData/phyl_pca_forest.rds")
+saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
 
 ####
 #READ DATA
@@ -128,7 +128,7 @@ text(mp,par("usr")[3],
 
 
 #CALL the output PC for simplicity
-PC <- phyl_pca_famd_1
+PC <- phyl_pca_forest
 #CHECK CONTENT
 #EIGENVALUES
 PC$Eval
@@ -138,11 +138,6 @@ PC$S
 PC$L
 
 
-Nectar <- as.data.frame(dat_cleaning_5$Nectar_presence_absence)
-row.names(Nectar) <- rownames(PC$S)
-
-nrow(dat_cleaning_5)
-nrow(PC$S)
   
 ########################################################################################################################################################
 #4) PLOT PPCA
@@ -249,5 +244,3 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 PCbiplot(PC)
 
 
-pink <- brocolors("crayons")["Green"]
-plot_crayons(Sunglow)
