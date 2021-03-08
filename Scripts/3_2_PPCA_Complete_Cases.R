@@ -18,9 +18,7 @@ library(broman) #crayon colours
 #1) LOAD DATA
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-#dat <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "X")
-
+dat <- read.csv("Data/Csv/imputed_trait_data_complete.cases.csv", row.names = "X")
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -36,7 +34,11 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,21)]
+
+str(dat_cleaning)
+
+dat_cleaning <- dat[c("Family_all","Genus_all","Species_all", "Autonomous_selfing_level_fruit_set", "Flowers_per_plant","Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED", "IMPUTED_plant_height_mean_m", "Nectar_presence_absence")]
+
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -53,19 +55,12 @@ dat_cleaning_4 <- dat_cleaning_3 %>%
 dat_cleaning_5 <- dat_cleaning_4 %>%
   filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
 
-#dat_cleaning_6 <- dat_cleaning_5 %>%
-# filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
-
 
 #LOG all columns, seems neccesary to standardize skewed data
 
 
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
-
-
-final_d <- dat_cleaning_5[,c(4:9)]
-
 
 ########################################################################################################################################################
 #4) GET PHYLO
@@ -102,33 +97,24 @@ rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
 #phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
+phyl_pca_forest_complete_cases <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
 #saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
-saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
+saveRDS(phyl_pca_forest_complete_cases, "Data/RData/phyl_pca_forest_complete_cases.rds")
 
 ####
 #READ DATA
 ####
-phyl_pca_famd <- readRDS("Data/RData/phyl_pca_famd.rds")
-phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+phyl_pca_forest_complete_cases <- readRDS("Data/RData/phyl_pca_forest_complete_cases.rds")
 
-#CHECK PCA EXPLAINED VARIATION PER COMPONENT
-#Check Principal components
-mp=barplot(PCAscreMean[,1],ylab = "% explained variation",
-           col=c("black","red","green","orange","yellow","light blue","purple","pink","maroon","blue2","blue"),
-           ylim=c(0,100),axisnames=FALSE)
-text(mp,par("usr")[3],
-     labels = names(PCAscreMean[,1]), 
-     srt = 45, adj = c(1.1,1.1), xpd = TRUE, cex=.9)
 
 
 #CALL the output PC for simplicity
-PC <- phyl_pca_forest
+PC <- phyl_pca_forest_complete_cases
 #CHECK CONTENT
 #EIGENVALUES
 PC$Eval
@@ -138,7 +124,7 @@ PC$S
 PC$L
 
 
-  
+
 ########################################################################################################################################################
 #4) PLOT PPCA
 ########################################################################################################################################################
@@ -172,7 +158,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   dat$Nectar[dat$Nectar=="yes"] <- "Presence"
   dat$Nectar[dat$Nectar=="no"] <- "Absence"
   plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Nectar),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
- # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
+  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
   
   ########
   #ADD ARROWS 
