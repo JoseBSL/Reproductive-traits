@@ -106,6 +106,8 @@ phyl_pca_forest_nectar_all <- phyl.pca(phylo_output, final_d,method="lambda",mod
 #SAVE PHYLO PCA OUTPUT
 ####
 saveRDS(phyl_pca_forest_nectar_all, "Data/RData/phyl_pca_forest_nectar_all.rds")
+#SAVE ALSO DATA TO PLOT IT IN RMD file
+saveRDS(dat_cleaning_5, "Data/RData/data_subset_nectar.rds")
 
 ####
 #READ DATA

@@ -110,21 +110,14 @@ phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 ####
 #saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
 saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
+#SAVE ALSO DATA TO PLOT IT IN RMD file
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
 
 ####
 #READ DATA
 ####
 phyl_pca_famd <- readRDS("Data/RData/phyl_pca_famd.rds")
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
-
-#CHECK PCA EXPLAINED VARIATION PER COMPONENT
-#Check Principal components
-mp=barplot(PCAscreMean[,1],ylab = "% explained variation",
-           col=c("black","red","green","orange","yellow","light blue","purple","pink","maroon","blue2","blue"),
-           ylim=c(0,100),axisnames=FALSE)
-text(mp,par("usr")[3],
-     labels = names(PCAscreMean[,1]), 
-     srt = 45, adj = c(1.1,1.1), xpd = TRUE, cex=.9)
 
 
 #CALL the output PC for simplicity
