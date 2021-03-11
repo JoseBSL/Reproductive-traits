@@ -100,8 +100,10 @@ na <- final_quant_clusters[is.na(final_quant_clusters$Clusters),]
 #5) SAVE DATA
 ########################################################################################################################################################
 #SAVE 5 CLUSTERS
+setwd("~/R_Projects/Reproductive Traits")
+
 #write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_famd.csv")
-#write.csv(quantitative_networks_Z_scores_with_traits_and_5_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv")
+write.csv(final_quant_clusters, "Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################

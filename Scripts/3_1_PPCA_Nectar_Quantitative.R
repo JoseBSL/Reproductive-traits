@@ -112,7 +112,7 @@ saveRDS(dat_cleaning_5, "Data/RData/data_subset_nectar.rds")
 ####
 #READ DATA
 ####
-#phyl_pca_forest_nectar_all <- readRDS("Data/RData/phyl_pca_forest_nectar_all.rds")
+phyl_pca_forest_nectar_all <- readRDS("Data/RData/phyl_pca_forest_nectar_all.rds")
 
 #CALL the output PC for simplicity
 PC <- phyl_pca_forest_nectar_all

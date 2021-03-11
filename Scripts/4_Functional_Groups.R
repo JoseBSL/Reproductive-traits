@@ -26,6 +26,7 @@ library(missMDA)
 library(Rtsne)
 library(dplyr)
 library(ggplot2)
+library(dendextend)
 ########################################################################################################################################################
 #1)READ TRAIT DATA
 ########################################################################################################################################################
@@ -141,7 +142,8 @@ gdend$labels$hjust <- sin(gdend$labels$angle * pi) / (180)
 
 ggplot(gdend,offset_labels=-0.05) + theme(panel.grid.major = element_blank(),
                                           axis.text = element_blank(),
-                                          axis.title = element_blank())+ coord_polar(theta = 'x') +  scale_y_reverse(expand = c(0.025, 0)) 
+                                          axis.title = element_blank())+ coord_polar(theta = 'x') +  scale_y_reverse(expand = c(0.025, 0)) +
+  annotate(geom="text", x=165, y=-0.5, label="A",color="red",angle = -35)
 
 ########################################################################################################################################################
 #6)SAVE DATA
@@ -160,4 +162,57 @@ write.csv(trait_data_5, "Data/Csv/imputed_trait_data_hclust_5_clusters_forest_da
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
+newggplot.ggdend <- function (data, segments = TRUE, labels = TRUE, nodes = TRUE, 
+                              horiz = FALSE, theme = theme_dendro(), offset_labels = 0, ...) {
+  data <- prepare.ggdend(data)
+  #angle <- ifelse(horiz, 0, 90)
+  #hjust <- ifelse(horiz, 0, 1)
+  p <- ggplot()
+  if (segments) {
+    p <- p + geom_segment(data = data$segments, aes_string(x = "x", y = "y", xend = "xend", yend = "yend", colour = "col", linetype = "lty", size = "lwd"), lineend = "square") + 
+      guides(linetype = FALSE, col = FALSE) + scale_colour_identity() + 
+      scale_size_identity() + scale_linetype_identity()
+  }
+  if (nodes) {
+    p <- p + geom_point(data = data$nodes, aes_string(x = "x", y = "y", colour = "col", shape = "pch", size = "cex")) + 
+      guides(shape = FALSE, col = FALSE, size = FALSE) + 
+      scale_shape_identity()
+  }
+  if (labels) {
+    data$labels$cex <- 5 * data$labels$cex
+    data$labels$y <- data$labels$y + offset_labels
+    p <- p + geom_text(data = data$labels, aes_string(x = "x", y = "y", label = "label", colour = "col", size = "cex", angle = "angle", hjust = "hjust", vjust = "vjust"))#edited
+  }
+  if (horiz) {
+    p <- p + coord_flip() + scale_y_reverse(expand = c(0.2, 0))
+  }
+  if (!is.null(theme)) {
+    p <- p + theme
+  }
+  p
+}
 
+assignInNamespace(x = "ggplot.ggdend", ns = "dendextend", value = newggplot.ggdend)
+
+dend <- as.dendrogram(e.clust_5)
+
+
+gdend <- dendextend::as.ggdend(dend %>%
+                                 set('branches_k_color', k = 5) %>%
+                                 set('branches_lwd', 0.6) %>%
+                                 set('labels_colors', k = 5) %>%
+                                 set('labels_cex', 0.6),
+                               theme = theme_minimal(),
+                               horiz = TRUE)
+gdend$labels$angle <- seq(90, -270, length = nrow(gdend$labels))
+gdend$labels$vjust <- cos(gdend$labels$angle * pi) / (180)
+gdend$labels$hjust <- sin(gdend$labels$angle * pi) / (180)
+
+
+ggd1 <- ggplot(gdend)
+ggd1 <- ggd1 + theme(panel.grid.major = element_blank(),
+                     axis.text = element_blank(),
+                     axis.title = element_blank())
+ggd1 <- ggd1 + ylim(max(get_branches_heights(dend)), -3)
+ggd1
+ggd1 + coord_polar(theta = 'x') 
