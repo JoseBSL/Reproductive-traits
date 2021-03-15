@@ -40,7 +40,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 
 #Load data
-dat_cleaning_5 <- readRDS("Data/RData/Data_for_plotting_qualitative_pca_vars.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_for_rmd_plot_ppca.rds")
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
 
 #CALL the output PC for simplicity
@@ -327,7 +327,7 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.165, 0.1)) + ggtitle("D)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.165, 0.1)) + ggtitle("F)") 
   
   plot
   
@@ -466,7 +466,7 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("F)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("D)") 
   
   plot
   
@@ -476,7 +476,7 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
 
 
 library(cowplot)
- plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Flower_sym(PC),Flower_sha(PC),Breeding_syst(PC), ncol=2,nrow=3,  align = "v")
+ plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC), ncol=2,nrow=3,  align = "v")
 
 
 ```

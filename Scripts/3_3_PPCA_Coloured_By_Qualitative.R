@@ -116,7 +116,7 @@ rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 #SAVE PHYLO PCA OUTPUT
 ####
 #saveRDS(phyl_pca_forest, "Data/RData/Data_for_plotting_qualitative_pca_vars.rds")
-#saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
 ####
 #READ DATA
 ####

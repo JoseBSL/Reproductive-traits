@@ -103,12 +103,13 @@ phyl_pca_forest_complete_cases <- phyl.pca(phylo_output, final_d,method="lambda"
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
-#saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
 saveRDS(phyl_pca_forest_complete_cases, "Data/RData/phyl_pca_forest_complete_cases.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_complete_cases.rds")
 
 ####
 #READ DATA
 ####
+
 phyl_pca_forest_complete_cases <- readRDS("Data/RData/phyl_pca_forest_complete_cases.rds")
 
 
@@ -157,7 +158,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
   dat$Nectar[dat$Nectar=="yes"] <- "Presence"
   dat$Nectar[dat$Nectar=="no"] <- "Absence"
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Nectar),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  plot <- plot + geom_point(data=dat, aes(x, -y, colour=Nectar),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
   # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
   
   ########
@@ -173,7 +174,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
                       v2 = .5 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
@@ -185,13 +186,13 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=-v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
   rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
+  plot <- plot + annotate("text", x = (PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
                           label = PCAloadings$Variables, color="black",size=5)
   
   #CHANGE THEME
