@@ -76,11 +76,9 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-  #dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
-  #dat$Nectar[dat$Nectar=="yes"] <- "Presence"
-  #dat$Nectar[dat$Nectar=="no"] <- "Absence"
-   #dat$Nectar <- factor(dat$Nectar, levels = c("Presence","Absence"))
-  plot <- plot + geom_point(data=dat, aes(-x, -y),size=2)+scale_color_manual(values=c("grey", "black"))
+  dat$Clusters <- dat_cleaning_5$Clusters
+ dat$Clusters <- as.factor(dat_cleaning_5$Clusters)
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Clusters),size=2)#+scale_color_manual(values=c("grey", "black"))
   
   ########
   #ADD ARROWS 

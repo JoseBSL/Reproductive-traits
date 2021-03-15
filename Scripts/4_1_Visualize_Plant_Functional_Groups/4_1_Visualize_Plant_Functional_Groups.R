@@ -335,34 +335,56 @@ ggplot(t, aes(Clusters,lifespan )) +
 
 
 
+ggplot(t, aes(lifespan,Clusters )) +
+  geom_jitter(aes(color = Clusters), size = 0.4)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "#009E73"))+
+  theme_classic()+ theme_classic()+theme(legend.position = "none")+labs(x="Plant Functional groups",y=NULL,subtitle = "Life form")+
+  geom_hline(yintercept=c(1.5),color="black")+    scale_y_discrete(expand=c(0.05, 0.05))
 
 
 
 
-
-
-
-
-data("ToothGrowth")
-ToothGrowth$dose <- as.factor(ToothGrowth$dose)
-head(ToothGrowth)
-
-
-
-e <- ggplot(ToothGrowth, aes(x = dose, y = len))
-
-e + geom_jitter(
-  aes(shape = supp, color = supp), 
-  position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8),
-  size = 1.2
-) +
-  stat_summary(
-    aes(color = supp),
-    fun.data="mean_sdl",  fun.args = list(mult=1), 
-    geom = "pointrange",  size = 0.4,
-    position = position_dodge(0.8)
-  )+
-  scale_color_manual(values =  c("#00AFBB", "#E7B800"))
+library(Hmisc)
+library(cowplot)
+ #Plant height
+ p1 <- ggplot(t, aes(x = Clusters, y = log(IMPUTED_plant_height_mean_m)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Plant height)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ #Flower size
+ p2 <- ggplot(t, aes(x = Clusters, y = log(Floral_unit_width)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Flower size)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ #Ovule number
+ p3 <- ggplot(t, aes(x = Clusters, y = log(OVULES_IMPUTED)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Ovules per flower)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ #Style length
+ p4 <- ggplot(t, aes(x = Clusters, y = log(STYLE_IMPUTED)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Style length)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ #Flowers per plant
+ p5 <- ggplot(t, aes(x = Clusters, y = log(Flowers_per_plant)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Flowers per plant)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ #Flowers per plant
+ p6 <- ggplot(t, aes(x = Clusters, y = Autonomous_selfing_level_fruit_set))+ geom_violin(aes(color = Clusters, fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Selfing)")+geom_boxplot(width=0.1)+
+ theme(legend.position = "none")
+ 
+ 
+ #Plot for legend
+ p7 <- ggplot(t, aes(x = Clusters, y = Autonomous_selfing_level_fruit_set))+ geom_violin(aes( fill = Clusters), 
+ binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Selfing)")+geom_boxplot(width=0.1)+scale_fill_discrete(name = "Plant functional\ groups")
+ 
+ #get legend function from cowplot
+ legend <- get_legend(
+   # create some space to the left of the legend
+   p7 + theme(legend.box.margin = margin(0, 0, 0, 12)))
+ 
+ 
+plots <-  plot_grid(p1,p2,p3,p4,p5,p6, nrow = 2,ncol=3,align = 'v')
+ 
+ plot_grid(plots, legend, rel_widths = c(3, .4))
+ 
 
 
 
