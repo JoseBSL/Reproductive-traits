@@ -216,3 +216,13 @@ ggd1 <- ggd1 + theme(panel.grid.major = element_blank(),
 ggd1 <- ggd1 + ylim(max(get_branches_heights(dend)), -3)
 ggd1
 ggd1 + coord_polar(theta = 'x') 
+
+########################################################################################################################################################
+#Summarize functional groups
+########################################################################################################################################################
+dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
+dat_1 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv", row.names = "X") 
+
+dat$Clusters <- dat_1$Clusters
+
+

@@ -156,7 +156,7 @@ percentage <- round(diag(phyl_pca_2$Eval) / sum(phyl_pca_2$Eval) * 100, 2) #calc
 #save output
 #saveRDS(phyl_pca__method_C, "Data/RData/phyl_pca__method_C.rds")
 phyl_pca__method_C <- readRDS("Data/RData/phyl_pca__method_C.rds")
-
+phyl_pca__method_C$L
 #convert to dataframe
 phyl_pca <- data.frame(phyl_pca__method_C$S)
 #set same rownames
@@ -171,9 +171,10 @@ data <- read.csv("Data/Csv/metric_analysis_data_3rd_question.csv", row.names = 1
 #merge columns
 data_analysis2 <- merge(data, phyl_pca, by="Species")
 
-m1 <- lme4::lmer(d ~ PC1  +(1|Id), data=data_analysis2)
+m1 <- lme4::lmer(d ~ PC4  +(1|Id), data=data_analysis2)
 summary(m1)
 #visualizing the patterns
-jtools::effect_plot(m1, pred = PC2 , interval = TRUE, plot.points = TRUE)
+jtools::effect_plot(m1, pred = PC4 , interval = TRUE, plot.points = TRUE)
+
 
 percentage <- round(diag(phyl_pca_2$Eval) / sum(phyl_pca_2$Eval) * 100, 2) #calculate percentage

@@ -19,8 +19,9 @@ library(broman) #crayon colours
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-#dat <- read.csv("Data/Csv/all_species_imputed_trait_data_famd_data.csv", row.names = "X")
+dat_1 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv", row.names = "X") 
 
+dat$Clusters <- dat_1$Clusters
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -36,7 +37,7 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,21)]
+dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,22)]
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -235,5 +236,104 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 }
 
 PCbiplot(PC)
+
+########################################################################################################################################################
+#4) PLOT PPCA BY CLUSTERS
+########################################################################################################################################################
+
+
+
+PCbiplot <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$Clusters <- dat_cleaning_5$Clusters
+  dat$Clusters <- as.factor(dat$Clusters)
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Clusters),size=1.5)+scale_color_manual(values=c("blue", "purple","green","orange","red")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .5 * mult * (get(x)),
+                      v2 = .5 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
+                       panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
+                          label = PCAloadings$Variables, color="black",size=5)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_bw()
+  
+  #CALCULATE KERNELS
+  #mv.kde <- kde2d(data[,1], data[,2], n = 400)
+  #dx <- diff(mv.kde$x[1:2])  # lifted from emdbook::HPDregionplot()
+  #dy <- diff(mv.kde$y[1:2])
+  #sz <- sort(mv.kde$z)
+  #c1 <- cumsum(sz) * dx * dy
+  
+  # specify desired contour levels:
+  #prob <- c(0.5)
+  #prob_1 <- c(0.90)
+  # plot:
+  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
+  #dc <- melt(mv.kde$z)
+  
+  #dc$prob <- approx(sz,1-c1,dc$value)$y
+  
+  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob),colour="brown4",breaks=prob)
+  # plot:
+  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
+  #dc <- melt(mv.kde$z)
+  
+  #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
+  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
+  
+  
+  plot
+  
+}
+
+PCbiplot(PC)
+
 
 

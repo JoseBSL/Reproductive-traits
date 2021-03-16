@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: ""
 output: pdf_document
 ---
 

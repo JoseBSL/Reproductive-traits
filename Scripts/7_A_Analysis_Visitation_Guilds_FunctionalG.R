@@ -109,7 +109,7 @@ saveRDS(model_forest_data, "model_forest_data.RDS")
 #4.2)PLOT OUTPUT VISITATION DATA
 ########################################################################################################################################################
 #read model 2
-m_5_clust_zero_neg_hclust_famd <- readRDS("m_5_clust_zero_neg_hclust_forest")
+m_5_clust_zero_neg_hclust_famd <- readRDS("model_forest_data.RDS")
 #cond effect model visitation data
 ce_1 <- conditional_effects(model_forest_data, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
@@ -130,7 +130,6 @@ ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), 
   as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))
   
-position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2)
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
@@ -158,4 +157,21 @@ ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), 
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
                                              as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))+ylim(0,30)
+
+
+
+
+#plot model
+ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
+                        as.factor(guild))) +
+  geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
+  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
+                                             as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +
+  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A","black"))+ylim(0,30)
+
+
+
+
+
 
