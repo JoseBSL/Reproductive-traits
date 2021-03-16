@@ -133,7 +133,22 @@ ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), 
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
-
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.3)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.9, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
 ce_1 <- conditional_effects(model_forest_data, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
@@ -152,10 +167,10 @@ d_5_1$guild <- factor(d_5_1$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrp
 #plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
                         as.factor(guild))) +
-  geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
-  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  geom_point(size = 1.4, position = position_dodge(width = 0.8), alpha=1) +
+  theme_ms()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-                                             as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +
+                                             as.factor(guild)), width=.6,alpha=0.8, size = 1.1,position = position_dodge(width = 0.8)) +
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))+ylim(0,30)
 
 
