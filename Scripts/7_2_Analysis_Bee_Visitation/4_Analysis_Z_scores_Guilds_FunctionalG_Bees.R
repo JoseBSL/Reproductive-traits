@@ -32,25 +32,24 @@ d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clust
 #Prepare species, genus anD_5 family for calculating phylogenetic distance
 d_5$Family_all <- as.character(d_5$Family_all)
 d_5$Genus_all <- as.character(d_5$Genus_all)
-d_5$Species_all <- as.character(d_5$Species_all)
-
-#These species are not present for analysis in the matrix, remove or model cannot have phylo as covariable
-d_5$Species_all[d_5$Species_all=="Diospyros seychellarum"] <- NA
-d_5$Species_all[d_5$Species_all=="Memecylon eleagni"] <- NA
-d_5$Species_all[d_5$Species_all=="Ocotea laevigata"] <- NA
-d_5$Species_all[d_5$Species_all=="Soulamea terminaloides"] <- NA
+d_5$Plant_species <- as.character(d_5$Plant_species)
 
 #Make these NA's as NA
-d_5$Species_all[d_5$Species_all=="NA"] <- NA
+d_5$Plant_species[d_5$Plant_species=="NA"] <- NA
 d_5$Family_all[d_5$Family_all=="NA"] <- NA
 d_5$Genus_all[d_5$Genus_all=="NA"] <- NA
 #remove NA's
 d_5_1 <- d_5[!is.na(d_5$Family_all),]
-d_5_1 <- d_5[!is.na(d_5$Species_all),]
+d_5_1 <- d_5[!is.na(d_5$Plant_species),]
 d_5_1 <- d_5[!is.na(d_5$Genus_all),]
 
+d_5_1 <- subset(d_5_1, bee_family!="Melittidae")
+d_5_1$bee_family <- factor(d_5_1$bee_family)
+levels(d_5_1$bee_family)
+
+
 #prepare dataframe to calculate tree
-phylo_5 <- as.data.frame(cbind(d_5_1$Family_all, d_5_1$Genus_all, d_5_1$Species_all))
+phylo_5 <- as.data.frame(cbind(d_5_1$Family_all, d_5_1$Genus_all, d_5_1$Plant_species))
 colnames(phylo_5) <-  c("family", "genus", "species")
 
 #Select unique cases
@@ -72,7 +71,7 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
 #Add phylo column to dataset
 d_5_1$phylo
-d_5_1$phylo <- d_5_1$Species_all
+d_5_1$phylo <- d_5_1$Plant_species
 str(d_5_1)
 
 d_5_1$Clusters <- as.character(d_5_1$Clusters)
@@ -87,10 +86,6 @@ levels(as.factor(d_5_1$bee_family))
 ########################################################################################################################################################
 #3)ANALYSIS
 
-
-#Very few data points to model, make NA
-d_5_1$Interaction[d_5_1$bee_family=="Melittidae" & d_5_1$Clusters=="D"] <- NA
-d_5_1$Interaction[d_5_1$bee_family=="Melittidae" & d_5_1$Clusters=="E"] <- NA
 
 #5 clusters hclust
 m_5_clust_zero_neg_hclust_bees <- brm((Interaction-1) ~ bee_family*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
@@ -111,6 +106,7 @@ saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
+saveRDS(d_5_1, "data_model_just_bees.RDS")
 
 ########################################################################################################################################################
 #5)PLOT OUTPUT 
