@@ -117,6 +117,25 @@ saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
 ########################################################################################################################################################
 m_5_clust_zero_neg_hclust_bees <- readRDS("m_5_clust_zero_neg_hclust_bees.RDS")
 
+
+
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.3)),
+           axis.text=element_text(size = rel(1.5), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.4, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
 #############
 #PLOT MODEL 1 NON APIS
 #############
@@ -130,13 +149,12 @@ ce_1[[1]][10]<- ce_1[[1]][10]+1
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(bee_family), group = 
                         as.factor(bee_family))) +
   geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
-  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  theme_ms()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
   geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(bee_family), group = 
                                              as.factor(bee_family)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))
 
-position = position_jitterdodge(dodge.width = 0.9, jitter.width = 0.2)
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
