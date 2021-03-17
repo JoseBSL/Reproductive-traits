@@ -140,18 +140,10 @@ gdend$labels$hjust <- sin(gdend$labels$angle * pi) / (180)
 
 
 
-ggplot(gdend,offset_labels=-0.05) + theme(panel.grid.major = element_blank(),
-                                          axis.text = element_blank(),
-                                          axis.title = element_blank())+ coord_polar(theta = 'x') +  scale_y_reverse(expand = c(0.025, 0)) +
-  annotate(geom="text", x=165, y=-0.5, label="A",color="red",angle = -35)
+ggplot(gdend,offset_labels=-0.05) + theme(panel.grid.major = element_blank(),axis.text = element_blank(),
+axis.title = element_blank())+ coord_polar(theta = 'x') +  scale_y_reverse(expand = c(0.025, 0)) 
 
-
-
-ggplot(gdend) + theme(panel.grid.major = element_blank(),
-                                          axis.text = element_blank(),
-                                          axis.title = element_blank())
-
-
+saveRDS(e.clust_5, "Data/RData/clustering_output.RDS")
 
 ########################################################################################################################################################
 #6)SAVE DATA

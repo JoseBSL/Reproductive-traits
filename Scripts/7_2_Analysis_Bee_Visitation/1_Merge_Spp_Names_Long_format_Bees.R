@@ -937,9 +937,6 @@ all_long_poll_names$family[all_long_poll_names$Pollinator_species=="Prohardya ca
 all_long_poll_names$genus[all_long_poll_names$Pollinator_species=="Prohardya carinata"] <- NA
 
 
-
-
-
 #remove network "mistakes"
 all_long_poll_names <- all_long_poll_names[ grep("Agrostis atritegulator", all_long_poll_names$Pollinator_species, invert = TRUE) , ]
 all_long_poll_names <- all_long_poll_names[ grep("Alophera sp.1", all_long_poll_names$Pollinator_species, invert = TRUE) , ]
@@ -971,42 +968,20 @@ all_long_poll_names <- all_long_poll_names[ grep("Unidentified sp.9", all_long_p
 all_long_poll_names$guild <- NA
 
 #Add pollinator guilds for analysis
-all_long_poll_names$guild[all_long_poll_names$order=="Lepidoptera"] <- "Lepidoptera"
-all_long_poll_names$guild[all_long_poll_names$order=="Coleoptera"] <- "Coleoptera"
-all_long_poll_names$guild[all_long_poll_names$order=="Diptera"] <- "Non-syrphids-diptera"
-all_long_poll_names$guild[all_long_poll_names$family=="Syrphidae"] <- "Syrphids"
-all_long_poll_names$guild[all_long_poll_names$order=="Hymenoptera"] <- "Non-bee-Hymenoptera"
-all_long_poll_names$guild[all_long_poll_names$family=="Apidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Megachilidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Halictidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Andrenidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Colletidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Melittidae"] <- "Bee"
-all_long_poll_names$guild[all_long_poll_names$family=="Stenotritidae"] <- "Bee"
-#Now the other guilds
+all_long_poll_names$bee_family[all_long_poll_names$family=="Apidae"] <- "Apidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Megachilidae"] <- "Megachilidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Halictidae"] <- "Halictidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Andrenidae"] <- "Andrenidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Colletidae"] <- "Colletidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Melittidae"] <- "Melittidae"
+all_long_poll_names$bee_family[all_long_poll_names$family=="Stenotritidae"] <- "Stenotritidae"
 
-all_long_poll_names$guild[all_long_poll_names$Pollinator_species=="Acarina sp.1"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Neuroptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Neuroptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Neuroptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Hemiptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Orthoptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Dermaptera"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Blattodea"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Isopoda"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Araneae"] <- "Other_insects"
-all_long_poll_names$guild[all_long_poll_names$order=="Thysanoptera"] <- "Other_insects"
+head(all_long_poll_names)
 
+all_bee_family <- all_long_poll_names[!is.na(all_long_poll_names$bee_family),]
 
-all_long_poll_names$guild[all_long_poll_names$order=="Apodiformes"] <- "Birds"
-all_long_poll_names$guild[all_long_poll_names$Pollinator_species=="Cinnyris dussumieri"] <- "Birds"
-all_long_poll_names$guild[all_long_poll_names$order=="Passeriformes"] <- "Birds"
+head(all_bee_family)
 
-all_long_poll_names$guild[all_long_poll_names$order=="Squamata"] <- "Lizards"
-
-
-na <- all_long_poll_names[is.na(all_long_poll_names$guild),]
-#check for na
 #Aggregate by poll guild
 all_bee <- reshape2::dcast(Plant_species + bee_family +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_bee_family, na.rm= TRUE)
 head(all_bee)
