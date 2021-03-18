@@ -1,9 +1,16 @@
+
+library(dplyr)
+library(ggplot2)
+library(cowplot)
+
+##########################################
+#Visualization of plant functional groups#
+##########################################
+setwd("~/R_Projects/Reproductive Traits")
 ##########################################
 #Visualization of plant functional groups#
 ##########################################
 
-library(cowplot)
-library(ggplot2)
 
 # Theme for publication
 theme_ms <- function(base_size=12, base_family="Helvetica") {
@@ -24,10 +31,10 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 #LOAD DATA
 #read unscaled trait data in order to visualize better the clusters
-d <- read.csv("Data/Csv/all_species_imputed_trait_data.csv")
+d <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv")
 #read trait data with clusters
 #I'll select the column of clusters and include it on the non standardize trait data
-hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters.csv") #5 clusters
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
 #No add the cluster columns (it has the same order)
 d$Clusters <- as.factor(hclust_d_5$Clusters)
 
@@ -41,7 +48,7 @@ t <- d[c("Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
 
 #convert character to factors
 t[sapply(t, is.character)] <- lapply(t[sapply(t, is.character)], 
-                                       as.factor)
+                                     as.factor)
 
 
 #Exploratory summary of the data
@@ -60,14 +67,26 @@ breeding <- group_by(breeding, Clusters) %>% mutate(percent = counts/sum(counts)
 #Organise levels
 breeding$Breeding_system <- factor(breeding$Breeding_system, levels=c("Dioecious","Monoecious","Hermaphrodite"))
 
+breeding$Clusters <- as.character(breeding$Clusters)
+
+breeding$Clusters[breeding$Clusters=="1"] <- "A"
+breeding$Clusters[breeding$Clusters=="2"] <- "B"
+breeding$Clusters[breeding$Clusters=="3"] <- "C"
+breeding$Clusters[breeding$Clusters=="4"] <- "D"
+breeding$Clusters[breeding$Clusters=="5"] <- "E"
+
+
+breeding$Clusters <- factor(breeding$Clusters, levels=c("E","D","C", "B", "A"))
+
+
 #Plot BREEDING SYSTEM
 p1 <- ggplot(breeding, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = Breeding_system),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
+    aes( fill = Breeding_system),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
   scale_fill_manual(values=c("black","orange","forestgreen"),name = "a) Breeding system")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-10,-10,-10,0),
-  legend.title = element_text(face="bold"))+guides(fill=guide_legend(title.position = "top")) +ylab("Functional groups")
+                                                 legend.title = element_text(face="bold"))+guides(fill=guide_legend(title.position = "top")) +ylab("Functional groups")
 
 
 #######################################################################################################
@@ -84,16 +103,27 @@ Compatibility$IMPUTED_Compatibility[Compatibility$IMPUTED_Compatibility=="self_c
 Compatibility <- group_by(Compatibility, Clusters) %>% mutate(percent = counts/sum(counts)*100)
 #Organise levels
 
-Compatibility$IMPUTED_Compatibility <- factor(Compatibility$IMPUTED_Compatibility, levels=c("Unisexual f.","Self inc.", "Partially self com.",
-                                                                                            "Self com."))
+Compatibility$IMPUTED_Compatibility <- factor(Compatibility$IMPUTED_Compatibility, levels=c("Unisexual f.","Self inc.", "Partially self com.",  "Self com."))
+
+Compatibility$Clusters <- as.character(Compatibility$Clusters)
+
+
+Compatibility$Clusters[Compatibility$Clusters=="1"] <- "A"
+Compatibility$Clusters[Compatibility$Clusters=="2"] <- "B"
+Compatibility$Clusters[Compatibility$Clusters=="3"] <- "C"
+Compatibility$Clusters[Compatibility$Clusters=="4"] <- "D"
+Compatibility$Clusters[Compatibility$Clusters=="5"] <- "E"
+
+
+Compatibility$Clusters <- factor(Compatibility$Clusters, levels=c("E","D","C", "B", "A"))
 #Plot Compatibility
 p2 <- ggplot(Compatibility, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = IMPUTED_Compatibility),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
+    aes( fill = IMPUTED_Compatibility),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
   scale_fill_manual(values=c("gray7", "orange","cyan4","deepskyblue2"),name = "b) Compatibility system")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-0,-10,-10,0),
-  legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top")) +ylab("")
+                                                 legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top")) +ylab("")
 #######################################################################################################
 #Calculate counts per group of Life form
 life_form <- t  %>%group_by(life_form, Clusters) %>%summarise(counts = n()) 
@@ -108,13 +138,27 @@ life_form <- group_by(life_form, Clusters) %>% mutate(percent = counts/sum(count
 #Organise levels
 life_form$life_form <- factor(life_form$life_form, levels=c("Tree","Shrub", "Herb"))
 #Plot Compatibility
+
+life_form$Clusters <- as.character(life_form$Clusters)
+
+
+life_form$Clusters[life_form$Clusters=="1"] <- "A"
+life_form$Clusters[life_form$Clusters=="2"] <- "B"
+life_form$Clusters[life_form$Clusters=="3"] <- "C"
+life_form$Clusters[life_form$Clusters=="4"] <- "D"
+life_form$Clusters[life_form$Clusters=="5"] <- "E"
+
+
+life_form$Clusters <- factor(life_form$Clusters, levels=c("E","D","C", "B", "A"))
+
+
 p3 <- ggplot(life_form, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = life_form),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
+    aes( fill = life_form),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("")+
   scale_fill_manual(values=c("gray7", "darkorange2","forestgreen"),name = "c) Life form")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-10,-10,-10,0),
-  legend.title = element_text(face="bold"))+guides(fill=guide_legend(title.position = "top"))+ylab("")
+                                                 legend.title = element_text(face="bold"))+guides(fill=guide_legend(title.position = "top"))+ylab("")
 #######################################################################################################
 #Calculate counts per group of Life span
 lifespan <- t  %>%group_by(lifespan, Clusters) %>%summarise(counts = n()) 
@@ -122,14 +166,27 @@ lifespan <- t  %>%group_by(lifespan, Clusters) %>%summarise(counts = n())
 lifespan <- group_by(lifespan, Clusters) %>% mutate(percent = counts/sum(counts)*100)
 #Organise levels
 lifespan$lifespan <- factor(lifespan$lifespan, levels=c("Perennial","Short lived"))
+
+lifespan$Clusters <- as.character(lifespan$Clusters)
+
+lifespan$Clusters[lifespan$Clusters=="1"] <- "A"
+lifespan$Clusters[lifespan$Clusters=="2"] <- "B"
+lifespan$Clusters[lifespan$Clusters=="3"] <- "C"
+lifespan$Clusters[lifespan$Clusters=="4"] <- "D"
+lifespan$Clusters[lifespan$Clusters=="5"] <- "E"
+
+
+lifespan$Clusters <- factor(lifespan$Clusters, levels=c("E","D","C", "B", "A"))
+
+
 #Plot Compatibility
 p4 <- ggplot(lifespan, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = lifespan),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
+    aes( fill = lifespan),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
   scale_fill_manual(values=c("sienna4","forestgreen"),name = "d) Life span")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-10,-10,-10,0),
-  legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top")) + ylab("Functional groups")
+                                                 legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top")) + ylab("Functional groups")
 #######################################################################################################
 #Calculate counts per group of Flower symmetry
 Flower_symmetry <- t  %>%group_by(Flower_symmetry, Clusters) %>%summarise(counts = n()) 
@@ -140,14 +197,26 @@ Flower_symmetry$Flower_symmetry [Flower_symmetry$Flower_symmetry =="actinomorphi
 Flower_symmetry$Flower_symmetry [Flower_symmetry$Flower_symmetry =="zygomorphic"] <- "Zygomorphic"
 #Organise levels
 Flower_symmetry$Flower_symmetry <- factor(Flower_symmetry$Flower_symmetry, levels=c("Actinomorphic","Zygomorphic"))
+
+Flower_symmetry$Clusters <- as.character(Flower_symmetry$Clusters)
+
+Flower_symmetry$Clusters[Flower_symmetry$Clusters=="1"] <- "A"
+Flower_symmetry$Clusters[Flower_symmetry$Clusters=="2"] <- "B"
+Flower_symmetry$Clusters[Flower_symmetry$Clusters=="3"] <- "C"
+Flower_symmetry$Clusters[Flower_symmetry$Clusters=="4"] <- "D"
+Flower_symmetry$Clusters[Flower_symmetry$Clusters=="5"] <- "E"
+
+
+Flower_symmetry$Clusters <- factor(Flower_symmetry$Clusters, levels=c("E","D","C", "B", "A"))
+
 #Plot Compatibility
 p5 <- ggplot(Flower_symmetry, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = Flower_symmetry),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
+    aes( fill = Flower_symmetry),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
   scale_fill_manual(values=c("sienna2","purple"),name = "f) Flower symmetry")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-10,-10,-10,0),
-  legend.title = element_text(face="bold"))+guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top"))+ylab("")
+                                                 legend.title = element_text(face="bold"))+guides(fill=guide_legend(ncol=2,nrow=2,byrow=TRUE,title.position = "top"))+ylab("")
 #######################################################################################################
 #Calculate counts per group of Flower shape
 Flower_morphology <- t  %>%group_by(Flower_morphology, Clusters) %>%summarise(counts = n()) 
@@ -158,14 +227,28 @@ Flower_morphology$Flower_morphology[Flower_morphology$Flower_morphology=="Spike"
 
 #Calculate percentage of these counts
 Flower_morphology <- group_by(Flower_morphology, Clusters) %>% mutate(percent = counts/sum(counts)*100)
+
+Flower_morphology$Clusters <- as.character(Flower_morphology$Clusters)
+
+Flower_morphology$Clusters[Flower_morphology$Clusters=="1"] <- "A"
+Flower_morphology$Clusters[Flower_morphology$Clusters=="2"] <- "B"
+Flower_morphology$Clusters[Flower_morphology$Clusters=="3"] <- "C"
+Flower_morphology$Clusters[Flower_morphology$Clusters=="4"] <- "D"
+Flower_morphology$Clusters[Flower_morphology$Clusters=="5"] <- "E"
+
+
+Flower_morphology$Clusters <- factor(Flower_morphology$Clusters, levels=c("E","D","C", "B", "A"))
+
+
+
 #Plot Compatibility
 p6 <- ggplot(Flower_morphology, aes(x = percent, y = Clusters)) +
   geom_bar(
-  aes( fill = Flower_morphology),alpha=0.90,
-  stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
+    aes( fill = Flower_morphology),alpha=0.85,
+    stat = "identity", position = position_stack()) +theme_ms()+xlab("Percentage")+
   scale_fill_manual(values=c("blue","cyan4", "red","forestgreen","purple","gold"),name = "e) Flower shape")+
   theme(legend.key.size = unit(0.2, 'cm'))+theme(legend.position="top",legend.justification='left',legend.margin=margin(0,0,0,0),legend.box.margin=margin(-10,-10,-10,0),
-  legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=3,nrow=2,byrow=TRUE,title.position = "top"))+ylab("")
+                                                 legend.title = element_text(face="bold"))+ guides(fill=guide_legend(ncol=3,nrow=2,byrow=TRUE,title.position = "top"))+ylab("")
 
 
 top <- plot_grid(p1,p2,p3,p4,p6,p5, ncol=3,nrow=2,  align = "h")
@@ -202,15 +285,15 @@ top_1 <- plot_grid(title,top,ncol = 1,rel_heights = c(0.1, 1))
 ########################
 
 #Plant height
-pp1 <- ggplot(t, aes(x  = log(IMPUTED_plant_height_mean_m), fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
+pp1 <- ggplot(t, aes(x  = log(IMPUTED_plant_height_mean_m), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
   ylab("Density") + xlab("log(Plant height)") + ggtitle("g) Plant height")  + ylab("Functional groups")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Flower size
-pp2 <- ggplot(t, aes(x  = log(Floral_unit_width), fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
+pp2 <- ggplot(t, aes(x  = log(Floral_unit_width), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
   ylab("") + xlab("log(Flower size)") + ggtitle("h) Flower size") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Ovule number
-pp3 <- ggplot(t, aes(x  = log(OVULES_IMPUTED), fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
+pp3 <- ggplot(t, aes(x  = log(OVULES_IMPUTED), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
   ylab("") + xlab("log(Ovule number)") +  ggtitle("i) Ovule number") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Style length
@@ -218,15 +301,25 @@ pp4 <- ggplot(t, aes(x  = log(STYLE_IMPUTED), fill=Clusters)) +geom_density(alph
   ylab("Density") + xlab("log(Style length)") +  ggtitle("j) Style length") + ylab("Functional groups")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Flowers per plant
-pp5 <- ggplot(t, aes(x  = log(Flowers_per_plant), fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
+pp5 <- ggplot(t, aes(x  = log(Flowers_per_plant), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
   ylab("") + xlab("log(Flower number)") +  ggtitle("k) Flower number") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Selfing
-pp6 <- ggplot(t, aes(x  = Autonomous_selfing_level_fruit_set, fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
+pp6 <- ggplot(t, aes(x  = Autonomous_selfing_level_fruit_set, fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
   ylab("") + xlab("Selfing") +  ggtitle("l) Selfing") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #For legend
-pp7 <- ggplot(t, aes(x  = Autonomous_selfing_level_fruit_set, fill=Clusters)) +geom_density(alpha=0.3)+
+t$Clusters <- as.character(t$Clusters)
+
+t$Clusters[t$Clusters=="1"] <- "A"
+t$Clusters[t$Clusters=="2"] <- "B"
+t$Clusters[t$Clusters=="3"] <- "C"
+t$Clusters[t$Clusters=="4"] <- "D"
+t$Clusters[t$Clusters=="5"] <- "E"
+
+t$Clusters <- factor(t$Clusters, levels=c("A", "B", "C", "D", "E"))
+
+pp7 <- ggplot(t, aes(x  = Autonomous_selfing_level_fruit_set, fill=Clusters)) +geom_density(alpha=0.2)+
   ylab("Density") + xlab("Selfing")+theme(legend.position="bottom",legend.direction="horizontal") + guides(fill=guide_legend(title="Functional groups"))+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 
@@ -264,47 +357,4 @@ bottom_2 <- plot_grid(title,bottom_1,ncol = 1,rel_heights = c(0.1, 1))
 
 
 plot_grid(top_1, bottom_2,nrow=2, align = "hv")
-
-
-
-
-
-
-
-########################
-#Try violin plots#
-########################
-
-#Plant height
-pp1 <- ggplot(t, aes(x = Clusters, y = log(IMPUTED_plant_height_mean_m)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-  binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Plant height)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",plot.title = element_text(face = "bold"))+xlab("")+ggtitle("Plant height")
-#Flower size
-pp2 <- ggplot(t, aes(x = Clusters, y = log(Floral_unit_width)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-   binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Flower size)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",plot.title = element_text(face = "bold"))+xlab("")+ggtitle("Flower size")
-#Ovule number
-pp3 <- ggplot(t, aes(x = Clusters, y = log(OVULES_IMPUTED)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-  binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Ovules per flower)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",plot.title = element_text(face = "bold"))+xlab("")+ggtitle("Ovule number")
-#Style length
-pp4 <- ggplot(t, aes(x = Clusters, y = log(STYLE_IMPUTED)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-  binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Style length)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",axis.title.x = element_text(face="bold"),plot.title = element_text(face = "bold"))+xlab("")+xlab("Plant functional groups")+
-  ggtitle("Style length")
-#Flowers per plant
-pp5 <- ggplot(t, aes(x = Clusters, y = log(Flowers_per_plant)))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-  binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Flowers per plant)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",axis.title.x = element_text(face="bold"),plot.title = element_text(face = "bold"))+xlab("Plant functional groups")+
-  ggtitle("Flower number")
-#Flowers per plant
-pp6 <- ggplot(t, aes(x = Clusters, y = Autonomous_selfing_level_fruit_set))+ geom_violin(aes(color = Clusters, fill = Clusters), 
-  binaxis='y', stackdir='center')  +theme_classic()+ ylab("log(Selfing)")+geom_boxplot(width=0.1)+
-  theme(legend.position = "none",axis.title.x = element_text(face="bold"),plot.title = element_text(face = "bold"))+xlab("Plant functional groups")+
-  ggtitle("Selfing")
-
-bottom <- plot_grid(pp1,pp2,pp3,pp4,pp6,pp5, ncol=3,nrow=2,  align = "v")
-
-plot_grid(top, bottom,nrow=2, align = "hv")
-
 
