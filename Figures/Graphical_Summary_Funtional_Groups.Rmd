@@ -292,27 +292,27 @@ top_1 <- plot_grid(title,top,ncol = 1,rel_heights = c(0.1, 1))
 
 #Plant height
 pp1 <- ggplot(t, aes(x  = log(IMPUTED_plant_height_mean_m), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
-  ylab("Density") + xlab("log(Plant height)") + ggtitle("g) Plant height")  + ylab("Functional groups")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("Density") + xlab("log(Plant height)") + ggtitle("g) Plant height")  + scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Flower size
 pp2 <- ggplot(t, aes(x  = log(Floral_unit_width), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
-  ylab("") + xlab("log(Flower size)") + ggtitle("h) Flower size") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("") + xlab("log(Flower size)") + ggtitle("h) Flower size") + scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Ovule number
 pp3 <- ggplot(t, aes(x  = log(OVULES_IMPUTED), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
-  ylab("") + xlab("log(Ovule number)") +  ggtitle("i) Ovule number") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("") + xlab("log(Ovule number)") +  ggtitle("i) Ovule number") +scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Style length
 pp4 <- ggplot(t, aes(x  = log(STYLE_IMPUTED), fill=Clusters)) +geom_density(alpha=0.3)+theme_ms()+theme(legend.position = "none")+
-  ylab("Density") + xlab("log(Style length)") +  ggtitle("j) Style length") + ylab("Functional groups")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("Density") + xlab("log(Style length)") +  ggtitle("j) Style length") + scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Flowers per plant
 pp5 <- ggplot(t, aes(x  = log(Flowers_per_plant), fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
-  ylab("") + xlab("log(Flower number)") +  ggtitle("k) Flower number") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("") + xlab("log(Flower number)") +  ggtitle("k) Flower number") + scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #Selfing
 pp6 <- ggplot(t, aes(x  = Autonomous_selfing_level_fruit_set, fill=Clusters)) +geom_density(alpha=0.2)+theme_ms()+theme(legend.position = "none")+
-  ylab("") + xlab("Selfing") +  ggtitle("l) Selfing") + ylab("")+scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
+  ylab("") + xlab("Selfing") +  ggtitle("l) Selfing") + scale_fill_manual(values=c("cyan4", "red","forestgreen","purple","gold"))
 
 #For legend
 t$Clusters <- as.character(t$Clusters)
