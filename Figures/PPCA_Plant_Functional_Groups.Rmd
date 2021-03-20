@@ -73,7 +73,16 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
   dat$Clusters <- dat_cleaning_5$Clusters
- dat$Clusters <- as.factor(dat_cleaning_5$Clusters)
+  dat$Clusters <- as.character(dat$Clusters)
+  dat$Clusters[dat$Clusters=="1"] <- "A"
+  dat$Clusters[dat$Clusters=="2"] <- "B"
+  dat$Clusters[dat$Clusters=="3"] <- "C"
+  dat$Clusters[dat$Clusters=="4"] <- "D"
+  dat$Clusters[dat$Clusters=="5"] <- "E"
+
+  
+ dat$Clusters <- factor(dat$Clusters, levels=c("A", "B", "C", "D", "E"))
+ 
   plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Clusters),size=2.5)+ scale_color_manual(values =  c("#00AFBB", "#E69F00", "#FC4E07","#000000", "darkgreen"))+ labs(color='Functional groups')
   
   ########
@@ -98,10 +107,8 @@ all_spp <- function(PC, x="PC1", y="PC2") {
    #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
- # plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
-  #plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
-  #plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
-   #                    panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
   
   #ADD LABELS
   rownames(PC$L) <- c("SELFING", "FLOWER N.", "FLOWER SIZE", "STYLE LENGTH", "OVULE N.", "PLANT HEIGHT" )
@@ -112,8 +119,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") +xlab("")+ylab("")
-  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
   
   plot
   
