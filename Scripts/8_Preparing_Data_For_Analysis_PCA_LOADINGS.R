@@ -144,7 +144,7 @@ df_final  <- merge(all_df, trait_data, by="Original_spp_names")
 #Change col names
 colnames(df_final) <- c("Original_names", "Visits", "d", "Id", "Order", "Family", "Genus", "Species", "Breeding_system", "Compatibility", "Selfing", "Selfing_quantitative",
                         "Flower_shape", "Flower_symmetry", "Flower_number", "Flower_inflorescence", "Floral_unit_width", "Flower_width", "Flower_length", "Style_length",
-                        "Ovule_number", "Life_form", "Life_span", "Plant_height")
+                        "Ovule_number", "Life_form", "Life_span", "Plant_height","Nectar_presence_absence")
 
 #save data
 write.csv(df_final, "Data/Csv/metric_analysis_data_3rd_question.csv")

@@ -72,11 +72,10 @@ d_5_1$Clusters[d_5_1$Clusters=="5"] <- "E"
 
 d_5_1$Clusters <- as.factor(d_5_1$Clusters)
 levels(as.factor(d_5_1$Clusters))
-
+levels(factor(d_5_1$guild))
 
 #exclude other insects level
-d_5_1 <- d_5_1[d_5_1$guild!="Other_insects",]
-
+d_5_1 <- subset(d_5_1, guild!="Other_insects")
 #save data
 saveRDS(d_5_1, "Data/Csv/data_model.RDS")
 ########################################################################################################################################################
@@ -86,7 +85,7 @@ saveRDS(d_5_1, "Data/Csv/data_model.RDS")
 #5 clusters hclust
 model_forest_data <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
                             data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                            sample_prior = TRUE, warmup = 500, iter = 1500,
+                            sample_prior = TRUE, warmup = 500, iter = 2000,
                             control = list(adapt_delta = 0.99)) 
 
 marginal_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:guild")
@@ -104,12 +103,16 @@ ce <- conditional_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:gu
 ########################################################################################################################################################
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(model_forest_data, "model_forest_data.RDS")
+#saveRDS(model_forest_data, "model_forest_data.RDS")
 ########################################################################################################################################################
 #4.2)PLOT OUTPUT VISITATION DATA
 ########################################################################################################################################################
 #read model 2
-m_5_clust_zero_neg_hclust_famd <- readRDS("model_forest_data.RDS")
+model_forest_data <- readRDS("model_forest_data.RDS")
+
+setwd("~/R_Projects/Reproductive Traits")
+d_5_1 <- readRDS("Data/Csv/data_model.RDS")
+
 #cond effect model visitation data
 ce_1 <- conditional_effects(model_forest_data, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
@@ -118,16 +121,22 @@ colnames(ce_1[[1]])[4] <- "a"
 colnames(ce_1[[1]])[10] <- "Interaction"
 ce_1[[1]][10]<- ce_1[[1]][10]+1
 #Order levels
-ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera","Other_insects"))
-d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera","Other_insects"))
+ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+
+
+levels(factor(d_5_1$guild))
+
+
 #plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
   as.factor(guild))) +
   geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
   theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
-  geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
+  geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction),group = 
+                                as.factor(guild)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
+  as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,100)+
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))
   
 ########################################################################################################################################################
