@@ -21,6 +21,21 @@ library(brms)
 library(cmdstanr)
 library(ggplot2)
 
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.3)),
+           axis.text=element_text(size = rel(1.6), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.9, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
@@ -29,7 +44,7 @@ d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clust
 levels(factor(d_5$guild))
 #I'm going to run the model just with the main poll. functional groups
 #exclude other insects level
-dat <- subset(d_5_1, guild!="Other_insects" & guild!="Lizards" & guild!="Birds")
+dat <- subset(d_5, guild!="Other_insects" & guild!="Lizards" & guild!="Birds")
 levels(factor(dat$guild))
 
 
@@ -44,7 +59,7 @@ dat$Species_all <- as.character(dat$Species_all)
 
 
 #prepare dataframe to calculate tree
-phylo_5 <- as.data.frame(cbind(dat$Family_all, dat$Genus_all, dat$Plant_species))
+phylo_5 <- as.data.frame(cbind(dat$Family_all, dat$Genus_all, dat$Species_all))
 colnames(phylo_5) <-  c("family", "genus", "species")
 
 #Select unique cases
@@ -80,9 +95,6 @@ dat$Clusters <- as.factor(dat$Clusters)
 levels(as.factor(dat$Clusters))
 levels(factor(dat$guild))
 
-
-#save data
-saveRDS(d_5_1, "Data/Csv/data_model.RDS")
 ########################################################################################################################################################
 #3.1)ANALYSIS
 ########################################################################################################################################################
@@ -93,7 +105,7 @@ model_forest_data <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo
                             sample_prior = TRUE, warmup = 500, iter = 2000,
                             control = list(adapt_delta = 0.99)) 
 
-marginal_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:guild")
+marginal_effects(model_forest_data, effects = "Clusters:guild")
 pp_check(m_5_clust_zero_neg_hclust_famd) +xlim(-50,200)+ylim(0,0.1)
 pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="Clusters")+ylim(-4,4)
 pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="guild")+ylim(-4,4)
@@ -109,60 +121,16 @@ ce <- conditional_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:gu
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(model_forest_data, "model_forest_data.RDS")
+saveRDS(dat, "data_model.RDS")
 ########################################################################################################################################################
 #4.2)PLOT OUTPUT VISITATION DATA
 ########################################################################################################################################################
 #read model 2
 model_forest_data <- readRDS("model_forest_data.RDS")
 
-setwd("~/R_Projects/Reproductive Traits")
-d_5_1 <- readRDS("Data/Csv/data_model.RDS")
+dat <- readRDS("data_model.RDS")
 
 #cond effect model visitation data
-ce_1 <- conditional_effects(model_forest_data, effects = "Clusters:guild",points=T) 
-#change colnames in model output to use same aesthetics
-#if not gg seems to don't like it
-colnames(ce_1[[1]])[4] <- "a"
-colnames(ce_1[[1]])[10] <- "Interaction"
-ce_1[[1]][10]<- ce_1[[1]][10]+1
-#Order levels
-ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-d_5_1$guild <- factor(d_5_1$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-
-
-levels(factor(d_5_1$guild))
-
-
-#plot model
-ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-  as.factor(guild))) +
-  geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
-  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
-  geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction),group = 
-                                as.factor(guild)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
-  geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-  as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,100)+
-  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))
-  
-########################################################################################################################################################
-########################################################################################################################################################
-########################################################################################################################################################
-# Theme for publication
-theme_ms <- function(base_size=12, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-     theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(1.3)),
-           axis.text=element_text(size = rel(2), color = "black"),
-           legend.title=element_text(face="bold"),
-           legend.text=element_text(),
-           legend.background=element_rect(fill="transparent"),
-           legend.key.size = unit(0.9, 'lines'),
-           panel.border=element_rect(color="black",size=1),
-           panel.grid.minor.x =element_blank(),
-           panel.grid.minor.y= element_blank(),
-           panel.grid.major= element_blank()
-     ))
-}
 ce_1 <- conditional_effects(model_forest_data, effects = "Clusters:guild",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
@@ -172,35 +140,23 @@ ce_1[[1]][10]<- ce_1[[1]][10]+1
 ce_1[[1]][12]<- ce_1[[1]][12]+1
 ce_1[[1]][13]<- ce_1[[1]][13]+1
 
-ce_1[[1]]$guild <- as.character(ce_1[[1]]$guild)
-
-ce_1[[1]]$guild[ce_1[[1]]$guild=="Bee"] <- "Bees"
 #Order levels
-ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera","Other_insects"))
-d_5_1$guild <- factor(d_5_1$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera","Other_insects"))
-#plot model
-ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-                        as.factor(guild))) +
-  geom_point(size = 1.4, position = position_dodge(width = 0.8), alpha=1) +
-  theme_ms()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
-  geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-                                             as.factor(guild)), width=.6,alpha=0.8, size = 1.1,position = position_dodge(width = 0.8)) +
-  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))+ylim(0,30)
-
-
-
+ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+dat$guild <- factor(dat$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 
 #plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
-                        as.factor(guild))) +
-  geom_point(size = 1.2, position = position_dodge(width = 0.8), alpha=1) +
-  theme_bw()+ ylab("Nº of visits per plant taxa") + xlab("Plant reproductive groups")+
+  as.factor(guild))) +
+  geom_point(size = 2.4, position = position_dodge(width = 0.68), alpha=1) +
+  theme_ms()+ ylab("Nº of visits per plant taxa") + xlab("Plant functional groups")+
+  geom_point(data = dat,aes(x = Clusters, y = (Interaction),group = 
+  as.factor(guild)),size = 1.2,shape=21, position = position_jitterdodge(dodge.width = 0.68, jitter.width = 0.25), alpha=0.11)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(guild), group = 
-                                             as.factor(guild)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +
-  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A","black"))+ylim(0,30)
+  as.factor(guild)), width=0.6,alpha=1, size = 1,position = position_dodge(width = 0.68)) +ylim(0,quantile(dat$Interaction, 0.95))+
+  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))
+  
+#Values over the percentile 95 were omitted for visualization purposes
 
-
-
-
-
-
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
