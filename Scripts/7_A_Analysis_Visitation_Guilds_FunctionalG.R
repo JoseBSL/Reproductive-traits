@@ -20,6 +20,8 @@ library(DHARMa)
 library(brms)
 library(cmdstanr)
 library(ggplot2)
+library(emmeans)
+library(tidybayes)
 
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
@@ -98,6 +100,18 @@ dat$Clusters <- as.factor(dat$Clusters)
 levels(as.factor(dat$Clusters))
 levels(factor(dat$guild))
 
+E <- subset(dat, Clusters=="E")
+
+Coleoptera<- subset(E, guild=="Coleoptera")
+
+ggplot(Coleoptera, aes(phylo, Interaction, fill=factor(guild))) +
+  geom_boxplot() + ylim(0,100)
+
+E$Clusters <- as.factor(E$Clusters)
+
+ggplot(E, aes(guild, Interaction, fill=factor(guild))) +
+  geom_boxplot() + ylim(0,100)
+
 ########################################################################################################################################################
 #3.1)ANALYSIS
 ########################################################################################################################################################
@@ -106,7 +120,29 @@ levels(factor(dat$guild))
 model_forest_data <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
                             data = dat, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                             sample_prior = TRUE, warmup = 500, iter = 2000,
-                            control = list(adapt_delta = 0.99)) 
+                            control = list(adapt_delta = 0.99))
+
+
+
+
+model_forest_data %>%
+  emmeans( ~  Clusters) %>%
+  contrast(method = "pairwise") %>%
+  gather_emmeans_draws() %>%
+  median_qi(.width = .90) %>% ggplot(aes(x = .value, y = contrast)) +
+  stat_halfeye()
+
+model_forest_data %>%
+  emmeans( ~ Clusters) %>%
+  contrast(method = "pairwise") %>%
+  gather_emmeans_draws() %>%
+  ggplot(aes(x = .value, y = contrast)) +
+  stat_halfeye()
+
+
+performance::r2_bayes(model_forest_data)
+bayes_R2(model_forest_data)
+loo_R2(model_forest_data)
 
 marginal_effects(model_forest_data, effects = "Clusters:guild")
 pp_check(m_5_clust_zero_neg_hclust_famd) +xlim(-50,200)+ylim(0,0.1)
