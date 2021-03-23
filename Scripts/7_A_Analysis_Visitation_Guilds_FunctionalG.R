@@ -25,7 +25,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
      theme(text=element_text(color="black"),
            axis.title=element_text( size = rel(1.3)),
-           axis.text=element_text(size = rel(1.6), color = "black"),
+           axis.text=element_text(size = rel(1), color = "black"),
            legend.title=element_text(face="bold"),
            legend.text=element_text(),
            legend.background=element_rect(fill="transparent"),
@@ -46,7 +46,10 @@ levels(factor(d_5$guild))
 #exclude other insects level
 dat <- subset(d_5, guild!="Other_insects" & guild!="Lizards" & guild!="Birds")
 levels(factor(dat$guild))
-
+dat$guild <- as.character(dat$guild)
+dat$guild[dat$guild=="Bee"] <- "Bees"
+dat$guild <- factor(dat$guild, levels = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
+                                          "Non-syrphids-diptera", "Syrphids"))
 
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
@@ -81,7 +84,7 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
 #Add phylo column to dataset
 dat$phylo
-dat$phylo <- dat$Plant_species
+dat$phylo <- dat$Species_all
 str(dat)
 
 dat$Clusters <- as.character(dat$Clusters)
@@ -141,8 +144,10 @@ ce_1[[1]][12]<- ce_1[[1]][12]+1
 ce_1[[1]][13]<- ce_1[[1]][13]+1
 
 #Order levels
-ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
-dat$guild <- factor(dat$guild, levels = c("Bee","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+ce_1[[1]]$guild <- as.character(ce_1[[1]]$guild)
+ce_1[[1]]$guild <- factor(ce_1[[1]]$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
+dat$guild <- as.character(dat$guild)
+dat$guild <- factor(dat$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 
 #plot model
 ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
