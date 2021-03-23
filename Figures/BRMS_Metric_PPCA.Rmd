@@ -5,7 +5,7 @@ output:
   html_document: default
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=17, fig.width=17}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=13, fig.width=17}
 
 
 library(brms)
@@ -63,25 +63,26 @@ spe_2 <- readRDS("Specialization_PC2.RDS")
 
 colnames(ce_1[[1]])[2] <- "Interaction"
 
+
 Visits_PC1 <- ggplot(ce_1[[1]], aes(x = PC1, y = (estimate__+1))) + geom_point(data = data_analysis2,aes(x = PC1, y = Visits),
-              size = 1.2, alpha=0.9) + geom_line(size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
-              geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1) + ylab("Number of visits")
+       size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")+ ggtitle("A")
 
 
 colnames(ce_2[[1]])[2] <- "Interaction"
 
 Visits_PC2 <- ggplot(ce_2[[1]], aes(x = PC2, y = (estimate__+1))) + geom_point(data = data_analysis2,aes(x = PC2, y = Visits),
   size = 1.2, alpha=0.9) + geom_line(size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1) + ylab("Number of visits")
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1) + ylab("Number of visits") + ggtitle("B")
 
 
 Specialization_PC1 <- ggplot(spe_1[[1]], aes(x = PC1, y = (estimate__))) + geom_point(data = data_analysis2,aes(x = PC1, y = d),
                       size = 1.2, alpha=0.9) + geom_line(size=1.2)  +theme_ms()+
-                      geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1) + ylab("Specilization (d')")
+                      geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1) + ylab("Specilization (d')") + ggtitle("C")
 
 Specialization_PC2 <- ggplot(spe_2[[1]], aes(x = PC2, y = (estimate__))) + geom_point(data = data_analysis2,aes(x = PC2, y = d),
                       size = 1.2, alpha=0.9) + geom_line(size=1.2)  +theme_ms()+
-                      geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1) + ylab("Specilization (d')")
+                      geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1) + ylab("Specilization (d')") + ggtitle("D")
 
 plot_grid(Visits_PC1,Visits_PC2,Specialization_PC1,Specialization_PC2)
 

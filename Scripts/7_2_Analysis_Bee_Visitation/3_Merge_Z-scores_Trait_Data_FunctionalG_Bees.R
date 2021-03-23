@@ -19,7 +19,7 @@ library(readxl) #read trait data
 ########################################################################################################################################################
 long_d_2 <- read.csv("Data/Csv/long_format_quantitative_networks_Z_scores_all_bee.csv")
 t_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx")
-hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters.csv") #5 clusters
+hclust_d_5 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv") #5 clusters
 ########################################################################################################################################################
 #3) MERGE WITH TRAIT DATA
 ########################################################################################################################################################
@@ -31,7 +31,7 @@ t_data_filtered <- filter(t_data, Info_level == "flower" |  Info_level == "capit
 t_data_filtered <- as.data.frame(t_data_filtered)
 colnames(t_data_filtered)[1] <- "Plant_species"
 #select columns of interest
-traits <- t_data_filtered %>% select(Species_geonet,Order_all,Family_all,Genus_all,Species_all,Breeding_system,IMPUTED_Compatibility,Autonomous_selfing_level,Autonomous_selfing_level_data_type,Autonomous_selfing_level_fruit_set,Flower_morphology,Flower_symmetry,Flowers_per_plant,Flowers_per_inflorescence,Floral_unit_width,Corolla_diameter_mean,Corolla_length_mean,STYLE_IMPUTED,OVULES_IMPUTED,life_form,lifespan,IMPUTED_plant_height_mean_m)
+traits <- t_data_filtered %>% dplyr::select(Species_geonet,Order_all,Family_all,Genus_all,Species_all,Breeding_system,IMPUTED_Compatibility,Autonomous_selfing_level,Autonomous_selfing_level_data_type,Autonomous_selfing_level_fruit_set,Flower_morphology,Flower_symmetry,Flowers_per_plant,Flowers_per_inflorescence,Floral_unit_width,Corolla_diameter_mean,Corolla_length_mean,STYLE_IMPUTED,OVULES_IMPUTED,life_form,lifespan,IMPUTED_plant_height_mean_m)
 #Remove duplicated species
 t <- traits[!duplicated(traits$Species_all), ]
 colnames(t)[1] <- "Plant_species"

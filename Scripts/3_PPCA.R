@@ -112,7 +112,7 @@ phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 #saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
 saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
 #SAVE ALSO DATA TO PLOT IT IN RMD file
-#saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca_CLUSTERS.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca_CLUSTERS.rds")
 
 ####
 #READ DATA
@@ -131,7 +131,7 @@ PC$S
 #PC loadings (ARROWS)
 PC$L
 
-
+nrow(PC$S)
   
 ########################################################################################################################################################
 #4) PLOT PPCA

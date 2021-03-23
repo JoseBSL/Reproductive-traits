@@ -57,12 +57,14 @@ Visits_PC1 <- brm((Visits-1) ~ PC1 + (1|Id),
 #looks ok
 pp_check(Visits_PC1) +xlim(-50,200)+ylim(0,0.1)
 
+bayes_R2(Visits_PC1)
+loo_R2(Visits_PC1)
 
 conditional_effects(Visits_PC1, effects = "PC1",points=T)
 
 
 ce_1 <- conditional_effects(Visits_PC1, effects = "PC1",points=T) 
-colnames(ce_1[[1]])[2] <- "Interaction"
+colnames(ce_1[[1]])[3] <- "Interaction"
 
 Visits_PC1 <- ggplot(ce_1[[1]], aes(x = PC1, y = (estimate__+1))) + geom_point(data = data_analysis2,aes(x = PC1, y = Visits),
        size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
@@ -74,6 +76,11 @@ Visits_PC2 <- brm((Visits-1) ~ PC2 + (1|Id),
                   data = data_analysis2, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
                   sample_prior = TRUE, warmup = 500, iter = 2000,
                   control = list(adapt_delta = 0.99)) 
+
+
+
+bayes_R2(Visits_PC2)
+loo_R2(Visits_PC2)
 
 #looks ok
 pp_check(Visits_PC2) +xlim(-50,200)+ylim(0,0.1)
