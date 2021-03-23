@@ -22,6 +22,7 @@ library(ggplot2)
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
+setwd("~/R_Projects/Reproductive Traits")
 
 d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_all_bee.csv", row.names = 1)
 ########################################################################################################################################################
@@ -88,12 +89,12 @@ levels(as.factor(d_5_1$bee_family))
 
 
 #5 clusters hclust
-m_5_clust_zero_neg_hclust_bees <- brm((Interaction-1) ~ bee_family*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
+model_bee_families<- brm((Interaction-1) ~ bee_family*Clusters + (1|Id) + (1|gr(phylo, cov = A)),
                                           data = d_5_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                                           sample_prior = TRUE, warmup = 500, iter = 1500,
                                           control = list(adapt_delta = 0.99)) 
 
-marginal_effects(m_5_clust_zero_neg_hclust_bees, effects = "Clusters:bee_family")
+marginal_effects(model_bee_families, effects = "Clusters:bee_family")
 pp_check(m_5_clust_zero_neg_hclust_bees) +xlim(-50,200)+ylim(0,0.1)
 pp_check(m_5_clust_zero_neg_hclust_bees, type='violin_grouped',group="Clusters")+ylim(-4,4)
 pp_check(m_5_clust_zero_neg_hclust_bees, type='violin_grouped',group="guild")+ylim(-4,4)
@@ -105,7 +106,7 @@ saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
 ########################################################################################################################################################
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
-saveRDS(m_5_clust_zero_neg_hclust_bees, "m_5_clust_zero_neg_hclust_bees.RDS")
+saveRDS(model_bee_families, "model_bee_families.RDS")
 saveRDS(d_5_1, "data_model_just_bees.RDS")
 
 ########################################################################################################################################################
@@ -135,7 +136,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 #############
 #PLOT MODEL 1 NON APIS
 #############
-ce_1 <- conditional_effects(m_5_clust_zero_neg_hclust_bees, effects = "Clusters:bee_family",points=T) 
+ce_1 <- conditional_effects(model_bee_families, effects = "Clusters:bee_family",points=T) 
 #change colnames in model output to use same aesthetics
 #if not gg seems to don't like it
 colnames(ce_1[[1]])[4] <- "a"
@@ -149,7 +150,7 @@ ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(bee_fami
   geom_point(data = d_5_1,aes(x = Clusters, y = (Interaction+1)),size = 1.2, position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.2), alpha=0.3)+
   geom_errorbar(data=ce_1[[1]],mapping=aes(x=Clusters, ymin=lower__, ymax=upper__,colour = as.factor(bee_family), group = 
                                              as.factor(bee_family)), width=.6,alpha=0.8, size = 0.9,position = position_dodge(width = 0.8)) +ylim(0,200)+
-  scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))
+  scale_color_manual("Bee families",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black"))
 
 ########################################################################################################################################################
 ########################################################################################################################################################
