@@ -117,17 +117,20 @@ model_forest_data %>%
   emmeans( ~  Clusters) %>%
   contrast(method = "pairwise") %>%
   gather_emmeans_draws() %>%
-  median_qi(.width = .90) %>% ggplot(aes(x = .value, y = contrast)) +
+  median_qi(.width = .95) %>% ggplot(aes(x = .value, y = contrast)) +
   stat_halfeye()
 
-model_forest_data %>%
+  model_forest_data %>%
   emmeans( ~ Clusters) %>%
   contrast(method = "pairwise") %>%
   gather_emmeans_draws() %>%
   ggplot(aes(x = .value, y = contrast)) +
-  stat_halfeye()
+  stat_halfeye() + ylab("Pairwise comparisons") + xlab("Posterior estimates differences")
 
 
+  emm1 = emmeans(model_forest_data, specs = pairwise ~ Clusters)
+  
+  
 performance::r2_bayes(model_forest_data)
 bayes_R2(model_forest_data)
 loo_R2(model_forest_data)
