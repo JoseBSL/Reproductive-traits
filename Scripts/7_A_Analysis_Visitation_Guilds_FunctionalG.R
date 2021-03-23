@@ -100,18 +100,6 @@ dat$Clusters <- as.factor(dat$Clusters)
 levels(as.factor(dat$Clusters))
 levels(factor(dat$guild))
 
-E <- subset(dat, Clusters=="E")
-
-Coleoptera<- subset(E, guild=="Coleoptera")
-
-ggplot(Coleoptera, aes(phylo, Interaction, fill=factor(guild))) +
-  geom_boxplot() + ylim(0,100)
-
-E$Clusters <- as.factor(E$Clusters)
-
-ggplot(E, aes(guild, Interaction, fill=factor(guild))) +
-  geom_boxplot() + ylim(0,100)
-
 ########################################################################################################################################################
 #3.1)ANALYSIS
 ########################################################################################################################################################
