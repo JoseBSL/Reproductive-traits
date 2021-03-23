@@ -101,7 +101,7 @@ levels(as.factor(dat$Clusters))
 levels(factor(dat$guild))
 
 ########################################################################################################################################################
-#3.1)ANALYSIS
+#3)ANALYSIS
 ########################################################################################################################################################
 
 #5 clusters hclust
@@ -111,48 +111,50 @@ model_forest_data <- brm((Interaction-1) ~ guild*Clusters + (1|Id) + (1|gr(phylo
                             control = list(adapt_delta = 0.99))
 
 
+#MODEL FIT
+pp_check(m_5_clust_zero_neg_hclust_famd) +xlim(-50,200)+ylim(0,0.1)
+pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="guild")+ylim(-4,4)
 
-
-model_forest_data %>%
-  emmeans( ~  Clusters) %>%
-  contrast(method = "pairwise") %>%
-  gather_emmeans_draws() %>%
-  median_qi(.width = .90) %>% ggplot(aes(x = .value, y = contrast)) +
-  stat_halfeye()
-
-model_forest_data %>%
-  emmeans( ~ Clusters) %>%
-  contrast(method = "pairwise") %>%
-  gather_emmeans_draws() %>%
-  ggplot(aes(x = .value, y = contrast)) +
-  stat_halfeye()
-
-
+#CHECK BAYES R2 
 performance::r2_bayes(model_forest_data)
 bayes_R2(model_forest_data)
 loo_R2(model_forest_data)
 
+#CHECK MODEL OUTPUT
 marginal_effects(model_forest_data, effects = "Clusters:guild")
-pp_check(m_5_clust_zero_neg_hclust_famd) +xlim(-50,200)+ylim(0,0.1)
-pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(m_5_clust_zero_neg_hclust_famd, type='violin_grouped',group="guild")+ylim(-4,4)
-saveRDS(m_5_clust_zero_neg_hclust_famd, "m_5_clust_zero_neg_hclust_famd")
-
-pp_check(m_5_clust_zero_neg_hclust_famd) +xlim(-50,200)+ylim(0,0.1)
-marginal_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:guild")
-ce <- conditional_effects(m_5_clust_zero_neg_hclust_famd, effects = "Clusters:guild",points=T) 
 
 ########################################################################################################################################################
-#)4)SAVE MODEL
+#4) POSTHOC COMPARISON
+########################################################################################################################################################
+
+
+result <- model_forest_data %>%
+  emmeans( ~ Clusters) %>%
+  contrast(method = "pairwise") %>%
+  gather_emmeans_draws()
+
+
+posthoc_plot <- ggplot(result, aes(x = .value, y = contrast,  fill=contrast)) +
+  stat_eye() +theme_ms() +theme(legend.position = "none")+geom_vline(xintercept=0,linetype="dashed") + ylab("Pairwise comparisons")+
+  xlab("Marginal mean difference")
+
+
+########################################################################################################################################################
+#5)SAVE MODEL
 ########################################################################################################################################################
 #SAVE MODEL 1
 setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
 saveRDS(model_forest_data, "model_forest_data.RDS")
 saveRDS(dat, "data_model.RDS")
+saveRDS(result, "result_Tukey_model.RDS")
+
 ########################################################################################################################################################
-#4.2)PLOT OUTPUT VISITATION DATA
+#6)PLOT OUTPUT VISITATION DATA
 ########################################################################################################################################################
 #read model 2
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+
 model_forest_data <- readRDS("model_forest_data.RDS")
 
 dat <- readRDS("data_model.RDS")
@@ -174,7 +176,7 @@ dat$guild <- as.character(dat$guild)
 dat$guild <- factor(dat$guild, levels = c("Bees","Non-bee-Hymenoptera","Syrphids","Non-syrphids-diptera","Lepidoptera","Coleoptera"))
 
 #plot model
-ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
+model_plot <- ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), group = 
   as.factor(guild))) +
   geom_point(size = 2.4, position = position_dodge(width = 0.68), alpha=1) +
   theme_ms()+ ylab("Nº of visits per plant taxa") + xlab("Plant functional groups")+
@@ -185,6 +187,13 @@ ggplot(ce_1[[1]], aes(x = Clusters, y = Interaction, colour = as.factor(guild), 
   scale_color_manual("Floral visitors guilds",values=c("#E69F00","#D55E00", "#287DAB", "#009E73", "#A7473A",  "black","grey"))
   
 #Values over the percentile 95 were omitted for visualization purposes
+
+#Combine posthoc and model plot
+
+library(patchwork)
+
+model_plot + posthoc_plot
+
 
 ########################################################################################################################################################
 ########################################################################################################################################################
