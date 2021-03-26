@@ -152,6 +152,7 @@ Flower_morphology[is.na(Flower_morphology)] <- 0
 bind_rows(Breeding_system, Compatibility_system, Life_form, Life_span,Flower_morphology)
 
 ############################################################################################################################################
+t$Flower_symmetry <- as.character(t$Flower_symmetry)
 t$Flower_symmetry[t$Flower_symmetry =="actinomorphic"] <- "Actinomorphic"
 t$Flower_symmetry[t$Flower_symmetry =="zygomorphic"] <- "Zygomorphic"
 
@@ -172,7 +173,7 @@ Flower_symmetry<- cbind(Trait, Flower_symmetry)
 #Bind rows
 bind_rows(Breeding_system, Compatibility_system, Life_form, Life_span,Flower_morphology,Flower_symmetry)
 ############################################################################################################################################
-
+t$Autonomous_selfing_level <- as.character(t$Autonomous_selfing_level)
 t$Autonomous_selfing_level[t$Autonomous_selfing_level =="none"] <- "None"
 t$Autonomous_selfing_level[t$Autonomous_selfing_level =="low"] <- "Low"
 t$Autonomous_selfing_level[t$Autonomous_selfing_level =="medium"] <- "Medium"
@@ -202,7 +203,7 @@ Selfing_1 <- cbind(Trait, Selfing)
 bind_rows(Breeding_system, Compatibility_system, Life_form, Life_span,Flower_morphology, Selfing_1)
 
 ############################################################################################################################################
-
+t$Nectar_presence_absence <- as.character(t$Nectar_presence_absence)
 t$Nectar_presence_absence[t$Nectar_presence_absence =="yes"] <- "Yes"
 t$Nectar_presence_absence[t$Nectar_presence_absence =="no"] <- "No"
 
