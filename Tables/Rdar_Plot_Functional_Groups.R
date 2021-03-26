@@ -279,13 +279,15 @@ data_4 <- as.data.frame(data_4)
 str(data_4)
 
 # Scale values and set rowname as column
-data_5 <-data_4 %>% rownames_to_column( var = "group" ) %>%   mutate_at(vars(-group),funs(rescale)) 
+data_5 <-data_4 %>% rownames_to_column( var = "group" )
 
 #Plot Radar
 ggradar(data_5) 
 
 
 data_6 <- melt(data_5)
+
+
 
  ggplot(data_6, aes(x = variable, y = value,group=group,colour=group)) +
   geom_line(size=0.5) +
@@ -294,32 +296,174 @@ data_6 <- melt(data_5)
 
 cluster1 <- subset(data_6, group=="Cluster 1")
 
-c1 <- ggplot(cluster1, aes(x = variable, y = value,group=group,colour=group)) +
-  geom_line(size=0.5) +geom_bar(stat = "identity")+
-  geom_point(size = 1.5) + theme(axis.text.x = element_text(angle = 45,size = 5),legend.position="none")
+cluster1$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+
+c1 <- cluster1 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#00AFBB")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank(),
+        plot.margin=unit(c(0.9,1,-0.175,1), "cm"))+ ylab("")
+
 
 cluster2 <- subset(data_6, group=="Cluster 2")
 
-c2 <- ggplot(cluster2, aes(x = variable, y = value,group=group,colour=group)) +
-  geom_line(size=0.5) +geom_bar(stat = "identity")+
-  geom_point(size = 1.5) + theme(axis.text.x = element_text(angle = 45,size = 5),legend.position="none")
+cluster2$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c2 <- cluster2 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#E69F00")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+theme(strip.background = element_blank(), strip.text = element_blank())+
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank(),
+        plot.margin=unit(c(0.1,1,-0.175,1), "cm"))+ylab("")
+
+
 
 cluster3 <- subset(data_6, group=="Cluster 3")
 
-c3 <- ggplot(cluster3, aes(x = variable, y = value,group=group,colour=group)) +
-  geom_line(size=0.5) +geom_bar(stat = "identity")+
-  geom_point(size = 1.5) + theme(axis.text.x = element_text(angle = 45,size = 5),legend.position="none")
+cluster3$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c3 <- cluster3 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#FC4E07")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank(),
+        plot.margin=unit(c(0.1,1,-0.175,1), "cm"))+
+ theme(strip.background = element_blank(), strip.text = element_blank())+ylab("Percentage")
+
 
 cluster4 <- subset(data_6, group=="Cluster 4")
 
-c4 <- ggplot(cluster4, aes(x = variable, y = value,group=group,colour=group)) +
-  geom_line(size=0.5) +geom_bar(stat = "identity")+
-  geom_point(size = 1.5) + theme(axis.text.x = element_text(angle = 45,size = 5),legend.position="none")
+cluster4$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c4 <- cluster4 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#000000")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank(),
+        plot.margin=unit(c(0.1,1,-0.175,1), "cm"))+
+  theme(strip.background = element_blank(), strip.text = element_blank())+ylab("")
+
+
+
 
 cluster5 <- subset(data_6, group=="Cluster 5")
 
-c5 <- ggplot(cluster5, aes(x = variable, y = value,group=group,colour=group)) +
-  geom_line(size=0.5) + geom_bar(stat = "identity")+
-  geom_point(size = 1.5) + theme(axis.text.x = element_text(angle = 45,size = 5),legend.position="none")
+cluster5$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+c5 <- cluster5 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="darkgreen")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  scale_y_continuous(expand = c(0,0)) +
+  theme(plot.margin=unit(c(0.1,1,2,1), "cm"), axis.text.x = element_text(angle = 45,vjust = 1, hjust=1))+
+  theme(strip.background = element_blank(), strip.text = element_blank())+ylab("")+xlab("")
 
-plot_grid(c1, c2, c3, c4, c5, ncol = 1,align="none")
+
+library(grid)
+library(dplyr)
+library(lubridate)
+grid.newpage()
+p <-grid.draw(rbind(ggplotGrob(d), rbind(ggplotGrob(c1), ggplotGrob(c2),ggplotGrob(c3),ggplotGrob(c4),ggplotGrob(c5)), size = "last"))
+####################################################################################################
+
+#Try to achieve the desire output with plot_grid
+
+c1 <- cluster1 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#00AFBB")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank())+ ylab("")
+
+
+cluster2 <- subset(data_6, group=="Cluster 2")
+
+cluster2$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c2 <- cluster2 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#E69F00")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(strip.background = element_blank(), strip.text = element_blank())+
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank())+ylab("")
+
+
+
+cluster3 <- subset(data_6, group=="Cluster 3")
+
+cluster3$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c3 <- cluster3 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#FC4E07")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank())+
+  theme(strip.background = element_blank(), strip.text = element_blank())+ylab("Percentage")
+
+
+cluster4 <- subset(data_6, group=="Cluster 4")
+
+cluster4$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+
+c4 <- cluster4 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="#000000")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank())+
+  theme(strip.background = element_blank(), strip.text = element_blank())+ylab("")
+
+
+
+
+cluster5 <- subset(data_6, group=="Cluster 5")
+
+cluster5$traits <- c(rep("Breeding system",3), rep("Compatibility",3), rep("Life form",3),
+                     rep("Life span",2), rep("Flower symmetry",2), rep("Nectar",2))
+c5 <- cluster5 %>% 
+  ggplot(aes(x = variable,  y = value, fill = group))  +  
+  geom_col(position = "dodge") +   scale_fill_manual(name = NULL,values="darkgreen")+
+  facet_grid(~traits, scales = "free_x", space = "free_x")+theme_bw()+
+  scale_y_continuous(expand = c(0,0)) +
+  theme(axis.text.x = element_text(angle = 45,vjust = 1, hjust=1))+
+  theme(strip.background = element_blank(), strip.text = element_blank())+ylab("")+xlab("")
+
+library(patchwork)
+A <- c1 + c2 + c3 + c4 + c5 + plot_layout(ncol = 1)
+B <- ggradar(final_df_3, group.colours=c("#00AFBB", "#E69F00", "#FC4E07","#000000", "darkgreen"),
+             legend.text.size=5)+ guides(shape = guide_legend(override.aes = list(size = 0.5)))
+) 
+A | B 
+
