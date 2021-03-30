@@ -1,0 +1,88 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+classoption: landscape
+
+---
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=8, fig.width=28}
+
+#LOAD LIBRARIES 
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(tidyverse)
+library(patchwork) #panel of plots
+library(brms)
+library(cmdstanr)
+
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2.2)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+
+#Load data 
+model_1_subset_spp_4pcs <- readRDS("model_1_subset_spp_4pcs.RDS")
+dat <- readRDS("data_for_model_1_subset_spp_4pcs.RDS")
+
+#Plot nicely PC1
+ce_pc1 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC1:guild",points=T) 
+
+p1 <- ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+  aes(x = PC1, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat$Interaction, 0.95)) + ylab("Number of visits")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+#Plot nicely PC2
+ce_pc2 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC2:guild",points=T) 
+
+p2 <- ggplot(ce_pc2[[1]], aes(x = PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+  aes(x = PC2, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat$Interaction, 0.95)) + ylab("")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+
+#Plot nicely PC3
+ce_pc3 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC3:guild",points=T) 
+
+p3 <- ggplot(ce_pc3[[1]], aes(x = PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+   aes(x = PC3, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat$Interaction, 0.95)) + ylab("")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+
+
+combined <- p1 + p2 + p3 & theme(legend.position = "right")
+combined + plot_layout(guides = "collect")
+
+                
+
+```
+
+
+
