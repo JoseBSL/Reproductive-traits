@@ -394,7 +394,8 @@ c1 <- cluster1 %>%
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())+scale_y_continuous(expand = c(0,0)) +
-  theme(axis.title.x = element_blank(), axis.text.x=element_blank())+ ylab("")
+  theme(axis.title.x = element_blank(), axis.text.x=element_blank(),plot.title = element_text(size = 18))+ ylab("")+
+  ggtitle("A) Qualitative variables")
 
 
 cluster2 <- subset(data_6, group=="Cluster 2")
@@ -463,7 +464,11 @@ c5 <- cluster5 %>%
 library(patchwork)
 A <- c1 + c2 + c3 + c4 + c5 + plot_layout(ncol = 1)
 B <- ggradar(final_df_3, group.colours=c("#00AFBB", "#E69F00", "#FC4E07","#000000", "darkgreen"),
-             legend.text.size=5)+ guides(shape = guide_legend(override.aes = list(size = 0.5)))
-) 
-A | B 
+             legend.text.size=5, grid.label.size = 0,legend.position = "none",axis.label.size=3)+ 
+  guides(shape = guide_legend(override.aes = list(size = 0.5)))+ ggtitle("B) Quantitative variables")+
+  theme(plot.title = element_text(size = 18))
+
+patch <- A | B 
+
+patch + plot_annotation(title = "Functional groups",theme = theme(plot.title = element_text(size = 20,face="bold")))
 
