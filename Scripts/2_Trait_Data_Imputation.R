@@ -129,7 +129,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("low") & is.na(t$Autonomous_selfing_level_fruit_set), 13, t$Autonomous_selfing_level_fruit_set)
 t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
 
-
+#t$Nectar_ul adding it here just to see how many cells 
 #Now we just select presence/absence of nectar
 #select columns of interest
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
@@ -142,7 +142,11 @@ t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Br
 missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
 
-#seems ok to impute, just 36% percent of missing data in this column now.
+
+missing_data <- unlist(lapply(t, function(x) nrow(t)-sum(is.na(x))))
+sum(missing_data)
+#Checking number of filled cells/ just selecting variables used in the manuscript; nectar ul should be accounted too and it has been considered but
+#not added to run this code
 
 ########################################################################################################################################################
 #4) CALCULATE PHYLOGENETIC DISTANCE TO CORRECT WITH EIGENVALUES IN THE IMPUTATION

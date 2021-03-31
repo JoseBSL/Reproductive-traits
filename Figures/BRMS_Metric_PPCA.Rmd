@@ -63,10 +63,11 @@ spe_2 <- readRDS("Specialization_PC2.RDS")
 
 colnames(ce_1[[1]])[2] <- "Interaction"
 
-
 Visits_PC1 <- ggplot(ce_1[[1]], aes(x = PC1, y = (estimate__+1))) + geom_point(data = data_analysis2,aes(x = PC1, y = Visits),
-       size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")+ ggtitle("A")
+              size = 1.2, alpha=0.9) + geom_line(size=1.2) + ylim(0,quantile(data_analysis2$Visits, 0.95)) +theme_ms()+
+              geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1) + ylab("Number of visits") + ggtitle("A")
+
+
 
 
 colnames(ce_2[[1]])[2] <- "Interaction"
