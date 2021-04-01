@@ -36,7 +36,9 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
-d_a <- readRDS("Data/RData/data_analysis_1.rds") 
+d_a <- readRDS("Data/RData/data_analysis_1.rds") #ALL SPP
+d_a <- readRDS("Data/RData/data_analysis_2.rds") #NORMAL PPCA
+
 ########################################################################################################################################################
 #PREPARE POLL. FUNCTIONAL GROUPS FOR MODELLING
 ########################################################################################################################################################
@@ -85,8 +87,45 @@ str(dat_analysis)
 #RUN MODEL
 ########################################################################################################################################################
 
-#5 clusters hclust
 analysis_1 <- brm((Interaction-1) ~ PC1*guild + PC2*guild + PC3*guild +(1|Id) + (1|gr(phylo, cov = A)),
-                       data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                       sample_prior = TRUE, warmup = 500, iter = 2000,
-                       control = list(adapt_delta = 0.99))
+                  data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                  sample_prior = TRUE, warmup = 500, iter = 2000,
+                  control = list(adapt_delta = 0.99))
+
+
+
+marginal_effects(analysis_1, effects = "PC1:guild")
+pp_check(analysis_1) +xlim(-50,200)+ylim(0,0.1)
+pp_check(analysis_1, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(analysis_1, type='violin_grouped',group="guild")+ylim(-4,4)
+
+#Save data
+saveRDS(analysis_1, "Data/RData/results_analysis_1.rds")
+saveRDS(dat_analysis, "Data/RData/dat_analysis_results_analysis_1.rds")
+########################################################################################################################################################
+#PLOT
+########################################################################################################################################################
+#Plot nicely PC1
+ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
+
+p1 <- ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+   aes(x = PC1, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+#Plot nicely PC2
+ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
+
+p2 <- ggplot(ce_pc2[[1]], aes(x = PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+  aes(x = PC2, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+#Plot nicely PC3
+ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T) 
+
+p3 <- ggplot(ce_pc3[[1]], aes(x = PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+  aes(x = PC3, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+
