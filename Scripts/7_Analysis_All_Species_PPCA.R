@@ -19,7 +19,53 @@ library(tidyverse)
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
      theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(1.3)),
+           axis.title=element_text( size = rel(1)),
+           axis.text=element_text(size = rel(0.8), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.5, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+#SCRIPT FOR ANALYSIS (VISITATION~FUNCTIONAL GROUP*GUILD) ##HCLUST## FAMD IMPUTATION METHOD
+
+#1)LOAD DATA 
+
+#2)PHYLOGENETIC DISTANCE OF THE SPECIES -Add them as covariable-
+
+#3)SAVE MODEL
+
+#4)PLOT MODEL 
+
+
+########################################################################################################################################################
+
+#LOAD LIBRARIES
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distance
+library(DHARMa)
+library(brms)
+library(cmdstanr)
+library(ggplot2)
+library(emmeans)
+library(tidybayes)
+
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.1)),
            axis.text=element_text(size = rel(1), color = "black"),
            legend.title=element_text(face="bold"),
            legend.text=element_text(),
@@ -31,114 +77,10 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
            panel.grid.major= element_blank()
      ))
 }
-
 ########################################################################################################################################################
-#1) LOAD DATA
+#1) READ DATA
 ########################################################################################################################################################
-#read data with missing values filled by data imputation
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-dat_1 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv", row.names = "X") 
-
-dat$Clusters <- dat_1$Clusters
-########################################################################################################################################################
-#2) Tidy up data to get phylo distance and conduct PCA
-########################################################################################################################################################
-########################################################################################################################################################
-#remove not found species, cannot do PCA with unequal numbers of rows
-cols.num <- c("Family_all","Genus_all","Species_all")
-dat[cols.num] <- sapply(dat[cols.num],as.character)
-dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
-#dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
-#dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
-#dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
-#dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
-########################################################################################################################################################
-#3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
-########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,22)]
-
-#dat_cleaning_1 <- dat_cleaning %>%
-#  filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
-#
-#dat_cleaning_2 <- dat_cleaning_1 %>%
-#  filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
-#
-#dat_cleaning_3 <- dat_cleaning_2 %>%
-#  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
-#
-#dat_cleaning_4 <- dat_cleaning_3 %>%
-#  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
-#
-#dat_cleaning_5 <- dat_cleaning_4 %>%
-#  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
-
-#dat_cleaning_6 <- dat_cleaning_5 %>%
-# filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
-
-
-#LOG all columns, seems neccesary to standardize skewed data
-
-
-dat_cleaning[,c(4:9)] <- log(dat_cleaning[,c(4:9)]+1)
-dat_cleaning[,c(4:9)] <- scale(dat_cleaning[,c(4:9)], center = T, scale = T)
-
-
-final_d <- dat_cleaning[,c(4:9)]
-
-
-########################################################################################################################################################
-#4) GET PHYLO
-########################################################################################################################################################
-#calculate phylo 
-phylo <- as.data.frame(cbind(dat_cleaning$Family_all, dat_cleaning$Genus_all, dat_cleaning$Species_all))
-colnames(phylo) <-  c("family", "genus", "species")
-#Select unique cases
-#phylo_2 <- phylo[!duplicated(phylo$species),]
-phylo_2 <- tibble(phylo)
-#get phylo
-phylo_output <- get_tree(sp_list = phylo_2, tree = tree_plant_otl, taxon = "plant")
-str(phylo_output)
-#Convert phylogenetic tree into matrix
-A_5 <- vcv.phylo(phylo_output)
-#Standardize to max value 1
-A_5 <- A_5/max(A_5)
-#Unify column names; remove underscore and remove asterik
-rownames(A_5) <- gsub("\\*", "", rownames(A_5))
-colnames(A_5) <- gsub("\\*", "", colnames(A_5))
-colnames(A_5) <- gsub("_", " ", colnames(A_5))
-rownames(A_5) <- gsub("_", " ", rownames(A_5))
-
-
-########################################################################################################################################################
-#4) CALCULATE PPCA
-########################################################################################################################################################
-#set same rownames
-final_d <-  dat_cleaning[,c(4:9)]
-
-rownames(final_d) <- dat_cleaning$Species_all
-#fix species names
-rownames(final_d) <- gsub(" ", "_", rownames(final_d))
-
-#Output saved not RUN
-#phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-pca_all_species <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-
-
-
-#REMEMBER TO SAVE OUTPUT TOMORROW
-
-
-#Convert to dataframe
-phylo_pca <- as.data.frame(pca_all_species$S)
-
-#Convert rownames to colnames
-phylo_pca_1 <-phylo_pca %>% rownames_to_column( var = "Species_all" )
-
-#Remove underscore
-phylo_pca_1$Species_all <- gsub("_", " ", phylo_pca_1$Species_all)
-
-
-#Load trait data
+setwd("~/R_Projects/Reproductive Traits")
 d_5 <- read.csv("Data/Csv/quantitative_networks_Z_scores_with_traits_and_5_clusters_hclust_forest_data.csv", row.names = 1)
 levels(factor(d_5$guild))
 #I'm going to run the model just with the main poll. functional groups
@@ -151,22 +93,32 @@ dat$guild <- factor(dat$guild, levels = c("Bees","Coleoptera", "Lepidoptera", "N
                                           "Non-syrphids-diptera", "Syrphids"))
 
 
-#Merge
-dat_analysis <- merge(dat, phylo_pca_1, by="Species_all", all.x = T)
+#LOAD GLOBAL PCA 
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+phyl_pca_forest$L
+#Convert to data.frame
+PCA_DATA <- as.data.frame(phyl_pca_forest$S)
+#Convert rownames to colnames
+library(tidyverse)
+PCA_DATA_1 <-PCA_DATA %>% rownames_to_column( var = "Species_all")
+#Remove underscore of species names
+PCA_DATA_1$Species_all <-  gsub("_", " ", PCA_DATA_1$Species_all)
 
+
+dat <- merge(dat, PCA_DATA_1, by="Species_all")
 
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
 ########################################################################################################################################################
 #5 CLUSTERS
 #Prepare species, genus anD_5 family for calculating phylogenetic distance
-dat_analysis$Family_all  <- as.character(dat_analysis$Family_all)
-dat_analysis$Genus_all   <- as.character(dat_analysis$Genus_all)
-dat_analysis$Species_all <- as.character(dat_analysis$Species_all)
+dat$Family_all  <- as.character(dat$Family_all)
+dat$Genus_all   <- as.character(dat$Genus_all)
+dat$Species_all <- as.character(dat$Species_all)
 
 
 #prepare dataframe to calculate tree
-phylo_5 <- as.data.frame(cbind(dat_analysis$Family_all, dat_analysis$Genus_all, dat_analysis$Species_all))
+phylo_5 <- as.data.frame(cbind(dat$Family_all, dat$Genus_all, dat$Species_all))
 colnames(phylo_5) <-  c("family", "genus", "species")
 
 #Select unique cases
@@ -187,98 +139,196 @@ colnames(A_5) <- gsub("_", " ", colnames(A_5))
 rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
 #Add phylo column to dataset
-dat_analysis$phylo
-dat_analysis$phylo <- dat_analysis$Species_all
+dat$phylo
+dat$phylo <- dat$Species_all
 str(dat)
 
-dat_analysis$Clusters <- as.character(dat_analysis$Clusters)
-dat_analysis$Clusters[dat_analysis$Clusters=="1"] <- "A"
-dat_analysis$Clusters[dat_analysis$Clusters=="2"] <- "B"
-dat_analysis$Clusters[dat_analysis$Clusters=="3"] <- "C"
-dat_analysis$Clusters[dat_analysis$Clusters=="4"] <- "D"
-dat_analysis$Clusters[dat_analysis$Clusters=="5"] <- "E"
+dat$Clusters <- as.character(dat$Clusters)
+dat$Clusters[dat$Clusters=="1"] <- "A"
+dat$Clusters[dat$Clusters=="2"] <- "B"
+dat$Clusters[dat$Clusters=="3"] <- "C"
+dat$Clusters[dat$Clusters=="4"] <- "D"
+dat$Clusters[dat$Clusters=="5"] <- "E"
 
-dat_analysis$Clusters <- as.factor(dat_analysis$Clusters)
-levels(as.factor(dat_analysis$Clusters))
-levels(factor(dat_analysis$guild))
+dat$Clusters <- as.factor(dat$Clusters)
+levels(as.factor(dat$Clusters))
+levels(factor(dat$guild))
 
 ########################################################################################################################################################
 #3.1)ANALYSIS
 ########################################################################################################################################################
 
 #5 clusters hclust
-model_1_all_spp <- brm((Interaction-1) ~ PC1*guild+PC2*guild + (1|Id) + (1|gr(phylo, cov = A)),
-                         data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                         sample_prior = TRUE, warmup = 500, iter = 2000,
-                         control = list(adapt_delta = 0.99))
+model_1_subset_spp_4pcs <- brm((Interaction-1) ~ PC1*guild+PC2*guild+PC3*guild+PC4*guild+ (1|Id) + (1|gr(phylo, cov = A)),
+                            data = dat, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                            sample_prior = TRUE, warmup = 500, iter = 2000,
+                            control = list(adapt_delta = 0.99))
 
 
-bayes_R2(model_1_all_spp)
-loo_R2(model_1_all_spp)
+#Save model output 
 
-marginal_effects(model_1_all_spp, effects = "PC1:guild")
-marginal_effects(model_1_all_spp, effects = "PC2:guild")
-
-pp_check(model_1_all_spp) +xlim(-50,200)+ylim(0,0.1)
-
+setwd("~/Dropbox/PhD/R") #DROPBOX, files too large for github
+saveRDS(model_1_subset_spp_4pcs, "model_1_subset_spp_4pcs.RDS")
+saveRDS(dat, "data_for_model_1_subset_spp_4pcs.RDS")
 
 #Plot nicely PC1
+ce_pc1 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC1:guild",points=T) 
 
-ce_pc1 <- conditional_effects(model_1_all_spp, effects = "PC1:guild",points=T) 
-
-ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-  aes(x = PC1, y = Interaction),size = 1.5, alpha=0.9) + geom_line(size=1.2) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95))  + ylab("Number of visits")+
-  theme_ms()
+p1 <- ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+  aes(x = PC1, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 
 #Plot nicely PC2
-ce_pc2 <- conditional_effects(model_1_all_spp, effects = "PC2:guild",points=T) 
+ce_pc2 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC2:guild",points=T) 
 
-ggplot(ce_pc2[[1]], aes(x = PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-  aes(x = PC2, y = Interaction),size = 1, alpha=0.75) + geom_line(size=1.2) + 
+p2 <- ggplot(ce_pc2[[1]], aes(x = PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+  aes(x = PC2, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+
+#Plot nicely PC3
+ce_pc3 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC3:guild",points=T) 
+
+p3 <- ggplot(ce_pc3[[1]], aes(x = PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+   aes(x = PC3, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+
+
+#Plot nicely PC4
+ce_pc4 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC4:guild",points=T) 
+
+p4 <- ggplot(ce_pc4[[1]], aes(x = PC4, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
+  aes(x = PC4, y = Interaction),size = 1.25, alpha=0.75) + geom_line(size=0.8) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
-  theme_ms()
+  theme_ms() + + scale_color_manual(values=c("cyan4", "orange", "limegreen","#E7298A", "black","blueviolet"))
+
+
+
+library(patchwork)
+
+combined <- p1 + p2 + p3 & theme(legend.position = "right")
+combined + plot_layout(guides = "collect")
+
+
+#####PLT PPCA
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+nrow(PC$S)
+
+percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
 
 ########################################################################################################################################################
-#4 MAIN PC´S ALL SPECIES
+#4) PLOT PPCA
 ########################################################################################################################################################
 
-model_1_all_spp_4pcs <- brm((Interaction-1) ~ PC1*guild+PC2*guild+PC3*guild+PC4*guild+ (1|Id) + (1|gr(phylo, cov = A)),
-                       data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                       sample_prior = TRUE, warmup = 500, iter = 2000,
-                       control = list(adapt_delta = 0.99))
+#####
+#MASTER FUNCTION TO PLOT 
+#####
+#seems massive but in reality is a scatterplot with arrows
+#it has inside how to compute kernel density but do not think I'll use it
+#point density seems to do the job
 
-#Plot nicely PC1
-ce_pc1 <- conditional_effects(model_1_all_spp_4pcs, effects = "PC1:guild",points=T) 
+PCbiplot <- function(PC, x="PC1", y="PC3") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
+  plot <- plot + geom_point(data=dat, aes(-x, -y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .5 * mult * (get(x)),
+                      v2 = .5 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
+  plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
+                       panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC3*c(3,4,4,4,4,4)),
+                          label = PCAloadings$Variables, color="black",size=5)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_bw()
+  
+  #CALCULATE KERNELS
+  #mv.kde <- kde2d(data[,1], data[,2], n = 400)
+  #dx <- diff(mv.kde$x[1:2])  # lifted from emdbook::HPDregionplot()
+  #dy <- diff(mv.kde$y[1:2])
+  #sz <- sort(mv.kde$z)
+  #c1 <- cumsum(sz) * dx * dy
+  
+  # specify desired contour levels:
+  #prob <- c(0.5)
+  #prob_1 <- c(0.90)
+  # plot:
+  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
+  #dc <- melt(mv.kde$z)
+  
+  #dc$prob <- approx(sz,1-c1,dc$value)$y
+  
+  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob),colour="brown4",breaks=prob)
+  # plot:
+  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
+  #dc <- melt(mv.kde$z)
+  
+  #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
+  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
+  
+  
+  plot
+  
+}
 
-ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-  aes(x = PC1, y = Interaction),size = 1, alpha=0.75) + geom_line(size=1.2) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
-  theme_ms()
 
-#Plot nicely PC2
-ce_pc2 <- conditional_effects(model_1_all_spp_4pcs, effects = "PC2:guild",points=T) 
+PCbiplot(PC)
 
-ggplot(ce_pc2[[1]], aes(x = PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-   aes(x = PC2, y = Interaction),size = 1, alpha=0.75) + geom_line(size=1.2) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
-  theme_ms()
-
-
-#Plot nicely PC2
-ce_pc3 <- conditional_effects(model_1_all_spp_4pcs, effects = "PC3:guild",points=T) 
-
-ggplot(ce_pc3[[1]], aes(x = PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-  aes(x = PC3, y = Interaction),size = 1, alpha=0.75) + geom_line(size=1.2) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
-  theme_ms()
-
-
-#Plot nicely PC2
-ce_pc4 <- conditional_effects(model_1_all_spp_4pcs, effects = "PC4:guild",points=T) 
-
-ggplot(ce_pc4[[1]], aes(x = PC4, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-  aes(x = PC4, y = Interaction),size = 1, alpha=0.75) + geom_line(size=1.2) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
-  theme_ms()
-
+                       

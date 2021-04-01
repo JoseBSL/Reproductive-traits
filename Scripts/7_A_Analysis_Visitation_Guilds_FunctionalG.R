@@ -53,6 +53,20 @@ dat$guild[dat$guild=="Bee"] <- "Bees"
 dat$guild <- factor(dat$guild, levels = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
                                           "Non-syrphids-diptera", "Syrphids"))
 
+
+#LOAD GLOBAL PCA 
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+#Convert to data.frame
+PCA_DATA <- as.data.frame(phyl_pca_forest$S)
+#Convert rownames to colnames
+library(tidyverse)
+PCA_DATA_1 <-PCA_DATA %>% rownames_to_column( var = "Species_all")
+#Remove underscore of species names
+PCA_DATA_1$Species_all <-  gsub("_", " ", PCA_DATA_1$Species_all)
+
+
+data <- merge(dat, PCA_DATA_1, by="Species_all")
+
 ########################################################################################################################################################
 #2) PHYLOGENETIC DISTANCE OF THE SPECIES
 ########################################################################################################################################################

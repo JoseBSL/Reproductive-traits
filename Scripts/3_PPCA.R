@@ -34,10 +34,6 @@ dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
 dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
 dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
 dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
-
-
-cor.test(dat$Corolla_diameter_mean,dat$OVULES_IMPUTED)
-
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
@@ -136,41 +132,9 @@ PC$S
 PC$L
 
 nrow(PC$S)
+  
+percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
 
-
-library(magick)
-tree <- image_read("Images/PPCA_Plot/Tree.png")
-tree_1 <- as.raster(tree)
-
-style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
-style_l_1 <- as.raster(style_l)
-
-style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
-style_s_1 <- as.raster(style_s)
-
-ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
-ovule_h_1 <- as.raster(ovule_h)
-
-ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
-ovule_l_1 <- as.raster(ovule_l)
-
-selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
-selfing_n_1 <- as.raster(selfing_n)
-
-selfing_h <- image_read("Images/PPCA_Plot/Selfing_High.png")
-selfing_h_1 <- as.raster(selfing_h)
-
-single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
-single_flower_1 <- as.raster(single_flower)
-
-many_flowers <- image_read("Images/PPCA_Plot/Many_Flowers.png")
-many_flowers_1 <- as.raster(many_flowers)
-
-large_flower <- image_read("Images/PPCA_Plot/Large_Flower.png")
-large_flower_1 <- as.raster(large_flower)
-
-flower_small <- image_read("Images/PPCA_Plot/Flower_Small.png")
-flower_small_1 <- as.raster(flower_small)
 
 ########################################################################################################################################################
 #4) PLOT PPCA
@@ -182,10 +146,6 @@ flower_small_1 <- as.raster(flower_small)
 #seems massive but in reality is a scatterplot with arrows
 #it has inside how to compute kernel density but do not think I'll use it
 #point density seems to do the job
-
-PC$S[,1] <- -PC$S[,1]
-PC$S[,2] <- -PC$S[,2]
-
 
 PCbiplot <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
@@ -205,12 +165,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-  
-  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',colour='black') + 
-    scale_fill_continuous(low="green",high="red") 
-  
 
-  plot <- plot + geom_point(data=dat, aes(x, y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  plot <- plot + geom_point(data=dat, aes(-x, -y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
   
   ########
@@ -238,34 +194,18 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")+ ylim(-4,4.5)+xlim(-4,4)
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
   rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
- # plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
-  
-  #                        label = PCAloadings$Variables, color="black",size=5) 
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
+                          label = PCAloadings$Variables, color="black",size=5)
   
   #CHANGE THEME
   
-  plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -3.95, xmax = -2.95,ymin = 2.25, ymax = 4)+
-     annotation_raster(style_l_1, xmin = 2.5, xmax = 3,ymin = 2, ymax = 3) +
-    annotation_raster(style_s_1, xmin = -2.65, xmax = -2.15,ymin = -2.5, ymax = -1.5) +
-    annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4,ymin = -0.75, ymax = 0.25) +
-    annotation_raster(ovule_l_1, xmin = -3.65, xmax = -3.15,ymin = -0.2, ymax = 0.7) +
-    annotation_raster(selfing_n_1, xmin = -0.5, xmax = 1,ymin = 2.5, ymax = 4.5) +
-    annotation_raster(selfing_h_1, xmin = -0.75, xmax = 0.15,ymin = -4, ymax = -3) +
-    annotation_raster(single_flower_1, xmin = 2.75, xmax = 3.5,ymin = -1.9, ymax = -0.9) +
-    annotation_raster(many_flowers_1, xmin = -4.25, xmax = -3.25,ymin = 0.75, ymax = 2.25) +
-    annotation_raster(large_flower_1, xmin = 3.3, xmax = 4,ymin = 1, ymax = 2.1) +
-    annotation_raster(flower_small_1, xmin = -3.5, xmax = -1.75,ymin = -2, ymax = 0) 
-    
-    
-    
-    
-  
+  plot <- plot + theme_bw()
   
   #CALCULATE KERNELS
   #mv.kde <- kde2d(data[,1], data[,2], n = 400)
