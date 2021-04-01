@@ -1,27 +1,21 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE THE PCA
-
-#1) LOAD DATA 
-
+#SCRIPT TO CALCULATE THE PHLOGENETIC INFORMED PRINCIPAL COMPONENT ANALYSIS
 ########################################################################################################################################################
 #LOAD LIBRARIES
-library(phytools)
+library(phytools) #ppca
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
 library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
-library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
+library(reshape2) #data processing
+library(MASS) #I think I used it for the kernel density of the plotting function; no longer used but I leave in case its handy later on
+library(ggplot2) #plotting
 library(broman) #crayon colours
+library(magick) #add images
 ########################################################################################################################################################
 #1) LOAD DATA
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-dat_1 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv", row.names = "X") 
-
-dat$Clusters <- dat_1$Clusters
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -34,14 +28,12 @@ dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
 dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
 dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
 dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
-
-
-cor.test(dat$Corolla_diameter_mean,dat$OVULES_IMPUTED)
-
 ########################################################################################################################################################
-#3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
+#3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE WHICH HELPS IMPUTATION PROCESS. SEE ARTICLE FOR REF.
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,22)]
+dat_cleaning <- dat[,c(2,3,4,8,11,12,14,15,18)]
+#CHECK LEVELS
+str(dat)
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -50,28 +42,26 @@ dat_cleaning_2 <- dat_cleaning_1 %>%
   filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
 
 dat_cleaning_3 <- dat_cleaning_2 %>%
-  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
+  filter(between(Style_length, quantile(Style_length, 0.025), quantile(Style_length, 0.975)))
 
 dat_cleaning_4 <- dat_cleaning_3 %>%
-  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
+  filter(between(Ovule_number, quantile(Ovule_number, 0.025), quantile(Ovule_number, 0.975)))
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
-  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+  filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
+#ALL VALUES ARE BETWEEN 0 AND 100, THEREFORE WE DO NOT DISCARD OUTLIERS FOR THIS VARIABLE
 #dat_cleaning_6 <- dat_cleaning_5 %>%
 # filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
 
-
-#LOG all columns, seems neccesary to standardize skewed data
-
-
+#LOG TRANSFORM AND SCALE DATA
+#CHECK LEVELS
+str(dat_cleaning_5)
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
 
 
 final_d <- dat_cleaning_5[,c(4:9)]
-
-
 ########################################################################################################################################################
 #4) GET PHYLO
 ########################################################################################################################################################
@@ -94,7 +84,6 @@ colnames(A_5) <- gsub("\\*", "", colnames(A_5))
 colnames(A_5) <- gsub("_", " ", colnames(A_5))
 rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
-
 ########################################################################################################################################################
 #4) CALCULATE PPCA
 ########################################################################################################################################################
@@ -106,22 +95,18 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
-#phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-
+phyl_pca_forest <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
-#saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
-saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
+saveRDS(phyl_pca_forest, "Data/RData/phyl_pca_forest.rds")
 #SAVE ALSO DATA TO PLOT IT IN RMD file
-saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca_CLUSTERS.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_PPCA.rds")
 
 ####
 #READ DATA
 ####
-phyl_pca_famd <- readRDS("Data/RData/phyl_pca_famd.rds")
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
 
 
@@ -137,40 +122,6 @@ PC$L
 
 nrow(PC$S)
 
-
-library(magick)
-tree <- image_read("Images/PPCA_Plot/Tree.png")
-tree_1 <- as.raster(tree)
-
-style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
-style_l_1 <- as.raster(style_l)
-
-style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
-style_s_1 <- as.raster(style_s)
-
-ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
-ovule_h_1 <- as.raster(ovule_h)
-
-ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
-ovule_l_1 <- as.raster(ovule_l)
-
-selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
-selfing_n_1 <- as.raster(selfing_n)
-
-selfing_h <- image_read("Images/PPCA_Plot/Selfing_High.png")
-selfing_h_1 <- as.raster(selfing_h)
-
-single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
-single_flower_1 <- as.raster(single_flower)
-
-many_flowers <- image_read("Images/PPCA_Plot/Many_Flowers.png")
-many_flowers_1 <- as.raster(many_flowers)
-
-large_flower <- image_read("Images/PPCA_Plot/Large_Flower.png")
-large_flower_1 <- as.raster(large_flower)
-
-flower_small <- image_read("Images/PPCA_Plot/Flower_Small.png")
-flower_small_1 <- as.raster(flower_small)
 
 ########################################################################################################################################################
 #4) PLOT PPCA
@@ -250,22 +201,18 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -3.95, xmax = -2.95,ymin = 2.25, ymax = 4)+
-     annotation_raster(style_l_1, xmin = 2.5, xmax = 3,ymin = 2, ymax = 3) +
-    annotation_raster(style_s_1, xmin = -2.65, xmax = -2.15,ymin = -2.5, ymax = -1.5) +
-    annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4,ymin = -0.75, ymax = 0.25) +
-    annotation_raster(ovule_l_1, xmin = -3.65, xmax = -3.15,ymin = -0.2, ymax = 0.7) +
-    annotation_raster(selfing_n_1, xmin = -0.5, xmax = 1,ymin = 2.5, ymax = 4.5) +
-    annotation_raster(selfing_h_1, xmin = -0.75, xmax = 0.15,ymin = -4, ymax = -3) +
-    annotation_raster(single_flower_1, xmin = 2.75, xmax = 3.5,ymin = -1.9, ymax = -0.9) +
-    annotation_raster(many_flowers_1, xmin = -4.25, xmax = -3.25,ymin = 0.75, ymax = 2.25) +
-    annotation_raster(large_flower_1, xmin = 3.3, xmax = 4,ymin = 1, ymax = 2.1) +
-    annotation_raster(flower_small_1, xmin = -3.5, xmax = -1.75,ymin = -2, ymax = 0) 
-    
-    
-    
-    
-  
+  #plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -3.95, xmax = -2.95,ymin = 2.25, ymax = 4)+
+   #  annotation_raster(style_l_1, xmin = 2.5, xmax = 3,ymin = 2, ymax = 3) +
+    #annotation_raster(style_s_1, xmin = -2.65, xmax = -2.15,ymin = -2.5, ymax = -1.5) +
+    #annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4,ymin = -0.75, ymax = 0.25) +
+    #annotation_raster(ovule_l_1, xmin = -3.65, xmax = -3.15,ymin = -0.2, ymax = 0.7) +
+    #annotation_raster(selfing_n_1, xmin = -0.5, xmax = 1,ymin = 2.5, ymax = 4.5) +
+    #annotation_raster(selfing_h_1, xmin = -0.75, xmax = 0.15,ymin = -4, ymax = -3) +
+    #annotation_raster(single_flower_1, xmin = 2.75, xmax = 3.5,ymin = -1.9, ymax = -0.9) +
+    #annotation_raster(many_flowers_1, xmin = -4.25, xmax = -3.25,ymin = 0.75, ymax = 2.25) +
+    #annotation_raster(large_flower_1, xmin = 3.3, xmax = 4,ymin = 1, ymax = 2.1) +
+    #annotation_raster(flower_small_1, xmin = -3.5, xmax = -1.75,ymin = -2, ymax = 0) 
+
   
   #CALCULATE KERNELS
   #mv.kde <- kde2d(data[,1], data[,2], n = 400)
@@ -290,7 +237,6 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
   #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
-  
   
   plot
   
