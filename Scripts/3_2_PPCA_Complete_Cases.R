@@ -1,18 +1,16 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE THE PCA
-
-#1) LOAD DATA 
-
+#SCRIPT TO CALCULATE THE PHLOGENETIC INFORMED PRINCIPAL COMPONENT ANALYSIS
+#Just filled rows for the different quantitative variables (no imputed data)
 ########################################################################################################################################################
 #LOAD LIBRARIES
-library(phytools)
+library(phytools) #ppca
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
 library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
+library(reshape2) #data processing
 library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
+library(MASS) #I think I used it for the kernel density of the plotting function; no longer used but I leave in case its handy later on
+library(ggplot2) #plotting
 library(broman) #crayon colours
 ########################################################################################################################################################
 #1) LOAD DATA
@@ -37,7 +35,9 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 
 str(dat_cleaning)
 
-dat_cleaning <- dat[c("Family_all","Genus_all","Species_all", "Autonomous_selfing_level_fruit_set", "Flowers_per_plant","Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED", "IMPUTED_plant_height_mean_m", "Nectar_presence_absence")]
+dat_cleaning <- dat[c("Family_all","Genus_all","Species_all", "Autonomous_selfing_level_fruit_set", 
+                      "Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number", "Plant_height_mean_m", 
+                      "Nectar_presence_absence")]
 
 
 dat_cleaning_1 <- dat_cleaning %>%
@@ -47,18 +47,18 @@ dat_cleaning_2 <- dat_cleaning_1 %>%
   filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
 
 dat_cleaning_3 <- dat_cleaning_2 %>%
-  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
+  filter(between(Style_length, quantile(Style_length, 0.025), quantile(Style_length, 0.975)))
 
 dat_cleaning_4 <- dat_cleaning_3 %>%
-  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
+  filter(between(Ovule_number, quantile(Ovule_number, 0.025), quantile(Ovule_number, 0.975)))
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
-  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+  filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
 
-#LOG all columns, seems neccesary to standardize skewed data
-
-
+#LOG TRANSFORM AND SCALE DATA
+#CHECK LEVELS
+str(dat_cleaning_5)
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
 
@@ -99,7 +99,6 @@ rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 #phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 phyl_pca_forest_complete_cases <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
-
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
@@ -112,8 +111,6 @@ saveRDS(dat_cleaning_5, "Data/RData/data_complete_cases.rds")
 
 phyl_pca_forest_complete_cases <- readRDS("Data/RData/phyl_pca_forest_complete_cases.rds")
 
-
-
 #CALL the output PC for simplicity
 PC <- phyl_pca_forest_complete_cases
 #CHECK CONTENT
@@ -123,9 +120,6 @@ PC$Eval
 PC$S
 #PC loadings (ARROWS)
 PC$L
-
-
-
 ########################################################################################################################################################
 #4) PLOT PPCA
 ########################################################################################################################################################

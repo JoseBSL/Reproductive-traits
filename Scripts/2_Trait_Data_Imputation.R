@@ -11,9 +11,9 @@
 
 #5) ICLUDE EIGENVALUES IN RAWDATA TO IMPROVE IMPUTATION OURPUT
 
-#6) IMPUTE DATA -TWO METHODS- FAMD AND RANDOM FOREST
+#6) IMPUTE DATA 
 
-#7) SAVE THE TWO IMPUTATION METHODS
+#7) SAVE IMPUTED DATA 
 ########################################################################################################################################################
 #LOAD LIBRARIES
 library(readxl) #read excel file (trait data)
@@ -39,29 +39,30 @@ trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 #A) CLEAN DATA
 #####
 #select just filled rows
-trait_data_1 <- trait_data[1:1712,]
+trait_data_1 <- trait_data[1:1712,] #It may be a more elegant way but this does the job, 1712 rows of data
 
-
+str(trait_data_1)
 #filter data, select species with flower level info and capitulum
 trait_filtered <- filter(trait_data_1, Info_level == "flower" |  Info_level == "capitulum")
 levels(as.factor(trait_filtered$Info_level)) #checking levels
-#remove NA's and duplicated species
-trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA
+#remove NA's and duplicated species|Some spp are repeated once the spp names are standardize with taxize
+trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA 
 trait_filtered_1 <- trait_filtered[!is.na(trait_filtered$Species_all),]
 trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
 
 
-#select columns of interest
-t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
-                  "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
-                  "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
-                  "IMPUTED_plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
+#Select columns to work with
+t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
+                    "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+                    "Flowers_per_plant", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                    "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
 
 ########################################################################################################################################################
 #####
 #B) RENAME LEVELS FOR IMPUTATION
 #####
-#Breeding_system
+#Breeding_system| For the purpose of this study we are not going to consider other complex breeding systems and just focus on 
+#Hermaphroditism, dioecy and monoecy, the closest levels are grouped within each category
 t$Breeding_system <- as.character(t$Breeding_system)
 t$Breeding_system[t$Breeding_system=="androdioecious"] <- "dioecious"
 t$Breeding_system[t$Breeding_system=="androgynodioecious"] <- "dioecious"
@@ -76,7 +77,7 @@ t$Breeding_system[t$Breeding_system=="protandrous"] <- "hermaphrodite"
 t$Breeding_system[t$Breeding_system=="protogynous"] <- "hermaphrodite"
 t$Breeding_system[t$Breeding_system=="subdioecious"] <- "dioecious"
 t$Breeding_system[t$Breeding_system=="submonoecious"] <- "monoecious"
-#change to capital letters
+#Change to capital letters| There are already levels with lower case
 t$Breeding_system[t$Breeding_system=="monoecious"] <- "Monoecious"
 t$Breeding_system[t$Breeding_system=="dioecious"] <- "Dioecious"
 t$Breeding_system[t$Breeding_system=="hermaphrodite"] <- "Hermaphrodite"
@@ -123,6 +124,7 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 #we will perform further analysis just with a subset with the quantitative values o nectar (very interesting data and diffciult to obtain)
 
 
+#We convert cualitative data to quantitative to reduce missing data on this column and hence conduct the imputation 
 #use ifelse base r does not work with these NA'S Even with work around. base r does not like the na option of read excel
 t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("high") & is.na(t$Autonomous_selfing_level_fruit_set), 88, t$Autonomous_selfing_level_fruit_set)
 t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("medium") & is.na(t$Autonomous_selfing_level_fruit_set), 50.5, t$Autonomous_selfing_level_fruit_set)
@@ -132,10 +134,10 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 #t$Nectar_ul adding it here just to see how many cells 
 #Now we just select presence/absence of nectar
 #select columns of interest
-t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
-                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
-                        "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
-                        "IMPUTED_plant_height_mean_m","Nectar_presence_absence")]
+t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
+                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", 
+                        "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
+                        "Plant_height_mean_m","Nectar_presence_absence")]
 
 
 #check missing data now
@@ -151,9 +153,8 @@ sum(missing_data)
 ########################################################################################################################################################
 #4) CALCULATE PHYLOGENETIC DISTANCE TO CORRECT WITH EIGENVALUES IN THE IMPUTATION
 ########################################################################################################################################################
-
 #Convert to factor 
-cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "IMPUTED_Compatibility", "Autonomous_selfing_level", "Flower_morphology",
+cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "Compatibility_system", "Autonomous_selfing_level", "Flower_morphology",
           "Flower_symmetry", "life_form", "lifespan","Nectar_presence_absence")
 t[cols] <- lapply(t[cols], factor)  ## as.factor() could also be used
 str(t)
@@ -230,64 +231,25 @@ dat_phylo <- merge(t, phylo_impute, by="Species_all")
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 
-#Now the data has a column of eigenvalues to correct in the imputation 
-#Visualize missing data 
-#vis_miss(t[,c(5,6,8:20)])
-#try to find clusters of missing data
-#vis_miss(dat_phylo[,c(5,6,8:20)], cluster = TRUE)
-
 ########################################################################################################################################################
-#6) IMPUTE DATA -TWO METHODS- FAMD AND RANDOM FOREST
+#6) IMPUTE DATA ---> RANDOM FOREST
 ########################################################################################################################################################
-
 #####
-#METHOD 1: FAMD
+# RANDOM FOREST
 #####
-# better output than random forest when there is colinearity of variables
-#Impute
-t_imputed <- imputeFAMD(dat_phylo[,c(6:23)], ncp=4,threshold = 1e-06,method="Regularized") 
-
-t_imputed_1 <- t_imputed$completeObs[,-18]
-str(t_imputed_1)
-
-sp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
-#merge
-famd_data <- as.data.frame(cbind(sp, t_imputed_1))
-#add species geonet column 
-rownames(famd_data) <- dat_phylo$Species_geonet
-
-
-#The imputation with famd gives some values under the lower limit with ecological sense
-#fix and set new lower bound
-famd_data$Autonomous_selfing_level_fruit_set <-replace(famd_data$Autonomous_selfing_level_fruit_set, famd_data$Autonomous_selfing_level_fruit_set<0, 0)
-famd_data$Flowers_per_plant <-replace(famd_data$Flowers_per_plant, famd_data$Flowers_per_plant<1, 1)
-famd_data$Flowers_per_inflorescence <-replace(famd_data$Flowers_per_inflorescence, famd_data$Flowers_per_inflorescence<1, 1)
-famd_data$Floral_unit_width <-replace(famd_data$Floral_unit_width, famd_data$Floral_unit_width<1, 0.001)
-famd_data$Corolla_diameter_mean <-replace(famd_data$Corolla_diameter_mean, famd_data$Corolla_diameter_mean<1, 0.001)
-famd_data$Corolla_length_mean <-replace(famd_data$Corolla_length_mean, famd_data$Corolla_length_mean<1, 0.001)
-famd_data$STYLE_IMPUTED <-replace(famd_data$STYLE_IMPUTED, famd_data$STYLE_IMPUTED<1, 0.001)
-famd_data$OVULES_IMPUTED <-replace(famd_data$OVULES_IMPUTED, famd_data$OVULES_IMPUTED<1, 1)
-famd_data$IMPUTED_plant_height_mean_m <-replace(famd_data$IMPUTED_plant_height_mean_m, famd_data$IMPUTED_plant_height_mean_m<1, 0.001)
-########################################################################################################################################################
-
-#####
-#METHOD 2: RANDOM FOREST
-#####
-forest_imputed <- missForest(dat_phylo[,c(6:23)], maxiter = 10,mtry = 4, ntree = 200)
+forest_imputed <- missForest(dat_phylo[,c(6:21)], maxiter = 10,mtry = 4, ntree = 200) #just variables and eigenvector of phylogenetic distance to help imputation
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-18]
+f_imp_data <- f_imp_data[,-16]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)
 #this is a bda fix but I'm trying to avoid using 
 rownames(forest_data) <- dat_phylo$Species_geonet
-
 ########################################################################################################################################################
-#7) SAVE THE TWO IMPUTATION METHODS
+#7) SAVE IMPUTATION 
 ########################################################################################################################################################
 write.csv(forest_data, "Data/Csv/all_species_imputed_trait_data_forest_data.csv")
-write.csv(famd_data, "Data/Csv/all_species_imputed_trait_data_famd_data.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################

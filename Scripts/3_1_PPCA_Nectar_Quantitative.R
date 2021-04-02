@@ -1,18 +1,16 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE THE PCA
-
-#1) LOAD DATA 
-
+#SCRIPT TO CALCULATE THE PHLOGENETIC INFORMED PRINCIPAL COMPONENT ANALYSIS
+#Just for species with quantitative values of nectar (microlitres)
 ########################################################################################################################################################
 #LOAD LIBRARIES
-library(phytools)
+library(phytools) #ppca
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
 library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
+library(reshape2) #data processing
 library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
+library(MASS) #I think I used it for the kernel density of the plotting function; no longer used but I leave in case its handy later on
+library(ggplot2)  #plotting
 library(broman) #crayon colours
 ########################################################################################################################################################
 #1) LOAD DATA
@@ -34,8 +32,9 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,21,22)]
-
+dat_cleaning <- dat[,c(2,3,4,8,11,12,14,15,18,20)]
+#Check levels
+str(dat_cleaning)
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
 
@@ -43,27 +42,27 @@ dat_cleaning_2 <- dat_cleaning_1 %>%
   filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
 
 dat_cleaning_3 <- dat_cleaning_2 %>%
-  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
+  filter(between(Style_length, quantile(Style_length, 0.025), quantile(Style_length, 0.975)))
 
 dat_cleaning_4 <- dat_cleaning_3 %>%
-  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
+  filter(between(Ovule_number, quantile(Ovule_number, 0.025), quantile(Ovule_number, 0.975)))
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
-  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+  filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
-#Not much of a difference adding or removing these, we keep them.
+#ALL VALUES ARE BETWEEN 0 AND 100, THEREFORE WE DO NOT DISCARD OUTLIERS FOR THIS VARIABLE
 #dat_cleaning_6 <- dat_cleaning_5 %>%
  # filter(between(Nectar_ul, quantile(Nectar_ul, 0.025), quantile(Nectar_ul, 0.975)))
 
 
-#LOG all columns, seems neccesary to standardize skewed data
+#LOG TRANSFORM AND SCALE DATA
+#CHECK LEVELS
+str(dat_cleaning_5)
+dat_cleaning_5[,c(4:10)] <- log(dat_cleaning_5[,c(4:10)]+1)
+dat_cleaning_5[,c(4:10)] <- scale(dat_cleaning_5[,c(4:10)], center = T, scale = T)
 
 
-dat_cleaning_5[,c(4:9,11)] <- log(dat_cleaning_5[,c(4:9,11)]+1)
-dat_cleaning_5[,c(4:9,11)] <- scale(dat_cleaning_5[,c(4:9,11)], center = T, scale = T)
-
-
-final_d <- dat_cleaning_5[,c(4:9,11)]
+final_d <- dat_cleaning_5[,c(4:10)]
 
 
 ########################################################################################################################################################
@@ -93,7 +92,7 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 #4) CALCULATE PPCA
 ########################################################################################################################################################
 #set same rownames
-final_d <-  dat_cleaning_5[,c(4:9,11)]
+final_d <-  dat_cleaning_5[,c(4:10)]
 
 rownames(final_d) <- dat_cleaning_5$Species_all
 #fix species names

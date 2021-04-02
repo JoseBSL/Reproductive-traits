@@ -1,25 +1,22 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE THE PCA
-
-#1) LOAD DATA 
-
+#SCRIPT TO CALCULATE THE PHLOGENETIC INFORMED PRINCIPAL COMPONENT ANALYSIS
+#Same as script 3 but added qualitative variables to colour the location of the trait space
 ########################################################################################################################################################
 #LOAD LIBRARIES
-library(phytools)
+library(phytools) #ppca
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
 library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
+library(reshape2) #data processing
 library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
+library(MASS) #I think I used it for the kernel density of the plotting function; no longer used but I leave in case its handy later on
+library(ggplot2) #plotting
 library(broman) #crayon colours
 ########################################################################################################################################################
 #1) LOAD DATA
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -36,10 +33,9 @@ dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
 
-dat_cleaning <- dat[,c("Family_all", "Genus_all", "Species_all", "Breeding_system", "IMPUTED_Compatibility", "Autonomous_selfing_level",
-                       "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant","Corolla_diameter_mean","STYLE_IMPUTED",
-                       "OVULES_IMPUTED","life_form", "lifespan", "IMPUTED_plant_height_mean_m", "Nectar_presence_absence")]
-
+dat_cleaning <- dat[,c("Family_all", "Genus_all", "Species_all", "Breeding_system", "Compatibility_system", "Autonomous_selfing_level",
+                       "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant","Corolla_diameter_mean",
+                       "Style_length","Ovule_number","life_form", "lifespan", "Plant_height_mean_m", "Nectar_presence_absence")]
 
 
 dat_cleaning_1 <- dat_cleaning %>%
@@ -49,29 +45,35 @@ dat_cleaning_2 <- dat_cleaning_1 %>%
   filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
 
 dat_cleaning_3 <- dat_cleaning_2 %>%
-  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
+  filter(between(Style_length, quantile(Style_length, 0.025), quantile(Style_length, 0.975)))
 
 dat_cleaning_4 <- dat_cleaning_3 %>%
-  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
+  filter(between(Ovule_number, quantile(Ovule_number, 0.025), quantile(Ovule_number, 0.975)))
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
-  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+  filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
 
 
-#LOG all columns, seems neccesary to standardize skewed data
+#ALL VALUES ARE BETWEEN 0 AND 100, THEREFORE WE DO NOT DISCARD OUTLIERS FOR THIS VARIABLE
+#dat_cleaning_6 <- dat_cleaning_5 %>%
+# filter(between(Nectar_ul, quantile(Nectar_ul, 0.025), quantile(Nectar_ul, 0.975)))
 
+
+#LOG TRANSFORM AND SCALE DATA
+#CHECK LEVELS
+str(dat_cleaning_5)
 
 dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-                  "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m")] <- log(dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-              "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m" )]+1)
+                  "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m")] <- log(dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
+              "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m" )]+1)
 dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-                  "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m")] <- scale(dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-                  "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m")], center = T, scale = T)
+                  "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m")] <- scale(dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
+                  "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m")], center = T, scale = T)
 
 
 final_d <- dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-                             "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m")]
+                             "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m")]
 
 
 ########################################################################################################################################################
@@ -102,7 +104,7 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 ########################################################################################################################################################
 #set same rownames
 final_d <-  dat_cleaning_5[,c("Autonomous_selfing_level_fruit_set","Flowers_per_plant",
-                              "Corolla_diameter_mean","STYLE_IMPUTED","OVULES_IMPUTED","IMPUTED_plant_height_mean_m")]
+                              "Corolla_diameter_mean","Style_length","Ovule_number","Plant_height_mean_m")]
 
 rownames(final_d) <- dat_cleaning_5$Species_all
 #fix species names
@@ -116,7 +118,7 @@ rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 #SAVE PHYLO PCA OUTPUT
 ####
 #saveRDS(phyl_pca_forest, "Data/RData/Data_for_plotting_qualitative_pca_vars.rds")
-saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
+#saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
 ####
 #READ DATA
 ####

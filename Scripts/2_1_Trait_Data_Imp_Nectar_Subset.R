@@ -52,10 +52,10 @@ trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
 
 
 #select columns of interest
-t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
-                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
-                        "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
-                        "IMPUTED_plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
+t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
+                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", 
+                        "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
+                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
 
 ########################################################################################################################################################
 #2 DATA PREPARATION
@@ -118,10 +118,10 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 
 #Now we just select presence/absence of nectar
 #select columns of interest
-t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","IMPUTED_Compatibility","Autonomous_selfing_level",
-         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Flowers_per_inflorescence",
-         "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean", "STYLE_IMPUTED", "OVULES_IMPUTED", "life_form", "lifespan",
-         "IMPUTED_plant_height_mean_m","Nectar_presence_absence", "Nectar_ul")]
+t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
+         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant",
+         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
+         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul")]
 
 ########################################################################################################################################################
 #3) EXPLORE PATTERNS OF MISSING DATA
@@ -136,7 +136,7 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 #4) CALCULATE PHYLOGENETIC DISTANCE TO CORRECT WITH EIGENVALUES IN THE IMPUTATION
 ########################################################################################################################################################
 #Convert to factor 
-cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "IMPUTED_Compatibility", "Autonomous_selfing_level", "Flower_morphology",
+cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "Compatibility_system", "Autonomous_selfing_level", "Flower_morphology",
           "Flower_symmetry", "life_form", "lifespan","Nectar_presence_absence")
 t[cols] <- lapply(t[cols], factor)  ## as.factor() could also be used
 
@@ -216,10 +216,10 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 #METHOD: RANDOM FOREST
 #####
-forest_imputed <- missForest(dat_phylo[,c(6:24)], maxiter = 10,mtry = 4, ntree = 200)
+forest_imputed <- missForest(dat_phylo[,c(6:22)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-19]
+f_imp_data <- f_imp_data[,-17]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)

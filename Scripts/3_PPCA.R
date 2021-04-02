@@ -1,27 +1,21 @@
 ########################################################################################################################################################
-#SCRIPT TO CALCULATE THE PCA
-
-#1) LOAD DATA 
-
+#SCRIPT TO CALCULATE THE PHLOGENETIC INFORMED PRINCIPAL COMPONENT ANALYSIS
 ########################################################################################################################################################
 #LOAD LIBRARIES
-library(phytools)
+library(phytools) #ppca
 library(ape) #for phylogenetic distance
 library(dplyr) #data processing
 library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
-library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
+library(reshape2) #data processing
+library(MASS) #I think I used it for the kernel density of the plotting function; no longer used but I leave in case its handy later on
+library(ggplot2) #plotting
 library(broman) #crayon colours
+library(magick) #add images
 ########################################################################################################################################################
 #1) LOAD DATA
 ########################################################################################################################################################
 #read data with missing values filled by data imputation
 dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-dat_1 <- read.csv("Data/Csv/imputed_trait_data_hclust_5_clusters_forest_data.csv", row.names = "X") 
-
-dat$Clusters <- dat_1$Clusters
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
 ########################################################################################################################################################
@@ -35,9 +29,11 @@ dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
 #dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
 #dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
-#3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
+#3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE WHICH HELPS IMPUTATION PROCESS. SEE ARTICLE FOR REF.
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,14,16,17,20,22)]
+dat_cleaning <- dat[,c(2,3,4,8,11,12,14,15,18)]
+#CHECK LEVELS
+str(dat)
 
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
@@ -46,28 +42,26 @@ dat_cleaning_2 <- dat_cleaning_1 %>%
   filter(between(Corolla_diameter_mean, quantile(Corolla_diameter_mean, 0.025), quantile(Corolla_diameter_mean, 0.975)))
 
 dat_cleaning_3 <- dat_cleaning_2 %>%
-  filter(between(STYLE_IMPUTED, quantile(STYLE_IMPUTED, 0.025), quantile(STYLE_IMPUTED, 0.975)))
+  filter(between(Style_length, quantile(Style_length, 0.025), quantile(Style_length, 0.975)))
 
 dat_cleaning_4 <- dat_cleaning_3 %>%
-  filter(between(OVULES_IMPUTED, quantile(OVULES_IMPUTED, 0.025), quantile(OVULES_IMPUTED, 0.975)))
+  filter(between(Ovule_number, quantile(Ovule_number, 0.025), quantile(Ovule_number, 0.975)))
 
 dat_cleaning_5 <- dat_cleaning_4 %>%
-  filter(between(IMPUTED_plant_height_mean_m, quantile(IMPUTED_plant_height_mean_m, 0.025), quantile(IMPUTED_plant_height_mean_m, 0.975)))
+  filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
+#ALL VALUES ARE BETWEEN 0 AND 100, THEREFORE WE DO NOT DISCARD OUTLIERS FOR THIS VARIABLE
 #dat_cleaning_6 <- dat_cleaning_5 %>%
 # filter(between(Autonomous_selfing_level_fruit_set, quantile(Autonomous_selfing_level_fruit_set, 0.025), quantile(Autonomous_selfing_level_fruit_set, 0.975)))
 
-
-#LOG all columns, seems neccesary to standardize skewed data
-
-
+#LOG TRANSFORM AND SCALE DATA
+#CHECK LEVELS
+str(dat_cleaning_5)
 dat_cleaning_5[,c(4:9)] <- log(dat_cleaning_5[,c(4:9)]+1)
 dat_cleaning_5[,c(4:9)] <- scale(dat_cleaning_5[,c(4:9)], center = T, scale = T)
 
 
 final_d <- dat_cleaning_5[,c(4:9)]
-
-
 ########################################################################################################################################################
 #4) GET PHYLO
 ########################################################################################################################################################
@@ -90,7 +84,6 @@ colnames(A_5) <- gsub("\\*", "", colnames(A_5))
 colnames(A_5) <- gsub("_", " ", colnames(A_5))
 rownames(A_5) <- gsub("_", " ", rownames(A_5))
 
-
 ########################################################################################################################################################
 #4) CALCULATE PPCA
 ########################################################################################################################################################
@@ -102,22 +95,18 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
-#phyl_pca_famd_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-phyl_pca_forest_1 <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-
+phyl_pca_forest <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
-#saveRDS(phyl_pca_famd, "Data/RData/phyl_pca_famd.rds")
-saveRDS(phyl_pca_forest_1, "Data/RData/phyl_pca_forest.rds")
+saveRDS(phyl_pca_forest, "Data/RData/phyl_pca_forest.rds")
 #SAVE ALSO DATA TO PLOT IT IN RMD file
-saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca_CLUSTERS.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_PPCA.rds")
 
 ####
 #READ DATA
 ####
-phyl_pca_famd <- readRDS("Data/RData/phyl_pca_famd.rds")
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
 
 
@@ -132,8 +121,6 @@ PC$S
 PC$L
 
 nrow(PC$S)
-  
-percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
 
 
 ########################################################################################################################################################
@@ -146,6 +133,10 @@ percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
 #seems massive but in reality is a scatterplot with arrows
 #it has inside how to compute kernel density but do not think I'll use it
 #point density seems to do the job
+
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
 
 PCbiplot <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
@@ -165,8 +156,12 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',colour='black') + 
+    scale_fill_continuous(low="green",high="red") 
+  
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  plot <- plot + geom_point(data=dat, aes(x, y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
   
   ########
@@ -194,18 +189,30 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")+ ylim(-4,4.5)+xlim(-4,4)
   
   #ADD LABELS
   rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
-                          label = PCAloadings$Variables, color="black",size=5)
+ # plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4)),
+  
+  #                        label = PCAloadings$Variables, color="black",size=5) 
   
   #CHANGE THEME
   
-  plot <- plot + theme_bw()
+  #plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -3.95, xmax = -2.95,ymin = 2.25, ymax = 4)+
+   #  annotation_raster(style_l_1, xmin = 2.5, xmax = 3,ymin = 2, ymax = 3) +
+    #annotation_raster(style_s_1, xmin = -2.65, xmax = -2.15,ymin = -2.5, ymax = -1.5) +
+    #annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4,ymin = -0.75, ymax = 0.25) +
+    #annotation_raster(ovule_l_1, xmin = -3.65, xmax = -3.15,ymin = -0.2, ymax = 0.7) +
+    #annotation_raster(selfing_n_1, xmin = -0.5, xmax = 1,ymin = 2.5, ymax = 4.5) +
+    #annotation_raster(selfing_h_1, xmin = -0.75, xmax = 0.15,ymin = -4, ymax = -3) +
+    #annotation_raster(single_flower_1, xmin = 2.75, xmax = 3.5,ymin = -1.9, ymax = -0.9) +
+    #annotation_raster(many_flowers_1, xmin = -4.25, xmax = -3.25,ymin = 0.75, ymax = 2.25) +
+    #annotation_raster(large_flower_1, xmin = 3.3, xmax = 4,ymin = 1, ymax = 2.1) +
+    #annotation_raster(flower_small_1, xmin = -3.5, xmax = -1.75,ymin = -2, ymax = 0) 
+
   
   #CALCULATE KERNELS
   #mv.kde <- kde2d(data[,1], data[,2], n = 400)
@@ -230,7 +237,6 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
   #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
-  
   
   plot
   

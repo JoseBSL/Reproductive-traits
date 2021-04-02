@@ -1,0 +1,188 @@
+---
+title: ""
+output: pdf_document
+---
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10}
+setwd("~/R_Projects/Reproductive Traits")
+
+#Load libraries
+#LOAD LIBRARIES
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(cowplot)
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+      theme(text=element_text(color="black"),
+            axis.title=element_text( size = rel(1.2)),
+            axis.text=element_text(size = rel(1.75), color = "black"),
+            legend.title=element_text(face="bold"),
+            legend.text=element_text(),
+            legend.background=element_rect(fill="transparent"),
+            legend.key.size = unit(1.2, 'lines'),
+            panel.border=element_rect(color="black",size=1),
+            panel.grid.minor.x =element_blank(),
+            panel.grid.minor.y= element_blank(),
+             panel.grid.major= element_blank()
+      ))
+}
+
+#Load data
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+library(magick)
+tree <- image_read("Images/PPCA_Plot/Tree.png")
+tree_1 <- as.raster(tree)
+
+style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
+style_l_1 <- as.raster(style_l)
+
+style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
+style_s_1 <- as.raster(style_s)
+
+ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
+ovule_h_1 <- as.raster(ovule_h)
+
+ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
+ovule_l_1 <- as.raster(ovule_l)
+
+selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
+selfing_n_1 <- as.raster(selfing_n)
+
+selfing_h <- image_read("Images/PPCA_Plot/Selfing_High.png")
+selfing_h_1 <- as.raster(selfing_h)
+
+single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
+single_flower_1 <- as.raster(single_flower)
+
+many_flowers <- image_read("Images/PPCA_Plot/Many_Flowers.png")
+many_flowers_1 <- as.raster(many_flowers)
+#many_flowers_1 <- image_rotate(many_flowers, 45)
+
+
+large_flower <- image_read("Images/PPCA_Plot/Large_Flower.png")
+large_flower_1 <- as.raster(large_flower)
+
+flower_small <- image_read("Images/PPCA_Plot/Flower_Small.png")
+flower_small_1 <- as.raster(flower_small)
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+
+#Invert axes
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
+
+all_spp <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+
+
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon') + 
+  scale_fill_continuous(low="green",high="red",guide=FALSE,breaks = c(0.02, 0.050, 0.09), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.7),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+    plot <- plot + geom_point(data=dat, aes(x, y),size=0.95, color="black")
+
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.6, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.2, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, colour=c("black"))
+  
+   #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  
+
+  #CHANGE THEME
+    
+  plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -4, xmax = -2.9,ymin = 2.45, ymax = 4.35)+
+     annotation_raster(style_l_1, xmin = 2.45, xmax = 3.25,ymin = 2.25, ymax = 3.35) +
+    annotation_raster(style_s_1, xmin = -3.05, xmax = -2.25,ymin = -2.65, ymax = -1.75) +
+    annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
+    annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
+    annotation_raster(selfing_n_1, xmin = -0.2, xmax = 1.2,ymin = 2.8, ymax = 4.7) +
+    annotation_raster(selfing_h_1, xmin = -0.95, xmax = 0,ymin = -4.1, ymax = -3.25) +
+    annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
+    annotation_raster(many_flowers_1, xmin = -4.60, xmax = -3.15,ymin = 1, ymax = 2.15) +
+    annotation_raster(large_flower_1, xmin = 3.4, xmax = 4.2,ymin = 1, ymax = 2.1) +
+    annotation_raster(flower_small_1, xmin = -4, xmax = -1.85,ymin = -2.4, ymax = -0.4) +
+    annotation_raster(single_flower_1, xmin = 2.8, xmax = 3.5,ymin = -2.8, ymax = -2.2) 
+
+    
+      #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+ plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.5,5.5,7.5,7.3,6)), y = -(PCAloadings$PC2*c(4.77,2.4,3,6.5,5,5.5)),
+                         label = PCAloadings$Variables, color="black",fontface =2,size=5)
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+plot_grid(all_spp(PC))
+
+
+
+```
+
