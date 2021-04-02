@@ -25,10 +25,10 @@ dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.n
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat[cols.num] <- sapply(dat[cols.num],as.character)
 dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
-dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
-dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
-dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
-dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
+#dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
+#dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
+#dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
+#dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################
@@ -111,14 +111,14 @@ rownames(final_d) <- dat_cleaning_5$Species_all
 rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
+#Alredy calculated in script 3
 #phyl_pca_forest <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-
 
 ####
 #SAVE PHYLO PCA OUTPUT
 ####
 #saveRDS(phyl_pca_forest, "Data/RData/Data_for_plotting_qualitative_pca_vars.rds")
-#saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca.rds")
+saveRDS(dat_cleaning_5, "Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
 ####
 #READ DATA
 ####

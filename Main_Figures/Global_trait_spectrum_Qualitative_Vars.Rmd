@@ -41,7 +41,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 
 #Load data
-dat_cleaning_5 <- readRDS("Data/RData/data_all_species_for_rmd_plot_ppca.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
 
 #CALL the output PC for simplicity
@@ -76,7 +76,7 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-  dat$Compatibility <- dat_cleaning_5$IMPUTED_Compatibility
+  dat$Compatibility <- dat_cleaning_5$Compatibility_system
   dat$Compatibility <- as.character(dat$Compatibility)
   dat$Compatibility[dat$Compatibility=="dioecious"] <- "Unisexual flowers"
   dat$Compatibility[dat$Compatibility=="monoecious"] <- "Unisexual flowers"
