@@ -109,18 +109,24 @@ saveRDS(dat_analysis, "Data/RData/dat_analysis_results_analysis_1.rds")
 analysis_1 <- readRDS("results_analysis_1.rds")
 dat_analysis <- readRDS("dat_analysis_results_analysis_1.rds")
 
+
+#INVERT AXES FOR PLOTTING
+#ON THE GLOBAL SPECTRUM THEY ARE INVERTED SO IS GOING TO BE EASIER TO UNDERSTAND THE RESULTS IF I DO THE SAME HERE
+#DOES NOT CHANGE THE RELATIONSHIPS 
+
+
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
 
 p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
    aes(x = -PC1, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC1")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 #Plot nicely PC2
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
 
 p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC2, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC2")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 
 #Plot nicely PC3
@@ -128,7 +134,11 @@ ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T)
 
 p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC3, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC3")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 
+library(patchwork)
+
+combined <- p1 + p2 + p3 & theme(legend.position = "right")
+combined + plot_layout(guides = "collect")
 

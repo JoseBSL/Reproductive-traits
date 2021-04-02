@@ -1,0 +1,107 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+classoption: landscape
+
+---
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=20}
+
+#LOAD LIBRARIES 
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(tidyverse)
+library(patchwork) #panel of plots
+library(brms)
+library(cmdstanr)
+
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2)),
+           axis.text=element_text(size = rel(1.75), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+Visits_PCs <- readRDS("results_analysis_2_Visits.rds") #load model
+Specialization_PCs <- readRDS("results_analysis_2_Specialization.rds") #load model
+
+setwd("~/R_Projects/Reproductive Traits") #setwd to load data
+data_analysis_2 <- readRDS("Data/RData/data_analysis_2.rds") #load data 
+
+
+ce_1 <- conditional_effects(Visits_PCs, effects = "PC1",points=T) 
+colnames(ce_1[[1]])[3] <- "Interaction"
+
+Visits_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = Visits),
+  size = 2.5, alpha=0.5) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+ xlab("PC1") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
+
+ce_2 <- conditional_effects(Visits_PCs, effects = "PC2",points=T) 
+colnames(ce_2[[1]])[3] <- "Interaction"
+
+Visits_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = Visits),
+  size = 2.5, alpha=0.5) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+ xlab("PC2") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("")
+
+ce_3 <- conditional_effects(Visits_PCs, effects = "PC3",points=T) 
+colnames(ce_3[[1]])[3] <- "Interaction"
+
+Visits_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = Visits),
+  size = 2.5, alpha=0.5) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+ xlab("PC3") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("")
+
+
+#Visits_PC1 + Visits_PC2 + Visits_PC3 & theme(legend.position = "right")
+
+
+ce_1 <- conditional_effects(Specialization_PCs, effects = "PC1",points=T) 
+colnames(ce_1[[1]])[3] <- "Interaction"
+
+Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = d),
+  size = 2.5, alpha=0.5) + geom_line(colour="brown4",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+ xlab("PC1") +
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="brown4") + ylab("Specialization (d')")
+
+ce_2 <- conditional_effects(Specialization_PCs, effects = "PC2",points=T) 
+colnames(ce_2[[1]])[3] <- "Interaction"
+
+Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = d),
+  size = 2.5, alpha=0.5) + geom_line(colour="brown4",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+ xlab("PC2") +
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="brown4") + ylab("")
+
+ce_3 <- conditional_effects(Specialization_PCs, effects = "PC3",points=T) 
+colnames(ce_3[[1]])[3] <- "Interaction"
+
+Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = d),
+  size = 2.5, alpha=0.5) + geom_line(colour="brown4",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+ xlab("PC3") +
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="brown4") + ylab("")
+
+
+Visits_PC1 + Visits_PC2 + Visits_PC3+Specialization_PC1 + Specialization_PC2 + Specialization_PC3 & theme(legend.position = "right")
+
+
+```
+

@@ -61,21 +61,21 @@ data_analysis_2 <- readRDS("Data/RData/data_analysis_2.rds") #load data
 ce_1 <- conditional_effects(Visits_PCs, effects = "PC1",points=T) 
 colnames(ce_1[[1]])[3] <- "Interaction"
 
-Visits_PC1 <- ggplot(ce_1[[1]], aes(x = PC1, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = PC1, y = Visits),
+Visits_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = Visits),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
 
 ce_2 <- conditional_effects(Visits_PCs, effects = "PC2",points=T) 
 colnames(ce_2[[1]])[3] <- "Interaction"
 
-Visits_PC2 <- ggplot(ce_2[[1]], aes(x = PC2, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = PC2, y = Visits),
+Visits_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = Visits),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
 
 ce_3 <- conditional_effects(Visits_PCs, effects = "PC3",points=T) 
 colnames(ce_3[[1]])[3] <- "Interaction"
 
-Visits_PC3 <- ggplot(ce_3[[1]], aes(x = PC3, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = PC3, y = Visits),
+Visits_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = Visits),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
 
@@ -118,21 +118,21 @@ data_analysis_2 <- readRDS("Data/RData/data_analysis_2.rds") #load data
 ce_1 <- conditional_effects(Specialization_PCs, effects = "PC1",points=T) 
 colnames(ce_1[[1]])[3] <- "Interaction"
 
-Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = PC1, y = d),
+Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = d),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')")
 
 ce_2 <- conditional_effects(Specialization_PCs, effects = "PC2",points=T) 
 colnames(ce_2[[1]])[3] <- "Interaction"
 
-Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = PC2, y = d),
+Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = d),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')")
 
 ce_3 <- conditional_effects(Specialization_PCs, effects = "PC3",points=T) 
 colnames(ce_3[[1]])[3] <- "Interaction"
 
-Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = PC3, y = d),
+Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = d),
   size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')")
 
