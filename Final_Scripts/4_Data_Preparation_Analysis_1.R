@@ -7,8 +7,8 @@ library(data.table)
 #LOAD DATA
 ########################################################################################################################################################
 long_d <- read.csv("Data/Csv/long_format_quantitative_networks.csv", row.names = 1) #quantitative network data|weighted by frequency of visits per plant species
-phyl_pca <- readRDS("Data/RData/phyl_pca_all_numeric_values.rds") #add PCA loadings for analysis
-dat_cleaning <- readRDS("Data/RData/data_pca_all_numeric_values.rds") #data for PPCA
+phyl_pca <- readRDS("Data/RData/phyl_pca_forest.rds") #add PCA loadings for analysis
+dat_cleaning <- readRDS("Data/RData/data_all_species_PPCA.rds") #data for PPCA
 ########################################################################################################################################################
 #PREPARE DATA
 ########################################################################################################################################################
