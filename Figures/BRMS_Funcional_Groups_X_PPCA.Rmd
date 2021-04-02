@@ -73,7 +73,7 @@ ce_pc3 <- conditional_effects(model_1_subset_spp_4pcs, effects = "PC3:guild",poi
 p3 <- ggplot(ce_pc3[[1]], aes(x = PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat,
    aes(x = PC3, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
   ylim(0,quantile(dat$Interaction, 0.95)) + ylab("")+
-  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"), labels=c("Bees","Coleoptera", "Lepidoptera", "Non−bee−Hymenoptera", "Non−syrphids−Diptera", "Syrphids"))
 
 
 

@@ -51,6 +51,10 @@ PC$S
 PC$L
 
 library(magick)
+
+#Images were made by Paula Martin
+#Check her work on https://paulamartinart.com/
+
 tree <- image_read("Images/PPCA_Plot/Tree.png")
 tree_1 <- as.raster(tree)
 
