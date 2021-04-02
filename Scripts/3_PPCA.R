@@ -30,10 +30,10 @@ dat$Clusters <- dat_1$Clusters
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat[cols.num] <- sapply(dat[cols.num],as.character)
 dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
-dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
-dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
-dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
-dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
+#dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
+#dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
+#dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
+#dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE
 ########################################################################################################################################################

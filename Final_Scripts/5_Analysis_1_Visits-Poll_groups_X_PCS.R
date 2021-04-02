@@ -106,6 +106,9 @@ saveRDS(dat_analysis, "Data/RData/dat_analysis_results_analysis_1.rds")
 #PLOT
 ########################################################################################################################################################
 #Plot nicely PC1
+analysis_1 <- readRDS("Data/RData/results_analysis_1.rds")
+dat_analysis <- readRDS("Data/RData/dat_analysis_results_analysis_1.rds")
+
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
 
 p1 <- ggplot(ce_pc1[[1]], aes(x = PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
