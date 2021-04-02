@@ -104,8 +104,8 @@ colnames(all_df)[1] <- "Species_all"
 setwd("~/R_Projects/Reproductive traits") 
 
 #LOAD PPCA DATA FOR MERGE
-phyl_pca <- readRDS("Data/RData/phyl_pca_all_numeric_values.rds") #add PCA loadings for analysis
-dat_cleaning <- readRDS("Data/RData/data_pca_all_numeric_values.rds") #data for PPCA
+phyl_pca <- readRDS("Data/RData/phyl_pca_forest.rds") #add PCA loadings for analysis
+dat_cleaning <- readRDS("Data/RData/data_all_species_PPCA.rds") #data for PPCA
 
 #CONVERT TO DATAFRAME
 phyl_pca_1 <- data.frame(phyl_pca$S)
@@ -121,10 +121,19 @@ phyl_pca_1$Genus_all <- dat_cleaning_1$Genus_all
 phyl_pca_1$Species_all <- dat_cleaning_1$Species_all
 
 #MERGE DATAFRAMES
-data_analysis <- merge(all_df, phyl_pca_1, by = "Species_all", all.x = T)
+data_analysis <- merge(all_df, phyl_pca_1, by = "Species_all")
 
-
-
+#NOTE
+#data_analysis_VALUES_DROPPED <- merge(all_df, phyl_pca_1, by = "Species_all", all.x = T)
+#see that some levels are dropped but to calculate the position of the trait space is recommended 
+#to delete values out of the range 2.5-97.5 percentile
+#AND THIS IS WHY WE DO LOSS SOME SPP
+########################################################################################################################################################
+#SAVE DATA
+########################################################################################################################################################
+saveRDS(data_analysis, "Data/RData/data_analysis_2.rds") 
+########################################################################################################################################################
+########################################################################################################################################################
 
 
 
