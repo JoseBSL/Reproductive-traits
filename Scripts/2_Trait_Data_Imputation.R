@@ -27,6 +27,8 @@ library(rtrees) #for phylogenetic distancelibrary(MASS)
 library(ape)
 library(PVR) #calculate eigen vectors and add them as a column in the imputation, seems to improve output
 library(visdat) #VISUALIZE MISSING DATA
+library(naniar)
+
 ########################################################################################################################################################
 #1) READ TRAIT DATA
 ########################################################################################################################################################
@@ -147,6 +149,11 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 
 missing_data <- unlist(lapply(t, function(x) nrow(t)-sum(is.na(x))))
 sum(missing_data)
+
+#Number of missing values on the datset
+#vis_miss(t[,c(6:20)])
+#9.9% percentage of missing values]
+
 #Checking number of filled cells/ just selecting variables used in the manuscript; nectar ul should be accounted too and it has been considered but
 #not added to run this code
 
