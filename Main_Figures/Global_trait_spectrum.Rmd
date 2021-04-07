@@ -73,22 +73,26 @@ ovule_l_1 <- as.raster(ovule_l)
 selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
 selfing_n_1 <- as.raster(selfing_n)
 
-selfing_h <- image_read("Images/PPCA_Plot/Selfing_High.png")
+selfing_h <- image_read("Images/PPCA_Plot/selfing.png")
 selfing_h_1 <- as.raster(selfing_h)
 
 single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
 single_flower_1 <- as.raster(single_flower)
 
-many_flowers <- image_read("Images/PPCA_Plot/Many_Flowers.png")
+many_flowers <- image_read("Images/PPCA_Plot/Inflorescencia.png")
 many_flowers_1 <- as.raster(many_flowers)
 #many_flowers_1 <- image_rotate(many_flowers, 45)
 
 
-large_flower <- image_read("Images/PPCA_Plot/Large_Flower.png")
+large_flower <- image_read("Images/PPCA_Plot/flower_big.png")
 large_flower_1 <- as.raster(large_flower)
 
-flower_small <- image_read("Images/PPCA_Plot/Flower_Small.png")
+flower_small <- image_read("Images/PPCA_Plot/flower_short.png")
 flower_small_1 <- as.raster(flower_small)
+
+herb <- image_read("Images/PPCA_Plot/herb.png")
+herb_1 <- as.raster(herb)
+
 #############################################################################################################################################################
 #COMPATIBILITY
 #############################################################################################################################################################
@@ -157,16 +161,17 @@ all_spp <- function(PC, x="PC1", y="PC2") {
     
   plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -4, xmax = -2.85,ymin = 2.05, ymax = 3.95)+
      annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
-    annotation_raster(style_s_1, xmin = -2.7, xmax = -2,ymin = -2.65, ymax = -1.7) +
+    annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
     annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
     annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
-    annotation_raster(selfing_n_1, xmin = -0.2, xmax = 1.2,ymin = 2.8, ymax = 4.7) +
-    annotation_raster(selfing_h_1, xmin = -0.95, xmax = 0,ymin = -4.1, ymax = -3.25) +
+    annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
+    annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -4.1, ymax = -3.25) +
     annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
-    annotation_raster(many_flowers_1, xmin = -4.60, xmax = -3.15,ymin = 0.9, ymax = 2.05) +
-    annotation_raster(large_flower_1, xmin = 3.4, xmax = 4.2,ymin = 1, ymax = 2.1) +
-    annotation_raster(flower_small_1, xmin = -4, xmax = -1.85,ymin = -2.4, ymax = -0.4) +
-    annotation_raster(single_flower_1, xmin = 2.8, xmax = 3.5,ymin = -2.8, ymax = -2.2) 
+    annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.35,ymin = 0.8, ymax = 1.45) +
+    annotation_raster(large_flower_1, xmin = 3.25, xmax = 4.25,ymin = 1.2, ymax = 2.45) +
+    annotation_raster(flower_small_1, xmin = -3.60, xmax = -2.55,ymin = -2.2, ymax = -1.60) +
+    annotation_raster(herb_1, xmin = 2.6, xmax = 3.1,ymin = -2.8, ymax = -2) 
+
 
     
       #ADD LABELS
