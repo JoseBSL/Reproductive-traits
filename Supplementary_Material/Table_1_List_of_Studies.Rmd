@@ -4,7 +4,6 @@ output:
   pdf_document: default
   html_document: default
 ---
-\begin{landscape}
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,}
 setwd("~/R_Projects/Reproductive Traits")
@@ -26,9 +25,9 @@ library(kableExtra)
 
 Year <- c(2008,2002,2003,1999,2008,1988, 2005,2002,1976,2017,2017,2008,2011,2010,2006,2013,2019,2003,2006,2000,1970,1989,1990, 1993, 1983, 1992, 1929, 2013)
 
-Country <- c("Spain", "England", "Denmark", "Sweden", "China", "Australia", "Greenland", "Mauritius and Azores", "Canada", "Brasil", "Seychelles", "Spain", "Seychelles",
-"Mauritius", "Argentina", "USA", "New Zealand", "Denmark",  "Denmark", "Japan", "Canada", "Venezuela", "Japan", "Ecuador", "New Zealand", "Venezuela",
-"USA", "Ecuador")
+#Country <- c("Spain", "England", "Denmark", "Sweden", "China", "Australia", "Greenland", "Mauritius and Azores", #"Canada", "Brasil", "Seychelles", "Spain", "Seychelles",
+#"Mauritius", "Argentina", "USA", "New Zealand", "Denmark",  "Denmark", "Japan", "Canada", "Venezuela", "Japan", #"Ecuador", "New Zealand", "Venezuela",
+#"USA", "Ecuador")
 
 DOI <- c("https://doi.org/10.1007/s00442-007-0946-1", "https://doi.org/10.1046/j.0021-8790.2001.00572.x", "https://doi.org/10.1111/j.1365-2656.2008.01501.x",
 "https://doi.org/10.1111/j.1600-0587.1999.tb00507.x", "https://doi.org/10.1111/1749-4877.12190", "https://doi.org/10.1111/j.1442-9993.1988.tb00968.x",
@@ -40,13 +39,12 @@ DOI <- c("https://doi.org/10.1007/s00442-007-0946-1", "https://doi.org/10.1046/j
 "https://doi.org/10.1111/j.1095-8339.1992.tb00294.x", "https://doi.org/10.5962/bhl.title.11538", "https://doi.org/10.1098/rspb.2012.3040")
 
 
-references <- data.frame(`First author`, `Number of networks`, `Network type`, `Network structure`, Year, Country, DOI)
+references <- data.frame(`First author`, `Number of networks`, `Network type`, `Network structure`, Year,  DOI)
 
-colnames(references) <- c("First author", "Network N°", "Type", "Structure", "Year", "Country", "DOI")
+colnames(references) <- c("First author", "N°", "Type", "Structure", "Year",  "DOI")
 
 
 kable(references, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
-  kable_styling(latex_options = c("repeat_header","striped"), font_size = 9, full_width=F)
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 8, full_width=F)
 ```
 
-\end{landscape}
