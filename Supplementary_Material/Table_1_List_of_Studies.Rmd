@@ -5,7 +5,10 @@ output:
   html_document: default
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,}
+\begin{landscape}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,fig.align = "left"}
 setwd("~/R_Projects/Reproductive Traits")
 library(kableExtra)
 
@@ -14,9 +17,9 @@ library(kableExtra)
 `Number of networks` <- c("6", "2", "3", "1", "1", "1", "1", "2", "1", "1", "8", "16", "6", "2", "4", "1", "3", "1", "1", "1", "1", "1", "1", "1", "3", "1",
                           "1", "1")
 
-`Network structure` <- c(rep("Web", 22), rep("Metaweb",6))
+#`Network structure` <- c(rep("Web", 22), rep("Metaweb",6))
 
-`Network type` <- c(rep("Weighted",  18), rep("Unweighted",  4), "Weighted", "Unweighted", "Unweighted", "Unweighted", "Unweighted", "Weighted")
+`Network type` <- c(rep("Weighted web",  18), rep("Unweighted web",  4), "Weighted metaweb", "Unweighted metaweb", "Unweighted metaweb", "Unweighted metaweb", "Unweighted metaweb", "Weighted metaweb")
 
 
 `First author` <- c("Bartomeus", "Dicks", "Dupont", "Elberling", "Fang", "Inouye", "Lundgren", "Olesen", "Small", "Souza", "Kaiser-Bunbury", "Bartomeus", 
@@ -39,12 +42,18 @@ DOI <- c("https://doi.org/10.1007/s00442-007-0946-1", "https://doi.org/10.1046/j
 "https://doi.org/10.1111/j.1095-8339.1992.tb00294.x", "https://doi.org/10.5962/bhl.title.11538", "https://doi.org/10.1098/rspb.2012.3040")
 
 
-references <- data.frame(`First author`, `Number of networks`, `Network type`, `Network structure`, Year,  DOI)
-
-colnames(references) <- c("First author", "N°", "Type", "Structure", "Year",  "DOI")
+references <- data.frame(`First author`, Year, `Number of networks`,`Network type`,   DOI)
 
 
-kable(references, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
-  kable_styling(latex_options = c("repeat_header","striped"), font_size = 8, full_width=F)
+
+colnames(references) <- c("First author", "Year", "Web N.",  "Network type",  "DOI")
+
+library(dplyr)
+ references %>%
+ arrange(`First author`)%>%
+kable("latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "left") 
+
 ```
 
+\end{landscape}
