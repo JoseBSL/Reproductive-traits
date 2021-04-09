@@ -1,0 +1,123 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+classoption: landscape
+
+---
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28}
+
+#LOAD LIBRARIES 
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(tidyverse)
+library(patchwork) #panel of plots
+library(brms)
+library(cmdstanr)
+
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2.2)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+#Plot nicely PC1
+analysis_1_just_bees <- readRDS("results_analysis_1_just_bees.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_1_just_bees.rds")
+
+ce_pc1 <- conditional_effects(analysis_1_just_bees, effects = "PC1",points=T) 
+ce_pc1[[1]]$guild <- "bees"
+
+p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = dat_analysis,
+  aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.5, color="orange") + geom_line(size=1.4, color="orange") + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC2")+
+  theme_ms() + theme(legend.position = "none") 
+
+#Plot nicely PC2
+ce_pc2 <- conditional_effects(analysis_1_just_bees, effects = "PC2",points=T) 
+ce_pc1[[1]]$guild <- "bees"
+
+p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = dat_analysis,
+  aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.5, color="orange") + geom_line(size=1.4, color="orange") + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("PC2")+
+  theme_ms() + theme(legend.position = "none") 
+#Plot nicely PC3
+ce_pc3 <- conditional_effects(analysis_1_just_bees, effects = "PC3",points=T)
+ce_pc1[[1]]$guild <- "bees"
+
+
+p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = dat_analysis,
+  aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.5, color="orange") + geom_line(size=1.4, color="orange") + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("PC2")+
+  theme_ms() + theme(legend.position = "none") 
+
+
+#Plot nicely PC1
+analysis_1_no_bees <- readRDS("results_analysis_1_no_bees.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_1_no_bees.rds")
+
+
+ce_pc1 <- conditional_effects(analysis_1_no_bees, effects = "PC1:guild",points=T) 
+
+pp1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+  aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC1")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
+   "Non-syrphids-diptera", "Syrphids"),values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),
+    limits = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera","Non-syrphids-diptera", "Syrphids"))
+
+ce_pc2 <- conditional_effects(analysis_1_no_bees, effects = "PC2:guild",points=T) 
+
+pp2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+  aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("PC2")+
+  theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
+   "Non-syrphids-diptera", "Syrphids"),values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),
+    limits = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera","Non-syrphids-diptera", "Syrphids"))
+#Plot nicely PC3
+ce_pc3 <- conditional_effects(analysis_1_no_bees, effects = "PC3:guild",points=T)
+
+
+pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+  aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.5) + geom_line(size=1.4) + 
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("PC3")+
+  theme_ms() +theme(legend.position = "none") + scale_color_manual(name="Functional groups",labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
+    "Non-syrphids-diptera", "Syrphids"),values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),
+    limits = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
+               "Non-syrphids-diptera", "Syrphids"))
+
+library(patchwork)
+
+combined <- p1 + p2 + p3 + pp1 + pp2 + pp3 & theme(legend.position = "right")
+combined + plot_layout(guides = "collect",ncol = 3)
+
+
+
+
+```
+

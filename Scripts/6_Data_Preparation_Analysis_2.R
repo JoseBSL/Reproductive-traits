@@ -41,7 +41,7 @@ met <- function(x){
   #degree
   #degree <- specieslevel(x, index="degree", level="lower")
   #normalise degree
-  #n_degree <- specieslevel(x, index="normalised degree", level="lower")
+  n_degree <- specieslevel(x, index="normalised degree", level="lower")
   #specialization
   d_Plant <- specieslevel(x, index="d", level="lower")   # specialization from BLUTHGEN 2006
   #closeness
@@ -49,7 +49,7 @@ met <- function(x){
   #betweenness
   #betweenness <- specieslevel(x, index="betweenness", level="lower")
   #combine metrics in a unique data frame
-  metrics <- cbind(Visits_Sum,d_Plant) #degree, n_degree, d, closeness, betweenness)
+  metrics <- cbind(Visits_Sum,n_degree,d_Plant) #degree, n_degree, d, closeness, betweenness)
   return(metrics)
 }
 

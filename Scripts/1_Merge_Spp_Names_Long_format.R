@@ -1012,6 +1012,13 @@ na <- all_long_poll_names[is.na(all_long_poll_names$guild),]
 all_poll <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names, na.rm= TRUE)
 head(all_poll)
 
+all_long_poll_names_non_apis <- subset(all_long_poll_names, genus!="Apis")
+
+all_poll_non_apis <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_long_poll_names_non_apis, na.rm= TRUE)
+head(all_poll)
+
+
+
 #Add pollinator guilds for analysis
 all_long_poll_names$bee_family[all_long_poll_names$family=="Apidae"] <- "Apidae"
 all_long_poll_names$bee_family[all_long_poll_names$family=="Megachilidae"] <- "Megachilidae"
@@ -1026,18 +1033,27 @@ all_bee_family <- all_long_poll_names[!is.na(all_long_poll_names$bee_family),]
 
 head(all_bee_family)
 levels(as.factor(all_bee_family$bee_family))
+levels(as.factor(all_bee_family$Pollinator_species))
+
 #Aggregate by poll guild
 all_bee <- reshape2::dcast(Plant_species + bee_family +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_bee_family, na.rm= TRUE)
 head(all_bee)
 
+#Save for repeating analysis without apis mellifera
+all_bee_family_non_apis <- subset(all_bee_family, genus!="Apis")
+all_bee_non_apis <- reshape2::dcast(Plant_species + bee_family +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_bee_family_non_apis, na.rm= TRUE)
 
 ########################################################################################################################################################
 #3)SAVE DATA
 ########################################################################################################################################################
 #save poll guild data
 write.csv(all_poll, "Data/Csv/long_format_quantitative_networks.csv")
+write.csv(all_poll_non_apis, "Data/Csv/long_format_quantitative_networks_non_apis.csv")
+
 #save poll guild bee data
 write.csv(all_bee, "Data/Csv/long_format_quantitative_networks_bees.csv")
+write.csv(all_bee_non_apis, "Data/Csv/long_format_quantitative_networks_bees_non_apis.csv")
+
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
