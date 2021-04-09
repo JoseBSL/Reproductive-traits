@@ -113,8 +113,8 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
   
   #CHANGE THEME
   
@@ -186,8 +186,8 @@ Life_form <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
   
   #CHANGE THEME
   
@@ -222,10 +222,10 @@ Life_span <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-    dat$`Life span` <- dat_cleaning_5$lifespan
-    dat$`Life span` <- as.character(dat$`Life span`)
+    dat$Lifespan <- dat_cleaning_5$lifespan
+    dat$Lifespan <- as.character(dat$Lifespan)
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Life span`),size=1.5)+scale_color_manual(values=c("sienna4","forestgreen"))
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Lifespan),size=1.5)+scale_color_manual(values=c("sienna4","forestgreen"))
   
   ########
   #ADD ARROWS 
@@ -253,9 +253,10 @@ Life_span <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
   
+  #CHANGE THEME
   #CHANGE THEME
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.102, 0.1)) + ggtitle("C)") 
@@ -323,8 +324,10 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
   
   #CHANGE THEME
   
@@ -393,8 +396,10 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
   
   #CHANGE THEME
   
@@ -462,9 +467,10 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
   
+  #CHANGE THEME
   #CHANGE THEME
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("D)") 
@@ -529,9 +535,10 @@ Nectar <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.35,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,5,5,7,5.8,6.5)),
-                          label = PCAloadings$Variables, color="black",size=3.2)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
   
+  #CHANGE THEME
   #CHANGE THEME
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("G)") 

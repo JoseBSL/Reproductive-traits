@@ -464,7 +464,7 @@ Table_all_traits[is.num] <- lapply(Table_all_traits[is.num], round, 2)
 colnames(Table_all_traits) <- c("Trait", "Category", "Cluster A", "Cluster B", "Cluster C", "Cluster D", "Cluster E")
 
 
-kable(Table_all_traits, "latex", longtable = T)  %>% row_spec(0,bold=TRUE) %>% group_rows(index = setNames(rle(Table_all_traits$Trait)[[1]], rle(Table_all_traits$Trait)[[2]])) %>% kable_styling(font_size = 9)  %>% kable_styling(latex_options = c("repeat_header"))
+kable(Table_all_traits, "latex", longtable = T)  %>% row_spec(0,bold=TRUE) %>% group_rows(index = setNames(rle(Table_all_traits$Trait)[[1]], rle(Table_all_traits$Trait)[[2]])) %>% kable_styling(font_size = 9)  %>% kable_styling(latex_options = c("repeat_header"))  
 
 
 ```

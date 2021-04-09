@@ -122,7 +122,9 @@ PC$L
 
 nrow(PC$S)
 
+percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
 
+sum(percentage[1]+percentage[2])
 ########################################################################################################################################################
 #4) PLOT PPCA
 ########################################################################################################################################################
@@ -136,6 +138,7 @@ nrow(PC$S)
 
 PC$S[,1] <- -PC$S[,1]
 PC$S[,2] <- -PC$S[,2]
+PC$S[,3] <- -PC$S[,]
 
 
 PCbiplot <- function(PC, x="PC1", y="PC2") {
@@ -244,3 +247,71 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
 
 
 PCbiplot(PC)
+
+############
+#PLOT WITH PC3
+############
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+PC$S[,1] <- -PC$S[,1]
+
+PCbiplot <- function(PC, x="PC1", y="PC3") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',colour='black') + 
+    scale_fill_continuous(low="green",high="red") 
+  
+  
+  plot <- plot + geom_point(data=dat, aes(x, y),size=0.65)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
+  # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .5 * mult * (get(x)),
+                      v2 = .5 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
+  
+
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
+ # plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
+  #                     panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=-v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")+ ylim(-4,4.5)+xlim(-4,4)
+  
+  
+  plot
+  
+}
+
+
+PCbiplot(PC)
+

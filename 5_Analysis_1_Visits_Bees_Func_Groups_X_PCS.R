@@ -36,23 +36,24 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 ########################################################################################################################################################
 #1) READ DATA
 ########################################################################################################################################################
-d_a <- readRDS("Data/RData/data_analysis_1.rds") #ALL SPP
+d_a <- readRDS("Data/RData/data_analysis_1_bees.rds") #ALL SPP
 ########################################################################################################################################################
 #PREPARE POLL. FUNCTIONAL GROUPS FOR MODELLING
 ########################################################################################################################################################
-d_a_1 <- subset(d_a, guild!="Other_insects" & guild!="Lizards" & guild!="Birds") #Select just the main 6 functional groups
-levels(factor(d_a_1$guild))
-d_a_1$guild <- as.character(d_a_1$guild)
-d_a_1$guild[d_a_1$guild=="Bee"] <- "Bees" #Adding an S to bee(S)
-d_a_1$guild <- factor(d_a_1$guild, levels = c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-                                          "Non-syrphids-diptera", "Syrphids"))
+
+#Check levels
+levels(as.factor(d_a$bee_family))
+boxplot(d_a$Interaction~d_a$bee_family)
 
 #check number of levels
-d_a_1 %>% 
-  group_by(guild) %>%
-  summarise(no_rows = length(guild))
+d_a %>% 
+  group_by(bee_family) %>%
+  summarise(no_rows = length(bee_family))
 
 
+d_a_1 <- subset(d_a, bee_family!="Melittidae" ) #Select just the main functional groups
+levels(factor(d_a_1$bee_family))
+#save on this dataframe
 dat_analysis <- d_a_1
 ########################################################################################################################################################
 #CALCULATE PHYLO FOR THE MODEL
@@ -124,7 +125,7 @@ dat_analysis$System[grepl("elberling_sweeden_1999", dat_analysis$System)] <- "el
 
 
 
-analysis_1 <- brm((Interaction-1) ~ PC1*guild + PC2*guild + PC3*guild +(1|System/Id) + (1|gr(phylo, cov = A)),
+analysis_1 <- brm((Interaction-1) ~ PC1*bee_family + PC2*bee_family + PC3*bee_family +(1|System/Id) + (1|gr(phylo, cov = A)),
                   data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                   sample_prior = TRUE, warmup = 500, iter = 2000,
                   control = list(adapt_delta = 0.99))
@@ -134,51 +135,34 @@ bayes_R2(analysis_1)
 loo_R2(analysis_1)
 
 
-marginal_effects(analysis_1, effects = "PC1:guild")
+marginal_effects(analysis_1, effects = "PC1:bee_family")
+marginal_effects(analysis_1, effects = "PC2:bee_family")
+marginal_effects(analysis_1, effects = "PC3:bee_family")
+
+
 pp_check(analysis_1) +xlim(-50,200)+ylim(0,0.1)
 pp_check(analysis_1, type='violin_grouped',group="Clusters")+ylim(-4,4)
 pp_check(analysis_1, type='violin_grouped',group="guild")+ylim(-4,4)
 
 
+ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T) 
 
-
-#Save data
-#Save output
-setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-saveRDS(analysis_1, "results_analysis_1.rds")
-saveRDS(dat_analysis, "dat_analysis_results_analysis_1.rds")
-########################################################################################################################################################
-#PLOT
-########################################################################################################################################################
-#Plot nicely PC1
-analysis_1 <- readRDS("results_analysis_1.rds")
-dat_analysis <- readRDS("dat_analysis_results_analysis_1.rds")
-
-
-#INVERT AXES FOR PLOTTING
-#ON THE GLOBAL SPECTRUM THEY ARE INVERTED SO IS GOING TO BE EASIER TO UNDERSTAND THE RESULTS IF I DO THE SAME HERE
-#DOES NOT CHANGE THE RELATIONSHIPS 
-
-
-ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
-
-p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-   aes(x = -PC1, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
+p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
+  aes(x = -PC1, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC1")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 #Plot nicely PC2
-ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
+ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:bee_family",points=T) 
 
-p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
   aes(x = -PC2, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC2")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
 
 #Plot nicely PC3
-ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T)
+ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:bee_family",points=T) 
 
-
-p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
+p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
   aes(x = -PC3, y = Interaction),size = 0.75, alpha=0.5) + geom_line(size=0.8) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC3")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))
@@ -187,4 +171,6 @@ library(patchwork)
 
 combined <- p1 + p2 + p3 & theme(legend.position = "right")
 combined + plot_layout(guides = "collect")
+
+
 

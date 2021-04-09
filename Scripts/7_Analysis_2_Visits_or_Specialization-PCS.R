@@ -26,7 +26,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 #LOAD DATA
 ########################################################################################################################################################
 data_analysis_2 <- readRDS("Data/RData/data_analysis_2.rds") 
-colnames(data_analysis_2)[4] <- "Id"
+colnames(data_analysis_2)[5] <- "Id"
 ########################################################################################################################################################
 #MODEL VISITS ~ PRINCIPAL COMPONENTS
 ########################################################################################################################################################
@@ -89,6 +89,18 @@ Specialization_PCs <- brm(d ~ PC1 + PC2 + PC3 + (1|Id),
                           sample_prior = TRUE, warmup = 500, iter = 2000,
                           control = list(adapt_delta = 0.99)) 
 
+
+Specialization_PCs <- brm(d ~ PC1 + PC2 + PC3 + (1|Id),
+                          data = data_analysis_2, family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
+                          sample_prior = TRUE, warmup = 500, iter = 2000,
+                          control = list(adapt_delta = 0.99)) 
+
+max(data_analysis_2$d)
+min(data_analysis_2$d)
+hist(data_analysis_2$d)
+
+zero_inflated_beta
+
 #its kind of bimodal but overall not terrible fit
 pp_check(Specialization_PCs) #fitting a mix distribution may be a best solution than a skew_normal|I tried but the model did not converge
 #When checking the dist
@@ -141,5 +153,36 @@ cowplot::plot_grid(Specialization_PC1, Specialization_PC2, Specialization_PC3)
 ########################################################################################################################################################
 ########################################################################################################################################################
 
+hist(data_analysis_2$normalised.degree)
 
+normalised.degree_PCs <- brm(normalised.degree ~ PC1 + PC2 + PC3 + (1|Id),
+                  data = data_analysis_2, family  = weibull(), cores = 4,chains = 4, 
+                  sample_prior = TRUE, warmup = 500, iter = 2000,
+                  control = list(adapt_delta = 0.99)) 
+
+
+pp_check(Visits_PCs) +xlim(-1,1.5)
+
+conditional_effects(normalised.degree, effects = "PC1",points=T) 
+conditional_effects(normalised.degree, effects = "PC2",points=T) 
+conditional_effects(normalised.degree, effects = "PC3",points=T) 
+
+
+ce_1 <- conditional_effects(normalised.degree, effects = "PC1",points=T) 
+
+normalised.degree_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = normalised.degree),
+  size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2)  +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree")
+
+ce_2 <- conditional_effects(normalised.degree, effects = "PC2",points=T) 
+
+normalised.degree_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = normalised.degree),
+  size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree")
+
+ce_3 <- conditional_effects(normalised.degree, effects = "PC3",points=T) 
+
+normalised.degree_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = normalised.degree),
+  size = 1.5, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$normalised.degree, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree")
 
