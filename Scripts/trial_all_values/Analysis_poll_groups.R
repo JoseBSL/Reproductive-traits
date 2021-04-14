@@ -122,12 +122,15 @@ dat_analysis$System[grepl("elberling_sweeden_1999", dat_analysis$System)] <- "el
 ########################################################################################################################################################
 
 
-
+str(dat_analysis)
 
 analysis_1 <- brm((Interaction-1) ~ PC1*guild + PC2*guild + PC3*guild +(1|System/Id) + (1|gr(phylo, cov = A)),
                   data = dat_analysis, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                   sample_prior = TRUE, warmup = 500, iter = 2000,
                   control = list(adapt_delta = 0.99))
+
+
+all_val <- analysis_1
 
 summary(analysis_1)
 bayes_R2(analysis_1)

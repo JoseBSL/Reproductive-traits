@@ -108,6 +108,7 @@ saveRDS(dat_cleaning_5, "Data/RData/data_all_species_PPCA.rds")
 #READ DATA
 ####
 phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
 
 
 #CALL the output PC for simplicity
@@ -315,3 +316,87 @@ PCbiplot <- function(PC, x="PC1", y="PC3") {
 
 PCbiplot(PC)
 
+
+
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+PC <- phyl_pca_forest
+
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
+
+all_spp <- function(PC, x="PC1", y="PC3") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
+  
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon') + 
+    scale_fill_continuous(low="green",high="red",guide=FALSE,breaks = c(0.02, 0.050, 0.09), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.7),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+  plot <- plot + geom_point(data=dat, aes(x, y),size=0.95, color="black")
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
+  
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_bw() 
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,7.25,7.3,6.15)), y = -(PCAloadings$PC2*c(4.693,2.4,3,6.2,5,5.5)+c(0,0,0,0,0.4,0)),
+                          label = PCAloadings$Variables, color="black",fontface =2,size=4)
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+all_spp(PC)

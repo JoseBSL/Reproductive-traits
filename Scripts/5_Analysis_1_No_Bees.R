@@ -144,7 +144,7 @@ saveRDS(dat_analysis, "dat_analysis_results_analysis_1_no_bees.rds")
 #PLOT
 ########################################################################################################################################################
 #Plot nicely PC1
-analysis_1 <- readRDS("results_analysis_1_no_bees.rds")
+analysis_1_no_bees <- readRDS("results_analysis_1_no_bees.rds")
 dat_analysis <- readRDS("dat_analysis_results_analysis_1_no_bees.rds")
 
 ce_pc1 <- conditional_effects(analysis_1_no_bees, effects = "PC1:guild",points=T) 

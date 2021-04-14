@@ -154,7 +154,7 @@ saveRDS(dat_analysis, "dat_analysis_results_analysis_1_bee_families_non_apis.rds
 #PLOT
 ########################################################################################################################################################
 #Plot nicely PC1
-analysis_1 <- readRDS("results_analysis_1_bee_families_non_apis.rds")
+analysis_1_bee_families_non_apis <- readRDS("results_analysis_1_bee_families_non_apis.rds")
 dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_families_non_apis.rds")
 
 

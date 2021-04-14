@@ -103,7 +103,7 @@ PC$S[,1] <- -PC$S[,1]
 PC$S[,2] <- -PC$S[,2]
 
 
-all_spp <- function(PC, x="PC1", y="PC2") {
+pc3 <- function(PC, x="PC1", y="PC3") {
   # PC being a prcomp object
   data <- data.frame(PC$S)
   plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
@@ -154,23 +154,23 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
   
 
   #CHANGE THEME
     
-  plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
-     annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
-    annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
-    annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
-    annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
-    annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
-    annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -3.9, ymax = -3.1) +
-    annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
-    annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.40,ymin = 0.8, ymax = 1.45) +
-    annotation_raster(large_flower_1, xmin = 3.15, xmax = 4.15,ymin = 1.3, ymax = 2.55) +
-    annotation_raster(flower_small_1, xmin = -3.50, xmax = -2.55,ymin = -2.1, ymax = -1.60) +
-    annotation_raster(herb_1, xmin = 2.6, xmax = 3,ymin = -2.8, ymax = -2) 
+  plot <- plot + theme_bw() #+ annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
+ #  annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
+ # annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
+ # annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
+ # annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
+ # annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
+ # annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -3.9, ymax = -3.1) +
+ # annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
+ # annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.40,ymin = 0.8, ymax = 1.45) +
+ # annotation_raster(large_flower_1, xmin = 3.15, xmax = 4.15,ymin = 1.3, ymax = 2.55) +
+ # annotation_raster(flower_small_1, xmin = -3.50, xmax = -2.55,ymin = -2.1, ymax = -1.60) +
+ # annotation_raster(herb_1, xmin = 2.6, xmax = 3,ymin = -2.8, ymax = -2) 
 
 
     
@@ -178,7 +178,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
- plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,7.25,7.3,6.15)), y = -(PCAloadings$PC2*c(4.693,2.4,3,6.2,5,5.5)+c(0,0,0,0,0.4,0)),
+ plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,5.75,7.3,5.5)), y = -(PCAloadings$PC2*c(-3.5,4,3.5,8,5,5.5)+c(0,0,0,0,-0.1,0)),
                          label = PCAloadings$Variables, color="black",fontface =2,size=4)
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
@@ -189,9 +189,6 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   
 }
 
-plot_grid(all_spp(PC))
-
-
+pc3(PC)
 
 ```
-
