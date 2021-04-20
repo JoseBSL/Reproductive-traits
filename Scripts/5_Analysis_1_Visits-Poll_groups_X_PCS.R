@@ -130,9 +130,13 @@ analysis_1 <- brm((Interaction-1) ~ PC1*guild + PC2*guild + PC3*guild +(1|System
                   control = list(adapt_delta = 0.99))
 
 summary(analysis_1)
-bayes_R2(analysis_1)
-loo_R2(analysis_1)
 
+performance::r2(analysis_1)
+
+
+round(median(bayesR2<-bayes_R2(analysis_1)), 2)
+
+round(median(bayesR2<-loo_R2(analysis_1)), 2)
 
 marginal_effects(analysis_1, effects = "PC1:guild")
 pp_check(analysis_1) +xlim(-50,200)+ylim(0,0.1)

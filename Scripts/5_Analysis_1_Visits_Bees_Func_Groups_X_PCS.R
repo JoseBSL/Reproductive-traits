@@ -131,9 +131,11 @@ analysis_1_bee_families <- brm((Interaction-1) ~ PC1*bee_family + PC2*bee_family
                   sample_prior = TRUE, warmup = 500, iter = 2000,
                   control = list(adapt_delta = 0.99))
 
-summary(analysis_1_bee_families)
-bayes_R2(analysis_1_bee_families)
-loo_R2(analysis_1_bee_families)
+
+performance::r2(analysis_1)
+
+round(median(bayesR2<-bayes_R2(analysis_1_bee_families)), 2)
+round(median(bayesR2<-loo_R2(analysis_1_bee_families)), 2)
 
 
 marginal_effects(analysis_1_bee_families, effects = "PC1:bee_family")
