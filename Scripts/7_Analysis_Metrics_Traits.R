@@ -176,15 +176,56 @@ datitos_1[,c(18, 21:25,28)] <- data.frame(scale(datitos_1[,c(18, 21:25,28)], cen
 
 df <- datitos_1 %>% mutate_if(is.character,as.factor)
 
+
+
+
+
+df$System <- df$unique.id
+
+df$System <- as.character(df$System)
+
+df$System[grepl("peralta_2006", df$System)] <- "peralta_2006"
+df$System[grepl("small_1976", df$System)] <- "small_1976"
+df$System[grepl("arroyo_correa_new_zealand", df$System)] <- "arroyo_correa_2019"
+df$System[grepl("fang_2008", df$System)] <- "fang_2008"
+df$System[grepl("kaiser-bunbury_2017", df$System)] <- "kaiser-bunbury_2017"
+df$System[grepl("inouye_1988", df$System)] <- "inouye_1988"
+df$System[grepl("kaiser-bunbury_2010", df$System)] <- "kaiser-bunbury_2010"
+df$System[grepl("kaiser-bunbury_2011", df$System)] <- "kaiser-bunbury_2011"
+df$System[grepl("burkle_usa_2013", v$System)] <- "burkle_2013"
+df$System[grepl("dicks_2002", df$System)] <- "dicks_2002"
+df$System[grepl("dupont_2009", df$System)] <- "dupont_2009"
+df$System[grepl("bartomeus_spain_2008_medca", df$System)] <- "bartomeus_2008"
+df$System[grepl("bartomeus_spain_2008_batca", df$System)] <- "bartomeus_2008"
+df$System[grepl("bartomeus_spain_2008_selop", df$System)] <- "bartomeus_2008"
+df$System[grepl("bartomeus_spain_2008_miqop", df$System)] <- "bartomeus_2008"
+df$System[grepl("bartomeus_spain_2008_fraop", df$System)] <- "bartomeus_2008"
+df$System[grepl("lundgren_2005", df$System)] <- "lundgren_2005"
+df$System[grepl("olesen_2002_mauritius", df$System)] <- "olesen_2002_mauritius"
+df$System[grepl("olesen_2002_azores", df$System)] <- "olesen_2002_azores"
+df$System[grepl("bartomeus_spain_2008", df$System)] <- "bartomeus_spain_2008"
+df$System[grepl("bundgaard_2003_denmark", df$System)] <- "bundgaard_2003"
+df$System[grepl("elberling_sweeden_1999", df$System)] <- "elberling_1999"
+
+
+
+
+
+
+
+
+
 ####MODEL
 
 
 fit <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
               Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-              Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
+              Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
             data = df, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
             sample_prior = TRUE, warmup = 500, iter = 2000,
             control = list(adapt_delta = 0.99)) 
+
+conditional_effects(fit)
 
 performance::r2(fit)
 
@@ -195,8 +236,6 @@ refmodel <- get_refmodel(fit)
 mcmc_areas(as.matrix(refmodel$fit),
 pars = c(colnames(as.matrix(ref$fit))[1:26])) + coord_cartesian(xlim = c(-5, 5))
 
-loo_R2(fit)
-bayes_R2(fit)
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
@@ -351,7 +390,7 @@ df$d <- ifelse(df$d > 1, 1, df$d)
 
 fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
               Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-              Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
+              Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
             data = df, family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
             sample_prior = TRUE, warmup = 500, iter = 2000,
             control = list(adapt_delta = 0.99)) 
@@ -364,8 +403,6 @@ refmodel <- get_refmodel(fit_d)
 mcmc_areas(as.matrix(refmodel$fit_d),
            pars = c(colnames(as.matrix(ref$fit_d))[1:26])) + coord_cartesian(xlim = c(-5, 5))
 
-loo_R2(fit_d)
-bayes_R2(fit_d)
 
 performance::r2(fit_d)
 
@@ -520,7 +557,7 @@ plot_grid(d_quali, d_quanti)
 
 fit_nd <-  brm(normalised.degree ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-                Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
+                Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
               data = df, family  = weibull(), cores = 4,chains = 4, 
               sample_prior = TRUE, warmup = 500, iter = 2000,
               control = list(adapt_delta = 0.99)) 
@@ -529,9 +566,8 @@ summary(fit_nd)
 
 performance::r2(fit_nd)
 
-round(median(bayesR2<-bayes_R2(fit_nd)), 2)
-round(median(bayesR2<-loo_R2(fit_nd)), 2)
 
+pairs(fit_nd)
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
