@@ -18,6 +18,8 @@ library(projpred)
 library(dplyr)
 library(ggplot2)
 library(bayesplot)
+library(ape)
+library(rtrees)
 ########################################################################################################################################################
 #1) LOAD NETWORK DATA
 ########################################################################################################################################################
@@ -177,9 +179,6 @@ datitos_1[,c(18, 21:25,28)] <- data.frame(scale(datitos_1[,c(18, 21:25,28)], cen
 df <- datitos_1 %>% mutate_if(is.character,as.factor)
 
 
-
-
-
 df$System <- df$unique.id
 
 df$System <- as.character(df$System)
@@ -210,14 +209,10 @@ df$System[grepl("elberling_sweeden_1999", df$System)] <- "elberling_1999"
 
 df$System <- as.factor(df$System)
 
-levels(df$System)
-
-
-
-
-#PHYLO
-
 ########################################################################################################################################################
+#CALCULATE PHYLO
+########################################################################################################################################################
+
 #Prepare species, genus anD_5 family for calculating phylogenetic distance
 df$Family_all  <- as.character(df$Family_all)
 df$Genus_all   <- as.character(df$Genus_all)
@@ -231,9 +226,6 @@ colnames(phylo_5) <-  c("family", "genus", "species")
 phylo_5_1 <- phylo_5[!duplicated(phylo_5$species),]
 phylo_5_2 <- tibble(phylo_5_1)
 str(phylo_5_2)
-
-library(ape)
-library(rtrees)
 
 phylo_5_3 <- get_tree(sp_list = phylo_5_2, tree = tree_plant_otl, taxon = "plant")
 
@@ -250,81 +242,27 @@ rownames(A_5) <- gsub("_", " ", rownames(A_5))
 #Add phylo column to dataset
 df$phylo
 df$phylo <- df$Species_all.y
+########################################################################################################################################################
 
-
-
-fit_1 <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+fit_v <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
               Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
               Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
             data = df, data2 = list(A = A_5), family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
-            sample_prior = TRUE, warmup = 500, iter = 2000,
+            sample_prior = TRUE, warmup = 1000, iter = 3000,
             control = list(adapt_delta = 0.99)) 
 
-pp_check(fit)
+pp_check(fit_v)
 
-summary(fit)
-conditional_effects(fit)
+performance::r2(fit_v)
 
-performance::r2(fit_1)
-
-bayes_R2(fit)
-loo_R2(fit)
-
-
-library(glmmTMB)
-mfit <-  glmmTMB(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
-           Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-           Plant_height_mean_m + Nectar_presence_absence  + (1|System/unique.id),
-               family=nbinom2, data=df)
-
-
-mfit <-  glmmTMB(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
-                   Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-                   Plant_height_mean_m + Nectar_presence_absence  + (1|System/unique.id),
-                 family=nbinom2, data=df)
-
-
-summary(mfit)
-anova(mfit)
-
-performance::r2(mfit)
-
-DHARMa::
-
-
-####MODEL
-
-
-fit <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
-              Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-              Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
-            data = df, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
-            sample_prior = TRUE, warmup = 500, iter = 2000,
-            control = list(adapt_delta = 0.99)) 
-
-conditional_effects(fit)
-
-performance::r2(fit)
-
-bayes_R2(fit)
-
-summary(fit)
-
-mean(bayes_R2(fit, robust = FALSE, re.form = NULL))
-mean(bayes_R2(fit, robust = FALSE, re.form = NA))
-
-
-refmodel <- get_refmodel(fit)
-
-mcmc_areas(as.matrix(refmodel$fit),
-pars = c(colnames(as.matrix(ref$fit))[1:26])) + coord_cartesian(xlim = c(-5, 5))
+conditional_effects(fit_v)
 
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
 ####BREEDING####
 
-breeding <- fit %>%
+breeding <- fit_v %>%
   emmeans( ~ Breeding_system, transform = "response" ) %>%
   gather_emmeans_draws() 
 
@@ -335,7 +273,7 @@ p1 <- ggplot(breeding, aes(x = Breeding_system, y = .value, fill=Breeding_system
   
 ####COMPATIBILITY####
 
-Compatibility<- fit %>%
+Compatibility<- fit_v %>%
   emmeans( ~ Compatibility_system, transform = "response" ) %>%
   gather_emmeans_draws() 
 
@@ -347,7 +285,7 @@ p2 <- ggplot(Compatibility, aes(x = Compatibility_system, y = .value, fill=Compa
 
 ####SELFING####
 
-selfing <- fit %>%
+selfing <- fit_v %>%
   emmeans( ~ Autonomous_selfing_level, transform = "response") %>%
   gather_emmeans_draws() 
 
@@ -359,7 +297,7 @@ p3 <- ggplot(selfing, aes(x = Autonomous_selfing_level, y = .value, fill=Autonom
 
 ####FLOWER SHAPE####
 
-f_shape <- fit %>%
+f_shape <- fit_v %>%
   emmeans( ~ Flower_morphology, transform = "response" ) %>%
   gather_emmeans_draws()
   
@@ -370,7 +308,7 @@ p4 <- ggplot(f_shape, aes(x = Flower_morphology, y = .value, fill=Flower_morphol
 
 ####FLOWER SYMMETRY####
 
-f_symmetry <- fit %>%
+f_symmetry <- fit_v %>%
   emmeans( ~ Flower_symmetry, transform = "response" ) %>%
   gather_emmeans_draws()
 
@@ -381,7 +319,7 @@ p5 <- ggplot(f_symmetry, aes(x = Flower_symmetry, y = .value, fill=Flower_symmet
 
 ####LIFEFORM####
 
-lifeform <- fit %>%
+lifeform <- fit_v %>%
   emmeans( ~ life_form, transform = "response" ) %>%
   gather_emmeans_draws() 
 
@@ -392,7 +330,7 @@ p6 <- ggplot(lifeform, aes(x = life_form, y = .value, fill=life_form)) +
 
 ####LIFESPAN####
 
-lifespan <- fit %>%
+lifespan <- fit_v %>%
   emmeans( ~ lifespan, transform = "response" ) %>%
   gather_emmeans_draws() 
 
@@ -403,7 +341,7 @@ p7 <- ggplot(lifespan, aes(x = lifespan, y = .value, fill=lifespan)) +
 
 ####NECTAR####
 
-nectar <- fit %>%
+nectar <- fit_v %>%
   emmeans( ~ Nectar_presence_absence, transform = "response") %>%
   gather_emmeans_draws() 
 
@@ -424,28 +362,28 @@ plot_grid(p1,p3,p5,p6,p7,p8,ncol = 2)
 ################################################################################################################################################################
 
 
-ce_1 <- conditional_effects(fit, effects = "Flowers_per_plant",points=T) 
+ce_1 <- conditional_effects(fit_v, effects = "Flowers_per_plant",points=T) 
 colnames(ce_1[[1]])[3] <- "Interaction"
 
  pp1 <- ggplot(ce_1[[1]], aes(x = Flowers_per_plant, y = (estimate__+1))) + geom_point(data = df,aes(x = Flowers_per_plant, y = Visits),
   size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
   geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
 
- ce_2 <- conditional_effects(fit, effects = "Corolla_diameter_mean",points=T) 
+ ce_2 <- conditional_effects(fit_v, effects = "Corolla_diameter_mean",points=T) 
  colnames(ce_2[[1]])[3] <- "Interaction"
  
  pp2 <- ggplot(ce_2[[1]], aes(x = Corolla_diameter_mean, y = (estimate__+1))) + geom_point(data = df,aes(x = Corolla_diameter_mean, y = Visits),
  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
  
- ce_3 <- conditional_effects(fit, effects = "Style_length",points=T) 
+ ce_3 <- conditional_effects(fit_v, effects = "Style_length",points=T) 
  colnames(ce_3[[1]])[3] <- "Interaction"
  
  pp3 <- ggplot(ce_3[[1]], aes(x = Style_length, y = (estimate__+1))) + geom_point(data = df,aes(x = Style_length, y = Visits),
    size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
    geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
  
- ce_4 <- conditional_effects(fit, effects = "Ovule_number",points=T) 
+ ce_4 <- conditional_effects(fit_v, effects = "Ovule_number",points=T) 
  colnames(ce_4[[1]])[3] <- "Interaction"
  
  pp4 <- ggplot(ce_4[[1]], aes(x = Ovule_number, y = (estimate__+1))) + geom_point(data = df,aes(x = Ovule_number, y = Visits),
@@ -453,7 +391,7 @@ colnames(ce_1[[1]])[3] <- "Interaction"
    geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Number of visits")
  
  
- ce_5 <- conditional_effects(fit, effects = "Plant_height_mean_m",points=T) 
+ ce_5 <- conditional_effects(fit_v, effects = "Plant_height_mean_m",points=T) 
  colnames(ce_5[[1]])[3] <- "Interaction"
  
  pp5 <- ggplot(ce_5[[1]], aes(x = Plant_height_mean_m, y = (estimate__+1))) + geom_point(data = df,aes(x = Plant_height_mean_m, y = Visits),
@@ -472,33 +410,18 @@ df$d <- ifelse(df$d > 1, 1, df$d)
 
 
 fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
-              Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-              Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
-            data = df, family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
-            sample_prior = TRUE, warmup = 500, iter = 2000,
-            control = list(adapt_delta = 0.99)) 
-
-
-fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
                 Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
               data = df, data2 = list(A = A_5), family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
-              sample_prior = TRUE, warmup = 500, iter = 2000,
+              sample_prior = TRUE, warmup = 1000, iter = 3000,
               control = list(adapt_delta = 0.99)) 
 
 
-
-summary(fit_d)
-
-refmodel <- get_refmodel(fit_d)
-
-mcmc_areas(as.matrix(refmodel$fit_d),
-           pars = c(colnames(as.matrix(ref$fit_d))[1:26])) + coord_cartesian(xlim = c(-5, 5))
-
+pp_check(fit_d)
 
 performance::r2(fit_d)
 
-pp_check(fit_d)
+conditional_effects(fit_d)
 
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
@@ -649,17 +572,17 @@ plot_grid(d_quali, d_quanti)
 
 fit_nd <-  brm(normalised.degree ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-                Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
-              data = df, family  = weibull(), cores = 4,chains = 4, 
-              sample_prior = TRUE, warmup = 500, iter = 2000,
+                Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
+              data = df, data2 = list(A = A_5), family  = weibull(), cores = 4,chains = 4, 
+              sample_prior = TRUE, warmup = 1000, iter = 3000,
               control = list(adapt_delta = 0.99)) 
 
-summary(fit_nd)
+
+pp_check(fit_nd)
 
 performance::r2(fit_nd)
 
-
-pairs(fit_nd)
+conditional_effects(fit_nd)
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
@@ -802,126 +725,4 @@ nd_quanti <-  plot_grid(ndd1,ndd2,ndd3,ndd4,ndd5,ncol=2)
 
 
 plot_grid(nd_quali, nd_quanti)
-
-################################################################################################################################################################
-
-hist(df$normalised.degree)
-
-hist(df$weighted.closeness)
-
-min(df$closeness)
-
-df$weighted.closeness <- ifelse(df$weighted.closeness > 1, 1, df$weighted.closeness)
-
-
-fit_c <-  brm(weighted.closeness ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
-                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-                 Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
-               data = df, family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
-               sample_prior = TRUE, warmup = 500, iter = 2000,
-               control = list(adapt_delta = 0.99)) 
-
-pp_check(fit_c)
-
-summary(fit_c)
-
-performance::r2(fit_c)
-
-round(median(bayesR2<-bayes_R2(fit_c)), 2)
-round(median(bayesR2<-loo_R2(fit_c)), 2)
-
-####BREEDING####
-
-breeding_c <- fit_c %>%
-  emmeans( ~ Breeding_system, transform = "response" ) %>%
-  gather_emmeans_draws() 
-
-c1 <- ggplot(breeding_c, aes(x = Breeding_system, y = .value, fill=Breeding_system)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("forestgreen","orange", "grey"))+
-  theme(legend.position = "none") + xlab("Breeding system")
-
-####COMPATIBILITY####
-
-Compatibility_c <- fit_c %>%
-  emmeans( ~ Compatibility_system, transform = "response" ) %>%
-  gather_emmeans_draws() 
-
-c2 <- ggplot(Compatibility_c, aes(x = Compatibility_system, y = .value, fill=Compatibility_system)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("cyan4", "deepskyblue2","orange","GREY"))+
-  theme(legend.position = "none") + xlab("Breeding system")
-
-
-####SELFING####
-
-selfing_c <- fit_c %>%
-  emmeans( ~ Autonomous_selfing_level, transform = "response") %>%
-  gather_emmeans_draws() 
-
-c3 <- ggplot(selfing_c, aes(x = Autonomous_selfing_level, y = .value, fill=Autonomous_selfing_level)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("cyan4", "GREY"))+
-  theme(legend.position = "none") + xlab("Autonomous selfing")
-
-
-####FLOWER SHAPE####
-
-f_shape_c <- fit_c %>%
-  emmeans( ~ Flower_morphology, transform = "response" ) %>%
-  gather_emmeans_draws()
-
-c4 <- ggplot(f_shape_c, aes(x = Flower_morphology, y = .value, fill=Flower_morphology)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("blue","cyan4", "red","forestgreen","purple","gold"))+
-  theme(legend.position = "none") + xlab("Flower shape")
-
-
-####FLOWER SYMMETRY####
-
-f_symmetry_c <- fit_c %>%
-  emmeans( ~ Flower_symmetry, transform = "response" ) %>%
-  gather_emmeans_draws()
-
-c5 <- ggplot(f_symmetry_c, aes(x = Flower_symmetry, y = .value, fill=Flower_symmetry)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("sienna2","purple"))+
-  theme(legend.position = "none") + xlab("Flower symmetry")
-
-
-####LIFEFORM####
-
-lifeform_c <- fit_c %>%
-  emmeans( ~ life_form, transform = "response" ) %>%
-  gather_emmeans_draws() 
-
-c6 <- ggplot(lifeform_c, aes(x = life_form, y = .value, fill=life_form)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("forestgreen", "darkorange2","grey"))+
-  theme(legend.position = "none") + xlab("Life form")
-
-####LIFESPAN####
-
-lifespan_c <- fit_c %>%
-  emmeans( ~ lifespan, transform = "response" ) %>%
-  gather_emmeans_draws() 
-
-c7 <- ggplot(lifespan_c, aes(x = lifespan, y = .value, fill=lifespan)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("sienna4","forestgreen"))+
-  theme(legend.position = "none") + xlab("Lifespan")
-
-####NECTAR####
-
-nectar_c <- fit_c %>%
-  emmeans( ~ Nectar_presence_absence, transform = "response") %>%
-  gather_emmeans_draws() 
-
-c8 <- ggplot(nectar_c, aes(x = Nectar_presence_absence, y = .value, fill=Nectar_presence_absence)) +
-  stat_eye() +
-  theme_light() + ylab("Closeness centrality") +scale_fill_manual(values=c("grey","gold"))+
-  theme(legend.position = "none") + xlab("Nectar")
-
-#Plot all
-nd_quali <- plot_grid(c1,c2,c3,c4,c5,c6,c7,c8,ncol = 2)
 
