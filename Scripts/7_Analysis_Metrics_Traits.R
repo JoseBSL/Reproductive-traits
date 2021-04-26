@@ -195,11 +195,11 @@ df$System[grepl("kaiser-bunbury_2011", df$System)] <- "kaiser-bunbury_2011"
 df$System[grepl("burkle_usa_2013", v$System)] <- "burkle_2013"
 df$System[grepl("dicks_2002", df$System)] <- "dicks_2002"
 df$System[grepl("dupont_2009", df$System)] <- "dupont_2009"
-df$System[grepl("bartomeus_spain_2008_medca", df$System)] <- "bartomeus_2008"
-df$System[grepl("bartomeus_spain_2008_batca", df$System)] <- "bartomeus_2008"
-df$System[grepl("bartomeus_spain_2008_selop", df$System)] <- "bartomeus_2008"
-df$System[grepl("bartomeus_spain_2008_miqop", df$System)] <- "bartomeus_2008"
-df$System[grepl("bartomeus_spain_2008_fraop", df$System)] <- "bartomeus_2008"
+df$System[grepl("bartomeus_spain_2008_medca", df$System)] <- "bartomeus_2008a"
+df$System[grepl("bartomeus_spain_2008_batca", df$System)] <- "bartomeus_2008b"
+df$System[grepl("bartomeus_spain_2008_selop", df$System)] <- "bartomeus_2008c"
+df$System[grepl("bartomeus_spain_2008_miqop", df$System)] <- "bartomeus_2008d"
+df$System[grepl("bartomeus_spain_2008_fraop", df$System)] <- "bartomeus_2008e"
 df$System[grepl("lundgren_2005", df$System)] <- "lundgren_2005"
 df$System[grepl("olesen_2002_mauritius", df$System)] <- "olesen_2002_mauritius"
 df$System[grepl("olesen_2002_azores", df$System)] <- "olesen_2002_azores"
@@ -208,11 +208,88 @@ df$System[grepl("bundgaard_2003_denmark", df$System)] <- "bundgaard_2003"
 df$System[grepl("elberling_sweeden_1999", df$System)] <- "elberling_1999"
 
 
+df$System <- as.factor(df$System)
+
+levels(df$System)
 
 
 
 
+#PHYLO
 
+########################################################################################################################################################
+#Prepare species, genus anD_5 family for calculating phylogenetic distance
+df$Family_all  <- as.character(df$Family_all)
+df$Genus_all   <- as.character(df$Genus_all)
+df$Species_all.y <- as.character(df$Species_all.y)
+
+#prepare dataframe to calculate tree
+phylo_5 <- as.data.frame(cbind(df$Family_all, df$Genus_all, df$Species_all.y))
+colnames(phylo_5) <-  c("family", "genus", "species")
+
+#Select unique cases
+phylo_5_1 <- phylo_5[!duplicated(phylo_5$species),]
+phylo_5_2 <- tibble(phylo_5_1)
+str(phylo_5_2)
+
+library(ape)
+library(rtrees)
+
+phylo_5_3 <- get_tree(sp_list = phylo_5_2, tree = tree_plant_otl, taxon = "plant")
+
+#Convert phylogenetic tree into matrix
+A_5 <- vcv.phylo(phylo_5_3)
+#Standardize to max value 1
+A_5 <- A_5/max(A_5)
+#Unify column names; remove underscore and remove asterik
+rownames(A_5) <- gsub("\\*", "", rownames(A_5))
+colnames(A_5) <- gsub("\\*", "", colnames(A_5))
+colnames(A_5) <- gsub("_", " ", colnames(A_5))
+rownames(A_5) <- gsub("_", " ", rownames(A_5))
+
+#Add phylo column to dataset
+df$phylo
+df$phylo <- df$Species_all.y
+
+
+
+fit_1 <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+              Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+              Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
+            data = df, data2 = list(A = A_5), family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
+            sample_prior = TRUE, warmup = 500, iter = 2000,
+            control = list(adapt_delta = 0.99)) 
+
+pp_check(fit)
+
+summary(fit)
+conditional_effects(fit)
+
+performance::r2(fit_1)
+
+bayes_R2(fit)
+loo_R2(fit)
+
+
+library(glmmTMB)
+mfit <-  glmmTMB(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+           Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+           Plant_height_mean_m + Nectar_presence_absence  + (1|System/unique.id),
+               family=nbinom2, data=df)
+
+
+mfit <-  glmmTMB(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+                   Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+                   Plant_height_mean_m + Nectar_presence_absence  + (1|System/unique.id),
+                 family=nbinom2, data=df)
+
+
+summary(mfit)
+anova(mfit)
+
+performance::r2(mfit)
+
+DHARMa::
 
 
 ####MODEL
@@ -220,7 +297,7 @@ df$System[grepl("elberling_sweeden_1999", df$System)] <- "elberling_1999"
 
 fit <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
               Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
-              Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id),
+              Plant_height_mean_m + Nectar_presence_absence + (1|unique.id),
             data = df, family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
             sample_prior = TRUE, warmup = 500, iter = 2000,
             control = list(adapt_delta = 0.99)) 
@@ -229,7 +306,13 @@ conditional_effects(fit)
 
 performance::r2(fit)
 
+bayes_R2(fit)
+
 summary(fit)
+
+mean(bayes_R2(fit, robust = FALSE, re.form = NULL))
+mean(bayes_R2(fit, robust = FALSE, re.form = NA))
+
 
 refmodel <- get_refmodel(fit)
 
@@ -394,6 +477,15 @@ fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_le
             data = df, family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
             sample_prior = TRUE, warmup = 500, iter = 2000,
             control = list(adapt_delta = 0.99)) 
+
+
+fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+                Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+                Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
+              data = df, data2 = list(A = A_5), family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
+              sample_prior = TRUE, warmup = 500, iter = 2000,
+              control = list(adapt_delta = 0.99)) 
+
 
 
 summary(fit_d)
