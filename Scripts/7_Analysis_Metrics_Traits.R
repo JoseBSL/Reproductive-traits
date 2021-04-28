@@ -20,6 +20,10 @@ library(ggplot2)
 library(bayesplot)
 library(ape)
 library(rtrees)
+library(cowplot)
+library(emmeans)
+library(tidybayes)
+library(multcomp)
 ########################################################################################################################################################
 #1) LOAD NETWORK DATA
 ########################################################################################################################################################
@@ -251,12 +255,28 @@ fit_v <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_sel
             sample_prior = TRUE, warmup = 1000, iter = 3000,
             control = list(adapt_delta = 0.99)) 
 
+summary(fit_v)
+
 pp_check(fit_v)
 
 performance::r2(fit_v)
 
 conditional_effects(fit_v)
 
+#phylo signal (lambda)
+hyp <- "sd_phylo__Intercept^2 / (sd_phylo__Intercept^2 + shape^2) = 0"
+(hyp <- hypothesis(fit_v, hyp, class = NULL))
+
+#cannot be computed for this model but should give a similar output
+performance::icc(fit_v)
+
+#Lambda (estimate of phylo signal)
+1.03^2/(1.03^2+1.05^2)
+
+
+#Save output
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+saveRDS(fit_v, "results_fit_v.rds") 
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
@@ -416,13 +436,21 @@ fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_le
               sample_prior = TRUE, warmup = 1000, iter = 3000,
               control = list(adapt_delta = 0.99)) 
 
-
+summary(fit_d)
 pp_check(fit_d)
 
 performance::r2(fit_d)
 
 conditional_effects(fit_d)
 
+hyp <- "sd_phylo__Intercept^2 / (sd_phylo__Intercept^2 + zoi^2 +coi^2) = 0"
+(hyp <- hypothesis(fit_d, hyp, class = NULL))
+
+performance::icc(fit_d, by_group = T)
+
+#Save output
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+saveRDS(fit_d, "results_fit_d.rds")
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
@@ -577,12 +605,32 @@ fit_nd <-  brm(normalised.degree ~ Breeding_system + Compatibility_system + Auto
               sample_prior = TRUE, warmup = 1000, iter = 3000,
               control = list(adapt_delta = 0.99)) 
 
+summary(fit_nd)
 
 pp_check(fit_nd)
 
 performance::r2(fit_nd)
 
 conditional_effects(fit_nd)
+
+hyp <- "sd_phylo__Intercept^2 / (sd_phylo__Intercept^2 + shape^2 ) = 0"
+(hyp <- hypothesis(fit_nd, hyp, class = NULL))
+
+
+
+trial <-  brm(normalised.degree ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+                 Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
+               data = df, data2 = list(A = A_5), family  = weibull(), cores = 4,chains = 4, 
+               sample_prior = TRUE, warmup = 100, iter = 500,
+               control = list(adapt_delta = 0.99)) 
+
+performance::icc(trial, by_group = TRUE)
+
+#Save output
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+saveRDS(fit_nd, "results_fit_nd.rds")
+
 ################################################################################################################################################################
 #QUALITATIVE VARIABLES
 ################################################################################################################################################################
@@ -725,4 +773,292 @@ nd_quanti <-  plot_grid(ndd1,ndd2,ndd3,ndd4,ndd5,ncol=2)
 
 
 plot_grid(nd_quali, nd_quanti)
+
+
+
+
+#####################################
+
+#2 QUANTITATIVE AND 2 QUALITATIVE
+
+conditional_effects(fit_v)
+
+#QUANTITATIVE CANDIDATES
+
+#VISITATION: FLOWERS PER PLANT PLANT HEIGHT
+
+#SPECIALIZATION:PLANT HEIGHT, FLOWER SIZE FLOWER NUMBER
+
+#NORMALIZED.DEGREE:FLOWER NUMBER, FLOWER SIZE,  OVULE NUMBER
+
+#QUALITATIVE CANDIDATES
+
+
+
+
+# WINNER FLOWER NUMBER QUALITATIVE
+
+# WINNER LIFEFORM QUANTITATIVE
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+fit_v <- readRDS("results_fit_v.rds")
+fit_nd <- readRDS("results_fit_nd.rds")
+fit_d <- readRDS("results_fit_d.rds")
+
+
+
+               #################################################
+               #CONTRAST COMPARISON AND POSTERIOR FOR LIFE FORM
+               #################################################
+#Save dataframe for plottin
+saveRDS(df, "df.rds")
+
+#VISITATION
+#calculate posterior for life form
+life_v <- conditional_effects(fit_v, effects = "life_form",points=T) 
+colnames(life_v[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+visits_life_tukey <- emmeans(fit_v, "life_form", type = "response")
+cld_visits_life_tukey <- cld(visits_life_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(cld_visits_life_tukey, "cld_visits_life_tukey.rds")
+
+#merge to include in gg
+life_v[[1]] <- merge(life_v[[1]], cld_visits_life_tukey, by="life_form", all.x = TRUE)
+#Plot
+v_life <- ggplot(life_v[[1]], aes(x = life_form, y = (estimate__),color=life_form)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = life_form, y = Visits),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1) +theme_ms()+
+  xlab("") + ylab("Sum of visits") +scale_color_manual(values=c("forestgreen", "darkorange2","black")) +theme(legend.position="none")+
+  scale_y_continuous(breaks = seq(0, 280, 50), limits = c(0,280),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = life_v[[1]], aes(y = 270, label = .group))+
+  labs(title = bquote(bold('(a)')~ 'Life form'))
+
+
+#NORMNALIZED DEGREE
+#calculate posterior for life form
+life_nd <- conditional_effects(fit_nd, effects = "life_form",points=T) 
+colnames(life_nd[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+nd_life_tukey <- emmeans(fit_nd, "life_form", type = "response")
+cld_nd_life_tukey <- cld(nd_life_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(cld_nd_life_tukey, "cld_nd_life_tukey.rds")
+#merge to include in gg
+life_nd[[1]] <- merge(life_nd[[1]], cld_nd_life_tukey, by="life_form", all.x = TRUE)
+#Plot
+nd_life <- ggplot(life_nd[[1]], aes(x = life_form, y = (estimate__),color=life_form)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = life_form, y = normalised.degree),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1)+theme_ms()+
+  xlab("") + ylab("Normalized degree") + scale_y_continuous(breaks = seq(0, 0.8, 0.2), limits = c(0,0.8),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = life_nd[[1]], aes(y = 0.8, label = .group))+
+  scale_color_manual(values=c("forestgreen", "darkorange2","black"))+theme(legend.position="none") +
+  labs(title = bquote(bold('(b)')~ 'Life form'))
+
+#SPECIALIZATION
+#calculate posterior for life form
+life_dd <- conditional_effects(fit_d, effects = "life_form",points=T) 
+colnames(life_dd[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+d_life_tukey <- emmeans(fit_d, "life_form", type = "response")
+cld_d_life_tukey <- cld(d_life_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(cld_d_life_tukey, "cld_d_life_tukey.rds")
+#merge to include in gg
+life_dd[[1]] <- merge(life_dd[[1]], cld_d_life_tukey, by="life_form", all.x = TRUE)
+#Plot
+d_life <- ggplot(life_dd[[1]], aes(x = life_form, y = (estimate__),color=life_form)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = life_form, y = d),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1)+theme_ms()+
+  xlab("") + ylab("Specialization (d')") +scale_color_manual(values=c("forestgreen", "darkorange2","black"))+theme(legend.position="none")+
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0,1.06),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = life_dd[[1]], aes(y = 1.05, label = .group)) +
+  labs(title = bquote(bold('(c)')~ 'Life form'))
+
+
+plot_grid(v_life,nd_life,d_life,nrow=1)
+
+
+
+           ##############################################
+           #CONTRAST COMPARISON AND POSTERIOR FOR SELFING
+           ##############################################
+
+
+#VISITATION
+#calculate posterior for life form
+comp_v <- conditional_effects(fit_v, effects = "Compatibility_system",points=T) 
+colnames(comp_v[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+visits_comp_tukey <- emmeans(fit_v, "Compatibility_system", type = "response")
+v_cld_comp_tukey <- cld(visits_comp_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(v_cld_comp_tukey, "v_cld_comp_tukey.rds")
+#merge to include in gg
+comp_v[[1]] <- merge(comp_v[[1]], v_cld_comp_tukey, by="Compatibility_system", all.x = TRUE)
+#Order labels for plotting
+comp_v[[1]]$Compatibility_system <- factor(comp_v[[1]]$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+df$Compatibility_system <- factor(df$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+#Plot
+v_comp <- ggplot(comp_v[[1]], aes(x = Compatibility_system, y = (estimate__),color=Compatibility_system)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = Compatibility_system, y = Visits),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1) +theme_ms()+
+  xlab("") + ylab("Sum of visits") +scale_color_manual(values=c("deepskyblue2", "cyan4","orange","gray7")) +theme(legend.position="none")+
+  scale_y_continuous(breaks = seq(0, 280, 50), limits = c(0,280),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = comp_v[[1]], aes(y = 270, label = .group))+
+  theme(axis.text.x = element_text(angle = 0)) + scale_x_discrete(name=c(""),labels=c("Self-comp", "Part-selfcomp", "Self-incomp", "Uni-flow")) + 
+  labs(title = bquote(bold('(d)')~ 'Compatibility'))
+
+
+
+#NORMNALIZED DEGREE
+#calculate posterior for life form
+comp_nd <- conditional_effects(fit_nd, effects = "Compatibility_system",points=T) 
+colnames(comp_nd[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+nd_comp_tukey <- emmeans(fit_nd, "Compatibility_system", type = "response")
+nd_cld_comp_tukey <- cld(nd_comp_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(nd_cld_comp_tukey, "nd_cld_comp_tukey.rds")
+#merge to include in gg
+comp_nd[[1]] <- merge(comp_nd[[1]], nd_cld_comp_tukey, by="Compatibility_system", all.x = TRUE)
+
+comp_nd[[1]]$Compatibility_system <- factor(comp_nd[[1]]$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+df$Compatibility_system <- factor(df$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+
+#Plot
+nd_comp <- ggplot(comp_nd[[1]], aes(x = Compatibility_system, y = (estimate__),color=Compatibility_system)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = Compatibility_system, y = normalised.degree),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1) +theme_ms()+
+  xlab("") + ylab("Normalise degree") +scale_color_manual(values=c("deepskyblue2", "cyan4","orange","gray7")) +theme(legend.position="none")+
+  scale_y_continuous(breaks = seq(0, 0.8, 0.2), limits = c(0,0.8),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = comp_nd[[1]], aes(y = 0.75, label = .group))+
+  theme(axis.text.x = element_text(angle = 0)) + scale_x_discrete(name=c(""), labels=c("Self-comp", "Part-selfcomp", "Self-incomp", "Uni-flow")) +
+  labs(title = bquote(bold('(e)')~ 'Compatibility'))
+
+#SPECIALIZATION
+#calculate posterior for life form
+#NORMNALIZED DEGREE
+#calculate posterior for life form
+comp_d <- conditional_effects(fit_d, effects = "Compatibility_system",points=T) 
+colnames(comp_d[[1]])[3] <- "Interaction"
+#conduct tukey comparison to get compact letters
+d_comp_tukey <- emmeans(fit_d, "Compatibility_system", type = "response")
+d_cld_comp_tukey <- cld(d_comp_tukey, alpha = 0.05, Letters = LETTERS)
+setwd("~/Dropbox/PhD/R/Chapter_2")
+saveRDS(d_cld_comp_tukey, "d_cld_comp_tukey.rds")
+#merge to include in gg
+comp_d[[1]] <- merge(comp_d[[1]], d_cld_comp_tukey, by="Compatibility_system", all.x = TRUE)
+
+comp_d[[1]]$Compatibility_system <- factor(comp_d[[1]]$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+df$Compatibility_system <- factor(df$Compatibility_system, levels=c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+
+#Plot
+d_comp <- ggplot(comp_d[[1]], aes(x = Compatibility_system, y = (estimate__),color=Compatibility_system)) + geom_jitter(width = 0.15,alpha=0.2,data = df,aes(x = Compatibility_system, y = d),
+  size = 1, alpha=0.9) +geom_point(size=3.5) +geom_errorbar(aes(ymin=(lower__), ymax=(upper__)),width=0.2, size=1) +theme_ms()+
+  xlab("") + ylab("Specialization (d')") +scale_color_manual(values=c( "deepskyblue2", "cyan4","orange","gray7")) +theme(legend.position="none")+
+  scale_y_continuous(breaks = seq(0, 1, 0.2), limits = c(0,1.06),  expand = expansion(mult = c(0.05, .05))) +geom_text(data = comp_d[[1]], aes(y = 1.05, label = .group))+
+  theme(axis.text.x = element_text(angle = 0)) + scale_x_discrete(name=c(""),labels=c("Self-comp", "Part-selfcomp", "Self-incomp", "Uni-flow")) +
+  labs(title = bquote(bold('(f)')~ 'Compatibility'))
+
+
+
+library(patchwork)
+
+v_life + nd_life + d_life + v_comp + nd_comp +d_comp
+
+               ####################################################
+               #CONTRAST COMPARISON AND POSTERIOR FOR FLOWE NUMBER#
+               ####################################################
+               
+#VISITATION
+v_flower <- conditional_effects(fit_v, effects = "Flowers_per_plant",points=T) 
+colnames(v_flower[[1]])[3] <- "Interaction"
+
+pp1 <- ggplot(v_flower[[1]], aes(x = Flowers_per_plant, y = (estimate__+1))) + geom_point(data = df,aes(x = Flowers_per_plant, y = Visits),
+  size = 2, alpha=0.35,colour="darkseagreen") + geom_line(colour="black",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.15,fill="black") + ylab("Sum of visits") + xlab("")+
+  labs(title = bquote(bold('(g)')~ 'Flower number'))
+
+
+#SPECIALIZATION
+d_flower <- conditional_effects(fit_d, effects = "Flowers_per_plant",points=T) 
+colnames(d_flower[[1]])[3] <- "Interaction"
+
+dd1 <- ggplot(d_flower[[1]], aes(x = Flowers_per_plant, y = (estimate__))) + geom_point(data = df,aes(x = Flowers_per_plant, y = d),
+  size = 2, alpha=0.35,colour="darkseagreen") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Specialization (d')") + xlab("")+
+  labs(title = bquote(bold('(h)')~ 'Flower number'))
+
+#NORMLAIZED DEGREE
+nd_flower <- conditional_effects(fit_nd, effects = "Flowers_per_plant",points=T) 
+colnames(nd_flower[[1]])[3] <- "Interaction"
+
+ndd1 <- ggplot(nd_flower[[1]], aes(x = Flowers_per_plant, y = (estimate__))) + geom_point(data = df,aes(x = Flowers_per_plant, y = normalised.degree),
+  size = 2, alpha=0.35,colour="darkseagreen") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Normalize degree") + xlab("")+
+  labs(title = bquote(bold('(i)')~ 'Flower number'))
+
+library(patchwork)
+v_life + nd_life + d_life + v_comp + nd_comp +d_comp +pp1 + dd1 + ndd1
+
+
+                  ####################################################
+                  #CONTRAST COMPARISON AND POSTERIOR FOR FLOWE NUMBER#
+                  ####################################################
+                  
+
+
+#VISITATION
+v_flower_size <- conditional_effects(fit_v, effects = "Corolla_diameter_mean",points=T) 
+
+f1 <- ggplot(v_flower_size[[1]], aes(x = Corolla_diameter_mean, y = (estimate__+1))) + geom_point(data = df,aes(x = Corolla_diameter_mean, y = Visits),
+   size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.15,fill="black") + ylab("Number of visits") + xlab("")
+
+
+#SPECIALIZATION
+d_flower_size <- conditional_effects(fit_d, effects = "Corolla_diameter_mean",points=T) 
+
+ff1 <- ggplot(d_flower_size[[1]], aes(x = Corolla_diameter_mean, y = (estimate__))) + geom_point(data = df,aes(x = Corolla_diameter_mean, y = d),
+  size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Specialization (d')") + xlab("")
+
+#NORMLAIZED DEGREE
+nd_flower_size <- conditional_effects(fit_nd, effects = "Corolla_diameter_mean",points=T) 
+
+ndf1 <- ggplot(nd_flower_size[[1]], aes(x = Corolla_diameter_mean, y = (estimate__))) + geom_point(data = df,aes(x = Corolla_diameter_mean, y = normalised.degree),
+  size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Normalize degree") + xlab("")
+
+
+v_life + nd_life + d_life + v_comp + nd_comp + d_comp + pp1 + dd1 + ndd1 + f1 + ff1 + ndf1 +   plot_layout(ncol = 3)
+
+
+
+####################################################
+#CONTRAST COMPARISON AND POSTERIOR FOR FLOWE NUMBER#
+####################################################
+
+#VISITATION
+v_height <- conditional_effects(fit_v, effects = "Plant_height_mean_m",points=T) 
+
+h <- ggplot(v_height[[1]], aes(x = Plant_height_mean_m, y = (estimate__+1))) + geom_point(data = df,aes(x = Plant_height_mean_m, y = Visits),
+  size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2) + ylim(0,quantile(df$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.15,fill="black") + ylab("Number of visits") + xlab("")
+
+
+#SPECIALIZATION
+d_height <- conditional_effects(fit_d, effects = "Plant_height_mean_m",points=T) 
+
+hd <- ggplot(d_height[[1]], aes(x = Plant_height_mean_m, y = (estimate__))) + geom_point(data = df,aes(x = Plant_height_mean_m, y = d),
+  size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Specialization (d')") + xlab("")
+
+#NORMLAIZED DEGREE
+nd_height <- conditional_effects(fit_nd, effects = "Plant_height_mean_m",points=T) 
+
+ndh <- ggplot(nd_height[[1]], aes(x = Plant_height_mean_m, y = (estimate__))) + geom_point(data = df,aes(x = Plant_height_mean_m, y = normalised.degree),
+  size = 2, alpha=0.35,colour="darkslategray3") + geom_line(colour="black",size=1.2)  +  theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.15,fill="black") + ylab("Normalized degree") + xlab("") +
+  labs(title = bquote(bold('(a)')~ 'Plant height'))
+
+
+
+Plot <- v_life + nd_life + d_life + v_comp + nd_comp + d_comp + pp1 + ndd1  + dd1 +   plot_layout(ncol = 3)
+
+
+
 

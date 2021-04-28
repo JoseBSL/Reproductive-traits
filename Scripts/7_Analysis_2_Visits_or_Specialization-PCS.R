@@ -471,8 +471,4 @@ Visits_PC1 + Visits_PC2 + Visits_PC3 + degree_PC1 + degree_PC2 + degree_PC3+ nor
   
   
   
-betweenness_PC1 + betweenness_PC2 + betweenness_PC3 +
-PDI_PC1 + PDI_PC2 + PDI_PC3 + closeness_PC1 + closeness_PC2 + closeness_PC3 +
-  plot_layout(ncol = 3)
-
-
+#NECTAR
