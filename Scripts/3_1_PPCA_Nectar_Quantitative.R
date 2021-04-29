@@ -112,6 +112,7 @@ saveRDS(dat_cleaning_5, "Data/RData/data_subset_nectar.rds")
 #READ DATA
 ####
 phyl_pca_forest_nectar_all <- readRDS("Data/RData/phyl_pca_forest_nectar_all.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_subset_nectar.rds")
 
 #CALL the output PC for simplicity
 PC <- phyl_pca_forest_nectar_all
@@ -134,7 +135,7 @@ PC$L
 #it has inside how to compute kernel density but do not think I'll use it
 #point density seems to do the job
 
-PCbiplot <- function(PC, x="PC1", y="PC2") {
+all_spp <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
   data <- data.frame(PC$S)
   plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
@@ -152,11 +153,19 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
   dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
   dat$Nectar[dat$Nectar=="yes"] <- "Presence"
   dat$Nectar[dat$Nectar=="no"] <- "Absence"
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Nectar),size=0.75)+scale_color_manual(values=c("#fc2847", "#1cac78")) #+ #scale_color_viridis_c(option = "A", direction = 1, limits = c(min(dat$density), max(dat$density)))+
   # plot <- plot +geom_point(data=dat, aes(-x, -y, colour = density),size=0.65,shape = 1,colour = "black",alpha=0.8)
+  
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',bins = 8) + 
+    scale_fill_continuous(low="green",high="red",guide=FALSE,lim=c(0.01,0.075),breaks = c(0.01, 0.025, 0.035), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.5),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+  plot <- plot + geom_point(data=dat, aes(x, y),size=0.95, color="black")
   
   ########
   #ADD ARROWS 
@@ -167,64 +176,42 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
     (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
   )
   datapc <- transform(datapc,
-                      v1 = .5 * mult * (get(x)),
-                      v2 = .5 * mult * (get(y))
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="brown4")
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
-  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),")","%", sep = "")) #XLAB
-  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
-  plot <- plot + theme(panel.grid.minor = element_blank(),panel.grid.major = element_blank(),
-                       panel.border = element_rect(linetype = "solid", colour = "black", size=1))
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
   
-  
-  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
-  
-  #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower Number", "Flower size", "Style Length", "Ovule Number", "Plant Height","Nectar")
-  
-  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(3.5,4,4,4,4,4,4)), y = -(PCAloadings$PC2*c(3,4,4,4,4,4,4)),
-                          label = PCAloadings$Variables, color="black",size=5)
   
   #CHANGE THEME
   
-  plot <- plot + theme_bw()
+  plot <- plot + theme_bw() 
   
-  #CALCULATE KERNELS
-  #mv.kde <- kde2d(data[,1], data[,2], n = 400)
-  #dx <- diff(mv.kde$x[1:2])  # lifted from emdbook::HPDregionplot()
-  #dy <- diff(mv.kde$y[1:2])
-  #sz <- sort(mv.kde$z)
-  #c1 <- cumsum(sz) * dx * dy
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height", "Nectar" )
   
-  # specify desired contour levels:
-  #prob <- c(0.5)
-  #prob_1 <- c(0.90)
-  # plot:
-  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
-  #dc <- melt(mv.kde$z)
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,6.25,6.3,6.15,6)), y = -(PCAloadings$PC2*c(4.693,2.4,3,6.2,5,5.5,6)+c(0,0,0,0,0.4,0,0)),
+                          label = PCAloadings$Variables, color="black",fontface =2,size=4)
   
-  #dc$prob <- approx(sz,1-c1,dc$value)$y
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
   
-  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob),colour="brown4",breaks=prob)
-  # plot:
-  #dimnames(mv.kde$z) <- list(mv.kde$x,mv.kde$y)
-  #dc <- melt(mv.kde$z)
-  
-  #dc$prob_1 <- approx(sz,1-c1,dc$value)$y
-  #plot <- plot + geom_contour(data=dc, aes(x=-Var1,y=-Var2,z=prob_1),colour="black",breaks=prob_1)
   
   
   plot
   
 }
 
-PCbiplot(PC)
+all_spp(PC)
 
 

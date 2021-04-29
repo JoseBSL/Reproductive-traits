@@ -51,7 +51,7 @@ levels(as.factor(trait_filtered$Info_level)) #checking levels
 trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA 
 trait_filtered_1 <- trait_filtered[!is.na(trait_filtered$Species_all),]
 trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
-
+str(trait_filtered_2)
 
 #Select columns to work with
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
@@ -257,6 +257,8 @@ rownames(forest_data) <- dat_phylo$Species_geonet
 #7) SAVE IMPUTATION 
 ########################################################################################################################################################
 write.csv(forest_data, "Data/Csv/all_species_imputed_trait_data_forest_data.csv")
+#For phylo signal I have added floral unit width, add it again if I want to generate the same file
+#write.csv(forest_data, "Data/Csv/all_species_imputed_for_phylo_signal.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################

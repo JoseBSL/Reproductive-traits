@@ -1,0 +1,166 @@
+########################################################################################################################################################
+#SCRIPT TO CHECK PATTERNS OF MISSING VALUES
+########################################################################################################################################################
+#1) READ TRAIT DATA
+
+#2) CLEAN DATA 
+
+#3) EXPLORE PATTERNS OF MISSING DATA
+########################################################################################################################################################
+#LOAD LIBRARIES
+library(readxl) #read excel file (trait data)
+library(dplyr) #data manipulation
+library(missMDA) #For missing values
+library(FactoMineR) #Produce pca biplot with individuals and variables
+library(factoextra)
+library(ggpubr) 
+library(missForest) #random forst imputation
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(ape)
+library(PVR) #calculate eigen vectors and add them as a column in the imputation, seems to improve output
+library(visdat) #VISUALIZE MISSING DATA
+library(naniar)
+library(VIM)
+
+########################################################################################################################################################
+#1) READ TRAIT DATA
+########################################################################################################################################################
+#load data
+trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
+########################################################################################################################################################
+#2) A) CLEAN DATA AND B) RENAME LEVELS FOR IMPUTATION 
+########################################################################################################################################################
+#####
+#A) CLEAN DATA
+#####
+#select just filled rows
+trait_data_1 <- trait_data[1:1712,] #It may be a more elegant way but this does the job, 1712 rows of data
+
+str(trait_data_1)
+#filter data, select species with flower level info and capitulum
+trait_filtered <- filter(trait_data_1, Info_level == "flower" |  Info_level == "capitulum")
+levels(as.factor(trait_filtered$Info_level)) #checking levels
+#remove NA's and duplicated species|Some spp are repeated once the spp names are standardize with taxize
+trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA 
+trait_filtered_1 <- trait_filtered[!is.na(trait_filtered$Species_all),]
+trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
+str(trait_filtered_2)
+
+#Select columns to work with
+t <- trait_filtered_2[c("Species_geonet","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
+                        "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+                        "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul")]
+
+
+####################################################################################################
+#2) CLEAN DATA. I REPEAT THE SAME PROCEDURE OF THE DATA IMPUTATION TO GET THE SAME NUMBER OF SPECIES
+####################################################################################################
+#Before data imputation I need to calculate the phylo of the species
+#remove not found species that do not run with get tree
+cols.num <- c("Family_all","Genus_all","Species_all")
+t[cols.num] <- sapply(t[cols.num],as.character)
+t$Species_all <- gsub("Species_all_", "", t$Species_all)
+
+t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
+
+#remove species that are not until species level
+#ALL THE SPECIES WITH SP. ARE DELETD
+t$Species_geonet <- gsub("M_PL_.*","",t$Species_geonet) #subsitute partial string for nothing
+t$Species_geonet <- gsub(" $","", t$Species_geonet, perl=T) #remove trailing spaces
+t$Species_geonet <-  sub('sp.1$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp.2$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp$', 'sp.', t$Species_geonet) #PREPARE ALL SP TO SP.
+t$Species_geonet <- sub("sp.$", "DELETE", t$Species_geonet) #change all sp. for DELETE
+t <- t[- grep("DELETE",  t$Species_geonet),] #remove species with "DELETE"
+#CHECK LEVELS
+levels(factor(t$Species_all))
+
+#Make these NA's as NA
+t$Species_all[t$Species_all=="NA"] <- NA
+t$Family_all[t$Family_all=="NA"] <- NA
+t$Genus_all[t$Genus_all=="NA"] <- NA
+#remove NA's
+t <- t[!is.na(t$Family_all),]
+t <- t[!is.na(t$Species_all),]
+t <- t[!is.na(t$Genus_all),]
+
+nrow(t)
+
+#Select just columns with traits
+t <- t[c("Breeding_system","Compatibility_system",
+                        "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+                        "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul")]
+
+
+#################################################
+#3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
+#################################################
+#Number of filled cells
+nrow(t) * 16 - sum(is.na(t))#[1] 20737
+#Dimension of the dataset
+nrow(t) * 16#[1] 24096
+#Number of missing values
+sum(is.na(t))#[1] 3359
+#Percentage of filled cells
+sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 86.87993
+#Percentage of missing values
+sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 13.12007
+
+
+
+#Function to specify number of decimals
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
+
+
+no_missing <- specify_decimal(sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
+missing <- specify_decimal(sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
+
+
+colnames(t) <- c("Breeding system","Compatibility system",
+         "Autonomous selfing qualitative","Autonomous selfing quantitative", "Flower shape", "Flower symmetry", 
+         "Flower number per plant", "Floral display width", "Flower width", "Flower length","Style length", "Ovule number", 
+         "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar quantitative")
+
+
+library(naniar)
+
+vis_miss(airquality)
+vis_miss(t, sort_miss = T) +  theme(axis.text.x = element_text(size = 6, angle = 89))  + scale_fill_manual(name="",values=c("cornsilk2", "brown4"),labels=c(paste("Present", " ",no_missing,"%",sep = ""),paste("Missing", " ",missing,"%",sep = "")))
+
+
+#Try alternative plot vis_miss with markdown gives blurry colors and I haven't been able to fix it, seems to be a knit thing...
+
+
+missing.values <- t %>%
+  gather(key = "key", value = "val") %>%
+  mutate(isna = is.na(val)) %>%
+  group_by(key) %>%
+  mutate(total = n()) %>%
+  group_by(key, total, isna) %>%
+  summarise(num.isna = n()) %>%
+  mutate(pct = num.isna / total * 100)
+
+
+levels <-
+  (missing.values  %>% filter(isna == T) %>% arrange(desc(pct)))$key
+
+percentage.plot <- missing.values %>%
+  ggplot() +
+  geom_bar(aes(x = reorder(key, desc(pct)), 
+               y = pct, fill=isna), 
+           stat = 'identity', alpha=0.8) +
+  scale_x_discrete(limits = levels) + theme_bw()+
+  scale_fill_manual(name = "", 
+                    values = c('steelblue', 'tomato3'), labels = c("Present", "Missing")) +
+  coord_flip() +
+  labs(title = "Percentage of missing values", x =
+         'Variables', y = "% of missing values")
+
+percentage.plot
+
+
+#Thank to 
+#https://www.kaggle.com/jenslaufer/missing-value-visualization-with-ggplot2-and-dplyr
+
