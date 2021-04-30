@@ -11,10 +11,11 @@ library(rtrees) #for phylogenetic distancelibrary(MASS)
 library(phytools) #to phylo signal
 library(ape)
 library(brms)
+library(dplyr)
 ########################################################################################################################################################
 #READ DATA
 ########################################################################################################################################################
-forest_data <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv")
+forest_data <- read.csv("Data/Csv/all_species_imputed_for_phylo_signal.csv")
 str(forest_data)
 ########################################################################################################################################################
 #CALCULATE PHYLO
@@ -49,33 +50,59 @@ forest_data$phylo <- forest_data$Species_all
 nums <- unlist(lapply(forest_data, is.numeric))  
 d <- forest_data[ , nums]
 
-
-#SELFING
-selfing <- phylosig(tree=phylo_output,x=d$Autonomous_selfing_level_fruit_set,method="lambda",test=TRUE)
-#FLOWER NUMBER
-flower_n <- phylosig(tree=phylo_output,x=d$Flowers_per_plant,method="lambda",test=TRUE)
-#FLOWER WIDTH
-flower_width <- phylosig(tree=phylo_output,x=d$Corolla_diameter_mean,method="lambda",test=TRUE)
-#FLOWER LENGTH
-flower_length <- phylosig(tree=phylo_output,x=d$Corolla_length_mean,method="lambda",test=TRUE)
-#STYLE LENGTH
-style_n <- phylosig(tree=phylo_output,x=d$Style_length,method="lambda",test=TRUE)
-#OVULE NUMBER
-ovule_n <- phylosig(tree=phylo_output,x=d$Ovule_number,method="lambda",test=TRUE)
-#PLANT HEIGHT
-plant_height <- phylosig(tree=phylo_output,x=d$Plant_height_mean_m,method="lambda",test=TRUE)
-
-
-
-
 str(forest_data)
 
+rownames(d) <- forest_data$Species_all
 
-forest_data[sapply(forest_data, is.character)] <- lapply(forest_data[sapply(forest_data, is.character)], as.factor)
+#Remove underscore from phylo
+phylo_output$tip.label <- gsub("_", " ", phylo_output$tip.label)
 
 
-nectar_signal <-  brm(Nectar_presence_absence~ 1 + (1|gr(phylo, cov = A)),
-              data = forest_data, data2 = list(A = A_5), family  = bernoulli(), cores = 4,chains = 4, 
-              sample_prior = TRUE, warmup = 1000, iter = 3000,
-              control = list(adapt_delta = 0.99)) 
+#SELFING
+selfing <- phylosig(phylo_output,setNames(d[,"Autonomous_selfing_level_fruit_set"],rownames(d)),method="lambda",test=TRUE)
+#FLOWER NUMBER
+flower_n <- phylosig(phylo_output,setNames(d[,"Flowers_per_plant"],rownames(d)),method="lambda",test=TRUE)
+#INFLO WIDTH
+inflow_width <- phylosig(phylo_output,setNames(d[,"Floral_unit_width"],rownames(d)),method="lambda",test=TRUE)
+#FLOWER WIDTH
+flower_width <- phylosig(phylo_output,setNames(d[,"Corolla_diameter_mean"],rownames(d)),method="lambda",test=TRUE)
+#FLOWER LENGTH
+flower_length <- phylosig(phylo_output,setNames(d[,"Corolla_length_mean"],rownames(d)),method="lambda",test=TRUE)
+#STYLE LENGTH
+style_n <- phylosig(phylo_output,setNames(d[,"Style_length"],rownames(d)),method="lambda",test=TRUE)
+#OVULE NUMBER
+ovule_n <- phylosig(phylo_output,setNames(d[,"Ovule_number"],rownames(d)),method="lambda",test=TRUE)
+#PLANT HEIGHT
+plant_height <- phylosig(phylo_output,setNames(d[,"Plant_height_mean_m"],rownames(d)),method="lambda",test=TRUE)
 
+
+#Save output to plot in an Rmd file
+#SELFING
+saveRDS(selfing, "Data/RData/selfing_phylo.rds")
+#FLOWER NUMBER
+saveRDS(flower_n, "Data/RData/flower_n_phylo.rds")
+#INFLO WIDTH
+saveRDS(inflow_width, "Data/RData/inflow_width_phylo.rds")
+#FLOWER WIDTH
+saveRDS(flower_width, "Data/RData/flower_width_phylo.rds")
+#FLOWER LENGHT
+saveRDS(flower_length, "Data/RData/flower_length_phylo.rds")
+#STYLE LENGTH
+saveRDS(style_n, "Data/RData/style_n_phylo.rds")
+#OVULE NUMBER
+saveRDS(ovule_n, "Data/RData/ovule_n_phylo.rds")
+#PLANT HEIGHT
+saveRDS(plant_height, "Data/RData/plant_height_phylo.rds")
+
+#Select two decimals function
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
+#LABELS
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height")
+#LAMBDA
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda)
+#P-VALUE
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P)
+
+tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
+
+colnames(tabla) <- c("Variable", "Lambda", "P value")

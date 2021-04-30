@@ -1,0 +1,53 @@
+---
+title: ""
+output:
+  pdf_document: default
+  html_document: default
+header-includes:  \usepackage{soul}
+
+---
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
+
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+#SELFING
+selfing <- readRDS("Data/RData/selfing_phylo.rds")
+#FLOWER NUMBER
+flower_n <- readRDS("Data/RData/flower_n_phylo.rds")
+#INFLO WIDTH
+inflow_width <- readRDS("Data/RData/inflow_width_phylo.rds")
+#FLOWER WIDTH
+flower_width <- readRDS("Data/RData/flower_width_phylo.rds")
+#FLOWER LENGHT
+flower_length <- readRDS("Data/RData/flower_length_phylo.rds")
+#STYLE LENGTH
+style_n <- readRDS("Data/RData/style_n_phylo.rds")
+#OVULE NUMBER
+ovule_n <- readRDS("Data/RData/ovule_n_phylo.rds")
+#PLANT HEIGHT
+plant_height <- readRDS("Data/RData/plant_height_phylo.rds")
+
+#Select two decimals function
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
+#LABELS
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height")
+#LAMBDA
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda)
+#P-VALUE
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P)
+
+tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
+
+colnames(tabla) <- c("Variable", "Lambda", "P-value")
+
+kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
+
+
+
+```
