@@ -133,7 +133,7 @@ missing <- specify_decimal(sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
 
 colnames(t) <- c("Breeding system","Compatibility system",
          "Autonomous selfing qualitative","Autonomous selfing quantitative", "Flower shape", "Flower symmetry", 
-         "Flower number per plant", "Floral display width", "Flower width", "Flower length","Style length", "Ovule number", 
+         "Flower number per plant", "Inflorescence width", "Flower width", "Flower length","Style length", "Ovule number", 
          "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar quantitative")
 
 
@@ -158,10 +158,12 @@ percentage.plot <- missing.values %>%
            stat = 'identity', alpha=0.8) +
   scale_x_discrete(limits = levels) + theme_bw()+
   scale_fill_manual(name = "", 
-                    values = c('steelblue', 'tomato3'), labels = c("Present", "Missing")) +
+                    values = c('#57a340', '#d24513'), labels = c("Present values", "Missing values")) +
   coord_flip() +
-  labs(title = "Percentage of missing values", x =
-         'Variables', y = "% of missing values")
+  labs(title = "", x =
+         '', y = "")+  scale_y_continuous(labels = function(x) paste0(x*1, "%")) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=1))
+
 
 percentage.plot
 
