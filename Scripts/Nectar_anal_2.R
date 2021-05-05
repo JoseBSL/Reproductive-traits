@@ -125,9 +125,6 @@ colnames(dat)[1] <- "Plants"
 #merge
 datitos <- merge(all_df, dat, by.x =  "Species_all", by.y= "Plants")
 
-
-
-
 #New colname with log of visits
 
 datitos_1 <- datitos
@@ -171,6 +168,22 @@ levels(factor(datitos_1$Nectar_presence_absence)) #OK
 #Now quantitative variables
 
 str(datitos_1)
+
+datitos_1$Nectar_presence_absence <- as.factor(datitos_1$Nectar_presence_absence)
+
+
+
+levels(datitos_1$Nectar_presence_absence )
+m1 <- lm(d~Nectar_presence_absence, data=datitos_1)
+summary(m1)
+anova(m1)
+
+
+
+
+
+
+
 
 #Standardize data 
 datitos_1[,c(18, 21:25,28,30)] <- data.frame(log(datitos_1[,c(18, 21:25,28,30)]+1))
