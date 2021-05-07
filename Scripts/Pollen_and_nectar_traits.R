@@ -1,7 +1,18 @@
 
+
+#LOAD LIBRARIES
+library(ggplot2)
+library(brms)
+library(ape) #for phylogenetic distance
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(dplyr) #data processing
+library(data.table)
+library(tidyverse)
+library(readxl)
 ########################################################################################################################################################
 #1) READ TRAIT DATA
 ########################################################################################################################################################
+setwd("~/R_Projects/Reproductive Traits")
 #load data
 trait_data <- read_excel("Data/Trait_data_raw/Trait_data_trial.xlsx",na = "NA")
 ########################################################################################################################################################
@@ -40,11 +51,8 @@ long_d_2 <- long_d_1[!is.na(long_d_1$guild),] #I do it by guild because just the
 
 #check levels
 levels(factor(long_d_2$guild)) #9 DIFFERENT GUILDS|After I'll select the main fucntional poll. groups for analysis
-
-
+#MERGE DATA
 data <- merge(long_d_2, t, by="Plant_species")
-
-data$visits_log <- log(data$Interaction +1)
 
 #remove species that are not until species level
 #ALL THE SPECIES WITH SP. ARE DELETD
@@ -126,26 +134,26 @@ data$System[grepl("bartomeus_spain_2008", data$System)] <- "bartomeus_spain_2008
 data$System[grepl("bundgaard_2003_denmark", data$System)] <- "bundgaard_2003"
 data$System[grepl("elberling_sweeden_1999", data$System)] <- "elberling_1999"
 
+#Save data to other dataframe so we keep the original for plotting
+data_1 <- data
+
+#Convert to logarithmic scale (fixed effect)
+data_1$Pollen_per_flower <- log10(data_1$Pollen_per_flower + 1)
+
+hist(data_1$Pollen_per_flower)
+hist(data$Pollen_per_flower)
+
 ################################################################################################################################################################
 #POLLEN ALL
 ################################################################################################################################################################
-
-data$Pollen_per_flower <- log(data$Pollen_per_flower + 1)
-
 m_pollen <- brm((Interaction-1) ~ Pollen_per_flower +(1|System/Id) + (1|gr(phylo, cov = A)),
-                                        data = data, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                                        data = data_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                                         sample_prior = TRUE, warmup = 500, iter = 2000,
                                         control = list(adapt_delta = 0.99))
 
 plot_pollen <- conditional_effects(m_pollen)
 
 plot(plot_pollen, points=TRUE)
-
-performance::r2(m_pollen)
-
-colnames(plot_pollen[[1]])[2] <- "Interaction"
-
-
 
 ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__)) + geom_line() + geom_point(data = data,aes(x = Pollen_per_flower, y = Interaction),
        size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Pollen per flower)")
@@ -333,13 +341,61 @@ saveRDS(m_nectar_ul_bees, "model_nectar_ul_bees.rds")
 saveRDS(m_pollen_bees, "model_pollen_bees.rds")
 
 #ALL MODELS
-saveRDS(m_pollen, "model_pollen_ovule_all.rds")
+saveRDS(m_pollen_ovule, "model_pollen_ovule_all.rds")
 saveRDS(m_nectar_ul, "model_nectar_con_all.rds")
 saveRDS(m_nectar_mg, "model_nectar_mg_all.rds")
 saveRDS(m_nectar_con, "model_nectar_ul_all.rds")
-saveRDS(m_pollen_ovule, "model_pollen_all.rds")
+saveRDS(m_pollen, "model_pollen_all.rds")
 
 #Save data
 saveRDS(data, "model_all.rds")
 saveRDS(data_bees, "model_bees.rds")
+
+#Read data
+
+#BEE MODELS
+model_pollen_ovule_bees <- readRDS("model_pollen_ovule_bees.rds")
+model_nectar_con_bees <- readRDS("model_nectar_con_bees.rds")
+model_nectar_mg_bees <- readRDS("model_nectar_mg_bees.rds")
+model_nectar_ul_bees <- readRDS("model_nectar_ul_bees.rds")
+model_pollen_bees <- readRDS("model_pollen_bees.rds")
+
+#ALL MODELS
+m_pollen_ovule <- readRDS("model_pollen_ovule_all.rds")
+model_nectar_con_all <- readRDS("model_nectar_con_all.rds")
+model_nectar_mg_all <- readRDS("model_nectar_mg_all.rds")
+model_nectar_ul_all <- readRDS("model_nectar_ul_all.rds")
+m_pollen <- readRDS("model_pollen_all.rds")
+
+#Save data
+data <- readRDS("model_all.rds")
+model_bees <- readRDS("model_bees.rds")
+
+ 
+#Set publication theme
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.3)),
+           axis.text=element_text(size = rel(1.5), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.4, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+library(scales)
+
+#The zero inflated negative binomial requieres zeros
+#We have substracted previously 1 unit and we add it now in the gg
+ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__+1)) + geom_line() + geom_point(data = data,aes(x = Pollen_per_flower, y = Interaction),
+size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Pollen per flower)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) +scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
+   labels = trans_format("log10", math_format(10^.x)))
 
