@@ -1,5 +1,6 @@
-
-
+########################################################################################################################################################
+#Script to analyse data of pollen and nectar||Visits~Floral rewards
+########################################################################################################################################################
 #LOAD LIBRARIES
 library(ggplot2)
 library(brms)
@@ -9,6 +10,26 @@ library(dplyr) #data processing
 library(data.table)
 library(tidyverse)
 library(readxl)
+
+#Set publication theme
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(1.1)),
+           axis.text=element_text(size = rel(1), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.4, 'lines'),
+           panel.border=element_rect(color="black",size=1),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
 ########################################################################################################################################################
 #1) READ TRAIT DATA
 ########################################################################################################################################################
@@ -141,12 +162,12 @@ data_1 <- data
 data_1$Pollen_per_flower <- log10(data_1$Pollen_per_flower + 1)
 data_1$Pollen_ovule_ratio <- log10(data_1$Pollen_ovule_ratio + 1)
 data_1$Nectar_ul <- log10(data_1$Nectar_ul +1)
-data_1$Nectar_m <- as.numeric(data_1$Nectar_m)
-data_1$Nectar_m <- log10(data_1$Nectar_m + 1)
+data_1$Nectar_mg <- as.numeric(data_1$Nectar_mg)
+data_1$Nectar_mg <- log10(data_1$Nectar_mg + 1)
 
-
-hist(data_1$Nectar_m)
-hist(as.numeric(data$Nectar_m))
+data$
+hist(data_1$Nectar_mg)
+hist(as.numeric(data$Nectar_mg))
 
 ################################################################################################################################################################
 #POLLEN ALL
@@ -160,6 +181,8 @@ plot_pollen <- conditional_effects(m_pollen)
 
 plot(plot_pollen, points=TRUE)
 
+
+saveRDS(m_pollen, "model_pollen_all.rds")
 #POLLEN
 pollen_plot_all <- ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Pollen_per_flower, y = Interaction),
   size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen grains per flower (log scale)") +theme_ms() + ylab("Visits") +
@@ -208,9 +231,9 @@ m_nectar_mg <- brm((Interaction-1) ~ Nectar_mg +(1|System/Id) + (1|gr(phylo, cov
 plot_nectar_mg <- conditional_effects(m_nectar_mg)
 plot(plot_nectar_mg, points=TRUE)
 
-nectar_ul_plot_all <- ggplot(plot_nectar_mg[[1]], aes(Nectar_mg, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Nectar_mg, y = Interaction),
-  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Microlitres of nectar (log scale)") +theme_ms() + ylab("Visits") +
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(0,1,2),labels = c(10^0-1,10^1,10^2))
+nectar_mg_plot_all <-  ggplot(plot_nectar_mg[[1]], aes(Nectar_mg, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Nectar_mg, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Miligrams of nectar sugar (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(0,0.3,0.6),labels = c(0,2,4))
 ################################################################################################################################################################
 #NECTAR COCENTARTION ALL
 ################################################################################################################################################################
@@ -222,9 +245,9 @@ m_nectar_con <- brm((Interaction-1) ~ Nectar_concentration +(1|System/Id) + (1|g
 plot_nectar_con <- conditional_effects(m_nectar_con)
 plot(plot_nectar_con, points=TRUE)
 
-ggplot(plot_nectar_con[[1]], aes(Nectar_concentration, estimate__)) + geom_line() + geom_point(data = data,aes(x = Nectar_concentration, y = Interaction),
-      size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Nectar concentration")
-
+nectar_con_plot_all <- ggplot(plot_nectar_con[[1]], aes(Nectar_concentration, estimate__+1)) + geom_line() + geom_point(data = data,aes(x = Nectar_concentration, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Nectar concentration") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15)
 
 ################################################################################################################################################################
 ################################################################################################################################################################
@@ -357,9 +380,9 @@ model_pollen_bees <- readRDS("model_pollen_bees.rds")
 
 #ALL MODELS
 m_pollen_ovule <- readRDS("model_pollen_ovule_all.rds")
-model_nectar_con_all <- readRDS("model_nectar_con_all.rds")
+m_nectar_con <- readRDS("model_nectar_con_all.rds")
 model_nectar_mg_all <- readRDS("model_nectar_mg_all.rds")
-model_nectar_ul_all <- readRDS("model_nectar_ul_all.rds")
+m_nectar_con <- readRDS("model_nectar_ul_all.rds")
 m_pollen <- readRDS("model_pollen_all.rds")
 
 #Save data
@@ -367,23 +390,7 @@ data <- readRDS("model_all.rds")
 model_bees <- readRDS("model_bees.rds")
 
  
-#Set publication theme
-# Theme for publication
-theme_ms <- function(base_size=12, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-     theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(1.3)),
-           axis.text=element_text(size = rel(1.5), color = "black"),
-           legend.title=element_text(face="bold"),
-           legend.text=element_text(),
-           legend.background=element_rect(fill="transparent"),
-           legend.key.size = unit(0.4, 'lines'),
-           panel.border=element_rect(color="black",size=1),
-           panel.grid.minor.x =element_blank(),
-           panel.grid.minor.y= element_blank(),
-           panel.grid.major= element_blank()
-     ))
-}
+
 
 library(scales)
 
@@ -402,4 +409,6 @@ ggplot(plot_pollen_ovule[[1]], aes(Pollen_ovule_ratio, estimate__+1)) + geom_lin
   geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(2,4,6,8,10,12),labels = c(10^2,10^4,10^6,10^8,10^10,10^12))
 
 library(patchwork)
-pollen_plot_all + pollen_ovule_ratio_plot_all + nectar_ul_plot_all
+nectar_mg_plot_all
+
+pollen_plot_all + pollen_ovule_ratio_plot_all + nectar_ul_plot_all  + nectar_con_plot_all 
