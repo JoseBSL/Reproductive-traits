@@ -139,9 +139,14 @@ data_1 <- data
 
 #Convert to logarithmic scale (fixed effect)
 data_1$Pollen_per_flower <- log10(data_1$Pollen_per_flower + 1)
+data_1$Pollen_ovule_ratio <- log10(data_1$Pollen_ovule_ratio + 1)
+data_1$Nectar_ul <- log10(data_1$Nectar_ul +1)
+data_1$Nectar_m <- as.numeric(data_1$Nectar_m)
+data_1$Nectar_m <- log10(data_1$Nectar_m + 1)
 
-hist(data_1$Pollen_per_flower)
-hist(data$Pollen_per_flower)
+
+hist(data_1$Nectar_m)
+hist(as.numeric(data$Nectar_m))
 
 ################################################################################################################################################################
 #POLLEN ALL
@@ -155,53 +160,57 @@ plot_pollen <- conditional_effects(m_pollen)
 
 plot(plot_pollen, points=TRUE)
 
-ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__)) + geom_line() + geom_point(data = data,aes(x = Pollen_per_flower, y = Interaction),
-       size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Pollen per flower)")
+#POLLEN
+pollen_plot_all <- ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Pollen_per_flower, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen grains per flower (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(1,2,3,4,5,6),labels = c(10^1,10^2,10^3,10^4,10^5,10^6))
+
+################################################################################################################################################################
+#POLLEN OVULE RATIO ALL
+################################################################################################################################################################
+m_pollen_ovule <- brm((Interaction-1) ~ Pollen_ovule_ratio +(1|System/Id) + (1|gr(phylo, cov = A)),
+                      data = data_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                      sample_prior = TRUE, warmup = 500, iter = 2000,
+                      control = list(adapt_delta = 0.99))
+
+plot_pollen_ovule <- conditional_effects(m_pollen_ovule)
+plot(plot_pollen_ovule, points=TRUE)
+
+#POLLEN OVULE RATIO
+pollen_ovule_ratio_plot_all <- ggplot(plot_pollen_ovule[[1]], aes(Pollen_ovule_ratio, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Pollen_ovule_ratio, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen-ovule ratio (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(1,2,3,4,5),labels = c(10^1,10^2,10^3,10^4,10^5))
 
 ################################################################################################################################################################
 #NECTAR MICROLITRES ALL
 ################################################################################################################################################################
-
-hist(data$Nectar_ul)
-
-data$Nectar_ul <- log(data$Nectar_ul +1)
-
 m_nectar_ul <- brm((Interaction-1) ~ Nectar_ul +(1|System/Id) + (1|gr(phylo, cov = A)),
-                data = data, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                data = data_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                 sample_prior = TRUE, warmup = 500, iter = 2000,
                 control = list(adapt_delta = 0.99))
 
 
 plot_nectar <- conditional_effects(m_nectar_ul)
-
 plot(plot_nectar, points=TRUE)
 
-performance::r2(m_nectar_ul)
-
-colnames(plot_pollen[[1]])[2] <- "Interaction"
-
-
-ggplot(plot_nectar[[1]], aes(Nectar_ul, estimate__)) + geom_line() + geom_point(data = data,aes(x = Nectar_ul, y = Interaction),
-       size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Nectar ul)")
+nectar_ul_plot_all <- ggplot(plot_nectar[[1]], aes(Nectar_ul, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Nectar_ul, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Microlitres of nectar (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(0,1,2),labels = c(10^0-1,10^1,10^2))
 
 ################################################################################################################################################################
 #NECTAR MG ALL
 ################################################################################################################################################################
-hist(data$Nectar_mg)
-
-data$Nectar_m <- as.numeric(data$Nectar_m)
-data$Nectar_mg <- log(data$Nectar_m + 1)
-
 m_nectar_mg <- brm((Interaction-1) ~ Nectar_mg +(1|System/Id) + (1|gr(phylo, cov = A)),
-                   data = data, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
+                   data = data_1, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
                    sample_prior = TRUE, warmup = 500, iter = 2000,
                    control = list(adapt_delta = 0.99))
 
 plot_nectar_mg <- conditional_effects(m_nectar_mg)
 plot(plot_nectar_mg, points=TRUE)
 
-ggplot(plot_nectar_mg[[1]], aes(Nectar_mg, estimate__)) + geom_line() + geom_point(data = data,aes(x = Nectar_mg, y = Interaction),
-    size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Nectar mg)")
+nectar_ul_plot_all <- ggplot(plot_nectar_mg[[1]], aes(Nectar_mg, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Nectar_mg, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Microlitres of nectar (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(0,1,2),labels = c(10^0-1,10^1,10^2))
 ################################################################################################################################################################
 #NECTAR COCENTARTION ALL
 ################################################################################################################################################################
@@ -216,21 +225,7 @@ plot(plot_nectar_con, points=TRUE)
 ggplot(plot_nectar_con[[1]], aes(Nectar_concentration, estimate__)) + geom_line() + geom_point(data = data,aes(x = Nectar_concentration, y = Interaction),
       size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Nectar concentration")
 
-################################################################################################################################################################
-#POLLEN OVULE RATIO ALL
-################################################################################################################################################################
-data$Pollen_ovule_ratio <- log(data$Pollen_ovule_ratio + 1)
 
-m_pollen_ovule <- brm((Interaction-1) ~ Pollen_ovule_ratio +(1|System/Id) + (1|gr(phylo, cov = A)),
-                    data = data, family  = zero_inflated_negbinomial(),data2 = list(A = A_5), cores = 4,chains = 4, 
-                    sample_prior = TRUE, warmup = 500, iter = 2000,
-                    control = list(adapt_delta = 0.99))
-
-plot_pollen_ovule <- conditional_effects(m_pollen_ovule)
-plot(plot_pollen_ovule, points=TRUE)
-
-ggplot(plot_pollen_ovule[[1]], aes(Pollen_ovule_ratio, estimate__)) + geom_line() + geom_point(data = data,aes(x = Pollen_ovule_ratio, y = Interaction),
-size = 0.75, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen:ovule ratio")
 ################################################################################################################################################################
 ################################################################################################################################################################
 ###### NOW FOR BEES#########
@@ -394,8 +389,17 @@ library(scales)
 
 #The zero inflated negative binomial requieres zeros
 #We have substracted previously 1 unit and we add it now in the gg
-ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__+1)) + geom_line() + geom_point(data = data,aes(x = Pollen_per_flower, y = Interaction),
-size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("log(Pollen per flower)") +theme_ms() + ylab("Visits") +
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) +scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x),
-   labels = trans_format("log10", math_format(10^.x)))
 
+
+#POLLEN
+ggplot(plot_pollen[[1]], aes(Pollen_per_flower, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Pollen_per_flower, y = Interaction),
+size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen grains per flower (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(1,2,3,4,5,6),labels = c(10^1,10^2,10^3,10^4,10^5,10^6))
+  
+#POLLEN OVULE RATIO
+ggplot(plot_pollen_ovule[[1]], aes(Pollen_ovule_ratio, estimate__+1)) + geom_line() + geom_point(data = data_1,aes(x = Pollen_ovule_ratio, y = Interaction),
+  size = 1, alpha=0.5) +  ylim(0,quantile(data$Interaction, 0.95)) + xlab("Pollen grains per flower (log scale)") +theme_ms() + ylab("Visits") +
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), alpha=0.15) + scale_x_continuous(breaks = c(2,4,6,8,10,12),labels = c(10^2,10^4,10^6,10^8,10^10,10^12))
+
+library(patchwork)
+pollen_plot_all + pollen_ovule_ratio_plot_all + nectar_ul_plot_all
