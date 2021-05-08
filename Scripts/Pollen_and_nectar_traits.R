@@ -35,7 +35,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 ########################################################################################################################################################
 setwd("~/R_Projects/Reproductive Traits")
 #load data
-trait_data <- read_excel("Data/Trait_data_raw/Trait_data_trial.xlsx",na = "NA")
+trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 ########################################################################################################################################################
 #2) A) CLEAN DATA AND B) RENAME LEVELS FOR IMPUTATION 
 ########################################################################################################################################################
