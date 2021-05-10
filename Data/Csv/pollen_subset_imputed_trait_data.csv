@@ -3,38 +3,38 @@
 "Abutilon depauperatum","Malvales","Malvaceae","Abutilon","Abutilon depauperatum","Hermaphrodite","self_compatible","high",88,"Campanulate","actinomorphic",50,15,15,4,30,"shrub","Perennial",1.75,15313
 "Abutilon theophrasti","Malvales","Malvaceae","Abutilon","Abutilon theophrasti","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",50,12.5,2.5,4,34,"herb","Short lived",1.25,15313
 "Acacia adealbata","Fabales","Fabaceae","Acacia","Acacia dealbata","Hermaphrodite","partially_self_compatible","low",0.4,"Brush","actinomorphic",65000,5.75,5.75,3.5,13,"tree","Perennial",8.5,14500
-"Acacia insulae-iacobi","Fabales","Fabaceae","Acacia","Acacia insulae-iacobi","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",5000,8.47095,2.1,3.5,12,"tree","Perennial",5,14500
+"Acacia insulae-iacobi","Fabales","Fabaceae","Acacia","Acacia insulae-iacobi","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",5000,9.19808333333333,2.1,3.5,12,"tree","Perennial",5,14500
 "Acacia rurodiana","Fabales","Fabaceae","Acacia","Acacia rorudiana","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",5000,6,2.35,7,16,"shrub","Perennial",3.1,14500
 "Acer negundo","Sapindales","Sapindaceae","Acer","Acer negundo","Dioecious","dioecious","none",0,"Open","actinomorphic",15000,5.6,5.1,6.65,4,"tree","Perennial",8,237800
-"Aconitum piepunense","Ranunculales","Ranunculaceae","Aconitum","Aconitum piepunense","Hermaphrodite","self_compatible","high",88,"Open","zygomorphic",50,13,7.5,2.5,58,"herb","Perennial",0.497341666666667,143865
+"Aconitum piepunense","Ranunculales","Ranunculaceae","Aconitum","Aconitum piepunense","Hermaphrodite","self_compatible","high",88,"Open","zygomorphic",50,13,7.5,2.5,58,"herb","Perennial",0.476491666666667,143865
 "Actea alba","Ranunculales","Ranunculaceae","Actaea","Actaea rubra","Hermaphrodite","self_compatible","medium",35,"Open","actinomorphic",250,5,31.12,1.5,22,"herb","Perennial",0.6,41131
 "Adenophora capillaris","Asterales","Campanulaceae","Adenophora","Adenophora capillaris","Hermaphrodite","self_incompatible","low",8,"Campanulate","actinomorphic",30,12.5,14,20,152,"herb","Perennial",0.75,20795
 "Adenophora jasionifolia","Asterales","Campanulaceae","Adenophora","Adenophora jasionifolia","Hermaphrodite","self_incompatible","low",12,"Campanulate","actinomorphic",10,20,18.44,20,193,"herb","Perennial",0.45,79395
 "Adenophora khasiana","Asterales","Campanulaceae","Adenophora","Adenophora khasiana","Hermaphrodite","self_incompatible","low",12,"Campanulate","actinomorphic",100,35,20.59,24,356,"herb","Perennial",0.9,20621
-"Aesculus hippocastanum","Sapindales","Sapindaceae","Aesculus","Aesculus hippocastanum","Hermaphrodite","self_compatible","low",11.9500666666667,"Open","zygomorphic",20000,27.5,13.1,16.5,6,"tree","Perennial",19,2500000
+"Aesculus hippocastanum","Sapindales","Sapindaceae","Aesculus","Aesculus hippocastanum","Hermaphrodite","self_compatible","low",10.8206,"Open","zygomorphic",20000,27.5,13.1,16.5,6,"tree","Perennial",19,2500000
 "Gerardia auriculata","Lamiales","Orobanchaceae","Agalinis","Agalinis auriculata","Hermaphrodite","self_compatible","high",95,"Campanulate","zygomorphic",10,12.1,13,11,215.55,"herb","Short lived",0.45,29150
-"Ajuga forrestii","Lamiales","Lamiaceae","Ajuga","Ajuga forrestii","Hermaphrodite","self_compatible","low",18.2079,"Tube","zygomorphic",80,9,8.1,6,4,"herb","Short lived",0.18,8128
-"Allium cyathophorum","Asparagales","Amaryllidaceae","Allium","Allium cyathophorum","Hermaphrodite","self_compatible","low",13,"Tube","actinomorphic",750,3.5,7.04775,3.5,5.1,"herb","Perennial",0.225,58795
+"Ajuga forrestii","Lamiales","Lamiaceae","Ajuga","Ajuga forrestii","Hermaphrodite","self_compatible","low",18.3593,"Tube","zygomorphic",80,9,8.1,6,4,"herb","Short lived",0.18,8128
+"Allium cyathophorum","Asparagales","Amaryllidaceae","Allium","Allium cyathophorum","Hermaphrodite","self_compatible","low",13,"Tube","actinomorphic",750,3.5,7.91605,3.5,5.1,"herb","Perennial",0.225,58795
 "Allium wallichii","Asparagales","Amaryllidaceae","Allium","Allium wallichii","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",35,18,5,9,6,"herb","Perennial",0.525,41851
 "Alocasia odora","Alismatales","Arecaceae","Alocasia","Alocasia odora","Hermaphrodite","self_compatible","low",13,"Spike","actinomorphic",360,2,1,1,6,"herb","Perennial",1.25,18910
 "Amorpha canescens","Fabales","Fabaceae","Amorpha","Amorpha canescens","Hermaphrodite","self_compatible","medium",52.5,"Tube","zygomorphic",3000,2.25,4.5,2.5,2,"shrub","Perennial",0.5,33614
-"Orchis morio","Asparagales","Orchidaceae","Anacamptis","Anacamptis morio","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",30,10,20,14.669625,3500,"herb","Perennial",0.2,13
+"Orchis morio","Asparagales","Orchidaceae","Anacamptis","Anacamptis morio","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",30,10,20,13.29785,3500,"herb","Perennial",0.2,13
 "Helichrysum bellidioides","Asterales","Asteraceae","Anaphalioides","Anaphalioides bellidioides","Hermaphrodite","self_incompatible","none",30.12,"Capitulum","actinomorphic",50,17.5,6,3.7,171,"herb","Perennial",0.15,105200
 "Anchusa azurea","Boraginales","Boraginaceae","Anchusa","Anchusa azurea","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",50,11.5,8,4.5,4,"herb","Perennial",0.85,24360
 "Anemonella thalictroides","Ranunculales","Ranunculaceae","Anemonella","Anemonella thalictroides","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",15,18.5,5,0.5,1,"herb","Perennial",0.2,10053
-"Antirhea borbonica","Gentianales","Rubiaceae","Antirhea","Antirhea borbonica","Hermaphrodite","self_compatible","low",16.0196,"Tube","actinomorphic",2000,0.75,5.1,2.5,2,"shrub","Perennial",4,3277.5
+"Antirhea borbonica","Gentianales","Rubiaceae","Antirhea","Antirhea borbonica","Hermaphrodite","self_compatible","low",14.793,"Tube","actinomorphic",2000,0.75,5.1,2.5,2,"shrub","Perennial",4,3277.5
 "Aquilegia canadensis","Ranunculales","Ranunculaceae","Aquilegia","Aquilegia canadensis","Hermaphrodite","self_compatible","none",48,"Open","actinomorphic",15,24.1,21.1,12.1,118.6,"herb","Perennial",0.525,72346
 "Arctium minus","Asterales","Asteraceae","Arctium","Arctium minus","Hermaphrodite","self_compatible","medium",50.5,"Capitulum","actinomorphic",25,60,40,15,30,"herb","Short lived",1,3052
-"Armeria velutina","Caryophyllales","Plumbaginaceae","Armeria","Armeria velutina","Hermaphrodite","self_compatible","low",20.646625,"Open","actinomorphic",250,7,2,0.1,1,"herb","Perennial",0.4,979
+"Armeria velutina","Caryophyllales","Plumbaginaceae","Armeria","Armeria velutina","Hermaphrodite","self_compatible","low",21.66415,"Open","actinomorphic",250,7,2,0.1,1,"herb","Perennial",0.4,979
 "Asphodelus fistulosus","Asparagales","Asphodelaceae","Asphodelus","Asphodelus fistulosus","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",500,8.5,1.5,5.5,6,"herb","Short lived",0.4,2488
-"Aster oreophilus","Asterales","Asteraceae","Aster","Aster oreophilus","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",20,29.1,10.6549166666667,5,75,"herb","Perennial",0.4,258850
+"Aster oreophilus","Asterales","Asteraceae","Aster","Aster oreophilus","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",20,29.1,10.054475,5,75,"herb","Perennial",0.4,258850
 "Astragalus pullus","Fabales","Fabaceae","Astragalus","Astragalus pullus","Hermaphrodite","self_incompatible","none",0,"Tube","zygomorphic",120,5,10,10,16,"shrub","Perennial",0.15,17822
 "Bacopa monniera","Lamiales","Plantaginaceae","Bacopa","Bacopa monnieri","Hermaphrodite","self_compatible","low",13,"Campanulate","actinomorphic",10,7.5,10,4.1,178,"herb","Perennial",0.25,57312
-"Barringtonia racemosa","Ericales","Lecythidaceae","Barringtonia","Barringtonia racemosa","Hermaphrodite","self_compatible","low",7.8056,"Brush","actinomorphic",2000,20,23.8584833333333,41,5,"tree","Perennial",6,50000
+"Barringtonia racemosa","Ericales","Lecythidaceae","Barringtonia","Barringtonia racemosa","Hermaphrodite","self_compatible","low",9.97645,"Brush","actinomorphic",2000,20,20.9988833333333,41,5,"tree","Perennial",6,50000
 "Bartsia alpina","Lamiales","Orobanchaceae","Bartsia","Bartsia alpina","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",10,5,17.5,17,94,"herb","Perennial",0.23,47000
-"Bidens bipinnata","Asterales","Asteraceae","Bidens","Bidens bipinnata","Hermaphrodite","self_compatible","low",22.45235,"Capitulum","actinomorphic",5,7.5,2.1,2,19.5,"herb","Short lived",0.3,17374.5
+"Bidens bipinnata","Asterales","Asteraceae","Bidens","Bidens bipinnata","Hermaphrodite","self_compatible","low",22.36305,"Capitulum","actinomorphic",5,7.5,2.1,2,19.5,"herb","Short lived",0.3,17374.5
 "Bidens pilosa","Asterales","Asteraceae","Bidens","Bidens pilosa","Hermaphrodite","self_compatible","high",67,"Capitulum","actinomorphic",5,11,8,6,50,"herb","Short lived",0.85,58644
-"Psoralea bituminosa","Fabales","Fabaceae","Bituminaria","Bituminaria bituminosa","Hermaphrodite","self_compatible","low",23.01875,"Tube","zygomorphic",200,2.5,11.5,9,1,"herb","Short lived",0.275,2138
+"Psoralea bituminosa","Fabales","Fabaceae","Bituminaria","Bituminaria bituminosa","Hermaphrodite","self_compatible","low",22.3395,"Tube","zygomorphic",200,2.5,11.5,9,1,"herb","Short lived",0.275,2138
 "Senecio bellidioides","Asterales","Asteraceae","Brachyglottis","Brachyglottis bellidioides","Hermaphrodite","partially_self_compatible","medium",35,"Capitulum","actinomorphic",1,30,6.85,5,25,"herb","Perennial",0.05,57555
 "Brachycome scapigera","Asterales","Asteraceae","Brachyscome","Brachyscome scapigera","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",10,12,4.1,2,90,"herb","Perennial",0.2,494500
 "Brachyome sinclairii","Asterales","Asteraceae","Brachyscome","Brachyscome sinclairii","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",5,20,2.5,2,60,"herb","Perennial",0.09,159250
@@ -43,38 +43,38 @@
 "Bredia hirsuta","Myrtales","Melastomataceae","Bredia","Bredia hirsuta","Hermaphrodite","self_compatible","low",5.63,"Open","actinomorphic",30,29.1,0.5,10,100,"shrub","Perennial",1,144500
 "Caesalpinia pulcherrima","Fabales","Fabaceae","Caesalpinia","Caesalpinia pulcherrima","Hermaphrodite","self_compatible","low",13,"Open","zygomorphic",2000,50,10,50,6,"shrub","Perennial",1.5,30450
 "Calluna vulgaris","Ericales","Ericaceae","Calluna","Calluna vulgaris","Hermaphrodite","partially_self_compatible","low",10.9,"Campanulate","actinomorphic",2500,6,6,5,3.1,"shrub","Perennial",0.5,24000
-"Calophyllum eputamen","Malpighiales","Clusiaceae","Calophyllum","Calophyllum eputamen","Hermaphrodite","self_compatible","low",7.8024,"Brush","actinomorphic",2000,15,12.28625,10,1,"tree","Perennial",7.84225,1488000
+"Calophyllum eputamen","Malpighiales","Clusiaceae","Calophyllum","Calophyllum eputamen","Hermaphrodite","self_compatible","low",7.39725,"Brush","actinomorphic",2000,15,11.7263,10,1,"tree","Perennial",7.86258333333333,1488000
 "Calystegia hederacea","Solanales","Convolvulaceae","Calystegia hederacea","Calystegia hederacea","Hermaphrodite","self_incompatible","none",0,"Campanulate","actinomorphic",10,28.5,38.5,9.5,4,"vine","Perennial",0.3,10815.4
 "Convolvulus sepium","Solanales","Convolvulaceae","Calystegia","Calystegia sepium","Hermaphrodite","self_compatible","low",5.3,"Campanulate","actinomorphic",10,60,55,22.5,4,"herb","Perennial",3,9055
-"Carica papaya","Brassicales","Caricaceae","Carica","Carica papaya","Hermaphrodite","self_compatible","low",10.33885,"Tube","actinomorphic",100,17.5,45,10,493,"tree","Perennial",6,115000
+"Carica papaya","Brassicales","Caricaceae","Carica","Carica papaya","Hermaphrodite","self_compatible","low",10.87745,"Tube","actinomorphic",100,17.5,45,10,493,"tree","Perennial",6,115000
 "Caulophyllum thalictroides","Ranunculales","Berberidaceae","Caulophyllum","Caulophyllum thalictroides","Hermaphrodite","self_compatible","low",1,"Open","actinomorphic",50,10,1.5,0.625,3,"herb","Perennial",0.3,11127
 "Celmisia sessiliflora","Asterales","Asteraceae","Celmisia","Celmisia sessiliflora","Hermaphrodite","partially_self_compatible","low",20,"Capitulum","actinomorphic",75,15,8,3,230,"herb","Perennial",0.05,109340
 "Cerastium_arvense","Caryophyllales","Caryophyllaceae","Cerastium","Cerastium arvense","Hermaphrodite","self_incompatible","low",13,"Open","actinomorphic",15,17.5,17.5,2.5,43,"herb","Perennial",0.2,30581.6
 "Cerastium fontanum","Caryophyllales","Caryophyllaceae","Cerastium","Cerastium fontanum","Hermaphrodite","self_compatible","high",75,"Open","actinomorphic",15,7.5,4.5,3,35,"herb","Perennial",0.2,2205
-"Cerastium glomeratum","Caryophyllales","Caryophyllaceae","Cerastium","Cerastium glomeratum","Hermaphrodite","self_compatible","medium",59.9915666666667,"Open","actinomorphic",50,12,7,0.65,25,"herb","Short lived",0.215,1050
-"Cerinthe gymnandra","Boraginales","Boraginaceae","Cerinthe","Cerinthe major","Hermaphrodite","self_compatible","low",9.8751,"Tube","actinomorphic",20,6,24,24,2,"herb","Short lived",0.3,649680
+"Cerastium glomeratum","Caryophyllales","Caryophyllaceae","Cerastium","Cerastium glomeratum","Hermaphrodite","self_compatible","medium",63.3676,"Open","actinomorphic",50,12,7,0.65,25,"herb","Short lived",0.215,1050
+"Cerinthe gymnandra","Boraginales","Boraginaceae","Cerinthe","Cerinthe major","Hermaphrodite","self_compatible","low",13.7477666666667,"Tube","actinomorphic",20,6,24,24,2,"herb","Short lived",0.3,649680
 "Cistus albidus","Malvales","Cistaceae","Cistus","Cistus albidus","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,50,7,3,94.78,"shrub","Perennial",0.5,233470
 "Cistus crispus","Malvales","Cistaceae","Cistus","Cistus crispus","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,32.5,5.5,3.5,17.2,"shrub","Perennial",0.3,170164
 "Cistus ladanifer","Malvales","Cistaceae","Cistus","Cistus ladanifer","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,64,8.5,0.25,1038,"shrub","Perennial",1.75,564623
 "Cistus libanotis","Malvales","Cistaceae","Cistus","Cistus libanotis","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,29.1,6,0.5,22,"shrub","Perennial",1.05,43266
-"Cistus monspeliensis","Malvales","Cistaceae","Cistus","Cistus monspeliensis","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,15,6.07705,0.25,21,"shrub","Perennial",0.5,33418
+"Cistus monspeliensis","Malvales","Cistaceae","Cistus","Cistus monspeliensis","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,15,5.69306904761905,0.25,21,"shrub","Perennial",0.5,33418
 "Cistus salvifolius","Malvales","Cistaceae","Cistus","Cistus salviifolius","Hermaphrodite","partially_self_compatible","none",0,"Open","actinomorphic",100,20,5,1,77,"shrub","Perennial",0.95,57258
 "Convolvulus arvensis","Solanales","Convolvulaceae","Convolvulus","Convolvulus arvensis","Hermaphrodite","self_incompatible","none",0,"Campanulate","actinomorphic",20,22.5,15,10,4,"herb","Perennial",1.25,13700
 "Coreopsis palmata","Asterales","Asteraceae","Coreopsis","Coreopsis palmata","Hermaphrodite","self_incompatible","low",13,"Capitulum","actinomorphic",3,38,11,6.7,90,"herb","Perennial",0.1,8782
 "Corokia cotoneaster","Asterales","Argophyllaceae","Corokia","Corokia cotoneaster","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",200,6.5,1,1.5,1.2,"shrub","Perennial",1,16698
 "Corydalis incisa","Ranunculales","Papaveraceae","Corydalis","Corydalis incisa","Hermaphrodite","self_compatible","low",21,"Tube","zygomorphic",30,5.5,15,2.5,15.5,"herb","Short lived",0.3,33925
 "Crotalaria incana","Fabales","Fabaceae","Crotalaria","Crotalaria incana","Hermaphrodite","self_compatible","medium",65,"Papilionaceous","zygomorphic",150,9,9,8,8,"herb","Perennial",0.75,308850
-"Crotalaria pumila","Fabales","Fabaceae","Crotolaria","Crotalaria pumila","Hermaphrodite","self_compatible","low",12.30545,"Papilionaceous","zygomorphic",50,10,9.1,2,8,"herb","Perennial",0.4,61909.1
+"Crotalaria pumila","Fabales","Fabaceae","Crotolaria","Crotalaria pumila","Hermaphrodite","self_compatible","low",13.56785,"Papilionaceous","zygomorphic",50,10,9.1,2,8,"herb","Perennial",0.4,61909.1
 "Cryptotaenia canadensis","Apiales","Apiaceae","Cryptotaenia","Cryptotaenia canadensis","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",100,3,1,1,2,"herb","Perennial",0.6,4360
 "Cucurbita pepo","Cucurbitales","Cucurbitaceae","Cucurbita","Cucurbita pepo","Monoecious","monoecious","none",0,"Funnelform","actinomorphic",15,100,70,10,500,"herb","Short lived",0.48,43669
-"Cuscuta cephalanthi","Solanales","Convolvulaceae","Cuscuta","Cuscuta cephalanthi","Hermaphrodite","self_compatible","medium",55.2605916666667,"Open","actinomorphic",200,3,3,1.25,4,"herb","Short lived",0.25,1046
-"Cuscuta glomerata","Solanales","Convolvulaceae","Cuscuta","Cuscuta glomerata","Hermaphrodite","self_compatible","low",16.49585,"Tube","actinomorphic",900,9.5,4.5,4.5,4,"herb","Short lived",0.25,3127
-"Cyananthus delavayi","Asterales","Campanulaceae","Cyananthus","Cyananthus delavayi","Dioecious","partially_self_compatible","low",11.35345,"Tube","actinomorphic",15,15,20,8,34,"herb","Perennial",0.135,16949
-"Cynoglossum amabile","Boraginales","Boraginaceae","Cynoglossum","Cynoglossum amabile","Hermaphrodite","self_compatible","low",13.631025,"Open","actinomorphic",30,6,2,4,4,"herb","Short lived",0.375,527320
+"Cuscuta cephalanthi","Solanales","Convolvulaceae","Cuscuta","Cuscuta cephalanthi","Hermaphrodite","self_compatible","medium",54.8588333333333,"Open","actinomorphic",200,3,3,1.25,4,"herb","Short lived",0.25,1046
+"Cuscuta glomerata","Solanales","Convolvulaceae","Cuscuta","Cuscuta glomerata","Hermaphrodite","self_compatible","low",18.28115,"Tube","actinomorphic",900,9.5,4.5,4.5,4,"herb","Short lived",0.25,3127
+"Cyananthus delavayi","Asterales","Campanulaceae","Cyananthus","Cyananthus delavayi","Dioecious","partially_self_compatible","low",12.34875,"Tube","actinomorphic",15,15,20,8,34,"herb","Perennial",0.135,16949
+"Cynoglossum amabile","Boraginales","Boraginaceae","Cynoglossum","Cynoglossum amabile","Hermaphrodite","self_compatible","low",14.42765,"Open","actinomorphic",30,6,2,4,4,"herb","Short lived",0.375,527320
 "Cytisus scoparius","Fabales","Fabaceae","Cytisus","Cytisus scoparius","Hermaphrodite","partially_self_compatible","low",1,"Papilionaceous","zygomorphic",500,16,20,10,13,"shrub","Perennial",2.5,55592
 "Datura stramonium","Solanales","Solanaceae","Datura","Datura stramonium","Hermaphrodite","self_compatible","high",88,"Campanulate","actinomorphic",10,40,75,50,80,"herb","Short lived",1.25,14720
 "Daucus carota","Apiales","Apiaceae","Daucus","Daucus carota","Monoecious","self_compatible","none",0,"Open","actinomorphic",650,5.5,1.5,1.15,2,"herb","Short lived",0.5,3062
-"Desmodium canadense","Fabales","Fabaceae","Desmodium","Desmodium canadense","Hermaphrodite","self_compatible","low",14.8302,"Papilionaceous","zygomorphic",50,11,11,2,7,"herb","Perennial",1.35,4742
+"Desmodium canadense","Fabales","Fabaceae","Desmodium","Desmodium canadense","Hermaphrodite","self_compatible","low",15.10715,"Papilionaceous","zygomorphic",50,11,11,2,7,"herb","Perennial",1.35,4742
 "Dianthus armeria","Caryophyllales","Caryophyllaceae","Dianthus","Dianthus armeria","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",15,10.5,10,10,93,"herb","Short lived",0.45,13522
 "Diapensia lapponica","Ericales","Diapensiaceae","Diapensia","Diapensia lapponica","Hermaphrodite","self_compatible","low",13,"Campanulate","actinomorphic",50,14.1,9.1,3,240,"shrub","Perennial",0.04,480000
 "Digitaria ciliaris","Poales","Poaceae","Digitaria","Digitaria ciliaris","Hermaphrodite","self_compatible","high",88,"Open","zygomorphic",400,0.8,2.1,0.1,1,"herb","Short lived",0.55,1125
@@ -82,13 +82,13 @@
 "Dipsacus asperoides","Dipsacales","Caprifoliaceae","Dipsacus","Dipsacus asperoides","Hermaphrodite","self_compatible","none",0,"Tube","actinomorphic",150,4,10,10,1,"herb","Perennial",1,2260
 "Discaria toumatou","Rosales","Rhamnaceae","Discaria","Discaria toumatou","Hermaphrodite","partially_self_compatible","none",0,"Open","actinomorphic",8000,4,1,1,3,"shrub","Perennial",2.5,36197
 "Dodonaea viscosa","Sapindales","Sapindaceae","Dodonaea","Dodonaea viscosa","Dioecious","dioecious","none",0,"Open","actinomorphic",7500,8,4,5,3,"shrub","Perennial",2.5,317100
-"Dorichnium pentaphylum","Fabales","Fabaceae","Dorycnium","Dorycnium pentaphyllum","Hermaphrodite","self_compatible","low",13.8497,"Tube","zygomorphic",2500,3.5,4.5,4,33,"herb","Perennial",0.3,8220.47
-"Dryas integrifolia","Rosales","Rosaceae","Dryas","Dryas integrifolia","Hermaphrodite","self_compatible","low",17.6262,"Open","actinomorphic",50,25,9,4,30,"shrub","Perennial",0.1,192164
+"Dorichnium pentaphylum","Fabales","Fabaceae","Dorycnium","Dorycnium pentaphyllum","Hermaphrodite","self_compatible","low",16.6487583333333,"Tube","zygomorphic",2500,3.5,4.5,4,33,"herb","Perennial",0.3,8220.47
+"Dryas integrifolia","Rosales","Rosaceae","Dryas","Dryas integrifolia","Hermaphrodite","self_compatible","low",17.06755,"Open","actinomorphic",50,25,9,4,30,"shrub","Perennial",0.1,192164
 "Brauneria pallida","Asterales","Asteraceae","Echinacea","Echinacea pallida","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",1,57,69,9,65.5,"herb","Perennial",0.6,24131
 "Brauneria purpurea","Asterales","Asteraceae","Echinacea","Echinacea purpurea","Hermaphrodite","partially_self_compatible","low",13,"Capitulum","zygomorphic",1,14,55,4.5,65.5,"herb","Perennial",0.9,10414
 "Echium plantagineum","Boraginales","Boraginaceae","Echium","Echium plantagineum","Hermaphrodite","self_incompatible","low",0,"Tube","zygomorphic",30,23.1,25,35,4,"herb","Perennial",0.8,382229
-"Ellisia nyctelaea","Boraginales","Boraginaceae","Ellisia","Ellisia nyctelea","Hermaphrodite","self_compatible","low",22.516325,"Tube","actinomorphic",5,5,6.1,3,4,"herb","Short lived",0.2,5882
-"Epacris microphylla","Ericales","Ericaceae","Epacris","Epacris microphylla","Hermaphrodite","partially_self_compatible","low",10.549775,"Open","actinomorphic",1500,7.5,2.75,0.8,77.5,"shrub","Perennial",0.75,8137.5
+"Ellisia nyctelaea","Boraginales","Boraginaceae","Ellisia","Ellisia nyctelea","Hermaphrodite","self_compatible","low",21.5043,"Tube","actinomorphic",5,5,6.1,3,4,"herb","Short lived",0.2,5882
+"Epacris microphylla","Ericales","Ericaceae","Epacris","Epacris microphylla","Hermaphrodite","partially_self_compatible","low",11.58095,"Open","actinomorphic",1500,7.5,2.75,0.8,77.5,"shrub","Perennial",0.75,8137.5
 "Chamaenerium angustifolium","Myrtales","Onagraceae","Epilobium","Epilobium angustifolium","Hermaphrodite","self_compatible","low",13,"Open","zygomorphic",40,35,5,15,593,"herb","Perennial",0.3,18526
 "Epilobium hirsutum","Myrtales","Onagraceae","Epilobium","Epilobium hirsutum","Hermaphrodite","partially_self_compatible","low",13,"Open","actinomorphic",40,20,10,8,593,"herb","Perennial",1.375,20755
 "Erica ciliaris","Ericales","Ericaceae","Erica","Erica ciliaris","Hermaphrodite","self_compatible","low",1,"Tube","actinomorphic",50,3.1,8,8.5,120,"shrub","Perennial",0.6,35000
@@ -96,10 +96,10 @@
 "Erica tetralix","Ericales","Ericaceae","Erica","Erica tetralix","Hermaphrodite","partially_self_compatible","low",10,"Campanulate","actinomorphic",15,3.5,6.3,3.5,100,"herb","Perennial",1,13700
 "Erica umbellata","Ericales","Ericaceae","Erica","Erica umbellata","Hermaphrodite","partially_self_compatible","low",10,"Campanulate","actinomorphic",1000,4.4,4.8,5,77.5,"shrub","Perennial",0.6,5481
 "Erodium_cicatarium","Geraniales","Geraniaceae","Erodium","Erodium cicutarium","Hermaphrodite","self_compatible","high",82.8,"Open","actinomorphic",5,10,3.5,1,5,"herb","Short lived",0.45,385
-"Astragalus lusitanicus","Fabales","Fabaceae","Erophaca","Erophaca baetica","Monoecious","self_compatible","low",12.2469,"Papilionaceous","zygomorphic",300,30,14.1,14,9.6,"herb","Perennial",0.5,306300
+"Astragalus lusitanicus","Fabales","Fabaceae","Erophaca","Erophaca baetica","Monoecious","self_compatible","low",11.3067,"Papilionaceous","zygomorphic",300,30,14.1,14,9.6,"herb","Perennial",0.5,306300
 "Euphrasia regelii","Lamiales","Orobanchaceae","Euphrasia","Euphrasia regelii","Hermaphrodite","self_compatible","medium",60,"Tube","zygomorphic",5,6,7.5,5,39,"herb","Short lived",0.19,2005
 "Euphrasia zelandica","Lamiales","Orobanchaceae","Euphrasia","Euphrasia zelandica","Hermaphrodite","self_compatible","medium",60,"Tube","zygomorphic",5,13.5,9,5,24,"herb","Short lived",0.05,2733
-"Fragaria virginiana illinoensis","Rosales","Rosaceae","Fragaria","Fragaria virginiana","Dioecious","self_compatible","low",16.30555,"Open","actinomorphic",5,15.5,1.4,1,100,"herb","Perennial",0.9,442000
+"Fragaria virginiana illinoensis","Rosales","Rosaceae","Fragaria","Fragaria virginiana","Dioecious","self_compatible","low",14.6166333333333,"Open","actinomorphic",5,15.5,1.4,1,100,"herb","Perennial",0.9,442000
 "Galium aperine","Gentianales","Rubiaceae","Galium","Galium aparine","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",35,1.5,1,0.45,2,"herb","Short lived",1,666
 "Genista anglica","Fabales","Fabaceae","Genista","Genista anglica","Hermaphrodite","self_incompatible","none",0,"Papilionaceous","zygomorphic",1000,8,12.5,6.5,17.9,"shrub","Perennial",0.38,20383
 "Genista hirsuta","Fabales","Fabaceae","Genista","Genista hirsuta","Hermaphrodite","self_incompatible","none",0,"Papilionaceous","zygomorphic",3000,1.7,8.5,9.1,6.47,"shrub","Perennial",0.9,13653
@@ -107,24 +107,24 @@
 "Geoffroea spinosa","Fabales","Fabaceae","Geoffroea","Geoffroea spinosa","Hermaphrodite","self_compatible","none",0,"Papilionaceous","zygomorphic",15000,9.1,15,15,2,"tree","Perennial",6,1066
 "Geranium maculatum","Geraniales","Geraniaceae","Geranium","Geranium maculatum","Dioecious","partially_self_compatible","low",13,"Open","actinomorphic",10,25.1,13,5,10,"herb","Perennial",0.5,10620
 "Geranium robertianum","Geraniales","Geraniaceae","Geranium","Geranium robertianum","Hermaphrodite","self_compatible","high",88,"Campanulate","actinomorphic",10,17.5,10.5,20,10,"herb","Short lived",0.3,1170
-"Geranium sibiricum","Geraniales","Geraniaceae","Geranium","Geranium sibiricum","Hermaphrodite","self_compatible","low",23.5966666666667,"Open","actinomorphic",10,12.5,6.25,5,10,"herb","Perennial",0.35,665
+"Geranium sibiricum","Geraniales","Geraniaceae","Geranium","Geranium sibiricum","Hermaphrodite","self_compatible","low",23.06065,"Open","actinomorphic",10,12.5,6.25,5,10,"herb","Perennial",0.35,665
 "Glechoma hederacea","Lamiales","Lamiaceae","Glechoma","Glechoma hederacea","Dioecious","self_compatible","none",0,"Tube","zygomorphic",10,8,12.5,7,4,"herb","Perennial",0.11,574.4
 "Glochidion acuminatum","Malpighiales","Phyllanthaceae","Glochidion","Glochidion acuminatum","Monoecious","monoecious","none",0,"Tube","actinomorphic",500,1.5,3,1.25,8,"shrub","Perennial",5.5,4336
 "Halenia elliptica","Gentianales","Gentianaceae","Halenia","Halenia elliptica","Hermaphrodite","self_compatible","high",100,"Campanulate","actinomorphic",10,8,17.5,4,14.5,"herb","Short lived",0.4,6908
 "Halimium commutatum","Malvales","Cistaceae","Halimium","Halimium commutatum","Hermaphrodite","self_incompatible","none",0,"Open","actinomorphic",100,19.1,4,0.5,7,"shrub","Perennial",1.5,24849
 "Halimium halimifolium","Malvales","Cistaceae","Halimium","Halimium halimifolium","Hermaphrodite","self_incompatible","none",1,"Open","actinomorphic",50,28,3,1,46,"shrub","Perennial",1,44051
 "Hypericum perforatum","Malpighiales","Hypericaceae","Hypericum","Hypericum perforatum","Hermaphrodite","self_compatible","high",100,"Open","actinomorphic",50,17.5,2.1,4.85,75,"shrub","Perennial",0.6,44362
-"Hyptis conferta","Lamiales","Lamiaceae","Hyptis","Hyptis conferta","Hermaphrodite","partially_self_compatible","low",2,"Tube","zygomorphic",2000,6.56333333333334,8.22935,3.85,4,"herb","Perennial",0.5,2430
-"Hysterionica_jassionoide","Asterales","Asteraceae","Hysterionica","Hysterionica jasionoides","Hermaphrodite","self_compatible","low",21.0199,"Capitulum","actinomorphic",15,23,8.36543333333333,0.5,200,"herb","Short lived",0.225,520000
+"Hyptis conferta","Lamiales","Lamiaceae","Hyptis","Hyptis conferta","Hermaphrodite","partially_self_compatible","low",2,"Tube","zygomorphic",2000,6.34891666666667,8.29275,3.85,4,"herb","Perennial",0.5,2430
+"Hysterionica_jassionoide","Asterales","Asteraceae","Hysterionica","Hysterionica jasionoides","Hermaphrodite","self_compatible","low",20.4370166666667,"Capitulum","actinomorphic",15,23,7.27555357142857,0.5,200,"herb","Short lived",0.225,520000
 "Impatiens noli-tangere","Ericales","Balsaminaceae","Impatiens","Impatiens noli-tangere","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",15,13,25,1,7.8,"herb","Short lived",1,725900
 "Ipomoea habeliana","Solanales","Convolvulaceae","Ipomoea","Ipomoea habeliana","Hermaphrodite","self_compatible","medium",51,"Funnelform","actinomorphic",15,45,60,25,6,"vine","Perennial",4.5,8442
 "Ipomoea indica","Solanales","Convolvulaceae","Ipomoea","Ipomoea indica","Hermaphrodite","self_compatible","none",0,"Funnelform","actinomorphic",25,62.5,62.5,14,6,"vine","Perennial",3,5322
 "Ipomoea hederacea","Solanales","Convolvulaceae","Ipomoea","Ipomoea nil","Hermaphrodite","self_compatible","medium",58,"Campanulate","actinomorphic",10,22.5,18.1,20,6,"vine","Short lived",3.5,906
 "Ipomoea pes-caprae","Solanales","Convolvulaceae","Ipomoea","Ipomoea pes-caprae","Hermaphrodite","self_incompatible","none",0,"Campanulate","actinomorphic",10,95,45,15,6,"vine","Perennial",5,8112
 "Ipomoea purpurea","Solanales","Convolvulaceae","Ipomoea","Ipomoea purpurea","Hermaphrodite","self_compatible","high",31.67,"Campanulate","actinomorphic",15,50,37.5,28,6,"herb","Short lived",2,756
-"Belamcanda chinensis","Asparagales","Iridaceae","Iris","Iris domestica","Hermaphrodite","partially_self_compatible","low",15.8,"Open","actinomorphic",60,45,19.3138833333333,14,24,"herb","Perennial",1,21950
-"Ixeridium biparum","Asterales","Asteraceae","Ixeridium","Ixeridium biparum","Hermaphrodite","self_compatible","low",19.7044,"Capitulum","actinomorphic",30,16.4449166666667,8.19182083333333,5,20,"herb","Short lived",0.275,70360
-"Glandularia_crithmifolia","Lamiales","Verbenaceae","Junellia","Junellia crithmifolia","Hermaphrodite","partially_self_compatible","low",9.8466,"Tube","actinomorphic",900,10,14,12.6,4,"herb","Perennial",0.7,8396
+"Belamcanda chinensis","Asparagales","Iridaceae","Iris","Iris domestica","Hermaphrodite","partially_self_compatible","low",15.8,"Open","actinomorphic",60,45,18.0375,14,24,"herb","Perennial",1,21950
+"Ixeridium biparum","Asterales","Asteraceae","Ixeridium","Ixeridium biparum","Hermaphrodite","self_compatible","low",19.4382666666667,"Capitulum","actinomorphic",30,16.18875,7.56675,5,20,"herb","Short lived",0.275,70360
+"Glandularia_crithmifolia","Lamiales","Verbenaceae","Junellia","Junellia crithmifolia","Hermaphrodite","partially_self_compatible","low",9.30235,"Tube","actinomorphic",900,10,14,12.6,4,"herb","Perennial",0.7,8396
 "Kandetia candel","Malpighiales","Rhizophoraceae","Kandelia","Kandelia candel","Hermaphrodite","self_compatible","none",0,"Brush","actinomorphic",100,17.5,4,10.5,6,"tree","Perennial",8,659000
 "Lamium amplexicaule","Lamiales","Lamiaceae","Lamium","Lamium amplexicaule","Hermaphrodite","self_compatible","high",88,"Tube","zygomorphic",10,4.5,17.5,18,4,"herb","Short lived",0.2,2069
 "Larrea divaricata","Zygophyllales","Zygophyllaceae","Larrea","Larrea divaricata","Hermaphrodite","partially_self_compatible","low",10,"Open","actinomorphic",1000,10,10,5,20.6,"shrub","Perennial",2,351918
@@ -133,28 +133,28 @@
 "Lavandula stoechas","Lamiales","Lamiaceae","Lavandula","Lavandula stoechas","Hermaphrodite","partially_self_compatible","low",13,"Tube","zygomorphic",4000,7,6.5,5.5,4,"shrub","Perennial",0.75,3396
 "Leonurus cardiaca","Lamiales","Lamiaceae","Leonurus","Leonurus cardiaca","Hermaphrodite","self_compatible","medium",100,"Tube","zygomorphic",75,5.34,9.17,8.4,4,"herb","Perennial",0.75,29329
 "Lepidium virginicum","Brassicales","Brassicaceae","Lepidium","Lepidium virginicum","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",1000,3,1.5,0.15,2,"herb","Short lived",0.4,1232
-"Cotula pyrethrifolia","Asterales","Asteraceae","Leptinella","Leptinella pyrethrifolia","Dioecious","partially_self_compatible","low",16.0791,"Capitulum","actinomorphic",100,10,5,3,203.75,"herb","Perennial",0.07,140000
-"Leptorhynchos squamatus","Asterales","Asteraceae","Leptorhynchos","Leptorhynchos squamatus","Hermaphrodite","partially_self_compatible","low",14.2394833333333,"Capitulum","actinomorphic",15,11,11.5,2.5,11.5,"herb","Perennial",0.5,154400
+"Cotula pyrethrifolia","Asterales","Asteraceae","Leptinella","Leptinella pyrethrifolia","Dioecious","partially_self_compatible","low",17.1087,"Capitulum","actinomorphic",100,10,5,3,203.75,"herb","Perennial",0.07,140000
+"Leptorhynchos squamatus","Asterales","Asteraceae","Leptorhynchos","Leptorhynchos squamatus","Hermaphrodite","partially_self_compatible","low",14.375,"Capitulum","actinomorphic",15,11,11.5,2.5,11.5,"herb","Perennial",0.5,154400
 "Linaria viscosa","Lamiales","Plantaginaceae","Linaria","Linaria viscosa","Hermaphrodite","self_incompatible","none",0,"Tube","zygomorphic",35,7,25,4.5,188.8,"herb","Short lived",0.35,207080
 "Litsea citriodora","Laurales","Lauraceae","Litsea","Litsea cubeba","Dioecious","dioecious","none",0,"Open","actinomorphic",7500,3.1,2,0.3,1,"shrub","Perennial",6.5,16216
 "Lobelia cardinalis","Asterales","Campanulaceae","Lobelia","Lobelia cardinalis","Hermaphrodite","self_compatible","low",13,"Tube","zygomorphic",20,14.1,27.5,27.5,740,"herb","Perennial",0.9,34553
-"Alyssum maritimum","Brassicales","Brassicaceae","Lobularia","Lobularia maritima","Hermaphrodite","self_compatible","medium",35,"Open","actinomorphic",750,4,4.6896,0.45,2,"herb","Perennial",0.25,18000
+"Alyssum maritimum","Brassicales","Brassicaceae","Lobularia","Lobularia maritima","Hermaphrodite","self_compatible","medium",35,"Open","actinomorphic",750,4,4.162,0.45,2,"herb","Perennial",0.25,18000
 "Lotus corniculatus","Fabales","Fabaceae","Lotus","Lotus corniculatus","Hermaphrodite","partially_self_compatible","low",13,"Papilionaceous","zygomorphic",35,11,11,5,35,"herb","Perennial",0.55,198500
 "Lotus uliginosus","Fabales","Fabaceae","Lotus","Lotus pedunculatus","Hermaphrodite","self_compatible","none",0,"Papilionaceous","zygomorphic",60,15,12,8,49,"herb","Perennial",0.575,420959
 "Lupinus angustifolius","Fabales","Fabaceae","Lupinus","Lupinus angustifolius","Hermaphrodite","self_compatible","none",0,"Papilionaceous","zygomorphic",25,12.5,12.5,15.2,4,"herb","Short lived",0.45,22018
-"Lupinus polyphyllus","Fabales","Fabaceae","Lupinus","Lupinus polyphyllus","Hermaphrodite","self_compatible","low",14.45845,"Papilionaceous","zygomorphic",40,12.1,13,10.5,7,"herb","Perennial",1,19488
-"Lycium chilense","Solanales","Solanaceae","Lycium","Lycium chilense","Hermaphrodite","partially_self_compatible","low",11.0458388888889,"Campanulate","actinomorphic",1000,10,6.25,8,33,"shrub","Perennial",0.5,47200
-"Lycium_gilliesianum","Solanales","Solanaceae","Lycium","Lycium gilliesianum","Hermaphrodite","partially_self_compatible","low",10.9758333333333,"Tube","actinomorphic",1000,3,12.5,12.8,33,"shrub","Perennial",0.9,50000
-"Lycium_tenuispinosum","Solanales","Solanaceae","Lycium","Lycium tenuispinosum","Hermaphrodite","partially_self_compatible","low",11.7874888888889,"Campanulate","actinomorphic",1000,10,6,12,33,"shrub","Perennial",1.5,41000
+"Lupinus polyphyllus","Fabales","Fabaceae","Lupinus","Lupinus polyphyllus","Hermaphrodite","self_compatible","low",12.80645,"Papilionaceous","zygomorphic",40,12.1,13,10.5,7,"herb","Perennial",1,19488
+"Lycium chilense","Solanales","Solanaceae","Lycium","Lycium chilense","Hermaphrodite","partially_self_compatible","low",11.27025,"Campanulate","actinomorphic",1000,10,6.25,8,33,"shrub","Perennial",0.5,47200
+"Lycium_gilliesianum","Solanales","Solanaceae","Lycium","Lycium gilliesianum","Hermaphrodite","partially_self_compatible","low",10.1899,"Tube","actinomorphic",1000,3,12.5,12.8,33,"shrub","Perennial",0.9,50000
+"Lycium_tenuispinosum","Solanales","Solanaceae","Lycium","Lycium tenuispinosum","Hermaphrodite","partially_self_compatible","low",11.00515,"Campanulate","actinomorphic",1000,10,6,12,33,"shrub","Perennial",1.5,41000
 "Lycopus americanus","Lamiales","Lamiaceae","Lycopus","Lycopus americanus","Hermaphrodite","self_compatible","high",88,"Tube","actinomorphic",60,2,2.5,4.5,4,"herb","Perennial",2.15,1588
 "Lythrum salicaria","Myrtales","Lythraceae","Lythrum","Lythrum salicaria","Hermaphrodite","partially_self_compatible","low",13,"Tube","actinomorphic",75,15,8.5,7,107,"herb","Perennial",1.25,30990
-"Lavatera cretica","Malvales","Malvaceae","Malva","Malva multiflora","Hermaphrodite","self_compatible","low",20.6686,"Open","actinomorphic",20,40,7,7,9,"herb","Short lived",0.8,8190
+"Lavatera cretica","Malvales","Malvaceae","Malva","Malva multiflora","Hermaphrodite","self_compatible","low",19.4683,"Open","actinomorphic",20,40,7,7,9,"herb","Short lived",0.8,8190
 "Malva rotundifolia","Malvales","Malvaceae","Malva","Malva pusilla","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",10,11,3.1,3,11,"herb","Short lived",0.35,682
 "Melilotus alba","Fabales","Fabaceae","Melilotus","Melilotus alba","Hermaphrodite","self_compatible","low",13,"Papilionaceous","zygomorphic",60,3,4.5,2,5,"herb","Short lived",1.5,4292.2
 "Melochia pyramidata","Malvales","Malvaceae","Melochia","Melochia pyramidata","Hermaphrodite","self_compatible","medium",62.7,"Tube","actinomorphic",25,5.3,6.5,3.1,5.5,"herb","Perennial",0.6,742.55
 "Melochia villosa","Malvales","Malvaceae","Melochia","Melochia villosa","Hermaphrodite","partially_self_compatible","low",13,"Open","actinomorphic",60,6.7,7.7,6,9,"herb","Perennial",1.15,1260
 "Miconia ciliata","Myrtales","Melastomataceae","Miconia","Miconia ciliata","Hermaphrodite","self_incompatible","low",0,"Open","actinomorphic",75,5,2,1.25,104.39,"shrub","Perennial",4,467500
-"Microula sikkimensis","Boraginales","Boraginaceae","Microula","Microula sikkimensis","Hermaphrodite","self_compatible","low",11.786075,"Tube","actinomorphic",30,6,6,3,4,"herb","Short lived",0.355,216420
+"Microula sikkimensis","Boraginales","Boraginaceae","Microula","Microula sikkimensis","Hermaphrodite","self_compatible","low",16.4398666666667,"Tube","actinomorphic",30,6,6,3,4,"herb","Short lived",0.355,216420
 "Mimosa camporum","Fabales","Fabaceae","Mimosa","Mimosa camporum","Hermaphrodite","self_compatible","low",7.47,"Brush","actinomorphic",500,50,29.1,7.5,6.5,"herb","Short lived",0.35,31840
 "Mirabilis jalapa","Caryophyllales","Nyctaginaceae","Mirabilis","Mirabilis jalapa","Hermaphrodite","self_compatible","medium",57,"Tube","actinomorphic",50,35,45,37.5,1,"herb","Perennial",0.5,382.4
 "Mollugo verticillata","Caryophyllales","Molluginaceae","Mollugo","Mollugo verticillata","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",35,4.5,1.5,0.4,30,"herb","Short lived",0.15,1167
@@ -163,7 +163,7 @@
 "Mirtus communis","Myrtales","Myrtaceae","Myrtus","Myrtus communis","Hermaphrodite","self_compatible","medium",49,"Open","actinomorphic",500,25,3.75,15,72,"shrub","Perennial",2.5,1330295
 "Nepeta cataria","Lamiales","Lamiaceae","Nepeta","Nepeta cataria","Hermaphrodite","self_compatible","medium",63.7,"Tube","zygomorphic",50,4.25,8.5,7.1,4,"herb","Perennial",0.6,3625
 "Oenothera biennis","Myrtales","Onagraceae","Oenothera","Oenothera biennis","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",5,37.5,60,42.5,536,"herb","Short lived",0.7,15276
-"Onosma confertum","Boraginales","Boraginaceae","Onosma","Onosma confertum","Hermaphrodite","self_compatible","low",10.01985,"Tube","actinomorphic",50,7.5,14.5,15.5,4,"herb","Perennial",0.5,710880
+"Onosma confertum","Boraginales","Boraginaceae","Onosma","Onosma confertum","Hermaphrodite","self_compatible","low",12.7142,"Tube","actinomorphic",50,7.5,14.5,15.5,4,"herb","Perennial",0.5,710880
 "Origanum vulgare","Lamiales","Lamiaceae","Origanum","Origanum vulgare","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",100,4,7.5,18.5,4,"herb","Perennial",0.5,1761
 "Ourisia caespitosa","Lamiales","Plantaginaceae","Ourisia","Ourisia caespitosa","Hermaphrodite","partially_self_compatible","low",4,"Open","zygomorphic",100,25,25,5.3,224,"herb","Perennial",0.75,22711
 "Oxalis stricta","Oxalidales","Oxalidaceae","Oxalis","Oxalis stricta","Hermaphrodite","self_compatible","medium",30,"Open","actinomorphic",20,5.1,1.3,1,71,"herb","Perennial",1.65,3313
@@ -171,56 +171,56 @@
 "Passiflora foetida","Malpighiales","Passifloraceae","Passiflora","Passiflora foetida","Hermaphrodite","self_compatible","low",20,"Open","actinomorphic",10,40,4,7,2.2,"vine","Short lived",3,6667
 "Passiflora suberosa","Malpighiales","Passifloraceae","Passiflora","Passiflora suberosa","Hermaphrodite","self_compatible","medium",63,"Open","actinomorphic",10,19,1,4,23.1,"vine","Perennial",0.3,6319
 "Pedicularis densispica","Lamiales","Orobanchaceae","Pedicularis","Pedicularis densispica","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",15,5,10,12,32,"herb","Short lived",0.375,119194
-"Pedicularis dichotoma","Lamiales","Orobanchaceae","Pedicularis","Pedicularis dichotoma","Hermaphrodite","self_compatible","low",11.01985,"Tube","zygomorphic",15,14,20,26,31.31,"herb","Perennial",0.15,29168
+"Pedicularis dichotoma","Lamiales","Orobanchaceae","Pedicularis","Pedicularis dichotoma","Hermaphrodite","self_compatible","low",11.6620625,"Tube","zygomorphic",15,14,20,26,31.31,"herb","Perennial",0.15,29168
 "Pedicularis flammea","Lamiales","Orobanchaceae","Pedicularis","Pedicularis flammea","Hermaphrodite","self_compatible","medium",50.5,"Tube","zygomorphic",20,5.1,12,15,27.4,"herb","Perennial",0.125,17604
 "Pedicularis hirsuta","Lamiales","Orobanchaceae","Pedicularis","Pedicularis hirsuta","Hermaphrodite","self_compatible","high",88,"Tube","zygomorphic",10,10,12,10,49.9,"herb","Perennial",0.15,47405
 "Pedicularis longiflora","Lamiales","Orobanchaceae","Pedicularis","Pedicularis longiflora","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",8,19.1,65,65,30.6,"herb","Short lived",0.14,22702.5
 "Pedicularis monbeigiana","Lamiales","Orobanchaceae","Pedicularis","Pedicularis monbeigiana","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",20,20,20,20,7.8,"herb","Perennial",0.7,36697
 "Pedicularis rex","Lamiales","Orobanchaceae","Pedicularis","Pedicularis rex","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",20,11.6,30,20,29.5,"herb","Perennial",0.5,332526
-"Pedicularis siphonantha","Lamiales","Orobanchaceae","Pedicularis","Pedicularis siphonantha","Hermaphrodite","partially_self_compatible","low",10.1901,"Tube","zygomorphic",78,15,55,10,18.7,"herb","Perennial",0.025,23007
+"Pedicularis siphonantha","Lamiales","Orobanchaceae","Pedicularis","Pedicularis siphonantha","Hermaphrodite","partially_self_compatible","low",10.50365,"Tube","zygomorphic",78,15,55,10,18.7,"herb","Perennial",0.025,23007
 "Pedicularis tricolor","Lamiales","Orobanchaceae","Pedicularis","Pedicularis tricolor","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",3,30,58,10,25.3,"herb","Short lived",0.025,50794
 "Persea maericana","Laurales","Lauraceae","Persea","Persea americana","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",10000,5.5,2,2.5,1,"tree","Perennial",14.5,5644
-"Polygonum amphibium","Caryophyllales","Polygonaceae","Persicaria","Persicaria amphibia","Dioecious","self_compatible","low",16.12285,"Open","actinomorphic",130,4,4.5,3.5,1,"herb","Perennial",1.15,1500
+"Polygonum amphibium","Caryophyllales","Polygonaceae","Persicaria","Persicaria amphibia","Dioecious","self_compatible","low",18.1739,"Open","actinomorphic",130,4,4.5,3.5,1,"herb","Perennial",1.15,1500
 "Persicaria chinensis","Fabales","Polygalaceae","Persicaria","Persicaria chinensis","Hermaphrodite","self_compatible","low",16.9,"Campanulate","actinomorphic",375,4,4,1,1,"herb","Perennial",0.5,861
-"Polygonum lapathifolium","Caryophyllales","Polygonaceae","Persicaria","Persicaria lapathifolia","Hermaphrodite","self_compatible","medium",56.671825,"Campanulate","actinomorphic",375,2,2.1,2,1,"herb","Short lived",0.5,230
-"Polygonum runcinatum","Caryophyllales","Polygonaceae","Persicaria","Persicaria runcinata","Hermaphrodite","self_compatible","medium",26.285125,"Tube","actinomorphic",125,1.5,3.25,4,1,"herb","Perennial",0.45,821
-"Petunia_axillaris","Solanales","Solanaceae","Petunia","Petunia axillaris","Hermaphrodite","partially_self_compatible","low",10.7816,"Funnelform","actinomorphic",10,54,33,25,207.2,"herb","Perennial",0.5,185360
+"Polygonum lapathifolium","Caryophyllales","Polygonaceae","Persicaria","Persicaria lapathifolia","Hermaphrodite","self_compatible","medium",54.3414,"Campanulate","actinomorphic",375,2,2.1,2,1,"herb","Short lived",0.5,230
+"Polygonum runcinatum","Caryophyllales","Polygonaceae","Persicaria","Persicaria runcinata","Hermaphrodite","self_compatible","medium",53.343,"Tube","actinomorphic",125,1.5,3.25,4,1,"herb","Perennial",0.45,821
+"Petunia_axillaris","Solanales","Solanaceae","Petunia","Petunia axillaris","Hermaphrodite","partially_self_compatible","low",10.4142,"Funnelform","actinomorphic",10,54,33,25,207.2,"herb","Perennial",0.5,185360
 "Phlomis purpurea","Lamiales","Lamiaceae","Phlomis","Phlomis purpurea","Hermaphrodite","self_incompatible","none",0,"Tube","zygomorphic",50,17.5,17.5,15,4,"herb","Perennial",0.75,46086
 "Phlomis tatsienensis","Lamiales","Lamiaceae","Phlomis","Phlomis tatsienensis","Hermaphrodite","self_incompatible","none",0,"Tube","zygomorphic",50,4,13,13,4,"herb","Perennial",0.65,39540
 "Phlox divaricata","Ericales","Polemoniaceae","Phlox","Phlox divaricata","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",20,28,14.1,2.5,3,"herb","Perennial",0.25,12753
 "Phlox glaberrima","Ericales","Polemoniaceae","Phlox","Phlox glaberrima","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",10,27.5,25,5.5,3,"herb","Perennial",0.9,9981
 "Phlox pilosa","Ericales","Polemoniaceae","Phlox","Phlox pilosa","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",10,15.5,11,2,3,"herb","Perennial",0.3,8460
-"Phryma leptostachya","Lamiales","Phrymaceae","Phryma","Phryma leptostachya","Hermaphrodite","self_compatible","low",17.95435,"Tube","zygomorphic",25,6,9,2.1,1,"herb","Perennial",0.55,2558.6
-"Phyllachne colensoi","Asterales","Stylidiaceae","Phyllachne","Phyllachne colensoi","Hermaphrodite","self_compatible","high",88,"Tube","actinomorphic",360,1,1,1,20,"herb","Perennial",0.879166666666668,3067
+"Phryma leptostachya","Lamiales","Phrymaceae","Phryma","Phryma leptostachya","Hermaphrodite","self_compatible","low",16.60875,"Tube","zygomorphic",25,6,9,2.1,1,"herb","Perennial",0.55,2558.6
+"Phyllachne colensoi","Asterales","Stylidiaceae","Phyllachne","Phyllachne colensoi","Hermaphrodite","self_compatible","high",88,"Tube","actinomorphic",360,1,1,1,20,"herb","Perennial",1.08794583333333,3067
 "Picris hieracioides","Asterales","Asteraceae","Picris","Picris hieracioides","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",10,24.1,10,9.9,50,"herb","Short lived",0.5,2770
 "Pimpinella diveraifolia","Apiales","Apiaceae","Pimpinella","Pimpinella diversifolia","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",115,2.75,1,1,2,"herb","Perennial",1.15,3270
 "Pinguicula alpina","Lamiales","Lentibulariaceae","Pinguicula","Pinguicula alpina","Hermaphrodite","self_incompatible","none",0,"Campanulate","zygomorphic",10,14.5,15,1.5,150.6,"herb","Perennial",0.15,120480
 "Plantago lanceolata","Lamiales","Plantaginaceae","Plantago","Plantago lanceolata","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",350,2,2,6,2,"herb","Perennial",0.3,47634
 "Plumbago scandens","Caryophyllales","Plumbaginaceae","Plumbago","Plumbago zeylanica","Hermaphrodite","partially_self_compatible","none",0,"Tube","actinomorphic",40,10.2,40.2,30.01,1,"shrub","Perennial",0.55,5800
 "Polemonium reptans","Ericales","Polemoniaceae","Polemonium","Polemonium reptans","Hermaphrodite","partially_self_compatible","low",13,"Campanulate","actinomorphic",7,16,5,10,16.5,"herb","Perennial",0.35,30096
-"Polygala_stenophylla","Fabales","Polygalaceae","Polygala","Polygala stenophylla","Hermaphrodite","self_compatible","low",21.1978,"Open","zygomorphic",650,2,4.5,1,2,"herb","Short lived",0.325,3384
+"Polygala_stenophylla","Fabales","Polygalaceae","Polygala","Polygala stenophylla","Hermaphrodite","self_compatible","low",24.6009,"Open","zygomorphic",650,2,4.5,1,2,"herb","Short lived",0.325,3384
 "Potentilla lancinata","Rosales","Rosaceae","Potentilla","Potentilla lancinata","Hermaphrodite","partially_self_compatible","low",13,"Open","actinomorphic",15,20,6.5,1,105,"herb","Perennial",0.325,116816
-"Premna corymbosa","Lamiales","Lamiaceae","Premna","Premna corymbosa","Hermaphrodite","self_compatible","low",10.850225,"Tube","actinomorphic",6000,4,4.5,1,4,"shrub","Perennial",3,2856
+"Premna corymbosa","Lamiales","Lamiaceae","Premna","Premna corymbosa","Hermaphrodite","self_compatible","low",11.7178333333333,"Tube","actinomorphic",6000,4,4.5,1,4,"shrub","Perennial",3,2856
 "Premna microphylla","Lamiales","Lamiaceae","Premna","Premna microphylla","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",4500,9,9,4,5,"shrub","Perennial",1,2856
 "Premna serratifolia","Lamiales","Lamiaceae","Premna","Premna serratifolia","Hermaphrodite","self_compatible","none",0,"Tube","zygomorphic",6000,2.3,4.5,4.8,3,"shrub","Perennial",3.5,2856
 "Primula veris","Ericales","Primulaceae","Primula","Primula veris","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",50,11.5,11.5,8,51.2,"herb","Perennial",0.225,149000
 "Prunella vulgaris","Lamiales","Lamiaceae","Prunella","Prunella vulgaris","Hermaphrodite","self_compatible","high",100,"Tube","zygomorphic",80,5,10,8.49,4,"herb","Perennial",0.2,1235
-"Psidium cattleianum","Myrtales","Myrtaceae","Psidium","Psidium cattleyanum","Hermaphrodite","partially_self_compatible","none",0,"Open","zygomorphic",500,20,12.7304,9,127,"tree","Perennial",7.5,762736
+"Psidium cattleianum","Myrtales","Myrtaceae","Psidium","Psidium cattleyanum","Hermaphrodite","partially_self_compatible","none",0,"Open","zygomorphic",500,20,12.7514472222222,9,127,"tree","Perennial",7.5,762736
 "Psidium guajava","Myrtales","Myrtaceae","Psidium","Psidium guajava","Hermaphrodite","partially_self_compatible","low",5,"Brush","actinomorphic",500,25,10,9,584.5,"shrub","Perennial",3.5,3777519
-"Pterocephalus hookeri","Dipsacales","Caprifoliaceae","Pterocephalus","Pterocephalus hookeri","Hermaphrodite","self_compatible","low",14.5440166666667,"Tube","actinomorphic",80,5,11,15,1,"herb","Perennial",0.3,3262
-"Ranunculus abortivus","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus abortivus","Hermaphrodite","self_compatible","low",23.7853,"Open","actinomorphic",4,8.25,3,0.5,40,"herb","Short lived",0.35,39200
-"Ranunculus fascicularis","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus fascicularis","Hermaphrodite","self_compatible","low",18.06035,"Open","actinomorphic",3,13,3,2,40,"herb","Perennial",0.2,121960
+"Pterocephalus hookeri","Dipsacales","Caprifoliaceae","Pterocephalus","Pterocephalus hookeri","Hermaphrodite","self_compatible","low",18.2116,"Tube","actinomorphic",80,5,11,15,1,"herb","Perennial",0.3,3262
+"Ranunculus abortivus","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus abortivus","Hermaphrodite","self_compatible","low",21.31475,"Open","actinomorphic",4,8.25,3,0.5,40,"herb","Short lived",0.35,39200
+"Ranunculus fascicularis","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus fascicularis","Hermaphrodite","self_compatible","low",16.6622333333333,"Open","actinomorphic",3,13,3,2,40,"herb","Perennial",0.2,121960
 "Ranunculus silerifolius","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus silerifolius","Hermaphrodite","self_compatible","high",90,"Open","actinomorphic",5,8.1,2,0.5,53.4,"herb","Perennial",0.6,9418
-"Ranunculus sulphureus","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus sulphureus","Hermaphrodite","self_compatible","low",16.3447,"Open","actinomorphic",15,17.5,4,0.2,67.5,"herb","Perennial",0.11,159250
-"Ranunculus zhungdianensis","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus zhungdianensis","Hermaphrodite","self_compatible","low",20.87905,"Open","actinomorphic",5,7,31.12,0.1,40,"herb","Perennial",0.45,109340
-"Raoulia grandiflora","Asterales","Asteraceae","Raoulia","Raoulia grandiflora","Hermaphrodite","partially_self_compatible","low",13.9774833333333,"Capitulum","actinomorphic",10,14.1,12,0.3,11.5,"herb","Perennial",0.75,70360
-"Raoulia mammilaris","Asterales","Asteraceae","Raoulia","Raoulia mammillaris","Hermaphrodite","partially_self_compatible","low",17.4314833333333,"Capitulum","actinomorphic",100,6.5,13.3891791666667,0.3,20,"herb","Perennial",0.015,140000
-"Raoulia subsericea","Asterales","Asteraceae","Raoulia","Raoulia subsericea","Hermaphrodite","partially_self_compatible","low",17.4744333333333,"Capitulum","actinomorphic",100,8.5,7.3755125,0.3,30,"herb","Perennial",0.05,154400
+"Ranunculus sulphureus","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus sulphureus","Hermaphrodite","self_compatible","low",17.70285,"Open","actinomorphic",15,17.5,4,0.2,67.5,"herb","Perennial",0.11,159250
+"Ranunculus zhungdianensis","Ranunculales","Ranunculaceae","Ranunculus","Ranunculus zhungdianensis","Hermaphrodite","self_compatible","low",20.75445,"Open","actinomorphic",5,7,31.12,0.1,40,"herb","Perennial",0.45,109340
+"Raoulia grandiflora","Asterales","Asteraceae","Raoulia","Raoulia grandiflora","Hermaphrodite","partially_self_compatible","low",15.285,"Capitulum","actinomorphic",10,14.1,12,0.3,11.5,"herb","Perennial",0.75,70360
+"Raoulia mammilaris","Asterales","Asteraceae","Raoulia","Raoulia mammillaris","Hermaphrodite","partially_self_compatible","low",16.63125,"Capitulum","actinomorphic",100,6.5,15.1225166666667,0.3,20,"herb","Perennial",0.015,140000
+"Raoulia subsericea","Asterales","Asteraceae","Raoulia","Raoulia subsericea","Hermaphrodite","partially_self_compatible","low",16.8437,"Capitulum","actinomorphic",100,8.5,7.76951666666666,0.3,30,"herb","Perennial",0.05,154400
 "Raphanus raphanistrum","Brassicales","Brassicaceae","Raphanus","Raphanus raphanistrum","Hermaphrodite","self_incompatible","none",0,"Tube","actinomorphic",20,17.5,8,30,12,"herb","Short lived",0.45,97800
 "Lepachys pinnata","Asterales","Asteraceae","Ratibida","Ratibida pinnata","Hermaphrodite","self_compatible","high",88,"Capitulum","actinomorphic",1,21.5,10,1.8,161.5,"herb","Perennial",0.8,12890
 "Retama sphaerocarpa","Fabales","Fabaceae","Retama","Retama sphaerocarpa","Hermaphrodite","partially_self_compatible","none",0,"Papilionaceous","zygomorphic",1300,5,5,2.99,4.3,"shrub","Perennial",2.5,3448
 "Rhododendron lapponicum","Ericales","Ericaceae","Rhododendron","Rhododendron lapponicum","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",50,14,8,13,937,"shrub","Perennial",0.1,374800
-"Robinia pseudacacia","Fabales","Fabaceae","Robinia","Robinia pseudacacia","Hermaphrodite","self_compatible","low",11.0554,"Papilionaceous","zygomorphic",8000,17.5,22,8,23.5,"tree","Perennial",19,23467
+"Robinia pseudacacia","Fabales","Fabaceae","Robinia","Robinia pseudacacia","Hermaphrodite","self_compatible","low",10.3824,"Papilionaceous","zygomorphic",8000,17.5,22,8,23.5,"tree","Perennial",19,23467
 "Rosa rubiginosa","Rosales","Rosaceae","Rosa","Rosa rubiginosa","Hermaphrodite","self_compatible","high",84.9,"Open","actinomorphic",100,37,15,3.5,30,"shrub","Perennial",0.9,88350
 "Rosmarinus officinalis","Lamiales","Lamiaceae","Rosmarinus","Rosmarinus officinalis","Hermaphrodite","self_compatible","low",13,"Tube","zygomorphic",3000,15,15,15,8,"shrub","Perennial",1,5492
 "Rubus fruticosus","Rosales","Rosaceae","Rubus","Rubus plicatus","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",100,16,5,4,75,"shrub","Perennial",1.5,48150
@@ -228,7 +228,7 @@
 "Sanguinaria canadensis","Ranunculales","Papaveraceae","Sanguinaria","Sanguinaria canadensis","Hermaphrodite","self_compatible","high",100,"Open","actinomorphic",1,35,12,3,37,"herb","Short lived",0.5,119954
 "Saponaria officinalis","Caryophyllales","Caryophyllaceae","Saponaria","Saponaria officinalis","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",10,33.7,24,13.5,85,"herb","Perennial",0.65,13521
 "Sauvagesia angustifolia","Malpighiales","Ochnaceae","Sauvagesia","Sauvagesia angustifolia","Hermaphrodite","self_compatible","medium",29,"Tube","actinomorphic",10,13,2,2,30,"herb","Perennial",0.225,252187
-"Saxifraga aizoides","Saxifragales","Saxifragaceae","Saxifraga","Saxifraga aizoides","Hermaphrodite","self_compatible","high",100,"Open","actinomorphic",35,11.5,7.23733333333333,2.75,150,"shrub","Perennial",0.1,105000
+"Saxifraga aizoides","Saxifragales","Saxifragaceae","Saxifraga","Saxifraga aizoides","Hermaphrodite","self_compatible","high",100,"Open","actinomorphic",35,11.5,6.5192,2.75,150,"shrub","Perennial",0.1,105000
 "Saxifraga cernua","Saxifragales","Saxifragaceae","Saxifraga","Saxifraga cernua","Hermaphrodite","self_compatible","low",5.5,"Campanulate","actinomorphic",25,12,6,1.45,267,"herb","Perennial",0.225,58740
 "Saxifraga hirculus","Saxifragales","Saxifragaceae","Saxifraga","Saxifraga hirculus","Hermaphrodite","partially_self_compatible","none",0,"Open","actinomorphic",5,24.1,14.1,1.4,500,"herb","Perennial",0.15,360000
 "Saxifraga oppositifolia","Saxifragales","Saxifragaceae","Saxifraga","Saxifraga oppositifolia","Hermaphrodite","self_compatible","none",0,"Campanulate","actinomorphic",45,24.1,10,6.5,112.6,"herb","Perennial",0.175,165522
@@ -240,35 +240,35 @@
 "Sida acuta","Malvales","Malvaceae","Sida","Sida acuta","Hermaphrodite","self_compatible","medium",63,"Open","actinomorphic",50,15,4.5,4.75,5,"shrub","Perennial",0.9,7650
 "Silene acaulis","Caryophyllales","Caryophyllaceae","Silene","Silene acaulis","Dioecious","partially_self_compatible","low",13,"Tube","actinomorphic",120,12,9,9,13,"herb","Perennial",0.035,13827
 "Silene chungtienensis","Caryophyllales","Caryophyllaceae","Silene","Silene chungtienensis","Hermaphrodite","self_compatible","high",88,"Tube","actinomorphic",10,23,19.5,19.5,172,"herb","Perennial",0.375,26427
-"Silene dioica","Caryophyllales","Caryophyllaceae","Silene","Silene dioica","Dioecious","dioecious","none",0,"Tube","actinomorphic",10,25,17.3641,9.88,250,"herb","Perennial",0.4,42111
+"Silene dioica","Caryophyllales","Caryophyllaceae","Silene","Silene dioica","Dioecious","dioecious","none",0,"Tube","actinomorphic",10,25,16.59125,9.88,250,"herb","Perennial",0.4,42111
 "Lychnis flos-cuculi","Caryophyllales","Caryophyllaceae","Silene","Silene flos-cuculi","Hermaphrodite","self_compatible","low",13,"Tube","actinomorphic",12,32.5,17,3,92,"herb","Perennial",0.45,40193
 "Silene gracilicaulis","Caryophyllales","Caryophyllaceae","Silene","Silene gracilicaulis","Hermaphrodite","self_compatible","low",13,"Tube","actinomorphic",6,4,13,15,60,"herb","Perennial",0.325,11896
 "Viscaria alpina","Caryophyllales","Caryophyllaceae","Silene","Silene suecica","Dioecious","self_compatible","low",13,"Tube","actinomorphic",15,20,20,6.5,92,"herb","Perennial",0.125,34068
 "Silene vulgaris","Caryophyllales","Caryophillaceae","Silene","Silene vulgaris","Dioecious","self_compatible","low",13,"Campanulate","actinomorphic",120,25,25,25,146,"herb","Perennial",0.5,21953
-"Silene yunnanensis","Caryophyllales","Caryophyllaceae","Silene","Silene yunnanensis","Hermaphrodite","self_compatible","low",11.949,"Tube","actinomorphic",15,3.5,15,15,109,"herb","Perennial",0.5,24472
+"Silene yunnanensis","Caryophyllales","Caryophyllaceae","Silene","Silene yunnanensis","Hermaphrodite","self_compatible","low",12.83065,"Tube","actinomorphic",15,3.5,15,15,109,"herb","Perennial",0.5,24472
 "Silphium perfoliatum","Asterales","Asteraceae","Silphium","Silphium perfoliatum","Hermaphrodite","self_incompatible","none",0,"Capitulum","actinomorphic",15,63,8.21,12.5,50,"herb","Perennial",1.25,1800000
 "Sisyrinchium angustifolium","Asparagales","Iridaceae","Sisyrinchium","Sisyrinchium angustifolium","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",10,6,1.2,1,60.5,"herb","Perennial",0.23,10714
 "Solanum rostratum","Solanales","Solanaceae","Solanum","Solanum rostratum","Hermaphrodite","self_compatible","low",13,"Open","actinomorphic",40,25,7,13.5,63.2,"herb","Short lived",0.5,822000
 "Sonchus oleraceus","Asterales","Asteraceae","Sonchus","Sonchus oleraceus","Hermaphrodite","self_compatible","medium",70.91,"Capitulum","actinomorphic",3,22.5,7,12,165,"herb","Short lived",0.95,58241
-"Sonchus tenerrinus","Asterales","Asteraceae","Sonchus","Sonchus tenerrimus","Hermaphrodite","self_compatible","medium",68.9578309523809,"Capitulum","actinomorphic",10,14,6.5,9.5,100,"herb","Short lived",0.3,280.631
+"Sonchus tenerrinus","Asterales","Asteraceae","Sonchus","Sonchus tenerrimus","Hermaphrodite","self_compatible","medium",67.68292,"Capitulum","actinomorphic",10,14,6.5,9.5,100,"herb","Short lived",0.3,280.631
 "Spartium junceum","Fabales","Fabaceae","Spartium","Spartium junceum","Hermaphrodite","self_incompatible","none",0,"Papilionaceous","zygomorphic",500,25,25,4,16.9,"shrub","Perennial",1.5,63956
-"Spenceria ramalana","Rosales","Rosaceae","Spenceria","Spenceria ramalana","Hermaphrodite","self_compatible","low",14.3291,"Open","actinomorphic",15,16,1.5,4.5,2,"herb","Perennial",0.25,154615
+"Spenceria ramalana","Rosales","Rosaceae","Spenceria","Spenceria ramalana","Hermaphrodite","self_compatible","low",13.9822833333333,"Open","actinomorphic",15,16,1.5,4.5,2,"herb","Perennial",0.25,154615
 "Borreria eryngioides","Gentianales","Rubiaceae","Spermacoce","Spermacoce eryngioides","Hermaphrodite","self_compatible","high",88,"Campanulate","actinomorphic",15,2,1.9,0.35,2,"herb","Perennial",0.2,545.8
 "Stachytapheta jamaicencis","Lamiales","Verbenaceae","Stachytarpheta","Stachytarpheta jamaicensis","Hermaphrodite","self_compatible","high",88,"Tube","actinomorphic",4,8,8.1,5.1,2,"herb","Perennial",1,82
 "Stachyurus praecox","Crossosomatales","Stachyuraceae","Stachyurus","Stachyurus praecox","Dioecious","self_incompatible","none",0,"Tube","actinomorphic",30000,7.5,7.5,4.5,12,"shrub","Perennial",2.1,27792
 "Stellaria graminea","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria graminea","Hermaphrodite","self_compatible","none",0,"Open","actinomorphic",10,9.5,2,3,60,"herb","Perennial",0.3,6100
-"Stellaria longifolia","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria longifolia","Hermaphrodite","self_compatible","low",13.513975,"Open","actinomorphic",20,9,1.1,1,60,"herb","Perennial",0.25,14700
-"Stellaria palustris","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria palustris","Hermaphrodite","self_compatible","low",18.88405,"Open","actinomorphic",3,16,3.2,3,60,"herb","Perennial",0.37,94500
-"Stellaria alsine","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria uliginosa","Hermaphrodite","self_compatible","low",16.499125,"Open","actinomorphic",10,6,2,0.75,60,"herb","Perennial",0.15,5658
-"Stellaria yunnanensis","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria yunnanensis","Hermaphrodite","self_compatible","low",13.5446,"Open","actinomorphic",40,10.5,2,4.5,60,"herb","Perennial",0.2,6471
+"Stellaria longifolia","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria longifolia","Hermaphrodite","self_compatible","low",12.8455333333333,"Open","actinomorphic",20,9,1.1,1,60,"herb","Perennial",0.25,14700
+"Stellaria palustris","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria palustris","Hermaphrodite","self_compatible","low",16.67765,"Open","actinomorphic",3,16,3.2,3,60,"herb","Perennial",0.37,94500
+"Stellaria alsine","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria uliginosa","Hermaphrodite","self_compatible","low",17.5011333333333,"Open","actinomorphic",10,6,2,0.75,60,"herb","Perennial",0.15,5658
+"Stellaria yunnanensis","Caryophyllales","Caryophyllaceae","Stellaria","Stellaria yunnanensis","Hermaphrodite","self_compatible","low",15.0094333333333,"Open","actinomorphic",40,10.5,2,4.5,60,"herb","Perennial",0.2,6471
 "Swertia bimaculata","Gentianales","Gentianaceae","Swertia","Swertia bimaculata","Hermaphrodite","self_compatible","medium",36.4,"Open","actinomorphic",10,22.5,5,5,73.3,"herb","Short lived",1.15,62406
 "Tamarindus indica","Fabales","Fabaceae","Tamarindus","Tamarindus indica","Hermaphrodite","partially_self_compatible","low",13,"Papilionaceous","zygomorphic",5000,20,20,5,14,"tree","Perennial",19.1,18600
-"Teucrium fruticans","Lamiales","Lamiaceae","Teucrium","Teucrium fruticans","Hermaphrodite","partially_self_compatible","low",9.99838888888889,"Open","zygomorphic",200,9,19.1,22,4,"shrub","Perennial",1.25,10144
+"Teucrium fruticans","Lamiales","Lamiaceae","Teucrium","Teucrium fruticans","Hermaphrodite","partially_self_compatible","low",10.49955,"Open","zygomorphic",200,9,19.1,22,4,"shrub","Perennial",1.25,10144
 "Thaspium aureum atropurpurem","Apiales","Apiaceae","Thaspium","Thaspium trifoliatum","Hermaphrodite","partially_self_compatible","low",21.25,"Open","actinomorphic",150,2.5,1,1.42,2,"herb","Perennial",0.6,14934
-"Thlaspi arvense","Brassicales","Brassicaceae","Thlaspi","Thlaspi arvense","Hermaphrodite","partially_self_compatible","medium",40,"Open","actinomorphic",150,5,6.45053333333333,0.2,12,"herb","Short lived",0.3,14694
+"Thlaspi arvense","Brassicales","Brassicaceae","Thlaspi","Thlaspi arvense","Hermaphrodite","partially_self_compatible","medium",40,"Open","actinomorphic",150,5,6.07823888888889,0.2,12,"herb","Short lived",0.3,14694
 "Thymus mastichina","Lamiales","Lamiaceae","Thymus","Thymus mastichina","Hermaphrodite","self_compatible","low",13,"Tube","zygomorphic",250,3,14,20,4,"shrub","Perennial",0.4,2338
-"Tibetia himalaica","Fabales","Fabaceae","Tibetia","Tibetia himalaica","Hermaphrodite","self_compatible","low",18.70745,"Papilionaceous","zygomorphic",1,8,2.5,1,32.7544166666667,"herb","Perennial",0.673075,2622
-"Tournefortia rufo-sericea","Boraginales","Boraginaceae","Tournefortia","Tournefortia rufo-sericea","Hermaphrodite","self_compatible","high",80,"Tube","actinomorphic",1351.38,4,5,1,4,"shrub","Perennial",1.5,19888
+"Tibetia himalaica","Fabales","Fabaceae","Tibetia","Tibetia himalaica","Hermaphrodite","self_compatible","low",20.7203333333333,"Papilionaceous","zygomorphic",1,8,2.5,1,24.7168,"herb","Perennial",0.61584375,2622
+"Tournefortia rufo-sericea","Boraginales","Boraginaceae","Tournefortia","Tournefortia rufo-sericea","Hermaphrodite","self_compatible","high",80,"Tube","actinomorphic",1284.94,4,5,1,4,"shrub","Perennial",1.5,19888
 "Tribulus cistoides","Zygophyllales","Zygophyllaceae","Tribulus","Tribulus cistoides","Hermaphrodite","self_compatible","medium",36,"Open","actinomorphic",30,25,0.5,4,17.5,"herb","Short lived",2.8,88252
 "Trifolium arvense","Fabales","Fabaceae","Trifolium","Trifolium arvense","Hermaphrodite","self_compatible","high",88,"Tube","zygomorphic",100,2,5,4,4,"herb","Short lived",0.25,320
 "Trifolium campestre","Fabales","Fabaceae","Trifolium","Trifolium campestre","Hermaphrodite","self_compatible","high",88,"Papilionaceous","zygomorphic",150,3,4.75,1,4,"herb","Short lived",0.15,366.8
@@ -288,12 +288,12 @@
 "Veronica beccabunga","Lamiales","Plantaginaceae","Veronica","Veronica beccabunga","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",60,2,6,3,61,"herb","Perennial",0.45,1290
 "Veronica chamaedrys","Lamiales","Plantaginaceae","Veronica","Veronica chamaedrys","Hermaphrodite","self_incompatible","none",0,"Open","zygomorphic",4,11,1,4,16,"herb","Perennial",0.195,7123
 "Veronica peregrina","Lamiales","Plantaginaceae","Veronica","Veronica peregrina","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",2,2.1,1.8,0.25,30,"herb","Short lived",0.175,201
-"Veronica_polita","Lamiales","Plantaginaceae","Veronica","Veronica polita","Hermaphrodite","self_compatible","low",21.28005,"Open","zygomorphic",15,5.5,2,1.3,11.75,"herb","Short lived",0.15,2902
+"Veronica_polita","Lamiales","Plantaginaceae","Veronica","Veronica polita","Hermaphrodite","self_compatible","low",19.7894333333333,"Open","zygomorphic",15,5.5,2,1.3,11.75,"herb","Short lived",0.15,2902
 "Veronica serpyllifolia","Lamiales","Plantaginaceae","Veronica","Veronica serpyllifolia","Hermaphrodite","self_compatible","high",88,"Open","actinomorphic",40,8,2.8,2.25,59,"herb","Perennial",0.125,3303
 "Vicia cracca","Fabales","Fabaceae","Vicia","Vicia cracca","Hermaphrodite","partially_self_compatible","low",13,"Papilionaceous","zygomorphic",250,6.5,11,11,5.5,"vine","Perennial",1,7467
 "Vicea lutea","Fabales","Fabaceae","Vicia","Vicia lutea","Hermaphrodite","self_compatible","high",88,"Tube","zygomorphic",10,11.25,22.5,2,4.5,"herb","Short lived",0.75,19514
 "Vicia sativa","Fabales","Fabaceae","Vicia","Vicia sativa","Hermaphrodite","self_compatible","high",88,"Papilionaceous","zygomorphic",50,8.5,20,1.1,5.6,"herb","Short lived",0.27,6119
 "Viola cunninghamii","Malpighiales","Violaceae","Viola","Viola cunninghamii","Hermaphrodite","partially_self_compatible","low",10,"Open","zygomorphic",5,12,8,1.75,25,"herb","Perennial",0.025,10333
 "Wahlenbergia albomarginata","Asterales","Campanulaceae","Wahlenbergia","Wahlenbergia albomarginata","Hermaphrodite","self_incompatible","none",0,"Campanulate","actinomorphic",1,17.5,11,7,379,"herb","Perennial",0.05,27467
-"Zea mays","Poales","Poaceae","Zea","Zea mays","Monoecious","monoecious","none",0,"Tube","actinomorphic",3289.59,6,12.5,45,1,"herb","Short lived",2.5,14636
+"Zea mays","Poales","Poaceae","Zea","Zea mays","Monoecious","monoecious","none",0,"Tube","actinomorphic",3826.51666666667,6,12.5,45,1,"herb","Short lived",2.5,14636
 "Zizia aurea","Apiales","Apiaceae","Zizia","Zizia aurea","Hermaphrodite","self_compatible","low",20,"Tube","actinomorphic",200,3,6,0.5,2,"herb","Perennial",0.55,9914

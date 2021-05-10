@@ -6,6 +6,8 @@ library(data.table) # operate with df
 library(bipartite) #calculate metrics
 library(dplyr) #data manipulation 
 library(stringr) #remove string
+library(bipartite)
+
 ########################################################################################################################################################
 #1) LOAD NETWORK DATA
 ########################################################################################################################################################
@@ -71,7 +73,7 @@ for (i in names(metrics_list)){
 
 #add id as a row name
 all_list <- lapply(seq_along(metrics_list_1),function(x) cbind(metrics_list_1[[x]], 
-  unique.id=str_replace(my_files[x], pattern = ".csv", replacement = "")))
+  unique.id=stringr::str_replace(my_files[x], pattern = ".csv", replacement = "")))
 
 #Now merge all the data frames 
 all_df <- bind_rows(all_list)

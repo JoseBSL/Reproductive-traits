@@ -177,6 +177,8 @@ m_pollen <- brm((Interaction-1) ~ Pollen_per_flower +(1|System/Id) + (1|gr(phylo
                                         sample_prior = TRUE, warmup = 500, iter = 2000,
                                         control = list(adapt_delta = 0.99))
 
+performance::r2(m_pollen)
+
 plot_pollen <- conditional_effects(m_pollen)
 
 plot(plot_pollen, points=TRUE)
