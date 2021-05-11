@@ -50,12 +50,12 @@ trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA
 trait_filtered_1 <- trait_filtered[!is.na(trait_filtered$Species_all),]
 trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
 
-
+str(trait_filtered_2)
 #select columns of interest
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
                         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", 
                         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
+                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #2 DATA PREPARATION
@@ -121,7 +121,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
          "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant",
          "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul")]
+         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #3) EXPLORE PATTERNS OF MISSING DATA
@@ -172,8 +172,11 @@ t <- t[!is.na(t$Genus_all),]
 missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
 
-#Subset just species with quantitative information about nectar
-t_nectar <- t[!is.na(t$Nectar_ul),]
+#Subset just species with quantitative information about nectar.
+t_nectar <- t[!is.na(t$Nectar_concentration) | !is.na(t$Nectar_ul)| !is.na(t$Nectar_mg)| !is.na(t$Pollen_per_flower),]
+nrow(t_nectar)
+
+
 
 #check missing data now
 missing_data <- unlist(lapply(t_nectar, function(x) sum(is.na(x))))/nrow(t)*100
@@ -216,19 +219,22 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 #METHOD: RANDOM FOREST
 #####
-forest_imputed <- missForest(dat_phylo[,c(6:22)], maxiter = 10,mtry = 4, ntree = 200)
+dat_phylo$Nectar_mg <- as.numeric(dat_phylo$Nectar_mg)
+
+forest_imputed <- missForest(dat_phylo[,c(6:25)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-17]
+f_imp_data <- f_imp_data[,-20]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)
 #this is a bda fix but I'm trying to avoid using 
 rownames(forest_data) <- dat_phylo$Species_geonet
+nrow(forest_data)
 ########################################################################################################################################################
 #7) SAVE DATA
 ########################################################################################################################################################
-write.csv(forest_data, "Data/Csv/nectar_subset_imputed_trait_data.csv")
+write.csv(forest_data, "Data/Csv/nectar_pollen_subset_imputed_trait_data.csv")
 ########################################################################################################################################################
 ########################################################################################################################################################
 ########################################################################################################################################################
