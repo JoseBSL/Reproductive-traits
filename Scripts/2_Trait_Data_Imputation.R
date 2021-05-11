@@ -56,7 +56,7 @@ str(trait_filtered_2)
 #Select columns to work with
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
                     "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
-                    "Flowers_per_plant", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                    "Flowers_per_plant","Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
                     "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
 
 ########################################################################################################################################################
@@ -137,7 +137,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 #Now we just select presence/absence of nectar
 #select columns of interest
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
-                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", 
+                        "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Floral_unit_width",
                         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
                         "Plant_height_mean_m","Nectar_presence_absence")]
 
@@ -244,10 +244,10 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 # RANDOM FOREST
 #####
-forest_imputed <- missForest(dat_phylo[,c(6:21)], maxiter = 10,mtry = 4, ntree = 200) #just variables and eigenvector of phylogenetic distance to help imputation
+forest_imputed <- missForest(dat_phylo[,c(6:22)], maxiter = 10,mtry = 4, ntree = 200) #just variables and eigenvector of phylogenetic distance to help imputation
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-16]
+f_imp_data <- f_imp_data[,-17]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)
