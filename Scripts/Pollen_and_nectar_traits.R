@@ -59,6 +59,8 @@ str(trait_filtered_2)
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all",
                         "Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_ovule_ratio","Pollen_per_flower")]
 
+
+hist(log(t$Pollen_per_flower))
 colnames(t)[1] <- "Plant_species"
 
 #Now read visitation data
