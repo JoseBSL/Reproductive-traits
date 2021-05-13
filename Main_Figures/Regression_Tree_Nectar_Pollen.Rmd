@@ -49,7 +49,7 @@ colnames(data_1) <- c("Interactions", "Aut. selfing", "Flower width","Flower len
 
 
 # Create a decision tree model
-tree <- rpart(Interactions~., data=data_1, cp=.007)
+tree <- rpart(Interactions~., data=data_1, cp=.004)
 # Visualize the decision tree with rpart.plot
 rpart.plot(tree, box.palette="GnOr",tweak = 1.20)
 
