@@ -31,21 +31,31 @@ style_n <- readRDS("Data/RData/style_n_phylo.rds")
 ovule_n <- readRDS("Data/RData/ovule_n_phylo.rds")
 #PLANT HEIGHT
 plant_height <- readRDS("Data/RData/plant_height_phylo.rds")
+#POLLEN
+pollen <- readRDS("Data/RData/pollen_phylo.rds")
+#Nectar ul
+nectar_ul <- readRDS("Data/RData/Nectar_ul_phylo.rds")
+#Nectar mg
+nectar_mg <- readRDS("Data/RData/Nectar_mg_phylo.rds")
+#Nectar concentration
+nectar_con <- readRDS("Data/RData/Nectar_concentration_phylo.rds")
+
 
 #Select two decimals function
 specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 #LABELS
-label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height")
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Pollen grains per flower", "Nectar ($\\mu$l) per flower", "Nectar (mg) per flower", "Nectar concentration ($\\%$)")
 #LAMBDA
-lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda)
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, pollen$lambda, nectar_ul$lambda, nectar_mg$lambda, nectar_con$lambda)
 #P-VALUE
-p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P)
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P, pollen$P,nectar_ul$P,
+            nectar_mg$P,  nectar_con$P)
 
 tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
 
-colnames(tabla) <- c("Variable", "Lambda", "P-value")
+colnames(tabla) <- c("Functional traits", "Lambda", "P-value")
 
-kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace") %>%
+kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 

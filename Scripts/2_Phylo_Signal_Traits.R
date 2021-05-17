@@ -106,3 +106,61 @@ p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_lengt
 tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
 
 colnames(tabla) <- c("Variable", "Lambda", "P value")
+
+
+########################################################################################################################################################
+#Load dataset with pollen and nectar and calculate phylo signal for the subset of species 
+########################################################################################################################################################
+
+forest_data_1 <- read.csv("Data/Csv/nectar_pollen_subset_imputed_trait_data.csv")
+
+#calculate phylo 
+phylo <- as.data.frame(cbind(forest_data_1$Family_all, forest_data_1$Genus_all, forest_data_1$Species_all))
+colnames(phylo) <-  c("family", "genus", "species")
+#Select unique cases
+#phylo_2 <- phylo[!duplicated(phylo$species),]
+phylo_1 <- tibble(phylo)
+#get phylo
+phylo_output_1 <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant")
+#Convert phylogenetic tree into matrix
+A_5 <- vcv.phylo(phylo_output)
+#Standardize to max value 1
+A_5 <- A_5/max(A_5)
+#Unify column names; remove underscore and remove asterik
+rownames(A_5) <- gsub("\\*", "", rownames(A_5))
+colnames(A_5) <- gsub("\\*", "", colnames(A_5))
+colnames(A_5) <- gsub("_", " ", colnames(A_5))
+rownames(A_5) <- gsub("_", " ", rownames(A_5))
+
+#Add phylo column to dataset
+forest_data_1$phylo
+forest_data_1$phylo <- forest_data$Species_all
+
+#SUBSET NUMERICAL COLUMNS R
+nums <- unlist(lapply(forest_data_1, is.numeric))  
+d_1 <- forest_data_1[ , nums]
+
+str(forest_data_1)
+
+rownames(d_1) <- forest_data_1$Species_all
+
+#Remove underscore from phylo
+phylo_output_1$tip.label <- gsub("_", " ", phylo_output_1$tip.label)
+
+
+#Pollen
+pollen <- phylosig(phylo_output_1,setNames(d_1[,"Pollen_per_flower"],rownames(d_1)),method="lambda",test=TRUE)
+saveRDS(pollen, "Data/RData/pollen_phylo.rds")
+
+#Nectar
+Nectar_ul <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_ul"],rownames(d_1)),method="lambda",test=TRUE)
+saveRDS(Nectar_ul, "Data/RData/Nectar_ul_phylo.rds")
+
+Nectar_mg <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_mg"],rownames(d_1)),method="lambda",test=TRUE)
+saveRDS(Nectar_mg, "Data/RData/Nectar_mg_phylo.rds")
+
+Nectar_concentration <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_concentration"],rownames(d_1)),method="lambda",test=TRUE)
+saveRDS(Nectar_concentration, "Data/RData/Nectar_concentration_phylo.rds")
+
+
+

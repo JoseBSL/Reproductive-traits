@@ -41,3 +41,34 @@ rpart.plot(tree, box.palette="GnOr")
 rpart.plot(tree, box.palette="BuOr")
 #Check for palettes
 show.prp.palettes()
+
+
+
+printcp(tree)
+plotcp(tree)
+
+
+
+str(datitos_1)
+
+datitos_1 <- as.data.frame(datitos_1)
+
+df_1 <- datitos_1[c("Visits", "Flowers_per_plant", "Corolla_diameter_mean", "Style_length", "Ovule_number","Plant_height_mean_m","lifespan","life_form")]
+
+df_1$Visits <- log10*(df_1$Visits+1)
+df_1$lifespan <- as.factor(df_1$lifespan)
+df_1$life_form <- as.factor(df_1$life_form)
+
+
+df_1 <- df_1[complete.cases(df_1)]
+df_1[] <- lapply(df_1, function(x) if(is.factor(x)) factor(x) else x)
+
+is.na(df_1)
+tree <- rpart(Visits~., data=df_1, cp=.01)
+rpart.plot(tree)
+
+printcp(tree)
+plotcp(tree)
+
+
+

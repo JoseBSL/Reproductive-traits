@@ -176,11 +176,25 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 t_nectar <- t[!is.na(t$Nectar_concentration) | !is.na(t$Nectar_ul)| !is.na(t$Nectar_mg)| !is.na(t$Pollen_per_flower),]
 nrow(t_nectar)
 
-
-
 #check missing data now
 missing_data <- unlist(lapply(t_nectar, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
+
+#################################################
+#3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
+#################################################
+#Number of filled cells
+nrow(t) * 20 - sum(is.na(t))#[1] 23969
+#Dimension of the dataset
+nrow(t) * 20#[1] 30120
+#Number of missing values
+sum(is.na(t))#[1] 6151
+#Percentage of filled cells
+sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 79.57835
+
+#Percentage of missing values
+sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 20.42165
+
 
 #Calculate phylo distance
 phylo <- as.data.frame(cbind(t_nectar$Family_all, t_nectar$Genus_all, t_nectar$Species_all))

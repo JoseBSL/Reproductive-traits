@@ -178,12 +178,12 @@ missing.values <- t %>%
 
 n_of_records <- subset(missing.values, isna=="FALSE")
 Trait <- c("Plant height (m)", "Flower width (mm)", "Flower length (mm)", "Inflorescence width (mm)", "Style length (mm)", "Ovules per flower",
-           "Flower per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing (fruit set)")
+           "Flowers per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing (fruit set)")
 
 Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Autonomous selfing", "Compatibility system", "Breeding system", " ", " ", " ", " ")
 
 T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub \n Tree", "Brush \n Campanulate \n Capitulum \n Open \n Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
-           "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
+           "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Partially self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
 
 Type <- c("V", "F", "F", "F", "F", "F", "F","F","F","F","F","R")
 
@@ -209,7 +209,7 @@ Number_of_records_categorical <- c(n_of_records$num.isna[n_of_records$key=="life
 dat <- data.frame(Type, Trait,Number_of_records_quantitative,Type_1, Trait1, T.cat,Number_of_records_categorical)
 
 
-colnames(dat) <- c("Trait Type","Traits", "Records","Trait Type", "Traits", "Categories", "Records")
+colnames(dat) <- c("Type","Traits", "Records","Type", "Traits", "Categories", "Records")
 
 
 

@@ -1060,3 +1060,23 @@ write.csv(all_bee_non_apis, "Data/Csv/long_format_quantitative_networks_bees_non
 
 
 
+#Check apis names
+apis <- subset(all_long_poll_names, genus=="Apis")
+#check levels
+levels(factor(apis$Pollinator_species))
+
+#rename dataframe
+dat <- all_long_poll_names
+
+#select interations that took place
+dat_1 <- dat[dat$Interaction>0,]
+
+#Rename all apis to calculate real proportion
+dat_1$Pollinator_species[dat_1$Pollinator_species=="Apis melifera"] <- "Apis mellifera"
+dat_1$Pollinator_species[dat_1$Pollinator_species=="Apis mellifera adansonii"] <- "Apis mellifera"
+dat_1$Pollinator_species[dat_1$Pollinator_species=="Apis cerana"] <- "Apis mellifera"
+
+#Proportion of A.mellifera visits 7.557312
+nrow(dat_1[dat_1$Pollinator_species=="Apis mellifera",])/nrow(dat_1[dat_1$Pollinator_species,])*100
+
+

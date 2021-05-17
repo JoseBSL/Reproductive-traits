@@ -24,6 +24,8 @@ library(cowplot)
 library(emmeans)
 library(tidybayes)
 library(multcomp)
+library(rpart)
+library(rpart.plot)
 ########################################################################################################################################################
 #1) LOAD NETWORK DATA
 ########################################################################################################################################################
@@ -189,7 +191,11 @@ df <- df[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","C
                   "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
 
 
-tree <- rpart(Visits~., data=df, cp=0.0086964) #8 divisions
+
+df$Visits <- log10(df$Visits+1)
+
+
+tree <- rpart(Visits~., data=df, cp=0.013059) #8 divisions
 rpart.plot(tree, box.palette="GnOr")
 printcp(tree)
 plotcp(tree)

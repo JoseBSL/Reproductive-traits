@@ -36,24 +36,12 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
       ))
 }
 
-#Load data
-phyl_pca_forest_nectar_pollen <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen.rds")
-dat_cleaning_7 <- readRDS("Data/RData/data_all_species_PPCA_nectar_pollen.rds")
+PC <- readRDS("Data/RData/phyl_pca_forest_complete_cases.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_complete_cases.rds")
 
-PC <- phyl_pca_forest_nectar_pollen
-#CHECK CONTENT
-#EIGENVALUES
-PC$Eval
-#PC score (POINTS)
-PC$S
-#PC loadings (ARROWS)
-PC$L
+#plot same order as the other plots
+PC$S[,2] <- -PC$S[,2]
 
-library(magick)
-
-#Images were made by Paula Martin
-
-PC$S[,1] <- -PC$S[,1]
 
 all_spp <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
@@ -73,7 +61,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   }
   
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-
+  
   
   plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',bins=8) + 
     scale_fill_continuous(low="green",high="red",guide=FALSE,lim=c(0.01,0.082),breaks = c(0.02, 0.035, 0.082), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.6),title="Kernel density"))+
@@ -95,11 +83,11 @@ all_spp <- function(PC, x="PC1", y="PC2") {
                       v2 = .7 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=-v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=-v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
@@ -113,10 +101,10 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   plot <- plot + theme_bw() 
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height", "Nectar","Pollen" )
+  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height")
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.85,5.5,5.3,5.5,6.1,5.75,5.8,6)), y = (PCAloadings$PC2*c(4.8,4.8,4.65,5.65,5,5.1,5.75,5)+c(0,0,0,0,0,0,0,0)),
+  plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.2,5.3,5,6.25,6.3,6.15)), y = -(PCAloadings$PC2*c(4.2,5,4,6.5,5,5.5)+c(0,0,0,0,0.25,0)),
                           label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
@@ -128,6 +116,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
 }
 
 all_spp(PC)
+
 
 
 
