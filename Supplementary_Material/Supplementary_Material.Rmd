@@ -1,0 +1,525 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+
+---
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000}
+
+#Set working directory
+setwd("~/R_Projects/Reproductive Traits")
+
+########################################################################################################################################################
+#SCRIPT FOR DATA IMPUTATION
+########################################################################################################################################################
+#1) READ TRAIT DATA
+
+#2) CLEAN DATA AND RENAME LEVELS
+
+#3) EXPLORE PATTERNS OF MISSING DATA
+
+#4) CALCULATE PHYLOGENETIC DISTANCE TO CORRECT WITH EIGENVALUES IN THE IMPUTATION
+
+#5) ICLUDE EIGENVALUES IN RAWDATA TO IMPROVE IMPUTATION OURPUT
+
+#6) IMPUTE DATA 
+
+#7) SAVE IMPUTED DATA 
+########################################################################################################################################################
+#LOAD LIBRARIES
+library(readxl) #read excel file (trait data)
+library(dplyr) #data manipulation
+library(missMDA) #For missing values
+library(FactoMineR) #Produce pca biplot with individuals and variables
+library(factoextra)
+library(ggpubr) 
+library(missForest) #random forst imputation
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(ape)
+library(PVR) #calculate eigen vectors and add them as a column in the imputation, seems to improve output
+library(visdat) #VISUALIZE MISSING DATA
+library(naniar)
+library(tidyverse)
+########################################################################################################################################################
+#1) READ TRAIT DATA
+########################################################################################################################################################
+#load data
+trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
+########################################################################################################################################################
+#2) A) CLEAN DATA AND B) RENAME LEVELS FOR IMPUTATION 
+########################################################################################################################################################
+#####
+#A) CLEAN DATA
+#####
+#select just filled rows
+trait_data_1 <- trait_data[1:1712,] #It may be a more elegant way but this does the job, 1712 rows of data
+
+str(trait_data_1)
+#filter data, select species with flower level info and capitulum
+trait_filtered <- filter(trait_data_1, Info_level == "flower" |  Info_level == "capitulum")
+levels(as.factor(trait_filtered$Info_level)) #checking levels
+#remove NA's and duplicated species|Some spp are repeated once the spp names are standardize with taxize
+trait_filtered$Species_all[trait_filtered$Species_all=="NA"]<-NA 
+trait_filtered_1 <- trait_filtered[!is.na(trait_filtered$Species_all),]
+trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
+str(trait_filtered_2)
+
+#Select columns to work with
+t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
+                        "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+                        "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+                        "Pollen_per_flower")]
+
+
+########################################################################################################################################################
+#####
+#B) RENAME LEVELS FOR IMPUTATION
+#####
+#Breeding_system| For the purpose of this study we are not going to consider other complex breeding systems and just focus on 
+#Hermaphroditism, dioecy and monoecy, the closest levels are grouped within each category
+t$Breeding_system <- as.character(t$Breeding_system)
+t$Breeding_system[t$Breeding_system=="androdioecious"] <- "dioecious"
+t$Breeding_system[t$Breeding_system=="androgynodioecious"] <- "dioecious"
+t$Breeding_system[t$Breeding_system=="andromonoecious"] <- "monoecious"
+t$Breeding_system[t$Breeding_system=="gynodioecious"] <- "dioecious"
+t$Breeding_system[t$Breeding_system=="gynoecious"] <- "monoecious"
+t$Breeding_system[t$Breeding_system=="gynomonoecious"] <- "monoecious"
+t$Breeding_system[t$Breeding_system=="gynomonoecious"] <- "monoecious"
+t$Breeding_system[t$Breeding_system=="monoecious_dioecious"] <- "monoecious"
+t$Breeding_system[t$Breeding_system=="polygamo-dioecious"] <- "dioecious"
+t$Breeding_system[t$Breeding_system=="protandrous"] <- "hermaphrodite"
+t$Breeding_system[t$Breeding_system=="protogynous"] <- "hermaphrodite"
+t$Breeding_system[t$Breeding_system=="subdioecious"] <- "dioecious"
+t$Breeding_system[t$Breeding_system=="submonoecious"] <- "monoecious"
+#Change to capital letters| There are already levels with lower case
+t$Breeding_system[t$Breeding_system=="monoecious"] <- "Monoecious"
+t$Breeding_system[t$Breeding_system=="dioecious"] <- "Dioecious"
+t$Breeding_system[t$Breeding_system=="hermaphrodite"] <- "Hermaphrodite"
+levels(as.factor(t$Breeding_system))
+t$Breeding_system <- as.factor(t$Breeding_system)
+
+#Now 3 levels
+#Flower_morphology
+t$Flower_morphology <- as.character(t$Flower_morphology)
+t$Flower_morphology[t$Flower_morphology=="bowl"] <- "open"
+t$Flower_morphology[t$Flower_morphology=="dish"] <- "open"
+t$Flower_morphology[t$Flower_morphology=="exposed"] <- "open"
+t$Flower_morphology[t$Flower_morphology=="spadix"] <- "spike"
+t$Flower_morphology[t$Flower_morphology=="open"] <- "Open"
+t$Flower_morphology[t$Flower_morphology=="brush"] <- "Brush"
+t$Flower_morphology[t$Flower_morphology=="campanulate"] <- "Campanulate"
+t$Flower_morphology[t$Flower_morphology=="capitulum"] <- "Capitulum"
+t$Flower_morphology[t$Flower_morphology=="funnelform"] <- "Funnelform"
+t$Flower_morphology[t$Flower_morphology=="papilionaceous"] <- "Papilionaceous"
+t$Flower_morphology[t$Flower_morphology=="spike"] <- "Spike"
+t$Flower_morphology[t$Flower_morphology=="tube"] <- "Tube"
+levels(as.factor(t$Flower_morphology))
+t$Flower_morphology <- as.factor(t$Flower_morphology)
+
+#Life span
+t$lifespan <- as.character(t$lifespan )
+t$lifespan[t$lifespan=="annual"] <- "short_lived"
+t$lifespan[t$lifespan=="biennial"] <- "short_lived"
+t$lifespan[t$lifespan=="short_lived"] <- "Short lived"
+t$lifespan[t$lifespan=="perennial"] <- "Perennial"
+levels(as.factor(t$lifespan))
+t$lifespan <- as.factor(t$lifespan )
+
+########################################################################################################################################################
+#3) EXPLORE PATTERNS OF MISSING DATA
+########################################################################################################################################################
+#Explore patterns of missing data
+missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)
+sort(missing_data[missing_data >= 0], decreasing=T)
+#nectar values all above 50% except presence/absence
+#then, just one cololumn with 68% missing data, then one with 35% and then 20% and 10%. The rest under 5%.
+#it is recommended to remove columns over 50% but we are particulary interested in having numeric levels of quantitative selfing 
+#we are going to work just with presence/absence of nectar
+#we will perform further analysis just with a subset with the quantitative values o nectar (very interesting data and diffciult to obtain)
+
+
+#We convert cualitative data to quantitative to reduce missing data on this column and hence conduct the imputation 
+#use ifelse base r does not work with these NA'S Even with work around. base r does not like the na option of read excel
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("high") & is.na(t$Autonomous_selfing_level_fruit_set), 88, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("medium") & is.na(t$Autonomous_selfing_level_fruit_set), 50.5, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("low") & is.na(t$Autonomous_selfing_level_fruit_set), 13, t$Autonomous_selfing_level_fruit_set)
+t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c("none") & is.na(t$Autonomous_selfing_level_fruit_set), 0, t$Autonomous_selfing_level_fruit_set)
+
+#t$Nectar_ul adding it here just to see how many cells 
+#Now we just select presence/absence of nectar
+#select columns of interest
+t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
+         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+         "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "Pollen_per_flower")]
+
+
+
+
+
+#check missing data now
+missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
+sort(missing_data[missing_data >= 0], decreasing=T)
+
+
+missing_data <- unlist(lapply(t, function(x) nrow(t)-sum(is.na(x))))
+sum(missing_data)
+
+#Number of missing values on the datset
+#vis_miss(t[,c(6:20)])
+#9.9% percentage of missing values]
+
+#Checking number of filled cells/ just selecting variables used in the manuscript; nectar ul should be accounted too and it has been considered but
+#not added to run this code
+
+########################################################################################################################################################
+#4) CALCULATE PHYLOGENETIC DISTANCE TO CORRECT WITH EIGENVALUES IN THE IMPUTATION
+########################################################################################################################################################
+#Convert to factor 
+cols <- c("Order_all", "Family_all", "Genus_all", "Species_all", "Compatibility_system", "Autonomous_selfing_level", "Flower_morphology",
+          "Flower_symmetry", "life_form", "lifespan","Nectar_presence_absence")
+t[cols] <- lapply(t[cols], factor)  ## as.factor() could also be used
+str(t)
+
+
+#Impute data considering phylogenetic distance of species
+#it improves quality of imputation
+#https://doi.org/10.1111/2041-210X.12232 see ref for method comparisons with and without imputation
+
+#Multiple imputation process with phylogeny --> Missforest
+#https://doi.org/10.1111/2041-210X.12232
+#althought it does not have an option we are going to add it as a column
+
+#Before data imputation I need to calculate the phylo of the species
+#remove not found species that do not run with get tree
+cols.num <- c("Family_all","Genus_all","Species_all")
+t[cols.num] <- sapply(t[cols.num],as.character)
+t$Species_all <- gsub("Species_all_", "", t$Species_all)
+
+t <- t[!t$Species_all == "Pinus luchuensis", ]   # remove gymnosperm species
+
+#remove species that are not until species level
+#ALL THE SPECIES WITH SP. ARE DELETD
+t$Species_geonet <- gsub("M_PL_.*","",t$Species_geonet) #subsitute partial string for nothing
+t$Species_geonet <- gsub(" $","", t$Species_geonet, perl=T) #remove trailing spaces
+t$Species_geonet <-  sub('sp.1$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp.2$', 'sp.', t$Species_geonet)#PREPARE ALL SP TO SP.
+t$Species_geonet <- sub('sp$', 'sp.', t$Species_geonet) #PREPARE ALL SP TO SP.
+t$Species_geonet <- sub("sp.$", "DELETE", t$Species_geonet) #change all sp. for DELETE
+t <- t[- grep("DELETE",  t$Species_geonet),] #remove species with "DELETE"
+#CHECK LEVELS
+levels(factor(t$Species_all))
+
+#Make these NA's as NA
+t$Species_all[t$Species_all=="NA"] <- NA
+t$Family_all[t$Family_all=="NA"] <- NA
+t$Genus_all[t$Genus_all=="NA"] <- NA
+#remove NA's
+t <- t[!is.na(t$Family_all),]
+t <- t[!is.na(t$Species_all),]
+t <- t[!is.na(t$Genus_all),]
+
+#Select just columns with traits
+t <- t[c("Breeding_system","Compatibility_system",
+                        "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+                        "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "Pollen_per_flower")]
+
+
+#################################################
+#3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
+#################################################
+##Number of filled cells
+#nrow(t) * 16 - sum(is.na(t))#[1] 20737
+##Dimension of the dataset
+#nrow(t) * 16#[1] 24096
+##Number of missing values
+#sum(is.na(t))#[1] 3359
+##Percentage of filled cells
+#sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 86.87993
+##Percentage of missing values
+#sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100#[1] 13.12007
+#
+#
+
+#Function to specify number of decimals
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
+
+
+no_missing <- specify_decimal(sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
+missing <- specify_decimal(sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
+
+
+colnames(t) <- c("Breeding system","Compatibility system",
+         "Autonomous selfing qualitative","Autonomous selfing quantitative", "Flower shape", "Flower symmetry", 
+         "Flower number per plant", "Inflorescence width", "Flower width", "Flower length","Style length", "Ovule number", 
+         "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar per flower (microlitres)", "Nectar per flower (miligrames)", "Nectar concentration (%)", "Pollen grains per flower")
+
+
+
+missing.values <- t %>%
+  gather(key = "key", value = "val") %>%
+  mutate(isna = is.na(val)) %>%
+  group_by(key) %>%
+  mutate(total = n()) %>%
+  group_by(key, total, isna) %>%
+  summarise(num.isna = n()) %>%
+  mutate(pct = num.isna / total * 100)
+
+
+levels <-
+  (missing.values  %>% filter(isna == T) %>% arrange(desc(pct)))$key
+
+percentage.plot <- missing.values %>%
+  ggplot() +
+  geom_bar(aes(x = reorder(key, desc(pct)), 
+               y = pct, fill=isna), 
+           stat = 'identity', alpha=0.8) +
+  scale_x_discrete(limits = levels) + theme_bw()+
+  scale_fill_manual(name = "", 
+                    values = c('#57a340', '#d24513'), labels = c("Present values", "Missing values")) +
+  coord_flip() +
+  labs(title = "", x =
+         '', y = "")+  scale_y_continuous(labels = function(x) paste0(x*1, "%")) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=1))
+
+
+percentage.plot
+
+
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10}
+setwd("~/R_Projects/Reproductive Traits")
+
+#Load libraries
+#LOAD LIBRARIES
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(cowplot)
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+      theme(text=element_text(color="black"),
+            axis.title=element_text( size = rel(1.2)),
+            axis.text=element_text(size = rel(1.75), color = "black"),
+            legend.title=element_text(face="bold"),
+            legend.text=element_text(),
+            legend.background=element_rect(fill="transparent"),
+            legend.key.size = unit(1.2, 'lines'),
+            panel.border=element_rect(color="black",size=1),
+            panel.grid.minor.x =element_blank(),
+            panel.grid.minor.y= element_blank(),
+             panel.grid.major= element_blank()
+      ))
+}
+
+#Load data
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+library(magick)
+
+#Images were made by Paula Martin
+#Check her work on https://paulamartinart.com/
+
+tree <- image_read("Images/PPCA_Plot/Tree.png")
+tree_1 <- as.raster(tree)
+
+style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
+style_l_1 <- as.raster(style_l)
+
+style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
+style_s_1 <- as.raster(style_s)
+
+ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
+ovule_h_1 <- as.raster(ovule_h)
+
+ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
+ovule_l_1 <- as.raster(ovule_l)
+
+selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
+selfing_n_1 <- as.raster(selfing_n)
+
+selfing_h <- image_read("Images/PPCA_Plot/selfing.png")
+selfing_h_1 <- as.raster(selfing_h)
+
+single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
+single_flower_1 <- as.raster(single_flower)
+
+many_flowers <- image_read("Images/PPCA_Plot/Inflorescencia.png")
+many_flowers_1 <- as.raster(many_flowers)
+#many_flowers_1 <- image_rotate(many_flowers, 45)
+
+
+large_flower <- image_read("Images/PPCA_Plot/flower_big.png")
+large_flower_1 <- as.raster(large_flower)
+
+flower_small <- image_read("Images/PPCA_Plot/flower_short.png")
+flower_small_1 <- as.raster(flower_small)
+
+herb <- image_read("Images/PPCA_Plot/herb.png")
+herb_1 <- as.raster(herb)
+
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+
+#Invert axes
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
+
+pc3 <- function(PC, x="PC1", y="PC3") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+
+
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon') + 
+  scale_fill_continuous(low="green",high="red",guide=FALSE,breaks = c(0.02, 0.050, 0.09), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.7),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+    plot <- plot + geom_point(data=dat, aes(x, y),size=1.3, color="black")
+
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  
+   #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
+  
+
+  #CHANGE THEME
+    
+  plot <- plot + theme_bw() #+ annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
+ #  annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
+ # annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
+ # annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
+ # annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
+ # annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
+ # annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -3.9, ymax = -3.1) +
+ # annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
+ # annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.40,ymin = 0.8, ymax = 1.45) +
+ # annotation_raster(large_flower_1, xmin = 3.15, xmax = 4.15,ymin = 1.3, ymax = 2.55) +
+ # annotation_raster(flower_small_1, xmin = -3.50, xmax = -2.55,ymin = -2.1, ymax = -1.60) +
+ # annotation_raster(herb_1, xmin = 2.6, xmax = 3,ymin = -2.8, ymax = -2) 
+
+
+    
+      #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+ plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,4.8,7.1,5.5)), y = -(PCAloadings$PC2*c(-3.2,4.5,3.75,8.4,5,5.5)+c(0,0,0,0,-0.08,0)),
+                         label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+pc3(PC)
+
+```
+
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28}
+
+
+
+library(patchwork) #panel of plots
+library(brms)
+library(ggplot2)
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2.2)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+#Plot nicely PC1
+analysis_1 <- readRDS("r_bee_families.rds")
+dat_analysis <- readRDS("dat_bee_families.rds")
+
+```
+

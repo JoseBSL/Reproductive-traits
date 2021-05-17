@@ -156,8 +156,8 @@ saveRDS(dat_analysis, "dat_analysis_results_analysis_1_bee_families.rds")
 #PLOT
 ########################################################################################################################################################
 #Plot nicely PC1
-analysis_1 <- readRDS("results_analysis_1_bee_families.rds")
-dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_families.rds")
+analysis_1 <- readRDS("r_bee_families.rds")
+dat_analysis <- readRDS("dat_bee_families.rds")
 
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T) 
