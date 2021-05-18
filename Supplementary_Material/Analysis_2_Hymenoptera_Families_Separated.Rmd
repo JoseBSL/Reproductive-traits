@@ -46,8 +46,8 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
 setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
 
 #Plot nicely PC1
-analysis_1 <- readRDS("results_analysis_1_bee_families.rds")
-dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_families.rds")
+analysis_1 <- readRDS("r_bee_families.rds")
+dat_analysis <- readRDS("dat_bee_families.rds")
 
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T) 
@@ -82,9 +82,12 @@ a3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=bee_family, co
 library(patchwork)
 
 combined <- a1 + a2 + a3 & theme(legend.position = "right")
-combined + plot_layout(guides = "collect", ncol=3)
+combined_1 <- combined + plot_layout(guides = "collect", ncol=3)
 
+saveRDS(combined_1, "Plot_bee_families.rds")
 
+combined_2 <- readRDS("Plot_bee_families.rds")
 
+combined_2
 ```
 

@@ -248,7 +248,17 @@ df$phylo
 df$phylo <- df$Species_all.y
 ########################################################################################################################################################
 
-fit_v <-  brm(Visits-1 ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+#Check variance inflance factor
+#High vif for brreding, comp and flower morpholog, remove all but comp and seems fine
+m1 <- lme4::lmer(Visits-1 ~   Compatibility_system + Autonomous_selfing_level   + 
+     Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
+     Plant_height_mean_m + Nectar_presence_absence +(1|System/unique.id), data = df)
+
+car::vif(m1)
+
+
+
+fit_v <-  brm(Visits-1 ~ Compatibility_system + Autonomous_selfing_level + 
               Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
               Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
             data = df, data2 = list(A = A_5), family  = zero_inflated_negbinomial(), cores = 4,chains = 4, 
@@ -429,7 +439,7 @@ plot_grid(p_quali,p_quanti)
 df$d <- ifelse(df$d > 1, 1, df$d)
 
 
-fit_d <-  brm(d ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+fit_d <-  brm(d ~  Compatibility_system + Autonomous_selfing_level   + 
                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
                 Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
               data = df, data2 = list(A = A_5), family  = zero_one_inflated_beta(), cores = 4,chains = 4, 
@@ -598,7 +608,7 @@ plot_grid(d_quali, d_quanti)
 ################################################################################################################################################################
 
 
-fit_nd <-  brm(normalised.degree ~ Breeding_system + Compatibility_system + Autonomous_selfing_level  + Flower_morphology + 
+fit_nd <-  brm(normalised.degree ~   Compatibility_system + Autonomous_selfing_level + 
                 Flower_symmetry + Flowers_per_plant + Corolla_diameter_mean  + Style_length + Ovule_number + life_form + lifespan + 
                 Plant_height_mean_m + Nectar_presence_absence + (1|System/unique.id) +(1|gr(phylo, cov = A)),
               data = df, data2 = list(A = A_5), family  = weibull(), cores = 4,chains = 4, 

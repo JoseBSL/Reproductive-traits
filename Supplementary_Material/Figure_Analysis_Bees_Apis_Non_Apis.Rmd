@@ -115,9 +115,11 @@ pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data 
 library(patchwork)
 
 combined <- p1 + p2 + p3 + pp1 + pp2 + pp3 & theme(legend.position = "right")
-combined + plot_layout(guides = "collect", ncol=3)
+combined <- combined + plot_layout(guides = "collect", ncol=3)
 
+saveRDS(combined, "Plot_apis.rds")
 
+combined
 
 ```
 
