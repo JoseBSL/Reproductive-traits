@@ -35,6 +35,8 @@ __Table S3.__ Loadings of the first three principal components of the phylogenet
 
 __Table S4.__ Phylogenetic signal of the different quantitative traits.
 
+__Table S5.__ Statistical association of the different categorical variables to the principal components one and three from the pPPCA with the full set of species.
+
 __Figure S1__ Percentage of present and missing values of the different variables.
 
 __Figure S2__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
@@ -186,6 +188,7 @@ kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escap
 
 ```
 
+
 \pagebreak
 
 
@@ -242,6 +245,33 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 
 
 ```
+
+
+\newpage
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
+
+
+library(dplyr)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+d <- readRDS("Data/RData/table_categorical_tukey_test.rds")
+
+#Again im getting the same error on this rmd so I run it on another one, save the dataframe and plot it here
+
+#Plot table
+#Add latex format in markdown
+
+kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE, caption = "\\textbf{Table S5.} Statistical association of the different categorical variables to the first two principal components from the pPPCA with the full set of species. For each categorical trait and principal component, sum of squares, F-value and P-value are provided.") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
+
+
+```
+
 
 
 \pagebreak

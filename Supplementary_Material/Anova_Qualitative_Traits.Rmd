@@ -1,0 +1,73 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
+
+
+library(dplyr)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive Traits")
+model1 <- readRDS("Data/RData/model1_tukey_categories.rds")
+model2 <- readRDS("Data/RData/model2_tukey_categories.rds")
+
+
+library(dplyr)
+library(kableExtra)
+#CREATE TABLE WITH OUTPUT OF ANOVA MODEL
+
+#PC1
+am1 <- anova(model1) # save anova output
+
+am1 <- as.data.frame(am1) #convert to dataframe
+
+am2 <- am1[c(1:7),c(2,4,5)] #select columns of interest
+
+am3 <- am2 %>% mutate(across(is.numeric, ~ round(., 2))) #select just two decimals
+
+rownames(am3) <- c("Breeding system","Compatibility system", "Lifespan", "Life form", "Flower shape", "Flower symmetry", "Nectar provision") #rownames
+
+am4 <- tibble::rownames_to_column(am3, "Functional traits")
+
+am4$PC <- c(rep("PC1",7))
+
+
+#NOW PC2
+#PC1
+an1 <- anova(model1) # save anova output
+
+an1 <- as.data.frame(an1) #convert to dataframe
+
+an2 <- an1[c(1:7),c(2,4,5)] #select columns of interest
+
+an3 <- an2 %>% mutate(across(is.numeric, ~ round(., 2))) #select just two decimals
+
+rownames(an3) <- c("Breeding system","Compatibility system", "Lifespan", "Life form", "Flower shape", "Flower symmetry", "Nectar provision") #rownames
+
+an4 <- tibble::rownames_to_column(an3, "Functional traits")
+
+an4$PC <- c(rep("PC2",7))
+
+
+#Merge
+
+d <- rbind(am4,an4)
+
+
+saveRDS(d, "Data/RData/table_categorical_tukey_test.rds")
+
+#Plot table
+#Add latex format in markdown
+
+kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
+
+
+```
