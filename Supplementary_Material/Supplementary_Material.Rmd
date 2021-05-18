@@ -10,6 +10,9 @@ header-includes:
 - \usepackage{caption}
 - \usepackage{setspace}\doublespacing
 - \usepackage{soul}
+- \floatplacement{figure}{H}
+
+fontsize: 12pt
 
 ---
 \captionsetup[figure]{labelformat=empty}
@@ -18,7 +21,35 @@ header-includes:
 
 \renewcommand{\figurename}{}
 
-#Tables
+# Supporting information:
+
+__Authors:__ Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders & Ignasi Bartomeus
+
+_The following Supporting Information is available for this article_:
+
+__Table S1.__ List of the 28 plant-pollinator studies used to build the plant trait database.
+
+__Table S2.__ Loadings of the first three principal components of the phylogenetic informed principal component analysis with all species. 
+
+__Table S3.__ Loadings of the first three principal components of the phylogenetic informed principal component analysis with the subset of species with data of nectar and pollen quantity. 
+
+__Table S4.__ Phylogenetic signal of the different quantitative traits.
+
+__Figure S1__ Percentage of present and missing values of the different variables.
+
+__Figure S2__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
+
+__Figure S3__ Fitted posterior estimates of the number of visits made by the main functional groups of bees on the main axes of trait variation.
+
+__Figure S4__ Fitted posterior estimates of the number of visits made by bees including and exluding honey bees on the main axes of trait variation.
+
+__Figure S5__ Phylogenetic informed principal component analysis for the species that did not have missing values.
+
+__Figure S6__ Phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen.
+
+__Figure S7__ Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). 
+
+
 
 
 \begin{landscape}
@@ -69,70 +100,13 @@ library(dplyr)
  arrange(`First author`)%>%
 kable("latex", longtable = T, booktabs = T,linesep = "\\addlinespace",
              caption = "\\textbf{Table S1.} List of the 28 plant-pollinator studies used to build the plant trait database. Each study is shown with the first author that conducted the study, number of networks or metawebs that contains, type of information that contains (weighted or unweighted),  the structure (web or metaweb), year of publication and digital object identifier or permanent link for each study.") %>%
-  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "left") 
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, repeat_header_method="replace" ,full_width=F,position = "left") 
 
 ```
 
 \end{landscape}
 
 
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
-
-library(kableExtra)
-
-setwd("~/R_Projects/Reproductive Traits")
-
-#SELFING
-selfing <- readRDS("Data/RData/selfing_phylo.rds")
-#FLOWER NUMBER
-flower_n <- readRDS("Data/RData/flower_n_phylo.rds")
-#INFLO WIDTH
-inflow_width <- readRDS("Data/RData/inflow_width_phylo.rds")
-#FLOWER WIDTH
-flower_width <- readRDS("Data/RData/flower_width_phylo.rds")
-#FLOWER LENGHT
-flower_length <- readRDS("Data/RData/flower_length_phylo.rds")
-#STYLE LENGTH
-style_n <- readRDS("Data/RData/style_n_phylo.rds")
-#OVULE NUMBER
-ovule_n <- readRDS("Data/RData/ovule_n_phylo.rds")
-#PLANT HEIGHT
-plant_height <- readRDS("Data/RData/plant_height_phylo.rds")
-#POLLEN
-pollen <- readRDS("Data/RData/pollen_phylo.rds")
-#Nectar ul
-nectar_ul <- readRDS("Data/RData/Nectar_ul_phylo.rds")
-#Nectar mg
-nectar_mg <- readRDS("Data/RData/Nectar_mg_phylo.rds")
-#Nectar concentration
-nectar_con <- readRDS("Data/RData/Nectar_concentration_phylo.rds")
-
-
-#Select two decimals function
-specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
-#LABELS
-label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Pollen grains per flower", "Nectar ($\\mu$l) per flower", "Nectar (mg) per flower", "Nectar concentration ($\\%$)")
-#LAMBDA
-lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, pollen$lambda, nectar_ul$lambda, nectar_mg$lambda, nectar_con$lambda)
-#P-VALUE
-p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P, pollen$P,nectar_ul$P,
-            nectar_mg$P,  nectar_con$P)
-
-tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
-
-colnames(tabla) <- c("Functional traits", "Lambda", "P-value")
-
-kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
-  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
-
-
-
-```
-
-
-\pagebreak
 
 
 
@@ -163,7 +137,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
- kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
+ kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S2.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis for the full set of species (N = 1,506).") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -204,7 +178,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
-kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
+kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S3.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis for the subset of sepcies with quantitative information of nectar and pollen.") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -212,9 +186,66 @@ kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escap
 
 ```
 
-\newpage
+\pagebreak
 
-#Figures
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
+
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+#SELFING
+selfing <- readRDS("Data/RData/selfing_phylo.rds")
+#FLOWER NUMBER
+flower_n <- readRDS("Data/RData/flower_n_phylo.rds")
+#INFLO WIDTH
+inflow_width <- readRDS("Data/RData/inflow_width_phylo.rds")
+#FLOWER WIDTH
+flower_width <- readRDS("Data/RData/flower_width_phylo.rds")
+#FLOWER LENGHT
+flower_length <- readRDS("Data/RData/flower_length_phylo.rds")
+#STYLE LENGTH
+style_n <- readRDS("Data/RData/style_n_phylo.rds")
+#OVULE NUMBER
+ovule_n <- readRDS("Data/RData/ovule_n_phylo.rds")
+#PLANT HEIGHT
+plant_height <- readRDS("Data/RData/plant_height_phylo.rds")
+#POLLEN
+pollen <- readRDS("Data/RData/pollen_phylo.rds")
+#Nectar ul
+nectar_ul <- readRDS("Data/RData/Nectar_ul_phylo.rds")
+#Nectar mg
+nectar_mg <- readRDS("Data/RData/Nectar_mg_phylo.rds")
+#Nectar concentration
+nectar_con <- readRDS("Data/RData/Nectar_concentration_phylo.rds")
+
+
+#Select two decimals function
+specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
+#LABELS
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Nectar ($\\mu$l) per flower", "Nectar (mg) per flower", "Nectar concentration ($\\%$)","Pollen grains per flower")
+#LAMBDA
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, nectar_ul$lambda, nectar_mg$lambda, nectar_con$lambda, pollen$lambda)
+#P-VALUE
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P,nectar_ul$P,
+            nectar_mg$P,  nectar_con$P, pollen$P)
+
+tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
+
+colnames(tabla) <- c("Functional traits", "Lambda", "P-value")
+
+kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,caption = "\\textbf{Table S4.} Phylogenetic signal for all quantitative traits. Phylogenetic signal of nectar and pollen traits was calculated for the imputed dataset of the subset of species with quantitative information of nectar and pollen.") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
+
+
+
+```
+
+
+\pagebreak
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="**Fig. S1**  Percentage of present and missing values on the 20 traits compiled in this study (N = 1,506 species)."}
 
@@ -506,7 +537,7 @@ percentage.plot
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S2**"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S2** Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -698,7 +729,7 @@ pc3(PC)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="**Fig. S3**"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="**Fig. S3** Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95% due to extreme outliers."}
 
 
 library(Rcpp)
@@ -741,7 +772,7 @@ plot
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="**Fig. S4**"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="**Fig. S4** Fitted posterior estimates of the number of visits made by the functional group of Hymenoptera-Anthophila (bees) including (superior panel) and excluding (lower panel) *Apis mellifera* in relation to the main axes of trait variation (PC, PC2 and PC3)."}
 
 
 library(Rcpp)
@@ -784,7 +815,7 @@ plot_apis
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S5**"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S5** Phylogenetic informed principal component analysis for the species that did not have missing values (non-imputed dataset; N = 723)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -933,7 +964,7 @@ pc3(PC)
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="**Fig. S6**"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="**Fig. S6** First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1062,8 +1093,10 @@ all_spp(PC)
 
 ```
 
+\pagenumbering{gobble}
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=14}
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=14, fig.cap="**Fig. S7** Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################

@@ -44,12 +44,12 @@ nectar_con <- readRDS("Data/RData/Nectar_concentration_phylo.rds")
 #Select two decimals function
 specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 #LABELS
-label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Pollen grains per flower", "Nectar ($\\mu$l) per flower", "Nectar (mg) per flower", "Nectar concentration ($\\%$)")
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Nectar ($\\mu$l) per flower", "Nectar (mg) per flower", "Nectar concentration ($\\%$)","Pollen grains per flower")
 #LAMBDA
-lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, pollen$lambda, nectar_ul$lambda, nectar_mg$lambda, nectar_con$lambda)
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, nectar_ul$lambda, nectar_mg$lambda, nectar_con$lambda, pollen$lambda)
 #P-VALUE
-p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P, pollen$P,nectar_ul$P,
-            nectar_mg$P,  nectar_con$P)
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P,nectar_ul$P,
+            nectar_mg$P,  nectar_con$P, pollen$P)
 
 tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
 
