@@ -12,9 +12,11 @@ header-includes:
 - \usepackage{soul}
 - \floatplacement{figure}{H}
 
+
 fontsize: 12pt
 
 ---
+
 \captionsetup[figure]{labelformat=empty}
 \captionsetup[table]{labelformat=empty}
 \captionsetup[table]{font={stretch=1.2}}     
@@ -33,21 +35,21 @@ __Table S2.__ Loadings of the first three principal components of the phylogenet
 
 __Table S3.__ Loadings of the first three principal components of the phylogenetic informed principal component analysis with the subset of species with data of nectar and pollen quantity. 
 
-__Table S4.__ Phylogenetic signal of the different quantitative traits.
+__Table S4.__ Statistical association of the different categorical variables to the principal components one and three from the pPPCA with the full set of species.
 
-__Table S5.__ Statistical association of the different categorical variables to the principal components one and three from the pPPCA with the full set of species.
+__Table S5.__ Phylogenetic signal of the different quantitative traits.
 
 __Figure S1__ Percentage of present and missing values of the different variables.
 
-__Figure S2__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
+__Figure S2__ Phylogenetic informed principal component analysis for the species that did not have missing values.
 
-__Figure S3__ Fitted posterior estimates of the number of visits made by the main functional groups of bees on the main axes of trait variation.
+__Figure S3__ Fitted posterior estimates of the number of visits made by bees including and exluding honey bees on the main axes of trait variation.
 
-__Figure S4__ Fitted posterior estimates of the number of visits made by bees including and exluding honey bees on the main axes of trait variation.
+__Figure S4__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
 
-__Figure S5__ Phylogenetic informed principal component analysis for the species that did not have missing values.
+__Figure S5__ Phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen.
 
-__Figure S6__ Phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen.
+__Figure S6__ Fitted posterior estimates of the number of visits made by the main functional groups of bees on the main axes of trait variation.
 
 __Figure S7__ Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). 
 
@@ -192,6 +194,30 @@ kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escap
 \pagebreak
 
 
+```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
+
+
+library(dplyr)
+library(kableExtra)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+d <- readRDS("Data/RData/table_categorical_tukey_test.rds")
+
+#Again im getting the same error on this rmd so I run it on another one, save the dataframe and plot it here
+
+#Plot table
+#Add latex format in markdown
+
+kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE, caption = "\\textbf{Table S4.} Statistical association of the different categorical variables to the first two principal components from the pPPCA with the full set of species. For each categorical trait and principal component, sum of squares, F-value and P-value are provided.") %>%
+  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
+
+
+```
+
+
+\newpage
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
 
@@ -239,7 +265,7 @@ tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2)
 
 colnames(tabla) <- c("Functional traits", "Lambda", "P-value")
 
-kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,caption = "\\textbf{Table S4.} Phylogenetic signal for all quantitative traits. Phylogenetic signal of nectar and pollen traits was calculated for the imputed dataset of the subset of species with quantitative information of nectar and pollen.") %>%
+kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,caption = "\\textbf{Table S5.} Phylogenetic signal for all quantitative traits. Phylogenetic signal of nectar and pollen traits was calculated for the imputed dataset of the subset of species with quantitative information of nectar and pollen.") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -249,32 +275,6 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 
 \newpage
 
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE, fig.height=10, fig.width=10, fig.align='center'}
-
-
-library(dplyr)
-library(kableExtra)
-
-setwd("~/R_Projects/Reproductive Traits")
-
-d <- readRDS("Data/RData/table_categorical_tukey_test.rds")
-
-#Again im getting the same error on this rmd so I run it on another one, save the dataframe and plot it here
-
-#Plot table
-#Add latex format in markdown
-
-kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE, caption = "\\textbf{Table S5.} Statistical association of the different categorical variables to the first two principal components from the pPPCA with the full set of species. For each categorical trait and principal component, sum of squares, F-value and P-value are provided.") %>%
-  kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
-
-
-```
-
-
-
-\pagebreak
 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="**Fig. S1**  Percentage of present and missing values on the 20 traits compiled in this study (N = 1,506 species)."}
@@ -566,8 +566,11 @@ percentage.plot
 ```
 
 
+\newpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S2** Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S2** Phylogenetic informed principal component analysis for the species that did not have missing values (non-imputed dataset; N = 723)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -612,49 +615,6 @@ PC$Eval
 PC$S
 #PC loadings (ARROWS)
 PC$L
-
-library(magick)
-
-#Images were made by Paula Martin
-#Check her work on https://paulamartinart.com/
-
-tree <- image_read("Images/PPCA_Plot/Tree.png")
-tree_1 <- as.raster(tree)
-
-style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
-style_l_1 <- as.raster(style_l)
-
-style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
-style_s_1 <- as.raster(style_s)
-
-ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
-ovule_h_1 <- as.raster(ovule_h)
-
-ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
-ovule_l_1 <- as.raster(ovule_l)
-
-selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
-selfing_n_1 <- as.raster(selfing_n)
-
-selfing_h <- image_read("Images/PPCA_Plot/selfing.png")
-selfing_h_1 <- as.raster(selfing_h)
-
-single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
-single_flower_1 <- as.raster(single_flower)
-
-many_flowers <- image_read("Images/PPCA_Plot/Inflorescencia.png")
-many_flowers_1 <- as.raster(many_flowers)
-#many_flowers_1 <- image_rotate(many_flowers, 45)
-
-
-large_flower <- image_read("Images/PPCA_Plot/flower_big.png")
-large_flower_1 <- as.raster(large_flower)
-
-flower_small <- image_read("Images/PPCA_Plot/flower_short.png")
-flower_small_1 <- as.raster(flower_small)
-
-herb <- image_read("Images/PPCA_Plot/herb.png")
-herb_1 <- as.raster(herb)
 
 #############################################################################################################################################################
 #COMPATIBILITY
@@ -757,61 +717,18 @@ pc3(PC)
 ```
 
 
+
+
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="**Fig. S3** Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95% due to extreme outliers."}
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="**Fig. S3** Fitted posterior estimates of the number of visits made by the functional group of Hymenoptera-Anthophila (bees) including (superior panel) and excluding (lower panel) *Apis mellifera* in relation to the main axes of trait variation (PC, PC2 and PC3)."}
 
 
 library(Rcpp)
 library(patchwork)
-library(brms)
 library(ggplot2)
-library(rstan)
 library(tidyr)
-rstan_options(auto_write = TRUE)
-#Load theme for publication
-
-theme_ms <- function(base_size=14, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-     theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(2.2)),
-           axis.text=element_text(size = rel(2), color = "black"),
-           legend.title=element_text(face="bold",size=rel(2)),
-           legend.text=element_text(size=rel(1.4)),
-           legend.background=element_rect(fill="transparent"),
-           legend.key.size = unit(1.8, 'lines'),
-           panel.border=element_rect(color="black",size=2.4),
-           panel.grid.minor.x =element_blank(),
-           panel.grid.minor.y= element_blank(),
-           panel.grid.major= element_blank()
-     ))
-}
-
-
-setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-
-#This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
-
-plot <- readRDS("Plot_bee_families.rds")
-
-plot
-
-```
-
-\elandscape
-
-\blandscape
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="**Fig. S4** Fitted posterior estimates of the number of visits made by the functional group of Hymenoptera-Anthophila (bees) including (superior panel) and excluding (lower panel) *Apis mellifera* in relation to the main axes of trait variation (PC, PC2 and PC3)."}
-
-
-library(Rcpp)
-library(patchwork)
-library(brms)
-library(ggplot2)
-library(rstan)
-library(tidyr)
-rstan_options(auto_write = TRUE)
 #Load theme for publication
 
 theme_ms <- function(base_size=14, base_family="Helvetica") {
@@ -841,11 +758,10 @@ plot_apis
 
 ```
 
+
 \elandscape
 
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S5** Phylogenetic informed principal component analysis for the species that did not have missing values (non-imputed dataset; N = 723)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S4** Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -890,6 +806,7 @@ PC$Eval
 PC$S
 #PC loadings (ARROWS)
 PC$L
+
 
 #############################################################################################################################################################
 #COMPATIBILITY
@@ -992,9 +909,10 @@ pc3(PC)
 ```
 
 
+\newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="**Fig. S6** First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="**Fig. S5** First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1123,10 +1041,54 @@ all_spp(PC)
 
 ```
 
+
+\blandscape
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="**Fig. S6** Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95% due to extreme outliers."}
+
+
+library(Rcpp)
+library(patchwork)
+library(ggplot2)
+library(tidyr)
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2.2)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+#This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
+
+plot <- readRDS("Plot_bee_families.rds")
+
+plot
+
+```
+
+\elandscape
+
+\AtBeginShipout{\ifnum\value{page}=1\AtBeginShipoutDiscard\fi}
+
 \pagenumbering{gobble}
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=14, fig.cap="**Fig. S7** Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="**Fig. S7** Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################

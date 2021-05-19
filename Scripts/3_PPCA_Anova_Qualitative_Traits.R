@@ -405,3 +405,4 @@ d <- rbind(am4,an4)
 kable(d, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE) %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
+anova()
