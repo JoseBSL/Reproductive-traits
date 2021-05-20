@@ -54,6 +54,12 @@ data_analysis_2$System[grepl("olesen_2002_azores", data_analysis_2$System)] <- "
 data_analysis_2$System[grepl("bartomeus_spain_2008", data_analysis_2$System)] <- "bartomeus_spain_2008"
 data_analysis_2$System[grepl("bundgaard_2003_denmark", data_analysis_2$System)] <- "bundgaard_2003"
 data_analysis_2$System[grepl("elberling_sweeden_1999", data_analysis_2$System)] <- "elberling_1999"
+
+#Save data for plotting
+setwd("~/Dropbox/PhD/R/Chapter_2") #save with rest of the files in dropbox
+saveRDS(data_analysis_2, "data_analysis_2.rds") 
+
+
 ########################################################################################################################################################
 #MODEL VISITS ~ PRINCIPAL COMPONENTS
 ########################################################################################################################################################
@@ -82,22 +88,22 @@ ce_1 <- conditional_effects(Visits_PCs, effects = "PC1",points=T)
 colnames(ce_1[[1]])[3] <- "Interaction"
 
 Visits_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = Visits),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Sum of visits") + xlab("PC1")
+  size = 1.25, alpha=0.65, colour="goldenrod3") + geom_line(colour="black",size=1) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="black") + ylab("Sum of visits") + xlab("PC1")
 
 ce_2 <- conditional_effects(Visits_PCs, effects = "PC2",points=T) 
 colnames(ce_2[[1]])[3] <- "Interaction"
 
 Visits_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = Visits),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Sum of visits") + xlab("PC2")
+  size = 1.25, alpha=0.65, colour="goldenrod3") + geom_line(colour="black",size=1) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="black") + ylab("Sum of visits") + xlab("PC2")
 
 ce_3 <- conditional_effects(Visits_PCs, effects = "PC3",points=T) 
 colnames(ce_3[[1]])[3] <- "Interaction"
 
 Visits_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = Visits),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Sum of visits") + xlab("PC3")
+  size = 1.25, alpha=0.65, colour="goldenrod3") + geom_line(colour="black",size=1) + ylim(0,quantile(data_analysis_2$Visits, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__+1), ymax=(upper__+1)), linetype=2, alpha=0.1,fill="black") + ylab("Sum of visits") + xlab("PC3")
 
 cowplot::plot_grid(Visits_PC1,Visits_PC2,Visits_PC3, ncol=3)
 ########################################################################################################################################################
@@ -128,23 +134,23 @@ ce_1 <- conditional_effects(Specialization_PCs, effects = "PC1",points=T)
 colnames(ce_1[[1]])[3] <- "Interaction"
 
 Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = d),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')") + xlab("PC1")
+  size = 1.25, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab("Specialization (d')") + xlab("PC1")
 
 
 ce_2 <- conditional_effects(Specialization_PCs, effects = "PC2",points=T) 
 colnames(ce_2[[1]])[3] <- "Interaction"
 
 Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = d),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')") + xlab("PC2")
+  size = 1.25, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab("Specialization (d')") + xlab("PC2")
 
 ce_3 <- conditional_effects(Specialization_PCs, effects = "PC3",points=T) 
 colnames(ce_3[[1]])[3] <- "Interaction"
 
 Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = d),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("Specialization (d')") + xlab("PC3")
+ size = 1.25, alpha=0.65, colour="darkorange3") + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+geom_line(colour="black",size=1)+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab("Specialization (d')") + xlab("PC3")
 
 cowplot::plot_grid(Specialization_PC1, Specialization_PC2, Specialization_PC3)
 
@@ -182,21 +188,21 @@ normalised.degree_PCs <- readRDS("results_analysis_2_normalised.degree_PCs.rds")
 ce_1 <- conditional_effects(normalised.degree_PCs, effects = "PC1",points=T) 
 
 normalised.degree_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = normalised.degree),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2)  +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree") + xlab("PC1")
+  size = 1.25, alpha=0.65, colour="aquamarine4") + geom_line(colour="black",size=1)  +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.25,fill="black") + ylab("Normalized degree") + xlab("PC1")
 
 ce_2 <- conditional_effects(normalised.degree_PCs, effects = "PC2",points=T) 
 
 normalised.degree_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = normalised.degree),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree") + xlab("PC2")
+  size = 1.25, alpha=0.65,colour="aquamarine4") + geom_line(colour="black",size=1) +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.25,fill="black") + ylab("Normalized degree") + xlab("PC2")
 
 
 ce_3 <- conditional_effects(normalised.degree_PCs, effects = "PC3",points=T) 
 
 normalised.degree_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = normalised.degree),
-  size = 1, alpha=0.9) + geom_line(colour="darkblue",size=1.2)  +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="darkblue") + ylab("normalised.degree") + xlab("PC3")
+  size = 1.25, alpha=0.65,colour="aquamarine4") + geom_line(colour="black",size=1)  +theme_ms()+
+  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.25,fill="black") + ylab("Normalized degree") + xlab("PC3")
 
 normalised.degree_PC1 + normalised.degree_PC2 + normalised.degree_PC3
 

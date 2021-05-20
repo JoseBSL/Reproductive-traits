@@ -1,7 +1,7 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
+output: 
+  pdf_document:
+    extra_dependencies: ["float"]
 header-includes:
 - \usepackage{pdflscape}
 - \newcommand{\blandscape}{\begin{landscape}}
@@ -11,11 +11,21 @@ header-includes:
 - \usepackage{setspace}\doublespacing
 - \usepackage{soul}
 - \floatplacement{figure}{H}
+- \usepackage{afterpage}
+- \usepackage{placeins}
+- \usepackage{graphicx}
+
 
 
 fontsize: 12pt
 
 ---
+
+```{r echo=FALSE,warning=FALSE}
+knitr::opts_chunk$set(fig.pos = "h", out.extra = "")
+
+```
+
 
 \captionsetup[figure]{labelformat=empty}
 \captionsetup[table]{labelformat=empty}
@@ -23,9 +33,10 @@ fontsize: 12pt
 
 \renewcommand{\figurename}{}
 
+
 # Supporting information:
 
-__Authors:__ Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders & Ignasi Bartomeus
+__Authors:__ Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders, Ignasi Bartomeus
 
 _The following Supporting Information is available for this article_:
 
@@ -53,8 +64,7 @@ __Figure S6__ Fitted posterior estimates of the number of visits made by the mai
 
 __Figure S7__ Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). 
 
-
-
+__Figure S8__  Sum of visits per plant, normalized degree and specialization modelled in function of the first three main axes of trait variation.
 
 \begin{landscape}
 
@@ -277,7 +287,7 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="**Fig. S1**  Percentage of present and missing values on the 20 traits compiled in this study (N = 1,506 species)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Fig S1.}  Percentage of present and missing values on the 20 traits compiled in this study (N = 1,506 species)."}
 
 #Set working directory
 setwd("~/R_Projects/Reproductive Traits")
@@ -570,7 +580,7 @@ percentage.plot
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S2** Phylogenetic informed principal component analysis for the species that did not have missing values (non-imputed dataset; N = 723)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig S2.} Phylogenetic informed principal component analysis for the species that did not have missing values (non-imputed dataset; N = 723)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -722,7 +732,7 @@ pc3(PC)
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="**Fig. S3** Fitted posterior estimates of the number of visits made by the functional group of Hymenoptera-Anthophila (bees) including (superior panel) and excluding (lower panel) *Apis mellifera* in relation to the main axes of trait variation (PC, PC2 and PC3)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=28,  fig.cap="\\textbf{Fig S3.} Fitted posterior estimates of the number of visits made by the functional group of Hymenoptera-Anthophila (bees) including (superior panel) and excluding (lower panel) *Apis mellifera* in relation to the main axes of trait variation (PC, PC2 and PC3)."}
 
 
 library(Rcpp)
@@ -761,7 +771,7 @@ plot_apis
 
 \elandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="**Fig. S4** Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig S4.} Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -912,7 +922,7 @@ pc3(PC)
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="**Fig. S5** First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig S5.} First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1045,7 +1055,7 @@ all_spp(PC)
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="**Fig. S6** Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95% due to extreme outliers."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="\\textbf{Fig S6.} Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95 \\% percent due to extreme outliers."}
 
 
 library(Rcpp)
@@ -1081,14 +1091,11 @@ plot
 
 ```
 
+
 \elandscape
 
-\AtBeginShipout{\ifnum\value{page}=1\AtBeginShipoutDiscard\fi}
 
-\pagenumbering{gobble}
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="**Fig. S7** Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig S7.} Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################
@@ -1413,3 +1420,51 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 
 ```
+
+
+\blandscape
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig S8.} Sum of visits per plant, normalized degree and speciliazation modelled in function of the first three main axes of trait variation.", fig.pos= "h"}
+
+library(brms) #modelling
+library(cmdstanr) #modelling
+library(cowplot) #panel of plots
+library(ggplot2) #plotting
+library(patchwork)
+
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(3.5)),
+           axis.text=element_text(size = rel(2.75), color = "black"),
+           legend.title=element_text(face="bold"),
+           legend.text=element_text(),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(0.4, 'lines'),
+           panel.border=element_rect(color="black",size=3),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+#########
+
+setwd("~/Dropbox/PhD/R/Chapter_2") 
+
+#read plot generated in other rmd, bms and stan are giving trouble here... This file is created in Species_Level_Metric_Pcs
+
+plot_metrics_pcs <- readRDS("plot_metrics_pcs.rds") 
+
+plot_metrics_pcs
+
+```
+
+
+
+
+\elandscape
+
+

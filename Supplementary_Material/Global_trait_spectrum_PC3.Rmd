@@ -50,48 +50,6 @@ PC$S
 #PC loadings (ARROWS)
 PC$L
 
-library(magick)
-
-#Images were made by Paula Martin
-#Check her work on https://paulamartinart.com/
-
-tree <- image_read("Images/PPCA_Plot/Tree.png")
-tree_1 <- as.raster(tree)
-
-style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
-style_l_1 <- as.raster(style_l)
-
-style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
-style_s_1 <- as.raster(style_s)
-
-ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
-ovule_h_1 <- as.raster(ovule_h)
-
-ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
-ovule_l_1 <- as.raster(ovule_l)
-
-selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
-selfing_n_1 <- as.raster(selfing_n)
-
-selfing_h <- image_read("Images/PPCA_Plot/selfing.png")
-selfing_h_1 <- as.raster(selfing_h)
-
-single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
-single_flower_1 <- as.raster(single_flower)
-
-many_flowers <- image_read("Images/PPCA_Plot/Inflorescencia.png")
-many_flowers_1 <- as.raster(many_flowers)
-#many_flowers_1 <- image_rotate(many_flowers, 45)
-
-
-large_flower <- image_read("Images/PPCA_Plot/flower_big.png")
-large_flower_1 <- as.raster(large_flower)
-
-flower_small <- image_read("Images/PPCA_Plot/flower_short.png")
-flower_small_1 <- as.raster(flower_small)
-
-herb <- image_read("Images/PPCA_Plot/herb.png")
-herb_1 <- as.raster(herb)
 
 #############################################################################################################################################################
 #COMPATIBILITY
@@ -100,7 +58,7 @@ herb_1 <- as.raster(herb)
 
 #Invert axes
 PC$S[,1] <- -PC$S[,1]
-PC$S[,2] <- -PC$S[,2]
+PC$S[,3] <- -PC$S[,3]
 
 
 pc3 <- function(PC, x="PC1", y="PC3") {
