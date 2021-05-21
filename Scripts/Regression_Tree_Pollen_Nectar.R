@@ -169,102 +169,87 @@ datitos_1$Nectar_presence_absence[datitos_1$Nectar_presence_absence=="no"] <- "N
 levels(factor(datitos_1$Nectar_presence_absence)) #OK
 
 
-datitos_2 <- as.data.frame(datitos_1)
+df <- as.data.frame(datitos_1)
 
 #Now quantitative variables
 ########################################################################################################################################################
 #Visits quantitative 
 ########################################################################################################################################################
-df <- datitos_2[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
+v_df <- df[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
            "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
 
 
-tree <- rpart(Visits~., data=df, cp=0.01)
-printcp(tree)
-plotcp(tree)
-tree <- rpart(Visits~., data=df, cp=0.001)
-rpart.plot(tree, box.palette="GnOr")
-
-
-  
-df <- df[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
+colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                     "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
 
 
-df$Visits <- log10(df$Visits+1)
-
-
-tree <- rpart(Visits~., data=df, cp=0.013059) #8 divisions
-rpart.plot(tree, box.palette="GnOr")
-printcp(tree)
-plotcp(tree)
-
-
-#Alternative method with poissot and lower error
-#Root node error is quite high
-
-tree <- rpart(Visits~., data=df, cp=0.016487,method = "poisson")
-printcp(tree)
-rpart.plot(tree, box.palette="GnOr", extra=100)
-
-
-########################################################################################################################################################
-#Visits qualitative
-########################################################################################################################################################
-
-#here I try an alternative way that is less elegant but more honest due to its shows the % of each grouping variable on the box
-
-df <- datitos_2[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
-
-df$v_q
-
-df$v_q[df$Visits<quantile(df$Visits, 0.33)] <- "Low" 
-df$v_q[df$Visits>=quantile(df$Visits, 0.33)] <- "Medium" 
-df$v_q[df$Visits>quantile(df$Visits, 0.66)] <- "High" 
-
-df$v_q <- factor(df$v_q, levels=c("Low", "Medium", "High"))
-
-
-df <- df[c("v_q", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
-
-
-tree <- rpart(v_q~., data=df, cp=0.019663, method= "class") #6node divisons
-rpart.plot(tree, box.palette="GnOr")
+v_df$Visits <- log10(v_df$Visits+1)
+set.seed(2)
+tree <- rpart(Visits~., data=v_df, cp=0.009) 
 
 printcp(tree)
-plotcp(tree)
-rpart.plot(tree, yesno = TRUE)
+plotcp(tree) 
+
+set.seed(2)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+rpart.plot(tree1, box.palette="GnOr")
+
+printcp(tree1)
+plotcp(tree1)
 
 ########################################################################################################################################################
 #Normalize degree
 ########################################################################################################################################################
-df <- datitos_2[c("normalised.degree", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
+nd_df <- df[c("normalised.degree", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
                   "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
 
-tree <- rpart(normalised.degree~., data=df, cp=0.005) #6node divisons
+colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+set.seed(2)
+tree <- rpart(`Normalized degree`~., data=nd_df, cp=0.005) #6node divisons
 printcp(tree)
 plotcp(tree)
 
-tree <- rpart(normalised.degree~., data=df, cp=0.0108004) #6node divisons
-rpart.plot(tree, box.palette="GnOr")
+set.seed(2)
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
+rpart.plot(tree2, box.palette="GnOr")
+
+
+printcp(tree2)
+
 
 #Again low node error, good predictive power of the tree
 
 ########################################################################################################################################################
 #Specialization
 ########################################################################################################################################################
-df <- datitos_2[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
+d_df <- datitos_2[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
                   "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
 
+colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                     "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
-tree <- rpart(d~., data=df, cp=0.005) #6node divisons
+
+set.seed(2)
+tree <- rpart(Specialization~., data=d_df, cp=0.005) #6node divisons
 printcp(tree)
 plotcp(tree)
 
-tree <- rpart(d~., data=df, cp=0.0122595) #6node divisons
-rpart.plot(tree, box.palette="GnOr")
+set.seed(2)
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+rpart.plot(tree3, box.palette="GnOr")
 
-#Again low node error, good predictive power of the tree
+
+#Save data to plot it in an rmd file
+saveRDS(v_df, "Data/RData/log_visits_subset_nectar_pollen_tree.rds")
+saveRDS(nd_df, "Data/RData/normalized_degree_subset_nectar_pollen_tree.rds")
+saveRDS(d_df, "Data/RData/specialization_subset_nectar_pollen_tree.rds")
+
+
+rpart.plot(tree1, box.palette="GnOr", main="Interaction frequency", cex.main=2) 
+rpart.plot(tree2, box.palette="GnOr", main="Normalized degree", cex.main=2)
+rpart.plot(tree3, box.palette="GnOr", main="Specialization", cex.main=2)
+
+

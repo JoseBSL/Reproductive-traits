@@ -1,6 +1,10 @@
 ########################################################################################################################################################
 #SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
 ########################################################################################################################################################
+
+library(rpart)
+library(rpart.plot)
+
 #READ NETWORK VISITATION DATA (VISITS AGGREGATED PER PLANT SPECIES)
 long_d <- read.csv("Data/Csv/long_format_quantitative_networks.csv", row.names = 1) #quantitative network data|weighted by frequency of visits per plant species
 
@@ -22,53 +26,46 @@ colnames(forest_data)[1] <- "Plant_species"
 #MERGE DATA
 data <- merge(long_d_2, forest_data, by="Plant_species")
 nrow(data)
-#SELECT COLUMNS WITH QUANTITATIVE INFORMATION
+
+
+########################################################################################################################################################
+#VISITATION DATA REGRESSION TREE
+########################################################################################################################################################
 data_1 <- data[c("Interaction","Autonomous_selfing_level_fruit_set","Corolla_diameter_mean","Corolla_length_mean",
                  "Flowers_per_plant","Style_length","Ovule_number","Plant_height_mean_m","Nectar_concentration",
                  "Nectar_mg","Nectar_ul","Pollen_per_flower")]
 
+#Set colnames for plotting
+colnames(data_1) <- c("Interactions", "Aut. selfing", "Flower width","Flower length" , "Flowers per plant","Style length (mm)",
+                      "Ovule number","Plant height (m)", "Nectar_concentration","Mg of nectar","Microlitres of nectar","Pollen_per_flower")
+
+
+#Visitation data regression tree
+data_1$Interactions <- log10(data_1$Interactions+1) #Log transform to be able to run the tree with low error, it doesnt like non-normal dist
+
+# Create the decision tree model
+tree <- rpart(Interactions~., data=data_1, cp=.001)
+
+#check number of splits and error
+printcp(tree)
+plotcp(tree)
+
+#select optimal value for plotting cp=0.0043638, 10 splits
+tree <- rpart(Interactions~., data=data_1, cp=0.0043638)
+
+# Visualize the decision tree with green-orange pattern of color with rpart.plot
+rpart.plot(tree, box.palette="GnOr")
+########################################################################################################################################################
+#NORMALIZED DEGREE REGRESSION TREE
+data_1 <- data[c("Interaction","Autonomous_selfing_level_fruit_set","Corolla_diameter_mean","Corolla_length_mean",
+                 "Flowers_per_plant","Style_length","Ovule_number","Plant_height_mean_m","Nectar_concentration",
+                 "Nectar_mg","Nectar_ul","Pollen_per_flower")]
 
 #Set colnames for plotting
 colnames(data_1) <- c("Interactions", "Aut. selfing", "Flower width","Flower length" , "Flowers per plant","Style length (mm)",
                       "Ovule number","Plant height (m)", "Nectar_concentration","Mg of nectar","Microlitres of nectar","Pollen_per_flower")
-########################################################################################################################################################
 
 
-# Create a decision tree model
-tree <- rpart(Interactions~., data=data_1, cp=.007)
-# Visualize the decision tree with rpart.plot
-rpart.plot(tree, box.palette="GnOr")
-rpart.plot(tree, box.palette="BuOr")
-#Check for palettes
-show.prp.palettes()
-
-
-
-printcp(tree)
-plotcp(tree)
-
-
-
-str(datitos_1)
-
-datitos_1 <- as.data.frame(datitos_1)
-
-df_1 <- datitos_1[c("Visits", "Flowers_per_plant", "Corolla_diameter_mean", "Style_length", "Ovule_number","Plant_height_mean_m","lifespan","life_form")]
-
-df_1$Visits <- log10*(df_1$Visits+1)
-df_1$lifespan <- as.factor(df_1$lifespan)
-df_1$life_form <- as.factor(df_1$life_form)
-
-
-df_1 <- df_1[complete.cases(df_1)]
-df_1[] <- lapply(df_1, function(x) if(is.factor(x)) factor(x) else x)
-
-is.na(df_1)
-tree <- rpart(Visits~., data=df_1, cp=.01)
-rpart.plot(tree)
-
-printcp(tree)
-plotcp(tree)
 
 
 

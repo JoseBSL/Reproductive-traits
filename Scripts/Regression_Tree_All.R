@@ -173,67 +173,81 @@ datitos_2 <- as.data.frame(datitos_1)
 
 #Now quantitative variables
 ########################################################################################################################################################
-#Visits quantitative 
+#VISITS REGRESSION TREE
 ########################################################################################################################################################
-df <- datitos_2[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean", "Style_length","Ovule_number",
+v_df_all <- datitos_2[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean", "Style_length","Ovule_number",
                   "Plant_height_mean_m")]
 
 
-tree <- rpart(Visits~., data=df, cp=0.001)
-printcp(tree)
-plotcp(tree)
-tree <- rpart(Visits~., data=df, cp=0.0077368)
-rpart.plot(tree, box.palette="GnOr")
-
-df <- df[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-           "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
+colnames(v_df_all) <- c("Visits", "Aut. selfing","Flowers per plant","Flower width", "Style length (mm)","Ovule number",
+                                  "Plant height (m)")
 
 
-tree <- rpart(Visits~., data=df, cp=0.0086964) #8 divisions
-rpart.plot(tree, box.palette="GnOr")
+
+v_df_all$Visits <- log10(v_df_all$Visits + 1)
+
+set.seed(1)
+tree <- rpart(Visits~., data=v_df_all, cp=0.001)
 printcp(tree)
 plotcp(tree)
 
-
-#Alternative method with poissot and lower error
-#Root node error is quite high
-
-tree <- rpart(Visits~., data=df, cp=0.016487,method = "poisson")
-printcp(tree)
-rpart.plot(tree, box.palette="GnOr", extra=100)
-
+set.seed(1)
+tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0089891)
+rpart.plot(tree_1, box.palette="GnOr")
 
 ########################################################################################################################################################
-#Visits qualitative
+#NORMALIZED DEGREE REGRESSION TREE
 ########################################################################################################################################################
-
-#here I try an alternative way that is less elegant but more honest due to its shows the % of each grouping variable on the box
-
-df <- datitos_2[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m")]
-
-df$v_q
-
-df$v_q[df$Visits<quantile(df$Visits, 0.33)] <- "Low" 
-df$v_q[df$Visits>=quantile(df$Visits, 0.33)] <- "Medium" 
-df$v_q[df$Visits>quantile(df$Visits, 0.66)] <- "High" 
-
-df$v_q <- factor(df$v_q, levels=c("Low", "Medium", "High"))
+nd_df_all <- datitos_2[c("normalised.degree", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean", "Style_length","Ovule_number",
+                        "Plant_height_mean_m")]
 
 
-df <- df[c("v_q", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-           "Plant_height_mean_m")]
+colnames(nd_df_all) <- c("Normalized degree", "Aut. selfing","Flowers per plant","Flower width", "Style length (mm)","Ovule number",
+                        "Plant height (m)")
 
 
-tree <- rpart(v_q~., data=df, cp=0.01, method= "class") #6node divisons
-rpart.plot(tree, box.palette="GnOr")
-
+set.seed(1)
+tree <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.001)
 printcp(tree)
 plotcp(tree)
-rpart.plot(tree, yesno = TRUE)
 
-tree <- rpart(v_q~., data=df, cp=0.010893, method= "class") #6node divisons
-rpart.plot(tree, box.palette="GnOr")
+set.seed(1)
+tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0159034) #7
+rpart.plot(tree_2, box.palette="GnOr")
 
+########################################################################################################################################################
+#SPECIALIZATION REGRESSION TREE
+########################################################################################################################################################
+d_df_all <- datitos_2[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean", "Style_length","Ovule_number",
+                         "Plant_height_mean_m")]
+
+
+colnames(d_df_all) <- c("Specialization", "Aut. selfing","Flowers per plant","Flower width", "Style length (mm)","Ovule number",
+                         "Plant height (m)")
+
+
+set.seed(1)
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.001)
+printcp(tree_3)
+plotcp(tree_3)
+
+set.seed(1)
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0118611) #10
+rpart.plot(tree_3, box.palette="GnOr")
+
+#Save data to plot it in an rmd file
+saveRDS(v_df_all, "Data/RData/log_visits_all_tree.rds")
+saveRDS(nd_df_all, "Data/RData/normalized_degree_all_tree.rds")
+saveRDS(d_df_all, "Data/RData/specialization_all_tree.rds")
+
+
+t1 <- rpart.plot(tree_1, box.palette="GnOr", main="Interaction frequency", cex.main=2) 
+t2 <- rpart.plot(tree_2, box.palette="GnOr", main="Normalized degree", cex.main=2)
+t3 <- rpart.plot(tree_3, box.palette="GnOr", main="Specialization", cex.main=2)
+
+
+cowplot::plot_grid(rpart.plot(tree_1, box.palette="GnOr", main="Interaction frequency", cex.main=2) +rpart.plot(tree_2, box.palette="GnOr", main="Normalized degree", cex.main=2))
+
+par(mfrow=c(2,2))
 
 

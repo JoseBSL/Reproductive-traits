@@ -1,0 +1,51 @@
+---
+title: ""
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=9, fig.width=11}
+
+########################################################################################################################################################
+#SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
+########################################################################################################################################################
+#READ NETWORK VISITATION DATA (VISITS AGGREGATED PER PLANT SPECIES)
+
+library(rpart.plot)
+library(rpart)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+v_df <- readRDS("Data/RData/log_visits_subset_nectar_pollen_tree.rds")
+nd_df <-  readRDS("Data/RData/normalized_degree_subset_nectar_pollen_tree.rds")
+d_df <- readRDS("Data/RData/specialization_subset_nectar_pollen_tree.rds")
+
+#Set correct colnames for plotting
+colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+
+
+set.seed(2)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+
+set.seed(2)
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
+
+set.seed(2)
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+
+rpart.plot(tree1, box.palette="GnOr", main="Interaction frequency", cex.main=2,tweak = 1.20) 
+rpart.plot(tree2, box.palette="GnOr", main="Normalized degree", cex.main=2,tweak = 1.20)
+rpart.plot(tree3, box.palette="GnOr", main="Specialization", cex.main=2,tweak = 1.20)
+
+
+```

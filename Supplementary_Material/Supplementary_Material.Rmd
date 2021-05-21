@@ -40,6 +40,9 @@ __Authors:__ Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu 
 
 _The following Supporting Information is available for this article_:
 
+
+__Appendix S1.__ Brief description of the different traits and categories compiled in this study divided in reproductive, floral and vegetative traits.
+
 __Table S1.__ List of the 28 plant-pollinator studies used to build the plant trait database.
 
 __Table S2.__ Loadings of the first three principal components of the phylogenetic informed principal component analysis with all species. 
@@ -65,6 +68,48 @@ __Figure S6__ Fitted posterior estimates of the number of visits made by the mai
 __Figure S7__ Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). 
 
 __Figure S8__  Sum of visits per plant, normalized degree and specialization modelled in function of the first three main axes of trait variation.
+
+\newpage
+
+__Appendix S1__
+
+Brief description of the different traits and categories compiled in this study divided in reproductive, floral and vegetative traits.
+
+_Reproductive traits_
+
+-	Breeding system: The different plant species were classified in hermaphrodite, dioecious and monoecious species. Intermediate breeding systems or more complex ones were also annotated but all the species were divided into these three main categories for simplicity of the analysis.
+ 
+-	Selfing level: We recorded the selfing level of the different species with both quantitative and qualitative data. The qualitative data was divided in four main categories, high selfers, medium selfers, low selfers and none which was for the species that were unable to self-pollinate. In addition, quantitative data was also divided into these four categories with the following criteria: from 0% to lower than 1% ‘none’, from 1% to 25% ‘low’, from 26% to 75% ‘medium’ and from 76% to 100%  ‘high’. We opted for the metric of autonomous selfing because it was the most abundant one in the literature and more complex metrics that were more informative were scarce.
+ 
+-	Compatibility system: The different species were divided in three main categories in order to know their ability to self-pollinate. These categories were self-compatible, partially self-compatible and self-incompatible species. The field of selfing level is partly complementary to the compatibility system but is important to note that not all the self-compatible species or partially self-compatible species will self-pollinate.
+
+_Floral traits_
+ 
+-	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, tube, campanulate, funnelform, papilionaceous, spike and capitulum. See image X for the different flower morphologies.
+ 
+-	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
+ 
+-	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. 
+
+-	Flower number per plant: We compiled information about the number of flowers per plant for all species. However, this field was rare to find and we also used online images of the different species in order to calculate rough numbers of flowers per plant. We referenced all the filled fields in order to be able to follow the images that were used for these counts. It is important to note, that these numbers are not pretended to be the exact number of flowers per species but an approximate indicator of the reproductive investment for the different species that allow the macroecological analysis of this field.
+ 
+-	Ovule number: We searched for the number of ovules per flower for all the different species. The number of ovules of Asteraceae species are considered as the total number of ovules per capitulum. Many species were filled by genus or family level because the number of ovules in this taxonomic groups is considered to be mostly constant (e.g., Lamiaceae Boraginaceae or Apiaceae).
+ 
+-	Style length: The length of the style (mm) of the different species was also included. When possible, we calculated style length from images and illustrations on the online floras. 
+
+- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. In general terms, nectar data was rarely present and we try to minimise the loss of information by filling some species at family level. For instance, Solanaceae species are described as nectarless, and species that belonged to this family were recorded with ‘absence’ of nectar.
+
+- Pollen grains per flower: We recorded pollen grains per flower for all species but this field was rarely described in the literature. When just the pollen:ovule ratio was found we converted it back to pollen grains by multiplying by ovule number. 
+
+_Vegetative traits_
+
+- Life form, life span and plant height: We divided the different plant species in 4 main categories: herbs, vines, shrubs and trees. Moreover, we also divided the species between short-lived species (annual, biennial and short-lived perennials) and perennial species (long-lived). Finally, we also searched for the average height (m) of the different species and annotated the maximum and minimum height when possible. We conducted the average between the maximum and minimum height to get an approximate average height of the species when the average was not indicated.
+
+
+
+
+
+
 
 \begin{landscape}
 

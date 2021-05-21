@@ -1,0 +1,75 @@
+---
+title: ""
+output:
+  pdf_document: default
+  html_document: default
+
+---
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=17, fig.width=12}
+
+########################################################################################################################################################
+#SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
+########################################################################################################################################################
+#READ NETWORK VISITATION DATA (VISITS AGGREGATED PER PLANT SPECIES)
+
+library(rpart.plot)
+library(rpart)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+v_df_all <- readRDS("Data/RData/log_visits_all_tree.rds")
+nd_df_all <-  readRDS("Data/RData/normalized_degree_all_tree.rds")
+d_df_all <- readRDS("Data/RData/specialization_all_tree.rds")
+
+#run  regression trees of the 3 metrics
+set.seed(1)
+tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0089891)
+
+set.seed(1)
+tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0159034)
+
+set.seed(1)
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0147899) 
+
+
+#NECTAR AND POLEN DATA
+v_df <- readRDS("Data/RData/log_visits_subset_nectar_pollen_tree.rds")
+nd_df <-  readRDS("Data/RData/normalized_degree_subset_nectar_pollen_tree.rds")
+d_df <- readRDS("Data/RData/specialization_subset_nectar_pollen_tree.rds")
+
+#Set correct colnames for plotting
+colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+
+
+set.seed(2)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+
+set.seed(2)
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
+
+set.seed(2)
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+
+
+par(mfrow=c(3,2))
+
+rpart.plot(tree1, box.palette="GnOr", main="(a) Interaction frequency for all species", cex.main=1.75,tweak = 1.30) 
+rpart.plot(tree_1, box.palette="GnOr", main="(b) Interaction frequency for subset with floral rewards", cex.main=1.75,tweak = 1.30) 
+
+rpart.plot(tree2, box.palette="GnOr", main="(c) Normalized degree for all with species", cex.main=1.75,tweak = 1.30)
+rpart.plot(tree_2, box.palette="GnOr", main="(d) Normalized degree for subset with floral rewards", cex.main=1.75,tweak = 1.30)
+
+rpart.plot(tree3, box.palette="GnOr", main="(e) Specialization for all species", cex.main=1.75,tweak = 1.30)
+rpart.plot(tree_3, box.palette="GnOr", main="(f) Specialization for subset with floral rewards", cex.main=1.75,tweak = 1.30) 
+
+```
