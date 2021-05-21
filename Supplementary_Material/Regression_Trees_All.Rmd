@@ -63,13 +63,14 @@ tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
 
 par(mfrow=c(3,2))
 
-rpart.plot(tree1, box.palette="GnOr", main="(a) Interaction frequency for all species", cex.main=1.75,tweak = 1.30) 
-rpart.plot(tree_1, box.palette="GnOr", main="(b) Interaction frequency for subset with floral rewards", cex.main=1.75,tweak = 1.30) 
+rpart.plot(tree_1, box.palette="GnOr", main="(a) Interaction frequency for all species", cex.main=1.75,tweak = 1.30) 
+rpart.plot(tree1, box.palette="GnOr", main="(b) Interaction frequency for subset with floral rewards", cex.main=1.75,tweak = 1.30) 
 
-rpart.plot(tree2, box.palette="GnOr", main="(c) Normalized degree for all with species", cex.main=1.75,tweak = 1.30)
-rpart.plot(tree_2, box.palette="GnOr", main="(d) Normalized degree for subset with floral rewards", cex.main=1.75,tweak = 1.30)
 
-rpart.plot(tree3, box.palette="GnOr", main="(e) Specialization for all species", cex.main=1.75,tweak = 1.30)
-rpart.plot(tree_3, box.palette="GnOr", main="(f) Specialization for subset with floral rewards", cex.main=1.75,tweak = 1.30) 
+rpart.plot(tree_2, box.palette="GnOr", main="(c) Normalized degree for all species", cex.main=1.75,tweak = 1.30)
+rpart.plot(tree2, box.palette="GnOr", main="(d) Normalized degree for subset with floral rewards", cex.main=1.75,tweak = 1.30)
+
+rpart.plot(tree_3, box.palette="GnOr", main="(f) Specialization for all species", cex.main=1.75,tweak = 1.30) 
+rpart.plot(tree3, box.palette="GnOr", main="(e) Specialization for subset with floral rewards", cex.main=1.75,tweak = 1.30)
 
 ```
