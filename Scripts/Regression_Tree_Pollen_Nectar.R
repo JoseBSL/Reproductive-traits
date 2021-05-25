@@ -192,7 +192,7 @@ printcp(tree)
 plotcp(tree) 
 
 set.seed(2)
-tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0161026) #4 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
 rpart.plot(tree1, box.palette="GnOr")
 
 printcp(tree1)
@@ -213,8 +213,8 @@ printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
-rpart.plot(tree2, box.palette="GnOr")
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0166881) #6node divisons it is within on sd + error of best tree
+rpart.plot(tree2, box.palette="GnOr",tweak = 0.5)
 
 
 printcp(tree2)
@@ -225,7 +225,7 @@ printcp(tree2)
 ########################################################################################################################################################
 #Specialization
 ########################################################################################################################################################
-d_df <- datitos_2[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
+d_df <- df[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
                   "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
 
 colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
@@ -238,7 +238,7 @@ printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0189076) #7node divisons
 rpart.plot(tree3, box.palette="GnOr")
 
 

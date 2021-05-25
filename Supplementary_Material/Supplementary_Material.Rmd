@@ -59,15 +59,17 @@ __Figure S2__ Phylogenetic informed principal component analysis for the species
 
 __Figure S3__ Fitted posterior estimates of the number of visits made by bees including and exluding honey bees on the main axes of trait variation.
 
-__Figure S4__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
+__Figure S4__ Regression tree comparison between the regression trees with the full set of species and with the subset of species with floral rewards.
 
-__Figure S5__ Phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen.
+__Figure S5__ Trait relationship of PC1 and PC3 with the phylogenetic informed principal component analysis with the full set of species.
 
-__Figure S6__ Fitted posterior estimates of the number of visits made by the main functional groups of bees on the main axes of trait variation.
+__Figure S6__ Phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen.
 
 __Figure S7__ Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). 
 
-__Figure S8__  Sum of visits per plant, normalized degree and specialization modelled in function of the first three main axes of trait variation.
+__Figure S8__ Fitted posterior estimates of the number of visits made by the main functional groups of bees on the main axes of trait variation.
+
+__Figure S9__  Sum of visits per plant, normalized degree and specialization modelled in function of the first three main axes of trait variation.
 
 \newpage
 
@@ -816,7 +818,79 @@ plot_apis
 
 \elandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig S4.} Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig S4.} Comparison of the regression tree analysis between the full set of species and the subset of species with floral rewards for each plant species level metric (interaction frequency, nomalized degree and specialization)."}
+
+########################################################################################################################################################
+#SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
+########################################################################################################################################################
+#READ NETWORK VISITATION DATA (VISITS AGGREGATED PER PLANT SPECIES)
+
+library(rpart.plot)
+library(rpart)
+
+setwd("~/R_Projects/Reproductive Traits")
+
+v_df_all <- readRDS("Data/RData/log_visits_all_tree.rds")
+nd_df_all <-  readRDS("Data/RData/normalized_degree_all_tree.rds")
+d_df_all <- readRDS("Data/RData/specialization_all_tree.rds")
+
+#run  regression trees of the 3 metrics
+set.seed(1)
+tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0089891)
+
+set.seed(1)
+tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0159034)
+
+set.seed(1)
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0147899) 
+
+
+#NECTAR AND POLEN DATA
+v_df <- readRDS("Data/RData/log_visits_subset_nectar_pollen_tree.rds")
+nd_df <-  readRDS("Data/RData/normalized_degree_subset_nectar_pollen_tree.rds")
+d_df <- readRDS("Data/RData/specialization_subset_nectar_pollen_tree.rds")
+
+#Set correct colnames for plotting
+colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+
+
+
+set.seed(2)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+
+set.seed(2)
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
+
+set.seed(2)
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+
+
+par(mfrow=c(3,2))
+
+rpart.plot(tree_1, box.palette="GnOr", main="(a) Interaction frequency for all species", cex.main=1.75,tweak = 1.10) 
+rpart.plot(tree1, box.palette="GnOr", main="(b) Interaction frequency for subset with floral rewards", cex.main=1.75,tweak = 1.10) 
+
+
+rpart.plot(tree_2, box.palette="GnOr", main="(c) Normalized degree for all species", cex.main=1.75,tweak = 1.10)
+rpart.plot(tree2, box.palette="GnOr", main="(d) Normalized degree for subset with floral rewards", cex.main=1.75,tweak = 1.10)
+
+rpart.plot(tree_3, box.palette="GnOr", main="(e) Specialization for all species", cex.main=1.75,tweak = 1.10) 
+rpart.plot(tree3, box.palette="GnOr", main="(f) Specialization for subset with floral rewards", cex.main=1.75,tweak = 1.10)
+
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig S5.} Phylogenetically informed principal component analysis showing the trait relationship with principal components one and three (PC1 and PC3) for the full set of species (N = 1,506)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -967,7 +1041,7 @@ pc3(PC)
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig S5.} First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig S6.} First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1096,49 +1170,7 @@ all_spp(PC)
 
 ```
 
-
-\blandscape
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="\\textbf{Fig S6.} Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95 \\% percent due to extreme outliers."}
-
-
-library(Rcpp)
-library(patchwork)
-library(ggplot2)
-library(tidyr)
-#Load theme for publication
-
-theme_ms <- function(base_size=14, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-     theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(2.2)),
-           axis.text=element_text(size = rel(2), color = "black"),
-           legend.title=element_text(face="bold",size=rel(2)),
-           legend.text=element_text(size=rel(1.4)),
-           legend.background=element_rect(fill="transparent"),
-           legend.key.size = unit(1.8, 'lines'),
-           panel.border=element_rect(color="black",size=2.4),
-           panel.grid.minor.x =element_blank(),
-           panel.grid.minor.y= element_blank(),
-           panel.grid.major= element_blank()
-     ))
-}
-
-
-setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-
-#This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
-
-plot <- readRDS("Plot_bee_families.rds")
-
-plot
-
-```
-
-
-\elandscape
-
+\newpage
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig S7.} Statistical comparison of the different categories of the categorical traits on the main two axes of trait variation (pPCA with the full set of species). Categories that differ significantly are denoted with a different letter."}
 
@@ -1470,8 +1502,51 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 \blandscape
 
 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=7, fig.width=28,  fig.cap="\\textbf{Fig S8.} Fitted posterior estimates of the number of visits made by the different main visiting families of bees (Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae) in relation to the main axes of trait variation (PC1, PC2 and PC3). We omitted in the plotting points over percentile 95 \\% percent due to extreme outliers."}
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig S8.} Sum of visits per plant, normalized degree and speciliazation modelled in function of the first three main axes of trait variation.", fig.pos= "h"}
+
+library(Rcpp)
+library(patchwork)
+library(ggplot2)
+library(tidyr)
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2.2)),
+           axis.text=element_text(size = rel(2), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank()
+     ))
+}
+
+
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+
+#This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
+
+plot <- readRDS("Plot_bee_families.rds")
+
+plot
+
+```
+
+
+\elandscape
+
+
+
+\blandscape
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig S9.} Sum of visits per plant, normalized degree and speciliazation modelled in function of the first three main axes of trait variation.", fig.pos= "h"}
 
 library(brms) #modelling
 library(cmdstanr) #modelling
@@ -1508,8 +1583,4 @@ plot_metrics_pcs
 ```
 
 
-
-
 \elandscape
-
-

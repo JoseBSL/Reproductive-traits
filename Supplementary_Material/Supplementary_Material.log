@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  21 MAY 2021 12:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  25 MAY 2021 12:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -793,37 +793,37 @@ Package caption Info: End \AtBeginDocument code.
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 173.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 177.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [3] [4] [5]
-Overfull \hbox (24.25696pt too wide) in alignment at lines 275--280
+Overfull \hbox (24.25696pt too wide) in alignment at lines 279--284
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 280--285
+Overfull \hbox (24.25696pt too wide) in alignment at lines 284--289
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 285--287
+Overfull \hbox (24.25696pt too wide) in alignment at lines 289--291
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 287--289
+Overfull \hbox (24.25696pt too wide) in alignment at lines 291--293
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 289--329
+Overfull \hbox (24.25696pt too wide) in alignment at lines 293--333
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 329--345
+Overfull \hbox (24.25696pt too wide) in alignment at lines 333--349
 [] [] [] [] [] 
  []
 
@@ -832,39 +832,39 @@ Overfull \hbox (24.25696pt too wide) in alignment at lines 329--345
 ] [7] [8] [9
 
 ] [10] [11]
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 509.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 513.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 509.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 513.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 509
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 513
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 509
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 513
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 509.
+(Font)              <12> on input line 513.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 509.
+(Font)              <8> on input line 513.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 509.
-LaTeX Font Info:    Try loading font information for U+msa on input line 509.
+(Font)              <6> on input line 513.
+LaTeX Font Info:    Try loading font information for U+msa on input line 513.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 509.
+LaTeX Font Info:    Try loading font information for U+msb on input line 513.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -876,7 +876,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-7-1.pdf  used on input line 523.
+k-7-1.pdf  used on input line 527.
 (pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
 [13 <./Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf>]
 <Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf, id=86, 712.66
@@ -885,7 +885,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-8-1.pdf  used on input line 529.
+k-8-1.pdf  used on input line 533.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 [14 <./Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf>]
 <Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf, id=113, 2000.
@@ -894,20 +894,20 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-9-1.pdf  used on input line 535.
+k-9-1.pdf  used on input line 539.
 (pdftex.def)             Requested size: 650.421pt x 319.17296pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [15 <./Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf, id=131, 712.
-6625pt x 691.58376pt>
+<Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf, id=131, 835.
+12pt x 1050.92625pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf Graphic 
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-10-1.pdf  used on input line 541.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+k-10-1.pdf  used on input line 545.
+(pdftex.def)             Requested size: 469.76659pt x 591.16061pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -917,71 +917,83 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-11-1.pdf  used on input line 547.
+k-11-1.pdf  used on input line 549.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf>] [17 <
-./Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf, id=184, 1992
-.44376pt x 475.7775pt>
+<Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf, id=133, 712.
+6625pt x 691.58376pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf Graphic 
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-12-1.pdf  used on input line 553.
-(pdftex.def)             Requested size: 650.42477pt x 155.31552pt.
-[18
+k-12-1.pdf  used on input line 555.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-
- <./Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf, id=202, 924.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf, id=134, 924.
 45375pt x 1336.995pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf Graphic 
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-13-1.pdf  used on input line 559.
+k-13-1.pdf  used on input line 561.
 (pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
 
-LaTeX Warning: Float too large for page by 53.51106pt on input line 560.
+LaTeX Warning: Float too large for page by 53.51106pt on input line 562.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19 <./Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf, id=217, 1857
-.94125pt x 1270.7475pt>
+[16 <./Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf>] [17 <
+./Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf>] [18 <./Sup
+plementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf>] [19 <./Suppleme
+ntary_Material_files/figure-latex/unnamed-chunk-13-1.pdf>]
+<Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf, id=214, 1992
+.44376pt x 475.7775pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf Graphic 
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-14-1.pdf  used on input line 565.
+k-14-1.pdf  used on input line 567.
+(pdftex.def)             Requested size: 650.42477pt x 155.31552pt.
+[20
+
+
+
+ <./Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf>]
+<Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf, id=232, 1857
+.94125pt x 1270.7475pt>
+File: Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf Graphic 
+file (type pdf)
+<use Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
+k-15-1.pdf  used on input line 575.
 (pdftex.def)             Requested size: 650.43094pt x 444.86523pt.
 
-LaTeX Warning: Float too large for page by 14.1102pt on input line 566.
+LaTeX Warning: Float too large for page by 14.1102pt on input line 576.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20 <./Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 570.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 570.
+[21 <./Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 580.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 580.
 (./Supplementary_Material.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 570.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 570.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 580.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 580.
 Package rerunfilecheck Info: File `Supplementary_Material.out' has not changed.
 
 (rerunfilecheck)             Checksum: 56F8F93F63A60544C52B7BF8C11B942F;162.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 570.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 580.
  ) 
 Here is how much of TeX's memory you used:
- 15172 strings out of 492649
- 226258 string characters out of 6129621
- 355168 words of memory out of 5000000
- 18730 multiletter control sequences out of 15000+600000
+ 15179 strings out of 492649
+ 226607 string characters out of 6129621
+ 355430 words of memory out of 5000000
+ 18735 multiletter control sequences out of 15000+600000
  36644 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,46p,565b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -992,10 +1004,10 @@ texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
 ublic/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/l
 mmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
 /usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Supplementary_Material.pdf (20 pages, 1047699 bytes).
+Output written on Supplementary_Material.pdf (21 pages, 1072409 bytes).
 PDF statistics:
- 267 PDF objects out of 1000 (max. 8388607)
- 214 compressed objects within 3 object streams
- 35 named destinations out of 1000 (max. 500000)
- 6193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 285 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 6198 words of extra memory for PDF output out of 10000 (max. 10000000)
 
