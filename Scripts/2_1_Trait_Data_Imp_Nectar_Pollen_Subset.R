@@ -199,7 +199,9 @@ sum(is.na(t_nectar))/(sum(is.na(t_nectar))+sum(!is.na(t_nectar)))*100#[1] 20.421
 
 nrow(t_nectar)
 
-levels(factor(t_nectar$Species_all))
+t_p_missing <- t_nectar[is.na(t_nectar$Pollen_per_flower),]
+
+levels(factor(t_p_missing$Species_all))
 
 str(t_nectar)
 
