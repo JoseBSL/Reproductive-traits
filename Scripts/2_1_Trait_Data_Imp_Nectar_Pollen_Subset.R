@@ -173,8 +173,8 @@ missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
 
 #Subset species that have info for at least one of these floral traits
-t_nectar <- t[!is.na(t$Nectar_concentration) | !is.na(t$Pollen_per_flower),]
-nrow(t_nectar)
+t_nectar <- t[  !is.na(t$Pollen_per_flower)| !is.na(t$Nectar_ul),]
+nrow(t_nectar )
 
 levels(factor(t_nectar$Species_geonet))
 
