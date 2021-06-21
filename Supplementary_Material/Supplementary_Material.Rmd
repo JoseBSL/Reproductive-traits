@@ -854,24 +854,24 @@ d_df <- readRDS("Data/RData/specialization_subset_nectar_pollen_tree.rds")
 
 #Set correct colnames for plotting
 colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",   "Nectar concentration (%)","Pollen grains per flower")
 
 colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",   "Nectar concentration (%)","Pollen grains per flower")
 
 colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Nectar concentration (%)","Pollen grains per flower")
 
 
 
 set.seed(2)
-tree1 <- rpart(Visits~., data=v_df, cp=0.0131325) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0134316) #6 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
 
 set.seed(2)
-tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0109066) #6node divisons it is within on sd + error of best tree
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0125459) #6node divisons it is within on sd + error of best tree
 
 set.seed(2)
-tree3 <- rpart(Specialization~., data=d_df, cp=0.0147899) #7node divisons
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0171878) #7node divisons
 
 
 par(mfrow=c(3,2))
