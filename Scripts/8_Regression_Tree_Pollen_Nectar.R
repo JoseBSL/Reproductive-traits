@@ -176,23 +176,24 @@ df <- as.data.frame(datitos_1)
 #Visits quantitative 
 ########################################################################################################################################################
 v_df <- df[c("Visits", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-           "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
+           "Plant_height_mean_m","Nectar_ul","Nectar_concentration", "Pollen_per_flower")]
 
 
 colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                     "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
-
+                     "Ovule number","Plant height (m)", "Microlitres of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
 
 v_df$Visits <- log10(v_df$Visits+1)
 set.seed(2)
+
 tree <- rpart(Visits~., data=v_df, cp=0.009) 
+
 
 printcp(tree)
 plotcp(tree) 
 
 set.seed(2)
-tree1 <- rpart(Visits~., data=v_df, cp=0.0161026) #4 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0134316) #7 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
 rpart.plot(tree1, box.palette="GnOr")
 
 printcp(tree1)
@@ -202,10 +203,10 @@ plotcp(tree1)
 #Normalize degree
 ########################################################################################################################################################
 nd_df <- df[c("normalised.degree", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
+                  "Plant_height_mean_m","Nectar_ul","Nectar_concentration", "Pollen_per_flower")]
 
 colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+                      "Ovule number","Plant height (m)",  "Microlitres of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
 set.seed(2)
 tree <- rpart(`Normalized degree`~., data=nd_df, cp=0.005) #6node divisons
@@ -213,8 +214,8 @@ printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0166881) #6node divisons it is within on sd + error of best tree
-rpart.plot(tree2, box.palette="GnOr",tweak = 0.5)
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0125459) #6node divisons it is within on sd + error of best tree
+rpart.plot(tree2, box.palette="GnOr")
 
 
 printcp(tree2)
@@ -226,10 +227,10 @@ printcp(tree2)
 #Specialization
 ########################################################################################################################################################
 d_df <- df[c("d", "Autonomous_selfing_level_fruit_set","Flowers_per_plant","Corolla_diameter_mean","Style_length","Ovule_number",
-                  "Plant_height_mean_m","Nectar_ul","Nectar_mg","Nectar_concentration", "Pollen_per_flower")]
+                  "Plant_height_mean_m","Nectar_ul","Nectar_concentration", "Pollen_per_flower")]
 
 colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                     "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Mg of nectar", "Nectar concentration (%)","Pollen grains per flower")
+                     "Ovule number","Plant height (m)",  "Microlitres of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
 
 set.seed(2)
@@ -238,7 +239,7 @@ printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree3 <- rpart(Specialization~., data=d_df, cp=0.0189076) #7node divisons
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0171878) #7node divisons within the best xerror plus sd
 rpart.plot(tree3, box.palette="GnOr")
 
 

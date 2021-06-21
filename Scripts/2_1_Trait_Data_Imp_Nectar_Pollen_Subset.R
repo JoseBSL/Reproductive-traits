@@ -182,8 +182,10 @@ missing_data <- unlist(lapply(t_nectar_pollen, function(x) sum(is.na(x))))/nrow(
 sort(missing_data[missing_data >= 0], decreasing=T)
 
 #mg of nectar have over 30% of missing values and thus, we do not include it in the imputation
-t_nectar_pollen <- t_nectar_pollen %>% select(-Nectar_mg)
+library(tidyverse)
+t_nectar_pollen <- t_nectar_pollen %>% select(!Nectar_mg)
 
+str(t_nectar_pollen)
 
 #################################################
 #3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
