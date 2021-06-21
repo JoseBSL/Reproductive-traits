@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{xcolor}
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=12, fig.width=12}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=12, fig.width=14}
 setwd("~/R_Projects/Reproductive Traits")
 
 
@@ -183,11 +183,11 @@ Trait <- c("Plant height (m)", "Flower width (mm)", "Flower length (mm)", "Inflo
 Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Autonomous selfing", "Compatibility system", "Breeding system", " ", " ", " ", " ")
 
 T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub \n Tree", "Brush \n Campanulate \n Capitulum \n Open \n Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
-           "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Partially self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
+           "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
 
-Type <- c("V", "F", "F", "F", "F", "F", "F","F","F","F","F","R")
+Type <- c("Vegetative", "Floral", "Floral", "Floral", "Floral", "Floral", "Floral","Floral","Floral","Floral","Floral","Reproductive")
 
-Type_1 <- c("V", "V", "F", "F", "F", "R", "R", "R","","","","")
+Type_1 <- c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive", "Reproductive", "Reproductive","","","","")
 
 
 dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
