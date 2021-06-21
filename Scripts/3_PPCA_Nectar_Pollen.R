@@ -25,20 +25,12 @@ nrow(dat)
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat[cols.num] <- sapply(dat[cols.num],as.character)
 dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
-#dat <- dat[!dat$Species_all == "Diospyros seychellarum", ]
-#dat <- dat[!dat$Species_all == "Memecylon eleagni", ]
-#dat <- dat[!dat$Species_all == "Ocotea laevigata", ]
-#dat <- dat[!dat$Species_all == "Soulamea terminaloides", ]
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE WHICH HELPS IMPUTATION PROCESS. SEE ARTICLE FOR REF.
 ########################################################################################################################################################
 dat_cleaning <- dat[,c(2,3,4,8,11,12,14,15,18,20,23)]
+
 #CHECK LEVELS
-str(dat)
-str(dat_cleaning)
-
-
-
 dat_cleaning_1 <- dat_cleaning %>%
   filter(between(Flowers_per_plant, quantile(Flowers_per_plant, 0.025), quantile(Flowers_per_plant, 0.975)))
 
@@ -56,7 +48,6 @@ dat_cleaning_5 <- dat_cleaning_4 %>%
 
 dat_cleaning_6 <- dat_cleaning_5 %>%
   filter(between(Nectar_ul, quantile(Nectar_ul, 0.025), quantile(Nectar_ul, 0.975)))
-
 
 dat_cleaning_7 <- dat_cleaning_6 %>%
   filter(between(Pollen_per_flower, quantile(Pollen_per_flower, 0.025), quantile(Pollen_per_flower, 0.975)))
