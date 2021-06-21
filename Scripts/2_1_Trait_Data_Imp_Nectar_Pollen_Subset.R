@@ -41,7 +41,6 @@ trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 #select just filled rows
 trait_data_1 <- trait_data[1:1712,]
 
-
 #filter data, select species with flower level info and capitulum
 trait_filtered <- filter(trait_data_1, Info_level == "flower" |  Info_level == "capitulum")
 levels(as.factor(trait_filtered$Info_level)) #checking levels
@@ -172,41 +171,43 @@ t <- t[!is.na(t$Genus_all),]
 missing_data <- unlist(lapply(t, function(x) sum(is.na(x))))/nrow(t)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
 
-#Subset species that have info for at least one of these floral traits
-t_nectar <- t[  !is.na(t$Pollen_per_flower)| !is.na(t$Nectar_ul),]
-nrow(t_nectar )
+#Subset species that have info for at least one of these floral traits (pollen or nectar)
+t_nectar_pollen <- t[  !is.na(t$Pollen_per_flower)| !is.na(t$Nectar_ul),]
+nrow(t_nectar_pollen)
 
-levels(factor(t_nectar$Species_geonet))
+levels(factor(t_nectar_pollen$Species_geonet))
 
 #check missing data now
-missing_data <- unlist(lapply(t_nectar, function(x) sum(is.na(x))))/nrow(t_nectar)*100
+missing_data <- unlist(lapply(t_nectar_pollen, function(x) sum(is.na(x))))/nrow(t_nectar_pollen)*100
 sort(missing_data[missing_data >= 0], decreasing=T)
+
+#mg of nectar have over 30% of missing values and thus, we do not include it in the imputation
+
+t_nectar_pollen <- t_nectar_pollen %>% select(-Nectar_mg)
+
 
 #################################################
 #3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
 #################################################
 #Number of filled cells
-nrow(t_nectar) * 20 - sum(is.na(t_nectar))#[1] 9022
+nrow(t_nectar_pollen) * 20 - sum(is.na(t_nectar_pollen))
 #Dimension of the dataset
-nrow(t_nectar) * 20#[1] 10160
+nrow(t_nectar_pollen) * 20
 #Number of missing values
-sum(is.na(t_nectar))#[1] 1138
+sum(is.na(t_nectar_pollen))
 #Percentage of filled cells
-sum(!is.na(t_nectar))/(sum(is.na(t_nectar))+sum(!is.na(t_nectar)))*100#[1] 90.66601
-
+sum(!is.na(t_nectar_pollen))/(sum(is.na(t_nectar_pollen))+sum(!is.na(t_nectar_pollen)))*100
 #Percentage of missing values
-sum(is.na(t_nectar))/(sum(is.na(t_nectar))+sum(!is.na(t_nectar)))*100#[1] 20.42165
+sum(is.na(t_nectar_pollen))/(sum(is.na(t_nectar_pollen))+sum(!is.na(t_nectar_pollen)))*100
 
-nrow(t_nectar)
+t_nectar_pollen %>% filter(Species_geonet=="Beta_maritima")
+str(t_nectar_pollen)
+levels(factor(t_nectar_pollen$Species_all))
 
-t_p_missing <- t_nectar[is.na(t_nectar$Pollen_per_flower),]
-
-levels(factor(t_p_missing$Species_all))
-
-str(t_nectar)
+t_nectar_pollen <- t_nectar_pollen %>% filter(Species_all!=c("Sabatia angularis"))
 
 #Calculate phylo distance
-phylo <- as.data.frame(cbind(t_nectar$Family_all, t_nectar$Genus_all, t_nectar$Species_all))
+phylo <- as.data.frame(cbind(t_nectar_pollen$Family_all, t_nectar_pollen$Genus_all, t_nectar_pollen$Species_all))
 colnames(phylo) <-  c("family", "genus", "species")
 #Select unique cases
 #phylo_2 <- phylo[!duplicated(phylo$species),]
@@ -216,11 +217,13 @@ phylo_output <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plan
 
 a <- data.frame(phylo_output$tip.label)
 a$phylo_output.tip.label <- gsub("_", " ", a$phylo_output.tip.label)
+
+
 ########################################################################################################################################################
 #5) ICLUDE EIGENVALUES IN RAWDATA TO IMPROVE IMPUTATION OUTPUT
 ########################################################################################################################################################
 #Decomposing phylogenetic distance matrix derived from tree into a set of orthogonal vectors
-x <- PVRdecomp(phylo_output)
+x <- PVRdecomp(phylo_output, scale=FALSE)
 #create dataframe to merge with data and impute
 phylo_impute <- data.frame(x@Eigen[1],x@phylo[2])
 #Standardize to max value 1
@@ -230,7 +233,7 @@ phylo_impute$tip.label <- gsub("_", " ", phylo_impute$tip.label)
 #change colnames to merge
 colnames(phylo_impute) <- c("Eigenval", "Species_all")
 #merge
-dat_phylo <- merge(t_nectar, phylo_impute, by="Species_all")
+dat_phylo <- merge(t_nectar_pollen, phylo_impute, by="Species_all")
 
 #Prepare columns
 cols.num <- c("Family_all","Genus_all","Species_all")
@@ -242,12 +245,10 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 #METHOD: RANDOM FOREST
 #####
-dat_phylo$Nectar_mg <- as.numeric(dat_phylo$Nectar_mg)
-
-forest_imputed <- missForest(dat_phylo[,c(6:26)], maxiter = 10,mtry = 4, ntree = 200)
+forest_imputed <- missForest(dat_phylo[,c(6:25)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-21]
+f_imp_data <- f_imp_data[,-20]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)
