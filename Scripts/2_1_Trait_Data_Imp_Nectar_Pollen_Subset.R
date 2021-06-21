@@ -182,7 +182,6 @@ missing_data <- unlist(lapply(t_nectar_pollen, function(x) sum(is.na(x))))/nrow(
 sort(missing_data[missing_data >= 0], decreasing=T)
 
 #mg of nectar have over 30% of missing values and thus, we do not include it in the imputation
-
 t_nectar_pollen <- t_nectar_pollen %>% select(-Nectar_mg)
 
 
@@ -200,11 +199,9 @@ sum(!is.na(t_nectar_pollen))/(sum(is.na(t_nectar_pollen))+sum(!is.na(t_nectar_po
 #Percentage of missing values
 sum(is.na(t_nectar_pollen))/(sum(is.na(t_nectar_pollen))+sum(!is.na(t_nectar_pollen)))*100
 
-t_nectar_pollen %>% filter(Species_geonet=="Beta_maritima")
-str(t_nectar_pollen)
-levels(factor(t_nectar_pollen$Species_all))
-
-t_nectar_pollen <- t_nectar_pollen %>% filter(Species_all!=c("Sabatia angularis"))
+#orthogonal decomposition is not working with even number of species, don't know why
+#select one species less
+t_nectar_pollen <- t_nectar_pollen[c(1:755),]
 
 #Calculate phylo distance
 phylo <- as.data.frame(cbind(t_nectar_pollen$Family_all, t_nectar_pollen$Genus_all, t_nectar_pollen$Species_all))
@@ -213,7 +210,7 @@ colnames(phylo) <-  c("family", "genus", "species")
 #phylo_2 <- phylo[!duplicated(phylo$species),]
 phylo_1 <- tibble(phylo)
 #get phylo
-phylo_output <- get_tree(sp_list = phylo_1, tree = tree_plant_otl, taxon = "plant")
+phylo_output <- get_tree(sp_list = phylo_1[,], tree = tree_plant_otl, taxon = "plant")
 
 a <- data.frame(phylo_output$tip.label)
 a$phylo_output.tip.label <- gsub("_", " ", a$phylo_output.tip.label)
@@ -223,9 +220,10 @@ a$phylo_output.tip.label <- gsub("_", " ", a$phylo_output.tip.label)
 #5) ICLUDE EIGENVALUES IN RAWDATA TO IMPROVE IMPUTATION OUTPUT
 ########################################################################################################################################################
 #Decomposing phylogenetic distance matrix derived from tree into a set of orthogonal vectors
-x <- PVRdecomp(phylo_output, scale=FALSE)
+x <- PVRdecomp(phylo_output, scale=TRUE)
 #create dataframe to merge with data and impute
 phylo_impute <- data.frame(x@Eigen[1],x@phylo[2])
+
 #Standardize to max value 1
 phylo_impute$values <- phylo_impute$values/max(phylo_impute$values)
 #fix colnames to merge
@@ -234,7 +232,6 @@ phylo_impute$tip.label <- gsub("_", " ", phylo_impute$tip.label)
 colnames(phylo_impute) <- c("Eigenval", "Species_all")
 #merge
 dat_phylo <- merge(t_nectar_pollen, phylo_impute, by="Species_all")
-
 #Prepare columns
 cols.num <- c("Family_all","Genus_all","Species_all")
 dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
@@ -244,7 +241,7 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 ########################################################################################################################################################
 #####
 #METHOD: RANDOM FOREST
-#####
+##### 
 forest_imputed <- missForest(dat_phylo[,c(6:25)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
