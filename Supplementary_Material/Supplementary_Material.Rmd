@@ -1041,6 +1041,7 @@ pc3(PC)
 \newpage
 
 
+
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig S6.} First two main principal components from the phylogenetic informed principal component analysis for the imputed dataset of the subset of species with quantitative information of nectar and pollen (N = 467)."}
 setwd("~/R_Projects/Reproductive Traits")
 
@@ -1090,7 +1091,7 @@ library(magick)
 
 #Images were made by Paula Martin
 
-PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
 
 all_spp <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
@@ -1132,11 +1133,11 @@ all_spp <- function(PC, x="PC1", y="PC2") {
                       v2 = .7 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=-v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=-v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
@@ -1153,7 +1154,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height", "Nectar","Pollen" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.85,5.5,5.3,5.5,6.1,5.75,5.8,6)), y = (PCAloadings$PC2*c(4.8,4.8,4.65,5.65,5,5.1,5.75,5)+c(0,0,0,0,0,0,0,0)),
+  plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.85,5.5,5.3,5.5,6.1,5.75,5.8,6)), y = -(PCAloadings$PC2*c(4.8,4.8,4.65,5.65,5,5.1,5.75,5)+c(0,0,0,0,0,0,0,0)),
                           label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
   
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
