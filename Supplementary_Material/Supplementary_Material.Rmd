@@ -198,7 +198,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
- kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S2.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis for the full set of species (N = 1,506).") %>%
+ kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S2.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis with the full set of species after outlier processing (N = 1,236).") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -239,7 +239,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
-kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S3.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis for the subset of sepcies with quantitative information of nectar and pollen.") %>%
+kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S3.} Loadings and explained variance of the first three principal components from the phylogenetically informed principal component analysis for the subset of species with quantitative information of nectar and pollen.") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
