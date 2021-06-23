@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  22 JUN 2021 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  23 JUN 2021 12:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -876,7 +876,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-7-1.pdf  used on input line 527.
+k-7-1.pdf  used on input line 525.
 (pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
 [13 <./Supplementary_Material_files/figure-latex/unnamed-chunk-7-1.pdf>]
 <Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf, id=86, 712.66
@@ -885,7 +885,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-8-1.pdf  used on input line 533.
+k-8-1.pdf  used on input line 531.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 [14 <./Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf>]
 <Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf, id=113, 2000.
@@ -894,7 +894,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-9-1.pdf  used on input line 539.
+k-9-1.pdf  used on input line 537.
 (pdftex.def)             Requested size: 650.421pt x 319.17296pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -906,7 +906,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-10-1.pdf  used on input line 545.
+k-10-1.pdf  used on input line 543.
 (pdftex.def)             Requested size: 469.74677pt x 589.01181pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -917,7 +917,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-11-1.pdf  used on input line 549.
+k-11-1.pdf  used on input line 547.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -928,7 +928,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-12-1.pdf  used on input line 555.
+k-12-1.pdf  used on input line 553.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -939,10 +939,10 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-13-1.pdf  used on input line 561.
+k-13-1.pdf  used on input line 559.
 (pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
 
-LaTeX Warning: Float too large for page by 53.51106pt on input line 562.
+LaTeX Warning: Float too large for page by 53.51106pt on input line 560.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -957,7 +957,7 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-14-1.pdf  used on input line 567.
+k-14-1.pdf  used on input line 565.
 (pdftex.def)             Requested size: 650.42477pt x 155.31552pt.
 [20
 
@@ -970,24 +970,24 @@ File: Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf Graphic
 file (type pdf)
 <use Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
-k-15-1.pdf  used on input line 575.
+k-15-1.pdf  used on input line 573.
 (pdftex.def)             Requested size: 650.43094pt x 444.86523pt.
 
-LaTeX Warning: Float too large for page by 14.1102pt on input line 576.
+LaTeX Warning: Float too large for page by 14.1102pt on input line 574.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [21 <./Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 580.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 580.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 578.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 578.
 (./Supplementary_Material.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 580.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 580.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 578.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 578.
 Package rerunfilecheck Info: File `Supplementary_Material.out' has not changed.
 
 (rerunfilecheck)             Checksum: 56F8F93F63A60544C52B7BF8C11B942F;162.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 580.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 578.
  ) 
 Here is how much of TeX's memory you used:
  15181 strings out of 492649
@@ -1004,7 +1004,7 @@ texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
 ublic/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/l
 mmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
 /usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Supplementary_Material.pdf (21 pages, 1078816 bytes).
+Output written on Supplementary_Material.pdf (21 pages, 1078780 bytes).
 PDF statistics:
  284 PDF objects out of 1000 (max. 8388607)
  227 compressed objects within 3 object streams

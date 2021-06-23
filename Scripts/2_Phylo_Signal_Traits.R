@@ -113,7 +113,7 @@ colnames(tabla) <- c("Variable", "Lambda", "P value")
 ########################################################################################################################################################
 
 forest_data_1 <- read.csv("Data/Csv/nectar_pollen_subset_imputed_trait_data.csv")
-
+nrow(forest_data_1)
 #calculate phylo 
 phylo <- as.data.frame(cbind(forest_data_1$Family_all, forest_data_1$Genus_all, forest_data_1$Species_all))
 colnames(phylo) <-  c("family", "genus", "species")
@@ -156,8 +156,9 @@ saveRDS(pollen, "Data/RData/pollen_phylo.rds")
 Nectar_ul <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_ul"],rownames(d_1)),method="lambda",test=TRUE)
 saveRDS(Nectar_ul, "Data/RData/Nectar_ul_phylo.rds")
 
-Nectar_mg <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_mg"],rownames(d_1)),method="lambda",test=TRUE)
-saveRDS(Nectar_mg, "Data/RData/Nectar_mg_phylo.rds")
+#Not included at the end
+#Nectar_mg <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_mg"],rownames(d_1)),method="lambda",test=TRUE)
+#saveRDS(Nectar_mg, "Data/RData/Nectar_mg_phylo.rds")
 
 Nectar_concentration <- phylosig(phylo_output_1,setNames(d_1[,"Nectar_concentration"],rownames(d_1)),method="lambda",test=TRUE)
 saveRDS(Nectar_concentration, "Data/RData/Nectar_concentration_phylo.rds")
