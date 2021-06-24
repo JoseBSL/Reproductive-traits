@@ -185,15 +185,14 @@ colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width
 
 v_df$Visits <- log10(v_df$Visits+1)
 set.seed(2)
-
-tree <- rpart(Visits~., data=v_df, cp=0.009) 
+tree <- rpart(Visits~., data=v_df, cp=0.009,minbucket = 10) 
 
 
 printcp(tree)
 plotcp(tree) 
 
 set.seed(2)
-tree1 <- rpart(Visits~., data=v_df, cp=0.0134316) #7 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+tree1 <- rpart(Visits~., data=v_df, cp=0.0095256,minbucket = 50) #7 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
 rpart.plot(tree1, box.palette="GnOr")
 
 printcp(tree1)

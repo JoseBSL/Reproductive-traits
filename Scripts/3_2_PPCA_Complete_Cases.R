@@ -15,7 +15,7 @@ library(broman) #crayon colours
 ########################################################################################################################################################
 #1) LOAD DATA
 ########################################################################################################################################################
-#read data with missing values filled by data imputation
+#read data with complete cases//no imputation performed despite the name of the datset
 dat <- read.csv("Data/Csv/imputed_trait_data_complete.cases.csv", row.names = "X")
 ########################################################################################################################################################
 #2) Tidy up data to get phylo distance and conduct PCA
