@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  24 JUN 2021 12:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  24 JUN 2021 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -888,7 +888,7 @@ Package pdftex.def Info: Supplementary_Material_files/figure-latex/unnamed-chun
 k-8-1.pdf  used on input line 531.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 [14 <./Supplementary_Material_files/figure-latex/unnamed-chunk-8-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf, id=113, 2000.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf, id=112, 2000.
 47375pt x 981.6675pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf Graphic f
 ile (type pdf)
@@ -900,7 +900,7 @@ k-9-1.pdf  used on input line 537.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [15 <./Supplementary_Material_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf, id=131, 838.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf, id=130, 838.
 13126pt x 1050.92625pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-10-1.pdf Graphic 
 file (type pdf)
@@ -911,7 +911,7 @@ k-10-1.pdf  used on input line 543.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf, id=132, 712.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf, id=131, 712.
 6625pt x 691.58376pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf Graphic 
 file (type pdf)
@@ -922,7 +922,7 @@ k-11-1.pdf  used on input line 547.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf, id=133, 712.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf, id=132, 712.
 6625pt x 691.58376pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf Graphic 
 file (type pdf)
@@ -933,7 +933,7 @@ k-12-1.pdf  used on input line 553.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf, id=134, 924.
+<Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf, id=133, 924.
 45375pt x 1336.995pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-13-1.pdf Graphic 
 file (type pdf)
@@ -951,7 +951,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ./Supplementary_Material_files/figure-latex/unnamed-chunk-11-1.pdf>] [18 <./Sup
 plementary_Material_files/figure-latex/unnamed-chunk-12-1.pdf>] [19 <./Suppleme
 ntary_Material_files/figure-latex/unnamed-chunk-13-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf, id=213, 1992
+<Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf, id=212, 1992
 .44376pt x 475.7775pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf Graphic 
 file (type pdf)
@@ -964,7 +964,7 @@ k-14-1.pdf  used on input line 565.
 
 
  <./Supplementary_Material_files/figure-latex/unnamed-chunk-14-1.pdf>]
-<Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf, id=231, 1857
+<Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf, id=230, 1857
 .94125pt x 1270.7475pt>
 File: Supplementary_Material_files/figure-latex/unnamed-chunk-15-1.pdf Graphic 
 file (type pdf)
@@ -1004,10 +1004,10 @@ texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
 ublic/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/l
 mmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
 /usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Supplementary_Material.pdf (21 pages, 1078447 bytes).
+Output written on Supplementary_Material.pdf (21 pages, 1048812 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
+ 283 PDF objects out of 1000 (max. 8388607)
+ 226 compressed objects within 3 object streams
  37 named destinations out of 1000 (max. 500000)
  6198 words of extra memory for PDF output out of 10000 (max. 10000000)
 
