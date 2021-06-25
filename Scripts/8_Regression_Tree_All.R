@@ -72,19 +72,19 @@ met <- function(x){
 }
 
 #workaround to remove singletones
-i <- NULL
-data <- NULL
-metrics_list <- list()
-for (i in names(my_data)){
-  metrics_list[[i]] <- my_data[[i]][apply(my_data[[i]][,-1], 1, function(x) !all(x<2)),]
-}
+#i <- NULL
+#data <- NULL
+#metrics_list <- list()
+#for (i in names(my_data)){
+#  metrics_list[[i]] <- my_data[[i]][apply(my_data[[i]][,-1], 1, function(x) !all(x<2)),]
+#}
 
 #calculate network metrics with for loop
 i <- NULL
 data <- NULL
 metrics_list_1 <- list()
-for (i in names(metrics_list)){
-  metrics_list_1[[i]] <- met(metrics_list[[i]])
+for (i in names(my_data)){
+  metrics_list_1[[i]] <- met(my_data[[i]])
 }
 
 #add id as a row name
@@ -170,7 +170,6 @@ levels(factor(datitos_1$Nectar_presence_absence)) #OK
 datitos_2 <- as.data.frame(datitos_1)
 
 
-
 #Now quantitative variables
 ########################################################################################################################################################
 #VISITS REGRESSION TREE
@@ -187,12 +186,12 @@ colnames(v_df_all) <- c("Visits", "Aut. selfing","Flowers per plant","Flower wid
 v_df_all$Visits <- log10(v_df_all$Visits + 1)
 
 set.seed(1)
-tree <- rpart(Visits~., data=v_df_all, cp=0.001)
+tree <- rpart(Visits~., data=v_df_all, cp=0.001,minbucket=50)
 printcp(tree)
 plotcp(tree)
 
 set.seed(1)
-tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0089891)
+tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0054559,minbucket=50)
 rpart.plot(tree_1, box.palette="GnOr")
 
 ########################################################################################################################################################
@@ -207,12 +206,12 @@ colnames(nd_df_all) <- c("Normalized degree", "Aut. selfing","Flowers per plant"
 
 
 set.seed(1)
-tree <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.001)
+tree <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.001,minbucket=50)
 printcp(tree)
 plotcp(tree)
 
 set.seed(1)
-tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0159034) #7
+tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0084459,minbucket=50) 
 rpart.plot(tree_2, box.palette="GnOr")
 
 ########################################################################################################################################################
@@ -227,12 +226,12 @@ colnames(d_df_all) <- c("Specialization", "Aut. selfing","Flowers per plant","Fl
 
 
 set.seed(1)
-tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.001)
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.001, minbucket=50)
 printcp(tree_3)
 plotcp(tree_3)
 
 set.seed(1)
-tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0118611) #10
+tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0072192 , minbucket=50) #10
 rpart.plot(tree_3, box.palette="GnOr")
 
 #Save data to plot it in an rmd file

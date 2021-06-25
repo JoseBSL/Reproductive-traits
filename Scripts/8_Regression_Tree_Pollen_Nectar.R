@@ -13,7 +13,6 @@ library(data.table) # operate with df
 library(bipartite) #calculate metrics
 library(dplyr) #data manipulation 
 library(stringr) #remove string
-library(brms)
 library(projpred)
 library(dplyr)
 library(ggplot2)
@@ -21,7 +20,6 @@ library(bayesplot)
 library(ape)
 library(rtrees)
 library(cowplot)
-library(emmeans)
 library(tidybayes)
 library(multcomp)
 library(rpart)
@@ -80,7 +78,6 @@ metrics_list <- list()
 for (i in names(my_data)){
   metrics_list[[i]] <- my_data[[i]][apply(my_data[[i]][,-1], 1, function(x) !all(x<2)),]
 }
-
 #calculate network metrics with for loop
 i <- NULL
 data <- NULL
@@ -171,7 +168,12 @@ levels(factor(datitos_1$Nectar_presence_absence)) #OK
 
 df <- as.data.frame(datitos_1)
 
-#Now quantitative variables
+#Notes:
+
+# singletones are included
+
+# we set min bucket of rtrees as 50
+
 ########################################################################################################################################################
 #Visits quantitative 
 ########################################################################################################################################################
@@ -185,18 +187,15 @@ colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width
 
 v_df$Visits <- log10(v_df$Visits+1)
 set.seed(2)
-tree <- rpart(Visits~., data=v_df, cp=0.009,minbucket = 10) 
+tree <- rpart(Visits~., data=v_df, cp=0.009,minbucket=50) 
 
 
 printcp(tree)
 plotcp(tree) 
 
 set.seed(2)
-tree1 <- rpart(Visits~., data=v_df, cp=0.0095256,minbucket = 50) #7 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
+tree1 <- rpart(Visits~., data=v_df, cp=0.009000,minbucket=50) #7 splits is lower than the best tree plus on sd (rule of thumb for selecting trees)
 rpart.plot(tree1, box.palette="GnOr")
-
-printcp(tree1)
-plotcp(tree1)
 
 ########################################################################################################################################################
 #Normalize degree
@@ -208,12 +207,12 @@ colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "
                       "Ovule number","Plant height (m)",  "Microlitres of nectar", "Nectar concentration (%)","Pollen grains per flower")
 
 set.seed(2)
-tree <- rpart(`Normalized degree`~., data=nd_df, cp=0.005) #6node divisons
+tree <- rpart(`Normalized degree`~., data=nd_df, cp=0.005,minbucket=50) #6node divisons
 printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.0125459) #6node divisons it is within on sd + error of best tree
+tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.005000,minbucket=50) #6node divisons it is within on sd + error of best tree
 rpart.plot(tree2, box.palette="GnOr")
 
 
@@ -233,12 +232,12 @@ colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flow
 
 
 set.seed(2)
-tree <- rpart(Specialization~., data=d_df, cp=0.005) #6node divisons
+tree <- rpart(Specialization~., data=d_df, cp=0.005,minbucket=50) #6node divisons
 printcp(tree)
 plotcp(tree)
 
 set.seed(2)
-tree3 <- rpart(Specialization~., data=d_df, cp=0.0171878) #7node divisons within the best xerror plus sd
+tree3 <- rpart(Specialization~., data=d_df, cp=0.0050000,minbucket=50) #7node divisons within the best xerror plus sd
 rpart.plot(tree3, box.palette="GnOr")
 
 
