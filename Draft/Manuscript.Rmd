@@ -65,12 +65,16 @@ header-includes:
 - \usepackage{xcolor}
 - \usepackage{float}
 - \floatplacement{figure}{H}
-- \usepackage[skip=5pt]{caption}
+- \usepackage[skip=3pt]{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \usepackage{setspace}
+
 ---
 
 <!--# Insert author affiliations below -->
 
 \small
+\doublespacing
 
 ^1^ School of Environmental and Rural Science, University of New England, Armidale, New South Wales 2350, Australia
 
@@ -84,9 +88,12 @@ header-includes:
 `*` Corresponding author: barragansljose@gmail.com
 
 \normalsize
+\singlespacing
 
-Plant life strategies are often delimited by vegetative and physiological traits but little is known about how floral and reproductive traits drive these strategies, and in turn shape plant interactions with floral visitors. Here, we compiled 13 floral, 4 reproductive and 3 vegetative traits for 1,506 plant species from 28 plant-pollinator network studies across 18 different countries. We investigated the associations among these traits, pollinator visitation and the functional role of plant species within the networks (interaction frequency, normalized degree and specialization). We found that 51.8% of trait variation was explained by two independent axes that encompassed plant form and function. Specifically, the first axis indicated the presence of a trade-off between flower number and flower size (PC1, 26.72%). The second axis indicated a trade-off for the level of pollinator dependency (PC2, 25.08%). Although the main axes of trait variation did not fully explain pollinator visitation rates, different plant life strategies were associated with visitation rates and pollinator functional groups. Overall, the main traits that determined plant species’ functional roles were height, nectar concentration, pollen grains per flower, number of ovules, style length, selfing level and flower width. Our results highlight the need to consider plant reproductive and floral traits to improve understanding of plant life strategies and plant-pollinator interactions at broader spatial scales.
 
+__Plant life strategies are often delimited by vegetative and physiological traits but little is known about how floral and reproductive traits drive these strategies, and in turn shape plant interactions with floral visitors. Here, we compiled 13 floral, 4 reproductive and 3 vegetative traits for 1,506 plant species from 28 plant-pollinator network studies across 18 different countries. We investigated the associations among these traits, pollinator visitation and the functional role of plant species within the networks (interaction frequency, normalized degree and specialization). We found that 51.8% of trait variation was explained by two independent axes that encompassed plant form and function. Specifically, the first axis indicated the presence of a trade-off between flower number and flower size (PC1, 26.72%). The second axis indicated a trade-off for the level of pollinator dependency (PC2, 25.08%). Although the main axes of trait variation did not fully explain pollinator visitation rates, different plant life strategies were associated with visitation rates and pollinator functional groups. Overall, the main traits that determined plant species’ functional roles were height, nectar concentration, pollen grains per flower, number of ovules, style length, selfing level and flower width. Our results highlight the need to consider plant reproductive and floral traits to improve understanding of plant life strategies and plant-pollinator interactions at broader spatial scales.__
+
+\doublespacing
 \vspace{5mm}
 \bleft
 
@@ -135,7 +142,7 @@ Here, we explore the potential trade-offs among plant floral and reproductive tr
 
 The phylogenetically informed principal component analysis (pPCA) captured by the first two and three axes 51.8% and 70.97% of trait variation, respectively (Figure 1 and Figure S5) and had a phylogenetic correlation (**lambda**) of 0.76. The first principal component (PC1) represented 26.72% of the trait variation and indicated a trade-off between flower number and flower size. We refer to this axis as the ‘flower number - flower size trade-off as already described in previous studies (Sargent et al., 2007; Kettle et al., 2011). Hence, one end of the spectrum comprised species with high investment in flower number and plant height but small flower size, short style length and low ovule number. The other end of this spectrum comprised species that were short in height and invested in large flowers, long styles, many ovules, but few flowers. The main contributing traits to PC1 were plant height, flower number, ovule number and flower size (loadings > |0.5|; Table S3) but style length also contributed moderately on PC1 (loading = -0.33). The second principal component (PC2) represented 25.05% of the trait variation and indicated a trade-off between low and high pollinator dependence. We refer to this axis as the ‘pollinator dependence trade-off’. The main driver of trait variation on PC2 was autonomous selfing (loading = 0.85) but the other traits (except ovule number) also made moderate contributions (loadings from 0.27 to 0.4; Table S3). We found that high pollinator dependence was associated with larger and higher numbers of flowers, greater plant height and longer styles. In contrast, species with high levels of autonomous selfing tended to have fewer and smaller flowers, had shorter styles and were shorter in height. Further, PC3 explained a considerable amount of trait variability (19.17%) and the main contributors to this axis were style length (loading = -0.66) and the degree of autonomous selfing (loading = -0.51). The remaining traits, apart from ovule number, were moderately correlated to changes on PC3 (loadings from -0.23 to -0.46; Table S3). Thus, because style length was correlated with all traits on PC3 and was the main driver of variation, we refer to this axis as the ‘style length trade-off’. Further, the pPCA with the subset of species that had nectar and pollen quantity data showed that nectar quantity (microlitres of nectar per flower) was positively associated with flower size, style length and ovule number (PC1, 23.40%); and pollen quantity (pollen grains per flower) was positively correlated with flower number and plant height and negatively associated with autonomous selfing (PC2, 21.67%; Figure S6). This pPCA explained similar variance with the first two principal components (45.07%) and similar associations of traits despite some variability in the loadings (Table S4).
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,fig.pos = "!H",fig.cap= "Figure 1. Life history strategies for 1,236 plant species from 28 plant-pollinator networks studies across the first two axes of trait variation from a phylogenetically informed principal component analysis (pPCA). The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) in the 2-d plane. The length of the arrows indicate the weight of the variables on each principal component and the labelled icons at their end represent the extreme form of the trait continuum. The dashed lines show the opposed direction of trait variation and the non-labelled icons at their end illustrate the opposing extreme of the continuum."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,fig.pos = "t",fig.cap= "**Fig. 1 |** Life history strategies for 1,236 plant species from 28 plant-pollinator networks studies across the first two axes of trait variation from a phylogenetically informed principal component analysis (pPCA). The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) in the 2-d plane. The length of the arrows indicate the weight of the variables on each principal component and the labelled icons at their end represent the extreme form of the trait continuum. The dashed lines show the opposed direction of trait variation and the non-labelled icons at their end illustrate the opposing extreme of the continuum."}
 
 setwd("~/R_Projects/Reproductive Traits")
 
@@ -328,9 +335,571 @@ plot_grid(all_spp(PC))
 We found that most categorical traits were statistically associated with the first two axes of trait variation (Figure 2 and Table S2). Flower symmetry, which was only associated with PC2 (Sum of squares = 8.51, F-value = 14.72, p < 0.01 ), and nectar provision, which was independent of PC1 and PC2 (PC1: Sum of squares = 0.37, F-value = 0.29 , p = 0.59; PC2:  Sum of squares = 0.83, F-value = 1.43, p = 0.23) showed lack of statistical association. In addition, we found statistical differences (Tukey test) between the different levels of categorical traits in the trait space (Figure S7). Regarding self compatibility, we found larger differences on PC2 (i.e., species with unisexual flowers that were self incompatibile were statistically differentiated from species with partial or full self compatibility; Figure S7 A and B). Life forms differed statistically across both axes of trait variation and followed a gradient of larger life forms (trees and shrubs) with higher pollinator dependence to smaller ones (herbs) with lower pollinator dependence (Figure S7 C and D). Consequently, lifespan also followed this gradient but perennial and short lived species only differed statistically on PC2 (Figure S7 E and F). Species with unisexual flowers (monoecious and dioecious) were clustered on both extremes of the first two principal components and had the highest pollinator dependence and highest number of flowers (Figure S7 G and H). Moreover, we found that the campanulate and capitulum flower shapes were differentiated from tube, papilionaceous, open and brush shapes in the trait space. The former morphologies had larger flowers and greater pollinator dependence, while the latter had higher flower number and greater autonomous selfing (Figure S7 I and J). Regarding flower symmetry, zygomorphic flowers were associated with lower levels of pollinator dependence, whereas actinomorphic flowers had higher levels of pollinator dependence (Figure S7 K and L).
 
 
-    
 \blandscape
 
+\vspace*{-28mm}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18,fig.pos = "!H",fig.cap= "**Fig. 2 | Location of the different qualitative traits on the trait space.** The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f)."}
+
+#Set working directory
+setwd("~/R_Projects/Reproductive Traits")
+
+#Load libraries
+#LOAD LIBRARIES
+#library(phytools)
+#library(ape) #for phylogenetic distance
+#library(dplyr) #data processing
+#library(rtrees) #for phylogenetic distancelibrary(MASS)
+#library(reshape2)
+library(viridis) #COLOUR GGPLOT
+#library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+#library(cowplot)
+
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+      theme(text=element_text(color="black"),
+            axis.title=element_text( size = rel(1.75)),
+            axis.text=element_text(size = rel(1.75), color = "black"),
+            legend.title=element_text(face="bold"),
+            legend.text=element_text(),
+            legend.background=element_rect(fill="transparent"),
+            legend.key.size = unit(0.55, 'lines'),
+            panel.border=element_rect(color="black",size=1),
+            panel.grid.minor.x =element_blank(),
+            panel.grid.minor.y= element_blank(),
+             panel.grid.major= element_blank(),
+            plot.title = element_text(size = rel(1.65), face="bold")
+      ))
+}
+
+#Load data
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+#CALL the output PC for simplicity
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+Compatibility <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$Compatibility <- dat_cleaning_5$Compatibility_system
+  dat$Compatibility <- as.character(dat$Compatibility)
+  dat$Compatibility[dat$Compatibility=="dioecious"] <- "Unisexual flowers"
+  dat$Compatibility[dat$Compatibility=="monoecious"] <- "Unisexual flowers"
+  dat$Compatibility[dat$Compatibility=="partially_self_compatible"] <- "Partially self compatible"
+  dat$Compatibility[dat$Compatibility=="self_compatible"] <- "Self compatible"
+  dat$Compatibility[dat$Compatibility=="self_incompatible"] <- "Self incompatible"
+  dat$Compatibility <- factor(dat$Compatibility, levels = c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Compatibility),size=1.75)+scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.185, 0.13)) +ggtitle("(a)") 
+  
+  
+  plot
+  
+}
+
+#Compatibility(PC)
+
+#############################################################################################################################################################
+#Life form
+#############################################################################################################################################################
+#Load plots
+Life_form <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Life form` <- dat_cleaning_5$life_form
+  dat$`Life form` <- as.character(dat$`Life form`)
+  dat$`Life form`[dat$`Life form`=="herb"] <- "Herb"
+  dat$`Life form`[dat$`Life form`=="shrub"] <- "Shrub"
+  dat$`Life form`[dat$`Life form`=="tree"] <- "Tree"
+  dat$`Life form`[dat$`Life form`=="vine"] <- "Shrub"
+  
+  dat$`Life form` <- factor( dat$`Life form`, levels = c("Herb", "Shrub", "Tree"))
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Life form`),size=1.75)+scale_color_manual(values=c("forestgreen", "darkorange2","gray7"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("(b)") 
+  
+  plot
+  
+}
+
+#Life_form(PC)
+
+
+#############################################################################################################################################################
+#Life span
+#############################################################################################################################################################
+#Load plots
+Life_span <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+    dat$Lifespan <- dat_cleaning_5$lifespan
+    dat$Lifespan <- as.character(dat$Lifespan)
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Lifespan),size=1.75)+scale_color_manual(values=c("sienna4","forestgreen"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.102, 0.1)) + ggtitle("(c)") 
+  
+  plot
+  
+}
+
+#Life_span(PC)
+
+
+#############################################################################################################################################################
+#Flower symmetry
+#############################################################################################################################################################
+#Load plots
+Flower_sym <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Flower symmetry` <- dat_cleaning_5$Flower_symmetry
+  dat$`Flower symmetry` <- as.character(dat$`Flower symmetry`)
+  dat$`Flower symmetry`[dat$`Flower symmetry`=="actinomorphic"] <- "Actinomorphic"
+  dat$`Flower symmetry`[dat$`Flower symmetry`=="zygomorphic"] <- "Zygomorphic"
+  
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Flower symmetry`),size=1.75)+scale_color_manual(values=c("sienna2","purple"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.165, 0.1)) + ggtitle("(f)") 
+  
+  plot
+  
+}
+
+#Flower_sym(PC)
+
+
+#############################################################################################################################################################
+#Flower shape
+#############################################################################################################################################################
+#Load plots
+Flower_sha <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Flower shape` <- dat_cleaning_5$Flower_morphology
+  dat$`Flower shape` <- as.character(dat$`Flower shape`)
+  dat$`Flower shape`[dat$`Flower shape`=="Funnelform"] <- "Campanulate"
+  dat$`Flower shape`[dat$`Flower shape`=="Spike"] <- "Brush"
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Flower shape`),size=1.75)+scale_color_manual(values=c("blue","cyan4", "red","forestgreen","purple","gold"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.13, 0.18)) + ggtitle("(e)") 
+  
+  plot
+  
+}
+
+#Flower_sha(PC)
+
+
+#############################################################################################################################################################
+#Breeding system
+#############################################################################################################################################################
+#Load plots
+Breeding_syst <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Breeding system` <- dat_cleaning_5$Breeding_system
+  dat$`Breeding system` <- as.character(dat$`Breeding system`)
+  dat$`Breeding system` <- factor(dat$`Breeding system`, levels=c("Hermaphrodite","Monoecious" ,"Dioecious"))
+
+  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Breeding system`),size=1.75)+scale_color_manual(values=c("forestgreen","orange", "black"))
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+                          label = PCAloadings$Variables, color="black",size=3)
+  
+  #CHANGE THEME
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("(d)") 
+  
+  plot
+  
+}
+
+#Breeding_syst(PC)
+
+#############################################################################################################################################################
+#Nectar
+#############################################################################################################################################################
+#Load plots
+#Nectar <- function(PC, x="PC1", y="PC2") {
+#  # PC being a prcomp object
+#  data <- data.frame(PC$S)
+#  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+#  dat <- data.frame(x = data[,x], y = data[,y])
+#  
+#  #######
+#  #DENSITY FUNCTION
+#  #######
+#  get_density <- function(x, y, ...) {
+#    dens <- MASS::kde2d(x, y, ...)
+#    ix <- findInterval(x, dens$x)
+#    iy <- findInterval(y, dens$y)
+#    ii <- cbind(ix, iy)
+#    return(dens$z[ii])
+#  }
+#  
+#  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+#  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+#  dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
+#  dat$Nectar[dat$Nectar=="yes"] <- "Presence"
+#  dat$Nectar[dat$Nectar=="no"] <- "Absence"
+#  plot <- plot + geom_point(data=dat, aes(-x, -y, #colour=Nectar),size=1.75)+scale_color_manual(values=c("black","grey"))
+#  
+#  ########
+#  #ADD ARROWS 
+#  ########
+#  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+#  mult <- min(
+#    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+#    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+#  )
+#  datapc <- transform(datapc,
+#                      v1 = .75 * mult * (get(x)),
+#                      v2 = .75 * mult * (get(y))
+#  )
+#  # add arrows
+#  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, #yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+#  
+#  #Add axis with perctentage
+#  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+#
+#  
+#  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+#  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, #arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+#  
+#  #ADD LABELS
+#  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+#  
+#  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+#  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = #-(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+#                          label = PCAloadings$Variables, color="black",size=3)
+#  
+#  #CHANGE THEME
+#  #CHANGE THEME
+#  
+#  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("G)") 
+#  
+#  plot
+#  
+#}
+#
+# #plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),Nectar(PC), ncol=2,nrow=4,  align = "hv")
+
+#  plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flowe#r_sym(PC),ncol=3,nrow=2,  align = "hv")
+
+library(patchwork)
+Compatibility(PC) + Life_form(PC) + Life_span(PC) + Breeding_syst(PC) + Flower_sha(PC) + Flower_sym(PC) + plot_layout(ncol=3)
+
+
+```
+
+\elandscape
+
+\vspace{5mm}
+
+
+
+\blandscape
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=13, fig.width=27, out.extra='',fig.cap="Location of the different qualitative traits that showed statistical association with the first two axes of trait variation. These different traits included: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f)."}
 

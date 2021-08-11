@@ -111,7 +111,9 @@
 \usepackage{xcolor}
 \usepackage{float}
 \floatplacement{figure}{H}
-\usepackage[skip=5pt]{caption}
+\usepackage[skip=3pt]{caption}
+\captionsetup[figure]{labelformat=empty}
+\usepackage{setspace}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -136,6 +138,7 @@ interactions with floral visitors}
 \maketitle
 
 \small
+\doublespacing
 
 \textsuperscript{1} School of Environmental and Rural Science,
 University of New England, Armidale, New South Wales 2350, Australia
@@ -153,8 +156,9 @@ University, Sölvegatan 37, S-223 62 Lund, Sweden
 \href{mailto:barragansljose@gmail.com}{\nolinkurl{barragansljose@gmail.com}}
 
 \normalsize
+\singlespacing
 
-Plant life strategies are often delimited by vegetative and
+\textbf{Plant life strategies are often delimited by vegetative and
 physiological traits but little is known about how floral and
 reproductive traits drive these strategies, and in turn shape plant
 interactions with floral visitors. Here, we compiled 13 floral, 4
@@ -175,8 +179,9 @@ plant species' functional roles were height, nectar concentration,
 pollen grains per flower, number of ovules, style length, selfing level
 and flower width. Our results highlight the need to consider plant
 reproductive and floral traits to improve understanding of plant life
-strategies and plant-pollinator interactions at broader spatial scales.
+strategies and plant-pollinator interactions at broader spatial scales.}
 
+\doublespacing
 \vspace{5mm} \bleft
 
 There is an astonishing diversity of floral structures and plant
@@ -299,17 +304,18 @@ similar associations of traits despite some variability in the loadings
 \begin{figure}
 \centering
 \includegraphics{output/figures/unnamed-chunk-1-1.pdf}
-\caption{\label{fig:unnamed-chunk-1}Figure 1. Life history strategies for
-1,236 plant species from 28 plant-pollinator networks studies across the
-first two axes of trait variation from a phylogenetically informed
-principal component analysis (pPCA). The solid arrows indicate the
-direction of the different quantitative traits (flower number, plant
-height, style length, flower size, ovule number and level of autonomous
-selfing) in the 2-d plane. The length of the arrows indicate the weight
-of the variables on each principal component and the labelled icons at
-their end represent the extreme form of the trait continuum. The dashed
-lines show the opposed direction of trait variation and the non-labelled
-icons at their end illustrate the opposing extreme of the continuum.}
+\caption{\label{fig:unnamed-chunk-1}\textbf{Fig. 1 \textbar{}} Life history
+strategies for 1,236 plant species from 28 plant-pollinator networks
+studies across the first two axes of trait variation from a
+phylogenetically informed principal component analysis (pPCA). The solid
+arrows indicate the direction of the different quantitative traits
+(flower number, plant height, style length, flower size, ovule number
+and level of autonomous selfing) in the 2-d plane. The length of the
+arrows indicate the weight of the variables on each principal component
+and the labelled icons at their end represent the extreme form of the
+trait continuum. The dashed lines show the opposed direction of trait
+variation and the non-labelled icons at their end illustrate the
+opposing extreme of the continuum.}
 \end{figure}
 
 We found that most categorical traits were statistically associated with
@@ -344,8 +350,27 @@ of pollinator dependence (Figure S7 K and L).
 
 \blandscape
 
+\vspace*{-28mm}
+
+\begin{figure}
+\centering
+\includegraphics{output/figures/unnamed-chunk-2-1.pdf}
+\caption{\label{fig:unnamed-chunk-2}\textbf{Fig. 2 \textbar{} Location of
+the different qualitative traits on the trait space.} The panel is
+composed by the traits that showed statistical association with the
+first two axes of trait variation: compatibility system (a), life form
+(b), lifespan (c), breeding system (d), flower shape (e) and flower
+symmetry (f).}
+\end{figure}
+
+\elandscape
+
+\vspace{5mm}
+
+\blandscape
+
 \begin{figure}[H]
-\includegraphics{output/figures/unnamed-chunk-2-1} \caption{Location of the different qualitative traits that showed statistical association with the first two axes of trait variation. These different traits included: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f).}\label{fig:unnamed-chunk-2}
+\includegraphics{output/figures/unnamed-chunk-3-1} \caption{Location of the different qualitative traits that showed statistical association with the first two axes of trait variation. These different traits included: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f).}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \elandscape
@@ -509,7 +534,7 @@ missing values information per variable).
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-3}List of the 20 traits compiled in this study divided in quantitative and categorical traits. The different types of trait (vegetative ‘V’, floral ‘F’ and reproductive ‘R’), total records found for the 1,506 species and categories of the qualitative traits are also provided. }
+\caption{\label{tab:unnamed-chunk-4}List of the 20 traits compiled in this study divided in quantitative and categorical traits. The different types of trait (vegetative ‘V’, floral ‘F’ and reproductive ‘R’), total records found for the 1,506 species and categories of the qualitative traits are also provided. }
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabu} to \linewidth {>{}c>{\raggedright}X>{\centering}X>{}c>{\raggedright}X>{\raggedright}X>{\centering}X}
@@ -785,8 +810,8 @@ variability in the loadings (Table S3).
 
 \begin{figure}
 \centering
-\includegraphics{output/figures/unnamed-chunk-4-1.pdf}
-\caption{\label{fig:unnamed-chunk-4}Life history strategies for 1,236 plant
+\includegraphics{output/figures/unnamed-chunk-5-1.pdf}
+\caption{\label{fig:unnamed-chunk-5}Life history strategies for 1,236 plant
 species from 29 plant-pollinator networks studies across the first two
 axes of variation from a phylogenetically informed principal component
 analysis (pPCA). The solid arrows indicate the direction and weights of
@@ -829,8 +854,8 @@ flowers had higher pollinator dependence (Figure S3 K and L).
 
 \begin{figure}
 \centering
-\includegraphics{output/figures/unnamed-chunk-5-1.pdf}
-\caption{\label{fig:unnamed-chunk-5}Location of the qualitative traits in
+\includegraphics{output/figures/unnamed-chunk-6-1.pdf}
+\caption{\label{fig:unnamed-chunk-6}Location of the qualitative traits in
 the trait space for traits that showed a statistical association with
 the main axis of trait variation. These different traits included:
 compatibility system (a), life form (b), lifespan (c), breeding system
@@ -868,7 +893,7 @@ Although Apis mellifera contributed substantially to floral visitation,
 the general pattern of bee visitation did not change when A. mellifera
 were removed (FSX).
 
-\includegraphics{output/figures/unnamed-chunk-6-1.pdf}
+\includegraphics{output/figures/unnamed-chunk-7-1.pdf}
 
 \subsection{Plant species metrics}\label{plant-species-metrics}
 
