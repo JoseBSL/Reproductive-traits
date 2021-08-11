@@ -119,7 +119,14 @@ library(patchwork)
 combined <- p1 + p2 + p3 + pp1 + pp2 + pp3 & theme(legend.position = "right")
 combined + plot_layout(guides = "collect",ncol = 3)
 
+setwd("~/R_Projects/Reproductive Traits")
 
+saveRDS(p1,"Main_Figures/figure_2_1.rds")
+saveRDS(p2,"Main_Figures/figure_2_2.rds")
+saveRDS(p3,"Main_Figures/figure_2_3.rds")
+saveRDS(pp1,"Main_Figures/figure_2_4.rds")
+saveRDS(pp2,"Main_Figures/figure_2_5.rds")
+saveRDS(pp3,"Main_Figures/figure_2_6.rds")
 
 
 ```
