@@ -107,6 +107,7 @@
 \usepackage{titlesec}
 \titlespacing{\title}{0pt}{\parskip}{-\parskip}
 \usepackage[style=nature]{biblatex}
+\usepackage[labelformat = empty]{caption}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -466,10 +467,10 @@ the lowest specialization values.
 \begin{figure}
 \centering
 \includegraphics{output/figures/unnamed-chunk-4-1.pdf}
-\caption{\label{fig:unnamed-chunk-4}\textbf{Fig. 4 \textbar{} Trait
-relevance on the plant species' functional roles.} Regression tree
-analysis of interaction frequency (log-transformed), normalized degree
-and specialization for the subset of species with quantitative data for
+\caption{\label{fig:unnamed-chunk-4}\textbf{Fig. 4 \textbar{} contribution
+of traits in plant's network roles.} Regression tree analysis of
+interaction frequency (log-transformed), normalized degree and
+specialization for the subset of species with quantitative data for
 pollen and nectar traits. The superior value inside the node indicates
 the mean value of the different species-level metric and the lower
 value, the percentage of species that are considered in each node. Thus,
@@ -511,8 +512,9 @@ breeding systems (e.g., monoecious and dioecious species). In contrast,
 species that employed the `fast' strategy (i.e., short herbs), had fewer
 flowers, more ovules, greater occurrence of self compatibility and lower
 pollinator dependence. Further, on the first two axes of trait
-variation, we found additional support for the previously described
-positive association between outcrossing rate and floral
+variation, we found additional support for the positive association
+already described in a previous study between outcrossing rate and
+floral
 display\textsuperscript{\protect\hyperlink{ref-goodwillie2010}{24}}.
 This trend was further confirmed when looking at the specific
 correlation between floral display and autonomous selfing for our
@@ -524,7 +526,7 @@ floral visitors guilds across these axes that indicate the influence of
 life-history strategies on floral visitation rate. For example, all
 guilds showed an increasing trend of visitation on plant species with
 higher pollinator dependence, which were also associated with larger
-floral displays and greater pollen quantity (Fig. 1 and Supplementary
+floral displays and greater pollen quantities (Fig. 1 and Supplementary
 Fig. S6). This trend is consistent with previous plant-pollinator
 studies that show higher visitation rates on species that make greater
 reproductive
@@ -556,14 +558,14 @@ Although the percentage of explained variation found with the first two
 axes (\textasciitilde{}50\%) is lower than other studies that have
 evaluated life histories with vegetative
 traits\textsuperscript{\protect\hyperlink{ref-diaz2016}{18},\protect\hyperlink{ref-carmona2021}{19}},
-this percentage is consistent with
-\protect\hyperlink{ref-salguero2016}{8} which characterized life
-strategies with both vegetative and reproductive traits (i.e.,
-semelparity and iteroparity). Future work needs to integrate these
-floral and reproductive compromises with the already described
-vegetative and physiological trade-offs
-\protect\hyperlink{ref-diaz2016}{18} to create a more comprehensive
-spectra of trait
+this percentage is consistent with the largest and most recent study
+that have characterized life strategies with both vegetative and
+reproductive (i.e., semelparity and iteroparity)
+traits\textsuperscript{\protect\hyperlink{ref-salguero2016}{8}}. Future
+work needs to integrate these floral and reproductive compromises with
+the already described vegetative and physiological
+trade-offs\textsuperscript{\protect\hyperlink{ref-diaz2016}{18}} to
+create a more comprehensive spectra of trait
 variation\textsuperscript{\protect\hyperlink{ref-roddy2021}{10}}.
 Further, the varying level of phylogenetic signal among traits deserves
 further attention to understand evolutionary changes on mating and
@@ -588,9 +590,9 @@ interactions (weighted and non-weighted), which we used to build a
 database of plant species that are likely to be animal pollinated. Many
 of these networks are freely available either as published
 studies\textsuperscript{\protect\hyperlink{ref-carvalheiro2014}{3},\protect\hyperlink{ref-fortuna2010}{45}}
-or available in online archives (e.g., ``The Web of
-Life''\textsuperscript{\protect\hyperlink{ref-fortuna2010}{45}} and
-``Mangal''\textsuperscript{\protect\hyperlink{ref-poisot2016}{46}}. In
+or available in online archives (e.g., `The Web of
+Life'\textsuperscript{\protect\hyperlink{ref-fortuna2010}{45}} and
+`Mangal'\textsuperscript{\protect\hyperlink{ref-poisot2016}{46}}. In
 total, our network dataset (see Supplementary Table S1) constituted 60
 weighted (interaction frequency) and 4 unweighted (presence/absence of
 the interaction) networks, each sampled at a unique location and year,
@@ -623,46 +625,47 @@ between different plant species using the function \emph{get\_tree} from
 the package \emph{rtrees} (\url{https://github.com/daijiang/rtrees}),
 which downloads phylogenetic distances from the extended R
 implementation of the Open Tree of
-Life\textsuperscript{\protect\hyperlink{ref-smith2018}{48}} developed by
-\protect\hyperlink{ref-jin2019}{49}.
+Life\textsuperscript{\protect\hyperlink{ref-smith2018}{48},\protect\hyperlink{ref-jin2019}{49}}.
 
 \singlespacing
 
-\begingroup\fontsize{10}{12}\selectfont
+\begin{table}
 
-\begin{tabu} to \linewidth {>{}c>{\raggedright}X>{\centering}X>{}c>{\raggedright}X>{\raggedright}X>{\centering}X}
+\caption{\label{tab:unnamed-chunk-5}\textbf{Table 1 | Quantitative and categorical traits used in this study.}}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabu} to \linewidth {>{}c>{\raggedright}X>{}c>{\centering}X>{\raggedright}X}
 \toprule
-\multicolumn{3}{c}{\textbf{Quantitative traits}} & \multicolumn{4}{c}{\textbf{Categorical traits}} \\
-\cmidrule(l{3pt}r{3pt}){1-3} \cmidrule(l{3pt}r{3pt}){4-7}
-\textbf{Type} & \textbf{Traits} & \textbf{Records} & \textbf{Type} & \textbf{Traits} & \textbf{Categories} & \textbf{Records}\\
+\multicolumn{2}{c}{\textbf{Quantitative traits}} & \multicolumn{3}{c}{\textbf{Categorical traits}} \\
+\cmidrule(l{3pt}r{3pt}){1-2} \cmidrule(l{3pt}r{3pt}){3-5}
+\textbf{Type} & \textbf{Traits} & \textbf{Type} & \textbf{Traits} & \textbf{Categories}\\
 \midrule
-\textbf{Vegetative} & Plant height (m) & 1470 & \textbf{Vegetative} & Lifepan & \makecell[l]{Short-lived \\ Perennial} & 1466\\
+\textbf{Vegetative} & Plant height (m) & \textbf{Vegetative} & Lifepan & \makecell[l]{Short-lived \\ Perennial}\\
 \addlinespace
-\textbf{Floral} & Flower width (mm) & 1472 & \textbf{Vegetative} & Life form & \makecell[l]{Herb \\ Shrub \\ Tree} & 1472\\
+\textbf{Floral} & Flower width (mm) & \textbf{Vegetative} & Life form & \makecell[l]{Herb \\ Shrub \\ Tree}\\
 \addlinespace
-\textbf{Floral} & Flower length (mm) & 1401 & \textbf{Floral} & Flower shape & \makecell[l]{Brush \\ Campanulate \\ Capitulum \\ Open \\ Papilionaceous \\ Tube} & 1458\\
+\textbf{Floral} & Flower length (mm) & \textbf{Floral} & Flower shape & \makecell[l]{Brush \\ Campanulate \\ Capitulum \\ Open \\ Papilionaceous \\ Tube}\\
 \addlinespace
-\textbf{Floral} & Inflorescence width (mm) & 1496 & \textbf{Floral} & Flower symmetry & \makecell[l]{Actinomorphic \\ Zygomorphic} & 1478\\
+\textbf{Floral} & Inflorescence width (mm) & \textbf{Floral} & Flower symmetry & \makecell[l]{Actinomorphic \\ Zygomorphic}\\
 \addlinespace
-\textbf{Floral} & Style length (mm) & 1497 & \textbf{Floral} & Nectar & \makecell[l]{Presence \\ Absence} & 1408\\
+\textbf{Floral} & Style length (mm) & \textbf{Floral} & Nectar & \makecell[l]{Presence \\ Absence}\\
 \addlinespace
-\textbf{Floral} & Ovules per flower & 1457 & \textbf{Reproductive} & Autonomous selfing & \makecell[l]{None \\ Low \\ Medium \\ High} & 987\\
+\textbf{Floral} & Ovules per flower & \textbf{Reproductive} & Autonomous selfing & \makecell[l]{None \\ Low \\ Medium \\ High}\\
 \addlinespace
-\textbf{Floral} & Flowers per plant & 1468 & \textbf{Reproductive} & Compatibility system & \makecell[l]{Self-incomp. \\ Part. self-comp. \\ Self-comp.} & 1253\\
+\textbf{Floral} & Flowers per plant & \textbf{Reproductive} & Compatibility system & \makecell[l]{Self-incomp. \\ Part. self-comp. \\ Self-comp.}\\
 \addlinespace
-\textbf{Floral} & Nectar ($\mu$l) & 531 & \textbf{Reproductive} & Breeding system & \makecell[l]{Hermaphrodite \\ Monoecious \\ Dioecious} & 1489\\
+\textbf{Floral} & Nectar ($\mu$l) & \textbf{Reproductive} & Breeding system & \makecell[l]{Hermaphrodite \\ Monoecious \\ Dioecious}\\
 \addlinespace
-\textbf{Floral} & Nectar (mg) & 455 & \textbf{} &  &  & \\
+\textbf{Floral} & Nectar (mg) & \textbf{} &  & \\
 \addlinespace
-\textbf{Floral} & Nectar concentration ($\%$) & 558 & \textbf{} &  &  & \\
+\textbf{Floral} & Nectar concentration ($\%$) & \textbf{} &  & \\
 \addlinespace
-\textbf{Floral} & Pollen grains per flower & 533 & \textbf{} &  &  & \\
+\textbf{Floral} & Pollen grains per flower & \textbf{} &  & \\
 \addlinespace
-\textbf{Reproductive} & Autonomous selfing (fruit set) & 992 & \textbf{} &  &  & \\
+\textbf{Reproductive} & Autonomous selfing (fruit set) & \textbf{} &  & \\
 \bottomrule
 \end{tabu}
-
-\endgroup{}
+\end{table}
 
 \doublespacing
 
@@ -678,8 +681,8 @@ shown to improve the performance of
 To extract the eigenvectors, we used the function \emph{PVRdecomp} from
 the package
 \emph{PVR}\textsuperscript{\protect\hyperlink{ref-santos2018}{52}} based
-on the conceptual framework
-of\textsuperscript{\protect\hyperlink{ref-diniz-filho2012}{53}}.
+on a previous conceptual framework that considers phylogenetic
+eigenvectors\textsuperscript{\protect\hyperlink{ref-diniz-filho2012}{53}}.
 Although the variable of autonomous selfing had a high percentage of
 missing values (68\%), we were able to solve this by back transforming
 the qualitative column of autonomous selfing to numerical. The
@@ -702,26 +705,26 @@ quantitative plant functional traits with a phylogenetically informed
 Principal Component Analysis (pPCA). We did not include the quantitative
 variables of flower length and inflorescence width because they were
 highly and moderately correlated to flower width respectively (Pearson's
-correlation = 0.72, p \textless{} 0.01 and Pearson's correlation = 0.36,
-p \textless{} 0.01 respectively), and thus we avoided overemphasizing
-flower size on the spectrum of trait variation. Although qualitative
-traits were not included in the dimensionality reduction analysis, we
-also investigated the association of the different qualitative traits
-with the main axes of trait variation. Prior to the analyses, we
-excluded outliers and standardized the data. Due to the high sensitivity
-of dimensionality reduction to outliers, we excluded values within the
-2.5th--97.5th percentile
+correlation = 0.72, \emph{P} \textless{} 0.01 and Pearson's correlation
+= 0.36, \emph{P} \textless{} 0.01 respectively), and thus we avoided
+overemphasizing flower size on the spectrum of trait variation. Although
+qualitative traits were not included in the dimensionality reduction
+analysis, we also investigated the association of the different
+qualitative traits with the main axes of trait variation. Prior to the
+analyses, we excluded outliers and standardized the data. Due to the
+high sensitivity of dimensionality reduction to outliers, we excluded
+values within the 2.5th--97.5th percentile
 range\textsuperscript{\protect\hyperlink{ref-legendre2012}{54}}, and
 thus our final dataset had 1,236 species. Then, we log transformed the
 variables to reduce the influence of outliers and z-transformed (X= 0,
 SD=1) so that all variables were within the same numerical range. We
 performed the pPCA using the function \emph{phyl.pca} from the package
-\emph{phytools} {[}version \emph{0.7-70}; revell2012{]} with the method
-lambda (\(\lambda\)) that calculates the phylogenetic correlation
-between 0 (phylogenetic independence) and 1 (shared evolutionary
-history) and we implemented the mode covariance because values for each
-variables were on the same scale following
-transformation\textsuperscript{\protect\hyperlink{ref-abdi2010}{55}}.
+\emph{phytools}\textsuperscript{\protect\hyperlink{ref-revell2012}{55}}
+with the method lambda (\(\lambda\)) that calculates the phylogenetic
+correlation between 0 (phylogenetic independence) and 1 (shared
+evolutionary history) and we implemented the mode covariance because
+values for each variables were on the same scale following
+transformation\textsuperscript{\protect\hyperlink{ref-abdi2010}{56}}.
 Moreover, to corroborate that our imputation of missing values did not
 affect our results, we conducted a pPCA on the full dataset without
 missing values (see Supplementary Fig. S2). We found little difference
@@ -738,25 +741,27 @@ plus pollen grains and microlitres of nectar per flower.
 \textbf{Phylogenetic signal of traits.} We calculated the phylogenetic
 signal of the different quantitative traits on the imputed dataset with
 the full set of species (N = 1,506) with the package \emph{phytools}
-version \emph{0.7-70} (Revell, 2012a) and we used Pagel's \(\lambda\) as
-a measurement of the phylogenetic signal. However, for pollen and nectar
-traits, phylogenetic signal was calculated only on the subset of species
-that had quantitative information for these traits (N = 755).
+version
+\emph{0.7-70}\textsuperscript{\protect\hyperlink{ref-revell2012}{55}}
+and we used Pagel's \(\lambda\) as a measurement of the phylogenetic
+signal. However, for pollen and nectar traits, phylogenetic signal was
+calculated only on the subset of species that had quantitative
+information for these traits (N = 755).
 
 \textbf{Networks analyses.} Analyses were conducted on the subset of 60
 weighted networks with interaction frequency sampled in a unique
 flowering season and site, which included 556 plant and 1,126 pollinator
 species. In total, our weighted network dataset (excluding meta-webs)
-included 2,256 interactions of bees (i.e.~Anthophila-Hymenoptera) with
+included 2,256 interactions of Anthophila-Hymenoptera (i.e., bees) with
 plants, 1,768 non-Syrphidae-Diptera interactions, 845 Syrphidae
 interactions, 437 Lepidoptera interactions, 432 Coleoptera interactions
 and 362 non-Anthophila-Hymenoptera interactions. Although floral
 visitors are not always pollinators and the frequency of visits does not
 consider each pollinator species
-efficiency\textsuperscript{\protect\hyperlink{ref-ballantyne2015}{56}},
+efficiency\textsuperscript{\protect\hyperlink{ref-ballantyne2015}{57}},
 visitation rate provides valuable information of the contribution of
 floral visitors to
-pollination\textsuperscript{\protect\hyperlink{ref-vazquez2005}{57},\protect\hyperlink{ref-vazquez2012}{58}}.
+pollination\textsuperscript{\protect\hyperlink{ref-vazquez2005}{58},\protect\hyperlink{ref-vazquez2012}{59}}.
 Sampling methods varied across networks but this was accounted for in
 analyses by considering them in the random effects of the modelling
 process. All analyses were conducted in R version \emph{4.0.3}.
@@ -774,20 +779,21 @@ represented group with 2,256 records and had the highest frequency of
 visits of all groups, we also explored the visitation rate of the main
 Hymenoptera-Anthophila families (Andrenidae, Apidae, Colletidae,
 Halictidae and Megachilidae) on the trait space. In addition, we found
-that Apis mellifera was the floral visitor with the largest proportion
-of records counted (7.55\% of the total). This is consistent with
-\protect\hyperlink{ref-hung2018}{59} who showed that A. mellifera was
+that \emph{Apis mellifera} was the floral visitor with the largest
+proportion of records counted (7.55\% of the total). This finding is
+consistent with previous research showing that \emph{A. mellifera} was
 the most frequent floral visitor in a similar dataset of 80
-plant-pollinator networks in natural ecosystems. Hence, to control for
-the effect of Apis mellifera on the observed visitation patterns of
-bees, we conducted an analogous analysis excluding A. mellifera. We
-found that A. mellifera, was partly driving some of the observed trends
-on PC1 (Supplementary Fig. S3). However, we did not detect major
-differences on PC2 and PC3.
+plant-pollinator networks in natural
+ecosystems\textsuperscript{\protect\hyperlink{ref-hung2018}{60}}. Hence,
+to control for the effect of \emph{A. mellifera} on the observed
+visitation patterns of bees, we conducted an analogous analysis
+excluding \emph{A. mellifera}. We found that \emph{A. mellifera}, was
+partly driving some of the observed trends on PC1 (Supplementary Fig.
+S3). However, we did not detect major differences on PC2 and PC3.
 
 We implemented Bayesian generalized linear mixed models using the R
 package
-\emph{brms}\textsuperscript{\protect\hyperlink{ref-burkner2017}{60}}. We
+\emph{brms}\textsuperscript{\protect\hyperlink{ref-burkner2017}{61}}. We
 modelled the frequency of visits as a function of the main axes of plant
 trait variation and their interactions with floral visitor functional
 groups (Visits \textasciitilde{} PC1 x FGs + PC2 x FGs + PC3 x FGs).
@@ -806,38 +812,37 @@ for 3,000 iterations and with previous 1,000 warm up iterations. We set
 delta (\(\Delta\)) to 0.99 to avoid divergent transitions and visualized
 the posterior predictive checks with the function \emph{pp\_check} using
 the \emph{bayesplot}
-package\textsuperscript{\protect\hyperlink{ref-gabry2019}{61}}.
+package\textsuperscript{\protect\hyperlink{ref-gabry2019}{62}}.
 
 \textbf{Plant species functional roles.} We investigated whether
 different quantitative traits determined plant species functional roles
 using Bayesian modelling and regression trees. For this, we selected
 simple and complementary species-level network metrics commonly applied
 in bipartite network
-studies\textsuperscript{\protect\hyperlink{ref-dormann2008}{62}} with a
+studies\textsuperscript{\protect\hyperlink{ref-dormann2008}{63}} with a
 straightforward ecological interpretation relevant to our research
 goals. The different plant species-level metrics were: (i) sum of visits
 per plant species; (ii) normalized degree, calculated as the number of
 links per plant species divided by the total possible number of
 partners; and (iii)
-specialization\textsuperscript{\protect\hyperlink{ref-bluthgen2006}{63}},
+specialization\textsuperscript{\protect\hyperlink{ref-bluthgen2006}{64}},
 which measures the deviation of an expected random choice of the
 available interaction partners and ranges between 0 (maximum
 generalization) and 1 (maximum specialization). Normalized degree and
-specialization were calculated with the specieslevel function from the R
-package
-\emph{bipartite}\textsuperscript{\protect\hyperlink{ref-dormann2008}{62}}.
+specialization were calculated with the \emph{specieslevel} function
+from the R package
+\emph{bipartite}\textsuperscript{\protect\hyperlink{ref-dormann2008}{63}}.
 
 First, we modelled the distinct plant species metrics (sum of visits,
 normalized degree and plant specialization) as a function of the three
-main axes of trait variation (plant species level
-metric\textasciitilde{}PC1+PC2+PC3). For each response variable (i.e.,
+main axes of trait variation (plant species level metric
+\textasciitilde{} PC1 + PC2 + PC3). For each response variable (i.e.,
 each plant species level metric), we used different distribution
 families (zero inflated negative binomial for the sum of visits, weibull
 for normalized degree and zero one inflated beta for specialization).
-Finally, we used the same random factors (networks nested within study
-system and phylogeny) and model settings and conducted the same
-posterior predictive checks for each model as detailed above in the
-`visitation patterns section'.
+Finally, we used the same random factors, model settings and conducted
+the same posterior predictive checks for each model as detailed above in
+the `visitation patterns section'.
 
 Second, to better understand these complex trait relationships, we used
 regression trees. Regression trees are recursive algorithms which can
@@ -846,20 +851,21 @@ of the relevance of specific trait combinations on species functional
 roles. We focused exclusively on quantitative traits because almost all
 categorical traits were statistically associated with the first two axes
 of trait variation (Supplementary Table S2). We conducted this analysis
-using the \emph{rpart} package version \emph{4.1-15} (Therneau et al.,
-2015) with method \emph{`anova'} with a minimum of 50 observations per
-terminal node and we used \emph{rpart.plot} version
-\emph{3.0.9}\textsuperscript{\protect\hyperlink{ref-milborrow2015}{64}}
-to plot the regression trees. We considered the species level indices as
-response variables (interaction frequency, normalized degree and
-specialization) and we performed one regression tree per metric using
-the different quantitative traits as predictors. We calculated two
-regression trees per plant species-level metric, one for the full set of
-species and another for the subset of species for which we had pollen
-and nectar traits. We focused on regression trees that included floral
-rewards because they consistently showed pollen and nectar traits as
-being the best for explaining the different species-level metrics (see
-Supplementary Fig. S4).
+using the \emph{rpart}
+package\textsuperscript{\protect\hyperlink{ref-therneau2015}{65}}
+version \emph{4.1-15} with method \emph{`anova'} with a minimum of 50
+observations per terminal node and we used
+\emph{rpart.plot}\textsuperscript{\protect\hyperlink{ref-milborrow2015}{66}}
+version \emph{3.0.9} to plot the regression trees. We considered the
+species level indices as response variables (interaction frequency,
+normalized degree and specialization) and we performed one regression
+tree per metric using the different quantitative traits as predictors.
+We calculated two regression trees per plant species-level metric, one
+for the full set of species and another for the subset of species for
+which we had pollen and nectar traits. We focused on regression trees
+that included floral rewards because they consistently showed pollen and
+nectar traits as being the best for explaining the different
+species-level metrics (see Supplementary Fig. S4).
 
 \section{References}\label{references}
 
@@ -1138,53 +1144,63 @@ eigenvectors for ecological analyses. \emph{Ecography} \textbf{35},
 54. Legendre, P. \& Legendre, L. \emph{Numerical ecology}. (Elsevier,
 2012).
 
+\hypertarget{ref-revell2012}{}
+55. Revell, L. J. Phytools: An R package for phylogenetic comparative
+biology (and other things). \emph{Methods in Ecology and Evolution}
+\textbf{3}, 217--223 (2012).
+
 \hypertarget{ref-abdi2010}{}
-55. Abdi, H. \& Williams, L. J. Principal component analysis.
+56. Abdi, H. \& Williams, L. J. Principal component analysis.
 \emph{WIREs Computational Statistics} \textbf{2}, 433--459 (2010).
 
 \hypertarget{ref-ballantyne2015}{}
-56. Ballantyne, G., Baldock, K. C. R. \& Willmer, P. G. Constructing
+57. Ballantyne, G., Baldock, K. C. R. \& Willmer, P. G. Constructing
 more informative plantPollinator networks: Visitation and pollen
 deposition networks in a heathland plant community. \emph{Proceedings of
 the Royal Society B: Biological Sciences} \textbf{282}, 20151130 (2015).
 
 \hypertarget{ref-vazquez2005}{}
-57. Vázquez, D. P., Morris, W. F. \& Jordano, P. Interaction frequency
+58. Vázquez, D. P., Morris, W. F. \& Jordano, P. Interaction frequency
 as a surrogate for the total effect of animal mutualists on plants.
 \emph{Ecology Letters} \textbf{8}, 1088--1094 (2005).
 
 \hypertarget{ref-vazquez2012}{}
-58. Vázquez, D. P. \emph{et al.} The strength of plantPollinator
+59. Vázquez, D. P. \emph{et al.} The strength of plantPollinator
 interactions. \emph{Ecology} \textbf{93}, 719--725 (2012).
 
 \hypertarget{ref-hung2018}{}
-59. Hung, K.-L. J., Kingston, J. M., Albrecht, M., Holway, D. A. \&
+60. Hung, K.-L. J., Kingston, J. M., Albrecht, M., Holway, D. A. \&
 Kohn, J. R. The worldwide importance of honey bees as pollinators in
 natural habitats. \emph{Proceedings of the Royal Society B: Biological
 Sciences} \textbf{285}, 20172140 (2018).
 
 \hypertarget{ref-burkner2017}{}
-60. Bürkner, P.-C. Brms: An R package for Bayesian multilevel models
+61. Bürkner, P.-C. Brms: An R package for Bayesian multilevel models
 using Stan. \emph{Journal of statistical software} \textbf{80}, 1--28
 (2017).
 
 \hypertarget{ref-gabry2019}{}
-61. Gabry, J., Simpson, D., Vehtari, A., Betancourt, M. \& Gelman, A.
+62. Gabry, J., Simpson, D., Vehtari, A., Betancourt, M. \& Gelman, A.
 Visualization in Bayesian workflow. \emph{Journal of the Royal
 Statistical Society: Series A (Statistics in Society)} \textbf{182},
 389--402 (2019).
 
 \hypertarget{ref-dormann2008}{}
-62. Dormann, C. F., Gruber, B. \& Fründ, J. Introducing the bipartite
+63. Dormann, C. F., Gruber, B. \& Fründ, J. Introducing the bipartite
 package: Analysing ecological networks. \emph{interaction} \textbf{1},
 (2008).
 
 \hypertarget{ref-bluthgen2006}{}
-63. Blüthgen, N., Menzel, F. \& Blüthgen, N. Measuring specialization in
+64. Blüthgen, N., Menzel, F. \& Blüthgen, N. Measuring specialization in
 species interaction networks. \emph{BMC Ecology} \textbf{6}, 9 (2006).
 
+\hypertarget{ref-therneau2015}{}
+65. Therneau, T., Atkinson, B., Ripley, B. \& Ripley, M. B. Package
+`rpart'. \emph{Available online: cran. ma. ic. ac.
+uk/web/packages/rpart/rpart. pdf (accessed on 20 April 2016)} (2015).
+
 \hypertarget{ref-milborrow2015}{}
-64. Milborrow, S. Rpart. plot: Plot rpart Models. An Enhanced Version of
+66. Milborrow, S. Rpart. plot: Plot rpart Models. An Enhanced Version of
 plot. rpart. \emph{R package version} \textbf{1}, (2015).
 
 \eleft
