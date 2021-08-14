@@ -20,7 +20,7 @@ header-includes:
 - \usepackage{xcolor}
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=12, fig.width=14}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=5, fig.width=8}
 setwd("~/R_Projects/Reproductive Traits")
 
 
@@ -206,20 +206,17 @@ Number_of_records_categorical <- c(n_of_records$num.isna[n_of_records$key=="life
                                    n_of_records$num.isna[n_of_records$key=="Compatibility_system"], n_of_records$num.isna[n_of_records$key=="Breeding_system"],
                                    rep("",4))
 
-dat <- data.frame(Type, Trait,Number_of_records_quantitative,Type_1, Trait1, T.cat,Number_of_records_categorical)
+dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
 
 
-colnames(dat) <- c("Type","Traits", "Records","Type", "Traits", "Categories", "Records")
+colnames(dat) <- c("Type","Traits","Type", "Traits", "Categories")
 
 
 
 
 
 kbl(dat, booktabs = T, linesep = "\\addlinespace", escape = FALSE, align = c("c","l","c","c","l","l","c")) %>%
-kable_styling(full_width = T) %>%
-add_header_above(c("Quantitative traits" = 3,"Categorical traits" = 4),bold=T)  %>%
-    column_spec(c(1,4), bold = T) %>% row_spec(0, bold=T)
-
+kable_styling(full_width = F) 
 
 
 ```
