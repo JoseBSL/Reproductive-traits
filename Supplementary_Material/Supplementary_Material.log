@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  16 AUG 2021 14:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.11.26)  16 AUG 2021 18:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1007,11 +1007,11 @@ Package rerunfilecheck Info: File `Supplementary_Material.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 594.
  ) 
 Here is how much of TeX's memory you used:
- 15275 strings out of 492649
- 228430 string characters out of 6129621
+ 15273 strings out of 492649
+ 228408 string characters out of 6129621
  355942 words of memory out of 5000000
  18808 multiletter control sequences out of 15000+600000
- 61319 words of font info for 93 fonts, out of 8000000 for 9000
+ 61228 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,10n,46p,570b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
@@ -1025,7 +1025,7 @@ mbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi12.pfb>
 18/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dis
 t/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/ty
 pe1/public/lm/lmsy10.pfb>
-Output written on Supplementary_Material.pdf (20 pages, 1155402 bytes).
+Output written on Supplementary_Material.pdf (20 pages, 1155400 bytes).
 PDF statistics:
  308 PDF objects out of 1000 (max. 8388607)
  246 compressed objects within 3 object streams

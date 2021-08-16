@@ -106,8 +106,8 @@ _Reproductive traits_
 
 _Floral traits_
  
--	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, tube, campanulate, funnelform, papilionaceous, spike and capitulum. 
- 
+-	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. Finally, because some of the flower shapes were rare in our dataset, we grouped them within the closest flower morphologies (e.g., bowl shape was included within in the open shape). Thus, we ended with 6 distinct morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (see scheme of the different flower morphologies below).
+
 -	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
  
 -	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. 
