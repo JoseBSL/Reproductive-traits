@@ -48,7 +48,7 @@ Jose B. Lanuza$^{1,2}*$, Romina Rader$^{1}$, Jamie Stavert$^{3}$, Liam K. Kendal
 
 __Supplementary text__
 
-Description of the traits compiled in this study
+Description of the traits compiled in this study with an illustrative figure of the main flower morphologies (Supplementary text Fig 1)
 
 \doublespacing
 \singlespacing
@@ -105,17 +105,22 @@ _Reproductive traits_
 -	Compatibility system: The different species were divided in three main categories in order to know their ability to self-pollinate. These categories were self-compatible, partially self-compatible and self-incompatible species. The field of selfing level is partly complementary to the compatibility system but is important to note that not all the self-compatible species or partially self-compatible species will self-pollinate.
 
 _Floral traits_
- 
--	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. Finally, because some of the flower shapes were rare in our dataset, we grouped them within the closest flower morphologies (e.g., bowl shape was included within in the open shape). Thus, we ended with 6 distinct morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (see scheme of the different flower morphologies below).
 
 -	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
  
 -	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. 
 
 -	Flower number per plant: We compiled information about the number of flowers per plant for all species. However, this field was rare to find and we also used online images of the different species in order to calculate rough numbers of flowers per plant. We referenced all the filled fields in order to be able to follow the images that were used for these counts. It is important to note, that these numbers are not pretended to be the exact number of flowers per species but an approximate indicator of the reproductive investment for the different species that allow the macroecological analysis of this field.
- 
+
 -	Ovule number: We searched for the number of ovules per flower for all the different species. The number of ovules of Asteraceae species are considered as the total number of ovules per capitulum. Many species were filled by genus or family level because the number of ovules in this taxonomic groups is considered to be mostly constant (e.g., Lamiaceae Boraginaceae or Apiaceae).
  
+-	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up groupping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary text Fig. 1).
+
+```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary text Fig. 1 | Main floral morphologies considered in this study.} All species were groupped within these categories for analysis: tube (a), papilonaceous (b), open (c), capitulum (d), campanulate (e) and brush (f)."}
+knitr::include_graphics("../Images/flower_shapes.png")
+```
+
+
 -	Style length: The length of the style (mm) of the different species was also included. When possible, we calculated style length from images and illustrations on the online floras. 
 
 - Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. In general terms, nectar data was rarely present and we try to minimise the loss of information by filling some species at family level. For instance, Solanaceae species are described as nectarless, and species that belonged to this family were recorded with ‘absence’ of nectar.
