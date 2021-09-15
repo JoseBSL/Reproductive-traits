@@ -152,7 +152,10 @@ pp_check(analysis_1, type='violin_grouped',group="guild")+ylim(-4,4)
 setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
 saveRDS(analysis_1, "results_analysis_1_presence_absence.rds")
 saveRDS(dat_analysis, "dat_analysis_results_analysis_presence_absence.rds")
-##############
+################################################################################################################
+#Plot nicely PC1
+analysis_1 <- readRDS("results_analysis_1_presence_absence.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_presence_absence.rds")
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
 
