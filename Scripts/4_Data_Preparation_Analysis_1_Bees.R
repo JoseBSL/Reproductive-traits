@@ -6,6 +6,7 @@ library(data.table)
 ########################################################################################################################################################
 #LOAD DATA
 ########################################################################################################################################################
+setwd("~/R_Projects/Reproductive Traits")
 long_d <- read.csv("Data/Csv/long_format_quantitative_networks_bees.csv", row.names = 1) #quantitative network data|weighted by frequency of visits per plant species
 phyl_pca <- readRDS("Data/RData/phyl_pca_forest.rds") #add PCA loadings for analysis
 dat_cleaning <- readRDS("Data/RData/data_all_species_PPCA.rds") #data for PPCA
@@ -19,7 +20,7 @@ long_d_1 <- long_d[long_d$Interaction>0,]
 long_d_2 <- long_d_1[!is.na(long_d_1$bee_family),] #I do it by guild because just these 6 guilds are named in this column
 
 #check levels
-levels(factor(long_d_2$bee_family)) #9 DIFFERENT GUILDS|After I'll select the main fucntional poll. groups for analysis
+levels(factor(long_d_2$bee_family)) #6 DIFFERENT GUILDS|After I'll select the main fucntional poll. groups for analysis
 
 #convert to dataframe the ppca data
 phyl_pca_1 <- data.frame(phyl_pca$S)
@@ -45,7 +46,32 @@ data_analysis <- merge(long_d_2, phyl_pca_1, by = "Plant_species")
 saveRDS(data_analysis, "Data/RData/data_analysis_1_bees.rds") 
 ########################################################################################################################################################
 ########################################################################################################################################################
+#Repeat process for presence/absence data
+########################################################################################################################################################
+#Select data with interaction greater than 0
+long_d_1 <- long_d
+#Remove other orders/guilds that are not these ones
+long_d_2 <- long_d_1[!is.na(long_d_1$bee_family),] #I do it by guild because just these 6 guilds are named in this column
 
+#check levels
+levels(factor(long_d_2$bee_family)) #6 DIFFERENT GUILDS|After I'll select the main fucntional poll. groups for analysis
 
+#convert to dataframe the ppca data
+phyl_pca_1 <- data.frame(phyl_pca$S)
 
+#convert rownames to column
+dat_cleaning_1 <- setDT(dat_cleaning, keep.rownames = TRUE)[]
+colnames(dat_cleaning_1)[1] <- "Plant_species"
 
+phyl_pca_1$Plant_species <- dat_cleaning_1$Plant_species
+#ADD ALSO THESE OTHER 3 COLUMNS WITH SPP, GENUS AND FAMILY INFO NEEDED TO GET THE PHYLO FOR THE MODEL
+phyl_pca_1$Family_all <- dat_cleaning_1$Family_all
+phyl_pca_1$Genus_all <- dat_cleaning_1$Genus_all
+phyl_pca_1$Species_all <- dat_cleaning_1$Species_all
+
+#merge columns
+data_analysis <- merge(long_d_2, phyl_pca_1, by = "Plant_species")
+########################################################################################################################################################
+#SAVE DATA
+########################################################################################################################################################
+saveRDS(data_analysis, "Data/RData/data_analysis_1_bees_presence_absence.rds") 
