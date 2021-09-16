@@ -137,29 +137,29 @@ analysis_1_bernouilli <- brm(Interaction  ~ PC1*bee_family + PC2*bee_family + PC
                   control = list(adapt_delta = 0.99))
 
 
-performance::r2(analysis_1)
+performance::r2(analysis_1_bernouilli)
 
 
-marginal_effects(analysis_1_bee_families, effects = "PC1:bee_family")
-marginal_effects(analysis_1_bee_families, effects = "PC2:bee_family")
-marginal_effects(analysis_1_bee_families, effects = "PC3:bee_family")
+marginal_effects(analysis_1_bernouilli, effects = "PC1:bee_family")
+marginal_effects(analysis_1_bernouilli, effects = "PC2:bee_family")
+marginal_effects(analysis_1_bernouilli, effects = "PC3:bee_family")
 
 
-pp_check(analysis_1_bee_families) +xlim(-50,200)+ylim(0,0.1)
-pp_check(analysis_1_bee_families, type='violin_grouped',group="Clusters")+ylim(-4,4)
-pp_check(analysis_1_bee_families, type='violin_grouped',group="guild")+ylim(-4,4)
+pp_check(analysis_1_bernouilli) +xlim(-50,200)+ylim(0,0.1)
+pp_check(analysis_1_bernouilli, type='violin_grouped',group="Clusters")+ylim(-4,4)
+pp_check(analysis_1_bernouilli, type='violin_grouped',group="guild")+ylim(-4,4)
 
 #Save data
 #Save output
 setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-saveRDS(analysis_1_bee_families, "results_analysis_1_bee_families.rds")
-saveRDS(dat_analysis, "dat_analysis_results_analysis_1_bee_families.rds")
+saveRDS(analysis_1_bernouilli, "results_analysis_1_bee_families_presence_absence.rds")
+saveRDS(dat_analysis, "dat_analysis_results_analysis_1_bee_families_presence_absence.rds")
 ########################################################################################################################################################
 #PLOT
 ########################################################################################################################################################
 #Plot nicely PC1
-analysis_1 <- readRDS("r_bee_families.rds")
-dat_analysis <- readRDS("dat_bee_families.rds")
+analysis_1 <- readRDS("results_analysis_1_bee_families_presence_absence.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_families_presence_absence.rds")
 
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T) 
