@@ -85,7 +85,7 @@ Supplementary Fig. S6: Phylogenetic informed principal component analysis for th
 
 Supplementary Fig. S7: Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species
 
-Supplementary Fig. S8: Presence/absence of interaction and visitation rate of the main bee families on the main axes of trait variation
+Supplementary Fig. S8: Presence-absence of interaction and visitation rate of the main bee families on the main axes of trait variation
 
 Supplementary Fig. S9:  Plant species level metrics across the three main axes of trait variation
 
@@ -1524,7 +1524,7 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Supplementary Fig. S8 | Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation.} Fitted posterior estimates of the presence/absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Supplementary Fig. S8 | Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation.} Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
 
 
 library(Rcpp)
