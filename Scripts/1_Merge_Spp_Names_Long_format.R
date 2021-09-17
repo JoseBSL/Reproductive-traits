@@ -1037,7 +1037,7 @@ levels(as.factor(all_bee_family$Pollinator_species))
 
 #Aggregate by poll guild
 all_bee <- reshape2::dcast(Plant_species + bee_family +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_bee_family, na.rm= TRUE)
-head(all_bee)
+head(all_bee_family)
 
 #Save for repeating analysis without apis mellifera
 all_bee_family_non_apis <- subset(all_bee_family, genus!="Apis")
@@ -1079,4 +1079,10 @@ dat_1$Pollinator_species[dat_1$Pollinator_species=="Apis cerana"] <- "Apis melli
 #Proportion of A.mellifera visits 7.557312
 nrow(dat_1[dat_1$Pollinator_species=="Apis mellifera",])/nrow(dat_1[dat_1$Pollinator_species,])*100
 
-
+########################################################################################################################################################
+########################################################################################################################################################
+########################################################################################################################################################
+all_non_apis <- subset(all_long_poll_names, genus!="Apis")
+all_non_apis <- reshape2::dcast(Plant_species + guild +Id ~ "Interaction", value.var = "Interaction", fun.aggregate = sum, data = all_non_apis, na.rm= TRUE)
+nrow(all_non_apis)
+nrow(all_poll_non_apis)
