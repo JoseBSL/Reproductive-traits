@@ -1,0 +1,98 @@
+---
+title: ""
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap= ""}
+
+library(reshape2)
+library(viridis) #color GGPLOT
+#library(MASS)
+library(ggplot2)
+library(broman) #crayon colors
+#library(tidyverse)
+library(patchwork) #panel of plots
+library(brms)
+#library(cmdstanr)
+
+#Load theme for publication
+
+theme_ms <- function(base_size=14, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+     theme(text=element_text(color="black"),
+           axis.title=element_text( size = rel(2)),
+           axis.text=element_text(size = rel(1.8), color = "black"),
+           legend.title=element_text(face="bold",size=rel(2)),
+           legend.text=element_text(size=rel(1.4)),
+           legend.background=element_rect(fill="transparent"),
+           legend.key.size = unit(1.8, 'lines'),
+           panel.border=element_rect(color="black",size=2.4),
+           panel.grid.minor.x =element_blank(),
+           panel.grid.minor.y= element_blank(),
+           panel.grid.major= element_blank(),
+           plot.title = element_text(hjust = 0.5,size=rel(2.75),face="bold"),
+           plot.subtitle = element_text(face="bold",size=rel(2))
+     ))
+}
+
+#decimal places for ggplot
+
+scaleFUN <- function(x) sprintf("%.1f", x)
+
+
+#Prepare plot with presence absence and interaction frequency
+setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
+#Plot nicely PC1
+analysis_1 <- readRDS("results_analysis_1_bee_apis_presence_absence.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_apis_presence_absence.rds")
+
+ce_pc1 <- conditional_effects(analysis_1, effects = "PC1",points=T) 
+
+pp1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = dat_analysis,
+aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5,  colour="orange")  + ylab("Interaction")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC1", subtitle = "(a)")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+
+ce_pc2 <- conditional_effects(analysis_1, effects = "PC2",points=T) 
+
+pp2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = dat_analysis,
+aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5, colour="orange")  + ylab("")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC2", subtitle = "(b)") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+
+ce_pc3 <- conditional_effects(analysis_1, effects = "PC3",points=T) 
+
+pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = dat_analysis,
+ aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5,  colour="orange")  + ylab("")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC3", subtitle = "(c)")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+#Plot nicely PC1
+analysis_1 <- readRDS("results_analysis_1_bee_non_apis_presence_absence.rds")
+dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_non_apis_presence_absence.rds")
+
+ce_pc1 <- conditional_effects(analysis_1, effects = "PC1",points=T) 
+
+p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = dat_analysis,
+aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5,  colour="orange")  + ylab("Interaction")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC1", subtitle = "(a)")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+
+ce_pc2 <- conditional_effects(analysis_1, effects = "PC2",points=T) 
+
+p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = dat_analysis,
+aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5,  colour="orange")  + ylab("")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC2", subtitle = "(b)") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+
+ce_pc3 <- conditional_effects(analysis_1, effects = "PC3",points=T) 
+
+p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = dat_analysis,
+ aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5,  colour="orange")  + ylab("")+ xlab("")+
+  theme_ms() + theme(legend.position = "none") + ggtitle("PC3", subtitle = "(c)")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+combined <- pp1 + pp2 + pp3 + p1 + p2 + p3 & theme(legend.position = "bottom")
+ combined + plot_layout(guides = "collect",ncol = 3)
+
+```
