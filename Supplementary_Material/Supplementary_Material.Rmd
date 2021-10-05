@@ -1,5 +1,5 @@
 ---
-title: \singlespacing \vspace{-2.5cm} \LARGE \textbf{Trade-offs among plant floral and reproductive traits determine interactions with floral visitors}
+title: \singlespacing \vspace{-2.5cm} \LARGE \textbf{Trade-offs among plant reproductive traits determine interactions with floral visitors}
 
 output: 
   pdf_document:
@@ -116,7 +116,7 @@ _Floral traits_
  
 -	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up groupping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary text Fig. 1).
 
-```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary text Fig. 1 | Main floral morphologies considered in this study.} All species were groupped within these categories for analysis: tube (a), papilonaceous (b), open (c), capitulum (d), campanulate (e) and brush (f)."}
+```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary text Fig. 1 | Main floral morphologies considered in this study.} All species were groupped within these categories for analysis: (a) tube, (b) papilonaceous, (c) open, (d) capitulum, (e) campanulate and (f) brush."}
 knitr::include_graphics("../Images/flower_shapes.png")
 ```
 
@@ -130,11 +130,6 @@ knitr::include_graphics("../Images/flower_shapes.png")
 _Vegetative traits_
 
 - Life form, life span and plant height: We divided the different plant species in 4 main categories: herbs, vines, shrubs and trees. Moreover, we also divided the species between short-lived species (annual, biennial and short-lived perennials) and perennial species (long-lived). Finally, we also searched for the average height (m) of the different species and annotated the maximum and minimum height when possible. We conducted the average between the maximum and minimum height to get an approximate average height of the species when the average was not indicated.
-
-
-
-
-
 
 
 \begin{landscape}
@@ -242,7 +237,6 @@ library(dplyr)
 library(kableExtra)
 
 setwd("~/R_Projects/Reproductive Traits")
-
 
 PC <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen.rds")
 
