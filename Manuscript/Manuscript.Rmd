@@ -1270,3 +1270,8 @@ Second, to better understand these complex trait relationships, we used regressi
 
 <div id ="refs"></div>
 
+# Acknowledgements
+
+We thank all researchers that made their data available for our analysis. We thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We also thank Jason Tylianakis for his comments on the manuscript before submission. JBL thanks the University of New England for the funding provided to carry out this work.
+
+
