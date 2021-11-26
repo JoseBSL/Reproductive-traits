@@ -129,7 +129,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   #  scale_alpha(guide = 'none')
   
   
-    plot <- plot + geom_point(data=dat, aes(x, y),size=2.5, color="azure4")
+    plot <- plot + geom_point(data=dat, aes(x, y),size=3, color="grey69")
 
   ########
   #ADD ARROWS 
@@ -144,7 +144,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
                       v2 = .7 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=5.5, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=5.5, arrow=arrow(length=unit(0.5,"cm")), alpha=0.5, colour=c("#74c365"))
   
 
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
@@ -191,7 +191,8 @@ all_spp <- function(PC, x="PC1", y="PC2") {
           axis.title.x=element_blank(),
           axis.title.y=element_blank(),legend.position="none",
           panel.background=element_blank(),panel.grid.major=element_blank(),
-          panel.grid.minor=element_blank(),plot.background=element_blank())
+          panel.grid.minor=element_blank(),plot.background=element_blank(), panel.border = element_blank()
+)
   
   
   
