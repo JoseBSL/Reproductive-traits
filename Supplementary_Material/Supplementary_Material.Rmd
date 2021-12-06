@@ -38,7 +38,7 @@ knitr::opts_chunk$set(fig.pos = "h", out.extra = "")
 \singlespacing
 \vspace{-1.6cm}
 
-Jose B. Lanuza$^{1,2}*$, Romina Rader$^{1}$, Jamie Stavert$^{3}$, Liam K. Kendall$^{4}$, Manu E. Saunders$^{1}$ and Ignasi Bartomeus$^{2}$
+Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders and Ignasi Bartomeus
 
 \vspace{-0.6cm}
 

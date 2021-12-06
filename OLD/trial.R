@@ -9,7 +9,7 @@ library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 # READ LONG FORMAT DATA 
-world <- ne_countries(returnclass = "sf")
+world <- ne_countries(scale = "medium", returnclass = "sf")
 
 Long_format_metawebs <- readRDS("OLD/Long_format_metawebs.RData")
 
@@ -81,22 +81,24 @@ ggplot(data = world) +
  linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"))
 
 
-
-
-
-ggplot(world, aes(long, lat)) +
-  geom_map(map=world, aes(map_id=region), fill="antiquewhite", color="grey49") +
-  coord_quickmap()+ylab("Latitude")+ xlab("Longitude")+coord_equal() + 
-  coord_sf( ylim = c(-60, 100), expand = FALSE)+
-  geom_jitter(data=metadata_sub, aes(longitude,latitude), shape = 10, colour = "black", 
-              fill = "white",size = 2, stroke = 1,width = 0.2, height = 3)+
-  theme(panel.grid.major = element_line(color = gray(.5), 
-linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"))
-
-ggplot() + 
-  geom_sf(data = world, show.legend = F) 
-
 ggplot(data = world) + 
-  geom_sf(color = "black", fill = "lightgreen")+
+  geom_sf(color = "grey25", fill = "grey80", size=0.1,lwd = 0)+
+  theme(axis.line = element_line(color='aliceblue'),
+        plot.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())+
+  geom_point(data=metadata_sub, aes(longitude,latitude), shape = 21, colour = "black", 
+              fill = "#74c365",size = 2.35)+
   theme(panel.grid.major = element_line(color = gray(.5), 
-                                                                                      linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"))
+  linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblue"))+
+  xlab("")+ylab("")+
+  coord_sf(expand = FALSE)+
+  theme(axis.text.x=element_blank(), #remove x axis labels
+        axis.ticks.x=element_blank(), #remove x axis ticks
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+  )
+
+
+    
