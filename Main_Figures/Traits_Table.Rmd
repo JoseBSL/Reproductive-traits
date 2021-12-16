@@ -20,7 +20,10 @@ header-includes:
 - \usepackage{xcolor}
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=5, fig.width=8}
+\pagenumbering{gobble}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=1, fig.width=14}
 setwd("~/R_Projects/Reproductive Traits")
 
 
@@ -185,9 +188,9 @@ Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar",
 T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub \n Tree", "Brush \n Campanulate \n Capitulum \n Open \n Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
            "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
 
-Type <- c("Vegetative", "Floral", "Floral", "Floral", "Floral", "Floral", "Floral","Floral","Floral","Floral","Floral","Reproductive")
+Type <- linebreak(c("Vegetative", "Floral", "Floral", "Floral", "Floral", "Floral", "Floral","Floral","Floral","Floral","Floral","Reproductive \n biology"),align = c("c"))
 
-Type_1 <- c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive", "Reproductive", "Reproductive","","","","")
+Type_1 <- linebreak(c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive \n biology", "Reproductive \n biology", "Reproductive \n biology","","","",""),align = c("c"))
 
 
 dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
@@ -206,17 +209,19 @@ Number_of_records_categorical <- c(n_of_records$num.isna[n_of_records$key=="life
                                    n_of_records$num.isna[n_of_records$key=="Compatibility_system"], n_of_records$num.isna[n_of_records$key=="Breeding_system"],
                                    rep("",4))
 
-dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
-
-
-colnames(dat) <- c("Type","Traits","Type", "Traits", "Categories")
+dat <- data.frame( Trait, Trait1, T.cat)
 
 
 
 
+colnames(dat) <- c(" ", "Traits", "Categories")
 
-kbl(dat, booktabs = T, linesep = "\\addlinespace", escape = FALSE, align = c("c","l","c","c","l","l","c")) %>%
-kable_styling(full_width = F) 
+
+kbl(dat, booktabs = T, linesep = "\\addlinespace", escape = FALSE, align = c("l","l","l")) %>%
+  kable_styling(full_width = F,font_size = 10) %>%
+  add_header_above(c("Quantitative traits" = 1,"Qualitative traits" = 2),bold=T)   %>% row_spec(0, bold=T) 
+
 
 
 ```
+

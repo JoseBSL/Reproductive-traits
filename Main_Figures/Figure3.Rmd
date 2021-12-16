@@ -6,7 +6,9 @@ classoption: landscape
 
 ---
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap= "**Fig. 3 | Visitation rates across the three main axes of trait variation.** Fitted posterior estimates of the number of visits made by the different floral visitors guilds in relation to PC1, PC2 and PC3. Bees (a, b and c) and the rest of guilds (d, e and f) were plotted separately for visualization purposes. In addition, we trimmed the plotting area that was over the 95th percentile to improve visualisation. PC1 represents the flower number - flower size trade-off, PC2 represents the pollinator dependence trade-off and PC3, the style length trade-off."}
+\pagenumbering{gobble}
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27}
 
 #LOAD LIBRARIES 
 #library(phytools)
@@ -21,7 +23,6 @@ library(broman) #crayon colours
 #library(tidyverse)
 library(patchwork) #panel of plots
 library(brms)
-library(cmdstanr)
 
 #Load theme for publication
 
@@ -39,7 +40,7 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
            panel.grid.minor.y= element_blank(),
            panel.grid.major= element_blank(),
            plot.title = element_text(hjust = 0.5,size=rel(2.75),face="bold"),
-           plot.subtitle = element_text(face="bold",size=rel(2))
+           plot.subtitle = element_text(face="bold",size=rel(2.5))
      ))
 }
 
@@ -59,7 +60,7 @@ ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T)
 pp1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__), group=guild, colour=guild)) + geom_point(data = dat_analysis,
 aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("Interaction")+ xlab("")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC1", subtitle = "(a)")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC1", subtitle = "A")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
 
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
@@ -67,7 +68,7 @@ ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T)
 pp2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__), group=guild, colour=guild)) + geom_point(data = dat_analysis,
 aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC2", subtitle = "(b)") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC2", subtitle = "B") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
 
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T) 
@@ -76,7 +77,7 @@ pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__), group=guild, colour=g
  aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
   theme_ms() + theme(legend.position = "none") + 
   scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC3", subtitle = "(c)")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+    "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC3", subtitle = "C")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 #Plot nicely PC1
 analysis_1 <- readRDS("results_analysis_1.rds")
 dat_analysis <- readRDS("dat_analysis_results_analysis_1.rds")
@@ -88,20 +89,20 @@ ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T)
 p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+  xlab("High flower N.    Low flower N.\nSmall flowers    Large flowers")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2),hjust = 0,face="bold")) + scale_color_manual(name="Functional groups",
+  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold")) + scale_color_manual(name="Functional groups",
   values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
     "Non-syrphid-Diptera", "Syrphids"))+
-  scale_y_log10()+ggtitle("(d)")
+  scale_y_log10()+ggtitle("D")
 #Plot nicely PC2
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
 
 p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Low poll. depend. High poll. depend.")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2),hjust = 0,face="bold")) + 
+  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold")) + 
   scale_color_manual(name="Functional groups",values=c("orange", "black", 
   "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-    "Non-syrphid-Diptera", "Syrphids")) + scale_y_log10()+ggtitle("(e)")
+    "Non-syrphid-Diptera", "Syrphids")) + scale_y_log10()+ggtitle("E")
 
 #Plot nicely PC3
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T)
@@ -110,10 +111,10 @@ ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T)
 p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
   ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Short styles    Long styles\n Low selfing    High selfing")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2),hjust = 0,face="bold"))+ 
+  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold"))+ 
   scale_color_manual(name="Functional groups",values=c("orange", 
   "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
-    "Non-syrphid-Diptera", "Syrphids"))+ scale_y_log10()+ggtitle("(f)")
+    "Non-syrphid-Diptera", "Syrphids"))+ scale_y_log10()+ggtitle("F")
 
 
 combined <- pp1 + pp2 + pp3 + p1 + p2 + p3 & theme(legend.position = "bottom")

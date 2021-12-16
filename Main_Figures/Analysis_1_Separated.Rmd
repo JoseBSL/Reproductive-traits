@@ -23,7 +23,6 @@ library(broman) #crayon colours
 library(tidyverse)
 library(patchwork) #panel of plots
 library(brms)
-library(cmdstanr)
 
 #Load theme for publication
 
@@ -116,7 +115,7 @@ pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour
 
 library(patchwork)
 
-combined <- p1 + p2 + p3 + pp1 + pp2 + pp3 & theme(legend.position = "right")
+combined <- pp1 + pp2 + pp3 + p1 + p2 + p3 & theme(legend.position = "bottom")
 combined + plot_layout(guides = "collect",ncol = 3)
 
 setwd("~/R_Projects/Reproductive Traits")
