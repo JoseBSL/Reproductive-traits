@@ -1,5 +1,5 @@
 ---
-title: \singlespacing \vspace{-2.5cm} \LARGE \textbf{Trade-offs among plant reproductive traits determine interactions with floral visitors}
+#title: \singlespacing \vspace{-2.5cm} \LARGE \textbf{Trade-offs among plant reproductive traits determine interactions with floral visitors}
 
 output: 
   pdf_document:
@@ -35,16 +35,39 @@ knitr::opts_chunk$set(fig.pos = "h", out.extra = "")
 
 \renewcommand{\figurename}{}
 
+
+```{r echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics('../Images/pnas-logo.png')
+```
+
 \singlespacing
-\vspace{-1.6cm}
 
-Jose B. Lanuza, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders and Ignasi Bartomeus
+\vspace{2cm}
 
-\vspace{-0.6cm}
+# Supplementary information for:
 
-\section*{\hfil Supplementary information\hfil}
+## Trade-offs among plant reproductive traits determine interactions with floral visitors
 
-# Contents:
+\textbf{Jose B. Lanuza*, Romina Rader, Jamie Stavert, Liam K. Kendall, Manu E. Saunders and Ignasi Bartomeus}
+
+\textbf{*Corresponding author}
+**E-mail: barragansljose@gmail.com**
+
+**This pdf includes:**
+
+
+Supplementary text
+
+Tables S1 to S5
+
+Figures S1 to S10
+
+
+
+\doublespacing
+
+
+<!--
 
 __Supplementary text__
 
@@ -54,7 +77,6 @@ Description of the traits compiled in this study with an illustrative figure of 
 \singlespacing
 
 __Supplementary Tables__
-
 
 Supplementary Table S1: List of the 28 plant-pollinator studies used to build the plant trait database
 
@@ -91,8 +113,11 @@ Supplementary Fig. S9:  Plant species level metrics across the three main axes o
 
 Supplementary Fig. S10: Pearson correlation between the product of flower number-flower size and autonomous selfing level
 
+-->
 
 \newpage
+
+## Supplementary Information Text
 
 __Description of the traits compiled in this study__
 
@@ -114,9 +139,9 @@ _Floral traits_
 
 -	Ovule number: We searched for the number of ovules per flower for all the different species. The number of ovules of Asteraceae species are considered as the total number of ovules per capitulum. Many species were filled by genus or family level because the number of ovules in this taxonomic groups is considered to be mostly constant (e.g., Lamiaceae Boraginaceae or Apiaceae).
  
--	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up groupping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary text Fig. 1).
+-	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up groupping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary Information Text Fig. 1).
 
-```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary text Fig. 1 | Main floral morphologies considered in this study.} All species were groupped within these categories for analysis: (a) tube, (b) papilonaceous, (c) open, (d) capitulum, (e) campanulate and (f) brush."}
+```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary Information Text Fig. 1.}  Main floral morphologies considered in this study. All species were groupped within these categories for analysis: (a) tube, (b) papilonaceous, (c) open, (d) capitulum, (e) campanulate and (f) brush."}
 knitr::include_graphics("../Images/flower_shapes.png")
 ```
 
@@ -179,7 +204,7 @@ library(dplyr)
  references %>%
  arrange(`First author`)%>%
 kable("latex", longtable = T, booktabs = T,linesep = "\\addlinespace",
-             caption = "\\textbf{Supplementary Table S1 | List of the 28 plant-pollinator studies used to build the plant trait database.} Each study is shown with the first author that conducted the study, number of networks or metawebs that contains, type of information that contains (weighted or unweighted),  the structure (web or metaweb), year of publication and digital object identifier or permanent link for each study.") %>%
+             caption = "\\textbf{Table S1. List of the 28 plant-pollinator studies used to build the plant trait database. Each study is shown with the first author that conducted the study, number of networks or metawebs that contains, type of information that contains (weighted or unweighted),  the structure (web or metaweb), year of publication and digital object identifier or permanent link for each study.}") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, repeat_header_method="replace" ,full_width=F,position = "left") 
 
 ```
@@ -217,7 +242,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
- kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Supplementary Table S2 | Loadings of the first three axes of trait variation of the phylogenetic informed principal component analysis with the full set of species.}") %>%
+ kable(dat, longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S2. Loadings of the first three axes of trait variation of the phylogenetic informed principal component analysis with the full set of species.}") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -257,7 +282,7 @@ dat <- as.data.frame(dat)
 
 dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 
-kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Supplementary Table S3 | Loadings of the first three axes of trait variation of the phylogenetic informed principal component analysis with the subset of species with data of nectar and pollen quantity.}") %>%
+kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escape=FALSE,  caption = "\\textbf{Table S3. Loadings of the first three axes of trait variation of the phylogenetic informed principal component analysis with the subset of species with data of nectar and pollen quantity.}") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -284,7 +309,7 @@ d <- readRDS("Data/RData/table_categorical_tukey_test.rds")
 #Plot table
 #Add latex format in markdown
 
-kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE, caption = "\\textbf{Supplementary Table S4 | Statistical association between the different categorical variables and the first three main axes of trait variation with the full set of species.}") %>%
+kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape=FALSE, caption = "\\textbf{Table S4. Statistical association between the different categorical variables and the first three main axes of trait variation with the full set of species.}") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -341,7 +366,7 @@ tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2)
 
 colnames(tabla) <- c("Functional traits", "Lambda", "P-value")
 
-kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,caption = "\\textbf{Supplementary Table S5 | Phylogenetic signal of the different quantitative traits.}") %>%
+kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", escape=FALSE,caption = "\\textbf{Table S5. Phylogenetic signal of the different quantitative traits.}") %>%
   kable_styling(latex_options = c("repeat_header","striped"), font_size = 12, full_width=F,position = "center") 
 
 
@@ -353,7 +378,7 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Supplementary Fig. S1 | Percentage of present and missing values of the different plant traits.}"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Fig. S1.} Percentage of present and missing values of the different plant traits."}
 
 #Set working directory
 setwd("~/R_Projects/Reproductive Traits")
@@ -646,7 +671,7 @@ percentage.plot
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Supplementary Fig. S2 |  Phylogenetic informed principal component analysis for the species that did not have missing values.}"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S2.}  Phylogenetic informed principal component analysis for the species that did not have missing values."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -795,7 +820,7 @@ pc3(PC)
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Supplementary Fig. S3 | Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation.} The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Fig. S3.} Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation. The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
 
 library(Rcpp)
 library(patchwork)
@@ -833,7 +858,7 @@ plot_apis
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Supplementary Fig. S4 | Regression tree analyses.} Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S4.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
 
 ########################################################################################################################################################
 #SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
@@ -903,7 +928,7 @@ rpart.plot(tree3, box.palette="GnOr", main="(f) Specialization for subset with f
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Supplementary Fig. S5 | PC1 and PC3 of the phylogenetically informed principal component analysis with the full set of species.}"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S5.} PC1 and PC3 of the phylogenetically informed principal component analysis with the full set of species."}
 setwd("~/R_Projects/Reproductive Traits")
 
 
@@ -1056,7 +1081,7 @@ pc3(PC)
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Supplementary Fig. S6 | Phylogenetic informed principal component analysis for the subset of species with floral rewards.}"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetic informed principal component analysis for the subset of species with floral rewards."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1187,7 +1212,7 @@ all_spp(PC)
 
 \newpage
 \thispagestyle{empty}
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Supplementary Fig. S7 | Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species.} Categories that differ significantly are denoted with a different letter."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S7.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################
@@ -1516,7 +1541,7 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Supplementary Fig. S8 | Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation.} Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
 
 
 library(Rcpp)
@@ -1560,7 +1585,7 @@ plot
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Supplementary Fig. S9 | Plant species level metrics across the three main axes of trait variation.}", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Plant species level metrics across the three main axes of trait variation.", fig.pos= "h"}
 
 library(brms) #modelling
 library(cowplot) #panel of plots
@@ -1600,7 +1625,7 @@ plot_metrics_pcs
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Supplementary Fig. S10 | Pearson correlation between the product of flower number-flower size and autonomous selfing level.}", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S10.} Pearson correlation between the product of flower number-flower size and autonomous selfing level.", fig.pos= "h"}
 
 theme_ms <- function(base_size=18, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
