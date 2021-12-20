@@ -39,7 +39,7 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
            panel.grid.minor.y= element_blank(),
            panel.grid.major= element_blank(),
            plot.title = element_text(hjust = 0.5,size=rel(2.75),face="bold"),
-           plot.subtitle = element_text(face="bold",size=rel(2))
+           plot.subtitle = element_text(face="bold",size=rel(2.2))
      ))
 }
 
@@ -56,7 +56,7 @@ dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_apis_presence_absen
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1",points=T) 
 
-my_y_title_1 <- expression(paste(bold("(a) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("A "), "All bee species"))
 
 
 a1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = dat_analysis,
@@ -66,7 +66,7 @@ aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_l
 
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2",points=T) 
 
-my_y_title_1 <- expression(paste(bold("(b) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("B "), "All bee species"))
 
 a2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = dat_analysis,
 aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_line(size=1.5, colour="orange")  + ylab("")+ xlab("")+
@@ -75,7 +75,7 @@ aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="orange") + geom_l
 
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3",points=T) 
 
-my_y_title_1 <- expression(paste(bold("(c) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("C "), "All bee species"))
 
 
 a3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = dat_analysis,
@@ -86,7 +86,7 @@ a3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = d
 analysis_1 <- readRDS("results_analysis_1_bee_non_apis_presence_absence.rds")
 dat_analysis <- readRDS("dat_analysis_results_analysis_1_bee_non_apis_presence_absence.rds")
 
-my_y_title <- expression(paste(bold("(d) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("D "), italic("Apis mellifera"), " excluded"))
 
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1",points=T) 
 
@@ -98,7 +98,7 @@ aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4,  colour="brown4") + geom_l
 
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2",points=T) 
 
-my_y_title <- expression(paste(bold("(e) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("E "), italic("Apis mellifera"), " excluded"))
 
 b2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = dat_analysis,
 aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="brown4") + geom_line(size=1.5,  colour="brown4")  + ylab("")+ xlab("")+
@@ -108,7 +108,7 @@ aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4,  colour="brown4") + geom_l
 
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3",points=T) 
 
-my_y_title <- expression(paste(bold("(f) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("F "), italic("Apis mellifera"), " excluded"))
 
 b3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = dat_analysis,
  aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4,  colour="brown4") + geom_line(size=1.5,  colour="brown4")  + ylab("")+ xlab("")+
@@ -123,7 +123,7 @@ dat_analysis <- readRDS("dat_analysis_results_analysis_1_just_bees.rds")
 ce_pc1 <- conditional_effects(analysis_1_just_bees, effects = "PC1",points=T) 
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title_1 <- expression(paste(bold("(g) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("G "), "All bee species"))
 
 
 c1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = dat_analysis,
@@ -136,7 +136,7 @@ c1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data =
 ce_pc2 <- conditional_effects(analysis_1_just_bees, effects = "PC2",points=T) 
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title_1 <- expression(paste(bold("(h) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("H "), "All bee species"))
 
 c2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = dat_analysis,
   aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.5, color="orange") + geom_line(size=1.4, color="orange") + 
@@ -151,7 +151,7 @@ c2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data =
 ce_pc3 <- conditional_effects(analysis_1_just_bees, effects = "PC3",points=T)
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title_1 <- expression(paste(bold("(i) "), "All bee species"))
+my_y_title_1 <- expression(paste(bold("I "), "All bee species"))
 
 c3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = dat_analysis,
   aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.5, color="orange") + geom_line(size=1.4, color="orange") + 
@@ -166,7 +166,7 @@ dat_analysis <- readRDS("dat_analysis_results_analysis_1_just_bees.rds")
 ce_pc1 <- conditional_effects(analysis_1_just_bees_non_apis, effects = "PC1",points=T) 
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title <- expression(paste(bold("(j) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("J "), italic("Apis mellifera"), " excluded"))
 
 d1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data = dat_analysis,
       aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.5, color="brown4") + geom_line(size=1.4, color="brown4")+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+ xlab("PC1")+
@@ -177,7 +177,7 @@ d1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1))) + geom_point(data =
 ce_pc2 <- conditional_effects(analysis_1_just_bees_non_apis, effects = "PC2",points=T) 
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title <- expression(paste(bold("(k) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("K "), italic("Apis mellifera"), " excluded"))
 
 d2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data = dat_analysis,
                                                                           aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.5, color="brown4") + geom_line(size=1.4, color="brown4") + 
@@ -188,7 +188,7 @@ d2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1))) + geom_point(data =
 ce_pc3 <- conditional_effects(analysis_1_just_bees_non_apis, effects = "PC3",points=T)
 ce_pc1[[1]]$guild <- "bees"
 
-my_y_title <- expression(paste(bold("(l) "), italic("Apis mellifera"), " excluded"))
+my_y_title <- expression(paste(bold("L "), italic("Apis mellifera"), " excluded"))
 
 d3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1))) + geom_point(data = dat_analysis,
                                                                           aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.5, color="brown4") + geom_line(size=1.4, color="brown4") + 
@@ -199,6 +199,8 @@ library(patchwork)
 
 combined <- a1 + a2 + a3 + b1 + b2 + b3 + c1 + c2 + c3 + d1 + d2 + d3 & theme(legend.position = "right")
 combined <- combined + plot_layout(guides = "collect",ncol = 3)
+
+combined
 
 setwd("~/Dropbox/PhD/R/Chapter_2")
 

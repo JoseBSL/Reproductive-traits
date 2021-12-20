@@ -75,7 +75,7 @@ ggplot(data = world) +
   geom_sf(fill="antiquewhite", color="grey49") +
   xlab("Longitude") + ylab("Latitude") +
   geom_jitter(data=metadata_sub, aes(longitude,latitude), 
-  shape = 10, colour = "black", fill = "white",size = 2, 
+  shape = 10, colour = "black", fill = "white",size = 4, 
   stroke = 1,width = 0.2, height = 3)+ 
   theme(panel.grid.major = element_line(color = gray(.5), 
  linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"))
@@ -83,13 +83,13 @@ ggplot(data = world) +
 
 ggplot(data = world) + 
   geom_sf(color = "grey25", fill = "grey80", size=0.1,lwd = 0)+
-  theme(axis.line = element_line(color='aliceblue'),
+  theme(axis.line = element_line(color='white'),
         plot.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank())+
-  geom_point(data=metadata_sub, aes(longitude,latitude), shape = 21, colour = "black", 
-              fill = "#74c365",size = 2.35)+
+  geom_jitter(data=metadata_sub, aes(longitude,latitude), shape = 21, colour = "black", 
+              fill = "#74c365",size = 3,stroke = 1,width = 0.2, height = 3)+
   theme(panel.grid.major = element_line(color = gray(.5), 
   linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblue"))+
   xlab("")+ylab("")+
