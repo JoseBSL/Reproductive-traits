@@ -1277,6 +1277,4 @@ Second, to better understand these complex trait relationships, we used regressi
 
 # Acknowledgements
 
-This is study was supported by the project SAFEGUARD (101003476 H2020-SFS-2019-2). We thank all researchers that made their data available for our analysis. We thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We also thank Jason Tylianakis for his comments on the manuscript before submission. JBL thanks the University of New England for the funding provided to carry out this work.
-
-
+This study was supported by the European project SAFEGUARD (101003476 H2020-SFS-2019-2). We thank all researchers that made their data openly available and sent it upon request. We also thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We also thank Jason Tylianakis for his comments on the manuscript before submission. Finally, JBL thanks the University of New England for the funding provided to carry out this work.

@@ -181,7 +181,7 @@ missing.values <- t %>%
 
 n_of_records <- subset(missing.values, isna=="FALSE")
 Trait <- c("Plant height (m)", "Flower width (mm)", "Flower length (mm)", "Inflorescence width (mm)", "Style length (mm)", "Ovules per flower",
-           "Flowers per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing (fruit set)")
+           "Flowers per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing")
 
 Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Autonomous selfing", "Compatibility system", "Breeding system", " ", " ", " ", " ")
 
@@ -212,14 +212,12 @@ Number_of_records_categorical <- c(n_of_records$num.isna[n_of_records$key=="life
 dat <- data.frame( Trait, Trait1, T.cat)
 
 
-
-
 colnames(dat) <- c(" ", "Traits", "Categories")
 
 
 kbl(dat, booktabs = T, linesep = "\\addlinespace", escape = FALSE, align = c("l","l","l")) %>%
   kable_styling(full_width = F,font_size = 10) %>%
-  add_header_above(c("Quantitative traits" = 1,"Qualitative traits" = 2),bold=T)   %>% row_spec(0, bold=T) 
+  add_header_above(c("Quantitative traits" = 1,"Qualitative traits" = 2),bold=T)   %>% row_spec(0:12, bold=T) %>% save_kable(file = "table_1.png",density = 700) 
 
 
 
