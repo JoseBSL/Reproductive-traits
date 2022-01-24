@@ -2,11 +2,14 @@
 output:
   pdf_document: default
   html_document: default
+classoption: landscape
 
 ---
 
+\pagenumbering{gobble}
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18}
+
 
 #Set working directory
 setwd("~/R_Projects/Reproductive Traits")
@@ -28,17 +31,17 @@ library(cowplot)
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
       theme(text=element_text(color="black"),
-            axis.title=element_text( size = rel(1.3)),
+            axis.title=element_text( size = rel(1.75)),
             axis.text=element_text(size = rel(1.75), color = "black"),
             legend.title=element_text(face="bold"),
-            legend.text=element_text(),
+            legend.text=element_text(size = rel(1.1)),
             legend.background=element_rect(fill="transparent"),
             legend.key.size = unit(0.4, 'lines'),
             panel.border=element_rect(color="black",size=1),
             panel.grid.minor.x =element_blank(),
             panel.grid.minor.y= element_blank(),
              panel.grid.major= element_blank(),
-            plot.title = element_text(size = rel(1.75), face="bold")
+            plot.title = element_text(size = rel(2), face="bold")
       ))
 }
 
@@ -112,15 +115,15 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.185, 0.13)) +ggtitle("(a)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("A") 
   
   
   plot
@@ -185,15 +188,15 @@ Life_form <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("(b)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.090, 0.115)) + ggtitle("B") 
   
   plot
   
@@ -252,16 +255,16 @@ Life_span <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.102, 0.1)) + ggtitle("(c)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.12, 0.1)) + ggtitle("C") 
   
   plot
   
@@ -323,17 +326,17 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.165, 0.1)) + ggtitle("(f)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("F") 
   
   plot
   
@@ -395,17 +398,17 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.13, 0.18)) + ggtitle("(e)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("E") 
   
   plot
   
@@ -466,16 +469,18 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+
   
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("(d)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.152, 0.11)) + ggtitle("D") 
   
   plot
   

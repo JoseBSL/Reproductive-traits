@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.24)  7 DEC 2021 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.24)  20 DEC 2021 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -512,32 +512,32 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 ) (./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo.aux)
 \openout1 = `Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Info: Redefining \microtypecontext on input line 97.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Info: Redefining \microtypecontext on input line 94.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 97.
+LaTeX Info: Redefining \showhyphens on input line 94.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -565,7 +565,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 97.
+Package hyperref Info: Link coloring OFF on input line 94.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -577,9 +577,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count312
 )
-LaTeX Info: Redefining \ref on input line 97.
-LaTeX Info: Redefining \pageref on input line 97.
-LaTeX Info: Redefining \nameref on input line 97.
+LaTeX Info: Redefining \ref on input line 94.
+LaTeX Info: Redefining \pageref on input line 94.
+LaTeX Info: Redefining \nameref on input line 94.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -622,240 +622,242 @@ Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
-9.
+<../Images/pnas-logo.png, id=4, 281.853pt x 134.4222pt>
+File: ../Images/pnas-logo.png Graphic file (type png)
+<use ../Images/pnas-logo.png>
+Package pdftex.def Info: ../Images/pnas-logo.png  used on input line 102.
+(pdftex.def)             Requested size: 281.8824pt x 134.4362pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
+20.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
-9.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+20.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-99.
+120.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-99.
+120.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 99.
+(Font)              <12> on input line 120.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 99.
+(Font)              <8> on input line 120.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 99.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 99.
-
+(Font)              <6> on input line 120.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 120
+.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 99.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 120
+.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../Imag
+es/pnas-logo.png>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-91.
+44.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [3]
-<../Images/flower_shapes.png, id=24, 2890.8pt x 2168.1pt>
+) [2]
+<../Images/flower_shapes.png, id=27, 2890.8pt x 2168.1pt>
 File: ../Images/flower_shapes.png Graphic file (type png)
 <use ../Images/flower_shapes.png>
-Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 257.
+Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 210.
 (pdftex.def)             Requested size: 305.32942pt x 228.99706pt.
-[4 <../Images/flower_shapes.png>] [5]
-Overfull \hbox (24.25696pt too wide) in alignment at lines 306--311
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4 <../Images/flower_shapes.png>]
+Overfull \hbox (24.25696pt too wide) in alignment at lines 259--264
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 311--316
+Overfull \hbox (24.25696pt too wide) in alignment at lines 264--269
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 316--318
+Overfull \hbox (24.25696pt too wide) in alignment at lines 269--271
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 318--320
+Overfull \hbox (24.25696pt too wide) in alignment at lines 271--273
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 320--360
+Overfull \hbox (24.25696pt too wide) in alignment at lines 273--313
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 360--376
+Overfull \hbox (24.25696pt too wide) in alignment at lines 313--329
 [] [] [] [] [] 
  []
 
-[6
+[5
 
-] [7] [8
+] [6] [7] [8
 
-] [9] [10]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 537.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 537.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 537.
-[11]
-<Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-7-1.pdf
-, id=68, 440.64626pt x 282.05376pt>
-File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-7-
-1.pdf Graphic file (type pdf)
-<use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-7-1
-.pdf>
-Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-7-1.pdf  used on input line 548.
-(pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
-[12 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-7
--1.pdf>]
+] [9] [10] [11]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-8-1.pdf
-, id=84, 712.6625pt x 691.58376pt>
+, id=74, 440.64626pt x 282.05376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-8-
 1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-8-1
 .pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-8-1.pdf  used on input line 554.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
-[13 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-8
+ex/unnamed-chunk-8-1.pdf  used on input line 501.
+(pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
+[12 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-8
 -1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-9-1.pdf
-, id=111, 1710.39pt x 1706.375pt>
+, id=90, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-9-
 1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-9-1
 .pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-9-1.pdf  used on input line 560.
-(pdftex.def)             Requested size: 469.74539pt x 468.6427pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ex/unnamed-chunk-9-1.pdf  used on input line 507.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+[13 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-9
+-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-10-1.pd
-f, id=112, 821.0675pt x 1011.78pt>
+f, id=117, 1710.39pt x 1706.375pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-10
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-10-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-10-1.pdf  used on input line 564.
-(pdftex.def)             Requested size: 469.7548pt x 578.86655pt.
+ex/unnamed-chunk-10-1.pdf  used on input line 513.
+(pdftex.def)             Requested size: 469.74539pt x 468.6427pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-11-1.pd
-f, id=113, 712.6625pt x 691.58376pt>
+f, id=118, 821.0675pt x 1012.78375pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-11
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-11-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-11-1.pdf  used on input line 568.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+ex/unnamed-chunk-11-1.pdf  used on input line 517.
+(pdftex.def)             Requested size: 469.7548pt x 579.44083pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-12-1.pd
-f, id=114, 712.6625pt x 691.58376pt>
+f, id=119, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-12
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-12-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-12-1.pdf  used on input line 574.
+ex/unnamed-chunk-12-1.pdf  used on input line 521.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-13-1.pd
-f, id=115, 924.45375pt x 1336.995pt>
+f, id=120, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-13
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-13-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-13-1.pdf  used on input line 580.
-(pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
-
-LaTeX Warning: Float too large for page by 53.51106pt on input line 581.
-
+ex/unnamed-chunk-13-1.pdf  used on input line 527.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-9
--1.pdf>] [15 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unname
-d-chunk-10-1.pdf>] [16 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-la
-tex/unnamed-chunk-11-1.pdf>] [17 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files
-/figure-latex/unnamed-chunk-12-1.pdf>] [18 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco
-_Evo_files/figure-latex/unnamed-chunk-13-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-14-1.pd
-f, id=213, 1927.2pt x 984.67876pt>
+f, id=121, 924.45375pt x 1336.995pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-14
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-14-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-14-1.pdf  used on input line 586.
-(pdftex.def)             Requested size: 650.41666pt x 332.32225pt.
-[19 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-1
-4-1.pdf>]
+ex/unnamed-chunk-14-1.pdf  used on input line 533.
+(pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
+
+LaTeX Warning: Float too large for page by 53.51106pt on input line 534.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-1
+0-1.pdf>] [15 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnam
+ed-chunk-11-1.pdf>] [16 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-l
+atex/unnamed-chunk-12-1.pdf>] [17 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_file
+s/figure-latex/unnamed-chunk-13-1.pdf>] [18 <./Sup_Mat_Lanuza_et_al_2021_Nat_Ec
+o_Evo_files/figure-latex/unnamed-chunk-14-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-15-1.pd
-f, id=232, 1857.94125pt x 1270.7475pt>
+f, id=219, 1928.20375pt x 985.6825pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-15
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-15-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-15-1.pdf  used on input line 594.
-(pdftex.def)             Requested size: 650.43094pt x 444.86523pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-1
+ex/unnamed-chunk-15-1.pdf  used on input line 539.
+(pdftex.def)             Requested size: 650.43176pt x 332.49556pt.
+[19 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-1
 5-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-16-1.pd
-f, id=251, 1862.96pt x 1283.79625pt>
+f, id=238, 1857.94125pt x 1271.75125pt>
 File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-16
 -1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-16-
 1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
-ex/unnamed-chunk-16-1.pdf  used on input line 600.
+ex/unnamed-chunk-16-1.pdf  used on input line 547.
+(pdftex.def)             Requested size: 650.43094pt x 445.21663pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20 <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-1
+6-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-17-1.pd
+f, id=258, 1862.96pt x 1283.79625pt>
+File: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-17
+-1.pdf Graphic file (type pdf)
+<use Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-17-
+1.pdf>
+Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-lat
+ex/unnamed-chunk-17-1.pdf  used on input line 553.
 (pdftex.def)             Requested size: 469.747pt x 323.71034pt.
 [21
 
 
 
 
- <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-16-1
+ <./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo_files/figure-latex/unnamed-chunk-17-1
 .pdf>] (./Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo.aux) ) 
 Here is how much of TeX's memory you used:
- 15639 strings out of 478994
- 242209 string characters out of 5858184
- 594962 words of memory out of 5000000
- 32657 multiletter control sequences out of 15000+600000
- 462630 words of font info for 130 fonts, out of 8000000 for 9000
+ 15613 strings out of 478994
+ 241991 string characters out of 5858184
+ 593007 words of memory out of 5000000
+ 32630 multiletter control sequences out of 15000+600000
+ 447761 words of font info for 115 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,10n,88p,732b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,10n,88p,1067b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/
 texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fon
 ts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvi
@@ -864,11 +866,11 @@ nc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/l
 ocal/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texli
 ve/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo.pdf (21 pages, 6252826 
+Output written on Sup_Mat_Lanuza_et_al_2021_Nat_Eco_Evo.pdf (21 pages, 6276259 
 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
- 41 named destinations out of 1000 (max. 500000)
- 32832 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 320 PDF objects out of 1000 (max. 8388607)
+ 256 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 24661 words of extra memory for PDF output out of 24883 (max. 10000000)
 

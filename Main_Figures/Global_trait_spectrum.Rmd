@@ -160,7 +160,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   #CHANGE THEME
     
   plot <- plot + theme_bw() + annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
-     annotation_raster(style_l_1, xmin = 2.25, xmax = 3.05,ymin = 2.55, ymax = 3.7) +
+     annotation_raster(style_l_1, xmin = 2.10, xmax = 2.90,ymin = 2.55, ymax = 3.7) +
     annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
     annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
     annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
@@ -178,12 +178,12 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
- plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.7,5.05,5.6,7.85,7.3,6.15)), y = -(PCAloadings$PC2*c(4.693,2.5,3.1,6.6,5,5.5)+c(0,0,0,0,0.4,0)),
-                         label = PCAloadings$Variables, color="black",fontface =2,size=4)
+ plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.7,4.95,5.6,7.45,7.2,6.15)), y = -(PCAloadings$PC2*c(4.693,2.5,3.2,6.6,5,5.5)+c(0,0,0,0,0.4,0)),
+                         label = PCAloadings$Variables, color="black",fontface =2,size=5)
   
  
- plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.6,4.95,4.5,6.6,7.3,5.15)), y = (PCAloadings$PC2*c(3.83,6.4,5.7,7.4,-1,7.45)+c(0,0,0,0,-0.41,0)),
-                         label =c("Low selfing", "Few flowers", "Small flowers", "Short styles", "Few ovules", "Short plants" ), color="black",fontface =2,size=4)
+ plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.6,4.95,4.5,6.6,7.2,5.15)), y = (PCAloadings$PC2*c(3.83,6.4,5.7,7.4,-1,7.45)+c(0,0,0,0,-0.41,0)),
+                         label =c("Low selfing", "Few flowers", "Small flowers", "Short styles", "Few ovules", "Short plants" ), color="black",fontface =2,size=5)
  
  
   plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
