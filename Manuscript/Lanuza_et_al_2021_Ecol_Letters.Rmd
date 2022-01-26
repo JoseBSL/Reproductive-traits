@@ -106,7 +106,7 @@ header-includes:
 
 \textbf{Number of words:} Abstract  (146 words), main text (XXXX).
 
-\textbf{Number of references:} 77.
+\textbf{Number of references:} 77 (CHECK! Probably less now)
 
 \textbf{Number of figures and tables:} 4 figures and 1 table.
 
@@ -116,7 +116,7 @@ header-includes:
 
 # ABSTRACT 
 
-Plant life-history strategies are constrained by cost-benefit trade-offs that determine plant form and function. However, despite recent advances in the understanding of plant trait variation, little is known about plant reproductive trade-offs and how these constrain life-history strategies and shape interactions with floral visitors. Here, we investigate plant reproductive trade-offs and how these drive interactions with floral visitors using a dataset of 17 reproductive traits for 1,506 plant species. We found that over half of all plant reproductive trait variation was explained by two independent axes. Specifically, the first axis indicated the presence of a trade-off between flower number and flower size, while the second axis indicated a pollinator dependency trade-off. In addition, plant reproductive trade-offs determined important differences in the interaction level among floral visitor guilds. Our study shows the main plant reproductive trade-offs and their relevance to understand plant-pollinator interactions in a global context.
+Plant life-history strategies are constrained by cost-benefit trade-offs that determine plant form and function. However, despite recent advances in the understanding of plant trait variation, little is known about plant reproductive trade-offs and how these constrain life-history strategies and shape interactions with floral visitors. Here, we investigate plant reproductive trade-offs and how these drive interactions with floral visitors using a dataset of 16 reproductive traits for 1,506 plant species. We found that over half of all plant reproductive trait variation was explained by two independent axes. Specifically, the first axis indicated the presence of a trade-off between flower number and flower size, while the second axis indicated a pollinator dependency trade-off. In addition, plant reproductive trade-offs determined important differences in the interaction level among floral visitor guilds. Our study shows the main plant reproductive trade-offs and their relevance to understand plant-pollinator interactions in a global context.
 
 \newpage
 
@@ -157,38 +157,23 @@ knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
 
-**In bold PNAS editor's comments.**
-
-
-- 1st explores is an ambiguous term. Maybe changing it for describe/determine? 2nd. Last phrase of the 1st paragraph lacks clarity. 3rd. Conceptual focus is unclear (3rd paragraph). General comment: What do we need to understand, and how will this information relate to broader problems in ecology/evolution? It is not sufficient to suggest that we need to improve our understanding without giving specifics regarding the impact of these studies.
-
-- There is insufficient justification/discussion of the traits used (Table 1). For example, what is the expected relevance of plant height? In addition, some of the traits are classified as both quantitative and qualitative. How can this work? For example, the selfing level was given as four categories of quantitative estimates as well as four categories of qualitative estimates. Aren't these the same thing? Finally, it is not clear why some traits were included, such as ovule number, whole others were not, such as flower color.
-
-- I am not convinced that the imputation process for missing trait values is accurate. There are many examples of very closely related plant species that differ dramatically in traits such as nectar volume and other traits relevant to pollinator interactions, so using a phylogenetic signal to estimate missing values may often give the wrong answer. In the Supplement you state: "In general terms, nectar data was rarely present and we tried to minimise the loss of information by filling some species at family level." Seems preferable to simply exclude nectar as one of your traits.
-
-- A major issue with network data from studies of plant-visitor interactions is that there is rarely enough information to distinguish pollinators from pollen predators or nectar thieves.
-
-- It is not clear that the broad phylogenetic scale investigated in the paper is appropriate for investigating the importance of trade-offs that evolve at the level of populations and species. I realize that the data at a finer micro-evolutionary scale are generally not available, but this is the level where constraints emerge.
-
-
 # INTRODUCTION 
 
-Despite the astonishing diversity of floral structures among flowering plants [@barrett2002; @schiestl2013] and their importance in shaping plant-pollinator interactions [@fenster2004; @dellinger2020], a unified framework that **explores** plant reproductive trade-offs is currently lacking [@roddy2021]. In addition, macroecological studies that investigate plant reproductive traits are scarce [@baude2016; @munoz2016; @grossenbacher2017; @moeller2017] and consequently, there is poor understanding of how reproductive traits drive interactions with floral visitors at large scales [@sargent2008; @rech2016; @salguero2016; @ruger2018]. Linking the plant's position in trait-space with the different pollinator groups could help to improve our understanding of plant-pollinator associations [@dehling2016]. Further, there is increasing interest in understanding drivers of plant-pollinator interactions using trait-based approaches [@fenster2004; @rosas2014] and trait-matching analyses [@stang2009; @bartomeus2016]. However, despite the generalist nature of most plant-pollinator interactions [@waser1996; @olesen2002], reproductive traits have been overlooked beyond highly specialised pollination systems [@dellinger2020]. **Overall, it is unclear how specific plant reproductive biology traits shape plant-pollinator interactions [@tur2013; @devaux2014].**
+Despite the astonishing diversity of floral structures among flowering plants [@barrett2002; @schiestl2013] and their importance in shaping plant-pollinator interactions [@fenster2004; @dellinger2020], a unified framework that **describes the major** plant reproductive trade-offs is currently lacking [@roddy2021]. In addition, macroecological studies that investigate plant reproductive traits are scarce [@baude2016; @munoz2016; @grossenbacher2017; @moeller2017] and consequently, there is poor understanding of how reproductive traits drive interactions with floral visitors at large scales [@sargent2008; @rech2016; @salguero2016; @ruger2018]. Linking the plant's position in trait-space with the different pollinator groups could help to improve our understanding of plant-pollinator associations [@dehling2016]. Further, there is increasing interest in understanding drivers of plant-pollinator interactions using trait-based approaches [@fenster2004; @rosas2014] and trait-matching analyses [@stang2009; @bartomeus2016]. **However, plant reproductive traits have been overlooked beyond highly specialised pollination systems [@dellinger2020] and remains unclear how specific plant reproductive biology traits (e.g., mating or compatibility system) influence plant-pollinator associations [@tur2013; @devaux2014].**
 
+Species can optimise their fitness through various life-history traits, yet trade-offs among those traits constrain the range of potential strategies that a species can use. With the recent availability of large trait databases [e.g., TRY @kattge2011; and COMPADRE @salguero2015], plant ecological strategies are being increasingly examined, and are facilitating the identification of global patterns and constraints in plant form and function [@salguero2016; @diaz2016; @bruelheide2018; @carmona2021]. However, most studies have focused on vegetative traits such as leaf [@wright2004], wood [@chave2009], or root [@laughlin2021] trade-offs with little or no attention given to reproductive traits [@evojtko2020; @roddy2021] which are critical to plant life strategies that shape interactions with pollinators and ultimately determine plant reproductive success. For instance, short lived versus perennial species tend to have low versus high levels of outcrossing, respectively, [@barrett2003; @moeller2017] and outcrossing levels are positively correlated with flower size [@goodwillie2010]. In addition, the presence of costly rewards (e.g., pollen or nectar) and showy flowers or floral displays can only be understood through consideration of plant species’ reliance upon animal pollination (pollinator dependence) and its role in attracting pollinators [@ollerton2011; @rodger2021]. However, it is still unknown to what extent these different reproductive compromises determine plant-pollinator interactions.
 
-Species can optimise their fitness through various life-history traits, yet trade-offs among those traits constrain the range of potential strategies that a species can use. With the recent availability of large trait databases (e.g., TRY @kattge2011 and COMPADRE @salguero2015), plant ecological strategies are being increasingly examined, and are facilitating the identification of global patterns and constraints in plant form and function [@salguero2016; @diaz2016; @bruelheide2018; @carmona2021]. However, most studies have focused on vegetative traits such as leaf [@wright2004], wood [@chave2009], or root [@laughlin2021] trade-offs with little or no attention given to reproductive traits [@evojtko2020; @roddy2021] which are critical to plant life strategies that shape interactions with pollinators and ultimately determine plant reproductive success. For instance, short lived versus perennial species tend to have low versus high levels of outcrossing, respectively, [@barrett2003; @moeller2017] and outcrossing levels are positively correlated with flower size [@goodwillie2010]. In addition, the presence of costly rewards (e.g., pollen or nectar) and showy flowers or floral displays can only be understood through consideration of plant species’ reliance upon animal pollination (pollinator dependence) and its role in attracting pollinators [@ollerton2011; @rodger2021]. However, it is still unknown to what extent these different reproductive compromises determine plant-pollinator interactions.
-
-Several studies have identified links between plant traits and plant-pollinator network properties [@bartomeus2013; @olito2015; @rowe2020]. Moreover, plant traits can define species’ network roles (e.g., specialists vs generalists) [@lazaro2013; @tur2013]. For example, plant species that occupy reproductive trait space extremes are more likely to exhibit higher levels of specialisation and be more reliant on the trait-matching with pollinators [@junker2013; @coux2016]. Morphological matching between plant and floral visitors often determines plant-pollinator interactions, and can thus strongly influence interaction network structure [@stang2009; @ibanez2012]. Remarkably, the combination of traits have shown to increase the predictive power of the network interactions [@eklof2013]. **Therefore, considering the different plant reproductive trade-offs which represent the species reproductive strategy within the network [@dehling2016] could progress our understanding of plant-pollinator interactions**. Further, we know little if those patterns generally studied at the community level are representative of wider macroecological scales.
+Several studies have identified links between plant traits and plant-pollinator network properties [@bartomeus2013; @olito2015; @rowe2020]. Moreover, plant traits can define species’ network roles [e.g., specialists vs generalists\; @lazaro2013; @tur2013]. For example, plant species that occupy reproductive trait space extremes are more likely to exhibit higher levels of specialisation and be more reliant on the trait-matching with pollinators [@junker2013; @coux2016]. Morphological matching between plant and floral visitors often determines plant-pollinator interactions, and can thus strongly influence interaction network structure [@stang2009; @ibanez2012]. Remarkably, the combination of traits has shown to increase the predictive power of the network interactions [@eklof2013]. **Moreover, the position in the trait space can determine plant and pollinator species functional roles [@dehling2016]. Therefore, by considering the position in the reproductive trait space we could progress our understanding of the plant species functional roles within plant-pollinator interaction networks. Nonetheless, we know little if those patterns generally studied at the community level are representative of wider macroecological scales.**
 
 Here, we aim to explore the potential trade-offs among reproductive traits and how these influence plant-pollinator interactions. First, we identify the major axes of reproductive trait variation and trade-offs that determine plant form and function. Second, we investigate how plant species’ position in trait-space influence interactions with floral visitors. Finally, we investigate how both the main axes of trait variation, and individual traits, influence plant species’ roles within networks using a set of complementary interaction network metrics (i.e., interaction strength, normalized degree and specialization).
 
 # MATERIALS AND METHODS
 
-**Plant-pollinator network studies.** We selected 28 studies from 18 different countries that constituted a total of 64 plant-pollinator networks. These studies recorded plant-pollinator interactions in natural systems and were selected so that we had broad geographical representation. Although these studies differ in sampling effort and methodology, all studies provided information about plant-pollinator interactions (weighted and non-weighted), which we used to build a database of plant species that are likely to be animal pollinated. Many of these networks are freely available either as published studies [@olesen2007; @fortuna2010; @carvalheiro2014] or available in online archives (e.g., The Web of Life [@fortuna2010] and Mangal [@poisot2016]). In total, our network dataset (see Supplementary Table S1) constituted 60 weighted (interaction frequency) and 4 unweighted (presence/absence of the interaction) networks, each sampled at a unique location and year, as well as eight meta-webs where interactions were pooled across several locations and multiple years. 
+**Plant-pollinator network studies.** We selected 28 studies from 18 different countries that constituted a total of 64 plant-pollinator networks. These studies recorded plant-pollinator interactions in natural systems and were selected so that we had broad geographical representation. Although these studies differ in sampling effort and methodology, all studies provided information about plant-pollinator interactions (weighted and non-weighted), which we used to build a database of plant species that are likely to be animal pollinated. Many of these networks are freely available either as published studies [@olesen2007; @fortuna2010; @carvalheiro2014] or available in online archives [e.g., The Web of Life, @fortuna2010; and Mangal, @poisot2016]. In total, our network dataset (see Table S1) constituted 60 weighted (interaction frequency) and 4 unweighted (presence/absence of the interaction) networks, each sampled at a unique location and year, as well as eight meta-webs where interactions were pooled across several locations and multiple years. 
 
 **Taxonomy of plants and pollinators.** All species names, genera, families and orders were retrieved and standardized from the taxonomy data sources NCBI (https://www.ncbi.nlm.nih.gov/taxonomy) for plants and ITIS (https://www.itis.gov/) for pollinators, using the R package _taxize_ [@chamberlain2020] version _0.9.99_. We filled the ‘not found’ searches manually using http://www.theplantlist.org/ and http://www.mobot.org/ for plants and http://www.catalogueoflife.org/ for floral visitors.
 
-**Functional traits.** We selected 20 different functional traits based on their relevance to plant reproduction and data availability (Table 1). These included twelve quantitative and eight categorical traits belonging to three broader trait groupings (13 floral, 4 reproductive biology and 3 vegetative, Supplementary Information). For each plant species, we undertook an extensive literature and online search across a wide range of resources (plant databases, online floras, books, journals and images). From a total of 30,120 cells (20 columns × 1,506 species) we were able to fill 24,341 cells (80.8% of the dataset, see Supplementary Fig. S1 for missing values information for each trait).
+**Functional traits.** We selected a total of 19 different functional traits that included both reproductive and vegetative traits (see Table 1 and Supplementary Information). From these, 16 were reproductive traits (13 floral and 3 reproductive biology traits) and were selected based on their relevance to plant reproduction and data availability. The 3 remaining traits, were vegetative traits that are commonly used to characterize the global spectrum of plant form and function and represent the fast-slow continuum of trait variation (e.g., short-lived versus perennial species). For each plant species, we undertook an extensive literature and online search across a wide range of resources (plant databases, online floras, books, journals and images). From a total of 30,120 cells (20 columns × 1,506 species) we were able to fill 24,341 cells (80.8% of the dataset, see Fig. S1 for missing values information for each trait).
 
 **Phylogenetic Distance.** We calculated the phylogenetic distance between different plant species using the function *get_tree* from the package _rtrees_ (https://github.com/daijiang/rtrees), which downloads phylogenetic distances from the extended R implementation of the Open Tree of Life [@smith2018; @jin2019].
 
@@ -355,14 +340,14 @@ n_of_records <- subset(missing.values, isna=="FALSE")
 Trait <- c("Plant height (m)", "Flower width (mm)", "Flower length (mm)", "Inflorescence width (mm)", "Style length (mm)", "Ovules per flower",
            "Flowers per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing (fruit set)")
 
-Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Autonomous selfing", "Compatibility system", "Breeding system", " ", " ", " ", " ")
+Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Compatibility system", "Breeding system", " ", " ", " ", " ", " ")
 
 T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub \n Tree", "Brush \n Campanulate \n Capitulum \n Open \n Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
-           "Presence \n Absence", "None \n Low \n Medium \n High", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " "),align = c("l"))
+           "Presence \n Absence", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " ", ""),align = c("l"))
 
 Type <- linebreak(c("Vegetative", "Floral", "Floral", "Floral", "Floral", "Floral", "Floral","Floral","Floral","Floral","Floral","Reproductive \n biology"),align = c("c"))
 
-Type_1 <- linebreak(c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive \n biology", "Reproductive \n biology", "Reproductive \n biology","","","",""),align = c("c"))
+Type_1 <- linebreak(c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive \n biology", "Reproductive \n biology","","","","", ""),align = c("c"))
 
 
 dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
@@ -422,7 +407,7 @@ Second, to better understand these complex trait relationships, we used regressi
 **Plant strategies.** The phylogenetically informed principal component analysis (pPCA) captured by the first two and three axes 51.8% and 70.97% of trait variation, respectively (Fig. 1 and Supplementary Fig. S5) and had a phylogenetic correlation ($\lambda$) of 0.76. The first principal component (PC1) represented 26.72% of the trait variation and indicated a trade-off between flower number and flower size. We refer to this axis as the ‘flower number - flower size trade-off’, as already described in previous studies [@sargent2007; @kettle2011]. Hence, one end of the spectrum comprised species with high investment in flower number and plant height but small flower size, short style length and low ovule number. The other end of this spectrum comprised species that were short in height and invested in large flowers, long styles, many ovules, but few flowers. The main contributing traits to PC1 were plant height, flower number, ovule number and flower size (loadings > |0.5|; Supplementary Table S3) but style length also contributed moderately to PC1 (loading = -0.33). The second principal component (PC2) represented 25.05% of the trait variation and indicated a trade-off between low and high pollinator dependence. We refer to this axis as the ‘pollinator dependence trade-off’. The main driver of trait variation on PC2 was autonomous selfing (loading = 0.85) but the other traits (except ovule number) also made moderate contributions (loadings from 0.27 to 0.4; Supplementary Table S3). We found that high pollinator dependence was associated with larger and a higher number of flowers, greater plant height and longer styles. In contrast, species with high levels of autonomous selfing tended to have fewer and smaller flowers, had shorter styles and were shorter in height. Further, PC3 explained a considerable amount of trait variability (19.17%) and the main contributors to this axis were style length (loading = -0.66) and the degree of autonomous selfing (loading = -0.51). The remaining traits, apart from ovule number, were moderately correlated to changes on PC3 (loadings from -0.23 to -0.46; Supplementary Table S3). Thus, because style length was correlated with all traits on PC3 and was the main driver of trait variation, we refer to this axis as the ‘style length trade-off’. Further, the pPCA with the subset of species that had nectar and pollen quantity data showed that nectar quantity (microlitres of nectar per flower) was positively associated with flower size, style length and ovule number (PC1, 23.40%); and pollen quantity (pollen grains per flower) was positively correlated with flower number and plant height and negatively associated with autonomous selfing (PC2, 21.67%; Supplementary Fig. S6). This pPCA explained similar variance with the first two principal components (45.07%) and similar associations of traits despite some variability in the loadings (Supplementary Table S4).
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10,fig.align='center',fig.width=10,fig.cap= "\\textbf{Fig. 1 | Plant life-history strategies.} Phylogenetically informed principal component analysis (pPCA) of 1,236 plant species from 28 plant-pollinator network studies. The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) across the two main axes of trait variation. The length of the arrows indicate the weight of the variables on each principal component and the dashed lines show the opposed direction of trait variation. The icons at both ends of arrows and dashed lines illustrate the extreme form of the trait continuum."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10,fig.align='center',fig.width=10,fig.cap= "\\textbf{Figure 1} Phylogenetically informed principal component analysis (pPCA) of 1,236 plant species from 28 plant-pollinator network studies. The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) across the two main axes of trait variation. The length of the arrows indicate the weight of the variables on each principal component and the dashed lines show the opposed direction of trait variation. The icons at both ends of arrows and dashed lines illustrate the extreme form of the trait continuum."}
 
 setwd("~/R_Projects/Reproductive Traits")
 
@@ -620,23 +605,24 @@ We found that most categorical traits were statistically associated with the fir
 \vspace*{-28mm}
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18,fig.cap= "**Fig. 2 | Location of the different qualitative traits on the trait space.** The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18, out.width="90%",fig.align='center',fig.cap= "\\textbf{Figure 2} Location of the different qualitative traits on the trait space. The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits showed in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S)."}
+
 
 #Set working directory
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
 #LOAD LIBRARIES
-#library(phytools)
-#library(ape) #for phylogenetic distance
-#library(dplyr) #data processing
-#library(rtrees) #for phylogenetic distancelibrary(MASS)
-#library(reshape2)
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
 library(viridis) #COLOUR GGPLOT
-#library(MASS)
+library(MASS)
 library(ggplot2)
 library(broman) #crayon colours
-#library(cowplot)
+library(cowplot)
 
 # Theme for publication
 theme_ms <- function(base_size=12, base_family="Helvetica") {
@@ -645,14 +631,14 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
             axis.title=element_text( size = rel(1.75)),
             axis.text=element_text(size = rel(1.75), color = "black"),
             legend.title=element_text(face="bold"),
-            legend.text=element_text(),
+            legend.text=element_text(size = rel(1.1)),
             legend.background=element_rect(fill="transparent"),
-            legend.key.size = unit(0.55, 'lines'),
+            legend.key.size = unit(0.4, 'lines'),
             panel.border=element_rect(color="black",size=1),
             panel.grid.minor.x =element_blank(),
             panel.grid.minor.y= element_blank(),
              panel.grid.major= element_blank(),
-            plot.title = element_text(size = rel(1.65), face="bold")
+            plot.title = element_text(size = rel(2), face="bold")
       ))
 }
 
@@ -726,15 +712,15 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.185, 0.13)) +ggtitle("(a)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") 
   
   
   plot
@@ -799,15 +785,15 @@ Life_form <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("(b)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.090, 0.115)) + ggtitle("(b)") 
   
   plot
   
@@ -866,16 +852,16 @@ Life_span <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.102, 0.1)) + ggtitle("(c)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.12, 0.1)) + ggtitle("(c)") 
   
   plot
   
@@ -937,17 +923,17 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.165, 0.1)) + ggtitle("(f)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") 
   
   plot
   
@@ -1009,17 +995,17 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.13, 0.18)) + ggtitle("(e)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") 
   
   plot
   
@@ -1080,16 +1066,18 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = -(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
-                          label = PCAloadings$Variables, color="black",size=3)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+
   
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.163, 0.115)) + ggtitle("(d)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.152, 0.11)) + ggtitle("(d)") 
   
   plot
   
@@ -1165,13 +1153,13 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
 #
 # #plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),Nectar(PC), ncol=2,nrow=4,  align = "hv")
 
-#  plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flowe#r_sym(PC),ncol=3,nrow=2,  align = "hv")
-
-library(patchwork)
-Compatibility(PC) + Life_form(PC) + Life_span(PC) + Breeding_syst(PC) + Flower_sha(PC) + Flower_sym(PC) + plot_layout(ncol=3)
+  plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),ncol=3,nrow=2,  align = "hv")
 
 
 ```
+
+
+
 
 \elandscape
 
@@ -1186,7 +1174,7 @@ The additional model for both presence-absence of interactions (marginal $R^{2}$
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.cap= "**Fig. 3 | Interaction (yes/no) and visitation rates across the three main axes of trait variation per floral visitor guild.** Fitted posterior estimates of the presence/absence of interaction (a, b and c) and number of visits (d, e and f) made by the different floral visitors guilds in relation to PC1, PC2 and PC3. PC1 represents the flower number - flower size trade-off, PC2 represents the pollinator dependence trade-off and PC3, the style length trade-off. For visualization purposes, due to large differences between the visitation rates of bees and the rest of guilds, the number of visits was log-transformed (Y-axis of lower panel)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.cap= "**Figure 3** Interaction (yes/no) and visitation rates across the three main axes of trait variation per floral visitor guild. Fitted posterior estimates of the presence/absence of interaction (a, b and c) and number of visits (d, e and f) made by the different floral visitors guilds in relation to PC1, PC2 and PC3. PC1 represents the flower number - flower size trade-off, PC2 represents the pollinator dependence trade-off and PC3, the style length trade-off. For visualization purposes, due to large differences between the visitation rates of bees and the rest of guilds, the number of visits was log-transformed (Y-axis of lower panel)."}
 
 #LOAD LIBRARIES 
 #library(phytools)
@@ -1250,7 +1238,7 @@ When we further investigated the combination of traits that drive plant network 
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=4.25, fig.width=12,fig.cap= "**Fig. 4 | Contribution of traits in plant's network roles.** Regression tree analysis of interaction frequency (log-transformed), normalized degree and specialization for the subset of species with quantitative data for pollen and nectar traits. The superior value inside the node indicates the mean value of the different species-level metric and the lower value, the percentage of species that are considered in each node. Thus, the top node has the mean value of the named trait for the 100% of species. Each node has a yes/no question and when the condition is fulfilled, the branch turns to the ‘yes’ direction and when not, to the ‘no’ direction. This rationale is followed in all the regression trees as indicated in the first branch division of the topmost node of each tree."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=4.25, fig.width=12,fig.cap= "**Figure 4** Contribution of traits in plant's network roles. Regression tree analysis of interaction frequency (log-transformed), normalized degree and specialization for the subset of species with quantitative data for pollen and nectar traits. The superior value inside the node indicates the mean value of the different species-level metric and the lower value, the percentage of species that are considered in each node. Thus, the top node has the mean value of the named trait for the 100% of species. Each node has a yes/no question and when the condition is fulfilled, the branch turns to the ‘yes’ direction and when not, to the ‘no’ direction. This rationale is followed in all the regression trees as indicated in the first branch division of the topmost node of each tree."}
 
 ########################################################################################################################################################
 #SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
@@ -1289,9 +1277,9 @@ tree3 <- rpart(Specialization~., data=d_df, cp=0.0050000,minbucket=50)
 par(mfrow=c(1,3))
 
 
-rpart.plot(tree1, box.palette="GnOr", main="(a) Interaction frequency", cex.main=1.45,tweak = 1.25,type = 2) 
-rpart.plot(tree2, box.palette="GnOr", main="(b) Normalized degree", cex.main=1.45,tweak = 1.25,type = 2)
-rpart.plot(tree3, box.palette="GnOr", main="(c) Specialization", cex.main=1.45,tweak = 1.25,type = 2)
+rpart.plot(tree1, box.palette="GnOr", main="(a) Interaction frequency", cex.main=1.75,tweak = 1.25,type = 2) 
+rpart.plot(tree2, box.palette="GnOr", main="(b) Normalized degree", cex.main=1.75,tweak = 1.25,type = 2)
+rpart.plot(tree3, box.palette="GnOr", main="(c) Specialization", cex.main=1.75,tweak = 1.25,type = 2)
 
 
 ```
