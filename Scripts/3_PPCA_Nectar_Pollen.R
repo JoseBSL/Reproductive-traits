@@ -46,6 +46,7 @@ dat_cleaning_4 <- dat_cleaning_3 %>%
 dat_cleaning_5 <- dat_cleaning_4 %>%
   filter(between(Plant_height_mean_m, quantile(Plant_height_mean_m, 0.025), quantile(Plant_height_mean_m, 0.975)))
 
+
 dat_cleaning_6 <- dat_cleaning_5 %>%
   filter(between(Nectar_ul, quantile(Nectar_ul, 0.025), quantile(Nectar_ul, 0.975)))
 
@@ -204,7 +205,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.6,4.95,5.5,6.25,6.3,6.15,6,6)), y = (PCAloadings$PC2*c(4.693,2.4,3,6.2,5,5.5,6,5)+c(0,0,0,0,0.4,0,0,0)),
                           label = PCAloadings$Variables, color="black",fontface =2,size=4)
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  plot <- plot + theme_bw() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
   
   
   

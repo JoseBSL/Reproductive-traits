@@ -177,6 +177,8 @@ We selected 28 studies from 18 different countries that constituted a total of 6
 
 All species names, genera, families and orders were retrieved and standardized from the taxonomy data sources NCBI (https://www.ncbi.nlm.nih.gov/taxonomy) for plants and ITIS (https://www.itis.gov/) for pollinators, using the R package _taxize_ [@chamberlain2020] version _0.9.99_. We filled the ‘not found’ searches manually using http://www.theplantlist.org/ and http://www.mobot.org/ for plants and http://www.catalogueoflife.org/ for floral visitors.
 
+\newpage
+
 **Functional traits** 
 
 We selected a total of 19 different functional traits that included both reproductive and vegetative traits (see Table 1 and Supplementary Information). From these, 16 were reproductive traits (13 floral and 3 reproductive biology traits) and were selected based on their relevance to plant reproduction and data availability. Note that autonomous selfing was recorded quantitatively (fruit set) and qualitatively because this trait was rarely available in its numerical form. The 3 remaining traits, were vegetative traits that are commonly used to characterize the global spectrum of plant form and function and represent the fast-slow continuum of trait variation (e.g., short-lived versus perennial species). For each plant species, we undertook an extensive literature and online search across a wide range of resources (plant databases, online floras, books, journals and images). From a total of 30,120 cells (20 columns x 1506 species) we were able to fill 24,341 cells (80.8% of the dataset, see Fig. S1 for missing values information for each trait).

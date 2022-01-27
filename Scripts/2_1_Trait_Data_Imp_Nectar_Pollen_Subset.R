@@ -185,8 +185,6 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 library(tidyverse)
 t_nectar_pollen <- t_nectar_pollen %>% select(!Nectar_mg)
 
-str(t_nectar_pollen)
-
 #################################################
 #3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
 #################################################
