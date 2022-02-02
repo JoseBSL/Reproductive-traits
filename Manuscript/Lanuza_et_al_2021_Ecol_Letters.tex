@@ -248,48 +248,6 @@ We selected a total of 19 different functional traits that included both reprodu
 
 We calculated the phylogenetic distance between different plant species using the function \emph{get\_tree} from the package \emph{rtrees} (\url{https://github.com/daijiang/rtrees}), which downloads phylogenetic distances from the extended R implementation of the Open Tree of Life (\protect\hyperlink{ref-smith2018}{Smith \& Brown 2018}; \protect\hyperlink{ref-jin2019}{Jin \& Qian 2019}).
 
-\singlespacing
-
-\begin{table}
-
-\caption{\label{tab:unnamed-chunk-1}\textbf{Table 1 | Quantitative and categorical traits used in this study.}}
-\centering
-\fontsize{10}{12}\selectfont
-\begin{tabular}[t]{>{}cl>{}ccl}
-\toprule
-\multicolumn{2}{c}{\textbf{Quantitative traits}} & \multicolumn{3}{c}{\textbf{Categorical traits}} \\
-\cmidrule(l{3pt}r{3pt}){1-2} \cmidrule(l{3pt}r{3pt}){3-5}
-\textbf{Type} & \textbf{Traits} & \textbf{Type} & \textbf{Traits} & \textbf{Categories}\\
-\midrule
-\textbf{Vegetative} & Plant height (m) & \textbf{Vegetative} & Lifepan & \makecell[l]{Short-lived \\ Perennial}\\
-\addlinespace
-\textbf{Floral} & Flower width (mm) & \textbf{Vegetative} & Life form & \makecell[l]{Herb \\ Shrub \\ Tree}\\
-\addlinespace
-\textbf{Floral} & Flower length (mm) & \textbf{Floral} & Flower shape & \makecell[l]{Brush \\ Campanulate \\ Capitulum \\ Open \\ Papilionaceous \\ Tube}\\
-\addlinespace
-\textbf{Floral} & Inflorescence width (mm) & \textbf{Floral} & Flower symmetry & \makecell[l]{Actinomorphic \\ Zygomorphic}\\
-\addlinespace
-\textbf{Floral} & Style length (mm) & \textbf{Floral} & Nectar & \makecell[l]{Presence \\ Absence}\\
-\addlinespace
-\textbf{Floral} & Ovules per flower & \textbf{\makecell[c]{Reproductive \\ biology}} & Compatibility system & \makecell[l]{Self-incomp. \\ Part. self-comp. \\ Self-comp.}\\
-\addlinespace
-\textbf{Floral} & Flowers per plant & \textbf{\makecell[c]{Reproductive \\ biology}} & Breeding system & \makecell[l]{Hermaphrodite \\ Monoecious \\ Dioecious}\\
-\addlinespace
-\textbf{Floral} & Nectar ($\mu$l) & \textbf{} &  & \\
-\addlinespace
-\textbf{Floral} & Nectar (mg) & \textbf{} &  & \\
-\addlinespace
-\textbf{Floral} & Nectar concentration ($\%$) & \textbf{} &  & \\
-\addlinespace
-\textbf{Floral} & Pollen grains per flower & \textbf{} &  & \\
-\addlinespace
-\textbf{\makecell[c]{Reproductive \\ biology}} & Autonomous selfing (fruit set) & \textbf{} &  & \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\doublespacing
-
 \textbf{Data Imputation}
 
 Trait missing values were imputed with the function \emph{missForest} (\protect\hyperlink{ref-stekhoven2012}{Stekhoven \& Bühlmann 2012}) which allows imputation of data sets with continuous and categorical variables. We accounted for the phylogenetic distance among species on the imputation process by including the eigenvectors of a principal component analysis of the phylogenetic distance (PCoA) which has been shown to improve the performance of \emph{missForest} (\protect\hyperlink{ref-penone2014}{Penone \emph{et al.} 2014}). To extract the eigenvectors, we used the function \emph{PVRdecomp} from the package \emph{PVR} (\protect\hyperlink{ref-santos2018}{Chamberlain \emph{et al.} 2018}) based on a previous conceptual framework that considers phylogenetic eigenvectors (\protect\hyperlink{ref-diniz-filho2012}{Diniz-Filho \emph{et al.} 2012}). We conducted two different imputations, one for the full set of species (1,506 species, 5.79\% of missing values) excluding nectar and pollen traits because of the high percentage of missing values (Fig. S1) and a second one for the subset of species with data for pollen per flower and microliters of nectar (755 species, 8.01\% of missing values).
@@ -327,33 +285,7 @@ Second, to better understand complex trait relationships, we used regression tre
 
 The phylogenetically informed principal component analysis captured by the first two and three axes 51.8\% and 70.97\% of trait variation, respectively (Fig. 1 and Fig. S5) and had a phylogenetic correlation (\(\lambda\)) of 0.76. The first principal component (PC1) represented 26.72\% of the trait variation and indicated a trade-off between flower number and flower size. We refer to this axis as the `flower number - flower size trade-off,' as already described in previous studies (\protect\hyperlink{ref-sargent2007}{Sargent \emph{et al.} 2007}; \protect\hyperlink{ref-kettle2011}{Kettle \emph{et al.} 2011}). Hence, one end of the spectrum comprised species with high investment in flower number and plant height but small flower size, short style length and low ovule number. The other end of this spectrum comprised species that were short in height and invested in large flowers, long styles, many ovules, but few flowers. The main contributing traits to PC1 were plant height, flower number, ovule number and flower size (loadings \textgreater{} \textbar0.5\textbar; Table S3) but style length also contributed moderately to PC1 (loading = -0.33). The second principal component (PC2) represented 25.05\% of the trait variation and indicated a trade-off between low and high pollinator dependence. We refer to this axis as the `pollinator dependence trade-off.' The main driver of trait variation on PC2 was autonomous selfing (loading = 0.85) but the other traits (except ovule number) also made moderate contributions (loadings from 0.27 to 0.4; Table S3). We found that high pollinator dependence was associated with larger and a higher number of flowers, greater plant height and longer styles. In contrast, species with high levels of autonomous selfing tended to have fewer and smaller flowers, had shorter styles and were shorter in height. Further, PC3 explained a considerable amount of trait variability (19.17\%) and the main contributors to this axis were style length (loading = -0.66) and the degree of autonomous selfing (loading = -0.51). The remaining traits, apart from ovule number, were moderately correlated to changes on PC3 (loadings from -0.23 to -0.46; Table S3). Thus, because style length was correlated with all traits on PC3 and was the main driver of trait variation, we refer to this axis as the `style length trade-off.' Further, the pPCA with the subset of species that had nectar and pollen quantity data showed that nectar quantity (microlitres of nectar per flower) and pollen grains per flower were positively associated with flower size, style length and ovule number but negatively associated with flower number (PC1, 26.82\%; Fig. S6). This pPCA explained similar variance with the first two principal components (45.52\%) and similar associations of traits despite some variability in the loadings (Table S4).
 
-\begin{figure}[H]
-
-{\centering \includegraphics{output/figures/unnamed-chunk-2-1} 
-
-}
-
-\caption{\textbf{Figure 1} Phylogenetically informed principal component analysis (pPCA) of 1,236 plant species from 28 plant-pollinator network studies. The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) across the two main axes of trait variation. The length of the arrows indicate the weight of the variables on each principal component and the dashed lines show the opposed direction of trait variation. The icons at both ends of arrows and dashed lines illustrate the extreme form of the trait continuum.}\label{fig:unnamed-chunk-2}
-\end{figure}
-
 We found that most categorical traits were statistically associated with the first two axes of trait variation (Fig. 2 and Table S2). Flower symmetry, which was only associated with PC2 (Sum of squares = 8.51, F-value = 14.72, \emph{P} \textless{} 0.01 ), and nectar provision, which was independent of PC1 and PC2 (PC1: Sum of squares = 0.37, F-value = 0.29 , \emph{P} = 0.59; PC2: Sum of squares = 0.83, F-value = 1.43, \emph{P} = 0.23) showed lack of statistical association. In addition, we found (with a Tukey test) statistical differences between the different levels of categorical traits in the trait space (Fig. S7). Regarding self compatibility, we found larger differences on PC2 (i.e., species with unisexual flowers that were self incompatible were statistically differentiated from species with partial or full self compatibility; Fig. S7a and Fig. S7b). Life forms differed statistically across both axes of trait variation and followed a gradient of larger life forms (trees and shrubs) with higher pollinator dependence to smaller ones (herbs) with lower pollinator dependence (Fig. S7c and Fig. S7d). Consequently, lifespan also followed this gradient but perennial and short lived species only differed statistically on PC2 (Fig. S7e and Fig. S7f). Species with unisexual flowers (monoecious and dioecious) were clustered on both extremes of the first two principal components and had the highest pollinator dependence and highest number of flowers (Fig. S7g and Fig. S7h). Moreover, we found that the campanulate and capitulum flower shapes were differentiated from tube, papilionaceous, open and brush shapes in the trait space. The former morphologies had larger flowers and greater pollinator dependence, while the latter had higher flower number and greater autonomous selfing (Fig. S7i and Fig. S7j). Regarding flower symmetry, zygomorphic flowers were associated with lower levels of pollinator dependence, whereas actinomorphic flowers had higher levels of pollinator dependence (Fig. S7k and Fig. S7l).
-
-\blandscape
-
-\vspace*{-28mm}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.9\linewidth]{output/figures/unnamed-chunk-3-1} 
-
-}
-
-\caption{\textbf{Figure 2} Location of the different qualitative traits on the trait space. The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits showed in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S).}\label{fig:unnamed-chunk-3}
-\end{figure}
-
-\elandscape
-
-\vspace{5mm}
 
 \textbf{Phylogenetic signal}
 
@@ -365,31 +297,11 @@ The main axes of trait variation explained partly presence-absence of interactio
 
 The additional model for both presence-absence of interaction (marginal \(R^{2}\) = 0.29; conditional \(R^{2}\) = 0.19) and visitation rate (marginal \(R^{2}\) = 0.30; conditional \(R^{2}\) = 0.03) for the most represented families of bees showed that the family Apidae was the main driver of the observed patterns. The contrasting differences between presence-absence of interaction and visitation rate for bees on PC1 (Fig. 3a and Fig. 3d) were driven by the family Andrenidae that had higher number of interacting partners but lower visitation rates on plant species with low number of large flowers (Fig. S8).
 
-\blandscape
-
-\begin{figure}
-\centering
-\includegraphics{output/figures/unnamed-chunk-4-1.pdf}
-\caption{\label{fig:unnamed-chunk-4}\textbf{Figure 3} Fitted posterior estimates of the presence-absence of interaction (a, b and c) and visitation rate (d, e and f) of the different floral visitor guilds in relation to the main axes of trait variation (PC1, PC2 and PC3). PC1 represents the flower number - flower size trade-off, PC2 represents the pollinator dependence trade-off and PC3, the style length trade-off. For visualization purposes, due to large differences between the visitation rates of bees and the rest of guilds, the number of visits was log-transformed (Y-axis of lower panel).}
-\end{figure}
-
-\elandscape
-
 \textbf{Plant species network roles}
 
 The variance of the different plant species-level network metrics was poorly explained by the three main axes of trait variation (Fig. S9; visitation rate \textasciitilde{} PCs, conditional \(R^{2}\) = 0.11, marginal \(R^{2}\) = 0.02; normalized degree \textasciitilde{} PCs, conditional \(R^{2}\) = 0.24, marginal \(R^{2}\) = 0.02; and, specialization \textasciitilde{} PCs, conditional \(R^{2}\) = 0.37, marginal\(R^{2}\) = 0.03). Overall, the most notable trends were found on PC1 and PC3 for visitation rate and specialization. On the flower number - flower size trade-off (PC1), visitation rate was higher for plant species with more flowers but was lower for plant species with larger flowers (Fig. S9a). On PC1, specialization showed the opposite trend (Fig. S9g). On the style length trade-off (PC3), visitation rate was lower for plants with shorter styles and lower autonomous selfing and higher for species with longer styles and higher autonomous selfing (Fig. S9c). Again, specialization showed the opposite trend to visitation rate (Fig. S9i).
 
 When we further investigated the combination of traits that drive plant network roles, we found that the regression tree for visitation rate was best explained by plant height, nectar concentration and style length (Fig. 4a). Specifically, species taller than 3.9m had the highest visitation rate, while species that were shorter than 3.9m and had a nectar concentration lower than 16\% had the lowest visitation rate. Normalized degree was best explained by nectar concentration, pollen grains per flower, plant height, flower width and autonomous selfing (Fig. 4b). Species with a nectar concentration over 49\% had the highest levels of normalized degree, whereas species with nectar concentration lower than 49\%, more than 21,000 pollen grains per flower and height less than 0.78m had the lowest normalized degree. Finally, specialization was best explained by plant height, ovule number, pollen grains per flower and autonomous selfing (Fig. 4c). Overall, plant species with the highest specialization were shorter than 1.3m, had more than 14,000 pollen grains per flower and autonomously self-pollinated less than 11\% of their fruits. In contrast, species taller or equal than 5.1m and with lower than 14 ovules per flower had the lowest specialization values.
-
-\blandscape
-
-\begin{figure}
-\centering
-\includegraphics{output/figures/unnamed-chunk-5-1.pdf}
-\caption{\label{fig:unnamed-chunk-5}\textbf{Figure 4} Contribution of traits in plant's network roles. Regression tree analysis of visitation rate (log-transformed), normalized degree and specialization for the subset of species with quantitative data for pollen and nectar traits. The superior value inside the node indicates the mean value of the different species-level metric and the lower value, the percentage of species that are considered in each node. Thus, the top node has the mean value of the named trait for the 100\% of species. Each node has a yes/no question and when the condition is fulfilled, the branch turns to the `yes' direction and when not, to the `no' direction. This rationale is followed in all the regression trees as indicated in the first branch division of the topmost node of each tree.}
-\end{figure}
-
-\elandscape
 
 \hypertarget{discussion}{%
 \section{DISCUSSION}\label{discussion}}
@@ -638,5 +550,92 @@ Wright, I.J., Reich, P.B., Westoby, M., Ackerly, D.D., Baruch, Z., Bongers, F., 
 \section{Acknowledgements}\label{acknowledgements}}
 
 This study was supported by the European project SAFEGUARD (101003476 H2020-SFS-2019-2). We thank all researchers that made their data openly available and sent it upon request. We also thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We also thank Jason Tylianakis for his comments on the manuscript before submission. Finally, JBL thanks the University of New England for the funding provided to carry out this work.
+
+\singlespacing
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-1}\textbf{Table 1 | Quantitative and categorical traits used in this study.}}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{}cl>{}ccl}
+\toprule
+\multicolumn{2}{c}{\textbf{Quantitative traits}} & \multicolumn{3}{c}{\textbf{Categorical traits}} \\
+\cmidrule(l{3pt}r{3pt}){1-2} \cmidrule(l{3pt}r{3pt}){3-5}
+\textbf{Type} & \textbf{Traits} & \textbf{Type} & \textbf{Traits} & \textbf{Categories}\\
+\midrule
+\textbf{Vegetative} & Plant height (m) & \textbf{Vegetative} & Lifepan & \makecell[l]{Short-lived \\ Perennial}\\
+\addlinespace
+\textbf{Floral} & Flower width (mm) & \textbf{Vegetative} & Life form & \makecell[l]{Herb \\ Shrub \\ Tree}\\
+\addlinespace
+\textbf{Floral} & Flower length (mm) & \textbf{Floral} & Flower shape & \makecell[l]{Brush \\ Campanulate \\ Capitulum \\ Open \\ Papilionaceous \\ Tube}\\
+\addlinespace
+\textbf{Floral} & Inflorescence width (mm) & \textbf{Floral} & Flower symmetry & \makecell[l]{Actinomorphic \\ Zygomorphic}\\
+\addlinespace
+\textbf{Floral} & Style length (mm) & \textbf{Floral} & Nectar & \makecell[l]{Presence \\ Absence}\\
+\addlinespace
+\textbf{Floral} & Ovules per flower & \textbf{\makecell[c]{Reproductive \\ biology}} & Compatibility system & \makecell[l]{Self-incomp. \\ Part. self-comp. \\ Self-comp.}\\
+\addlinespace
+\textbf{Floral} & Flowers per plant & \textbf{\makecell[c]{Reproductive \\ biology}} & Breeding system & \makecell[l]{Hermaphrodite \\ Monoecious \\ Dioecious}\\
+\addlinespace
+\textbf{Floral} & Nectar ($\mu$l) & \textbf{} &  & \\
+\addlinespace
+\textbf{Floral} & Nectar (mg) & \textbf{} &  & \\
+\addlinespace
+\textbf{Floral} & Nectar concentration ($\%$) & \textbf{} &  & \\
+\addlinespace
+\textbf{Floral} & Pollen grains per flower & \textbf{} &  & \\
+\addlinespace
+\textbf{\makecell[c]{Reproductive \\ biology}} & Autonomous selfing (fruit set) & \textbf{} &  & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\doublespacing
+
+\begin{figure}[H]
+
+{\centering \includegraphics{output/figures/unnamed-chunk-2-1} 
+
+}
+
+\caption{\textbf{Figure 1} Phylogenetically informed principal component analysis (pPCA) of 1,236 plant species from 28 plant-pollinator network studies. The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) across the two main axes of trait variation. The length of the arrows indicate the weight of the variables on each principal component and the dashed lines show the opposed direction of trait variation. The icons at both ends of arrows and dashed lines illustrate the extreme form of the trait continuum.}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+\blandscape
+
+\vspace*{-28mm}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.9\linewidth]{output/figures/unnamed-chunk-3-1} 
+
+}
+
+\caption{\textbf{Figure 2} Location of the different qualitative traits on the trait space. The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits showed in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S).}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+\elandscape
+
+\vspace{5mm}
+\blandscape
+
+\begin{figure}
+\centering
+\includegraphics{output/figures/unnamed-chunk-4-1.pdf}
+\caption{\label{fig:unnamed-chunk-4}\textbf{Figure 3} Fitted posterior estimates of the presence-absence of interaction (a, b and c) and visitation rate (d, e and f) of the different floral visitor guilds in relation to the main axes of trait variation (PC1, PC2 and PC3). PC1 represents the flower number - flower size trade-off, PC2 represents the pollinator dependence trade-off and PC3, the style length trade-off. For visualization purposes, due to large differences between the visitation rates of bees and the rest of guilds, the number of visits was log-transformed (Y-axis of lower panel).}
+\end{figure}
+
+\elandscape
+
+\blandscape
+
+\begin{figure}
+\centering
+\includegraphics{output/figures/unnamed-chunk-5-1.pdf}
+\caption{\label{fig:unnamed-chunk-5}\textbf{Figure 4} Contribution of traits in plant's network roles. Regression tree analysis of visitation rate (log-transformed), normalized degree and specialization for the subset of species with quantitative data for pollen and nectar traits. The superior value inside the node indicates the mean value of the different species-level metric and the lower value, the percentage of species that are considered in each node. Thus, the top node has the mean value of the named trait for the 100\% of species. Each node has a yes/no question and when the condition is fulfilled, the branch turns to the `yes' direction and when not, to the `no' direction. This rationale is followed in all the regression trees as indicated in the first branch division of the topmost node of each tree.}
+\end{figure}
+
+\elandscape
 
 \end{document}
