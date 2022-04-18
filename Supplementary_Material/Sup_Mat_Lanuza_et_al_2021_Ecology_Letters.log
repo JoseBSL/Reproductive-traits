@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  1 FEB 2022 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  18 APR 2022 18:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -668,42 +668,39 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 40.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [2]
-<../Images/flower_shapes.png, id=24, 2890.8pt x 2168.1pt>
+) [2] [3]
+<../Images/flower_shapes.png, id=28, 2890.8pt x 2168.1pt>
 File: ../Images/flower_shapes.png Graphic file (type png)
 <use ../Images/flower_shapes.png>
-Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 211.
+Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 218.
 (pdftex.def)             Requested size: 305.32942pt x 228.99706pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] [4 <../Images/flower_shapes.png>] [5]
-Overfull \hbox (24.25696pt too wide) in alignment at lines 260--265
+[4 <../Images/flower_shapes.png>] [5]
+Overfull \hbox (24.25696pt too wide) in alignment at lines 270--275
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 265--270
+Overfull \hbox (24.25696pt too wide) in alignment at lines 275--280
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 270--272
+Overfull \hbox (24.25696pt too wide) in alignment at lines 280--282
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 272--274
+Overfull \hbox (24.25696pt too wide) in alignment at lines 282--284
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 274--314
+Overfull \hbox (24.25696pt too wide) in alignment at lines 284--324
 [] [] [] [] [] 
  []
 
 
-Overfull \hbox (24.25696pt too wide) in alignment at lines 314--330
+Overfull \hbox (24.25696pt too wide) in alignment at lines 324--340
 [] [] [] [] [] 
  []
 
@@ -713,143 +710,154 @@ Overfull \hbox (24.25696pt too wide) in alignment at lines 314--330
 
 ] [10] [11] [12]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-7-1
-.pdf, id=76, 440.64626pt x 282.05376pt>
+.pdf, id=76, 453.695pt x 215.80624pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-7-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -7-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-7-1.pdf  used on input line 504.
-(pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
+-latex/unnamed-chunk-7-1.pdf  used on input line 514.
+(pdftex.def)             Requested size: 453.6939pt x 215.80571pt.
 [13 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
 nk-7-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-8-1
-.pdf, id=93, 712.6625pt x 691.58376pt>
+.pdf, id=91, 440.64626pt x 282.05376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-8-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -8-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-8-1.pdf  used on input line 510.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+-latex/unnamed-chunk-8-1.pdf  used on input line 520.
+(pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
 [14 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
 nk-8-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-9-1
-.pdf, id=119, 1710.39pt x 1706.375pt>
+.pdf, id=107, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-9-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -9-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-9-1.pdf  used on input line 516.
-(pdftex.def)             Requested size: 469.74539pt x 468.6427pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+-latex/unnamed-chunk-9-1.pdf  used on input line 526.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+[15 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
+nk-9-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-10-
-1.pdf, id=120, 821.0675pt x 1012.78375pt>
+1.pdf, id=133, 1710.39pt x 1706.375pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-10-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -10-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-10-1.pdf  used on input line 520.
-(pdftex.def)             Requested size: 469.7548pt x 579.44083pt.
+-latex/unnamed-chunk-10-1.pdf  used on input line 532.
+(pdftex.def)             Requested size: 469.74539pt x 468.6427pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-11-
-1.pdf, id=121, 712.6625pt x 691.58376pt>
+1.pdf, id=134, 821.0675pt x 1012.78375pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-11-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -11-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-11-1.pdf  used on input line 524.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+-latex/unnamed-chunk-11-1.pdf  used on input line 536.
+(pdftex.def)             Requested size: 469.7548pt x 579.44083pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-12-
-1.pdf, id=122, 712.6625pt x 691.58376pt>
+1.pdf, id=135, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-12-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -12-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-12-1.pdf  used on input line 530.
+-latex/unnamed-chunk-12-1.pdf  used on input line 540.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-13-
-1.pdf, id=123, 924.45375pt x 1336.995pt>
+1.pdf, id=136, 712.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-13-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -13-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-13-1.pdf  used on input line 536.
-(pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
-
-LaTeX Warning: Float too large for page by 53.51106pt on input line 537.
-
+-latex/unnamed-chunk-13-1.pdf  used on input line 546.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
-nk-9-1.pdf>] [16 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-late
-x/unnamed-chunk-10-1.pdf>] [17 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_fil
-es/figure-latex/unnamed-chunk-11-1.pdf>] [18 <./Sup_Mat_Lanuza_et_al_2021_Ecolo
-gy_Letters_files/figure-latex/unnamed-chunk-12-1.pdf>] [19 <./Sup_Mat_Lanuza_et
-_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-13-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-14-
-1.pdf, id=222, 1928.20375pt x 985.6825pt>
+1.pdf, id=137, 924.45375pt x 1336.995pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-14-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -14-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-14-1.pdf  used on input line 542.
-(pdftex.def)             Requested size: 650.43176pt x 332.49556pt.
-[20 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
-nk-14-1.pdf>]
+-latex/unnamed-chunk-14-1.pdf  used on input line 552.
+(pdftex.def)             Requested size: 449.74191pt x 650.44109pt.
+
+LaTeX Warning: Float too large for page by 53.51106pt on input line 553.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
+nk-10-1.pdf>] [17 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-lat
+ex/unnamed-chunk-11-1.pdf>] [18 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_fi
+les/figure-latex/unnamed-chunk-12-1.pdf>] [19 <./Sup_Mat_Lanuza_et_al_2021_Ecol
+ogy_Letters_files/figure-latex/unnamed-chunk-13-1.pdf>] [20 <./Sup_Mat_Lanuza_e
+t_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-14-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-15-
-1.pdf, id=240, 1857.94125pt x 1271.75125pt>
+1.pdf, id=236, 1928.20375pt x 985.6825pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-15-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -15-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-15-1.pdf  used on input line 550.
-(pdftex.def)             Requested size: 650.43094pt x 445.21663pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+-latex/unnamed-chunk-15-1.pdf  used on input line 558.
+(pdftex.def)             Requested size: 650.43176pt x 332.49556pt.
 [21 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
 nk-15-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-16-
-1.pdf, id=260, 1862.96pt x 1283.79625pt>
+1.pdf, id=254, 1857.94125pt x 1271.75125pt>
 File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
 k-16-1.pdf Graphic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
 -16-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-16-1.pdf  used on input line 556.
+-latex/unnamed-chunk-16-1.pdf  used on input line 566.
+(pdftex.def)             Requested size: 650.43094pt x 445.21663pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
+nk-16-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-17-
+1.pdf, id=275, 1862.96pt x 1283.79625pt>
+File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
+k-17-1.pdf Graphic file (type pdf)
+<use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
+-17-1.pdf>
+Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
+-latex/unnamed-chunk-17-1.pdf  used on input line 572.
 (pdftex.def)             Requested size: 469.747pt x 323.71034pt.
-[22
+[23
 
 
 
 
  <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-
-16-1.pdf>] (./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.aux) ) 
+17-1.pdf>] (./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.aux) ) 
 Here is how much of TeX's memory you used:
- 15604 strings out of 478994
- 242063 string characters out of 5858184
- 593016 words of memory out of 5000000
- 32623 multiletter control sequences out of 15000+600000
- 447670 words of font info for 114 fonts, out of 8000000 for 9000
+ 15619 strings out of 478994
+ 242721 string characters out of 5858184
+ 593347 words of memory out of 5000000
+ 32631 multiletter control sequences out of 15000+600000
+ 447852 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,10n,88p,1071b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texli
@@ -860,11 +868,11 @@ dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts
 ></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/loc
 al/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/
 2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.pdf (22 pages, 6228
-638 bytes).
+Output written on Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.pdf (23 pages, 6657
+336 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 259 compressed objects within 3 object streams
- 45 named destinations out of 1000 (max. 500000)
- 24656 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 336 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 24661 words of extra memory for PDF output out of 24883 (max. 10000000)
 

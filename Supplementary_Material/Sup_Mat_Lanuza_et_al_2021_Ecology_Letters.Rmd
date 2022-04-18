@@ -127,7 +127,7 @@ _Floral traits_
 
 -	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
  
--	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. 
+-	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. Note that for species with compound flowers (e.g., Asteraceae) or similar floral structures we considered the actual inflorescence as the floral unit and the inflorescence or group of inflorescences as the inflorescence. For each species this is indicated in the dataset with the field of "info_level". For analysis just flower and capitulum level were considered but for some Asteraceae species information about ray and disc florets were also annotated.
 
 -	Flower number per plant: We compiled information about the number of flowers per plant for all species. However, this field was rare to find and we also used online images of the different species in order to calculate rough numbers of flowers per plant. We referenced all the filled fields in order to be able to follow the images that were used for these counts. It is important to note, that these numbers are not pretended to be the exact number of flowers per species but an approximate indicator of the reproductive investment for the different species that allow the macroecological analysis of this field.
 
@@ -142,8 +142,7 @@ knitr::include_graphics("../Images/flower_shapes.png")
 
 -	Style length: The length of the style (mm) of the different species was also included. When possible, we calculated style length from images and illustrations on the online floras. 
 
-- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. 
-
+- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. For analysis, we considered exclusively microlitres of nectar measured in a given moment of time which was generally associated with the peak of nectar production. 
 
 - Pollen grains per flower: We recorded pollen grains per flower for all species but this field was rarely described in the literature. When just the pollen:ovule ratio was found we converted it back to pollen grains by multiplying it by the average ovule number found for each species.
 
@@ -372,8 +371,147 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 \newpage
 
 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.cap="\\textbf{Fig. S1.} Map with the different locations of the plant-pollinator studies used in this work to explore woldwide patterns at the meso-scale level. For each study just one location is shown except for the study of Olesen that was conducted in two very different locations (Mauritius and Azores)."}
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Fig. S1.} Percentage of present and missing values of the different plant traits."}
+
+#Create coordinate dataset for plotting
+
+longitude <- c("3.296797",  #1
+               "1.575532", #2
+               "9.275556", 
+               "18.5", #4
+               "99.63806", #5
+               "148.266667",
+               "-52", 
+               "-31", "57.43", #8
+               "-75.5", #9
+               "-57.885", #10
+               "55.447778",
+               "-6.16895", #12bart
+               "55.43333", #13
+               "57.733333",
+               "-68.015892", #15
+               "-89.8968771",
+               "171.756111",
+               "10.233333",
+               "-90.35",
+               "-93.8968771",#Robertson
+               "-67.4292900",
+               "-61.71666666666667",
+               "175.756111",
+               "-71.3",
+               "129.387359", #Kevan
+               "135.75385",
+               "-93.35",
+               "10.219072")  
+
+latitude <- c("42.315336", #1
+              "52.762395", #2
+              "56.0725",
+              "68.35", #4
+              "27.90139", #5
+              "-36.45", #6
+              "71", #7
+              "39.4", "-23.25", #8 #modified for visibility of ovelapping
+              "45.4", #9
+              "-21.701111", #10
+              "-7.67",#11 #modified for visibility of ovelapping
+              "37.234966", #12bart
+              "-4.666667", #13
+              "-20.4538",
+              "-32.008985", #15
+              "39.278958",
+              "-43.035889",
+              "59.066667",#18 #modified for visibility of ovelapping
+              "-0.533333",
+              "39.278958", #Robertson 
+              "8.9241600",
+              "5.5833333",
+              "-43.035889",
+              "81.8166667",
+              "28.288661", #Kevan 
+              "35.02107",
+              "-0.533333",
+              "56.069108") 
+
+id <- c("Bartomeus1", #1
+        "Dicks", #2
+        "Dupont", 
+        "Elberling", #4
+        "Fang", #5
+        "Inouye1", #6
+        "Lundgren", #7
+        "Olesen", "Olesen", #8
+        "Small", #9
+        "Souza", #10
+        "Kaiser-Bunbury1", #
+        "Bartomeus2", #12
+        "Kaiser-Bunbury2", #13
+        "Kaiser-Bunbury3", #14
+        "Peralta", #15
+        "Burkle",
+        "Arroyo-Correa",
+        "Bundgaard",
+        "Traveset",
+        "Robertson",
+        "Ramirez1",
+        "Ramirez2",
+        "Primack",
+        "Kevan",
+        "Kato",
+        "Inouye2",
+        "McMullen",
+        "Baek")
+
+d <- data.frame(longitude, latitude, id)
+
+library("ggplot2")
+library("sf")
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+
+d$longitude <- as.numeric(d$longitude)
+d$latitude <- as.numeric(d$latitude)
+
+sf::sf_use_s2(FALSE)
+
+#these colors come from the library(pals)- labs = c('alphabet')
+
+
+colors <- c("red4", "#0075DC", "#4C005C", "#4C005C", "#993F00",  "#5EF1F2", 
+        "#005C31", "#2BCE48", "black", "lightblue", "darkorange3", "darkorange3","#8F7C00",
+        "#8F7C00","#8F7C00", "#9DCC00", "#C20088", "gold1","#FFA8BB","#426600","94FFB5","#003380",  
+         "#FF0010","#FF0010", "salmon", "seashell3","greenyellow","mediumaquamarine")
+
+set.seed(12)
+ggplot(data = world) +
+  geom_sf(fill="antiquewhite", color="grey49") +
+  xlab("Longitude") + ylab("Latitude") +
+  geom_point(data=d , aes(longitude,latitude,  color=id),  shape=10,
+           size = 3.5, stroke=1)+ 
+  theme(panel.grid.major = element_line(color = gray(.5), 
+linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblue"))+
+  coord_sf(expand = FALSE) +  scale_y_continuous(breaks = c(-50,0, 50)) +
+  scale_x_continuous(breaks = c(-100,0, 100)) +
+  theme(legend.key.size = unit(0.5, 'cm'), legend.text = element_text(size=6),
+         legend.title = element_text(size=12))+
+  scale_colour_discrete(name = "Study \n locations") +   scale_colour_manual(
+    values = colors)
+  
+
+
+
+```
+
+
+\newpage
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Fig. S2.} Percentage of present and missing values of the different plant traits."}
 
 #Set working directory
 setwd("~/R_Projects/Reproductive Traits")
@@ -666,7 +804,7 @@ percentage.plot
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S2.}  Phylogenetic informed principal component analysis for the species that did not have missing values."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S3.}  Phylogenetic informed principal component analysis for the species that did not have missing values."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -815,7 +953,7 @@ pc3(PC)
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Fig. S3.} Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation. The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Fig. S4.} Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation. The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
 
 library(Rcpp)
 library(patchwork)
@@ -853,7 +991,7 @@ plot_apis
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S4.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S5.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
 
 ########################################################################################################################################################
 #SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
@@ -923,7 +1061,7 @@ rpart.plot(tree3, box.palette="GnOr", main="F Specialization for subset with flo
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S5.} PC1 and PC3 of the phylogenetically informed principal component analysis with the full set of species."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S6.} PC1 and PC3 of the phylogenetically informed principal component analysis with the full set of species."}
 setwd("~/R_Projects/Reproductive Traits")
 
 
@@ -1075,7 +1213,7 @@ pc3(PC)
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetic informed principal component analysis for the subset of species with floral rewards."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S7.} Phylogenetic informed principal component analysis for the subset of species with floral rewards."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1207,7 +1345,7 @@ all_spp(PC)
 
 \newpage
 \thispagestyle{empty}
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S7.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S8.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################
@@ -1536,7 +1674,7 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S9.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
 
 
 library(Rcpp)
@@ -1580,9 +1718,9 @@ plot
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Plant species level metrics across the three main axes of trait variation.", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S10.} Plant species level metrics across the three main axes of trait variation.", fig.pos= "h"}
 
-library(brms) #modelling
+#library(brms) #modelling
 library(cowplot) #panel of plots
 library(ggplot2) #plotting
 library(patchwork)
@@ -1620,7 +1758,7 @@ plot_metrics_pcs
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S10.} Pearson correlation between the product of flower number-flower size and autonomous selfing level.", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S11.} Pearson correlation between the product of flower number-flower size and autonomous selfing level.", fig.pos= "h"}
 
 theme_ms <- function(base_size=18, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
