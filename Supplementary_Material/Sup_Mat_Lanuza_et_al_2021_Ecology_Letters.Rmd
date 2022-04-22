@@ -115,6 +115,8 @@ Supplementary Fig. S10: Pearson correlation between the product of flower number
 
 __Description of the traits compiled in this study__
 
+Here we describe the different traits of the database used in this study to explore the reproductive spectrum of trait variation and plant-pollinator associations. Note that all species have references or links providing the original source of the information. 
+
 _Reproductive traits_
 
 -	Breeding system: The different plant species were classified in hermaphrodite, dioecious and monoecious species. Intermediate breeding systems or more complex ones were also annotated but all the species were divided into these three main categories for simplicity of the analysis.
@@ -127,7 +129,7 @@ _Floral traits_
 
 -	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
  
--	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and  the software ImageJ. Note that for species with compound flowers (e.g., Asteraceae) or similar floral structures we considered the actual inflorescence as the floral unit and the inflorescence or group of inflorescences as the inflorescence. For each species this is indicated in the dataset with the field of "info_level". For analysis just flower and capitulum level were considered but for some Asteraceae species information about ray and disc florets were also annotated.
+-	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and the software ImageJ. Note that for species with compound flowers (e.g., Asteraceae) or similar floral structures with flower heads with many small flowers we considered the inflorescence as the floral unit. For each species this is indicated in the dataset with the field of "info_level" where the measurement level is specified as capitulum or flower level. Note that for some Asteraceae species information about the disc and ray floret is also provided in the database but these were not included in our analyses. 
 
 -	Flower number per plant: We compiled information about the number of flowers per plant for all species. However, this field was rare to find and we also used online images of the different species in order to calculate rough numbers of flowers per plant. We referenced all the filled fields in order to be able to follow the images that were used for these counts. It is important to note, that these numbers are not pretended to be the exact number of flowers per species but an approximate indicator of the reproductive investment for the different species that allow the macroecological analysis of this field.
 
@@ -142,7 +144,7 @@ knitr::include_graphics("../Images/flower_shapes.png")
 
 -	Style length: The length of the style (mm) of the different species was also included. When possible, we calculated style length from images and illustrations on the online floras. 
 
-- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. For analysis, we considered exclusively microlitres of nectar measured in a given moment of time which was generally associated with the peak of nectar production. 
+- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. For the field of microlitres of nectar, we considered single measurements of nectar standing crop. In general terms, the timming of the measurement and methodology differed across studies. For instance, some studies measured nectar in freshly opened flowers while others in flowers that were bagged for 24 hours. Despite the different methodologies to measure nectar provision, we believe that this is an interesting field that allows the macroecological exploration of this important floral reward in relation with the rest of reproductive traits at a global scale. 
 
 - Pollen grains per flower: We recorded pollen grains per flower for all species but this field was rarely described in the literature. When just the pollen:ovule ratio was found we converted it back to pollen grains by multiplying it by the average ovule number found for each species.
 
