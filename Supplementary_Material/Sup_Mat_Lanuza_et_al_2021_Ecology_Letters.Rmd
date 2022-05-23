@@ -50,7 +50,7 @@ knitr::opts_chunk$set(fig.pos = "h", out.extra = "")
 **This pdf includes:**
 
 
-Supplementary text
+Appendix S1 (text)
 
 Tables S1 to S5
 
@@ -111,7 +111,7 @@ Supplementary Fig. S10: Pearson correlation between the product of flower number
 
 \newpage
 
-## Supplementary Information Text
+## Appendix S1
 
 __Description of the traits compiled in this study__
 
@@ -373,7 +373,7 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.cap="\\textbf{Fig. S1.} Map with the different locations of the plant-pollinator studies used in this work to explore woldwide patterns at the meso-scale level. For each study just one location is shown except for the study of Olesen that was conducted in two very different locations (Mauritius and Azores)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.cap="\\textbf{Fig. S1.} Map with the different locations of the plant-pollinator studies used in this work to explore woldwide patterns at the meso-scale level. Note that for visualization purposes studies from the same authors are shown with the same colour."}
 
 
 #Create coordinate dataset for plotting
@@ -499,9 +499,7 @@ linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblu
   coord_sf(expand = FALSE) +  scale_y_continuous(breaks = c(-50,0, 50)) +
   scale_x_continuous(breaks = c(-100,0, 100)) +
   theme(legend.key.size = unit(0.5, 'cm'), legend.text = element_text(size=6),
-         legend.title = element_text(size=12))+
-  scale_colour_discrete(name = "Study \n locations") +   scale_colour_manual(
-    values = colors)
+         legend.title = element_text(size=12)) +   scale_colour_manual(values = colors) + labs(colour="Plant-pollinator studies")
   
 
 
