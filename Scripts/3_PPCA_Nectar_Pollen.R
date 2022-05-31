@@ -28,7 +28,9 @@ dat$Species_all <- gsub("Species_all_", "", dat$Species_all)
 ########################################################################################################################################################
 #3) REMOVE OUTLIERS, OUT OF 2.5-97.5 RANGE WHICH HELPS IMPUTATION PROCESS. SEE ARTICLE FOR REF.
 ########################################################################################################################################################
-dat_cleaning <- dat[,c(2,3,4,8,11,12,14,15,18,20,23)]
+dat_cleaning <- dat[,c(2,3,4,8,11,13,15,16,19,21,24)]
+
+colnames(dat)
 
 #CHECK LEVELS
 dat_cleaning_1 <- dat_cleaning %>%
@@ -95,10 +97,6 @@ rownames(final_d) <- gsub(" ", "_", rownames(final_d))
 
 #Output saved not RUN
 phyl_pca_forest_nectar_pollen <- phyl.pca(phylo_output, final_d,method="lambda",mode="cov")
-
-
-
-
 
 
 ####

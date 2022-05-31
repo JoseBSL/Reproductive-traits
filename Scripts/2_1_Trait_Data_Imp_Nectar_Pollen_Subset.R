@@ -185,6 +185,9 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 library(tidyverse)
 t_nectar_pollen <- t_nectar_pollen %>% select(!Nectar_mg)
 
+
+
+
 #################################################
 #3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
 #################################################
@@ -245,7 +248,7 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 forest_imputed <- missForest(dat_phylo[,c(6:25)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
-f_imp_data <- f_imp_data[,-20]
+f_imp_data <- f_imp_data[,-21]
 #add species names
 spp <- dat_phylo[,c("Order_all","Family_all","Genus_all","Species_all")]
 forest_data <- cbind(spp, f_imp_data)

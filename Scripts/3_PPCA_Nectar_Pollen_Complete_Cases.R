@@ -260,8 +260,8 @@ saveRDS(dat_cleaning_7, "Data/RData/data_all_species_PPCA_nectar_pollen_complete
 ####
 #READ DATA
 ####
-#phyl_pca_forest_nectar_pollen <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen.rds")
-#dat_cleaning_7 <- readRDS("Data/RData/data_all_species_PPCA_nectar_pollen.rds")
+phyl_pca_forest_nectar_pollen <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen_complete_cases.rds")
+dat_cleaning_7 <- readRDS("Data/RData/data_all_species_PPCA_nectar_pollen_complete_cases.rds")
 
 
 #CALL the output PC for simplicity
