@@ -803,27 +803,22 @@ percentage.plot
 \newpage
 
 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=20, fig.width=10,out.width="80%",fig.align='center',fig.cap= "\\textbf{Fig. S3.} Comparison of the phylogenetic informed principal component analysis for the dataset with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the full dataset with data imputation and panel B shows the reproductive spectrum for the dataset without data imputation where the species with missing trait data were excluded from the analysis."}
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S3.}  Phylogenetic informed principal component analysis for the species that did not have missing values."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
-#LOAD LIBRARIES
-library(phytools)
-library(ape) #for phylogenetic distance
-library(dplyr) #data processing
-library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
 library(viridis) #COLOUR GGPLOT
-library(MASS)
 library(ggplot2)
 library(broman) #crayon colours
 library(cowplot)
+library(magick)
+
 # Theme for publication
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
       theme(text=element_text(color="black"),
-            axis.title=element_text( size = rel(1.2)),
+            axis.title=element_text( size = rel(1.75)),
             axis.text=element_text(size = rel(1.75), color = "black"),
             legend.title=element_text(face="bold"),
             legend.text=element_text(),
@@ -835,6 +830,109 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
              panel.grid.major= element_blank()
       ))
 }
+
+#Load data
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
+phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+
+
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+#Images were made by Paula Martin
+#Check her work on https://paulamartinart.com/
+
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+
+#Invert axes
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
+
+all_spp <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+
+
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon') + 
+  scale_fill_continuous(low="green",high="red",guide=FALSE,breaks = c(0.02, 0.050, 0.09), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.7),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+    plot <- plot + geom_point(data=dat, aes(x, y),size=1.3, color="black")
+
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  
+   #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  
+#ADD LABELS
+  rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+ plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.7,5.05,5.6,7.85,7.3,6.15)), y = -(PCAloadings$PC2*c(4.693,2.5,3.1,6.6,5,5.5)+c(0,0,0,0,0.4,0)),
+                         label = PCAloadings$Variables, color="black",fontface =2,size=4)
+  
+ 
+# plot <- plot + annotate("text", x = #(PCAloadings$PC1*c(4.6,4.95,4.5,6.6,7.3,5.15)), y = #(PCAloadings$PC2*c(3.83,6.4,5.7,7.4,-1,7.45)+c(0,0,0,0,-0.41,0))#,
+#                         label =c("Low selfing", "Few flowers", #"Small flowers", "Short styles", "Few ovules", "Short plants" ), #color="black",fontface =2,size=4)
+ 
+ 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+p1 <- all_spp(PC)
+
 
 #Load data
 dat_cleaning_5 <- readRDS("Data/RData/data_complete_cases.rds")
@@ -860,7 +958,7 @@ PC$L
 PC$S[,2] <- -PC$S[,2]
 
 
-pc3 <- function(PC, x="PC1", y="PC2") {
+all_complete_cases <- function(PC, x="PC1", y="PC2") {
   # PC being a prcomp object
   data <- data.frame(PC$S)
   plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
@@ -916,21 +1014,9 @@ pc3 <- function(PC, x="PC1", y="PC2") {
 
   #CHANGE THEME
     
-  plot <- plot + theme_bw() #+ annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
- #  annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
- # annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
- # annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
- # annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
- # annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
- # annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -3.9, ymax = -3.1) +
- # annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
- # annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.40,ymin = 0.8, ymax = 1.45) +
- # annotation_raster(large_flower_1, xmin = 3.15, xmax = 4.15,ymin = 1.3, ymax = 2.55) +
- # annotation_raster(flower_small_1, xmin = -3.50, xmax = -2.55,ymin = -2.1, ymax = -1.60) +
- # annotation_raster(herb_1, xmin = 2.6, xmax = 3,ymin = -2.8, ymax = -2) 
-
+  plot <- plot + theme_bw() 
       #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height" )
+  rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
  plot <- plot + annotate("text", x = (PCAloadings$PC1*c(4.6,5.2,5,5.25,6.3,6)), y = -(PCAloadings$PC2*c(4,4.75,4,4.5,5,5.5)+c(0,0,0,0,-0.04,0)),
@@ -944,7 +1030,247 @@ pc3 <- function(PC, x="PC1", y="PC2") {
   
 }
 
-pc3(PC)
+p2 <- all_complete_cases(PC)
+
+library(patchwork)
+
+p1 / p2 + plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 24, face="bold"))
+
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=10,out.width="80%",fig.align='center',fig.cap="\\textbf{Fig. S4.} Comparison of the phylogenetic informed principal component analysis for the subset of species that had information of floral rewards with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the dataset with data imputation and panel B shows the reproductive spectrum for the dataset excluding species with missing trait data"}
+setwd("~/R_Projects/Reproductive Traits")
+
+#Load libraries
+#LOAD LIBRARIES
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(cowplot)
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+      theme(text=element_text(color="black"),
+            axis.title=element_text( size = rel(1.2)),
+            axis.text=element_text(size = rel(1.75), color = "black"),
+            legend.title=element_text(face="bold"),
+            legend.text=element_text(),
+            legend.background=element_rect(fill="transparent"),
+            legend.key.size = unit(1.2, 'lines'),
+            panel.border=element_rect(color="black",size=1),
+            panel.grid.minor.x =element_blank(),
+            panel.grid.minor.y= element_blank(),
+             panel.grid.major= element_blank()
+      ))
+}
+
+#Load data
+phyl_pca_forest_nectar_pollen <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen.rds")
+dat_cleaning_7 <- readRDS("Data/RData/data_all_species_PPCA_nectar_pollen.rds")
+
+PC <- phyl_pca_forest_nectar_pollen
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+library(magick)
+
+#Images were made by Paula Martin
+PC$S[,1] <- -PC$S[,1]
+
+PC$S[,2] <- -PC$S[,2]
+
+all_spp <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',bins=8) + 
+    scale_fill_continuous(low="green",high="red",guide=FALSE,lim=c(0.01,0.082),breaks = c(0.02, 0.035, 0.082), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.6),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+  plot <- plot + geom_point(data=dat, aes(x, y),size=1.3, color="black")
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_bw() 
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants", "Copious nectar","Copious pollen")
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.85,4.8,4.8,5.5,5.5,5.5,5.8,6.5)), y = -(PCAloadings$PC2*c(4.8,4.4,4.15,5.35,4.2,4.7,5.75,6)+c(0,0,0,0,0,0,0,0)),
+                          label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+p1 <- all_spp(PC)
+
+
+
+
+#Load data
+phyl_pca_forest_nectar_pollen <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen_complete_cases.rds")
+dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA_nectar_pollen_complete_cases.rds")
+
+
+
+PC <- phyl_pca_forest_nectar_pollen
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+PC$S[,1] <- -PC$S[,1]
+PC$S[,2] <- -PC$S[,2]
+
+
+all_spp_complete <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  
+  
+  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon',bins=8) + 
+    scale_fill_continuous(low="green",high="red",guide=FALSE,lim=c(0.01,0.082),breaks = c(0.02, 0.035, 0.082), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.6),title="Kernel density"))+
+    scale_alpha(guide = 'none')
+  
+  
+  plot <- plot + geom_point(data=dat, aes(x, y),size=0.95, color="black")
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .7 * mult * (get(x)),
+                      v2 = .7 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
+  
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=-v1, yend=-v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+  
+  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
+  plot <- plot + ylab(paste("PC2 ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_bw() 
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants", "Copious nectar","Copious pollen")
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,4.8,5.4,5,4.2,5.8,3.4)+c(0,0,0,0,0,0,0,0)), y = -(PCAloadings$PC2*c(4.693,3.5,4,4,3,4.15,4.2,6.5)),
+                          label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
+  
+  
+  
+  plot
+  
+}
+
+p2 <- all_spp_complete(PC)
+
+library(patchwork)
+
+p1 / p2 + plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 24, face="bold"))
 
 ```
 
@@ -952,8 +1278,7 @@ pc3(PC)
 \newpage
 
 
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Fig. S4.} Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation. The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=24, fig.width=24,  fig.cap="\\textbf{Fig. S5.} Fitted posterior estimates of the interaction (yes/no) and number of visits made by bees including and exluding honey bees on the main axes of trait variation. The superior panel (plots a, b c, d, e and f) shows the comparison for presence-absence and the lower panel (plots g, h, i, j, k and l) the comparison for visitation rates."} 
 
 library(Rcpp)
 library(patchwork)
@@ -990,8 +1315,7 @@ plot_apis
 
 
 
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S5.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S6.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
 
 ########################################################################################################################################################
 #SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
@@ -1056,156 +1380,6 @@ rpart.plot(tree2, box.palette="GnOr", main="D Normalized degree for subset with 
 
 rpart.plot(tree_3, box.palette="GnOr", main="E Specialization for all species", cex.main=1.85,tweak = 1.10) 
 rpart.plot(tree3, box.palette="GnOr", main="F Specialization for subset with floral rewards", cex.main=1.85,tweak = 1.10)
-
-```
-
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10,  fig.cap="\\textbf{Fig. S6.} PC1 and PC3 of the phylogenetically informed principal component analysis with the full set of species."}
-setwd("~/R_Projects/Reproductive Traits")
-
-
-#Load libraries
-#LOAD LIBRARIES
-library(phytools)
-library(ape) #for phylogenetic distance
-library(dplyr) #data processing
-library(rtrees) #for phylogenetic distancelibrary(MASS)
-library(reshape2)
-library(viridis) #COLOUR GGPLOT
-library(MASS)
-library(ggplot2)
-library(broman) #crayon colours
-library(cowplot)
-# Theme for publication
-theme_ms <- function(base_size=12, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-      theme(text=element_text(color="black"),
-            axis.title=element_text( size = rel(1.2)),
-            axis.text=element_text(size = rel(1.75), color = "black"),
-            legend.title=element_text(face="bold"),
-            legend.text=element_text(),
-            legend.background=element_rect(fill="transparent"),
-            legend.key.size = unit(1.2, 'lines'),
-            panel.border=element_rect(color="black",size=1),
-            panel.grid.minor.x =element_blank(),
-            panel.grid.minor.y= element_blank(),
-             panel.grid.major= element_blank()
-      ))
-}
-
-#Load data
-dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
-phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
-
-
-PC <- phyl_pca_forest
-#CHECK CONTENT
-#EIGENVALUES
-PC$Eval
-#PC score (POINTS)
-PC$S
-#PC loadings (ARROWS)
-PC$L
-
-
-#############################################################################################################################################################
-#COMPATIBILITY
-#############################################################################################################################################################
-#Load plots
-
-#Invert axes
-PC$S[,1] <- -PC$S[,1]
-PC$S[,2] <- -PC$S[,2]
-
-
-pc3 <- function(PC, x="PC1", y="PC3") {
-  # PC being a prcomp object
-  data <- data.frame(PC$S)
-  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
-  dat <- data.frame(x = data[,x], y = data[,y])
-  
-  #######
-  #DENSITY FUNCTION
-  #######
-  get_density <- function(x, y, ...) {
-    dens <- MASS::kde2d(x, y, ...)
-    ix <- findInterval(x, dens$x)
-    iy <- findInterval(y, dens$y)
-    ii <- cbind(ix, iy)
-    return(dens$z[ii])
-  }
-  
-  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
-
-
-  
-  plot <- plot+stat_density2d(aes(fill=..level..,alpha=..level..),geom='polygon') + 
-  scale_fill_continuous(low="green",high="red",guide=FALSE,breaks = c(0.02, 0.050, 0.09), labels = c("Low", "Medium", "High")) + theme(legend.position = "none")+guides(fill = guide_legend(override.aes = list(alpha = 0.7),title="Kernel density"))+
-    scale_alpha(guide = 'none')
-  
-  
-    plot <- plot + geom_point(data=dat, aes(x, y),size=1.3, color="black")
-
-  ########
-  #ADD ARROWS 
-  ########
-  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
-  mult <- min(
-    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
-    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
-  )
-  datapc <- transform(datapc,
-                      v1 = .7 * mult * (get(x)),
-                      v2 = .7 * mult * (get(y))
-  )
-  # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.8, arrow=arrow(length=unit(0.5,"cm")), alpha=0.8, colour=c("black"))
-  
-
-  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
-  
-   #Add axis with perctentage
-  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
-  
-  plot <- plot + xlab(paste("PC1 ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("PC3 ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
-  
-
-  #CHANGE THEME
-    
-  plot <- plot + theme_bw() #+ annotation_raster(tree_1, xmin = -4.1, xmax = -2.85,ymin = 2.05, ymax = 4.05)+
- #  annotation_raster(style_l_1, xmin = 2.05, xmax = 2.85,ymin = 2.35, ymax = 3.5) +
- # annotation_raster(style_s_1, xmin = -2.6, xmax = -1.9,ymin = -2.65, ymax = -1.7) +
- # annotation_raster(ovule_h_1, xmin = 3.5, xmax = 4.2,ymin = -0.45, ymax = 0.50) +
- # annotation_raster(ovule_l_1, xmin = -4.2, xmax = -3.5,ymin = -0.45, ymax = 0.5) +
- # annotation_raster(selfing_n_1, xmin = -0.75, xmax = 1.2,ymin = 1.8, ymax = 4.5) +
- # annotation_raster(selfing_h_1, xmin = -0.30, xmax = 0.15,ymin = -3.9, ymax = -3.1) +
- # annotation_raster(single_flower_1, xmin = 3.3, xmax = 4.1,ymin = -1.7, ymax = -0.7) +
- # annotation_raster(many_flowers_1, xmin = -4.20, xmax = -3.40,ymin = 0.8, ymax = 1.45) +
- # annotation_raster(large_flower_1, xmin = 3.15, xmax = 4.15,ymin = 1.3, ymax = 2.55) +
- # annotation_raster(flower_small_1, xmin = -3.50, xmax = -2.55,ymin = -2.1, ymax = -1.60) +
- # annotation_raster(herb_1, xmin = 2.6, xmax = 3,ymin = -2.8, ymax = -2) 
-
-
-    
-      #ADD LABELS
-  rownames(PC$L) <- c("Selfing", "Flower number", "Flower Size", "Style length", "Ovule number", "Plant height" )
-  
-  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
- plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5.5,4.8,7.1,5.5)), y = -(PCAloadings$PC2*c(-3.2,4.5,3.75,8.4,5,5.5)+c(0,0,0,0,-0.08,0)),
-                         label = PCAloadings$Variables, color="black",fontface =2,size=4.5)
-  
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.11)) +ggtitle("") 
-  
-  
-  
-  plot
-  
-}
-
-pc3(PC)
 
 ```
 
