@@ -371,9 +371,10 @@ kable(tabla, "latex", longtable = T, booktabs = T,linesep = "\\addlinespace", es
 
 
 \newpage
+\blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.cap="\\textbf{Fig. S1.} Map with the different locations of the plant-pollinator studies used in this work to explore woldwide patterns at the meso-scale level. Note that for visualization purposes studies from the same authors are shown with the same colour."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.width=12, fig.height=6, fig.cap="\\textbf{Fig. S1.} Map with the different locations of the plant-pollinator studies used in this work to explore woldwide patterns at the meso-scale level. Note that for visualization purposes studies from the same authors are shown with the same colour."}
 
 
 #Create coordinate dataset for plotting
@@ -493,12 +494,12 @@ ggplot(data = world) +
   geom_sf(fill="antiquewhite", color="grey49") +
   xlab("Longitude") + ylab("Latitude") +
   geom_point(data=d , aes(longitude,latitude,  color=id),  shape=10,
-           size = 3.5, stroke=1)+ 
+           size = 4.5, stroke=1)+ 
   theme(panel.grid.major = element_line(color = gray(.5), 
 linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblue"))+
   coord_sf(expand = FALSE) +  scale_y_continuous(breaks = c(-50,0, 50)) +
   scale_x_continuous(breaks = c(-100,0, 100)) +
-  theme(legend.key.size = unit(0.5, 'cm'), legend.text = element_text(size=6),
+  theme(legend.key.size = unit(0.6, 'cm'), legend.text = element_text(size=10),
          legend.title = element_text(size=12)) +   scale_colour_manual(values = colors) + labs(colour="Plant-pollinator studies")
   
 
@@ -506,6 +507,8 @@ linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblu
 
 ```
 
+
+\elandscape
 
 \newpage
 
@@ -803,7 +806,7 @@ percentage.plot
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=20, fig.width=10,out.width="80%",fig.align='center',fig.cap= "\\textbf{Fig. S3.} Comparison of the phylogenetic informed principal component analysis for the dataset with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the full dataset with data imputation and panel B shows the reproductive spectrum for the dataset without data imputation where the species with missing trait data were excluded from the analysis."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=20, fig.width=10,out.width="60%",fig.align='center',fig.cap= "\\textbf{Fig. S3.} Comparison of the phylogenetic informed principal component analysis for the dataset with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the full dataset with data imputation and panel B shows the reproductive spectrum for the dataset without data imputation where the species with missing trait data were excluded from the analysis."}
 
 setwd("~/R_Projects/Reproductive Traits")
 
@@ -1041,7 +1044,7 @@ p1 / p2 + plot_annotation(tag_levels = 'A') &
 ```
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=10,out.width="80%",fig.align='center',fig.cap="\\textbf{Fig. S4.} Comparison of the phylogenetic informed principal component analysis for the subset of species that had information of floral rewards with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the dataset with data imputation and panel B shows the reproductive spectrum for the dataset excluding species with missing trait data"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=10,out.width="60%",fig.align='center',fig.cap="\\textbf{Fig. S4.} Comparison of the phylogenetic informed principal component analysis for the subset of species that had information of floral rewards with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the dataset with data imputation and panel B shows the reproductive spectrum for the dataset excluding species with missing trait data"}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1060,7 +1063,7 @@ library(cowplot)
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
       theme(text=element_text(color="black"),
-            axis.title=element_text( size = rel(1.2)),
+            axis.title=element_text( size = rel(1.75)),
             axis.text=element_text(size = rel(1.75), color = "black"),
             legend.title=element_text(face="bold"),
             legend.text=element_text(),
