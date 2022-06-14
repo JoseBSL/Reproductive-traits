@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  10 JUN 2022 14:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  14 JUN 2022 13:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -848,44 +848,28 @@ Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [22 <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chu
-nk-16-1.pdf>]
-<Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-17-
-1.pdf, id=283, 1862.96pt x 1283.79625pt>
-File: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chun
-k-17-1.pdf Graphic file (type pdf)
-<use Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk
--17-1.pdf>
-Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure
--latex/unnamed-chunk-17-1.pdf  used on input line 594.
-(pdftex.def)             Requested size: 469.747pt x 323.71034pt.
-[23
-
-
-
-
- <./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters_files/figure-latex/unnamed-chunk-
-17-1.pdf>] (./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.aux) ) 
+nk-16-1.pdf>] (./Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.aux) ) 
 Here is how much of TeX's memory you used:
- 15613 strings out of 478994
- 242643 string characters out of 5858184
- 593918 words of memory out of 5000000
- 32631 multiletter control sequences out of 15000+600000
+ 15602 strings out of 478994
+ 242029 string characters out of 5858184
+ 593773 words of memory out of 5000000
+ 32623 multiletter control sequences out of 15000+600000
  447561 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  85i,10n,88p,1233b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texli
-ve/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-
-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts
-/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm
-/lm-ec.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
-></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/loc
-al/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.pdf (23 pages, 6838
-997 bytes).
+{/usr/local/te
+xlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/tex
+mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fo
+nts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips
+/lm/lm-ec.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/
+local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
+Output written on Sup_Mat_Lanuza_et_al_2021_Ecology_Letters.pdf (22 pages, 6752
+452 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 277 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 24661 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 263 compressed objects within 3 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 24656 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -1240,7 +1240,7 @@ all_spp_complete <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=-v1, yend=-v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=1.6, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.5, colour=c("black"))
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
@@ -1952,42 +1952,3 @@ plot_metrics_pcs
 
 \elandscape
 
-
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S11.} Pearson correlation between the product of flower number-flower size and autonomous selfing level.", fig.pos= "h"}
-
-theme_ms <- function(base_size=18, base_family="Helvetica") {
-  (theme_bw(base_size = base_size, base_family = base_family)+
-     theme(text=element_text(color="black"),
-           axis.title=element_text( size = rel(2.2)),
-           axis.text=element_text(size = rel(2), color = "black"),
-           legend.title=element_text(face="bold",size=rel(2)),
-           legend.text=element_text(size=rel(2.4)),
-           legend.background=element_rect(fill="transparent"),
-           legend.key.size = unit(1.8, 'lines'),
-           panel.border=element_rect(color="black",size=2.4),
-           panel.grid.minor.x =element_blank(),
-           panel.grid.minor.y= element_blank(),
-           panel.grid.major= element_blank()
-     ))
-}
-
-
-#LOAD LIBRARIES
-library(ggplot2)
-library(ggpubr)
-
-#LOAD DATA
-dat <- read.csv("../Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
-
-#CONDUCT PRODUCT FLOWER NUMBER-FLOWER SIZE
-dat$Product <-      log(dat$Flowers_per_plant * dat$Corolla_diameter_mean+1)
-
-ggscatter(dat, x = "Autonomous_selfing_level_fruit_set", y = "Product", 
-          add = "reg.line", conf.int = TRUE,
-          cor.coef = TRUE, cor.method = "pearson",size=5,cor.coef.size=15,
-          xlab = "Autnomous selfing", ylab = "Product flower size-number") +
-  theme_ms() +ylim(0,16)
-
-
-```

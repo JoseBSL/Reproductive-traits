@@ -241,7 +241,43 @@ When we further investigated the combination of traits that drive plant network 
 
 This study investigates the reproductive spectrum of flowering plants and shows that plants have clear positive and negative correlations between reproductive traits that determine interactions with floral visitors at a global scale. Despite the enormous variability of plant reproductive structures, the first two and three axes were able to capture over 50% and 70% of reproductive trait variation, respectively. These three axes were: (1) the flower number - flower size, (2) the pollinator dependence - floral display and (3) the style length - pollinator dependence. Although the explained trait variation that we found in the first two axes is lower than previous studies that consider morphological and physiological traits [@diaz2016; @carmona2021], it is consistent with the largest and most recent study that has characterised plant life strategies with reproductive and plant form and size related traits [@salguero2016]. Interestingly, these different plant reproductive axes were able to partly explain the number of interacting partners of floral visitor guilds. However, they were insufficient to capture their visitation rates which highlights the need to account for other factors to better capture the strength of these mutualistic interactions at a macroecological scale.
 
-Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. Here, we provide support to this evidence with a great diversity of phylogenetic lineages (170 families and over 1000 species) and show that other reproductive and plant size and form related traits also covariate along this axis. For example, most species with unisexual flowers (14% of all species) were concentrated in the trait space and were associated with species with woddy life forms (i.e., trees and shrubs) with high flower number. This empirical evidence corroborates the idea that approximately 10% of species have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006]. The pollinator dependence - floral display axis 
+Our study provides solid evidence for several widely discussed trait associations with the help of a great diversity of phylogenetic lineages (170 families and over 1000 species) within a multitrait context. Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. We found support to this trait association and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Similarly, the second axis of reproductive trait variation also confirmed the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. Thus, as expected species with higher pollination dependende had greater allocation to flower number or flower size.
+
+
+
+
+Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. Here, we provide support to this evidence with a great diversity of phylogenetic lineages (170 families and over 1000 species) and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Similarly, the second axis of reproductive trait variation also provided solid evidence for the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. 
+
+Despite floral rewards not being included in the main analysis because there was insufficient data, we found on an additional exploration that as expected 
+
+
+
+
+
+we found that most species with unisexual flowers (14% of all species) were concentrated in the trait space and were associated with woody life forms with high flower number. These findings are consistent with the idea that approximately 10% of Angiosperms have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006; friedman2020]. Moreover, our findings of the positive association between pollinator dependence and floral display confirms previous evidence that shows across 154 flowering plants that species with higher outcrossing rates allocate more resources to attraction [@goodwillie2010].
+
+greater allocation of resources to attraction for species with higher outcrossing rates [@goodwillie2010].
+
+
+
+
+14% of plant species in our dataset had unisexual flowers 
+
+
+14% of plant species in our dataset had unisexual flowers and they were concentrated in the trait space and associated with woody life forms with high flower number. Our findings of the positive association between pollinator dependence and floral display confirms previous evidence that shows greater allocation of resources for species with higher outcrossing rates [@goodwillie2010].
+
+
+provide additional support to the positive correlation between pollinator dependence and floral display [@]
+
+
+
+For example, most species with unisexual flowers (14% of species of our dataset) were concentrated in the trait space and were associated with woody life forms and high flower number. These findings support the idea that approximately 10% of Angiosperms have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006]. Our results also highlight the existence of a reproductive axis where floral display and pollinator dependence are positively correlated  
+
+
+
+
+
+with species with woddy life forms (i.e., trees and shrubs) with high flower number. This empirical evidence corroborates the idea that approximately 10% of species have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006]. The pollinator dependence - floral display axis 
 
 check number of species of goodwillie and what we offer that is new...
 
