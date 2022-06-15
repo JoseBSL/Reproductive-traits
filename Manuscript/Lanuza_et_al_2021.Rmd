@@ -241,51 +241,43 @@ When we further investigated the combination of traits that drive plant network 
 
 This study investigates the reproductive spectrum of flowering plants and shows that plants have clear positive and negative correlations between reproductive traits that determine interactions with floral visitors at a global scale. Despite the enormous variability of plant reproductive structures, the first two and three axes were able to capture over 50% and 70% of reproductive trait variation, respectively. These three axes were: (1) the flower number - flower size, (2) the pollinator dependence - floral display and (3) the style length - pollinator dependence. Although the explained trait variation that we found in the first two axes is lower than previous studies that consider morphological and physiological traits [@diaz2016; @carmona2021], it is consistent with the largest and most recent study that has characterised plant life strategies with reproductive and plant form and size related traits [@salguero2016]. Interestingly, these different plant reproductive axes were able to partly explain the number of interacting partners of floral visitor guilds. However, they were insufficient to capture their visitation rates which highlights the need to account for other factors to better capture the strength of these mutualistic interactions at a macroecological scale.
 
-Our study provides solid evidence for several widely discussed trait associations with the help of a great diversity of phylogenetic lineages (170 families and over 1000 species) within a multitrait context. Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. We found support to this trait association and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Similarly, the second axis of reproductive trait variation also confirmed the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. Thus, as expected species with higher pollination dependende had greater allocation to flower number or flower size.
+Our study provides solid evidence for several widely discussed trait associations with the help of a great diversity of phylogenetic lineages (170 families and over 1000 species) within a multitrait context. Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. We found support to this trait association and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; @friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Moreover, our work also confirms the previously described positive association between outcrossing rate and larger floral display [@goodwillie2010] that has been reviewed several times as one of the most common mechanisms to promote pollen transfer and guarantee reproductive success. 
+
+
+Our work also confirms the previously described positive association between outcrossing rate and floral display
+
+Plants with larger floral displays can ensure pollen transfer 
+
+
+A common strategy of flowering plants to ensure pollen transfer by allocating more resources to floral display 
+
+
+Flowering plants have developed multiple strategies to influence pollinator behaviour and ensure pollen transfer [@minnaar2019]. One of the most well known trait associations is the greater allocation of resources from oucrossing species to floral display 
 
 
 
+Plants in order to ensure reproductive success have developed a broad range of reproductive strategies. 
 
-Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. Here, we provide support to this evidence with a great diversity of phylogenetic lineages (170 families and over 1000 species) and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Similarly, the second axis of reproductive trait variation also provided solid evidence for the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. 
-
-Despite floral rewards not being included in the main analysis because there was insufficient data, we found on an additional exploration that as expected 
-
+Because most flowering plants rely on pollinators to ensure reproductive success [@ollerton2011], plants have developed multiple strategies to influence pollinator behaviour and ensure pollen transfer [@minnaar2019]. We found support to the idea that 
 
 
+Resource allocation to attraction has been shown to influence pollinator visitation and impact reproductive success
 
 
-we found that most species with unisexual flowers (14% of all species) were concentrated in the trait space and were associated with woody life forms with high flower number. These findings are consistent with the idea that approximately 10% of Angiosperms have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006; friedman2020]. Moreover, our findings of the positive association between pollinator dependence and floral display confirms previous evidence that shows across 154 flowering plants that species with higher outcrossing rates allocate more resources to attraction [@goodwillie2010].
+Our work also confirms the previously described positive association between outcrossing rate and floral display [@goodwillie2010] where species with larger floral displays 
 
-greater allocation of resources to attraction for species with higher outcrossing rates [@goodwillie2010].
-
-
+Similarly, the second axis of reproductive trait variation also confirmed the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. Resource allocation to attraction has been shown to influence pollinator visitation and impact reproductive success [@minnaar2019]
 
 
-14% of plant species in our dataset had unisexual flowers 
+Plants with larger floral displays have been shown to attract more floral visitors and ensure reproductive success 
 
 
-14% of plant species in our dataset had unisexual flowers and they were concentrated in the trait space and associated with woody life forms with high flower number. Our findings of the positive association between pollinator dependence and floral display confirms previous evidence that shows greater allocation of resources for species with higher outcrossing rates [@goodwillie2010].
+that is thought to be one of the mechanisms to ensure pollen transfer [@minnaar2019].
+
+As expected, species with higher pollinator dependence showed greater allocation of resources to attraction that has been  in order to ensure pollen transfer 
 
 
-provide additional support to the positive correlation between pollinator dependence and floral display [@]
-
-
-
-For example, most species with unisexual flowers (14% of species of our dataset) were concentrated in the trait space and were associated with woody life forms and high flower number. These findings support the idea that approximately 10% of Angiosperms have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006]. Our results also highlight the existence of a reproductive axis where floral display and pollinator dependence are positively correlated  
-
-
-
-
-
-with species with woddy life forms (i.e., trees and shrubs) with high flower number. This empirical evidence corroborates the idea that approximately 10% of species have separation of sexes [@barrett2002] and that breeding systems are associated with specific life forms [@petit2006]. The pollinator dependence - floral display axis 
-
-check number of species of goodwillie and what we offer that is new...
-
-Further, the pollinator dependence - floral display axis provided additional support for the previously described positive association between higher outcrossing rate and larger floral display [@goodwillie2010].
-
-Style length...
-
-
+species with higher pollination dependende had greater allocation to flower number or flower size.
 
 
 
@@ -709,9 +701,7 @@ plot_grid(all_spp(PC))
 
 \blandscape
 
-\vspace{-28mm}
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18, out.width="90%",fig.align='center',fig.cap= "\\textbf{Figure 2} Location of the different qualitative traits on the trait space. The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits showed in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18, out.width="80%",fig.align='center',fig.cap= "\\textbf{Figure 2} Location of the different qualitative traits on the trait space. The panel is composed by the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits showed in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S)."}
 
 
 #Set working directory
