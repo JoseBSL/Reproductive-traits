@@ -239,50 +239,20 @@ When we further investigated the combination of traits that drive plant network 
 
 # DISCUSSION
 
-This study investigates the reproductive spectrum of flowering plants and shows that plants have clear positive and negative correlations between reproductive traits that determine interactions with floral visitors at a global scale. Despite the enormous variability of plant reproductive structures, the first two and three axes were able to capture over 50% and 70% of reproductive trait variation, respectively. These three axes were: (1) the flower number - flower size, (2) the pollinator dependence - floral display and (3) the style length - pollinator dependence. Although the explained trait variation that we found in the first two axes is lower than previous studies that consider morphological and physiological traits [@diaz2016; @carmona2021], it is consistent with the largest and most recent study that has characterised plant life strategies with reproductive and plant form and size related traits [@salguero2016]. Interestingly, these different plant reproductive axes were able to partly explain the number of interacting partners of floral visitor guilds. However, they were insufficient to capture their visitation rates which highlights the need to account for other factors to better capture the strength of these mutualistic interactions at a macroecological scale.
+This study investigates the reproductive spectrum of flowering plants and shows that plants have clear positive and negative correlations between reproductive traits that determine interactions with floral visitors at a global scale. Despite the enormous variability of plant reproductive structures, the first two and three axes were able to capture over 50% and 70% of reproductive trait variation, respectively. These three axes were: (1) the flower number - flower size, (2) the pollinator dependence - floral display and (3) the style length - pollinator dependence. Although the explained trait variation that we found in the first two axes is lower than previous studies that consider other morphological and physiological traits [@diaz2016; @carmona2021], our results are consistent with the largest and most recent study that has characterised plant life strategies with reproductive and plant form and size related traits [@salguero2016]. Interestingly, these different plant reproductive axes were able to partly explain the number of interacting partners of floral visitor guilds. However, they were insufficient to capture their visitation rates which highlights the need to account for other factors to better capture the strength of these mutualistic interactions at a macroecological scale.
 
-Our study provides solid evidence for several widely discussed trait associations with the help of a great diversity of phylogenetic lineages (170 families and over 1000 species) within a multitrait context. Although the negative correlation between flower number and flower size has received substantial attention [worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. We found support to this trait association and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; @friedman2020] by showing that most species with unisexual flowers were concentrated in the trait space with woody life forms with high flower number. Moreover, our work also confirms the previously described positive association between outcrossing rate and larger floral display [@goodwillie2010] that has been reviewed several times as one of the most common mechanisms to promote pollen transfer and guarantee reproductive success. 
-
-
-Our work also confirms the previously described positive association between outcrossing rate and floral display
-
-Plants with larger floral displays can ensure pollen transfer 
-
-
-A common strategy of flowering plants to ensure pollen transfer by allocating more resources to floral display 
-
-
-Flowering plants have developed multiple strategies to influence pollinator behaviour and ensure pollen transfer [@minnaar2019]. One of the most well known trait associations is the greater allocation of resources from oucrossing species to floral display 
+Our study provides solid evidence for several widely discussed trait associations with the help of a great diversity of phylogenetic lineages (170 families and over 1000 species) within a multitrait context. Although the negative correlation between flower number and flower size has received substantial attention [@worley2000; @sargent2007; @kettle2011], it has only been investigated across a few hundred of Angiosperm species with a two-trait approach. We found support to this trait association and show that other reproductive and plant size and form related traits also covariate along this axis. For example, our study complements previous evidence that links breeding systems and life forms [@petit2006; @friedman2020] by showing that most species with unisexual flowers are concentrated in the trait space and are associated with woody life forms with high flower number. Moreover, we also provide broad support for the previously documented positive association between outcrossing rate and floral display [@goodwillie2010] where species with high pollinator dependence have greater allocation of resources to attraction of floral visitors. Therefore, our results highlight the presence of reproductive trait covariation patterns that are in part mediated by floral visitors in order to ensure plant reproductive success.
 
 
 
-Plants in order to ensure reproductive success have developed a broad range of reproductive strategies. 
+Cosas que se pueden mencionar:
 
-Because most flowering plants rely on pollinators to ensure reproductive success [@ollerton2011], plants have developed multiple strategies to influence pollinator behaviour and ensure pollen transfer [@minnaar2019]. We found support to the idea that 
+- Hablar algo de las main trends
 
+- Factores que puden afectar que no son al número de parejas interactuantes y tasa de visitas: Quizás mencionar en detalle
 
-Resource allocation to attraction has been shown to influence pollinator visitation and impact reproductive success
+- Floral rewards
 
-
-Our work also confirms the previously described positive association between outcrossing rate and floral display [@goodwillie2010] where species with larger floral displays 
-
-Similarly, the second axis of reproductive trait variation also confirmed the previously described positive association between outcrossing rate and floral display [@goodwillie2010]. Resource allocation to attraction has been shown to influence pollinator visitation and impact reproductive success [@minnaar2019]
-
-
-Plants with larger floral displays have been shown to attract more floral visitors and ensure reproductive success 
-
-
-that is thought to be one of the mechanisms to ensure pollen transfer [@minnaar2019].
-
-As expected, species with higher pollinator dependence showed greater allocation of resources to attraction that has been  in order to ensure pollen transfer 
-
-
-species with higher pollination dependende had greater allocation to flower number or flower size.
-
-
-
-
- Trait variation on these two axes was associated with the 'fast-slow continuum' in plant [@salguero2016] and animal [@healy2019] life-history strategies, as indicated by the different floral and reproductive biology traits associated with plant height, life form and lifespan. The 'slow' part of this continuum (i.e., tall trees and shrubs) included plant species with many flowers, few ovules, higher pollinator dependence, frequent occurrence of self-incompatibility and more complex breeding systems (e.g., monoecious and dioecious species). In contrast, plant species that employed the 'fast' strategy (i.e., short herbs), had fewer flowers, more ovules, frequent occurrence of self-compatibility and lower pollinator dependence. Further, on the first two axes of trait variation, we found additional support for the previously described positive association between higher outcrossing rate and larger floral display [@goodwillie2010]. The positive correlation between larger floral display and higher pollinator dependence in our dataset further confirmed this trend (Fig. S11).
 
 Despite the low predictive power of the main trait variation axes for broad-level interaction patterns (number of interaction partners and number of visits), we found changes in the interaction patterns among and within floral visitor guilds across these axes that suggest plant life-history strategies influence plant-pollinator interactions. For example, all floral visitor guilds visited plant species with higher pollinator dependence more frequently, and high pollinator dependence was associated with large floral displays and greater pollen quantities (Fig. 1 and Fig. S6). This trend is consistent with previous studies that show plant species with higher reproductive investment tend to be visited by pollinators more frequently [@hegland2005; @lazaro2013; @kaiser2014]. In regard to the flower number - flower size and style length trade-offs, different pollinator guilds showed contrasting visitation patterns across the continuum of trait variation, which could be associated with different pollination syndromes at a macroecological scale. For instance, bees and syrphid flies were clearly associated with opposing life-strategies on PC1 and PC3 (Fig. 3) suggesting possible niche partitioning [@palmer2003; @phillips2020] between these two guilds. However, despite floral rewards not being included in the main analysis because there was insufficient data available, floral reward related traits were among the best at characterising species network roles (Fig. 4). More detailed exploration of reproductive trade-offs in conjunction with floral rewards is needed to help elucidate plant-pollinator associations. In any case, it is worth noting that other local factors such as species relative abundances, surely explain part of the observed variability [@vazquez2007; @encinas2012; @bartomeus2016] that reproductive trade-offs do not.
 
@@ -294,6 +264,10 @@ To conclude, we provide a robust description of plant reproductive trade-offs us
 [Lo guardo aqui por si hay que rescatarlo](Jose)
 
 [We found that there are three reproductive axes that capture over 70% of the reproductive trait variation: (i) the flower number - flower size axis, (ii) the pollinator dependence axis and (iii) the style length - pollinator dependence axis. These reproductive axes helped partly explain the presence of floral visitor interactions, but not their number of visits. However, floral visitor guilds formed distinct relationships with the main axes of trait variation. Finally, we found that the plant species network roles were best explained by plant size and floral reward related traits.](old text)
+
+
+[Trait variation on these two axes was associated with the 'fast-slow continuum' in plant [@salguero2016] and animal [@healy2019] life-history strategies, as indicated by the different floral and reproductive biology traits associated with plant height, life form and lifespan. The 'slow' part of this continuum (i.e., tall trees and shrubs) included plant species with many flowers, few ovules, higher pollinator dependence, frequent occurrence of self-incompatibility and more complex breeding systems (e.g., monoecious and dioecious species). In contrast, plant species that employed the 'fast' strategy (i.e., short herbs), had fewer flowers, more ovules, frequent occurrence of self-compatibility and lower pollinator dependence. Further, on the first two axes of trait variation, we found additional support for the previously described positive association between higher outcrossing rate and larger floral display [@goodwillie2010]. The positive correlation between larger floral display and higher pollinator dependence in our dataset further confirmed this trend (Fig. S11)]()
+
 
 # References
 
