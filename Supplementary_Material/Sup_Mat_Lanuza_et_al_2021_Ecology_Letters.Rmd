@@ -54,7 +54,7 @@ Appendix S1 (text)
 
 Tables S1 to S5
 
-Figures S1 to S10
+Figures S1 to S9
 
 
 
@@ -1318,79 +1318,11 @@ plot_apis
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=15, fig.width=12,fig.cap="\\textbf{Fig. S6.} Regression tree analyses. Comparison of the regression tree analyses between the full set of species and the subset of species with floral rewards for each plant species level metric. "}
-
-########################################################################################################################################################
-#SCRIPT TO CALCULATE THE REGRESSION TREE OF NECTAR AND PLOT IT
-########################################################################################################################################################
-#READ NETWORK VISITATION DATA (VISITS AGGREGATED PER PLANT SPECIES)
-
-library(rpart.plot)
-library(rpart)
-
-setwd("~/R_Projects/Reproductive Traits")
-
-v_df_all <- readRDS("Data/RData/log_visits_all_tree.rds")
-nd_df_all <-  readRDS("Data/RData/normalized_degree_all_tree.rds")
-d_df_all <- readRDS("Data/RData/specialization_all_tree.rds")
-
-#run  regression trees of the 3 metrics
-set.seed(1)
-tree_1 <- rpart(Visits~., data=v_df_all, cp=0.0054559,minbucket=50)
-
-set.seed(1)
-tree_2 <- rpart(`Normalized degree`~., data=nd_df_all, cp=0.0084459,minbucket=50) 
-
-set.seed(1)
-tree_3 <- rpart(Specialization~., data=d_df_all, cp=0.0072192 , minbucket=50) #10
-
-
-#NECTAR AND POLEN DATA
-v_df <- readRDS("Data/RData/log_visits_subset_nectar_pollen_tree.rds")
-nd_df <-  readRDS("Data/RData/normalized_degree_subset_nectar_pollen_tree.rds")
-d_df <- readRDS("Data/RData/specialization_subset_nectar_pollen_tree.rds")
-
-#Set correct colnames for plotting
-colnames(v_df) <- c("Visits", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",  "Nectar concentration (%)","Pollen grains per flower")
-
-colnames(nd_df) <- c("Normalized degree", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",   "Nectar concentration (%)","Pollen grains per flower")
-
-colnames(d_df) <- c("Specialization", "Aut. selfing", "Flowers per plant", "Flower width", "Style length (mm)",
-                      "Ovule number","Plant height (m)",  "Microlitres of nectar",   "Nectar concentration (%)","Pollen grains per flower")
-
-
-
-set.seed(2)
-tree1 <- rpart(Visits~., data=v_df,  cp=0.009000,minbucket=50) 
-
-set.seed(2)
-tree2 <- rpart(`Normalized degree`~., data=nd_df, cp=0.005000,minbucket=50) 
-
-set.seed(2)
-tree3 <- rpart(Specialization~., data=d_df, cp=0.0050000,minbucket=50) 
-
-
-par(mfrow=c(3,2))
-
-rpart.plot(tree_1, box.palette="GnOr", main="A Interaction frequency for all species", cex.main=1.85,tweak = 1.10) 
-rpart.plot(tree1, box.palette="GnOr", main="B Interaction frequency for subset with floral rewards", cex.main=1.85,tweak = 1.10) 
-
-
-rpart.plot(tree_2, box.palette="GnOr", main="C Normalized degree for all species", cex.main=1.85,tweak = 1.10)
-rpart.plot(tree2, box.palette="GnOr", main="D Normalized degree for subset with floral rewards", cex.main=1.85,tweak = 1.10)
-
-rpart.plot(tree_3, box.palette="GnOr", main="E Specialization for all species", cex.main=1.85,tweak = 1.10) 
-rpart.plot(tree3, box.palette="GnOr", main="F Specialization for subset with floral rewards", cex.main=1.85,tweak = 1.10)
-
-```
-
 
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S7.} Phylogenetically informed principal component analysis (pPCA) for all plant species with the first (flower number - flower size axis) and third (style length - pollinator dependence axis) principal component that explained most trait variation."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetically informed principal component analysis (pPCA) for all plant species with the first (flower number - flower size axis) and third (style length - pollinator dependence axis) principal component that explained most trait variation."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1541,7 +1473,8 @@ pc3(PC)
 
 \newpage
 \thispagestyle{empty}
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S8.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S7.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################
@@ -1870,7 +1803,7 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S9.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
 
 
 library(Rcpp)
@@ -1914,7 +1847,7 @@ plot
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S10.} Plant species level metrics across the three main axes of trait variation.", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Plant species level metrics across the three main axes of trait variation.", fig.pos= "h"}
 
 #library(brms) #modelling
 library(cowplot) #panel of plots
