@@ -40,7 +40,7 @@ bibliography:
   - references.bib
   - knitcitations.bib
 # zotero: "My shared Zotero group"
-csl: ecology.csl #ecology letters
+csl: proceedingsb.csl #ecology letters
 notes-after-punctuation: false
 link-citations: yes
 linkcolor: RoyalBlue
@@ -160,6 +160,7 @@ All species names, genera, families and orders were retrieved and standardized f
 We selected a total of 19 different functional traits that comprised reproductive traits and plant form and size related traits (see Table 1). From these, 16 were reproductive traits that consisted of 13 floral traits and 3 reproductive biology traits. Floral traits included traits related to the size of floral organs (e.g., style length), floral display (e.g., number of flowers) and floral rewards (e.g., pollen quantity). Reproductive biology traits indicated the reproductive system of the plant and included breeding, mating and compatibility system. The 3 remaining traits were plant size and form related traits that are commonly used to characterize the fast-slow continuum of plant trait variation (i.e., plant height, lifespan and life form). For each plant species, we undertook an extensive literature and online search for all traits across a wide range of resources (plant databases, online floras, books, journals and images). From a total of 30,120 possible cells considering all traits and plant species (20 columns × 1,506 species), we were able to fill 24,341 cells (80.8% of the dataset, see Fig. S2 for missing values information for each trait). An extended description of each trait and how it was obtained can be found in Appendix S1.
 
 \singlespacing
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=1, fig.width=14}
 setwd("~/R_Projects/Reproductive Traits")
@@ -318,20 +319,19 @@ missing.values <- t %>%
   mutate(pct = num.isna / total * 100)
 
 n_of_records <- subset(missing.values, isna=="FALSE")
-Trait <- c("Plant height (m)", "Flower width (mm)", "Flower length (mm)", "Inflorescence width (mm)", "Style length (mm)", "Ovules per flower",
-           "Flowers per plant", "Nectar ($\\mu$l)", "Nectar (mg)", "Nectar concentration ($\\%$)", "Pollen grains per flower", "Autonomous selfing (fruit set)")
 
-Trait1 <- c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Compatibility system", "Breeding system", " ", " ", " ", " ", " ")
+Trait <- c("Plant height", "Flower width", "Flower length", "Inflorescence width", "Style length", "Ovules per flower",
+           "Flowers per plant", "Microliters of nectar", "Milligrams of nectar", "Nectar concentration", "Pollen grains per flower", "Autonomous selfing (fruit set)")
 
-T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub \n Tree", "Brush \n Campanulate \n Capitulum \n Open \n Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
-           "Presence \n Absence", "Self-incomp. \n Part. self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n Dioecious"," ", " ", " ", " ", ""),align = c("l"))
+Trait1 <- linebreak(c("Lifepan", "Life form", "Flower shape", "Flower symmetry", "Nectar", "Compatibility system", "Breeding system"),align = c("l"))
 
-Type <- linebreak(c("Vegetative", "Floral", "Floral", "Floral", "Floral", "Floral", "Floral","Floral","Floral","Floral","Floral","Reproductive \n biology"),align = c("c"))
+#T.cat <- linebreak(c("Short-lived \n Perennial", "Herb \n Shrub #\n Tree", "Brush \n Campanulate \n Capitulum \n Open \n #Papilionaceous \n Tube",  "Actinomorphic \n Zygomorphic",
+#           "Presence \n Absence", "Self-incomp. \n Part. #self-comp. \n Self-comp.", "Hermaphrodite \n Monoecious \n #Dioecious"),align = c("l"))
+#
+T.cat <- linebreak(c("Short-lived and perennial", "Herb, shrub and tree", "Brush, campanulate, capitulum,\n open, papilionaceous and tube",  "Actinomorphic and zygomorphic",
+           "Presence and absence", "Self-incompatible, partially self-compabtile \n and self-compatible", "Hermaphrodite, monoecious and dioecious"), align = c("l"))
 
-Type_1 <- linebreak(c("Vegetative", "Vegetative", "Floral", "Floral", "Floral", "Reproductive \n biology", "Reproductive \n biology","","","","", ""),align = c("c"))
 
-
-dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
 
 Number_of_records_quantitative <- c(n_of_records$num.isna[n_of_records$key=="Plant_height_mean_m"], n_of_records$num.isna[n_of_records$key=="Corolla_diameter_mean"],
   n_of_records$num.isna[n_of_records$key=="Corolla_length_mean"], n_of_records$num.isna[n_of_records$key=="Floral_unit_width"],
@@ -347,16 +347,31 @@ Number_of_records_categorical <- c(n_of_records$num.isna[n_of_records$key=="life
                                    n_of_records$num.isna[n_of_records$key=="Compatibility_system"], n_of_records$num.isna[n_of_records$key=="Breeding_system"],
                                    rep("",4))
 
-dat <- data.frame(Type, Trait,Type_1, Trait1, T.cat)
+
+T.range <- c("0.01-30m", "0.50-205mm", "0.20-195mm", "0.80-300mm", "0-138mm", "1-25 x $10^3$", "1-18 x $10^4$", "0-160$\\mu$l", "0-6.1mg", "0-100$\\%$", "13-2 x $10^8$", "0-100$\\%$")
+  
+dat_1 <- data.frame(Trait,T.range)
+dat_2 <- data.frame(Trait1, T.cat)
+
+colnames(dat_1) <- c("Quantitative traits", "Numerical range")
+colnames(dat_2) <- c("Categorical traits", "Categories")
+
+#kable(list(dat_1, dat_2), booktabs = T, linesep = #"\\addlinespace", escape = FALSE,caption = "\\textbf{Table 1 | #Quantitative and categorical traits used in this study.}") %>%
+#  kable_styling(full_width = F,font_size = 10) %>%  #column_spec(1:4, 
+#              width = "3in", 
+#              latex_valign = "m")
+#
+#
 
 
-colnames(dat) <- c("Type","Traits", "Type", "Traits", "Categories")
+colnames(dat_1) <- c("Traits", "Numerical range/Categories")
+colnames(dat_2) <- c("Traits", "Numerical range/Categories")
 
+d <- rbind(dat_1,dat_2)
 
-kbl(dat, booktabs = T, linesep = "\\addlinespace", escape = FALSE, align = c("c","l","c","c","l","l","c"),caption = "\\textbf{Table 1 | Quantitative and categorical traits used in this study.}") %>%
-kable_styling(full_width = F,font_size = 10) %>%
-add_header_above(c("Quantitative traits" = 2,"Categorical traits" = 3),bold=T)  %>%
-    column_spec(c(1,3), bold = T) %>% row_spec(0, bold=T) 
+kable(d, booktabs = T, linesep = "\\addlinespace", escape = FALSE,caption = "\\textbf{Table 1 | Quantitative and categorical traits used in this study.}") %>%
+  kable_styling(full_width = F,font_size = 10) %>% row_spec(0, bold=T) %>% pack_rows("Quantitative", 1, 12) %>%
+pack_rows("Categorical", 13, 19) 
 
 
 
@@ -1250,13 +1265,13 @@ To conclude, we provide a robust description of the main reproductive trait cova
 ::: {#refs}
 :::
 
-**Data accessibility.** All data and code used to conduct this study will is deposited at Zenodo
+**Data accessibility.** All data and code used to conduct this study is deposited at Zenodo
 
 **Authors’contributions.** JBL, RR and IB designed the study. JBL collated the data and conducted analysis with guidance of JS, LKK and IB. JBL wrote the manuscript with contributions of all authors.
 
 **Conflict of interest declaration.** We declare we have no competing interests.
 
-**Funding.** This study was supported by the European project SAFEGUARD (101003476 H2020-SFS-2019-2).
+**Funding.** This study was supported by the European project SAFEGUARD (101003476 H2020-SFS-2019-2) and JBL was supported by a University of New England postgraduate scholarship.
 
 **Acknowledgements.** We thank all researchers that made their data openly available and sent it upon request. We also thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We also thank Jason Tylianakis for his comments on the manuscript before submission. Finally, JBL thanks the University of New England for the funding provided to carry out this work.
 
