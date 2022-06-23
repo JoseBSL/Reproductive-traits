@@ -8,7 +8,7 @@ All data and code to produce this study are available on this repository:
 
 - All raw data can be found at the folder "Data/Trait_data_raw/" with the file name "Trait_data_final.xlsx".
 
-- All code to conduct the analysis of this article can be found at the folder "Scripts/".
+- All code to conduct the analyses of this article can be found at the folder "Scripts/".
 
 - The manuscript is written and produced at the folder "Manuscript/" under the name "Lanuza_et_al_2021.Rmd".
 
