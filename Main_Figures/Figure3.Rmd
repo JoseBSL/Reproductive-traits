@@ -58,7 +58,7 @@ dat_analysis <- readRDS("dat_analysis_results_analysis_presence_absence.rds")
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:guild",points=T) 
 
 pp1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("Interaction")+ xlab("")+
+aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("Interaction")+ xlab(NULL)+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
     "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC1", subtitle = "(a)")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
@@ -66,7 +66,7 @@ aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + y
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T) 
 
 pp2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__), group=guild, colour=guild)) + geom_point(data = dat_analysis,
-aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
+aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab(NULL)+ xlab(NULL)+
   theme_ms() + theme(legend.position = "none") + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
     "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC2", subtitle = "(b)") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
@@ -74,7 +74,7 @@ aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + y
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T) 
 
 pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__), group=guild, colour=guild)) + geom_point(data = dat_analysis,
- aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
+ aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab(NULL)+ xlab(NULL)+
   theme_ms() + theme(legend.position = "none") + 
   scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
     "Non-syrphid-Diptera", "Syrphids"))+ ggtitle("PC3", subtitle = "(c)")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
@@ -98,7 +98,7 @@ ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:guild",points=T)
 
 p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Low poll. depend.   High poll. depend.")+
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab(NULL)+ xlab("Low poll. depend.   High poll. depend.")+
   theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold")) + 
   scale_color_manual(name="Functional groups",values=c("orange", "black", 
   "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",
@@ -110,7 +110,7 @@ ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:guild",points=T)
 
 p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=guild, colour=guild)) + geom_point(data = dat_analysis,
   aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Short styles      Long styles\n High poll. depend.   Low poll. depend.")+
+  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab(NULL)+ xlab("Short styles      Long styles\n High poll. depend.   Low poll. depend.")+
   theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold"))+ 
   scale_color_manual(name="Functional groups",values=c("orange", 
   "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera",

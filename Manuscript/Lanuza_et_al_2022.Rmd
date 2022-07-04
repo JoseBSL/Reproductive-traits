@@ -734,7 +734,7 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") + xlab(NULL)
   
   
   plot
@@ -807,7 +807,8 @@ Life_form <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.090, 0.115)) + ggtitle("(b)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.090, 0.115)) + ggtitle("(b)") +
+    xlab(NULL) + ylab(NULL)
   
   plot
   
@@ -875,7 +876,8 @@ Life_span <- function(PC, x="PC1", y="PC2") {
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.12, 0.1)) + ggtitle("(c)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.12, 0.1)) + ggtitle("(c)") +
+    xlab(NULL) + ylab(NULL)
   
   plot
   
@@ -947,7 +949,7 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") + ylab(NULL)
   
   plot
   
@@ -1019,7 +1021,7 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") + ylab(NULL)
   
   plot
   
@@ -1248,6 +1250,29 @@ combined + plot_layout(guides = "collect",ncol = 3)
 ## (d) Plant species network roles
 
 The variance of the different plant species-level network metrics was poorly explained by the three main axes of trait variation (figure S9; number of visits \~ PCs, conditional $R^{2}$ = 0.11, marginal $R^{2}$ = 0.02; normalized degree \~ PCs, conditional $R^{2}$ = 0.24, marginal $R^{2}$ = 0.02; and, specialization \~ PCs, conditional $R^{2}$ = 0.37, marginal$R^{2}$ = 0.03). Overall, the most notable trends were found on the flower number - flower size axis (PC1) and the style length - pollinator dependence axis (PC3) for number of visits and specialization. On PC1, number of visits was higher for plant species with more flowers but was lower for plant species with larger flowers (figure S9a). However, specialization showed the opposite trend on this axis (figure S9g). On PC3, the number of visits was lower for plants with shorter styles and higher pollinator dependence but higher for plant species with longer styles and lower pollinator dependence (figure S9c). Again, specialization showed the opposite trend to number of visits (figure S9i). [crees que podemos meter una figura de este resultado en main text? Si no esta ahi, no lo va a ver nadie]()
+
+\blandscape
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=28,out.width="90%",fig.align='center',fig.cap="\\textbf{Fig. S9.} Association between the main axes of trait variation (showed on different columns) and the distinct plant species level network metrics (showed on different rows). The x-axis shows the most illustrative trait extremes of the trait continuum. Note that the plots are coloured by the different network metrics.", fig.pos= "h"}
+
+#library(brms) #modelling
+library(cowplot) #panel of plots
+library(ggplot2) #plotting
+library(patchwork)
+
+setwd("~/Dropbox/PhD/R/Chapter_2") 
+
+#read plot generated in other rmd, bms and stan are giving trouble here... This file is created in Species_Level_Metric_Pcs
+
+plot_metrics_pcs <- readRDS("plot_metrics_pcs.rds") 
+
+plot_metrics_pcs
+
+```
+
+\elandscape
+
+
 
 # 4. Discussion
 
