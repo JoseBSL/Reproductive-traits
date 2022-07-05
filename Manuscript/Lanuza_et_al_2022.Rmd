@@ -642,8 +642,8 @@ library(cowplot)
 theme_ms <- function(base_size=12, base_family="Helvetica") {
   (theme_bw(base_size = base_size, base_family = base_family)+
       theme(text=element_text(color="black"),
-            axis.title=element_text( size = rel(1.75)),
-            axis.text=element_text(size = rel(1.75), color = "black"),
+            axis.title=element_text( size = rel(1.6)),
+            axis.text=element_text(size = rel(1.6), color = "black"),
             legend.title=element_text(face="bold"),
             legend.text=element_text(size = rel(1.1)),
             legend.background=element_rect(fill="transparent"),
@@ -734,7 +734,7 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") + xlab(NULL)
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") + xlab(NULL)  + ylab("Pollinator dependence - floral display axis")
   
   
   plot
@@ -949,7 +949,7 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") + ylab(NULL)
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") + ylab(NULL) + xlab("Flower number - flower size axis")
   
   plot
   
@@ -1021,7 +1021,7 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") + ylab(NULL)
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") + ylab(NULL) + xlab("Flower number - flower size axis")
   
   plot
   
@@ -1093,7 +1093,9 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   #CHANGE THEME
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.152, 0.11)) + ggtitle("(d)") 
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.152, 0.11)) + ggtitle("(d)") +
+    xlab("Flower number - flower size axis") +
+    ylab("Pollinator dependence - floral display axis")
   
   plot
   
