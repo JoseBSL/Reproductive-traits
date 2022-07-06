@@ -115,20 +115,20 @@ Supplementary Fig. S10: Pearson correlation between the product of flower number
 
 __Description of the traits compiled in this study__
 
-Here we describe the different traits of the database used in this study to explore the reproductive spectrum of trait variation and plant-pollinator associations. Note that all species have references or links providing the original source of the information. 
+Here we describe the different individual traits that have been included in the database:
 
 _Reproductive traits_
 
--	Breeding system: The different plant species were classified in hermaphrodite, dioecious and monoecious species. Intermediate breeding systems or more complex ones were also annotated but all the species were divided into these three main categories for simplicity of the analysis.
+-	Breeding system: All species were classified in hermaphrodite, dioecious and monoecious species. Intermediate breeding systems or more complex ones were also annotated but all the species were divided into these three main categories for simplicity of the analysis.
  
--	Selfing level: We recorded the selfing level of the different species with both quantitative and qualitative data. The qualitative data was divided in four main categories, high selfers, medium selfers, low selfers and none which was for the species that were unable to self-pollinate. In addition, quantitative data was also divided into these four categories with the following criteria: from 0% to lower than 1% ‘none’, from 1% to 25% ‘low’, from 26% to 75% ‘medium’ and from 76% to 100%  ‘high’. Because quantitative selfing had a high percentage of missing values (68%), we were able to solve this by converting these four categories to representative percentages of each category 0%, 13%, 50.5% and 88%. This reduced the percentage of missing values for this quantitative trait from 68% to 35% and allowed the imputation of this variable.
+-	Selfing level: We recorded the selfing level of the different species with both quantitative and qualitative data. The qualitative data was divided in four main categories, high selfers (76% to 100% of selfing), medium selfers (26% to 75%), low selfers (1% to 25%) and none (0%) which was for the species that were unable to self-pollinate. The quantitative column of selfing had a high percentage of missing values (68%) but we were able to solve this by converting the four categories from the qualitative column to numerical. For this, we considered the mean value of the different categories, that is the categories of ‘none’, ‘low’, ‘medium’ and ‘high’ represented 0%, 13%, 50.5% and 88% of selfing, respectively. This reduced the percentage of missing of this column from 68% to 35% and allowed the imputation of this variable.
 
 -	Compatibility system: The different species were divided in three main categories in order to know their ability to self-pollinate. These categories were self-compatible, partially self-compatible and self-incompatible species. The field of selfing level is partly complementary to the compatibility system but is important to note that not all the self-compatible species or partially self-compatible species will self-pollinate.
 
 _Floral traits_
 
--	Flower symmetry: We also recorded if the flowers were bilaterally symmetrical “zygomorphic” or were radially symmetrical “actinomorphic”.
- 
+-	Flower symmetry: Depending on the possible number of identical divisions of a flower, plant species were classified into zygomorphic (bilaterally symmetrical with only two identical parts) and actinomorphic (radially symmetrical with more than three identical parts).
+
 -	Flower and inflorescence size: We searched for flower length and flower and inflorescence width (mm) for all species. When possible, we calculated the not found measurements with the help of online images and the software ImageJ. Note that for species with compound flowers (e.g., Asteraceae) or similar floral structures with flower heads with many small flowers we considered the inflorescence as the floral unit. For each species this is indicated in the dataset with the field of "info_level" where the measurement level is specified as capitulum or flower level. Note that for some Asteraceae species information about the disc and ray floret is also provided in the database but these were not included in our analyses. 
 
 -	Flower number per plant: We compiled information about the number of flowers per plant for all species. However, this field was rare to find and we also used online images of the different species in order to calculate rough numbers of flowers per plant. We referenced all the filled fields in order to be able to follow the images that were used for these counts. It is important to note, that these numbers are not pretended to be the exact number of flowers per species but an approximate indicator of the reproductive investment for the different species that allow the macroecological analysis of this field.
@@ -1802,7 +1802,7 @@ symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
 
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)."}
 
 
 library(Rcpp)
