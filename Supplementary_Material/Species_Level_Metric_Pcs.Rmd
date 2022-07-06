@@ -7,9 +7,6 @@ classoption: landscape
 ---
 
 
-
-
-
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=22, fig.width=28, fig.align='center'}
 
 library(brms) #modelling
@@ -99,24 +96,89 @@ Specialization_PCs <- readRDS("results_analysis_2_Specialization_PCs.rds") #load
 ce_1 <- conditional_effects(Specialization_PCs, effects = "PC1",points=T) 
 colnames(ce_1[[1]])[3] <- "Interaction"
 
-Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC1, y = d),
-  size = 3.5, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1.5) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab("Specialization (d')") + xlab("PC1") + ggtitle(NULL, subtitle = "(g)") +  xlab("High flower N.    Low flower N.\nSmall flowers    Large flowers")
+Specialization_PC1 <- ggplot(ce_1[[1]], aes(x = -PC1, y = (estimate__))) + 
+geom_point(data = data_analysis_2,aes(x = -PC1, y = d),
+           size = 3.5, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1.5) + coord_cartesian(ylim=c(0,quantile(data_analysis_2$d, 0.95)), 
+            clip="off") + 
+           theme_ms() +
+geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, 
+            alpha=0.1,fill="black") + ylab("Specialization (d')") + 
+xlab("PC1") + 
+ggtitle(NULL, subtitle = "(g)") +  
+annotate(geom = "text", x = -1.6, y =-0.3 , 
+               label = "High flower N.", size = 8) +
+annotate(geom = "text", x = -1.7, y =-0.41 ,
+               label = "Small flowers", size = 8) + 
+annotate(geom = "text", x = 1.75, y =-0.3 , 
+               label = "Low flower N.", size = 8) + 
+annotate(geom = "text", x = 1.75, y =-0.41 ,
+               label = "Large flowers", size = 8) +
+annotate(geom = "text", x = 0.10, y =-0.19 , 
+    label = "Flower number - Flower size axis", size = 8.5, fontface =2) +
+theme(panel.border=element_rect(color="black",size=1.2)) +
+xlab(" \n \n  ") 
+
+
+
+
 
 
 ce_2 <- conditional_effects(Specialization_PCs, effects = "PC2",points=T) 
 colnames(ce_2[[1]])[3] <- "Interaction"
 
-Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC2, y = d),
-  size = 3.5, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1.5) + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab(NULL) + xlab("PC2") + ggtitle(NULL, subtitle = "(h)") + xlab("Low poll. depend.   High poll. depend.")
+Specialization_PC2 <- ggplot(ce_2[[1]], aes(x = -PC2, y =
+(estimate__))) + 
+geom_point(data = data_analysis_2,aes(x = -PC2, y = d),
+           size = 3.5, alpha=0.65, colour="darkorange3") + geom_line(colour="black",size=1.5) + coord_cartesian(ylim=c(0,quantile(data_analysis_2$d, 0.95)), 
+                clip="off") +
+theme_ms() +
+geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + 
+ylab(NULL) + 
+xlab("PC2") + 
+ggtitle(NULL, subtitle = "(h)") + 
+xlab(NULL) +
+annotate(geom = "text", x = -1.57, y =-0.3 , 
+               label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = -1.5, y =-0.41 ,
+               label = "Small floral display", size = 8) + 
+annotate(geom = "text", x = 1.75, y =-0.3 , 
+               label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = 1.8, y =-0.41 ,
+               label = "Large floral display", size = 8) +
+annotate(geom = "text", x = 0.10, y =-0.19 , 
+    label = "Pollinator dependence - Floral display axis", size = 8.5, fontface =2) +
+theme(panel.border=element_rect(color="black",size=1.2))
+
+
 
 ce_3 <- conditional_effects(Specialization_PCs, effects = "PC3",points=T) 
 colnames(ce_3[[1]])[3] <- "Interaction"
 
-Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y = (estimate__))) + geom_point(data = data_analysis_2,aes(x = -PC3, y = d),
- size = 3.5, alpha=0.65, colour="darkorange3") + ylim(0,quantile(data_analysis_2$d, 0.95)) +theme_ms()+geom_line(colour="black",size=1.5)+
-  geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2, alpha=0.1,fill="black") + ylab(NULL) + xlab("PC3") + ggtitle(NULL, subtitle = "(i)")+ xlab("Short styles      Long styles\n High poll. depend.   Low poll. depend.")
+Specialization_PC3 <- ggplot(ce_3[[1]], aes(x = -PC3, y =             (estimate__))) + 
+geom_point(data = data_analysis_2,aes(x = -PC3, y = d),
+           size = 3.5, alpha=0.65, colour="darkorange3")  +
+theme_ms() + 
+geom_line(colour="black",size=1.5) +
+geom_ribbon(aes(ymin=(lower__), ymax=(upper__)), linetype=2,    
+            alpha=0.1,fill="black") +
+ylab(NULL) + 
+xlab("PC3") + 
+coord_cartesian(ylim=c(0,quantile(data_analysis_2$d, 0.95)), 
+                clip="off") +
+ggtitle(NULL, subtitle = "(i)") + 
+annotate(geom = "text", x = -1.57, y =-0.3 , 
+         label = "Short styles", size = 8) +
+annotate(geom = "text", x = -1.25, y =-0.41 ,
+         label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = 2.05, y =-0.3 , 
+         label = "Long styles", size = 8) + 
+annotate(geom = "text", x = 2.4, y =-0.41 ,
+         label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = 0.25, y =-0.19 , 
+         label = "Style length - Pollinator dependence axis", 
+         size = 8.5, fontface =2) +
+theme(panel.border=element_rect(color="black",size=1.2)) +
+xlab(NULL)
 
 
 

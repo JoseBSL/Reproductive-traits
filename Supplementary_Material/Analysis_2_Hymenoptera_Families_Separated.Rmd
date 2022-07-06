@@ -14,7 +14,7 @@ library(viridis) #COLOUR GGPLOT
 #library(MASS)
 library(ggplot2)
 library(broman) #crayon colours
-#library(tidyverse)
+library(tidyverse)
 library(patchwork) #panel of plots
 library(brms)
 
@@ -52,22 +52,29 @@ ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T)
 
 pp1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
 aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("Interaction")+ xlab("")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(face="bold")) + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ ggtitle("PC1", subtitle = "A")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+  theme_ms() + theme(legend.position = "none",plot.title = element_text(face="bold")) + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ ggtitle("PC1", subtitle = "(a)")+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
 
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:bee_family",points=T) 
 
 pp2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
 aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(face="bold")) + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ ggtitle("PC2", subtitle = "B") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+  theme_ms() + theme(legend.position = "none",plot.title = element_text(face="bold")) + scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ ggtitle("PC2", subtitle = "(b)") + scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
 
 
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:bee_family",points=T) 
 
-pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
- aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5)  + ylab("")+ xlab("")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(face="bold")) + 
-  scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ ggtitle("PC3", subtitle = "C")+ scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+pp3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__), group=bee_family, colour=bee_family)) + 
+geom_point(data = dat_analysis,
+ aes(x = -PC3, y = Interaction), size = 2.5, alpha=0.4) + geom_line(size=1.5)  + 
+ylab("") + 
+xlab("") +
+theme_ms() + 
+theme(legend.position = "none",plot.title = element_text(face="bold")) + 
+scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet")) + ggtitle("PC3", subtitle = "(c)") +
+scale_y_continuous(breaks = c(0,  1), labels=c("No", "Yes"))
+
+
 #Plot nicely PC1
 analysis_1 <- readRDS("r_bee_families.rds")
 dat_analysis <- readRDS("dat_bee_families.rds")
@@ -76,32 +83,72 @@ dat_analysis <- readRDS("dat_bee_families.rds")
 ########################################################################################################################
 ce_pc1 <- conditional_effects(analysis_1, effects = "PC1:bee_family",points=T) 
 
-p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
-  aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("Number of visits")+  xlab("High flower N.    Low flower N.\nSmall flowers    Large flowers")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.95),hjust = 0)) + scale_color_manual(name="Functional groups",
-  values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"))+
-  scale_y_log10()+ggtitle("D")
+p1 <- ggplot(ce_pc1[[1]], aes(x = -PC1, y = (estimate__+1), group=bee_family, colour=bee_family)) + 
+geom_point(data = dat_analysis, aes(x = -PC1, y = Interaction),size = 2.5, alpha=0.4) + 
+geom_line(size=1.5) + 
+coord_cartesian(ylim=c(1,100),clip="off")+ 
+ylab("Number of visits") + 
+xlab("High flower N.    Low flower N.\nSmall flowers    Large flowers") +
+theme_ms() + 
+theme(legend.position = "none",plot.title = element_text(size=rel(2.95),hjust = 0)) + scale_color_manual(name="Functional groups",
+values = c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet")) +
+scale_y_log10() + ggtitle("(d)") +
+annotate(geom = "text", x = -1.7, y =0.2 , label = "High flower N.", size = 8) +
+annotate(geom = "text", x = -1.7, y =0.12 , label = "Small flowers", size = 8) + 
+annotate(geom = "text", x = 1.8, y =0.2 , label = "Low flower N.", size = 8) + 
+annotate(geom = "text", x = 1.8, y =0.12 , label = "Large flowers", size = 8) +
+xlab("") +
+annotate(geom = "text", x = -0.1, y =0.35 , label = "Flower number - Flower size axis", size = 8.5, fontface =2) + xlab("") + theme(panel.border=element_rect(color="black",size=1.2))
+
+
 #Plot nicely PC2
 ce_pc2 <- conditional_effects(analysis_1, effects = "PC2:bee_family",points=T) 
 
-p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
-  aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Low poll. depend. High poll. depend.")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.95),hjust = 0)) + 
-  scale_color_manual(name="Functional groups",values=c("orange", "black", 
-  "limegreen","#E7298A", "cyan4","blueviolet")) + scale_y_log10()+ggtitle("E")
+dat_analysis <- dat_analysis %>% dplyr::filter(Interaction<100)
+
+p2 <- ggplot(ce_pc2[[1]], aes(x = -PC2, y = (estimate__+1), group=bee_family, colour=bee_family)) + 
+geom_point(data = dat_analysis, aes(x = -PC2, y = Interaction),size = 2.5, alpha=0.4) + 
+geom_line(size=1.5) + 
+coord_cartesian(ylim=c(1,100),clip="off")+ 
+ylab("") + 
+xlab("Low poll. depend. High poll. depend.") +
+theme_ms() + 
+theme(legend.position = "none",plot.title = element_text(size=rel(2.95),hjust = 0)) + 
+scale_color_manual(name="Functional groups",values=c("orange", 
+        "black", "limegreen","#E7298A", "cyan4","blueviolet")) + scale_y_log10() +
+ggtitle("(e)") +
+annotate(geom = "text", x = -1.7, y =0.2 , label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = -1.65, y =0.12 , label = "Small floral display", size = 8) + 
+annotate(geom = "text", x = 1.8, y =0.2 , label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = 1.85, y =0.12 , label = "Large floral display", size = 8) +
+xlab(NULL) +
+annotate(geom = "text", x = -0.1, y =0.35 , label = "Pollinator dependence - Floral display axis", size = 8.5, fontface =2) +
+theme(panel.border=element_rect(color="black",size=1.2))
 
 #Plot nicely PC3
 ce_pc3 <- conditional_effects(analysis_1, effects = "PC3:bee_family",points=T)
 
+dat_analysis <- dat_analysis %>% dplyr::filter(Interaction<100)
 
-p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=bee_family, colour=bee_family)) + geom_point(data = dat_analysis,
-  aes(x = -PC3, y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
-  ylim(0,quantile(dat_analysis$Interaction, 0.95)) + ylab("")+ xlab("Short styles    Long styles\n Low selfing    High selfing")+
-  theme_ms() + theme(legend.position = "none",plot.title = element_text(size=rel(2.95),hjust = 0))+ 
-  scale_color_manual(name="Functional groups",values=c("orange", 
-  "black", "limegreen","#E7298A", "cyan4","blueviolet"))+ scale_y_log10()+ggtitle("F")
+p3 <- ggplot(ce_pc3[[1]], aes(x = -PC3, y = (estimate__+1), group=bee_family, colour=bee_family)) + 
+geom_point(data = dat_analysis, aes(x = -PC3, 
+          y = Interaction),size = 2.5, alpha=0.4) + geom_line(size=1.5) + 
+coord_cartesian(ylim=c(1,100),clip="off") + 
+ylab("") +
+theme_ms() + 
+theme(legend.position = "none",plot.title = 
+        element_text(size=rel(2.95),hjust = 0)) + 
+scale_color_manual(name="Functional groups",values=c("orange", 
+        "black", "limegreen","#E7298A", "cyan4","blueviolet")) + scale_y_log10() + 
+ggtitle("(f)") +
+annotate(geom = "text", x = -1.6, y =0.2 , label = "Short styles", size = 8) +
+annotate(geom = "text", x = -1.25, y =0.12 , label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = 1.95, y =0.2 , label = "Long styles", size = 8) + 
+annotate(geom = "text", x = 2.3, y =0.12 , label = "Low poll. depend.", size = 8) +
+xlab(" \n \n  ") +
+annotate(geom = "text", x = 0.25, y =0.35 , label = "Style length - Pollinator dependence axis", size = 8.5, fontface =2) +
+theme(panel.border=element_rect(color="black",size=1.2))
+  
 
 
 combined <- pp1 + pp2 + pp3 + p1 + p2 + p3 & theme(legend.position = "bottom")
