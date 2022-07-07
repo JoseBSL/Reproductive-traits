@@ -107,7 +107,7 @@ theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0
 scale_y_log10() +
 ggtitle(NULL, subtitle = "(d)") +
 annotate(geom = "text", x = -1.7, y =0.2 , label = "High flower N.", size = 8) +
-annotate(geom = "text", x = -1.7, y =0.12 , label = "Small flowers", size = 8) + 
+annotate(geom = "text", x = -1.75, y =0.12 , label = "Small flowers", size = 8) + 
 annotate(geom = "text", x = 1.8, y =0.2 , label = "Low flower N.", size = 8) + 
 annotate(geom = "text", x = 1.8, y =0.12 , label = "Large flowers", size = 8) +
 xlab("") +
