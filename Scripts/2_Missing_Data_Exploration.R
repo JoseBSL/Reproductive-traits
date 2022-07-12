@@ -289,6 +289,8 @@ percentage.plot <- missing.values %>%
 percentage.plot
 
 
+
+
 #Thank to 
 #https://www.kaggle.com/jenslaufer/missing-value-visualization-with-ggplot2-and-dplyr
 
