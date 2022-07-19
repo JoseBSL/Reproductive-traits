@@ -1,4 +1,4 @@
-# Article: Covariation among reproductive traits in flowering plants determine interactions with floral visitors
+# Article: Covariation among reproductive traits in flowering plants shapes interactions with floral visitors
 
 Preprint: https://doi.org/10.1101/2021.12.09.471959
 
