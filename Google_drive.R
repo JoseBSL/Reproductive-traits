@@ -17,5 +17,12 @@ library(trackdown)
 #upload file
 upload_file(
   file = "Manuscript/Lanuza_et_al_2022.Rmd", 
-  gfile = "Untitled"
+  gfile = "Reproductive_traits"
+)
+
+
+#download file 
+download_file(
+  file = "Manuscript/Lanuza_et_al_2022.Rmd", 
+  gfile = "Reproductive_traits"
 )
