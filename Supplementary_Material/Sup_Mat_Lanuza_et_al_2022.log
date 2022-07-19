@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  7 JUL 2022 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  19 JUL 2022 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -720,14 +720,14 @@ hunk-7-1.pdf  used on input line 522.
 [13
 
  <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf, id=91, 440
-.64626pt x 282.05376pt>
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf, id=91, 439
+.6425pt x 282.05376pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf Graphi
 c file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
 hunk-8-1.pdf  used on input line 530.
-(pdftex.def)             Requested size: 440.66533pt x 282.06596pt.
+(pdftex.def)             Requested size: 439.65483pt x 282.06166pt.
 [14
 
  <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>]
@@ -841,7 +841,7 @@ e/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6727217 bytes).
+Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6727172 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  252 compressed objects within 3 object streams

@@ -763,10 +763,13 @@ no_missing <- specify_decimal(sum(!is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,
 missing <- specify_decimal(sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
 
 
-colnames(t) <- c("Breeding system","Compatibility system",
-         "Autonomous selfing qualitative","Autonomous selfing quantitative", "Flower shape", "Flower symmetry", 
-         "Flower number per plant", "Inflorescence width", "Flower width", "Flower length","Style length", "Ovule number", 
-         "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar per flower (microlitres)", "Nectar per flower (miligrames)", "Nectar concentration (%)", "Pollen grains per flower")
+t = t %>% select(!Autonomous_selfing_level)
+
+colnames(t) <- c("Breeding system","Compatibility system","Autonomous selfing level", "Flower shape", "Flower symmetry", 
+                 "Flower number per plant", "Inflorescence width", "Flower width", "Flower length","Style length", "Ovule number", 
+                 "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar per flower (microlitres)", "Nectar per flower (miligrames)", "Nectar concentration (%)", "Pollen grains per flower")
+
+
 
 
 
