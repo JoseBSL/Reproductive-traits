@@ -131,12 +131,12 @@ theme_ms() +
 theme(legend.position = "none",plot.title = element_text(size=rel(2.5),hjust = 0,face="bold")) + 
 scale_color_manual(name="Functional groups",values=c("orange", "black", "limegreen","#E7298A", "cyan4","blueviolet"), labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera", "Non-syrphid-Diptera", "Syrphids")) + scale_y_log10()+
 ggtitle(NULL, subtitle = "(e)") +
-annotate(geom = "text", x = -1.7, y =0.2 , label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = -1.78, y =0.2 , label = "High aut. selfing", size = 8) +
 annotate(geom = "text", x = -1.65, y =0.12 , label = "Small floral display", size = 8) + 
-annotate(geom = "text", x = 1.8, y =0.2 , label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = 1.665, y =0.2 , label = "Low aut. selfing", size = 8) + 
 annotate(geom = "text", x = 1.85, y =0.12 , label = "Large floral display", size = 8) +
 xlab("") +
-annotate(geom = "text", x = -0.1, y =0.35 , label = "Pollinator dependence - Floral display axis", size = 8.5, fontface =2) +
+annotate(geom = "text", x = -0.1, y =0.35 , label = "Autonomous selfing - Floral display axis", size = 8.5, fontface =2) +
 theme(panel.border=element_rect(color="black",size=1.2))
   
 
@@ -155,12 +155,12 @@ scale_color_manual(name="Functional groups",values=c("orange",
   "black", "limegreen","#E7298A", "cyan4","blueviolet"),labels=c("Bees","Coleoptera", "Lepidoptera", "Non-bee-Hymenoptera", "Non-syrphid-Diptera", "Syrphids")) + 
 scale_y_log10() + 
 ggtitle(NULL, subtitle = "(f)") +
-annotate(geom = "text", x = -1.6, y =0.2 , label = "Short styles", size = 8) +
-annotate(geom = "text", x = -1.25, y =0.12 , label = "High poll. depend.", size = 8) + 
-annotate(geom = "text", x = 2.15, y =0.2 , label = "Long styles", size = 8) + 
-annotate(geom = "text", x = 2.5, y =0.12 , label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = -1.48, y =0.2 , label = "Short styles", size = 8) +
+annotate(geom = "text", x = -1.25, y =0.12 , label = "Low aut. selfing", size = 8) + 
+annotate(geom = "text", x = 2.24, y =0.2 , label = "Long styles", size = 8) + 
+annotate(geom = "text", x = 2.5, y =0.12 , label = "High aut. selfing", size = 8) +
 xlab(" \n \n  ") +
-annotate(geom = "text", x = 0.25, y =0.35 , label = "Style length - Pollinator dependence axis", size = 8.5, fontface =2) +
+annotate(geom = "text", x = 0.25, y =0.35 , label = "Style length - Autonomous selfing axis", size = 8.5, fontface =2) +
 theme(panel.border=element_rect(color="black",size=1.2))
   
 

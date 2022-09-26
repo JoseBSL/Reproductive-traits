@@ -15,7 +15,9 @@ library(googledrive)
 library(trackdown)
 
 #upload file
-upload_file(
+
+#update_file
+update_file(
   file = "Manuscript/Lanuza_et_al_2022.Rmd", 
   gfile = "Reproductive_traits"
 )
@@ -26,3 +28,4 @@ download_file(
   file = "Manuscript/Lanuza_et_al_2022.Rmd", 
   gfile = "Reproductive_traits"
 )
+1

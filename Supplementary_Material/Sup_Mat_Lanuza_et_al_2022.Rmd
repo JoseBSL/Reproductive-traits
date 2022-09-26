@@ -1595,10 +1595,10 @@ breed_1 <- ggplot(breed1,aes(x= Breeding_system,y= emmean,
   geom_point(data = breed1, aes(x = Breeding_system, y = emmean, color = Breeding_system),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = Breeding_system),
                 width =  0.25,size =  0.8)+ylab("Least square mean")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("forestgreen","orange", "black"))+ labs(title = "PC1",subtitle = "(a) Breeding system")+
-  theme(plot.title = element_text(hjust=0.5, size=26, face="bold"), plot.subtitle=element_text(size=16))+
-  geom_text(nudge_x = c(0), nudge_y = c(0.5),color   = "black")
-
+  scale_color_manual(values=c("forestgreen","orange", "black"))+ labs(title =  "(g) Breeding system")+
+  geom_text(nudge_x = c(0), nudge_y = c(0.45),color   = "black") + theme(axis.text = element_text( size = rel(0.9)))
+  
+  
 
 model_breeding_2 <- emmeans(model2, "Breeding_system")
 breeding_2 <- as.data.frame(model_breeding_2[1:3])
@@ -1609,10 +1609,10 @@ breed_2 <- ggplot(breed2,aes(x= Breeding_system,y= emmean,
   geom_point(data = breed2, aes(x = Breeding_system, y = emmean, color = Breeding_system),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = Breeding_system),
                 width =  0.25,size =  0.8)+ylab("")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("forestgreen","orange", "black")) + labs(title = "PC2",subtitle = "(b) Breeding system")+
-  theme(plot.title = element_text(hjust=0.5,size=26, face="bold"),plot.subtitle=element_text(size=16))+
-  geom_text(nudge_x = c(0), nudge_y = c(0.35),color   = "black")
-
+  scale_color_manual(values=c("forestgreen","orange", "black")) + labs(title =  "(h) Breeding system")+
+  geom_text(nudge_x = c(0), nudge_y = c(0.45),color   = "black") + theme(axis.text = element_text( size = rel(0.9)))
+  
+  
 
 ########################################################################################################################################################
 #2) COMPATIBILITY
@@ -1627,9 +1627,11 @@ comp_1 <- ggplot(comp1,aes(x= Compatibility_system,y= emmean,
   geom_point(data = comp1, aes(x = Compatibility_system, y = emmean, color = Compatibility_system),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = Compatibility_system),
   width =  0.25,size =  0.8)+ylab("Least square mean")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7")) +  labs(title =  "(c) Compatibility system")+
-  geom_text(nudge_x = c(0), nudge_y = c(0.45),color   = "black") + theme(axis.text = element_text( size = rel(1)))
-
+  scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7")) +
+    labs(title = "PC2",subtitle = "(a) Compatibility system")+
+  theme(plot.title = element_text(hjust=0.5,size=26, face="bold"),plot.subtitle=element_text(size=16))+
+  geom_text(nudge_x = c(0), nudge_y = c(0.35),color   = "black")
+  
 model_com <- emmeans(model2, "Compatibility_system")
 d <- as.data.frame(model_com[1:4])
 comp2 <- multcomp::cld(model_com, alpha = 0.10, Letters = LETTERS)
@@ -1639,11 +1641,11 @@ comp_2 <- ggplot(comp2,aes(x= Compatibility_system,y= emmean,
   geom_point(data = comp2, aes(x = Compatibility_system, y = emmean, color = Compatibility_system),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = Compatibility_system),
   width =  0.25,size =  0.8)+ylab("")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7")) +  labs(title =  "(d) Compatibility system")+
-  geom_text(nudge_x = c(0), nudge_y = c(0.45),color   = "black") + theme(axis.text = element_text( size = rel(1)))
-
-
-
+  scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7")) + 
+    labs(title = "PC2",subtitle = "(b) Compatibility system")+
+  theme(plot.title = element_text(hjust=0.5,size=26, face="bold"),plot.subtitle=element_text(size=16))+
+  geom_text(nudge_x = c(0), nudge_y = c(0.35),color   = "black")
+  
 ########################################################################################################################################################
 #3) LIFESPAN
 ########################################################################################################################################################
@@ -1688,7 +1690,7 @@ lifeform_1 <- ggplot(lif_1,aes(x= life_form,y= emmean,
   geom_point(data = lif_1, aes(x = life_form, y = emmean, color = life_form),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = life_form),
                 width =  0.25,size =  0.8)+ylab("Least square mean")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("forestgreen", "darkorange2","gray7"))+ labs(title  = "(g) Life form")+
+  scale_color_manual(values=c("forestgreen", "darkorange2","gray7"))+ labs(title  = "(c) Life form")+
   geom_text(nudge_x = c(0), nudge_y = c(0.5),color   = "black")
 
 
@@ -1701,7 +1703,7 @@ lifeform_2 <- ggplot(lif_2,aes(x= life_form,y= emmean,
   geom_point(data = lif_2, aes(x = life_form, y = emmean, color = life_form),size   = 4) +
   geom_errorbar(aes(ymin  =  lower.CL,ymax  =  upper.CL,  color = life_form),
                 width =  0.25,size =  0.8)+ylab("")+xlab("")+ theme(legend.position = "none")+ theme_ms()+
-  scale_color_manual(values=c("forestgreen", "darkorange2","gray7")) + labs(title =  "(h) Life form")+
+  scale_color_manual(values=c("forestgreen", "darkorange2","gray7")) + labs(title =  "(d) Life form")+
   geom_text(nudge_x = c(0), nudge_y = c(0.5),color   = "black")
 
 
@@ -1795,9 +1797,8 @@ nectar_2 <-ggplot(nec_2,aes(x= Nectar_presence_absence,y= emmean,
 
 
 #PLOT!
-
-breed_1 + breed_2+ comp_1+ comp_2+ lifespan_1+ lifespan_2+ lifeform_1+ lifeform_2+ shape_1+ shape_2+
-symmetry_1+ symmetry_2+ nectar_1+ nectar_2 + plot_layout(ncol = 2)
+comp_1 + comp_2  + lifeform_1 + lifeform_2+ lifespan_1 + lifespan_2 + breed_1 + breed_2+ shape_1 + shape_2 +
+symmetry_1 + symmetry_2 + nectar_1 + nectar_2 + plot_layout(ncol = 2)
 
 
 ```
