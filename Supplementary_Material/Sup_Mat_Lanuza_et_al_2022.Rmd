@@ -915,7 +915,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("Flower number - Flower size axis ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("Pollinator dependence - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("Autonomous selfing - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
   
 #ADD LABELS
   rownames(PC$L) <- c("High selfing", "Many flowers", "Large flowers", "Long styles", "Many ovules", "Tall plants" )
@@ -1015,7 +1015,7 @@ all_complete_cases <- function(PC, x="PC1", y="PC2") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("Flower number - Flower size axis ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("Pollinator dependence - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("Autonomous selfing - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
   
 
   #CHANGE THEME
@@ -1148,7 +1148,7 @@ all_spp <- function(PC, x="PC1", y="PC2") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("Flower number - Flower size axis ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("Pollinator dependence - Floral display ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("Autonomous selfing - Floral display ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
   
   
   #CHANGE THEME
@@ -1248,7 +1248,7 @@ all_spp_complete <- function(PC, x="PC1", y="PC2") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("Flower number - Flower size axis ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("Pollinator dependence - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("Autonomous selfing - Floral display axis ", "(",(percentage[2]),"%",")", sep = "")) #YLAB
   
   
   #CHANGE THEME
@@ -1324,7 +1324,7 @@ plot_apis
 \newpage
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetically informed principal component analysis (pPCA) for all plant species with the first (flower number - flower size axis) and third (style length - pollinator dependence axis) principal component that explained most trait variation."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetically informed principal component analysis (pPCA) for all plant species with the first (flower number - flower size axis) and third (style length - autonomous selfing) principal component that explained most trait variation."}
 setwd("~/R_Projects/Reproductive Traits")
 
 #Load libraries
@@ -1432,7 +1432,7 @@ pc3 <- function(PC, x="PC1", y="PC3") {
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   plot <- plot + xlab(paste("Flower number - Flower size axis ", "(",(percentage[1]),"%",")", sep = "")) #XLAB
-  plot <- plot + ylab(paste("Style length - Pollinator dependence axis ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
+  plot <- plot + ylab(paste("Style length - Autnomous selfing axis ", "(",(percentage[3]),"%",")", sep = "")) #YLAB
   
 
   #CHANGE THEME

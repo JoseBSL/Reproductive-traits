@@ -107,7 +107,7 @@ xlab("PC1") +
 ggtitle(NULL, subtitle = "(g)") +  
 annotate(geom = "text", x = -1.6, y =-0.3 , 
                label = "High flower N.", size = 8) +
-annotate(geom = "text", x = -1.7, y =-0.41 ,
+annotate(geom = "text", x = -1.65, y =-0.41 ,
                label = "Small flowers", size = 8) + 
 annotate(geom = "text", x = 1.75, y =-0.3 , 
                label = "Low flower N.", size = 8) + 
@@ -138,15 +138,15 @@ xlab("PC2") +
 ggtitle(NULL, subtitle = "(h)") + 
 xlab(NULL) +
 annotate(geom = "text", x = -1.57, y =-0.3 , 
-               label = "Low poll. depend.", size = 8) +
-annotate(geom = "text", x = -1.5, y =-0.41 ,
+               label = "High aut. selfing", size = 8) +
+annotate(geom = "text", x = -1.45, y =-0.41 ,
                label = "Small floral display", size = 8) + 
 annotate(geom = "text", x = 1.75, y =-0.3 , 
-               label = "High poll. depend.", size = 8) + 
-annotate(geom = "text", x = 1.8, y =-0.41 ,
+               label = "Low aut. selfing", size = 8) + 
+annotate(geom = "text", x = 1.9, y =-0.41 ,
                label = "Large floral display", size = 8) +
 annotate(geom = "text", x = 0.10, y =-0.19 , 
-    label = "Pollinator dependence - Floral display axis", size = 8.5, fontface =2) +
+    label = "Autonomous selfing - Floral display axis", size = 8.5, fontface =2) +
 theme(panel.border=element_rect(color="black",size=1.2))
 
 
@@ -168,14 +168,14 @@ coord_cartesian(ylim=c(0,quantile(data_analysis_2$d, 0.95)),
 ggtitle(NULL, subtitle = "(i)") + 
 annotate(geom = "text", x = -1.57, y =-0.3 , 
          label = "Short styles", size = 8) +
-annotate(geom = "text", x = -1.25, y =-0.41 ,
-         label = "High poll. depend.", size = 8) + 
+annotate(geom = "text", x = -1.35, y =-0.41 ,
+         label = "Low aut. selfing", size = 8) + 
 annotate(geom = "text", x = 2.05, y =-0.3 , 
          label = "Long styles", size = 8) + 
-annotate(geom = "text", x = 2.4, y =-0.41 ,
-         label = "Low poll. depend.", size = 8) +
+annotate(geom = "text", x = 2.3, y =-0.41 ,
+         label = "High aut. selfing", size = 8) +
 annotate(geom = "text", x = 0.25, y =-0.19 , 
-         label = "Style length - Pollinator dependence axis", 
+         label = "Style length - Autonomous selfing axis", 
          size = 8.5, fontface =2) +
 theme(panel.border=element_rect(color="black",size=1.2)) +
 xlab(NULL)
