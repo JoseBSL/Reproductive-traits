@@ -1,0 +1,100 @@
+---
+title: \singlespacing \vspace{-1.6cm} \LARGE Covariation among reproductive traits in flowering plants shapes interactions with floral visitors
+
+#author: 
+#  - Jose B. Lanuza^1,2^*
+#  - Romina Rader^1^
+#  - Jamie Stavert^3^
+#  - Liam K. Kendall^4^
+#  - Manu E. Saunders^1^
+#  - Ignasi Bartomeus^2^
+
+# may use lua filters for affiliations etc: see https://stackoverflow.com/a/52919256
+
+# date: '`r Sys.Date()`'
+
+output:
+  bookdown::pdf_document2:
+    fig_caption: yes
+    fig_width: 7
+    fig_height: 7
+    df_print: kable
+    keep_tex: yes
+    number_sections: no
+    extra_dependencies: ["float"]
+    toc: no
+    fig_crop: no
+    includes:
+      in_header: header.tex
+    
+documentclass: article
+# classoption: twocolumn, landscape, etc
+papersize: a4
+pagestyle: plain  # plain, empty, headings
+geometry: margin=1in
+linestretch: 2
+fontfamily: mathpazo
+fontsize: 12pt
+
+bibliography: 
+  - references.bib
+  - knitcitations.bib
+# zotero: "My shared Zotero group"
+csl: proceedingsb.csl #ecology letters
+notes-after-punctuation: false
+link-citations: yes
+linkcolor: RoyalBlue
+urlcolor: RoyalBlue
+links-as-notes: false
+subparagraph: yes
+
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+- \usepackage[skip=3pt]{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \usepackage{setspace}
+- \usepackage{titlesec}
+- \titlespacing{\title}{0pt}{\parskip}{-\parskip}
+- \usepackage[style=nature]{biblatex}
+- \usepackage[labelformat = empty]{caption}
+- \usepackage{pdflscape}
+- \usepackage[T1]{fontenc}
+- \DeclareUnicodeCharacter{0301}{*************************************}
+- \DeclareUnicodeCharacter{1EF3}{*************************************}
+- \usepackage{orcidlink}
+---
+
+\vspace{-1.4cm}
+
+\singlespacing
+
+\textbf{Jose B. Lanuza$^{1,2}$} \orcidlink{0000-0002-0287-409X}, \textbf{Romina Rader$^{1}$} \orcidlink{0000-0001-9056-9118}, \textbf{Jamie Stavert$^{3}$} \orcidlink{0000-0002-2103-5320}, \textbf{Liam K. Kendall$^{4}$} \orcidlink{0000-0002-0671-0121}, \textbf{Manu E. Saunders$^{1}$} \orcidlink{0000-0003-0645-8277} \textbf{and Ignasi Bartomeus$^{2}$} \orcidlink{0000-0001-7893-4389}
+
+\small
+
+^1^ School of Environmental and Rural Science, University of New England, Armidale, New South Wales 2350, Australia. ^2^ Estación Biológica de Doñana (EBD-CSIC), E-41092 Seville, Spain. ^3^ Department of Conservation \| Te Papa Atawhai, Auckland, New Zealand. ^4^ Centre for Environmental and Climate Science, Lund University, Sölvegatan 37, S-223 62 Lund, Sweden.
+
+\textbf{Author for correspondence:} Jose B. Lanuza \| [barragansljose\@gmail.com](mailto:barragansljose@gmail.com){.email}
+
+
+**Acknowledgements.** We thank all researchers that made their data openly available and sent it upon request. We also thank Bryony Wilcox, Greg Bible, Mercedes Sanchez-Lanuza and David Ragel for their help with data collection. We thank Jason Tylianakis for his insightful comments on the manuscript before submission. Finally, we thank Marcos Méndez, Susan Kalisz, Amanda Benoit, May Berenbaum and an anonymous reviewer for thoughtful feedback and useful comments on earlier versions of this manuscript.
+
+**Conflict of interest declaration.** We declare we have no competing interests.
+
+**Authors' contributions.** JBL, RR and IB designed the study. JBL collated the data and conducted analysis with guidance of JS, LKK and IB. JBL wrote the manuscript with contributions of all authors.
+
+**Data accessibility.** All data and code used to conduct this study are available in the online repositories of Zenodo (<https://doi.org/10.5281/zenodo.6705621>) and Github (<https://github.com/JoseBSL/Reproductive-traits>).
