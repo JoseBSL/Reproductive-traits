@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  4 OCT 2022 16:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.11.3)  5 OCT 2022 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -827,12 +827,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 /Sup_Mat_Lanuza_et_al_2022.aux) ) 
 Here is how much of TeX's memory you used:
  15603 strings out of 478994
- 240503 string characters out of 5858184
- 593741 words of memory out of 5000000
+ 240499 string characters out of 5858184
+ 593739 words of memory out of 5000000
  32615 multiletter control sequences out of 15000+600000
  448107 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,10n,88p,1217b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,10n,88p,1197b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ma
 thit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/us
@@ -841,7 +841,7 @@ e/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/tex
 mf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fo
 nts/type1/public/lm/lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6727065 bytes).
+Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6727058 bytes).
 PDF statistics:
  311 PDF objects out of 1000 (max. 8388607)
  252 compressed objects within 3 object streams
