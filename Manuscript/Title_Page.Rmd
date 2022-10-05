@@ -1,5 +1,5 @@
 ---
-title: \singlespacing \vspace{-1.6cm} \LARGE Covariation among reproductive traits in flowering plants shapes interactions with floral visitors
+title: \singlespacing \vspace{-1.6cm} \LARGE Covariation among reproductive traits in flowering plants shape their interactions with pollinators
 
 #author: 
 #  - Jose B. Lanuza^1,2^*
