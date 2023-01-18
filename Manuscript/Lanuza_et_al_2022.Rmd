@@ -86,7 +86,13 @@ header-includes:
 
 # Abstract
 
-Globally, plants display enormous variation in life history strategies and trait combinations. However, evidence suggests that evolutionary and physiological constraints limit the number of plant ecological strategies. Although there have been recent advances in understanding correlations among plant traits, reproductive traits are rarely considered, despite their key role in shaping plant life-history strategies and interactions with pollinators. Here, using a global dataset of 16 reproductive traits for 1,506 species, we investigate the reproductive spectrum of flowering plants to identify how it shapes interactions with pollinators. We show that over 50% of all trait variation is explained by the first two reproductive axes, which represent the negative correlation between flower number and flower size, and the negative correlation between autonomous selfing and floral display size. In addition, these reproductive axes were associated with different numbers of interacting partners and visitation rates of the distinct pollinator guilds. However, reproductive axes explain a relatively small amount of variance in pollinator interactions highlighting the need to incorporate other factors along with reproductive traits to fully explain large scale patterns of plant-pollinator interactions. Our study identifies the major reproductive trait correlations in flowering plants and their role in shaping networks of plant-pollinator interactions at a global scale.
+1. Globally, plants display enormous variation in life history strategies and trait combinations. However, evidence suggests that evolutionary and physiological constraints limit the number of plant ecological strategies. Although there have been recent advances in understanding correlations among plant traits, reproductive traits are rarely considered, despite their key role in shaping plant life-history strategies and interactions with pollinators. 
+
+2. Here, using a global dataset of 16 reproductive traits for 1,506 species, we investigate the reproductive spectrum of flowering plants to identify how it shapes interactions with pollinators. 
+
+3. We show that over 50% of all trait variation is explained by the first two reproductive axes, which represent the negative correlation between flower number and flower size, and the negative correlation between autonomous selfing and floral display size. In addition, these reproductive axes were associated with different numbers of interacting partners and visitation rates of the distinct pollinator guilds. However, reproductive axes explain a relatively small amount of variance in pollinator interactions highlighting the need to incorporate other factors along with reproductive traits to fully explain large scale patterns of plant-pollinator interactions. 
+
+4. Our study identifies the major reproductive trait correlations in flowering plants and their role in shaping networks of plant-pollinator interactions at a global scale.
 
 \textbf{Keywords:} life-history strategies \| plant reproductive traits \| plant-pollinator interactions
 
@@ -157,7 +163,6 @@ We selected a total of 19 quantitative and categorical functional traits that in
 \singlespacing
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.height=1, fig.width=14}
-setwd("~/R_Projects/Reproductive Traits")
 
 library(kableExtra)
 
@@ -171,7 +176,7 @@ library(tidyverse)
 #1) READ TRAIT DATA
 ########################################################################################################################################################
 #load data
-trait_data <- read_excel("Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
+trait_data <- read_excel("../Data/Trait_data_raw/Trait_data_final.xlsx",na = "NA")
 ########################################################################################################################################################
 #2) A) CLEAN DATA AND B) RENAME LEVELS FOR IMPUTATION 
 ########################################################################################################################################################
@@ -409,8 +414,6 @@ Our phylogenetically informed principal component analysis captured  51.8% and 7
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, out.width="85%", fig.height=10,fig.align='center',fig.width=10,fig.cap= "\\textbf{Figure 1.} Phylogenetically informed principal component analysis (pPCA) of 1,236 plant species from 28 plant-pollinator network studies. The solid arrows indicate the direction of the different quantitative traits (flower number, plant height, style length, flower size, ovule number and level of autonomous selfing) across the two main axes of trait variation. The length of the arrows indicate the weight of the variables on each principal component and the dashed lines show the opposed direction of trait variation. The icons at both ends of arrows and dashed lines illustrate the extreme form of the trait continuum."}
 
-setwd("~/R_Projects/Reproductive Traits")
-
 #Load libraries
 library(viridis) #COLOUR GGPLOT
 library(ggplot2)
@@ -436,8 +439,8 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 
 #Load data
-dat_cleaning_5 <- readRDS("Data/RData/data_all_species_PPCA.rds")
-phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+dat_cleaning_5 <- readRDS("../Data/RData/data_all_species_PPCA.rds")
+phyl_pca_forest <- readRDS("../Data/RData/phyl_pca_forest.rds")
 
 PC <- phyl_pca_forest
 #CHECK CONTENT
@@ -451,42 +454,42 @@ PC$L
 #Images were made by Paula Martin
 #Check her work on https://paulamartinart.com/
 
-tree <- image_read("Images/PPCA_Plot/Tree.png")
+tree <- image_read("../Images/PPCA_Plot/Tree.png")
 tree_1 <- as.raster(tree)
 
-style_l <- image_read("Images/PPCA_Plot/Style_Long.png")
+style_l <- image_read("../Images/PPCA_Plot/Style_Long.png")
 style_l_1 <- as.raster(style_l)
 
-style_s <- image_read("Images/PPCA_Plot/Style_Short.png")
+style_s <- image_read("../Images/PPCA_Plot/Style_Short.png")
 style_s_1 <- as.raster(style_s)
 
-ovule_h <- image_read("Images/PPCA_Plot/Ovule_High.png")
+ovule_h <- image_read("../Images/PPCA_Plot/Ovule_High.png")
 ovule_h_1 <- as.raster(ovule_h)
 
-ovule_l <- image_read("Images/PPCA_Plot/Ovule_Low.png")
+ovule_l <- image_read("../Images/PPCA_Plot/Ovule_Low.png")
 ovule_l_1 <- as.raster(ovule_l)
 
-selfing_n <- image_read("Images/PPCA_Plot/Selfing_None.png")
+selfing_n <- image_read("../Images/PPCA_Plot/Selfing_None.png")
 selfing_n_1 <- as.raster(selfing_n)
 
-selfing_h <- image_read("Images/PPCA_Plot/selfing.png")
+selfing_h <- image_read("../Images/PPCA_Plot/selfing.png")
 selfing_h_1 <- as.raster(selfing_h)
 
-single_flower <- image_read("Images/PPCA_Plot/Single_Flower.png")
+single_flower <- image_read("../Images/PPCA_Plot/Single_Flower.png")
 single_flower_1 <- as.raster(single_flower)
 
-many_flowers <- image_read("Images/PPCA_Plot/Inflorescencia.png")
+many_flowers <- image_read("../Images/PPCA_Plot/Inflorescencia.png")
 many_flowers_1 <- as.raster(many_flowers)
 #many_flowers_1 <- image_rotate(many_flowers, 45)
 
-large_flower <- image_read("Images/PPCA_Plot/flower_big.png")
+large_flower <- image_read("../Images/PPCA_Plot/flower_big.png")
 large_flower_1 <- as.raster(large_flower)
 
 #"Images/PPCA_Plot/flower_short.png"
-flower_small <- image_read("Images/PPCA_Plot/flower_big.png")
+flower_small <- image_read("../Images/PPCA_Plot/flower_big.png")
 flower_small_1 <- as.raster(flower_small)
 
-herb <- image_read("Images/PPCA_Plot/herb.png")
+herb <- image_read("../Images/PPCA_Plot/herb.png")
 herb_1 <- as.raster(herb)
 
 #############################################################################################################################################################
@@ -597,10 +600,11 @@ We found that most categorical traits were statistically associated with the fir
 
 \blandscape
 
+
+
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18, out.width="80%",fig.align='center',fig.cap= "\\textbf{Figure 2.} Location of the different qualitative traits in the trait space. The figure panel is composed of the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits shown in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S)."}
 
-#Set working directory
-setwd("~/R_Projects/Reproductive Traits")
+
 
 #Load libraries
 #LOAD LIBRARIES
@@ -614,6 +618,7 @@ library(MASS)
 library(ggplot2)
 library(broman) #crayon colours
 library(cowplot)
+library(ggstar)
 
 # Theme for publication
 theme_ms <- function(base_size=12, base_family="Helvetica") {
@@ -634,8 +639,8 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 
 #Load data
-dat_cleaning_5 <- readRDS("Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
-phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
+dat_cleaning_5 <- readRDS("../Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
+phyl_pca_forest <- readRDS("../Data/RData/phyl_pca_forest.rds")
 
 #CALL the output PC for simplicity
 PC <- phyl_pca_forest
@@ -678,7 +683,9 @@ Compatibility <- function(PC, x="PC1", y="PC2") {
   dat$Compatibility[dat$Compatibility=="self_incompatible"] <- "Self incompatible"
   dat$Compatibility <- factor(dat$Compatibility, levels = c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Compatibility),size=1.75)+scale_color_manual(values=c("cyan4", "deepskyblue2","orange","gray7"))
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=Compatibility, fill=Compatibility), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("deepskyblue2", "purple2","goldenrod","gray7")) +
+scale_starshape_manual(values = c(13, 15, 28, 5))  
+  
   
   ########
   #ADD ARROWS 
@@ -751,7 +758,11 @@ Life_form <- function(PC, x="PC1", y="PC2") {
   
   dat$`Life form` <- factor( dat$`Life form`, levels = c("Herb", "Shrub", "Tree"))
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Life form`),size=1.75)+scale_color_manual(values=c("forestgreen", "darkorange2","gray7"))
+plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Life form`, fill=`Life form`), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("forestgreen", "darkorange2","black")) +
+scale_starshape_manual(values = c(13, 15, 28))
+  
+  
+    
   
   ########
   #ADD ARROWS 
@@ -818,7 +829,10 @@ Life_span <- function(PC, x="PC1", y="PC2") {
     dat$Lifespan <- dat_cleaning_5$lifespan
     dat$Lifespan <- as.character(dat$Lifespan)
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=Lifespan),size=1.75)+scale_color_manual(values=c("sienna4","forestgreen"))
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=Lifespan, fill=Lifespan), size=2.25, color= NA, alpha = 0.9)+ scale_fill_manual(values=c("sienna4","forestgreen")) +
+scale_starshape_manual(values = c(13, 15))  
+  
+  
   
   ########
   #ADD ARROWS 
@@ -889,7 +903,9 @@ Flower_sym <- function(PC, x="PC1", y="PC2") {
   dat$`Flower symmetry`[dat$`Flower symmetry`=="zygomorphic"] <- "Zygomorphic"
   
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Flower symmetry`),size=1.75)+scale_color_manual(values=c("sienna2","purple"))
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Flower symmetry`, fill=`Flower symmetry`), size=2.25, color= NA, alpha = 0.9) + scale_fill_manual(values=c("goldenrod","purple2")) +
+scale_starshape_manual(values = c(13, 15))  
+  
   
   ########
   #ADD ARROWS 
@@ -960,7 +976,8 @@ Flower_sha <- function(PC, x="PC1", y="PC2") {
   dat$`Flower shape`[dat$`Flower shape`=="Funnelform"] <- "Campanulate"
   dat$`Flower shape`[dat$`Flower shape`=="Spike"] <- "Brush"
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Flower shape`),size=1.75)+scale_color_manual(values=c("blue","cyan4", "red","forestgreen","purple","gold"))
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Flower shape`, fill=`Flower shape`), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("black","goldenrod", "deepskyblue2","forestgreen","purple2","darkorange2")) +
+scale_starshape_manual(values = c(13, 15, 28, 5, 9, 14))  
   
   ########
   #ADD ARROWS 
@@ -1030,7 +1047,10 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
   dat$`Breeding system` <- as.character(dat$`Breeding system`)
   dat$`Breeding system` <- factor(dat$`Breeding system`, levels=c("Hermaphrodite","Monoecious" ,"Dioecious"))
 
-  plot <- plot + geom_point(data=dat, aes(-x, -y, colour=`Breeding system`),size=1.75)+scale_color_manual(values=c("forestgreen","orange", "black"))
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Breeding system`, fill=`Breeding system`), size=2.25, color= NA, alpha = 0.9) + scale_fill_manual(values=c("forestgreen","darkorange2", "black")) +
+scale_starshape_manual(values = c(13, 15, 28))  
+    
+  
   
   ########
   #ADD ARROWS 
@@ -1144,9 +1164,15 @@ Breeding_syst <- function(PC, x="PC1", y="PC2") {
 #
 # #plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),Nectar(PC), ncol=2,nrow=4,  align = "hv")
 
+
+
+
   plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),ncol=3,nrow=2,  align = "hv")
 
 ```
+
+
+
 
 \elandscape
 
@@ -1201,20 +1227,21 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
      ))
 }
 
-setwd("~/R_Projects/Reproductive Traits")
 
-p1 <- readRDS("Main_Figures/figure_3_1.rds")
-p2 <- readRDS("Main_Figures/figure_3_2.rds")
-p3 <- readRDS("Main_Figures/figure_3_3.rds")
-pp1 <- readRDS("Main_Figures/figure_3_4.rds")
-pp2 <- readRDS("Main_Figures/figure_3_5.rds")
-pp3 <- readRDS("Main_Figures/figure_3_6.rds")
+p1 <- readRDS("../Main_Figures/figure_3_1.rds")
+p2 <- readRDS("../Main_Figures/figure_3_2.rds")
+p3 <- readRDS("../Main_Figures/figure_3_3.rds")
+pp1 <- readRDS("../Main_Figures/figure_3_4.rds")
+pp2 <- readRDS("../Main_Figures/figure_3_5.rds")
+pp3 <- readRDS("../Main_Figures/figure_3_6.rds")
 
 library(patchwork)
 
-combined <- pp1 + pp2 + pp3 + p1 + p2 + p3 & theme(legend.position = "bottom")
-combined + plot_layout(guides = "collect",ncol = 3)
+combined <- pp1 + pp2 + pp3 + p1 + p2 + p3  & theme(legend.position = "bottom") &  guides(color = guide_legend(override.aes = list(size=6.5), keywidth=1.8,
+                 keyheight=0.1,
+                 default.unit="inch"))
 
+combined + plot_layout(guides = "collect",ncol = 3)
 ```
 
 \elandscape
