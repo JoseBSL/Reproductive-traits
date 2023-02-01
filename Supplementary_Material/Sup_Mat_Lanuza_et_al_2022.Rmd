@@ -144,7 +144,7 @@ knitr::include_graphics("../Images/flower_shapes.png")
 
 -	Style length: We searched for the length of the style (the pistil excluding the ovary and the stigma) in millimeters for all plant species. When the information about style length was missing, we tried to calculate it from images and illustrations from online resources (e.g., floras). 
 
-- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower and nectar concentration. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. For the field of microlitres of nectar, we considered single measurements of nectar standing crop. Despite the timing and methodology of the different quantitative measurements of nectar differed across studies, these fields allowed us to have an approximate idea of the reproductive investment of the different plant species.
+- Nectar provision: We recorded the presence and absence of nectar for all species. In addition, we also searched for microlitres and milligrams of nectar per flower. For species that did not have nectar information but belonged to a family that is considered as ‘nectarless’, this trait was recorded at family level and the species was recorded with ‘absence’ of nectar. This was done exclusively for well documented nectarless taxonomical groups. For the field of microlitres of nectar, we considered single measurements of nectar standing crop. Despite the timing and methodology of the different quantitative measurements of nectar differed across studies, these fields allowed us to have an approximate idea of the reproductive investment of the different plant species.
 
 - Pollen grains per flower: For each species, we searched for the total number of pollen grains per flower. Because this fields was rarely available, we also tried to recover from pollen:ovule ratio information the total number of pollen grains by multiplying it by the average ovule number found for each species.
 
@@ -157,7 +157,7 @@ _Other life history traits_
 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE,  warning=FALSE,fig.align = "left"}
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 library(kableExtra)
 
 #Create data.frame with references
@@ -217,9 +217,8 @@ kable("latex", longtable = T, booktabs = T,linesep = "\\addlinespace",
 library(dplyr)
 library(kableExtra)
 
-setwd("~/R_Projects/Reproductive Traits")
 
-d <- readRDS("Data/RData/table_categorical_tukey_test.rds")
+d <- readRDS("../Data/RData/table_categorical_tukey_test.rds")
 
 #Again im getting the same error on this rmd so I run it on another one, save the dataframe and plot it here
 
@@ -241,7 +240,7 @@ kable(d, longtable = T,"latex" , booktabs = T,linesep = "\\addlinespace", escape
 library(dplyr)
 library(kableExtra)
 
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 PC <- readRDS("Data/RData/phyl_pca_forest.rds")
 
@@ -281,7 +280,7 @@ dat <- dat %>% mutate(across(is.numeric, ~ round(., 2)))
 library(dplyr)
 library(kableExtra)
 
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 PC <- readRDS("Data/RData/phyl_pca_forest_nectar_pollen.rds")
 
@@ -319,7 +318,7 @@ kable(dat, longtable = T,"latex", booktabs = T,linesep = "\\addlinespace", escap
 
 library(kableExtra)
 
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 #SELFING
 selfing <- readRDS("Data/RData/selfing_phylo.rds")
@@ -517,7 +516,7 @@ linetype = "dashed", size = 0), panel.background = element_rect(fill = "aliceblu
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,dpi=2000,  fig.cap="\\textbf{Fig. S2.} Percentage of present and missing values of the different plant traits."}
 
 #Set working directory
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 ########################################################################################################################################################
 #SCRIPT FOR DATA IMPUTATION
@@ -811,7 +810,7 @@ percentage.plot
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE,fig.height=20, fig.width=10,out.width="60%",fig.align='center',fig.cap= "\\textbf{Fig. S3.} Comparison of the phylogenetic informed principal component analysis for the dataset with data imputation and without data imputation. Panel 'a' shows the reproductive spectrum of trait variation for the full dataset with data imputation and panel 'b' shows the reproductive spectrum for the dataset without data imputation where the species with missing trait data were excluded from the analysis."}
 
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 #Load libraries
 library(viridis) #COLOUR GGPLOT
@@ -1047,7 +1046,7 @@ p1 / p2 + plot_annotation(tag_levels = c('a'), tag_prefix = '(', tag_sep = '', t
 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=20, fig.width=10,out.width="60%",fig.align='center',fig.cap="\\textbf{Fig. S4.} Comparison of the phylogenetic informed principal component analysis for the subset of species that had information of floral rewards with data imputation and without data imputation. Panel A shows the reproductive spectrum of trait variation for the dataset with data imputation and panel B shows the reproductive spectrum for the dataset excluding species with missing trait data"}
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 #Load libraries
 #LOAD LIBRARIES
@@ -1308,11 +1307,9 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
 }
 
 
-setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-
 #This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
 
-plot_apis <- readRDS("Plot_apis_non_apis.rds")
+plot_apis <- readRDS("../Data/RData/Plot_apis_non_apis.rds")
 
 plot_apis
 
@@ -1325,7 +1322,7 @@ plot_apis
 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=10, fig.width=10, fig.cap="\\textbf{Fig. S6.} Phylogenetically informed principal component analysis (pPCA) for all plant species with the first (flower number - flower size axis) and third (style length - autonomous selfing) principal component that explained most trait variation."}
-setwd("~/R_Projects/Reproductive Traits")
+setwd("~/R_Projects/Reproductive-Traits")
 
 #Load libraries
 #LOAD LIBRARIES
@@ -1508,11 +1505,10 @@ theme_ms <- function(base_size=10, base_family="Helvetica") {
 }
 
 ########################################################################################################################################################
-setwd("~/R_Projects/Reproductive Traits")
 
 #LOAD DATA
-phyl_pca_forest <- readRDS("Data/RData/phyl_pca_forest.rds")
-dat <- read.csv("Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
+phyl_pca_forest <- readRDS("../Data/RData/phyl_pca_forest.rds")
+dat <- read.csv("../Data/Csv/all_species_imputed_trait_data_forest_data.csv", row.names = "X")
 ########################################################################################################################################################
 #remove not found species, cannot do PCA with unequal numbers of rows
 cols.num <- c("Family_all","Genus_all","Species_all")
@@ -1831,12 +1827,9 @@ theme_ms <- function(base_size=14, base_family="Helvetica") {
      ))
 }
 
-
-setwd("~/Dropbox/PhD/R/Chapter_2") #DROPBOX, files too large for github
-
 #This file is produced on otehr Rmd the brms fuucntions didn't work here... Weird segfault error that I wasn't able to solve
 
-plot <- readRDS("Plot_bee_families.rds")
+plot <- readRDS("../Data/RData/Plot_bee_families.rds")
 
 plot
 
@@ -1875,11 +1868,9 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
 }
 #########
 
-setwd("~/Dropbox/PhD/R/Chapter_2") 
-
 #read plot generated in other rmd, bms and stan are giving trouble here... This file is created in Species_Level_Metric_Pcs
 
-plot_metrics_pcs <- readRDS("plot_metrics_pcs.rds") 
+plot_metrics_pcs <- readRDS("../Data/RData/plot_metrics_pcs.rds") 
 
 plot_metrics_pcs
 
