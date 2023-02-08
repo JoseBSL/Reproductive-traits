@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 .Data/Large_files
+.DS_Store
