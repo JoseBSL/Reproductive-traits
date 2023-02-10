@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  1 FEB 2023 17:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  10 FEB 2023 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -509,40 +509,39 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count311
 \l__pdf_internal_box=\box74
-)
-No file Sup_Mat_Lanuza_et_al_2022.aux.
+) (./Sup_Mat_Lanuza_et_al_2022.aux)
 \openout1 = `Sup_Mat_Lanuza_et_al_2022.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Info: Redefining \microtypecontext on input line 94.
-Package microtype Info: Applying patch `item' on input line 94.
-Package microtype Info: Applying patch `toc' on input line 94.
-Package microtype Info: Applying patch `eqnum' on input line 94.
-Package microtype Info: Applying patch `footnote' on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Info: Redefining \microtypecontext on input line 93.
+Package microtype Info: Applying patch `item' on input line 93.
+Package microtype Info: Applying patch `toc' on input line 93.
+Package microtype Info: Applying patch `eqnum' on input line 93.
+Package microtype Info: Applying patch `footnote' on input line 93.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 94.
+LaTeX Info: Redefining \showhyphens on input line 93.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -613,7 +612,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 94.
+Package hyperref Info: Link coloring OFF on input line 93.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (/usr/local/texlive/2022/texmf-dist/tex/latex/refcount/refcount.sty
@@ -625,43 +624,43 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count318
 )
-LaTeX Info: Redefining \ref on input line 94.
-LaTeX Info: Redefining \pageref on input line 94.
-LaTeX Info: Redefining \nameref on input line 94.
+LaTeX Info: Redefining \ref on input line 93.
+LaTeX Info: Redefining \pageref on input line 93.
+LaTeX Info: Redefining \nameref on input line 93.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-16.
+15.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-16.
+15.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-116.
+115.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-116.
+115.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 116.
+(Font)              <12> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 116.
+(Font)              <8> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 116.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 116
+(Font)              <6> on input line 115.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 115
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 116
+LaTeX Font Info:    Trying to load font information for U+msb on input line 115
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -671,156 +670,163 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-42.
+41.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [2] [3]
 <../Images/flower_shapes.png, id=28, 2890.8pt x 2168.1pt>
 File: ../Images/flower_shapes.png Graphic file (type png)
 <use ../Images/flower_shapes.png>
-Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 221.
+Package pdftex.def Info: ../Images/flower_shapes.png  used on input line 220.
 (pdftex.def)             Requested size: 305.32942pt x 228.99706pt.
 [4 <../Images/flower_shapes.png>] [5]
-Overfull \hbox (24.25696pt too wide) in alignment at lines 291--347
+Overfull \hbox (24.25696pt too wide) in alignment at lines 276--281
 [] [] [] [] [] 
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 1 on input line 347.
+Overfull \hbox (24.25696pt too wide) in alignment at lines 281--286
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (24.25696pt too wide) in alignment at lines 286--288
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (24.25696pt too wide) in alignment at lines 288--290
+[] [] [] [] [] 
+ []
+
+
+Overfull \hbox (24.25696pt too wide) in alignment at lines 290--346
+[] [] [] [] [] 
+ []
 
 [6
 
-] [7] [8]
+] [7] [8] [9
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 2 on input line 398.
-
-[9
-
-]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3 on input line 433.
-
-[10]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4 on input line 472.
-
-[11]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 5 on input line 515.
-
-[12]
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf, id=76, 851
+] [10] [11] [12]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-6-1.pdf, id=76, 851
 .18pt x 312.16624pt>
+File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-6-1.pdf Graphi
+c file (type pdf)
+<use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
+hunk-6-1.pdf  used on input line 522.
+(pdftex.def)             Requested size: 650.4622pt x 238.55394pt.
+[13
+
+ <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-6-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf, id=91, 439
+.6425pt x 282.05376pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf Graphi
 c file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-7-1.pdf  used on input line 522.
-(pdftex.def)             Requested size: 650.4622pt x 238.55394pt.
-[13
+hunk-7-1.pdf  used on input line 535.
+(pdftex.def)             Requested size: 439.65483pt x 282.06166pt.
+[14
 
  <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf, id=91, 439
-.6425pt x 282.05376pt>
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf, id=107, 69
+9.61375pt x 1421.31pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf Graphi
 c file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-8-1.pdf  used on input line 530.
-(pdftex.def)             Requested size: 439.65483pt x 282.06166pt.
-[14
+hunk-8-1.pdf  used on input line 544.
+(pdftex.def)             Requested size: 281.85815pt x 572.61285pt.
 
- <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>]
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf, id=107, 69
+LaTeX Warning: Float too large for page by 4.68283pt on input line 549.
+
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf, id=108, 69
 9.61375pt x 1421.31pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf Graphi
 c file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-9-1.pdf  used on input line 537.
+hunk-9-1.pdf  used on input line 553.
 (pdftex.def)             Requested size: 281.85815pt x 572.61285pt.
 
-LaTeX Warning: Float too large for page by 4.68283pt on input line 542.
+LaTeX Warning: Float too large for page by 4.68283pt on input line 558.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf, id=108, 6
-99.61375pt x 1421.31pt>
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf, id=109, 1
+712.3975pt x 1705.37125pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-10-1.pdf  used on input line 546.
-(pdftex.def)             Requested size: 281.85815pt x 572.61285pt.
-
-LaTeX Warning: Float too large for page by 4.68283pt on input line 551.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf, id=109, 1
-712.3975pt x 1705.37125pt>
+hunk-10-1.pdf  used on input line 564.
+(pdftex.def)             Requested size: 469.74803pt x 467.82057pt.
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf, id=110, 7
+12.6625pt x 691.58376pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-11-1.pdf  used on input line 556.
-(pdftex.def)             Requested size: 469.74803pt x 467.82057pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf, id=110, 7
-12.6625pt x 691.58376pt>
+hunk-11-1.pdf  used on input line 576.
+(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf, id=111, 9
+19.435pt x 1336.995pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-12-1.pdf  used on input line 562.
-(pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
+hunk-12-1.pdf  used on input line 588.
+(pdftex.def)             Requested size: 447.30032pt x 650.44109pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Float too large for page by 53.51106pt on input line 593.
 
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf, id=111, 9
-19.435pt x 1336.995pt>
+[15 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>] [16
+ <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf>] [17 <.
+/Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf>] [18 <./S
+up_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf>] [19 <./Sup
+_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf, id=229, 1
+928.20375pt x 991.705pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-13-1.pdf  used on input line 569.
-(pdftex.def)             Requested size: 447.30032pt x 650.44109pt.
+hunk-13-1.pdf  used on input line 599.
+(pdftex.def)             Requested size: 650.43176pt x 334.52711pt.
+[20 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf, id=247, 1
+855.93375pt x 1270.7475pt>
+File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf Graph
+ic file (type pdf)
+<use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
+hunk-14-1.pdf  used on input line 615.
+(pdftex.def)             Requested size: 650.43613pt x 445.34999pt.
 
-LaTeX Warning: Float too large for page by 53.51106pt on input line 570.
+LaTeX Warning: Float too large for page by 29.09496pt on input line 621.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[15 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf>] [16
- <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf>] [17 <
-./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf>] [18 <./
-Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>] [19 <./Su
-p_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf>]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.574 \begin{figure}[!H]
-                         
+[21 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf>] (.
+/Sup_Mat_Lanuza_et_al_2022.aux) ) 
 Here is how much of TeX's memory you used:
- 16641 strings out of 478268
- 274814 string characters out of 5846348
- 604470 words of memory out of 5000000
- 34400 multiletter control sequences out of 15000+600000
- 513378 words of font info for 114 fonts, out of 8000000 for 9000
+ 16677 strings out of 478268
+ 275566 string characters out of 5846348
+ 606491 words of memory out of 5000000
+ 34415 multiletter control sequences out of 15000+600000
+ 513936 words of font info for 120 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,10n,77p,1022b,569s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,10n,77p,1197b,525s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/
+dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ma
+thit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/us
+r/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texliv
+e/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2022/tex
+mf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022/texmf-dist/fo
+nts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
+ublic/lm/lmri12.pfb>
+Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6733957 bytes).
+PDF statistics:
+ 317 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 24651 words of extra memory for PDF output out of 24883 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!

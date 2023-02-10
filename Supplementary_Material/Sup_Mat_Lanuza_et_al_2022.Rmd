@@ -12,7 +12,6 @@ header-includes:
 - \usepackage{caption}
 - \usepackage{setspace}\doublespacing
 - \usepackage{soul}
-- \floatplacement{figure}{H}
 - \usepackage{afterpage}
 - \usepackage{placeins}
 - \usepackage{graphicx}
@@ -23,10 +22,6 @@ fontsize: 12pt
 
 ---
 
-```{r echo=FALSE,warning=FALSE}
-knitr::opts_chunk$set(fig.pos = "h", out.extra = "")
-
-```
 
 
 \captionsetup[figure]{labelformat=empty}
@@ -1843,7 +1838,7 @@ plot
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Association between the main axes of trait variation (showed on different columns) and the distinct plant species level network metrics (showed on different rows). The x-axis shows the most illustrative trait extremes of the trait continuum. Note that the plots are coloured by the different network metrics.", fig.pos= "h"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Association between the main axes of trait variation (showed on different columns) and the distinct plant species level network metrics (showed on different rows). The x-axis shows the most illustrative trait extremes of the trait continuum. Note that the plots are coloured by the different network metrics."}
 
 #library(brms) #modelling
 library(cowplot) #panel of plots
