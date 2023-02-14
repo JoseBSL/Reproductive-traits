@@ -134,10 +134,17 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.130, 0.130)) +ggtitle("(d) Coleoptera") + 
-    xlab("Flower number - Flower size axis")  + ylab("Autonomous selfing - Floral display axis")
+  plot <- plot + 
+    theme_ms() +
+    ylim(-4,4) + 
+    xlim(-4,4) +  
+    theme(legend.position = c(0.130, 0.130)) +
+    ggtitle("(d) Coleoptera") + 
+    xlab("Flower number - Flower size axis")  + 
+    ylab("Autonomous selfing - Floral display axis") +
+    theme(legend.title = element_blank())
   
-  
+
   plot
   
 }

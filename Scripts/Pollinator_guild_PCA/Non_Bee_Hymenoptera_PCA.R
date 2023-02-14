@@ -135,8 +135,16 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.230, 0.130)) +
-    ggtitle("(e) Non-bee-Hymenoptera") + xlab("Flower number - Flower size axis")  + ylab(NULL)
+  plot <- plot + 
+    theme_ms() + 
+    ylim(-4,4) + 
+    xlim(-4,4) + 
+    theme(legend.position = c(0.230, 0.130)) +
+    ggtitle("(e) Non-bee-Hymenoptera") + 
+    xlab("Flower number - Flower size axis")  + 
+    ylab(NULL) +
+    theme(legend.title = element_blank())
+  
   
   
   plot

@@ -116,25 +116,39 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
                       v2 = .75 * mult * (get(y))
   )
   # add arrows
-  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  plot <- plot + 
+  geom_segment(data=datapc,linejoin="round", lineend="round", 
+  aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), 
+  alpha=1, color="black")
   
   #Add axis with perctentage
   percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  plot <- plot + 
+    geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), 
+    size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
   rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
-                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  plot <- plot + 
+    annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), 
+    y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+    label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.09, 0.130)) +ggtitle("(a) Bees") + xlab(NULL)  + ylab("Autonomous selfing - Floral display axis")
+  plot <- plot + theme_ms() + 
+    ylim(-4,4) + 
+    xlim(-4,4) +  
+    theme(legend.position = c(0.09, 0.130)) + 
+    ggtitle("(a) Bees") + 
+    xlab(NULL) + 
+    ylab("Autonomous selfing - Floral display axis") + 
+    theme(legend.title = element_blank())
   
   
   plot

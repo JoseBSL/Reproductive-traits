@@ -52,14 +52,14 @@ levels(factor(long_d_2$guild)) #9 DIFFERENT GUILDS|After I'll select the main fu
 #Generate long data with poll data
 data_analysis <- merge(long_d_2, dat_cleaning_5, by = "Plant_species")
 
-data_bee = data_analysis %>% 
+data_lepi = data_analysis %>% 
   mutate(guild = case_when(guild=="Lepidoptera" ~ "Lepidoptera", 
                            guild!="Lepidoptera" ~ "Other")) %>% 
   filter(guild == "Lepidoptera") %>% 
   distinct(Plant_species, guild)
 
-#Adding the species visited by the guild of bees
-dat_cleaning_5 = full_join(dat_cleaning_5, data_bee) 
+#Adding the species visited by the guild of lepidoptera
+dat_cleaning_5 = full_join(dat_cleaning_5, data_lepi) 
 
 dat_cleaning_5 = dat_cleaning_5 %>% 
   mutate(guild = case_when(guild=="Lepidoptera" ~ "Lepidoptera", 
@@ -125,22 +125,33 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   
   #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  plot <- plot + 
+    geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), 
+    size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
   
   #ADD LABELS
   rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
   
   PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
-  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
-                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  plot <- plot + 
+    annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)),
+             y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+             label = PCAloadings$Variables, color="black",size=6, fontface=2)
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  
-    theme(legend.position = c(0.14, 0.130)) +ggtitle("(b) Lepidoptera") + xlab(NULL) + ylab(NULL)
+  plot <- plot + 
+    theme_ms() + 
+    ylim(-4,4) + 
+    xlim(-4,4) +  
+    theme(legend.position = c(0.14, 0.130)) + 
+    ggtitle("(b) Lepidoptera") + 
+    xlab(NULL) + 
+    ylab(NULL) +
+    theme(legend.title = element_blank())
   
   
-  plot
+    plot
   
 }
 

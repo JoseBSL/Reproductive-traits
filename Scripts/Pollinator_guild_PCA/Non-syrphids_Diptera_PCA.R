@@ -136,8 +136,15 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.210, 0.130)) +
-    ggtitle("(c) Non-syrphids-diptera") + xlab(NULL)  + ylab(NULL)
+  plot <- plot + 
+    theme_ms() + 
+    ylim(-4,4) + 
+    xlim(-4,4) +  
+    theme(legend.position = c(0.210, 0.130)) +
+    ggtitle("(c) Non-syrphids-diptera") + 
+    xlab(NULL) + 
+    ylab(NULL) +
+    theme(legend.title = element_blank())
   
   
   plot
