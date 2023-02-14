@@ -26,7 +26,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
            panel.grid.minor.x =element_blank(),
            panel.grid.minor.y= element_blank(),
            panel.grid.major= element_blank(),
-           plot.title = element_text(size = rel(2.5), face="bold")
+           plot.title = element_text(size = rel(2.3), face="bold")
      ))
 }
 
@@ -134,8 +134,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a) Coleoptera") + 
-    xlab(NULL)  + ylab("Autonomous selfing - Floral display axis")
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.130, 0.130)) +ggtitle("(d) Coleoptera") + 
+    xlab("Flower number - Flower size axis")  + ylab("Autonomous selfing - Floral display axis")
   
   
   plot

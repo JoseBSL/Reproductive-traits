@@ -23,8 +23,8 @@ syrphids = readRDS("../../Data/RData/Syrphids_PCA.rds")
 #Make plot
 library(patchwork)
 
-bees + coleoptera + lepidoptera + 
-non_bee_hymenoptera + non_syrphid_diptera + syrphids
+bees  + lepidoptera + non_syrphid_diptera + 
+coleoptera + non_bee_hymenoptera  + syrphids
 
 
 

@@ -11,6 +11,7 @@ library(ggplot2)
 library(broman) #crayon colours
 library(cowplot)
 library(ggstar)
+library(data.table)
 
 # Theme for publication
 theme_ms <- function(base_size=12, base_family="Helvetica") {
@@ -26,7 +27,7 @@ theme_ms <- function(base_size=12, base_family="Helvetica") {
            panel.grid.minor.x =element_blank(),
            panel.grid.minor.y= element_blank(),
            panel.grid.major= element_blank(),
-           plot.title = element_text(size = rel(2.5), face="bold")
+           plot.title = element_text(size = rel(2.3), face="bold")
      ))
 }
 
@@ -135,8 +136,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   
   #CHANGE THEME
   
-  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +
-    ggtitle("(a) Non-syrphids-diptera") + xlab(NULL)  + ylab("Autonomous selfing - Floral display axis")
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.210, 0.130)) +
+    ggtitle("(c) Non-syrphids-diptera") + xlab(NULL)  + ylab(NULL)
   
   
   plot
