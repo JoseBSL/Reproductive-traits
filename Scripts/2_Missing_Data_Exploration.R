@@ -57,7 +57,7 @@ str(trait_filtered_2)
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
                         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
                         "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
                         "Pollen_per_flower")]
 
 
@@ -141,7 +141,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
          "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
          "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
          "Pollen_per_flower")]
 
 
@@ -212,9 +212,9 @@ t <- t[!is.na(t$Genus_all),]
 
 
 t <- t[c("Breeding_system","Compatibility_system",
-         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
+         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
          "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
          "Pollen_per_flower")]
 
 
@@ -222,9 +222,9 @@ t <- t[c("Breeding_system","Compatibility_system",
 #3)SUMMARY OF THE DATA|ALL COLS CONSIDERED!
 #################################################
 #Number of filled cells
-nrow(t) * 20 - sum(is.na(t))#[1] 23969
+nrow(t) * ncol(t) - sum(is.na(t))#[1] 22796
 #Dimension of the dataset
-nrow(t) * 20#[1] 30120
+nrow(t) * ncol(t)#[1] 27108
 #Number of missing values
 sum(is.na(t))#[1] 6151
 #Percentage of filled cells
@@ -247,7 +247,7 @@ missing <- specify_decimal(sum(is.na(t))/(sum(is.na(t))+sum(!is.na(t)))*100,2)
 t <- t[c("Breeding_system","Compatibility_system",
          "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
          "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
          "Pollen_per_flower")]
 
 

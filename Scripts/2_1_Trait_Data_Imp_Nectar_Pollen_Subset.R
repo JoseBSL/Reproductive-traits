@@ -54,7 +54,7 @@ str(trait_filtered_2)
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
                         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant",  "Floral_unit_width",
                         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
+                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #2 DATA PREPARATION
@@ -120,7 +120,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
          "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Floral_unit_width",
          "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
+         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul","Nectar_mg","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #3) EXPLORE PATTERNS OF MISSING DATA
@@ -183,9 +183,7 @@ sort(missing_data[missing_data >= 0], decreasing=T)
 
 #mg of nectar have over 30% of missing values and thus, we do not include it in the imputation
 library(tidyverse)
-t_nectar_pollen <- t_nectar_pollen %>% select(!Nectar_mg)
-
-
+t_nectar_pollen <- t_nectar_pollen %>% dplyr::select(!Nectar_mg)
 
 
 #################################################
@@ -213,7 +211,7 @@ colnames(phylo) <-  c("family", "genus", "species")
 #phylo_2 <- phylo[!duplicated(phylo$species),]
 phylo_1 <- tibble(phylo)
 #get phylo
-phylo_output <- get_tree(sp_list = phylo_1[,], tree = tree_plant_otl, taxon = "plant")
+phylo_output <- rtrees::get_tree(sp_list = phylo_1[,], taxon = "plant")
 
 a <- data.frame(phylo_output$tip.label)
 a$phylo_output.tip.label <- gsub("_", " ", a$phylo_output.tip.label)
@@ -245,7 +243,7 @@ dat_phylo[cols.num] <- sapply(dat_phylo[cols.num],as.factor)
 #####
 #METHOD: RANDOM FOREST
 ##### 
-forest_imputed <- missForest(dat_phylo[,c(6:25)], maxiter = 10,mtry = 4, ntree = 200)
+forest_imputed <- missForest(dat_phylo[,c(6:24)], maxiter = 10,mtry = 4, ntree = 200)
 f_imp_data <- forest_imputed$ximp
 #remove last column of eigens
 f_imp_data <- f_imp_data[,-21]

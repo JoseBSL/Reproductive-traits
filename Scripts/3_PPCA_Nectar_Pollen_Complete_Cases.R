@@ -56,7 +56,7 @@ str(trait_filtered_2)
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
                         "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant",  "Floral_unit_width",
                         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
+                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #2 DATA PREPARATION
@@ -122,7 +122,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system","Autonomous_selfing_level",
          "Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", "Floral_unit_width",
          "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul","Nectar_mg","Nectar_concentration","Pollen_per_flower")]
+         "Plant_height_mean_m","Nectar_presence_absence", "Nectar_ul","Nectar_mg","Pollen_per_flower")]
 
 ########################################################################################################################################################
 #3) EXPLORE PATTERNS OF MISSING DATA

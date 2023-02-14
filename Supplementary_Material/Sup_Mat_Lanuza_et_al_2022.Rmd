@@ -339,18 +339,15 @@ nectar_ul <- readRDS("Data/RData/Nectar_ul_phylo.rds")
 #Not included at the end
 #Nectar mg
 #nectar_mg <- readRDS("Data/RData/Nectar_mg_phylo.rds")
-#Nectar concentration
-nectar_con <- readRDS("Data/RData/Nectar_concentration_phylo.rds")
-
 
 #Select two decimals function
 specify_decimal <- function(x, k) trimws(format(round(x, k), nsmall=k))
 #LABELS
-label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Nectar per flower ($\\mu$l)", "Nectar concentration ($\\%$)","Pollen grains per flower")
+label <- c("Autonomous selfing", "Flower number", "Inflorescence width" ,"Flower width", "Flower length", "Style length", "Ovule number", "Plant height", "Nectar per flower ($\\mu$l)","Pollen grains per flower")
 #LAMBDA
-lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, nectar_ul$lambda, nectar_con$lambda, pollen$lambda)
+lambda <- c(selfing$lambda , flower_n$lambda, inflow_width$lambda, flower_width$lambda, flower_length$lambda, style_n$lambda, ovule_n$lambda, plant_height$lambda, nectar_ul$lambda, pollen$lambda)
 #P-VALUE
-p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P,nectar_ul$P,  nectar_con$P, pollen$P)
+p_value <- c(selfing$P , flower_n$P, inflow_width$P,flower_width$P, flower_length$P, style_n$P, ovule_n$P, plant_height$P,nectar_ul$P, pollen$P)
 
 tabla <- data.frame(label, specify_decimal(lambda,2), specify_decimal(p_value,2))
 
@@ -572,7 +569,7 @@ str(trait_filtered_2)
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
                         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
                         "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
                         "Pollen_per_flower")]
 
 
@@ -656,7 +653,7 @@ t$Autonomous_selfing_level_fruit_set <- ifelse(t$Autonomous_selfing_level %in% c
 t <- t[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
          "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
          "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+         "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
          "Pollen_per_flower")]
 
 
@@ -729,7 +726,7 @@ t <- t[!is.na(t$Genus_all),]
 t <- t[c("Breeding_system","Compatibility_system",
                         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", 
                         "Flowers_per_plant", "Floral_unit_width", "Corolla_diameter_mean", "Corolla_length_mean","Style_length", "Ovule_number", 
-                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration",
+                        "life_form", "lifespan","Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg",
          "Pollen_per_flower")]
 
 
@@ -761,7 +758,7 @@ t = t %>% select(!Autonomous_selfing_level)
 
 colnames(t) <- c("Breeding system","Compatibility system","Autonomous selfing level", "Flower shape", "Flower symmetry", 
                  "Flower number per plant", "Inflorescence width", "Flower width", "Flower length","Style length", "Ovule number", 
-                 "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar per flower (microlitres)", "Nectar per flower (miligrames)", "Nectar concentration (%)", "Pollen grains per flower")
+                 "Life form", "Lifespan","Plant height","Nectar qualitative","Nectar per flower (microlitres)", "Nectar per flower (miligrames)",  "Pollen grains per flower")
 
 
 

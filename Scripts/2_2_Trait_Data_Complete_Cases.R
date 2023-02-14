@@ -54,7 +54,7 @@ trait_filtered_2 <- trait_filtered_1[!duplicated(trait_filtered_1$Species_all),]
 t <- trait_filtered_2[c("Species_geonet","Order_all","Family_all","Genus_all","Species_all","Breeding_system","Compatibility_system",
                         "Autonomous_selfing_level","Autonomous_selfing_level_fruit_set", "Flower_morphology", "Flower_symmetry", "Flowers_per_plant", 
                         "Corolla_diameter_mean", "Corolla_length_mean", "Style_length", "Ovule_number", "life_form", "lifespan",
-                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg","Nectar_concentration")]
+                        "Plant_height_mean_m","Nectar_presence_absence","Nectar_ul","Nectar_mg")]
 ########################################################################################################################################################
 #####
 #B) RENAME LEVELS FOR IMPUTATION
