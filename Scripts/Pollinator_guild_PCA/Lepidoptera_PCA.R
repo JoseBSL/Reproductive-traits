@@ -144,7 +144,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
     theme_ms() + 
     ylim(-4,4) + 
     xlim(-4,4) +  
-    theme(legend.position = c(0.14, 0.130)) + 
+    theme(legend.position = "none") + 
     ggtitle("(b) Lepidoptera") + 
     xlab(NULL) + 
     ylab(NULL) +

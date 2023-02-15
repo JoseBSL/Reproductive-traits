@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  14 FEB 2023 15:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  15 FEB 2023 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -769,50 +769,59 @@ ic file (type pdf)
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
 hunk-11-1.pdf  used on input line 574.
 (pdftex.def)             Requested size: 469.74974pt x 455.85573pt.
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf, id=110, 9
-19.435pt x 1336.995pt>
+[15 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>] [16
+ <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf>] [17 <.
+/Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf>] [18 <./S
+up_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf, id=213, 1
+278.7775pt x 841.1425pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-12-1.pdf  used on input line 586.
-(pdftex.def)             Requested size: 447.30032pt x 650.44109pt.
-
-LaTeX Warning: Float too large for page by 53.51106pt on input line 591.
-
-[15 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-8-1.pdf>] [16
- <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-9-1.pdf>] [17 <.
-/Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-10-1.pdf>] [18 <./S
-up_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-11-1.pdf>] [19 <./Sup
-_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>]
-<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf, id=228, 1
-928.20375pt x 991.705pt>
+hunk-12-1.pdf  used on input line 585.
+(pdftex.def)             Requested size: 552.86855pt x 363.66078pt.
+[19 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-12-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf, id=232, 9
+19.435pt x 1336.995pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-13-1.pdf  used on input line 597.
-(pdftex.def)             Requested size: 650.43176pt x 334.52711pt.
+hunk-13-1.pdf  used on input line 599.
+(pdftex.def)             Requested size: 447.30032pt x 650.44109pt.
+
+LaTeX Warning: Float too large for page by 53.51106pt on input line 604.
+
 [20 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-13-1.pdf>]
 <Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf, id=246, 1
-855.93375pt x 1270.7475pt>
+928.20375pt x 991.705pt>
 File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf Graph
 ic file (type pdf)
 <use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
-hunk-14-1.pdf  used on input line 613.
+hunk-14-1.pdf  used on input line 610.
+(pdftex.def)             Requested size: 650.43176pt x 334.52711pt.
+[21 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf>]
+<Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-15-1.pdf, id=265, 1
+855.93375pt x 1270.7475pt>
+File: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-15-1.pdf Graph
+ic file (type pdf)
+<use Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-c
+hunk-15-1.pdf  used on input line 626.
 (pdftex.def)             Requested size: 650.43613pt x 445.34999pt.
 
-LaTeX Warning: Float too large for page by 29.09496pt on input line 619.
+LaTeX Warning: Float too large for page by 29.09496pt on input line 632.
 
-[21 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-14-1.pdf>] (.
+[22 <./Sup_Mat_Lanuza_et_al_2022_files/figure-latex/unnamed-chunk-15-1.pdf>] (.
 /Sup_Mat_Lanuza_et_al_2022.aux) ) 
 Here is how much of TeX's memory you used:
- 16677 strings out of 478268
- 275566 string characters out of 5846348
- 606491 words of memory out of 5000000
- 34415 multiletter control sequences out of 15000+600000
- 513936 words of font info for 120 fonts, out of 8000000 for 9000
+ 16686 strings out of 478268
+ 276196 string characters out of 5846348
+ 606941 words of memory out of 5000000
+ 34425 multiletter control sequences out of 15000+600000
+ 513754 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,10n,77p,1197b,525s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/
@@ -822,10 +831,10 @@ r/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/te
 xlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2022
 /texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist
 /fonts/type1/public/lm/lmri12.pfb>
-Output written on Sup_Mat_Lanuza_et_al_2022.pdf (21 pages, 6732743 bytes).
+Output written on Sup_Mat_Lanuza_et_al_2022.pdf (22 pages, 8288860 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
- 43 named destinations out of 1000 (max. 500000)
- 24651 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 331 PDF objects out of 1000 (max. 8388607)
+ 263 compressed objects within 3 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 24656 words of extra memory for PDF output out of 24883 (max. 10000000)
 

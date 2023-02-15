@@ -99,7 +99,8 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
   dat$guild <- dat_cleaning_5$guild
 
-  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=guild, fill=guild), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("tomato2", "azure3")) +
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=guild, fill=guild), 
+    size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("tomato2", "azure3")) +
     scale_starshape_manual(values = c(13, 15, 28, 5))  
   
   
@@ -144,7 +145,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
   plot <- plot + theme_ms() + 
     ylim(-4,4) + 
     xlim(-4,4) +  
-    theme(legend.position = c(0.09, 0.130)) + 
+    theme(legend.position="none") +
     ggtitle("(a) Bees") + 
     xlab(NULL) + 
     ylab("Autonomous selfing - Floral display axis") + 

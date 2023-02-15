@@ -140,7 +140,7 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
     theme_ms() + 
     ylim(-4,4) + 
     xlim(-4,4) +  
-    theme(legend.position = c(0.11, 0.130)) +
+    theme(legend.position = "none") +
     ggtitle("(f) Syrphids") + 
     xlab("Flower number - Flower size axis")  + 
     ylab(NULL) +

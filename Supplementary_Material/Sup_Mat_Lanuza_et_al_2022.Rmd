@@ -49,7 +49,7 @@ Appendix S1 (text)
 
 Tables S1 to S5
 
-Figures S1 to S9
+Figures S1 to S10
 
 
 
@@ -1462,10 +1462,42 @@ pc3(PC)
 
 ```
 
+
+\blandscape
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, out.width="85%",  fig.height=12, fig.width=18,fig.align='center',  fig.cap="\\textbf{Fig. S7.} Location in the trait space of the plants that were visited by each of the different pollinator guilds. The red square indicates that the pollinator guild has been observed in that specific plant. Note that the interactions used to represent the plant-pollinator guild connection are a subset of the total interactions considered in this study as indicated in the Network analysis section (see main text)."}
+
+#Create panel with all plots, qualitative version
+
+library(ggplot2)
+
+#Load plots
+bees = readRDS("../Data/RData/Bee_PCA.rds")
+coleoptera = readRDS("../Data/RData/Coleoptera_PCA.rds")
+lepidoptera = readRDS("../Data/RData/Lepidoptera_PCA.rds")
+non_bee_hymenoptera = readRDS("../Data/RData/Non_bee_hymenoptera_PCA.rds")
+non_syrphid_diptera = readRDS("../Data/RData/Non_syrphid_diptera_PCA.rds")
+syrphids = readRDS("../Data/RData/Syrphids_PCA.rds")
+
+#Make plot
+library(patchwork)
+
+bees  + lepidoptera + non_syrphid_diptera + 
+coleoptera + non_bee_hymenoptera  + syrphids
+
+
+
+```
+
+
+
+\elandscape
+
 \newpage
 \thispagestyle{empty}
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S7.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=19, fig.width=13, fig.cap="\\textbf{Fig. S8.} Statistical comparison of the different categories of qualitative traits on the main two axes of trait variation with the full set of species. Categories that differ significantly are denoted with a different letter."}
 
 
 ########################################################################################################################################################
@@ -1792,9 +1824,11 @@ symmetry_1 + symmetry_2 + nectar_1 + nectar_2 + plot_layout(ncol = 2)
 ```
 
 
+
+
 \blandscape
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S8.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=14, fig.width=27,fig.pos = "!H",fig.cap="\\textbf{Fig. S9.} Interaction (yes/no) and visitation rate of the main bee families on the main axes of trait variation. Fitted posterior estimates of the presence-absence of interaction (plots a, b and c) and visitation rate (plots e, f and g) of Andrenidae, Apidae, Colletidae, Halictidae and Megachilidae across PC1, PC2 and PC3. For visualization purposes, the response variable of number of visits was log-transformed (Y-axis of lower panel)."}
 
 
 library(Rcpp)
@@ -1835,7 +1869,7 @@ plot
 \blandscape
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S9.} Association between the main axes of trait variation (showed on different columns) and the distinct plant species level network metrics (showed on different rows). The x-axis shows the most illustrative trait extremes of the trait continuum. Note that the plots are coloured by the different network metrics."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=18, fig.width=26, fig.cap="\\textbf{Fig. S10.} Association between the main axes of trait variation (showed on different columns) and the distinct plant species level network metrics (showed on different rows). The x-axis shows the most illustrative trait extremes of the trait continuum. Note that the plots are coloured by the different network metrics."}
 
 #library(brms) #modelling
 library(cowplot) #panel of plots
