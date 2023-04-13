@@ -1,0 +1,609 @@
+---
+output: pdf_document
+fontsize: 12pt
+classoption: landscape
+
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+- \usepackage[skip=3pt]{caption}
+- \captionsetup[figure]{labelformat=empty}
+- \usepackage{setspace}
+- \usepackage{titlesec}
+- \titlespacing{\title}{0pt}{\parskip}{-\parskip}
+- \usepackage[style=nature]{biblatex}
+- \usepackage[labelformat = empty]{caption}
+- \usepackage{pdflscape}
+- \usepackage[T1]{fontenc}
+- \DeclareUnicodeCharacter{0301}{*************************************}
+- \DeclareUnicodeCharacter{1EF3}{*************************************}
+- \usepackage{orcidlink}
+---
+
+\pagenumbering{gobble}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, results='hide', warning=FALSE, fig.height=12, fig.width=18, out.width="90%",fig.align='center',fig.cap= "\\textbf{Figure 2.} Location of the different qualitative traits in the trait space. The figure panel is composed of the traits that showed statistical association with the first two axes of trait variation: compatibility system (a), life form (b), lifespan (c), breeding system (d), flower shape (e) and flower symmetry (f). The solid arrows indicate the direction of variation of the different quantitative traits shown in figure 1: flower number (FN), plant height (PH), style length (SL), flower size (FS), ovule number (ON) and the level of autonomous selfing (S)."}
+
+
+
+#Load libraries
+#LOAD LIBRARIES
+library(phytools)
+library(ape) #for phylogenetic distance
+library(dplyr) #data processing
+library(rtrees) #for phylogenetic distancelibrary(MASS)
+library(reshape2)
+library(viridis) #COLOUR GGPLOT
+library(MASS)
+library(ggplot2)
+library(broman) #crayon colours
+library(cowplot)
+library(ggstar)
+
+# Theme for publication
+theme_ms <- function(base_size=12, base_family="Helvetica") {
+  (theme_bw(base_size = base_size, base_family = base_family)+
+      theme(text=element_text(color="black"),
+            axis.title=element_text( size = rel(1.6)),
+            axis.text=element_text(size = rel(1.6), color = "black"),
+            legend.title=element_text(face="bold"),
+            legend.text=element_text(size = rel(1.1)),
+            legend.background=element_rect(fill="transparent"),
+            legend.key.size = unit(0.4, 'lines'),
+            panel.border=element_rect(color="black",size=1),
+            panel.grid.minor.x =element_blank(),
+            panel.grid.minor.y= element_blank(),
+             panel.grid.major= element_blank(),
+            plot.title = element_text(size = rel(2.5), face="bold")
+      ))
+}
+
+#Load data
+dat_cleaning_5 <- readRDS("../Data/RData/data_all_species_for_rmd_plot_ppca_QUALITATIVE.rds")
+phyl_pca_forest <- readRDS("../Data/RData/phyl_pca_forest.rds")
+
+#CALL the output PC for simplicity
+PC <- phyl_pca_forest
+#CHECK CONTENT
+#EIGENVALUES
+PC$Eval
+#PC score (POINTS)
+PC$S
+#PC loadings (ARROWS)
+PC$L
+
+#############################################################################################################################################################
+#COMPATIBILITY
+#############################################################################################################################################################
+#Load plots
+Compatibility <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$Compatibility <- dat_cleaning_5$Compatibility_system
+  dat$Compatibility <- as.character(dat$Compatibility)
+  dat$Compatibility[dat$Compatibility=="dioecious"] <- "Unisexual flowers"
+  dat$Compatibility[dat$Compatibility=="monoecious"] <- "Unisexual flowers"
+  dat$Compatibility[dat$Compatibility=="partially_self_compatible"] <- "Partially self compatible"
+  dat$Compatibility[dat$Compatibility=="self_compatible"] <- "Self compatible"
+  dat$Compatibility[dat$Compatibility=="self_incompatible"] <- "Self incompatible"
+  dat$Compatibility <- factor(dat$Compatibility, levels = c("Self compatible", "Partially self compatible", "Self incompatible", "Unisexual flowers"))
+
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=Compatibility, fill=Compatibility), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("deepskyblue2", "purple2","goldenrod","gray7")) +
+scale_starshape_manual(values = c(13, 15, 28, 5))  
+  
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.220, 0.130)) +ggtitle("(a)") + xlab(NULL)  + ylab("Autonomous selfing - Floral display axis")
+  
+  
+  plot
+  
+}
+
+#Compatibility(PC)
+
+#############################################################################################################################################################
+#Life form
+#############################################################################################################################################################
+#Load plots
+Life_form <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Life form` <- dat_cleaning_5$life_form
+  dat$`Life form` <- as.character(dat$`Life form`)
+  dat$`Life form`[dat$`Life form`=="herb"] <- "Herb"
+  dat$`Life form`[dat$`Life form`=="shrub"] <- "Shrub"
+  dat$`Life form`[dat$`Life form`=="tree"] <- "Tree"
+  dat$`Life form`[dat$`Life form`=="vine"] <- "Shrub"
+  
+  dat$`Life form` <- factor( dat$`Life form`, levels = c("Herb", "Shrub", "Tree"))
+
+plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Life form`, fill=`Life form`), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("forestgreen", "darkorange2","black")) +
+scale_starshape_manual(values = c(13, 15, 28))
+  
+  
+    
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.090, 0.115)) + ggtitle("(b)") +
+    xlab(NULL) + ylab(NULL)
+  
+  plot
+  
+}
+
+#Life_form(PC)
+
+#############################################################################################################################################################
+#Life span
+#############################################################################################################################################################
+#Load plots
+Life_span <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+    dat$Lifespan <- dat_cleaning_5$lifespan
+    dat$Lifespan <- as.character(dat$Lifespan)
+
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=Lifespan, fill=Lifespan), size=2.25, color= NA, alpha = 0.9)+ scale_fill_manual(values=c("sienna4","forestgreen")) +
+scale_starshape_manual(values = c(13, 15))  
+  
+  
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+  #CHANGE THEME
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.12, 0.1)) + ggtitle("(c)") +
+    xlab(NULL) + ylab(NULL)
+  
+  plot
+  
+}
+
+#Life_span(PC)
+
+#############################################################################################################################################################
+#Flower symmetry
+#############################################################################################################################################################
+#Load plots
+Flower_sym <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Flower symmetry` <- dat_cleaning_5$Flower_symmetry
+  dat$`Flower symmetry` <- as.character(dat$`Flower symmetry`)
+  dat$`Flower symmetry`[dat$`Flower symmetry`=="actinomorphic"] <- "Actinomorphic"
+  dat$`Flower symmetry`[dat$`Flower symmetry`=="zygomorphic"] <- "Zygomorphic"
+  
+
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Flower symmetry`, fill=`Flower symmetry`), size=2.25, color= NA, alpha = 0.9) + scale_fill_manual(values=c("goldenrod","purple2")) +
+scale_starshape_manual(values = c(13, 15))  
+  
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+  #CHANGE THEME
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.1)) + ggtitle("(f)") + ylab(NULL) + xlab("Flower number - Flower size axis")
+  
+  plot
+  
+}
+
+#Flower_sym(PC)
+
+#############################################################################################################################################################
+#Flower shape
+#############################################################################################################################################################
+#Load plots
+Flower_sha <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Flower shape` <- dat_cleaning_5$Flower_morphology
+  dat$`Flower shape` <- as.character(dat$`Flower shape`)
+  dat$`Flower shape`[dat$`Flower shape`=="Funnelform"] <- "Campanulate"
+  dat$`Flower shape`[dat$`Flower shape`=="Spike"] <- "Brush"
+
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Flower shape`, fill=`Flower shape`), size=2.25, color= NA, alpha = 0.85)+ scale_fill_manual(values=c("black","goldenrod", "deepskyblue2","forestgreen","purple2","darkorange2")) +
+scale_starshape_manual(values = c(13, 15, 28, 5, 9, 14))  
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+  #CHANGE THEME
+  
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.155, 0.17)) + ggtitle("(e)") + ylab(NULL) + xlab("Flower number - Flower size axis")
+  
+  plot
+  
+}
+
+#Flower_sha(PC)
+
+#############################################################################################################################################################
+#Breeding system
+#############################################################################################################################################################
+#Load plots
+Breeding_syst <- function(PC, x="PC1", y="PC2") {
+  # PC being a prcomp object
+  data <- data.frame(PC$S)
+  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+  dat <- data.frame(x = data[,x], y = data[,y])
+  
+  #######
+  #DENSITY FUNCTION
+  #######
+  get_density <- function(x, y, ...) {
+    dens <- MASS::kde2d(x, y, ...)
+    ix <- findInterval(x, dens$x)
+    iy <- findInterval(y, dens$y)
+    ii <- cbind(ix, iy)
+    return(dens$z[ii])
+  }
+  
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+  dat$`Breeding system` <- dat_cleaning_5$Breeding_system
+  dat$`Breeding system` <- as.character(dat$`Breeding system`)
+  dat$`Breeding system` <- factor(dat$`Breeding system`, levels=c("Hermaphrodite","Monoecious" ,"Dioecious"))
+
+  plot <- plot + geom_star(data=dat, aes(-x, -y, starshape=`Breeding system`, fill=`Breeding system`), size=2.25, color= NA, alpha = 0.9) + scale_fill_manual(values=c("forestgreen","darkorange2", "black")) +
+scale_starshape_manual(values = c(13, 15, 28))  
+    
+  
+  
+  ########
+  #ADD ARROWS 
+  ########
+  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+  mult <- min(
+    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+  )
+  datapc <- transform(datapc,
+                      v1 = .75 * mult * (get(x)),
+                      v2 = .75 * mult * (get(y))
+  )
+  # add arrows
+  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, yend=-v2),size=1.2, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+  
+  #Add axis with perctentage
+  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+
+  
+  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.8, arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+  
+  #ADD LABELS
+  rownames(PC$L) <- c("S", "FN", "FS", "SL", "ON", "PH" )
+  
+  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,5.2,5.25,7.9,7.1,6)), y = -(PCAloadings$PC2*c(4.45,4.2,5.4,7.7,6,6.5)+c(0,0,0,0,-0.1,0)),
+                          label = PCAloadings$Variables, color="black",size=6, fontface=2)
+  
+
+  
+  #CHANGE THEME
+  #CHANGE THEME
+  
+  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.152, 0.11)) + ggtitle("(d)") +
+    xlab("Flower number - Flower size axis") +
+    ylab("Autonomous selfing - Floral display axis")
+  
+  plot
+  
+}
+
+#Breeding_syst(PC)
+
+#############################################################################################################################################################
+#Nectar
+#############################################################################################################################################################
+#Load plots
+#Nectar <- function(PC, x="PC1", y="PC2") {
+#  # PC being a prcomp object
+#  data <- data.frame(PC$S)
+#  plot <- ggplot(data, aes_string(x=x, y=y)) #generate plot
+#  dat <- data.frame(x = data[,x], y = data[,y])
+#  
+#  #######
+#  #DENSITY FUNCTION
+#  #######
+#  get_density <- function(x, y, ...) {
+#    dens <- MASS::kde2d(x, y, ...)
+#    ix <- findInterval(x, dens$x)
+#    iy <- findInterval(y, dens$y)
+#    ii <- cbind(ix, iy)
+#    return(dens$z[ii])
+#  }
+#  
+#  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+#  dat$density <- get_density(dat$x, dat$y, h = c(2, 2), n = 1000) #obtain density
+#  dat$Nectar <- dat_cleaning_5$Nectar_presence_absence
+#  dat$Nectar[dat$Nectar=="yes"] <- "Presence"
+#  dat$Nectar[dat$Nectar=="no"] <- "Absence"
+#  plot <- plot + geom_point(data=dat, aes(-x, -y, #colour=Nectar),size=1.75)+scale_color_manual(values=c("black","grey"))
+#  
+#  ########
+#  #ADD ARROWS 
+#  ########
+#  datapc <- data.frame(PC$L) #CREATE DATAFRAME WITH LOADINGS
+#  mult <- min(
+#    (max(data[,y]) - min(data[,y])/(max(datapc[,y])-min(datapc[,y]))),
+#    (max(data[,x]) - min(data[,x])/(max(datapc[,x])-min(datapc[,x])))
+#  )
+#  datapc <- transform(datapc,
+#                      v1 = .75 * mult * (get(x)),
+#                      v2 = .75 * mult * (get(y))
+#  )
+#  # add arrows
+#  plot <- plot + geom_segment(data=datapc,linejoin="round", lineend="round",aes(x=0, y=0, xend=-v1, #yend=-v2),size=1, arrow=arrow(length=unit(0.5,"cm")), alpha=1, color="black")
+#  
+#  #Add axis with perctentage
+#  percentage <- round(diag(PC$Eval) / sum(PC$Eval) * 100, 2) #calculate percentage
+#
+#  
+#  #ADD THE OTHER DIRECTION OF THE SEGMENT BECAUSE LOOKS COOL
+#  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2),size=0.6, #arrow=arrow(length=unit(0,"cm")),linetype=2, alpha=0.8, color="black")
+#  
+#  #ADD LABELS
+#  rownames(PC$L) <- c("Selfing", "Flower N.", "Flower size", "Style Length", "Ovule N.", "Plant Height" )
+#  
+#  PCAloadings <- data.frame(Variables = rownames(PC$L), PC$L)
+#  plot <- plot + annotate("text", x = -(PCAloadings$PC1*c(4.6,4.95,5,7.5,7.1,6)), y = #-(PCAloadings$PC2*c(4.3,2.6,5,7,5.8,6.5)+c(0,0,0,0,-0.15,0)),
+#                          label = PCAloadings$Variables, color="black",size=3)
+#  
+#  #CHANGE THEME
+#  #CHANGE THEME
+#  
+#  plot <- plot + theme_ms() +ylim(-4,4) + xlim(-4,4) +  theme(legend.position = c(0.095, 0.115)) + ggtitle("G)") 
+#  
+#  plot
+#  
+#}
+#
+# #plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),Nectar(PC), ncol=2,nrow=4,  align = "hv")
+
+
+
+
+  plot_grid(Compatibility(PC),Life_form(PC),Life_span(PC),Breeding_syst(PC),Flower_sha(PC),Flower_sym(PC),ncol=3,nrow=2,  align = "hv")
+
+```
+
+
+

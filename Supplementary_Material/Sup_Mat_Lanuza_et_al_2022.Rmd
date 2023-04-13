@@ -130,9 +130,9 @@ _Floral traits_
 
 -	Ovule number: We searched for the number of ovules per flower for all the different species. The number of ovules of Asteraceae species are considered as the total number of ovules per capitulum. Many species were filled by genus or family level because the number of ovules of some taxonomic groups is considered to be mostly constant (e.g., Lamiaceae, Boraginaceae or Apiaceae).
  
--	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up groupping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary Information Text Fig. 1).
+-	Flower morphology: We looked for images and illustrations of the flowers from the different species on the floras and available resources in order to categorize the flower shape. We divided the flowers in 8 main different categories: open, bowl, tube, campanulate, funnelform, papilionaceous, brush and capitulum. However, we ended up grouping all flowers on the following 6  morphological groups for analyses: tube, papilonaceous, open, capitulum, campanulate and brush (Supplementary Information Text Fig. 1).
 
-```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary Information Text Fig. 1.}  Main floral morphologies considered in this study. All species were groupped within these categories for analysis: (a) tube, (b) papilonaceous, (c) open, (d) capitulum, (e) campanulate and (f) brush."}
+```{r pressure, echo=FALSE, fig.cap="", out.width = '65%',fig.align='center', fig.cap="\\textbf{Supplementary Information Text Fig. 1.}  Main floral morphologies considered in this study. All species were grouped within these categories for analysis: (a) tube, (b) papilonaceous, (c) open, (d) capitulum, (e) campanulate and (f) brush."}
 knitr::include_graphics("../Images/flower_shapes.png")
 ```
 
