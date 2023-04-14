@@ -1,6 +1,9 @@
 ---
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 fontsize: 12pt
+always_allow_html: true
 
 header-includes:
 - \usepackage{booktabs}
@@ -22,7 +25,7 @@ header-includes:
 - \captionsetup[figure]{labelformat=empty}
 - \usepackage{setspace}
 - \usepackage{titlesec}
-- \titlespacing{\title}{0pt}{\parskip}{-\parskip}
+- "\\titlespacing{\\title}{0pt}{\\parskip}{-\\parskip}"
 - \usepackage[style=nature]{biblatex}
 - \usepackage[labelformat = empty]{caption}
 - \usepackage{pdflscape}
